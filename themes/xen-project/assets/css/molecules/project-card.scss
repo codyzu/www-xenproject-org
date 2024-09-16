@@ -1,0 +1,49 @@
+.project-card {
+  --title-font-size: 1.25rem;
+  --title-paddings: 0.25rem 0.5rem;
+  --content-paddings: 0.75rem;
+  --link-font-size: 1rem;
+  border: 0.0625rem solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  @include tablet {
+    --title-font-size: 1.5rem;
+    --content-paddings: 1.5rem 1rem;
+    --link-font-size: 1.25rem;
+  }
+
+  &__title {
+    margin: 0;
+    background: var(--color-brand-fill);
+    padding: var(--title-paddings);
+    width: 100%;
+    font-size: var(--title-font-size);
+    font-weight: 700;
+    line-height: 150%;
+  }
+
+  &__content {
+    padding: var(--content-paddings);
+    line-height: 2;
+
+    p:first-child,
+    p:last-child {
+      margin: 0;
+    }
+  }
+
+  p {
+    color: #444;
+  }
+
+  &__link {
+    margin: auto 0.5rem 0 auto;
+    font-weight: 500;
+    font-size: var(--link-font-size);
+    padding-top: 0;
+    padding-right: 0;
+  }
+}

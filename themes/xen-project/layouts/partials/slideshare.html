@@ -1,0 +1,17 @@
+{{- $url := .url -}}
+{{- $width := default "595" .width -}}
+{{- $height := default "485" .height -}}
+
+
+<div class="slideshare-container">
+  <iframe
+    src="{{ $url }}"
+    width="{{ $width }}"
+    height="{{ $height }}"
+    frameborder="0"
+    marginwidth="0"
+    marginheight="0"
+    scrolling="no"
+    allowfullscreen
+  ></iframe>
+</div>

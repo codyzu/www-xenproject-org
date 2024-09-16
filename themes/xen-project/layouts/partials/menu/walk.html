@@ -1,0 +1,36 @@
+{{- $page := .page -}}
+{{- $isFooter := .isFooter | default false -}}
+{{- range .menuEntries -}}
+  {{- $showInFooterOnly := false -}}
+  {{- with .Page -}}{{- $showInFooterOnly = .Params.showInFooterOnly -}}{{- end -}}
+  {{- $shouldDisplay := or (and (not $isFooter) (not $showInFooterOnly)) (and $isFooter (or (not $showInFooterOnly) $showInFooterOnly)) -}}
+  {{- if eq .Name "More" -}}
+    {{- $visibleChildren := 0 -}}
+    {{- range .Children -}}{{- if or $isFooter (not .Page.Params.showInFooterOnly) -}}{{- $visibleChildren = add $visibleChildren 1 -}}{{- end -}}{{- end -}}
+    {{- if and $shouldDisplay (gt $visibleChildren 0) -}}
+      <li>
+        {{- $attrs := dict "href" .URL -}}
+        {{- if .Params.target -}}{{- $attrs = merge $attrs (dict "target" .Params.target) -}}{{- end -}}
+        {{- if $page.IsMenuCurrent .Menu . -}}{{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") -}}
+        {{- else if $page.HasMenuCurrent .Menu . -}}{{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") -}}{{- end -}}
+        {{- $name := .Name | safeHTML -}}
+        {{- with .Identifier -}}{{- with T . -}}{{- $name = . | safeHTML -}}{{- end -}}{{- end -}}
+        <a{{- range $k, $v := $attrs -}}{{- with $v }} {{ printf "%s=%q" $k $v | safeHTMLAttr }}{{- end -}}{{- end -}}>{{ $name }}</a>
+        <ul>
+          {{- range .Children -}}{{- if or $isFooter (not .Page.Params.showInFooterOnly) -}}<li><a href="{{ .URL }}">{{ .Name }}</a></li>{{- end -}}{{- end -}}
+        </ul>
+      </li>
+    {{- end -}}
+  {{- else if $shouldDisplay -}}
+    <li>
+      {{- $attrs := dict "href" .URL -}}
+      {{- if .Params.target -}}{{- $attrs = merge $attrs (dict "target" .Params.target) -}}{{- end -}}
+      {{- if $page.IsMenuCurrent .Menu . -}}{{- $attrs = merge $attrs (dict "class" "active" "aria-current" "page") -}}
+      {{- else if $page.HasMenuCurrent .Menu . -}}{{- $attrs = merge $attrs (dict "class" "ancestor" "aria-current" "true") -}}{{- end -}}
+      {{- $name := .Name | safeHTML -}}
+      {{- with .Identifier -}}{{- with T . -}}{{- $name = . | safeHTML -}}{{- end -}}{{- end -}}
+      <a{{- range $k, $v := $attrs -}}{{- with $v }} {{ printf "%s=%q" $k $v | safeHTMLAttr }}{{- end -}}{{- end -}}>{{ $name }}</a>
+      {{- with .Children }}<ul>{{ partial "menu/walk.html" (dict "page" $page "menuEntries" . "isFooter" $isFooter) }}</ul>{{- end -}}
+    </li>
+  {{- end -}}
+{{- end -}}

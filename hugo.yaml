@@ -1,0 +1,44 @@
+baseURL: "https://xen-project.org/"
+languageCode: "en-us"
+title: "Xen Project"
+theme: "xen-project"
+
+module:
+  hugoVersion:
+    extended: true
+    min: "0.116.0"
+
+build:
+  writeStats: true
+
+menus:
+  main:
+    - name: "Projects"
+      pageRef: "/projects"
+      weight: 10
+
+    - name: "Contribute"
+      pageRef: "/contribute"
+      weight: 20
+
+    - name: "Documentation"
+      pageRef: "/documentation"
+      weight: 30
+      url: "https://docs.xen-project.test"
+      params:
+        class: "custom-class"
+        target: "_blank"
+
+    - name: "Resources"
+      pageRef: "/resources"
+      weight: 40
+    - name: "Blog"
+      parent: "Resources"
+      weight: 60
+      url: "https://external-blog.test"
+      params:
+        class: "custom-class"
+        target: "_blank"
+    - name: "About"
+      url: "/about"
+      weight: 50

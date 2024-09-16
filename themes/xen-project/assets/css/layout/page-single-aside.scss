@@ -1,0 +1,25 @@
+.page-single-aside {
+  flex-direction: column;
+  display: flex;
+  gap: 0;
+  justify-content: stretch;
+  align-items: flex-start;
+
+  .page-aside {
+    flex: 0 0 auto;
+    padding: var(--sp-lg);
+  }
+
+  .page-content {
+    flex: 1;
+  }
+
+  @include tablet {
+    flex-direction: row;
+
+    .page-aside {
+      flex: 0 0 320px;
+      padding: var(--sp-lg) var(--sp-lg) var(--sp-xl);
+    }
+  }
+}

@@ -1,0 +1,40 @@
+.story-toggle {
+  margin-top: 2rem !important;
+
+  &__title {
+    font-size: 2rem;
+    font-weight: 500;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 1px solid currentColor;
+
+    &::after {
+      --size: 12px;
+      content: "";
+      display: block;
+      width: 0;
+      height: 0;
+      border-top: calc(var(--size) / 1.5) solid transparent;
+      border-bottom: calc(var(--size) / 1.5) solid transparent;
+      border-left: calc(var(--size)) solid currentColor;
+      position: relative;
+      transition: transform 0.2s ease-in-out;
+    }
+  }
+  &--open &__title::after {
+    transform: rotate(90deg);
+  }
+
+  &--active {
+    background-color: #e6e6e6;
+
+    &__icon {
+      transform: rotate(180deg);
+    }
+  }
+}

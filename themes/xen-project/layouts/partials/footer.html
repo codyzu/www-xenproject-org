@@ -1,0 +1,40 @@
+<div class="footer">
+  <div class="footer-content">
+    <div class="footer__col footer__text">
+      <div>
+
+        <h3>About Xen Project</h3>
+        <p class="p1-book">
+          The mission of the Xen Project is to advance virtualization technology
+          across a wide range of commercial and open-source domains.
+        </p>
+        {{ partial "socials.html"  (dict "class" "socials-footer") }}
+      </div>
+
+
+      <div>
+        <h3>A Linux Foundation Project</h3>
+        <p class="p1-book">
+          The Linux Foundation provides a neutral, trusted hub for developers to
+          code, manage, and scale open technology projects.
+        </p>
+        <p><a href="https://www.linuxfoundation.org/">Visit the Linux Foundation
+ <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+        <p><a href="TODO">Privacy Policy <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+        <p><a href="TODO">Terms of Use <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+      </div>
+    </div>
+
+    <div class="footer__col footer__menu">
+      <ul>
+        {{- $menuID := "main" }}  <!-- ID du menu que vous souhaitez utiliser -->
+        {{- $menu := index .Site.Menus $menuID }}
+        {{- if $menu }}
+          {{- partial "menu/walk.html" (dict "page" . "menuEntries" $menu "isFooter" true) }}  
+        {{- end }}
+      </ul>
+    </div>
+  </div>
+</footer>
+
+{{/*  <p>Copyright {{ now.Year }}. All rights reserved.</p>  */}}

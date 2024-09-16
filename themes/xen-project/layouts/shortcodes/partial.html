@@ -1,0 +1,8 @@
+{{ $name := .Get 0 }}
+{{ $context := .Get 1 | default "." }}
+
+{{ if eq $context "." }}
+  {{ partial $name . }}
+{{ else }}
+  {{ partial $name (index . $context) }}
+{{ end }}

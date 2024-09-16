@@ -1,0 +1,81 @@
+:root {
+}
+
+[class*="background-"] {
+  .images-in-circle {
+    --bg-color: var(--color-brand-surface);
+  }
+}
+
+.images-in-circle {
+  --padding: 30px;
+  --circle-dimensions: 80%;
+  --img-width: 30%;
+  --translate: -100%;
+
+  --size: calc(var(--circle-dimensions) + (var(--padding) * 2));
+  --bg-color: #fff;
+  --index: 0;
+  --total: 1;
+  --start-angle: 0deg;
+  --img-padding: 0.6rem;
+
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  margin: 0 auto;
+  padding: var(--padding);
+  aspect-ratio: 1;
+  list-style-type: none;
+  background-color: inherit;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--circle-dimensions);
+    aspect-ratio: 1;
+    border: 8px solid var(--color-action-fill);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  li {
+    --angle: calc(var(--start-angle) + (360deg / var(--total)) * var(--index));
+    --scale: 1;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--img-width);
+    margin: 0;
+    padding: 0;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(-50%, -50%) rotate(var(--angle))
+      translate(var(--translate), var(--translate))
+      rotate(calc(-1 * var(--angle))) scale(var(--scale));
+
+    img {
+      width: 100%;
+      padding: var(--img-padding);
+      background-color: var(--bg-color);
+    }
+
+    @for $i from 2 through 8 {
+      &:first-child:nth-last-child(#{$i}),
+      &:first-child:nth-last-child(#{$i}) ~ li {
+        --total: #{$i};
+      }
+    }
+
+    @for $i from 2 through 8 {
+      &:nth-of-type(#{$i}) {
+        --index: #{$i - 1};
+      }
+    }
+  }
+}

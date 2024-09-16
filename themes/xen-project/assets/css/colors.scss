@@ -1,0 +1,43 @@
+// Primary color variables in SASS
+$color-surface: #fbfbfb;
+$color-surface-secondary: #ededed;
+$color-border: #dbdbdb;
+$color-text: #101828;
+$color-text-secondary: #475467;
+$color-action-surface: #bcdef7;
+$color-action-text: #0062a7;
+$color-action-fill: #0077cc;
+$color-brand-surface: #f3f9ec;
+$color-brand-text: #567c2a;
+$color-brand-fill: #85c241;
+$color-brand-on-fill: #1e2b0e;
+
+// CSS Variables
+:root {
+  // Primary colors
+  --color-surface: #{$color-surface};
+  --color-surface-secondary: #{$color-surface-secondary};
+  --color-border: #{$color-border};
+  --color-text: #{$color-text};
+  --color-text-secondary: #{$color-text-secondary};
+
+  // action colors
+  --color-action-surface: #{$color-action-surface};
+  --color-action-text: #{$color-action-text};
+  --color-action-text-hover: #{mix(#000, $color-action-text, 20%)};
+  --color-action-text-pressed: #{mix(#000, $color-action-text, 40%)};
+  --color-action-fill: #{$color-action-fill};
+  --color-action-fill-hover: #{mix(#000, $color-action-fill, 20%)}; //#005FA3
+  --color-action-fill-pressed: #{mix(#000, $color-action-fill, 40%)};
+  --color-action-on-fill: #f7fbfd;
+
+  // brand colors
+  --color-brand-surface: #{$color-brand-surface};
+  --color-brand-text: #{$color-brand-text};
+  --color-brand-text-hover: #{mix(#000000, $color-brand-text, 20%)};
+  --color-brand-text-pressed: #{mix(#000000, $color-brand-text, 40%)};
+  --color-brand-fill: #{$color-brand-fill};
+  --color-brand-fill-hover: #{mix(#ffffff, $color-brand-fill, 20%)};
+  --color-brand-fill-pressed: #{mix(#ffffff, $color-brand-fill, 40%)};
+  --color-brand-on-fill: #{$color-brand-on-fill};
+}

@@ -1,0 +1,8 @@
+{{ $container := .Get "container" }}
+{{ if $container }}
+<div class="container container-{{ $container }}">
+{{ end }}
+  {{ .Inner | markdownify }}
+{{ if $container }}
+</div>
+{{ end }}

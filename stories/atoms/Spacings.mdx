@@ -1,0 +1,123 @@
+import { Meta, Story, Canvas } from "@storybook/blocks";
+
+import React from "react";
+
+<Meta title="Atoms/Spacings" />
+
+# Spacings
+
+This document describes the spacings (`margin` and `padding`) defined in our design system.
+
+## mobile spacings
+
+if you want to use the mobile spacings, you have to add the prefix `mob-` to the class name.
+The margin/padding will only be applied on mobile devices.
+
+### Examples
+
+```html
+<div class="mob-mg-t-sm mg-t-lg">
+  <p>
+    In mobile I have a small margin-top and in table and desktop I have a large
+    margin-top
+  </p>
+</div>
+```
+
+## List of Spacing Names and Values
+
+| Name  | Value |
+| ----- | ----- |
+| xxxs  | 2px   |
+| xxs   | 4px   |
+| xs    | 8px   |
+| sm    | 12px  |
+| sm-md | 16px  |
+| sm-lg | 18px  |
+| md    | 24px  |
+| lg    | 40px  |
+| xl    | 80px  |
+| xxl   | 96px  |
+| xxxl  | 200px |
+| xxxxl | 400px |
+
+## CSS Variables
+
+| Variable   | Value |
+| ---------- | ----- |
+| --sp-xxxs  | 2px   |
+| --sp-xxs   | 4px   |
+| --sp-xs    | 8px   |
+| --sp-sm    | 12px  |
+| --sp-sm-md | 16px  |
+| --sp-sm-lg | 18px  |
+| --sp-md    | 24px  |
+| --sp-lg    | 40px  |
+| --sp-xl    | 80px  |
+| --sp-xxl   | 96px  |
+| --sp-xxxl  | 200px |
+| --sp-xxxxl | 400px |
+
+## Classes for Margins
+
+| Class       | Value | Top Class     | Bottom Class  | Left Class    | Right Class   | Vertical Class | Horizontal Class |
+| ----------- | ----- | ------------- | ------------- | ------------- | ------------- | -------------- | ---------------- |
+| `.mg-xxxs`  | 2px   | `.mg-t-xxxs`  | `.mg-b-xxxs`  | `.mg-l-xxxs`  | `.mg-r-xxxs`  | `.mg-v-xxxs`   | `.mg-h-xxxs`     |
+| `.mg-xxs`   | 4px   | `.mg-t-xxs`   | `.mg-b-xxs`   | `.mg-l-xxs`   | `.mg-r-xxs`   | `.mg-v-xxs`    | `.mg-h-xxs`      |
+| `.mg-xs`    | 8px   | `.mg-t-xs`    | `.mg-b-xs`    | `.mg-l-xs`    | `.mg-r-xs`    | `.mg-v-xs`     | `.mg-h-xs`       |
+| `.mg-sm`    | 12px  | `.mg-t-sm`    | `.mg-b-sm`    | `.mg-l-sm`    | `.mg-r-sm`    | `.mg-v-sm`     | `.mg-h-sm`       |
+| `.mg-sm-md` | 16px  | `.mg-t-sm-md` | `.mg-b-sm-md` | `.mg-l-sm-md` | `.mg-r-sm-md` | `.mg-v-sm-md`  | `.mg-h-sm-md`    |
+| `.mg-sm-lg` | 18px  | `.mg-t-sm-lg` | `.mg-b-sm-lg` | `.mg-l-sm-lg` | `.mg-r-sm-lg` | `.mg-v-sm-lg`  | `.mg-h-sm-lg`    |
+| `.mg-md`    | 24px  | `.mg-t-md`    | `.mg-b-md`    | `.mg-l-md`    | `.mg-r-md`    | `.mg-v-md`     | `.mg-h-md`       |
+| `.mg-lg`    | 40px  | `.mg-t-lg`    | `.mg-b-lg`    | `.mg-l-lg`    | `.mg-r-lg`    | `.mg-v-lg`     | `.mg-h-lg`       |
+| `.mg-xl`    | 80px  | `.mg-t-xl`    | `.mg-b-xl`    | `.mg-l-xl`    | `.mg-r-xl`    | `.mg-v-xl`     | `.mg-h-xl`       |
+| `.mg-xxl`   | 96px  | `.mg-t-xxl`   | `.mg-b-xxl`   | `.mg-l-xxl`   | `.mg-r-xxl`   | `.mg-v-xxl`    | `.mg-h-xxl`      |
+| `.mg-xxxl`  | 200px | `.mg-t-xxxl`  | `.mg-b-xxxl`  | `.mg-l-xxxl`  | `.mg-r-xxxl`  | `.mg-v-xxxl`   | `.mg-h-xxxl`     |
+| `.mg-xxxxl` | 400px | `.mg-t-xxxxl` | `.mg-b-xxxxl` | `.mg-l-xxxxl` | `.mg-r-xxxxl` | `.mg-v-xxxxl`  | `.mg-h-xxxxl`    |
+
+## Classes for Paddings
+
+| Class       | Value | Top Class     | Bottom Class  | Left Class    | Right Class   | Vertical Class | Horizontal Class |
+| ----------- | ----- | ------------- | ------------- | ------------- | ------------- | -------------- | ---------------- |
+| `.pd-xxxs`  | 2px   | `.pd-t-xxxs`  | `.pd-b-xxxs`  | `.pd-l-xxxs`  | `.pd-r-xxxs`  | `.pd-v-xxxs`   | `.pd-h-xxxs`     |
+| `.pd-xxs`   | 4px   | `.pd-t-xxs`   | `.pd-b-xxs`   | `.pd-l-xxs`   | `.pd-r-xxs`   | `.pd-v-xxs`    | `.pd-h-xxs`      |
+| `.pd-xs`    | 8px   | `.pd-t-xs`    | `.pd-b-xs`    | `.pd-l-xs`    | `.pd-r-xs`    | `.pd-v-xs`     | `.pd-h-xs`       |
+| `.pd-sm`    | 12px  | `.pd-t-sm`    | `.pd-b-sm`    | `.pd-l-sm`    | `.pd-r-sm`    | `.pd-v-sm`     | `.pd-h-sm`       |
+| `.pd-sm-md` | 16px  | `.pd-t-sm-md` | `.pd-b-sm-md` | `.pd-l-sm-md` | `.pd-r-sm-md` | `.pd-v-sm-md`  | `.pd-h-sm-md`    |
+| `.pd-sm-lg` | 18px  | `.pd-t-sm-lg` | `.pd-b-sm-lg` | `.pd-l-sm-lg` | `.pd-r-sm-lg` | `.pd-v-sm-lg`  | `.pd-h-sm-lg`    |
+| `.pd-md`    | 24px  | `.pd-t-md`    | `.pd-b-md`    | `.pd-l-md`    | `.pd-r-md`    | `.pd-v-md`     | `.pd-h-md`       |
+| `.pd-lg`    | 40px  | `.pd-t-lg`    | `.pd-b-lg`    | `.pd-l-lg`    | `.pd-r-lg`    | `.pd-v-lg`     | `.pd-h-lg`       |
+| `.pd-xl`    | 80px  | `.pd-t-xl`    | `.pd-b-xl`    | `.pd-l-xl`    | `.pd-r-xl`    | `.pd-v-xl`     | `.pd-h-xl`       |
+| `.pd-xxl`   | 96px  | `.pd-t-xxl`   | `.pd-b-xxl`   | `.pd-l-xxl`   | `.pd-r-xxl`   | `.pd-v-xxl`    | `.pd-h-xxl`      |
+| `.pd-xxxl`  | 200px | `.pd-t-xxxl`  | `.pd-b-xxxl`  | `.pd-l-xxxl`  | `.pd-r-xxxl`  | `.pd-v-xxxl`   | `.pd-h-xxxl`     |
+| `.pd-xxxxl` | 400px | `.pd-t-xxxxl` | `.pd-b-xxxxl` | `.pd-l-xxxxl` | `.pd-r-xxxxl` | `.pd-v-xxxxl`  | `.pd-h-xxxxl`    |
+
+## Visual Examples
+
+Here are some visual examples demonstrating the different spacing classes.
+
+    <div>
+      {Object.entries({
+
+"xxxs" : "2px" ,
+"xxs" : "4px" ,
+"xs" : "8px" ,
+"sm" : "12px" ,
+"sm-md" : "16px" ,
+"sm-lg" : "18px" ,
+"md" : "24px" ,
+"lg" : "40px" ,
+"xl" : "80px" ,
+"xxl" : "96px" ,
+"xxxl" : "200px",
+"xxxxl" : "400px",
+}).map(([key, value]) => (
+
+<div key={key} className="spacing-example">
+<div className="spacing-example-text">
+{key} : {value}
+</div>
+<div className="spacing-example-bar" style={{width: value }}></div>
+</div>
+))}
+</div>

@@ -1,0 +1,98 @@
+.background-curve,
+.background-curve-reverse,
+.background-curve-reverse-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  --bg-top-height: 8.072vw;
+  --bg-bottom-height: 8.072vw;
+  --bg-top-height: 8.072vw;
+
+  --bottom: calc(100% - var(--bg-bottom-height));
+
+  padding-top: calc(var(--bg-top-height) + 4vw);
+  padding-bottom: calc(var(--bg-top-height) + 4vw);
+}
+@include tablet {
+  .background-curve {
+    padding-top: calc(var(--bg-top-height) + 6.3vw);
+
+    // margin-top: calc(var(--section-space) - 25rem);
+  }
+  .section-space + .background-curve.section-space {
+    margin-top: calc(var(--section-space) * -1);
+  }
+}
+
+@include tablet {
+  .background-curve-reverse {
+    padding-top: calc(var(--bg-top-height) + 6.3vw);
+  }
+
+  .section-space.background-curve-reverse + section-space {
+    margin-top: calc(var(--section-space) * -0.55);
+  }
+
+  .background-curve-reverse.section-space + .section-space {
+    margin-top: calc(var(--section-space) * -1);
+  }
+}
+
+.background-normal {
+  background-color: var(--color-brand-surface);
+  padding-top: var(--sp-xl);
+  padding-bottom: var(--sp-xl);
+}
+
+.background-curve {
+  background:
+    no-repeat
+      url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 155" fill="none"><path d="M0 0C0 0 576.434 151.211 953.5 152C1335.58 152.799 1920 0 1920 0V155H0V0Z" fill="%23f3f9ec"/></svg>')
+      top center / 100% var(--bg-top-height),
+    linear-gradient(
+        to bottom,
+        transparent calc(var(--bg-top-height) - 1px),
+        var(--color-brand-surface) calc(var(--bg-top-height) - 1px),
+        var(--color-brand-surface) var(--bottom),
+        transparent var(--bottom)
+      ) / auto,
+    no-repeat
+      url('data:image/svg+xml,<svg width="1920" height="155" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g class="layer"><title>Layer 1</title><path d="m0,0c0,0 576.43,151.21 953.5,152c382.08,0.8 966.5,-152 966.5,-152l-1920,0z" fill="%23f3f9ec" id="svg_1"/></g></svg>')
+      bottom center / 100% var(--bg-bottom-height);
+}
+
+.background-curve-reverse {
+  background:
+    no-repeat
+      url('data:image/svg+xml,<svg viewBox="0 0 1920 155" xmlns="http://www.w3.org/2000/svg"><g class="layer"><path d="M1920 152.003S1343.57.793 966.5.003c-382.08-.8-966.5 152-966.5 152h1920z" fill="%23f3f9ec"/></g></svg>')
+      top center / 100% var(--bg-top-height),
+    linear-gradient(
+        to bottom,
+        transparent calc(var(--bg-top-height) - 5px),
+        var(--color-brand-surface) calc(var(--bg-top-height) - 1px),
+        var(--color-brand-surface) var(--bottom),
+        transparent var(--bottom)
+      ) / auto,
+    no-repeat
+      url('data:image/svg+xml,<svg viewBox="0 0 1920 155" xmlns="http://www.w3.org/2000/svg"><g class="layer"><path d="M1920 155S1343.57 3.79 966.5 3C584.42 2.2 0 155 0 155V0h1920v155z" fill="%23f3f9ec"/></g></svg>')
+      bottom center / 100% var(--bg-bottom-height);
+}
+
+.background-curve-reverse-top {
+  padding-top: var(--bg-top-height);
+  padding-bottom: var(--sp-md);
+
+  --bottom: calc(100% - var(--bg-bottom-height));
+  background:
+    no-repeat
+      url('data:image/svg+xml,<svg viewBox="0 0 1920 155" xmlns="http://www.w3.org/2000/svg"><g class="layer"><path d="M1920 152.003S1343.57.793 966.5.003c-382.08-.8-966.5 152-966.5 152h1920z" fill="%23f3f9ec"/></g></svg>')
+      top center / 100% var(--bg-top-height),
+    linear-gradient(
+        to bottom,
+        transparent calc(var(--bg-top-height) - 5px),
+        var(--color-brand-surface) calc(var(--bg-top-height) - 1px),
+        var(--color-brand-surface) 100%
+      ) / auto;
+}

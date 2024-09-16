@@ -1,0 +1,10 @@
+<li>
+  <a href="{{ .link }}" target="_blank">
+    {{ .name }}
+    {{ if .icon }}
+      <i class="{{ .icon }}"></i>
+    {{ else }}
+      <i class="fas fa-arrow-up-right-from-square"></i>
+    {{ end }}
+  </a>
+</li>

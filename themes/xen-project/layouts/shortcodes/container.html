@@ -1,0 +1,13 @@
+{{ $type := .Get "type" | default "" }}
+{{ $md := .Get "md" | default "false" }}
+<div
+  class="container{{ if $type }}-{{ $type }}{{ end }}{{ with .Get "class" }}
+    {{ . }}
+  {{ end }}"
+>
+  {{ if eq $md "true" }}
+    {{ .Inner | markdownify }}
+  {{ else }}
+    {{ .Inner }}
+  {{ end }}
+</div>

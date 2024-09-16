@@ -1,0 +1,40 @@
+.socials {
+  display: flex;
+  margin: 0;
+  list-style: none;
+  flex-direction: row;
+  padding: var(--sp-sm) var(--sp-xs);
+  justify-content: center;
+  gap: var(--sp-md);
+
+  &-footer {
+    gap: 8px;
+    justify-content: flex-start;
+    padding: 0;
+  }
+
+  @include tablet {
+    gap: 8px;
+  }
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: flex;
+    padding: 8px;
+    border-radius: 50%;
+    background: var(--color-action-fill);
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--color-action-on-fill);
+  }
+
+  a:hover {
+    background: var(--color-action-fill-hover);
+  }
+}

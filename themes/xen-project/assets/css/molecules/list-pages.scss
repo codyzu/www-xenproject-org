@@ -1,0 +1,21 @@
+.list-pages {
+  --gap: var(--sp-md);
+  --cols: 2;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap);
+
+  @include tablet {
+    --cols: 3;
+  }
+
+  @include tablet-up {
+    --cols: 4;
+  }
+
+  > * {
+    --basis: calc((100% / var(--cols)) - var(--gap));
+    flex: 0 0 var(--basis);
+  }
+}

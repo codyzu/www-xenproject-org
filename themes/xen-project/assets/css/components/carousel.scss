@@ -1,0 +1,104 @@
+@use "sass:math";
+
+.carousel-container {
+  overflow: hidden;
+  --min-height: 100px;
+  --content-padding: 12px;
+  --item-width: auto;
+  --item-position: 0;
+  --max-width: none;
+  --number-of-items: 1;
+  --space-between-items: 40px;
+  --height: auto;
+
+  @include phone {
+    --number-of-items: 2;
+  }
+
+  @include tablet {
+    --number-of-items: 2;
+    --max-width: 1668px;
+    --content-padding: 80px;
+  }
+
+  @include tablet-up {
+    --number-of-items: 3;
+  }
+
+  @include desktop {
+    --number-of-items: 4;
+  }
+
+  .carousel-content {
+    position: relative;
+    max-width: var(--max-width);
+    padding-left: var(--content-padding);
+    padding-right: var(--content-padding);
+    margin: 0 auto;
+  }
+
+  .carousel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-between-items);
+    align-items: stretch;
+    position: relative;
+    height: var(--height);
+
+    &-item {
+      --index: 0;
+      --transform: calc(var(--item-position) * (var(--index)));
+      flex: 1 0 calc(100% / var(--number-of-items) - var(--space-between-items));
+      top: 0;
+      min-height: var(--min-height);
+      left: 0;
+      width: var(--item-width);
+    }
+  }
+
+  .carousel-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: var(--sp-sm-md);
+
+    @include tablet {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      width: 100%;
+      max-width: none;
+      left: 0;
+      padding: 0 calc(var(--content-padding) - 50px);
+    }
+  }
+
+  .carousel-button {
+    background-color: var(--color-action-fill);
+    color: var(--color-action-on-fill);
+    border-radius: 100%;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 2.25rem;
+    height: 2.25rem;
+    font-size: 1.25rem;
+  }
+}
+
+.carousel-initialized .carousel-item {
+  position: absolute;
+  transform: translateX(var(--transform));
+  opacity: 0;
+  display: none;
+  transition:
+    transform 0.5s ease,
+    opacity 0.8s ease;
+  height: 100%;
+}

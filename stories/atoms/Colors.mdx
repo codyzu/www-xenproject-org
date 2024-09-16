@@ -1,0 +1,62 @@
+import { Meta, ColorPalette } from "@storybook/blocks";
+import ColorItem from "../../.storybook/components/ColorItem";
+import colors from "../json/colors.json";
+
+<Meta title="Atoms/Colors" />
+
+export const CopyButton = () => {
+  const copyColors = () => {
+    const colorText = colors.flatMap(group => 
+      group.colors.map(color => `${color.variableName}: ${color.value}`)
+    ).join('\n');
+    
+    navigator.clipboard.writeText(colorText)
+      .then(() => console.info('Colors copied to clipboard'))
+      .catch(err => console.error('Error copying colors:', err));
+  };
+
+return (
+
+<button onClick={copyColors}>Copy all colors</button>
+); };
+
+# Colors
+
+<div>
+  {colors.map(({ name, colors }) => (
+    <div className={`mode-container ${name}`}>
+      <h1>{name}</h1>
+      <div>
+        <ColorItem
+          key={name}
+          className="story-color-item"
+          title={name}
+          colors={colors}
+        />
+      </div>
+    </div>
+  ))}
+</div>
+
+# Colors in a table
+<div><CopyButton/></div>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th>Variable</th>
+        <th>Color Code</th>
+      </tr>
+    </thead>
+    <tbody>
+      {colors.flatMap((group) =>
+        group.colors.map((color) => (
+          <tr key={color.variableName}>
+            <td>{color.variableName}</td>
+            <td>{color.value}</td>
+          </tr>
+        )),
+      )}
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,212 @@
+/* General Typography Styles */
+body {
+  font-family: "Gotham", sans-serif;
+  font-size: 1rem; /* Base font size */
+}
+
+/* Line heights and common styles for paragraphs and buttons */
+h1,
+h2,
+h3,
+.button-medium,
+.p1-bold,
+.p1-bold-underline,
+.p1-medium,
+.p1-medium-underline,
+.p1-book,
+.p1-book-underline {
+  line-height: var(--title-line-height);
+}
+
+.p1-bold,
+.p1-bold-underline,
+.p1-medium,
+.p1-medium-underline,
+.p1-book,
+.p1-book-underline {
+  font-size: 1.125rem; /* 18px */
+}
+
+.p1-medium,
+.p1-medium-underline,
+.p1-book,
+.p1-book-underline,
+.p2-medium,
+.p2-medium-underline,
+.p2-book,
+.p2-book-underline {
+  letter-spacing: -0.03125rem; /* -0.5px */
+}
+
+/* Headings */
+h1 {
+  font-size: var(--h1-font-size);
+  margin-top: var(--sp-md);
+  margin-bottom: var(--sp-md);
+  font-weight: 700;
+  line-height: 119%;
+  letter-spacing: -0.027em;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 2rem; /* 32px */
+  margin-top: 0.66em;
+  margin-bottom: 0.66em;
+  letter-spacing: -0.0194em;
+}
+
+h3 {
+  font-weight: bold;
+  font-size: 1.25rem; /* 24px */
+  line-height: 120%;
+}
+
+h1,
+h2,
+h3 {
+  strong {
+    color: var(--color-action-text);
+  }
+
+  a {
+    font-size: 1em;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+strong {
+  font-weight: 700;
+}
+
+/* Buttons */
+.button-medium {
+  font-weight: medium;
+  font-size: 1.125rem; /* 18px */
+}
+
+.button-medium-mobile {
+  font-weight: medium;
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.2em;
+}
+
+/* Paragraphs */
+.p1-bold {
+  font-weight: bold;
+}
+
+.p1-bold-underline {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.p1-medium {
+  font-weight: medium;
+}
+
+.p1-medium-underline {
+  font-weight: medium;
+  text-decoration: underline;
+}
+
+.p1-book {
+  line-height: 150%;
+  font-weight: book;
+}
+
+.p1-book-underline {
+  font-weight: book;
+  text-decoration: underline;
+}
+
+/* Common Styles */
+.p2-medium {
+  font-weight: medium;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5em;
+}
+
+.p2-medium-underline {
+  font-weight: medium;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5em;
+  text-decoration: underline;
+}
+
+.p2-book {
+  font-weight: book;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5em;
+}
+
+.p2-book-underline {
+  font-weight: book;
+  font-size: 1rem; /* 16px */
+  line-height: 1.5em;
+  text-decoration: underline;
+}
+
+.c1-bold {
+  font-weight: bold;
+  font-size: 1rem; /* 16px */
+  text-transform: capitalize;
+  line-height: 1em;
+  letter-spacing: 0.00125rem; /* 0.02px */
+}
+
+.title-external-link {
+  color: var(--color-action-text);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 120%;
+  display: block;
+  margin-top: 10px;
+
+  @include tablet {
+    display: inline-block;
+    margin-left: 2rem;
+    vertical-align: middle;
+  }
+}
+
+p {
+  margin-bottom: var(--sp-xs);
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem; /* 40px */
+    line-height: 1.2em;
+  }
+
+  h2 {
+    font-size: 2.25rem; /* 36px */
+    line-height: 1.2em;
+  }
+
+  .button-medium {
+    font-size: 1.25rem; /* 20px */
+  }
+
+  .p1-bold,
+  .p1-bold-underline,
+  .p1-medium,
+  .p1-medium-underline,
+  .p1-book,
+  .p1-book-underline {
+    font-size: 1.25rem; /* 20px */
+  }
+}
+
+.page-top {
+  h1 {
+    color: var(--color-action-text);
+  }
+}

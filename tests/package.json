@@ -1,0 +1,23 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "backstop test",
+    "approve": "backstop approve",
+    "crawl": "backstop-crawl http://localhost:1313",
+    "report": "node report.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "7zip-min": "^1.4.5",
+    "backstop-crawl": "^2.3.1",
+    "backstopjs": "^6.3.23",
+    "sharp": "^0.33.5"
+  },
+  "volta": {
+    "node": "22.7.0"
+  }
+}

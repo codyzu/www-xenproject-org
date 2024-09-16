@@ -1,0 +1,35 @@
+:root {
+  --font-size: 1em;
+  --font-family: "gotham", sans-serif;
+
+  // icons
+  --font-family-icons: "Font Awesome 6 Pro";
+  --icon-arrow-right: "\f061";
+  --icon-arrow-down: "\f063";
+  --icon-arrow-left: "\f060";
+  --arrow-up-right-from-square: "\f08e";
+  --icon-bars: "\f0c9";
+  --icon-xmark: "\f00d";
+
+  // mobile
+  --section-space: var(--sp-lg);
+  --container-paddings: 12px;
+  --block-space: var(--sp-lg);
+  --container-width: 1520px;
+
+  --h1-font-size: 2.25rem; /* 40px */
+  --h2-font-size: 2rem; /* 32px */
+  --h3-font-size: 1.25rem; /* 20px */
+  --title-line-height: 1.5em;
+  --p1-font-size: 1.125rem; /* 18px */
+
+  @include tablet {
+    --container-paddings: var(--sp-lg);
+    --section-space: 160px;
+    --block-space: 160px;
+    --h1-font-size: 2.5rem; /* 40px */
+    --h2-font-size: 2.25rem; /* 36px */
+    --h3-font-size: 1.5rem; /* 24px */
+    --p1-font-size: 1.25rem; /* 20px */
+  }
+}

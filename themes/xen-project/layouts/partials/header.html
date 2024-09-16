@@ -1,0 +1,12 @@
+<header class="header">
+  <div class="header-logo">
+    <a href="/">
+      <img src="/img/logo-xen.svg" alt="Xen-Project" />
+    </a>
+  </div>
+  <button class="menu-toggle btn btn-tertiary" title="Toggle menu"></button>
+  <div class="header-content" data-menu-title="Menu">
+    {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+    {{ partial "socials.html" }}
+  </div>
+</header>

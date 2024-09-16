@@ -1,0 +1,55 @@
+.content-markdown {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+
+  th,
+  td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+
+  tr {
+    &:nth-child(even) {
+      background-color: var(--color-surface-secondary);
+    }
+
+    &:hover {
+      background-color: var(--color-border);
+    }
+  }
+
+  td {
+    &:first-child {
+      font-weight: bold;
+    }
+
+    &:last-child {
+      font-style: italic;
+    }
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+  }
+
+  pre code {
+    background: var(--color-surface-secondary);
+    display: block;
+    padding: var(--sp-sm) var(--sp-lg);
+    line-height: 1.4;
+    margin-top: var(--sp-sm);
+    margin-bottom: var(--sp-sm);
+  }
+}

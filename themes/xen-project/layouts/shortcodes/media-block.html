@@ -1,0 +1,27 @@
+{{ $content := .Inner }}
+{{ $image := .Get "image" | default "" }}
+{{ $imageAlt := .Get "imageAlt" | default "" }}
+{{ $imageSize := .Get "imageSize" | default "" }}
+{{ $label := .Get "label" | default "" }}
+{{ $media := .Get "media" | default "" }}
+{{ $mediaPosition := .Get "mediaPosition" | default "left" }}
+{{ $mobileMediaPosition := .Get "mobileMediaPosition" | default "left" }}
+{{ $title := .Get "title" | default "" }}
+{{ $titleLevel := .Get "titleLevel" | default "2" }}
+{{ $class := .Get "class" | default "" }}
+
+{{ partial "media-block.html" (dict
+  "Content" $content
+  "Image" $image
+  "ImageAlt" $imageAlt
+  "ImageSize" $imageSize
+  "Label" $label
+  "Media" $media
+  "MediaPosition" $mediaPosition
+  "MobileMediaPosition" $mobileMediaPosition
+  "Site" .Site
+  "Title" $title
+  "TitleLevel" $titleLevel
+  "Class" $class
+  )
+}}

@@ -1,0 +1,78 @@
+---
+title: Matrix
+description: Engage in real-time discussions and collaboration with the Xen community on Matrix.
+date: 2024-01-14T07:07:07+01:00
+draft: false
+menus:
+  main:
+    parent: Resources
+    weight: 70
+---
+
+
+{{<section>}}
+{{<md>}}
+## Xen Project Matrix
+{{</md>}}
+
+{{<row-from-list component="conversation-card" cols="3">}}  
+- label: XenProject
+  tags:
+    - Matrix
+  content: For general queries and updates about the software. This channel is mainly for users and community members.For developer-specific questions use XenDevel instead.
+  actions:
+    - url: "TODO"
+      text: Join
+
+- label: XenDevel 
+  tags:
+    - Matrix
+  content: For developers - if you have submitted patches to the developer mailing lists or are otherwise active on them, this channel is for you.It's also the best place to ask development-related questions to the Xen Project.
+  actions:
+    - url: "TODO"
+      text: Join
+
+- label: XenSocial
+  tags: 
+    - Matrix
+  content: For community introductions, tech news, and your watercooler chats.
+  actions:
+    - url: "TODO"
+      text: Join
+{{</row-from-list>}}
+{{</section>}}
+
+
+{{<section>}}
+{{<md>}}
+## Projects
+{{</md>}}
+
+{{<row-from-list component="conversation-card" cols="3">}} 
+- label: XCP-ng
+  tags:
+    - Discord
+  content: For general queries and updates about XCP-ng, hosted on Discord.
+  actions:
+    - url: "TODO"
+      text: Join
+
+- label: Mirage
+  tags:
+    - Discord
+  content: For Mirage OS.
+  actions:
+    - url: "TODO"
+      text: Join
+{{</row-from-list>}}
+{{</section>}}
+
+{{<section md="true" container="small">}}
+### Netiquette
+
+Netiquette encourages individuals to be considerate, kind, and mindful of the impact their words and actions can have on others in the online community.
+
+It encompasses aspects like using proper language, avoiding offensive content, respecting privacy, and engaging in constructive discussions while maintaining a positive online environment for everyone.
+
+If you are new and also post on the mailing list, we highly recommend you introduce yourself to the community!
+{{</section>}}

@@ -1,0 +1,80 @@
+---
+title: Unikraft
+description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+draft: false
+menus:
+  main:
+    parent: Projects
+    weight: 100
+aside:
+  - type: resource
+    items:
+      - name: Label
+        link: TODO
+      - name: Label
+        link: TODO
+---
+
+{{<section>}}
+  {{<media-block
+    title="Basic concepts"
+    media="https://www.slideshare.net/slideshow/embed_code/key/hzJl1EbWmxfFUN"
+  >}}
+The high-level goal of Unikraft is to be able to build unikernels targeted at specific applications without requiring the time-consuming, expert work that building such a unikernel requires today. An additional goal (or hope) of Unikraft is that all developers interested in unikernel development would contribute by supplying libraries rather than working on independent projects with different code bases as it is done now.
+{{</media-block>}}
+{{</section>}}
+
+
+
+{{<section>}}
+  {{<media-block
+    title="Unikraft architecture"
+    media="/img/others/unikraft-architecture.png"
+    mediaPosition="right"
+  >}}
+  {{<md>}}
+  The main idea behind Unikraft is depicted in Figure 1 and consists of two basic components:
+  - Library pools
+  - Unikraft build tool
+{{</md>}}
+
+{{</media-block>}}
+{{</section>}}
+
+{{<section>}}
+{{<vertical-lists cols="1">}}
+- title: Library pools
+  text: Library pools would contain libraries that the user of Unikraft can select from to create the unikernel. From the bottom up, library pools are organized into (1) the architecture library tool, containing libraries specific to a computer architecture (e.g., x86_64, ARM32 or MIPS); (2) the platform tool, where target platforms can be Xen, KVM, bare metal (i.e. no virtualization) and user-space Linux; and (3) the main library pool, containing a rich set of functionality to build the unikernel from. This last library includes drivers (both virtual such as netback/netfront and physical such as ixgbe), filesystems, memory allocators, schedulers, network stacks, standard libs (e.g. libc, openssl, etc.), runtimes (e.g. a Python interpreter, debugging and profiling tools). These pools of libraries constitute a code base for creating unikernels. As shown, a library can be relatively large (e.g libc) or quite small (a scheduler), which should allow for a fair amount of customization for the unikernel.
+- title: The Unikraft build tool
+  text: The Unikraft build tool is in charge of compiling the application and the selected libraries together to create a binary for a specific platform and architecture (e.g., Xen on x86_64). The tool is currently inspired by Linux’s kconfig system and consists of a set of Makefiles. It allows users to select libraries, to configure them, and to warn users when library dependencies are not met. In addition, the tool can also simultaneously generate binaries for multiple platforms.
+{{</vertical-lists>}}
+
+
+{{<md>}}
+As an example, imagine a user wanting to generate a network driver domain unikernel. In this case, we would assume the “application” to be the netback driver. To select this application, the user would first run “make menuconfig” from within the netback application folder. The Makefile there would set a variable to indicate what the application is, and would include the main Unikraft Makefiles so that the unikernel can be built (Step 1 in the figure). Using the menu-based system, the user chooses the relevant libraries; for a Xen driver domain, this would include a physical network driver, the netback driver, the libxenplat library and a library from the architecture library pool such as libx86_64arch (Step 2 in the figure). With this in place, the user saves the configuration and types “make” to build the unikernel (Step 3) and “xl create” to run it (Step 4).
+
+A note on the ABI/API exposed to the application: because Unikraft allows for customization of the unikernels, the ABI (or API since there is no kernel) would be custom, that is, defined by the libraries the user selected. Having said that, it would be perfectly possible, for instance, to build POSIX-compliant unikernels with it (e.g. similar to Rump, but in principle with much more specialized OS layers).
+
+Finally, it is worth pointing out that we use the term application loosely: another clear target for Unikraft is the building of runtime-specific unikernels (e.g. a unikernel able to run Python or OCaml scripts as is the case with MirageOS).
+
+## Unikraft and Minios
+The Unikraft project also aims to concentrate the various efforts currently going on in the Xen community regarding minimalistic OSes (essentially different variants of MiniOS). We think that splitting the community across these variants is counter-productive and hope that Unikraft will provide a common place for all or most improvements and customizations of minimalistic OSes. The long-term goal is to replace something like MiniOS with a tool that can automatically build such a minimalistic OS.
+{{</md>}}
+
+{{</section>}}
+
+
+
+
+
+
+{{<section>}}
+  {{<media-block
+    title="License"
+    media="/img/flatline/coding2.svg"
+  >}}
+{{<md>}}
+The main license of the run-time components of Unikraft is a 3-clause BSD license unless there is a good reason not to use it (e.g. we may import 2-clause BSD licensed code from Mini-OS, which we would not anticipate to change). The Makefile system would be licensed under GPL v2 or later as we want to be able to use KConfig functionality from Buildroot/Linux.
+{{</md>}}
+{{</media-block>}}
+{{</section>}}

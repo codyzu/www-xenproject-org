@@ -1,0 +1,24 @@
+{{ $items := .Inner | transform.Unmarshal }}
+<div class="carousel-container {{ with .Get "class" }}{{ . }}{{ end }}">
+  <div class="carousel-content">
+    <div class="carousel">
+      {{ range $items }}
+        {{ partial "project-card.html" (dict
+          "title" .title
+          "description" .description
+          "link" .link
+          "class" "carousel-item"
+          )
+        }}
+      {{ end }}
+    </div>
+    <div class="carousel-buttons">
+      <button class="carousel-button prev">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <button class="carousel-button next">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+</div>

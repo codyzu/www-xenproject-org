@@ -1,0 +1,44 @@
+.main {
+  // break margin
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+  }
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.page-single {
+  &.with-aside {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-lg);
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1920px;
+
+    @include tablet {
+      flex-direction: row;
+      gap: 0;
+
+      > .article,
+      > .page-aside {
+        padding-top: var(--sp-xl);
+      }
+
+      > .article h1 {
+        margin-top: 0;
+      }
+    }
+  }
+
+  @include tablet {
+    .single-content {
+      margin-top: var(--sp-lg);
+      .section-space:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}

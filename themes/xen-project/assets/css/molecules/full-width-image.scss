@@ -1,0 +1,18 @@
+.full-width-image {
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  &.image-ratio-large {
+    overflow: hidden;
+    aspect-ratio: 100/26;
+
+    img {
+      display: block;
+      margin-top: -5%;
+    }
+  }
+}

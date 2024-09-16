@@ -1,0 +1,63 @@
+.container,
+.container-small {
+  max-width: calc(var(--container-width) + var(--container-paddings, 0) * 2);
+  margin-left: var(--container-margins, auto);
+  margin-right: var(--container-margins, auto);
+  padding-left: var(--container-paddings);
+  padding-right: var(--container-paddings);
+}
+
+.container-full {
+  max-width: none;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.container-small {
+  --container-width: 1120px;
+}
+
+section {
+  position: relative;
+  z-index: 1;
+}
+
+.section-space {
+  margin-top: var(--section-space);
+  margin-bottom: var(--section-space);
+}
+
+.block-space {
+  margin-top: var(--block-space);
+}
+
+.cols {
+  display: flex;
+  flex-direction: row;
+  gap: var(--sp-lg);
+  justify-content: space-between;
+
+  .col {
+    flex: 1;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: var(--sp-lg);
+  justify-content: flex-start;
+  align-items: stretch;
+  flex-wrap: wrap;
+
+  > *,
+  > .col {
+    flex: 1;
+
+    // Ajout de la gestion des colonnes
+    @supports (--cols: 0) {
+      flex: 0 0 calc((100% - (var(--cols, 1) - 1) * var(--sp-lg)) / var(--cols, 1));
+    }
+  }
+}

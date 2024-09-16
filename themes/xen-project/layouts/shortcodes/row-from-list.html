@@ -1,0 +1,14 @@
+{{ $component := .Get "component" }}
+{{ $cols := .Get "cols" }}
+{{ $class := .Get "class" }}
+{{ $yamlData := .Inner | unmarshal }}
+
+
+<div
+  class="row {{ if $class }}{{ $class }}{{ end }}"
+  {{ if $cols }}style="--cols: {{ $cols }};"{{ end }}
+>
+  {{ range $yamlData }}
+    {{ partial $component . }}
+  {{ end }}
+</div>

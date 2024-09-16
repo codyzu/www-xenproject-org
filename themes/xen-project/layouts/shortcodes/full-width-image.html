@@ -1,0 +1,16 @@
+{{ $class := .Get "class" }}
+<div class="full-width-image {{ with $class }}{{ . }}{{ end }}">
+  {{ $src := .Get "src" }}
+  {{ $alt := .Get "alt" | default "Full width image" }}
+  {{ $title := .Get "title" }}
+  {{ $imgClass := .Get "imgClass" }}
+
+
+  <img
+    src="{{ $src }}"
+    alt="{{ $alt }}"
+    {{ with $title }}title="{{ . }}"{{ end }}
+    {{ with $imgClass }}class="{{ . }}"{{ end }}
+    loading="lazy"
+  />
+</div>

@@ -1,0 +1,20 @@
+{
+  "plugins": ["prettier-plugin-go-template"],
+  "overrides": [
+    {
+      "files": ["*.html"],
+      "options": {
+        "parser": "go-template"
+      }
+    },
+    {
+      "files": ["*.md"],
+      "options": {
+        "parser": "none",
+        "proseWrap": "always"
+      }
+    }
+  ],
+  "goTemplateBracketSpacing": true,
+  "printWidth": 120
+}

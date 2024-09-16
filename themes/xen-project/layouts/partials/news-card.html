@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card__date">{{.Date}}</div>
+  <h2 class="card__label">{{.Title}}</h2>
+  {{with .Tags}}
+    <div class="card__tag">{{delimit . ", "}}</div>
+  {{end}}
+  <p class="card__description">
+    {{.Summary | truncate 160}}
+  </p>
+  {{with .Author}}
+    <div class="card__author">By {{.Author}}</div>
+  {{end}}
+  <a href="{{.Permalink}}" class="card__read-more">
+    {{.LinkTitle}}
+    <i class="fas fa-arrow-up-right-from-square"></i>
+  </a>
+</div>

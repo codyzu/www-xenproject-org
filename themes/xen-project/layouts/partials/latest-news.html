@@ -1,0 +1,32 @@
+<div class="latest-news">
+  <h2>
+    Latest <strong>news</strong>
+    <a href="htttps://blog.xen-project.org" class="title-external-link"
+      >Read all news <i class="fas fa-arrow-up-right-from-square"></i
+    ></a>
+  </h2>
+  <script type="text/html" class="latest-news-template">
+    <div class="news-card">
+      <div class="news-card__date">${XenSiteUtils.formatDate(_.published_at)}</div>
+      <h3 class="news-card__label">${_.title}</h3>
+      ${_.tags ? `
+      <div class="news-card__tag">
+        ${_.tags.map(tag => `<a href="${tag.url}" target="_blank">${tag.name}</a>`).join(" ")}
+      </div>
+      ` : ""}
+      <p class="news-card__description">${_.excerpt}</p>
+      ${_.authors ? `
+      <div class="news-card__author">
+        By ${_.authors.map(author => `<a href="${author.url}" target="_blank">${author.name}</a>`).join(", ")}
+      </div>
+      ` : ""}
+      <p class="news-card__read-more p1-bold">
+        <a href="${_.url}">
+          Read more
+          <i class="fas fa-arrow-up-right-from-square"></i>
+        </a>
+      </p>
+    </div>
+  </script>
+  <div class="latest-news_container news-container"></div>
+</div>

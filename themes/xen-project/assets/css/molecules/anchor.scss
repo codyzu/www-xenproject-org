@@ -1,0 +1,45 @@
+.anchor {
+  display: inline-block;
+  text-decoration: none;
+  color: var(--color-action-text);
+  font-size: 18px;
+
+  &::after {
+    font-family: var(--font-family-icons);
+    content: var(--icon-arrow-down);
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    transition: all 0.3s ease-in-out;
+    transform: translateX(0);
+  }
+
+  &:hover {
+    color: var(--color-action-text-hover);
+
+    &::after {
+      transform: translateY(6px);
+    }
+  }
+
+  &:focus {
+    color: var(--color-action-text);
+
+    &::after {
+      transform: translateY(6px);
+    }
+  }
+
+  &:active {
+    color: var(--color-action-text-pressed);
+    &::after {
+      transform: translateY(12px);
+    }
+  }
+}
+
+@include tablet {
+  .anchor-placement-bottom {
+    //margin-top: calc(var(--section-space) - 16.8rem);
+  }
+}

@@ -1,0 +1,28 @@
+.box-resources {
+  background-color: var(--color-brand-surface);
+  padding: var(--sp-md);
+
+  .box-resources__title {
+    margin-top: 0;
+    line-height: 1.2em;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+      padding: 0;
+      margin: var(--sp-xs) 0;
+    }
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

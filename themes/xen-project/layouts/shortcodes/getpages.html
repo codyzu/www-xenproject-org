@@ -1,0 +1,9 @@
+{{ $currentPage := .Page }}
+{{ $section := default "projects" (.Get 0) }}
+{{ $projects := where (where .Site.RegularPages "Section" $section) "Permalink" "ne" $currentPage.Permalink }}
+
+{{ range $projects }}
+  - title: {{ .Title }}
+    description: {{ .Description }}
+    link: {{ .Permalink }}
+{{ end }}

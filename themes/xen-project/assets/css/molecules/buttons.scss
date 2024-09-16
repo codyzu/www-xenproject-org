@@ -1,0 +1,83 @@
+.btn {
+  --border-radius: 0.125rem;
+  --border-size: 0.125rem;
+  --color-active: var(--color-action-fill-pressed);
+  --color-disabled: var(--color-border);
+  --color-focus: var(--color-action-fill);
+  --color-hover: var(--color-action-fill-hover);
+  --color-primary: var(--color-action-fill);
+  --color-secondary: var(--color-action-on-fill);
+
+  display: inline-block;
+  position: relative;
+  padding: 0.444em 1em;
+
+  font-size: 1.125rem;
+  letter-spacing: 0.00555555em;
+  line-height: 1.2;
+  text-decoration: none;
+
+  background: var(--color-primary);
+  border: var(--border-size) solid var(--color-primary);
+  border-radius: var(--border-radius);
+  color: var(--color-secondary);
+  cursor: pointer;
+
+  transition:
+    background-color 0.3s,
+    box-shadow 0.3s;
+
+  @include tablet {
+    font-size: 1.25rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  &::after {
+    --space: 0.375rem;
+    content: "";
+    position: absolute;
+    inset: calc(var(--space) * -1);
+    border: 0.125rem solid var(--color-primary);
+    border-radius: var(--border-radius);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 100;
+  }
+
+  // States
+  &:focus::after,
+  &.focus::after {
+    opacity: 1;
+  }
+
+  &:hover,
+  &.hover {
+    --color-primary: var(--color-hover);
+  }
+
+  &:active,
+  &.active {
+    --color-primary: var(--color-active);
+  }
+
+  &:focus,
+  &.focus {
+    --color-primary: var(--color-focus);
+  }
+
+  &:disabled,
+  &.disabled {
+    --color-primary: var(--color-disabled);
+  }
+
+  &-secondary,
+  &-tertiary {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+  }
+
+  &-tertiary {
+    background-color: transparent;
+    border: none;
+  }
+}

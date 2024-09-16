@@ -1,0 +1,11 @@
+<ul class="images-in-circle {{ .class }}">
+  {{ range .images }}
+    <li>
+      <img
+        src="{{ .src }}"
+        alt="{{ .name }}"
+        style="transform: scale({{ .scale }});"
+      />
+    </li>
+  {{ end }}
+</ul>

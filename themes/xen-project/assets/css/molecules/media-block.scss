@@ -1,0 +1,101 @@
+.media-block {
+  --gap: 1.7rem;
+  --content-gap: var(--sp-sm);
+  --content-line-height: 1.66;
+  --flex-direction: column-reverse;
+  --media-max-width: 100%;
+  --media-max-height: none;
+  --basis: 100%;
+  --col-width: 100%;
+  --padding-v: 20px;
+  --media-h-padding: 6.9vw;
+  --media-v-padding: 0;
+
+  @include tablet {
+    padding-top: var(--padding-v);
+    padding-bottom: var(--padding-v);
+  }
+
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: var(--flex-direction);
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap);
+
+  @include media-max("tablet") {
+    &.media-block--mobile-bottom {
+      --flex-direction: column;
+    }
+
+    &.media-block--mobile-top {
+      --flex-direction: column-reverse;
+    }
+  }
+
+  @include tablet {
+    --gap: var(--sp-xl);
+    --content-gap: var(--sp-md);
+    --content-line-height: 1.67;
+    --flex-direction: row-reverse;
+    --media-max-width: 100%;
+    --media-max-height: 427px;
+    --media-h-padding: 0;
+    --basis: calc(50% - var(--gap) * 1);
+    --col-width: var(--basis);
+    &.media-block--right {
+      --flex-direction: row;
+    }
+  }
+
+  &__label {
+    font-size: 1rem;
+    color: var(--color-action-text);
+    letter-spacing: -0.00125em;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 67%;
+  }
+
+  &__content,
+  &__media {
+    flex: 1 1 var(--basis);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__content {
+    align-items: flex-start;
+    letter-spacing: 0.00625em;
+    gap: var(--content-gap);
+    line-height: var(--content-line-height);
+
+    .media-block__title {
+      margin: 0;
+    }
+  }
+
+  &__media {
+    width: var(--col-width);
+    align-items: center;
+    padding: var(--media-v-padding) var(--media-h-padding);
+
+    .youtube-video-container,
+    video {
+      width: 100%;
+    }
+
+    video {
+      height: auto;
+    }
+
+    img {
+      max-height: var(--media-max-height);
+      max-width: var(--media-max-width);
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+}

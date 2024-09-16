@@ -1,0 +1,9 @@
+{{ $images := slice
+  (dict "name" "AMD" "src" "/img/logos/amd-logo.svg")
+  (dict "name" "AWS" "src" "/img/logos/aws-logo.svg")
+  (dict "name" "ARM" "src" "/img/logos/arm-logo.svg")
+  (dict "name" "EPAM" "src" "/img/logos/epam-logo.svg")
+  (dict "name" "XenServer" "src" "/img/logos/xenserver-logo.svg" "scale" "1.2")
+  (dict "name" "VATES" "src" "/img/logos/vates-logo.svg")
+}}
+{{ partial "images-in-circle.html" (dict "class" "mg-t-lg" "images" $images) }}

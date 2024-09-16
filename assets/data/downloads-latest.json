@@ -1,0 +1,188 @@
+[
+  {
+    "name": "Xen",
+    "key": "xen",
+    "versions": [
+      {
+        "name": "4.19",
+        "subversions": [
+          {
+            "name": "4.19.0",
+            "link": "https://downloads.xenproject.org/release/xen/4.19.0/",
+            "files": [
+              {
+                "name": "xen-4.19.0.tar.gz",
+                "url": "https://downloads.xenproject.org/release/xen//4.19.0/xen-4.19.0.tar.gz"
+              },
+              {
+                "name": "xen-4.19.0.tar.gz.sig",
+                "url": "https://downloads.xenproject.org/release/xen//4.19.0/xen-4.19.0.tar.gz.sig"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "4.18",
+        "subversions": [
+          {
+            "name": "4.18.3",
+            "link": "https://downloads.xenproject.org/release/xen/4.18.3/",
+            "files": [
+              {
+                "name": "xen-4.18.3.tar.gz",
+                "url": "https://downloads.xenproject.org/release/xen//4.18.3/xen-4.18.3.tar.gz"
+              },
+              {
+                "name": "xen-4.18.3.tar.gz.sig",
+                "url": "https://downloads.xenproject.org/release/xen//4.18.3/xen-4.18.3.tar.gz.sig"
+              }
+            ]
+          },
+          {
+            "name": "4.18.2",
+            "link": "https://downloads.xenproject.org/release/xen/4.18.2/",
+            "files": [
+              {
+                "name": "xen-4.18.2.tar.gz",
+                "url": "https://downloads.xenproject.org/release/xen//4.18.2/xen-4.18.2.tar.gz"
+              },
+              {
+                "name": "xen-4.18.2.tar.gz.sig",
+                "url": "https://downloads.xenproject.org/release/xen//4.18.2/xen-4.18.2.tar.gz.sig"
+              }
+            ]
+          },
+          {
+            "name": "4.18.1",
+            "link": "https://downloads.xenproject.org/release/xen/4.18.1/",
+            "files": [
+              {
+                "name": "xen-4.18.1.tar.gz",
+                "url": "https://downloads.xenproject.org/release/xen//4.18.1/xen-4.18.1.tar.gz"
+              },
+              {
+                "name": "xen-4.18.1.tar.gz.sig",
+                "url": "https://downloads.xenproject.org/release/xen//4.18.1/xen-4.18.1.tar.gz.sig"
+              }
+            ]
+          },
+          {
+            "name": "4.18.0",
+            "link": "https://downloads.xenproject.org/release/xen/4.18.0/",
+            "files": [
+              {
+                "name": "xen-4.18.0.tar.gz",
+                "url": "https://downloads.xenproject.org/release/xen//4.18.0/xen-4.18.0.tar.gz"
+              },
+              {
+                "name": "xen-4.18.0.tar.gz.sig",
+                "url": "https://downloads.xenproject.org/release/xen//4.18.0/xen-4.18.0.tar.gz.sig"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Windows PV Drivers",
+    "key": "windowspvdrivers",
+    "versions": [
+      {
+        "link": "",
+        "name": "default",
+        "files": [
+          {
+            "name": "xenbus.tar",
+            "url": "https://xenbits.xenproject.org/pvdrivers/win/xenbus.tar"
+          },
+          {
+            "name": "xencons.tar",
+            "url": "https://xenbits.xenproject.org/pvdrivers/win/xencons.tar"
+          },
+          {
+            "name": "xenhid.tar",
+            "url": "https://xenbits.xenproject.org/pvdrivers/win/xenhid.tar"
+          },
+          {
+            "name": "xeniface.tar",
+            "url": "https://xenbits.xenproject.org/pvdrivers/win/xeniface.tar"
+          },
+          {
+            "name": "xennet.tar",
+            "url": "https://xenbits.xenproject.org/pvdrivers/win/xennet.tar"
+          },
+          {
+            "name": "xenvbd.tar",
+            "url": "https://xenbits.xenproject.org/pvdrivers/win/xenvbd.tar"
+          },
+          {
+            "name": "xenvif.tar",
+            "url": "https://xenbits.xenproject.org/pvdrivers/win/xenvif.tar"
+          },
+          {
+            "name": "xenvkbd.tar",
+            "url": "https://xenbits.xenproject.org/pvdrivers/win/xenvkbd.tar"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Mirage OS",
+    "key": "mirageos",
+    "versions": [
+      {
+        "name": "4.6",
+        "subversions": [
+          {
+            "name": "4.6.1",
+            "link": "https://github.com/mirage/mirage/releases/tag/v4.6.1",
+            "files": [
+              {
+                "name": "mirage-4.6.1.tar.gz",
+                "url": "https://api.github.com/repos/mirage/mirage/tarball/v4.6.1"
+              }
+            ]
+          },
+          {
+            "name": "4.6.0",
+            "link": "https://github.com/mirage/mirage/releases/tag/v4.6.0",
+            "files": [
+              {
+                "name": "mirage-4.6.0.tar.gz",
+                "url": "https://api.github.com/repos/mirage/mirage/tarball/v4.6.0"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "4.5",
+        "subversions": [
+          {
+            "name": "4.5.1",
+            "link": "https://github.com/mirage/mirage/releases/tag/v4.5.1",
+            "files": [
+              {
+                "name": "mirage-4.5.1.tar.gz",
+                "url": "https://api.github.com/repos/mirage/mirage/tarball/v4.5.1"
+              }
+            ]
+          },
+          {
+            "name": "4.5.0",
+            "link": "https://github.com/mirage/mirage/releases/tag/v4.5.0",
+            "files": [
+              {
+                "name": "mirage-4.5.0.tar.gz",
+                "url": "https://api.github.com/repos/mirage/mirage/tarball/v4.5.0"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

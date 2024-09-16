@@ -1,0 +1,174 @@
+{
+  "figures": [
+    {
+      "name": "cloud.png",
+      "path": "/figures/cloud.png"
+    },
+    {
+      "name": "small-cloud.png",
+      "path": "/figures/small-cloud.png"
+    },
+    {
+      "name": "xen-panda-kungfu.png",
+      "path": "/figures/xen-panda-kungfu.png"
+    },
+    {
+      "name": "xen-panda-winged.png",
+      "path": "/figures/xen-panda-winged.png"
+    },
+    {
+      "name": "xen-panda-zen.png",
+      "path": "/figures/xen-panda-zen.png"
+    }
+  ],
+  "flatline": [
+    {
+      "name": "brainstorming-session.svg",
+      "path": "/flatline/brainstorming-session.svg"
+    },
+    {
+      "name": "brainstorming.svg",
+      "path": "/flatline/brainstorming.svg"
+    },
+    {
+      "name": "coding.svg",
+      "path": "/flatline/coding.svg"
+    },
+    {
+      "name": "coding2.svg",
+      "path": "/flatline/coding2.svg"
+    },
+    {
+      "name": "data-analysis.svg",
+      "path": "/flatline/data-analysis.svg"
+    },
+    {
+      "name": "data-analyst.svg",
+      "path": "/flatline/data-analyst.svg"
+    },
+    {
+      "name": "data-center.svg",
+      "path": "/flatline/data-center.svg"
+    },
+    {
+      "name": "data-hosting.svg",
+      "path": "/flatline/data-hosting.svg"
+    },
+    {
+      "name": "data-process-with-xen-logo.svg",
+      "path": "/flatline/data-process-with-xen-logo.svg"
+    },
+    {
+      "name": "data-process.svg",
+      "path": "/flatline/data-process.svg"
+    },
+    {
+      "name": "data-process2.svg",
+      "path": "/flatline/data-process2.svg"
+    },
+    {
+      "name": "data_and_settings.svg",
+      "path": "/flatline/data_and_settings.svg"
+    },
+    {
+      "name": "error-404.svg",
+      "path": "/flatline/error-404.svg"
+    },
+    {
+      "name": "handshake.svg",
+      "path": "/flatline/handshake.svg"
+    },
+    {
+      "name": "java.svg",
+      "path": "/flatline/java.svg"
+    },
+    {
+      "name": "laptop-cybersecurity.svg",
+      "path": "/flatline/laptop-cybersecurity.svg"
+    },
+    {
+      "name": "security.svg",
+      "path": "/flatline/security.svg"
+    },
+    {
+      "name": "start-up.svg",
+      "path": "/flatline/start-up.svg"
+    },
+    {
+      "name": "team-meeting.svg",
+      "path": "/flatline/team-meeting.svg"
+    },
+    {
+      "name": "team-work.svg",
+      "path": "/flatline/team-work.svg"
+    },
+    {
+      "name": "timeline.svg",
+      "path": "/flatline/timeline.svg"
+    }
+  ],
+  ".": [
+    {
+      "name": "logo-xen.svg",
+      "path": "/logo-xen.svg"
+    }
+  ],
+  "logos": [
+    {
+      "name": "amd-logo.svg",
+      "path": "/logos/amd-logo.svg"
+    },
+    {
+      "name": "arm-logo.svg",
+      "path": "/logos/arm-logo.svg"
+    },
+    {
+      "name": "aws-logo.svg",
+      "path": "/logos/aws-logo.svg"
+    },
+    {
+      "name": "epam-logo.svg",
+      "path": "/logos/epam-logo.svg"
+    },
+    {
+      "name": "vates-logo.svg",
+      "path": "/logos/vates-logo.svg"
+    },
+    {
+      "name": "xenserver-logo.svg",
+      "path": "/logos/xenserver-logo.svg"
+    }
+  ],
+  "others": [
+    {
+      "name": "unikraft-architecture.png",
+      "path": "/others/unikraft-architecture.png"
+    },
+    {
+      "name": "xcp-ng-badge.webp",
+      "path": "/others/xcp-ng-badge.webp"
+    },
+    {
+      "name": "xcp-ng.png",
+      "path": "/others/xcp-ng.png"
+    },
+    {
+      "name": "xen-progress-certification.png",
+      "path": "/others/xen-progress-certification.png"
+    },
+    {
+      "name": "xen-team-photo-1.png",
+      "path": "/others/xen-team-photo-1.png"
+    },
+    {
+      "name": "xen-team-photo-2.png",
+      "path": "/others/xen-team-photo-2.png"
+    }
+  ],
+  "photos": [
+    {
+      "name": "xen-project-2023-group-photo.png",
+      "path": "/photos/xen-project-2023-group-photo.png"
+    }
+  ]
+}

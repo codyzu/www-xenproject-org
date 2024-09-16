@@ -1,0 +1,85 @@
+// Spacings declaration
+$spacings: (
+  /* 2px */ xxxs: 0.125rem,
+  /* 4px */ xxs: 0.25rem,
+  /* 8px */ xs: 0.5rem,
+  /* 12px */ sm: 0.75rem,
+  /* 16px */ sm-md: 1rem,
+  /* 18px */ sm-lg: 1.125rem,
+  /* 24px */ md: 1.5rem,
+  /* 40px */ lg: 2.5rem,
+  /* 80px */ xl: 5rem,
+  /* 96px */ xxl: 6rem,
+  /* 200px */ xxxl: 12.5rem,
+  /* 400px */ xxxxl: 25rem
+);
+
+// variables
+:root {
+  @each $name, $value in $spacings {
+    --sp-#{$name}: #{$value};
+  }
+}
+
+// margins
+@mixin generate-spacing-classes($prefix: "") {
+  // margins
+  @each $name, $value in $spacings {
+    .#{$prefix}mg-#{$name} {
+      margin: $value;
+    }
+    .#{$prefix}mg-t-#{$name} {
+      margin-top: $value;
+    }
+    .#{$prefix}mg-b-#{$name} {
+      margin-bottom: $value;
+    }
+    .#{$prefix}mg-l-#{$name} {
+      margin-left: $value;
+    }
+    .#{$prefix}mg-r-#{$name} {
+      margin-right: $value;
+    }
+    .#{$prefix}mg-v-#{$name} {
+      margin-top: $value;
+      margin-bottom: $value;
+    }
+    .#{$prefix}mg-h-#{$name} {
+      margin-left: $value;
+      margin-right: $value;
+    }
+  }
+
+  // paddings
+  @each $name, $value in $spacings {
+    .#{$prefix}pd-#{$name} {
+      padding: $value;
+    }
+    .#{$prefix}pd-t-#{$name} {
+      padding-top: $value;
+    }
+    .#{$prefix}pd-b-#{$name} {
+      padding-bottom: $value;
+    }
+    .#{$prefix}pd-l-#{$name} {
+      padding-left: $value;
+    }
+    .#{$prefix}pd-r-#{$name} {
+      padding-right: $value;
+    }
+    .#{$prefix}pd-v-#{$name} {
+      padding-top: $value;
+      padding-bottom: $value;
+    }
+    .#{$prefix}pd-h-#{$name} {
+      padding-left: $value;
+      padding-right: $value;
+    }
+  }
+}
+
+@include generate-spacing-classes();
+
+@include media-max("phone") {
+  @include generate-spacing-classes("mob-");
+}

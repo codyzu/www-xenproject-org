@@ -1,0 +1,143 @@
+[
+  {
+    "name": "default",
+    "colors": [
+      {
+        "group": "default",
+        "name": "surface",
+        "variableName": "--color-surface",
+        "value": "#fbfbfb"
+      },
+      {
+        "group": "default",
+        "name": "surface-secondary",
+        "variableName": "--color-surface-secondary",
+        "value": "#ededed"
+      },
+      {
+        "group": "default",
+        "name": "border",
+        "variableName": "--color-border",
+        "value": "#dbdbdb"
+      },
+      {
+        "group": "default",
+        "name": "text",
+        "variableName": "--color-text",
+        "value": "#101828"
+      },
+      {
+        "group": "default",
+        "name": "text-secondary",
+        "variableName": "--color-text-secondary",
+        "value": "#475467"
+      }
+    ]
+  },
+  {
+    "name": "action",
+    "colors": [
+      {
+        "group": "action",
+        "name": "action-surface",
+        "variableName": "--color-action-surface",
+        "value": "#bcdef7"
+      },
+      {
+        "group": "action",
+        "name": "action-text",
+        "variableName": "--color-action-text",
+        "value": "#0062a7"
+      },
+      {
+        "group": "action",
+        "name": "action-text-hover",
+        "variableName": "--color-action-text-hover",
+        "value": "#004e86"
+      },
+      {
+        "group": "action",
+        "name": "action-text-pressed",
+        "variableName": "--color-action-text-pressed",
+        "value": "#003b64"
+      },
+      {
+        "group": "action",
+        "name": "action-fill",
+        "variableName": "--color-action-fill",
+        "value": "#0077cc"
+      },
+      {
+        "group": "action",
+        "name": "action-fill-hover",
+        "variableName": "--color-action-fill-hover",
+        "value": "#005fa3"
+      },
+      {
+        "group": "action",
+        "name": "action-fill-pressed",
+        "variableName": "--color-action-fill-pressed",
+        "value": "#00477a"
+      },
+      {
+        "group": "action",
+        "name": "action-on-fill",
+        "variableName": "--color-action-on-fill",
+        "value": "#f7fbfd"
+      }
+    ]
+  },
+  {
+    "name": "brand",
+    "colors": [
+      {
+        "group": "brand",
+        "name": "brand-surface",
+        "variableName": "--color-brand-surface",
+        "value": "#f3f9ec"
+      },
+      {
+        "group": "brand",
+        "name": "brand-text",
+        "variableName": "--color-brand-text",
+        "value": "#567c2a"
+      },
+      {
+        "group": "brand",
+        "name": "brand-text-hover",
+        "variableName": "--color-brand-text-hover",
+        "value": "#456322"
+      },
+      {
+        "group": "brand",
+        "name": "brand-text-pressed",
+        "variableName": "--color-brand-text-pressed",
+        "value": "#344a19"
+      },
+      {
+        "group": "brand",
+        "name": "brand-fill",
+        "variableName": "--color-brand-fill",
+        "value": "#85c241"
+      },
+      {
+        "group": "brand",
+        "name": "brand-fill-hover",
+        "variableName": "--color-brand-fill-hover",
+        "value": "#9dce67"
+      },
+      {
+        "group": "brand",
+        "name": "brand-fill-pressed",
+        "variableName": "--color-brand-fill-pressed",
+        "value": "#b6da8d"
+      },
+      {
+        "group": "brand",
+        "name": "brand-on-fill",
+        "variableName": "--color-brand-on-fill",
+        "value": "#1e2b0e"
+      }
+    ]
+  }
+]
