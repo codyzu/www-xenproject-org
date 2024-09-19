@@ -84,7 +84,7 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
 
 
 <p class="mob-mg-v-xl mg-v-xxl txt-c">
-  <a class="btn btn-primary" href="{{ .Site.BaseURL }}/projects">
+  <a class="btn btn-primary" href="/projects">
     Discover all projects <i class="fas fa-arrow-right"></i>
   </a>
 </p>
