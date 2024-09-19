@@ -8,7 +8,7 @@ draft: false
     label="A Linux Foundation Project"
     title="Bring the power of <a href=\"#\">open virtualization</a> everywhere."
     titleLevel="1"
-    image="/img/flatline/data-process2.svg"
+    media="/img/flatline/data-process2.svg"
     imageAlt="Xen Project Logo"
     mediaPosition="right"
     mobileMediaPosition="bottom"

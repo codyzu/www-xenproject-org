@@ -1,5 +1,4 @@
 {{ $content := .Inner }}
-{{ $image := .Get "image" | default "" }}
 {{ $imageAlt := .Get "imageAlt" | default "" }}
 {{ $imageSize := .Get "imageSize" | default "" }}
 {{ $label := .Get "label" | default "" }}
@@ -12,7 +11,6 @@
 
 {{ partial "media-block.html" (dict
   "Content" $content
-  "Image" $image
   "ImageAlt" $imageAlt
   "ImageSize" $imageSize
   "Label" $label

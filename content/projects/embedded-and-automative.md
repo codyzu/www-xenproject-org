@@ -12,7 +12,7 @@ menus:
 {{<section>}}
   {{<media-block
     title="Embedded systems redefined"
-    image="/img/logos/arm-logo.svg"
+    media="/img/logos/arm-logo.svg"
     imageSize="50%"
     imageAlt="ARM logo"
   >}}
@@ -36,7 +36,7 @@ Our focus extends beyond ARMv7 to encompass ARMv8, x86-64, and RISC-V, catering 
 {{<section>}}
   {{<media-block
     title="What does this mean?"
-    image="/img/flatline/data_and_settings.svg"
+    media="/img/flatline/data_and_settings.svg"
     mediaPosition="right"
   >}}
   {{<md>}}
@@ -78,7 +78,7 @@ The Xen Project Hypervisor is uniquely placed to support a new range of use case
 {{<section>}}
   {{<media-block
     title="Functional safety"
-    image="/img/others/xen-progress-certification.png"
+    media="/img/others/xen-progress-certification.png"
     mediaPosition="right"
   >}}
 {{<md>}}
@@ -94,7 +94,7 @@ Xen is not just a technology; it’s a vision coming to life, shaping the future
 {{<section>}}
   {{<media-block
     title="Functional safety"
-    image="/img/flatline/coding.svg"
+    media="/img/flatline/coding.svg"
   >}}
 {{<md>}}
 

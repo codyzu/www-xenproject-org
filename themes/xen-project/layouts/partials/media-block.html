@@ -31,13 +31,7 @@
     </div>
   </div>
   <div class="media-block__media">
-    {{ if .Image }}
-      <img
-        src="{{ .Site.BaseURL }}{{ .Image }}"
-        alt="{{ .ImageAlt }}"
-        {{ if .ImageSize }}width="{{ .ImageSize }}" height="auto"{{ end }}
-      />
-    {{ else if .Media }}
+    {{ if .Media }}
       {{ $trimmedMedia := trim .Media " \n\r\t" }}
       {{ $lowerMedia := lower $trimmedMedia }}
       {{ if or (findRE "\\.png$|\\.jpg$|\\.jpeg$|\\.avif$|\\.webp$|\\.gif$|\\.svg$" $lowerMedia) }}

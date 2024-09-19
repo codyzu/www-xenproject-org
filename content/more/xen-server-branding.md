@@ -15,7 +15,7 @@ menus:
 {{<section >}} 
   {{<media-block
     title="Download"
-    image="/img/logo-xen.svg"
+    media="/img/logo-xen.svg"
     imageAlt="Xen Project Logo"
   >}}
   You can download vector graphics, images and logos.

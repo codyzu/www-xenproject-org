@@ -35,7 +35,7 @@ menus:
 {{<section>}}
   {{<media-block
     title="Lead by a <strong>dedicated community</strong>"
-    image="/img/flatline/team-work.svg"
+    media="/img/flatline/team-work.svg"
   >}}
   The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology.
   With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.
@@ -52,7 +52,7 @@ menus:
   {{<section>}}
   {{<media-block
     title="About **Xen Project**</strong>"
-    image="/img/flatline/data_process.svg"
+    media="/img/flatline/data_process.svg"
     mediaPosition="right"
   >}}
 The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology.

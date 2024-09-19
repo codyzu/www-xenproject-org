@@ -12,7 +12,7 @@ menus:
 {{<section>}}
   {{<media-block
     title="What does this mean?"
-    image="/img/flatline/new-message.svg"
+    media="/img/flatline/new-message.svg"
   >}}
   {{<md>}}
 - Xen revolutionizes embedded systems, enabling fully-featured operating systems like Linux to coexist with smaller and faster RTOSes such as Zephyr.
