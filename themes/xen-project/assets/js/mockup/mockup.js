@@ -6,12 +6,14 @@ import mockupPosition from "./mockup-position.js";
 import mockupBlendMode from "./mockup-blend-mode.js";
 import mockupWindowSize from "./mockup-window-size.js";
 import mockupToolbarScale from "./mockup-toolbar-scale.js";
-import mockupToggleToolbar from "./mockup-toggle-toolbar.js";
+import mockupToolbarToggle from "./mockup-toolbar-toggle.js";
+import mockupKeyboardShortcuts from "./mockup-keyboard-shortcuts.js";
 
 const modules = [
   // mockupHide,
+  mockupKeyboardShortcuts,
   mockupToolbarScale,
-  mockupToggleToolbar,
+  mockupToolbarToggle,
   mockupWindowSize,
   mockupUpload,
   mockupOpacity,
@@ -19,8 +21,6 @@ const modules = [
   mockupBlendMode,
 ];
 (() => {
-  // read the cookie mockup
-  return;
   const mockupCookie = document.cookie.split("; ").find((cookie) => cookie.startsWith("mockup"));
   if (mockupCookie) {
     if (mockupCookie.split("=")[1] === "disabled") {

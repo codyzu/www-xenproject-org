@@ -49,9 +49,9 @@ menus:
     - Mailing list
   content: Announcements related to the project. These may be release announcements, security advisories, announcements related to events. This is a low volume list, with about 1-2 posts per month.
   actions:
-    - url: "#"
+    - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/xen-announce"
       text: Info
-    - url: "#" 
+    - url: "https://lists.xenproject.org/archives/html/xen-announce" 
       text: Archives
 
 - label: XEN-USERS@
@@ -59,9 +59,9 @@ menus:
     - Mailing list 
   content: This list is for those using and installing the Xen Project software.
   actions:
-    - url: "#"
+    - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/xen-users"
       text: Info
-    - url: "#"
+    - url: "https://lists.xenproject.org/archives/html/xen-users"
       text: Archives
 
 - label: OSSTEST-OUTPUT@
@@ -69,9 +69,9 @@ menus:
     - Mailing list
   content: This is a receive-only list to which detailed test results and reports from the Xen Project Test Lab are sent. This is a very high volume list with 500+ e-mails a day. Only subscribe to it with filters set up. Principal test results are posted to the xen-devel list.
   actions:
-    - url: "#"
+    - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/osstest-output"
       text: Info
-    - url: "#"
+    - url: "https://lists.xenproject.org/archives/html/osstest-output"
       text: Archives
 
 - label: SECURITY@XENPROJECT.ORG
@@ -79,29 +79,25 @@ menus:
     - Mailing list
   content: This e-mail alias is intended for reporting security vulnerabilities in Xen Project software (this also covers the situation where an existing published codebase is retrospectively found to be a security fix). List membership is restricted to members of the Xen Project Security Response Team and thus invite only and obviously, there is no public archive. For more information on how the Xen Project handles security vulnerabilities, see the Xen Security Problem Response Process.
   actions:
-    - url: "#"
-      text: Info
-    - url: "#"
-      text: Archives
+    - url: "mailto:security@xenproject.org"
+      text: Report Security Issue
 
 - label: PRIVATE@
   tags:
     - Mailing list
   content: This list is for maintainers of all Xen teams, and key developers that have been invited by maintainers. This list is intended to be used only when privacy implications or similar prevent usage of a public list. Example usage may be to let other community members know of absences (due to holidays, maternity/ paternity leave, etc.) and to arrange cover. Another example may be to ask other team members for advice on how to respond to a difficult situation in the community. Any conversations that should have been started on a public list, will be forwarded to an appropriate public list. This list is an invite-only list and is not archived. Community members can subscribe, but approval in line with Mailing List Conventions is required.
   actions:
-    - url: "#"
+    - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/private"
       text: Info
-    - url: "#"
-      text: Archives
 
 - label: PUBLICITY@
   tags:
     - Mailing list
   content: This is a list to coordinate content for the Xen Project blog, articles in the open source and Linux press, other media, press activities, to coordinate attendance and submissions for open source and industry events and anything else to promote the Xen Project. The list is open for people in the community who care about promoting the Xen Project. The list is also archived. To join, please email the Community Manager.
   actions:
-    - url: "#"
+    - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/publicity"
       text: Info 
-    - url: "#"
+    - url: "https://lists.xenproject.org/archives/html/publicity"
       text: Archives
 
 {{</row-from-list>}}
@@ -122,18 +118,18 @@ menus:
     - Mailing list
   content: A discussion list for the Xen Project Hypervisor developer community. Please do not use this list for technical support queries.
   actions:
-    - url: "#"
+    - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/xen-devel"
       text: Info
-    - url: "#"
+    - url: "https://lists.xenproject.org/archives/html/xen-devel"
       text: Archives
 - label: XEN-CHANGELOG@
   tags:
     - Mailing list
   content: This is a receive-only list to which details of changesets to the Xen Hypervisor Git repositories are sent.
   actions:
-    - url: "#"
+    - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/xen-changelog"
       text: Info
-    - url: "#"
+    - url: "https://lists.xenproject.org/archives/html/xen-changelog"
       text: Archives
 {{</row-from-list>}}
 
@@ -149,9 +145,9 @@ menus:
       - Mailing list
     content: A discussion list for the Mirage OS developer community. Note that most development discussion happens on the respective GitHub (via issues, etc. on the respective repositories).
     actions:
-      - url: "#"
+      - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/mirageos-devel"
         text: Info
-      - url: "#"
+      - url: "https://lists.xenproject.org/archives/html/mirageos-devel"
         text: Archives
   {{</row-from-list>}}
 {{</col>}}
@@ -166,9 +162,9 @@ menus:
     content: A discussion list for MiniOS and Unikraft development.
     important: For patches that need to go into hypervisor/mainline please keep an eye on xen-devel. For development discussions that are MiniOS and Unikraft specific, but impact the hypervisor and/or other sub-projects, please CC the relevant mailing list. For Unikraft code submissions please use the prefix [UNIKRAFT PATCH] xxx, whereas for MiniOS use [PATCH xxx].
     actions:
-      - url: "#"
+      - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/minios-devel"
         text: Info
-      - url: "#"
+      - url: "https://lists.xenproject.org/archives/html/minios-devel"
         text: Archives
   {{</row-from-list>}}
 {{</col>}}
@@ -183,9 +179,9 @@ menus:
     content: A discussion list for the XAPI project, developing an open-source management layer for Xen-based systems. The list is both for developers and users.
     note: Note that most technical discussions for the Xen-API project happen on GitHub (via issues, etc. on the respective repositories).
     actions:
-      - url: "#"
+      - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/xen-api"
         text: Info
-      - url: "#"
+      - url: "https://lists.xenproject.org/archives/html/xen-api"
         text: Archives
   {{</row-from-list>}}
 {{</col>}}
@@ -233,9 +229,9 @@ menus:
     - Mailing list
   content: A discussion list for the Windows PV Drivers developer community.
   actions:
-    - url: "#"
+    - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/win-pv-devel"
       text: Info 
-    - url: "#"
+    - url: "https://lists.xenproject.org/archives/html/win-pv-devel"
       text: Archives
 {{</row-from-list>}}
     
@@ -259,9 +255,9 @@ menus:
     
     The list is open to all community members who care about security and although pre-disclosure membership applications are evaluated based on strict criteria, all applications are open for review and comment by community members. The list is also archived.
   actions:
-    - url: "#"
+    - url: "https://lists.xenproject.org/cgi-bin/mailman/listinfo/predisclosure-applications"
       text: Info
-    - url: "#"
+    - url: "https://lists.xenproject.org/archives/html/predisclosure-applications"
       text: Archives
 
 - label: ADVISORY-BOARD@
@@ -280,12 +276,12 @@ menus:
 
 
 {{<section class="txt-c">}}
-<a href="TODO" class="btn btn-primary">
+<a href="http://wiki.xenproject.org/wiki/Xen_Users_Netiquette" class="btn btn-primary">
   Mailing list Netiquette
   <i class="fas fa-arrow-up-right-from-square"></i>
 </a>
 
-<a href="TODO" class="btn btn-secondary mg-l-lg">
+<a href="http://wiki.xenproject.org/wiki/Xen_Mailing_List_Moderators" class="btn btn-secondary mg-l-lg">
   Mailing list moderators
   <i class="fas fa-arrow-up-right-from-square"></i> 
 </a>

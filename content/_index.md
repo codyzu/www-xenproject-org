@@ -9,7 +9,7 @@ draft: false
     title="Bring the power of <a href=\"#\">open virtualization</a> everywhere."
     titleLevel="1"
     media="/img/flatline/data-process2.svg"
-    imageAlt="Xen Project Logo"
+    alt="Illustration of a computer monitor displaying bar charts, next to multiple server racks representing data management and analytics."
     mediaPosition="right"
     mobileMediaPosition="bottom"
   >}}
@@ -27,7 +27,7 @@ draft: false
 
 {{<html>}}
 <p class="txt-c section-space anchor-placement-bottom">
-  <a href="#" class="anchor"><strong>Discover</strong></a>
+  <a href=TODO class="anchor"><strong>Discover</strong></a>
 </p>
 {{</html>}}
 
@@ -104,7 +104,7 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
   Board members can propose and vote upon changes to the Xen Project.Members also gain valuable strategic insight into project plans and future scope.
 
   <p class="mg-t-md">
-    <a href="/xen-project/advisors/" class="btn btn-secondary">Join the advisory board <i class="fas fa-arrow-right"></i></a>
+    <a href="/xen-project/advisors" class="btn btn-secondary">Join the advisory board <i class="fas fa-arrow-right"></i></a>
   </p>
   {{</media-block>}}
 
@@ -115,12 +115,13 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
     media="/img/flatline/team-work.svg"
     mediaPosition="right"
     mediaMobilePosition="bottom"
+    alt="Illustration of three people carrying a large pie chart with one segment separated, symbolizing teamwork and data analysis."
   >}}
   The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology.
 With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.
 
   <p class="mg-t-md">
-    <a href="TODO">Get started <i class="fas fa-arrow-right"></i></a>
+    <a href="/contribute/get-started">Get started <i class="fas fa-arrow-right"></i></a>
   </p>
   {{</media-block>}}
 {{</section>}}
@@ -133,24 +134,13 @@ With diverse backgrounds and expertise, members actively contribute to Xen's evo
     title="About **Xen Project**"
     media="/img/flatline/data-process.svg"
     mediaMobilePosition="bottom"
+    alt="Illustration of a laptop displaying 3D bar charts, connected to various cloud and file management icons, representing data integration and cloud storage."
   >}}
  The mission of the Xen Project is to advance virtualisation technology across a wide range of commercial and open-source domains.
 
   <p class="mg-t-md">
-    <a href="TODO">Learn about Xen Project<i class="fas fa-arrow-right"></i></a>
+    <a href="/about">Learn about Xen Project<i class="fas fa-arrow-right"></i></a>
   </p>
   {{</media-block>}}
 {{</section>}}
-
-
-
-
-
-
-
-
-
-
-
-
 

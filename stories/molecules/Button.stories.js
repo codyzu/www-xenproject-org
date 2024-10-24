@@ -4,6 +4,7 @@ import { html } from "lit";
 export default {
   title: "Molecules/Button",
   tags: ["autodocs"],
+  render: (args) => html` <button type="button" class="btn btn-primary">Primary button</button> `,
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
@@ -15,9 +16,9 @@ export const AllButtons = {
     <button type="button" class="btn btn-tertiary">Tertiary button</button>
 
     <h2>Buttons as "a" tag</h2>
-    <a href="#" class="btn btn-primary"> Primary button </a>
-    <a href="#" class="btn btn-secondary"> Secondary button </a>
-    <a href="#" class="btn btn-tertiary"> Tertiary button </a>
+    <a href="/" class="btn btn-primary"> Primary button </a>
+    <a href="/" class="btn btn-secondary"> Secondary button </a>
+    <a href="/" class="btn btn-tertiary"> Tertiary button </a>
 
     <h2>Buttons with icons</h2>
     <button type="button" class="btn btn-primary">
@@ -29,7 +30,7 @@ export const AllButtons = {
       <i class="fas fa-download"></i>
     </button>
 
-    <a href="#" class="btn btn-tertiary">
+    <a href="/" class="btn btn-tertiary">
       Tertiary button with "arrow-up-right-from-square" icon
       <i class="fas fa-arrow-up-right-from-square"></i>
     </a>

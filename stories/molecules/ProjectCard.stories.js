@@ -4,31 +4,37 @@ import { html } from "lit";
 export default {
   title: "Molecules/ProjectCard",
   tags: ["autodocs"],
+  render: () => html`
+    <div class="project-card">
+      <h3 class="project-card__title">Label</h3>
+      <div class="project-card__content">
+        Label Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non eros varius, tincidunt tellus sit
+        amet, maximus urna.
+      </div>
+      <a href="/link" class="project-card__link btn btn-tertiary">Discover <i class="fas fa-arrow-right"></i></a>
+    </div>
+  `,
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const ProjectCard = {
-  render: (args) => html`
+  render: () => html`
     <div class="story-row">
       <div class="project-card">
-        <h3>Label</h3>
+        <h3 class="project-card__title">Label</h3>
         <div class="project-card__content">
-          Label Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Vestibulum non eros varius, tincidunt tellus sit amet, maximus urna.
+          Label Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non eros varius, tincidunt tellus
+          sit amet, maximus urna.
         </div>
-        <a href="/link" class="project-card__link btn btn-tertiary"
-          >Discover <i class="fas fa-arrow-right"></i
-        ></a>
+        <a href="/link" class="project-card__link btn btn-tertiary">Discover <i class="fas fa-arrow-right"></i></a>
       </div>
       <div class="project-card">
-        <h3>Label</h3>
+        <h3 class="project-card__title">Label</h3>
         <div class="project-card__content">
-          Label Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Vestibulum non eros varius, tincidunt tellus sit amet, maximus urna.
+          Label Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non eros varius, tincidunt tellus
+          sit amet, maximus urna.
         </div>
-        <a href="/link" class="project-card__link btn btn-tertiary"
-          >Discover <i class="fas fa-arrow-right"></i
-        ></a>
+        <a href="/link" class="project-card__link btn btn-tertiary">Discover <i class="fas fa-arrow-right"></i></a>
       </div>
     </div>
   `,

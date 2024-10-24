@@ -35,7 +35,7 @@ class XenProvider extends Provider {
       if (text === "Parent Directory") {
         parentDirReached = true;
       } else if (parentDirReached) {
-        items.push({ name: text, url: `${url}/${text}` });
+        items.push({ name: text, url: `${url}/${text.replace(/^\//, "")}` });
       }
     });
 

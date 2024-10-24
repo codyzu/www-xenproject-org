@@ -21,11 +21,11 @@ menus:
   {{</md>}}
 
   <p class="mg-t-md">
-    <a href="https://matrix.to/#/#xenproject:matrix.org" class="btn btn-primary mg-r-md">
+    <a href="/resources/matrix" class="btn btn-primary mg-r-md">
       Join Matrix <i class="fas fa-arrow-right"></i>
     </a>
 
-    <a href="http://TODO" class="btn btn-secondary">
+    <a href="/resources/mailing-lists" class="btn btn-secondary">
       Join our mailing lists <i class="fas fa-arrow-right"></i>
     </a>
   </p>
@@ -36,12 +36,13 @@ menus:
   {{<media-block
     title="Lead by a <strong>dedicated community</strong>"
     media="/img/flatline/team-work.svg"
+    alt="Illustration of a team working together on a project, with a shared vision and goal."
   >}}
   The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology.
   With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.
 
   <p class="mg-t-md">
-    <a href="http://TODO" class="btn btn-secondary">
+    <a href="/contribute/get-started/" class="btn btn-secondary">
      Get started <i class="fas fa-arrow-right"></i>
     </a>
   </p>
@@ -52,15 +53,16 @@ menus:
   {{<section>}}
   {{<media-block
     title="About **Xen Project**</strong>"
-    media="/img/flatline/data_process.svg"
+    media="/img/flatline/data-process.svg"
     mediaPosition="right"
+    alt="Illustration of a laptop displaying 3D bar charts, connected to cloud storage and file management icons, symbolizing data synchronization and integration."
   >}}
 The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology.
 With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.
 Get started
 arrow-right
   <p class="mg-t-md">
-    <a href="http://TODO" class="btn btn-secondary">
+    <a href="contribute/get-started)" class="btn btn-secondary">
      Get started <i class="fas fa-arrow-right"></i>
     </a>
   </p>

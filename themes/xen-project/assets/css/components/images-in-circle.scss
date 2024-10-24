@@ -14,7 +14,7 @@
   --translate: -100%;
 
   --size: calc(var(--circle-dimensions) + (var(--padding) * 2));
-  --bg-color: #fff;
+  --bg-color: var(--color-surface);
   --index: 0;
   --total: 1;
   --start-angle: 0deg;
@@ -55,8 +55,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: translate(-50%, -50%) rotate(var(--angle))
-      translate(var(--translate), var(--translate))
+    transform: translate(-50%, -50%) rotate(var(--angle)) translate(var(--translate), var(--translate))
       rotate(calc(-1 * var(--angle))) scale(var(--scale));
 
     img {

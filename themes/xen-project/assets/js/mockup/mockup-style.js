@@ -102,6 +102,79 @@ const style = `
   justify-content: flex-end;
   align-items: center;
 }
+.custom-select {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+.custom-select__trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 300;
+  color: #3b3b3b;
+  height: 24px;
+  line-height: 24px;
+  background: #ffffff;
+  cursor: pointer;
+  border-radius: 3px;
+  padding-right: 24px; /* Add padding to make space for the arrow */
+}
+.custom-select__trigger::after {
+  content: '';
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-top-color: #3b3b3b; /* Color of the arrow */
+  pointer-events: none;
+  margin-top: 3px;
+}
+.custom-options {
+  position: absolute;
+  display: block;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  border-top: 0;
+  background: #fff;
+  transition: all 0.3s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 2;
+}
+.custom-select.open .custom-options {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+.custom-option {
+  position: relative;
+  display: block;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 300;
+  color: #3b3b3b;
+  line-height: 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.custom-option:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+.custom-option.selected {
+  color: #ffffff;
+  background-color: #305c91;
+}
 `;
 
 const mockupStyle = (addStyle) => {

@@ -7,16 +7,16 @@
 // Styles
 .features-list {
   --gap: var(--sp-sm-lg);
-  @include tablet {
-    --gap: var(--sp-lg);
-  }
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--gap);
   list-style: none;
   padding: 0;
   margin: 0;
+
+  @include tablet {
+    --gap: var(--sp-lg);
+  }
 
   li {
     margin: 0;
@@ -48,15 +48,14 @@
 .feature-item {
   --item-title-font-size: 2rem;
   --item-title-gap: 0.5rem;
+  padding: 1.5rem;
+  border-radius: 8px;
+  @include flex-center;
 
   @include tablet {
     --item-title-font-size: 2.5rem;
     --item-title-gap: 1.3rem;
   }
-
-  @include flex-center;
-  padding: 1.5rem;
-  border-radius: 8px;
 
   .feature-item__icon {
     font-size: 0.8em;

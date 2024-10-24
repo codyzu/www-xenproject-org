@@ -10,7 +10,7 @@ aside:
   - type: resource
     items:
       - name: Download
-        link: TODO
+        link: /resources/downloads
         icon: fas fa-arrow-right
       - name: Documentation
         link: https://wiki.xenproject.org/wiki/Category:Windows_PV_Drivers
@@ -20,6 +20,7 @@ aside:
   {{<media-block
     title="About Windows PV Drivers"
     media=`{{<youtube id="3R_IxOlP548" title="Xen Project's Progress Toward Safety Certification"  >}}`
+    alt="Video of a presentation about Windows PV Drivers on Youtube"
   >}}
   {{<md>}}
 Paravirtualization aware (PV) device drivers are an important part of HVM guests running under the Xen Project Hypervisor.
@@ -51,7 +52,7 @@ The Windows PV Drivers team at the Xen Project is maintaining and developing the
 {{<col>}}
   {{<md>}}
   Any other organization is also free to do the same by registering a top-level PV device with the Xen Project community (see *Xen PCI device ID registry*) and logo-signing their driver builds.
-Please sign up and follow the [win-pv-devel@mailing list](TODO) for status and development updates.
+  Please sign up and follow the [win-pv-devel@mailing list](https://xenproject.org/help/mailing-list/) for status and development updates.
   {{</md>}}
 
     <p class="mg-t-md">
@@ -69,6 +70,7 @@ Please sign up and follow the [win-pv-devel@mailing list](TODO) for status and d
   {{<media-block
     title="License"
     media="/img/flatline/coding2.svg"
+    alt="Illustration of hands typing code on a laptop with documents and a cup of coffee, symbolizing software development and workflow."
   >}}
 {{<md>}}
 The drivers are available under a [simplified 2-clause BSD license](https://en.wikipedia.org/wiki/BSD_licenses#2-clause_license_.28.22Simplified_BSD_License.22_or_.22FreeBSD_License.22.29). The code can be found in the following repositories on [xenbits.xen.org](https://xenbits.xen.org/gitweb/) in the [pvdrivers/win](https://xenbits.xen.org/gitweb/?a=project_list;pf=pvdrivers/win) folder.

@@ -6,19 +6,13 @@ menus:
   main:
     parent: Projects
     weight: 100
-aside:
-  - type: resource
-    items:
-      - name: Label
-        url: TODO
-      - name: Label
-        url: TODO
 ---
 
 {{<section>}}
   {{<media-block
     title="About us"
     media="/img/flatline/data_and_settings.svg"
+    alt="Illustration of a database icon with gears and a wrench, representing data management and configuration tools."
   >}}
 MirageOS is a library operating system that constructs unikernels for secure, high-performance, low-energy footprint applications across various hypervisor and embedded platforms. It is available as an open-source project created and maintained by the MirageOS Core Team. A unikernel can be customised based on the target architecture by picking the relevant MirageOS libraries and compiling them into a standalone operating system, strictly containing the functionality necessary for the target. This minimises the unikernel’s footprint, increasing the security of the deployed operating system.
 {{</media-block>}}
@@ -33,28 +27,27 @@ The MirageOS architecture can be divided into operating system libraries, typed 
 
 {{<section class="background-normal"  >}}
   {{<features-list cols="2">}}
-  - title: Small footprint and interface
-    icon: fas fa-memory
-    description: Because it uses a microkernel design, with a small memory footprint and a restricted interface to guests, it is more robust and secure than other hypervisors.
-  - title: Operating system agnostic
-    icon: fas fa-gears
-    description: Most installations run with Linux as the main control stack (aka "domain 0"). But a number of other operating systems can be used instead, including NetBSD and FreeBSD.
-  - title: Driver Isolation
-    icon: fas fa-shield-halved
-    description: The Xen Project hypervisor has the capability to allow the main device driver for a system to run inside of a virtual machine. If the driver crashes, or is compromised, the VM containing the driver can be rebooted and the driver restarted without affecting the rest of the system.
-  - title: Paravirtualization
-    icon: fas fa-window-restore
-    description: Paravirtualization allows guests to avoid extra overhead, by making use of devices and interfaces that have been designed for a virtualized environment. Additionally Xen on x86 also supports fully paravirtulized guests, which can run on hardware that doesn't support virtualization extensions.
+  - title: Fast Start
+    icon: fas fa-power-off
+    description: MirageOS applications take a few milliseconds to start-up instead of the few minutes that traditional OS takes.
+  - title: Small Binaries
+    icon: fas fa-floppy-disk
+    description: "MirageOS binaries are self-contained: they do not need an additional OS to execute. Despite this, the size of MirageOS binary is usually a few megabytes."
+  - title: Small Footprint
+    icon: fas fa-minimize
+    description: MirageOS applications use a few megabytes of memory, while traditional applications and their associated OS waste gigabytes for simple applications.
+  - title: Safe Logic
+    icon: fas fa-code
+    description: MirageOS applications are written in OCaml, an industrial strength programming language supporting functional, imperative, and object-oriented styles.
   {{</features-list>}}
 {{</section>}}
-
-
 
 {{<section>}}
   {{<media-block
     title="**Development** process"
     media="/img/flatline/coding.svg"
     mediaPosition="right"
+    alt="Illustration of a person typing code on a computer, symbolizing software development and programming."
   >}}
 Mirage OS follows a standard Github workflow and has its own Developer Portal. All developer-related information such as documentation, development team members, and other information related to the development of Mirage OS can be found there as well.
 {{</media-block>}}
@@ -64,6 +57,7 @@ Mirage OS follows a standard Github workflow and has its own Developer Portal. A
   {{<media-block
     title="License"
     media="/img/flatline/coding2.svg"
+    alt="Illustration of hands typing code on a laptop with documents and a cup of coffee, symbolizing software development and workflow."
   >}}
 {{<md>}}
   The Mirage codebase is released under the ISC license, with some portions of code released under LGPLv2.

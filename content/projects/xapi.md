@@ -9,16 +9,21 @@ menus:
 aside:
   - type: resource
     items:
-      - name: Label
-        url: TODO
-      - name: Label
-        url: TODO
+      - name: "**Github project**"
+        url: "https://github.com/xapi-project/xapi"
+      - name: Documentation
+        url: "http://xapi-project.github.io/" 
+      - name: Contribute
+        url: "https://github.com/xapi-project/xen-api/blob/master/README.markdown"
+      - name: Report a Bug
+        url: "https://github.com/xapi-project/xen-api/issues"
 ---
 
 {{<section>}}
   {{<media-block
     title="Enterprise-ready tools"
     media="/img/flatline/data_and_settings.svg"
+    alt="Illustration of a database icon with gears and a wrench, representing data management and configuration tools."
   >}}
 The XAPI project is an enterprise ready toolstack for use with the Xen Project hypervisor. When used with Xen, the XAPI toolstack consolidates server workloads, enables savings in power, cooling, and management costs (contributing to environmentally sustainable computing), increases the ability to adapt to ever-changing IT environments, optimizes the use of existing hardware, and improves the level of IT reliability.
 The XAPI team also develops tooling, agents and libraries that are needed to operate a XAPI-based system.
@@ -55,7 +60,8 @@ XAPI adds additional functionality compared to other Xen Project toolstacks, inc
   {{<media-block
     title="License"
     media="/img/flatline/coding2.svg"
-    mediaposition="right"
+    mediaPosition="right"
+    alt="Illustration of hands typing code on a laptop with documents and a cup of coffee, symbolizing software development and workflow."
   >}}
 {{<md>}}
 XAPI is licensed under the [Lesser GNU General Public License (LGPL2)](https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html).

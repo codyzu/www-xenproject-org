@@ -1,16 +1,16 @@
 .hero-block {
   --margin-top: var(--sp-xs);
   --margin-bottom: var(--sp-xxl);
+  --title-font-size: 2.25rem;
+
+  margin-top: var(--margin-top);
+  margin-bottom: var(--margin-bottom);
 
   @include tablet {
     --margin-top: var(--sp-xxxl);
     --margin-bottom: var(--sp-sm);
     --title-font-size: 4rem;
   }
-
-  margin-top: var(--margin-top);
-  margin-bottom: var(--margin-bottom);
-  --title-font-size: 2.25rem;
 
   .media-block__title {
     font-size: var(--title-font-size);

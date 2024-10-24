@@ -2,7 +2,7 @@ const imagePosition = {
   html: `
     <div class="module-content">
       <input type="number" class="position-input" name="position-input" placeholder="Image position" size="3" title="Image position (Ctrl+Arrows, Shift+Arrows=step 10)"/>
-      <button type="button" class="mockup-button toggle-pointer-events" title="Toggle pointer events (Ctrl+P)"></button>
+      <button type="button" class="mockup-button toggle-pointer-events" title="Toggle image move and toggle pointer events (Ctrl+P)"></button>
     </div>
   `,
   css: `
@@ -23,9 +23,7 @@ const imagePosition = {
     let startY, startTop;
     let lastPosition;
     const positionInput = toolbar.querySelector(".position-input");
-    const togglePointerEventsButton = toolbar.querySelector(
-      ".toggle-pointer-events",
-    );
+    const togglePointerEventsButton = toolbar.querySelector(".toggle-pointer-events");
 
     function updateImagePosition(position) {
       lastPosition = position;
@@ -39,14 +37,9 @@ const imagePosition = {
     function togglePointerEvents() {
       if (mockup.image) {
         isPointerEventsEnabled = !isPointerEventsEnabled;
-        mockup.image.style.pointerEvents = isPointerEventsEnabled
-          ? "auto"
-          : "none";
+        mockup.image.style.pointerEvents = isPointerEventsEnabled ? "auto" : "none";
         togglePointerEventsButton.style.background = isPointerEventsEnabled;
-        togglePointerEventsButton.classList.toggle(
-          "active",
-          isPointerEventsEnabled,
-        );
+        togglePointerEventsButton.classList.toggle("active", isPointerEventsEnabled);
 
         saveToLocalStorage("mockupMockupPointerEvents", isPointerEventsEnabled);
       }
@@ -87,11 +80,7 @@ const imagePosition = {
 
     // Add event listeners for dragging (mouse and touch)
     const startDrag = (e) => {
-      if (
-        isPointerEventsEnabled &&
-        mockup.image &&
-        (e.target === mockup.image || e.touches)
-      ) {
+      if (isPointerEventsEnabled && mockup.image && (e.target === mockup.image || e.touches)) {
         isDragging = true;
         startY = e.clientY || e.touches[0].clientY;
         startTop = lastPosition;
@@ -125,19 +114,12 @@ const imagePosition = {
       const savedPosition = loadFromLocalStorage("mockupMockupPosition");
       updateImagePosition(savedPosition || 0);
 
-      const savedPointerEvents = loadFromLocalStorage(
-        "mockupMockupPointerEvents",
-      );
+      const savedPointerEvents = loadFromLocalStorage("mockupMockupPointerEvents");
       if (savedPointerEvents !== null) {
         isPointerEventsEnabled = savedPointerEvents;
         if (mockup.image) {
-          mockup.image.style.pointerEvents = isPointerEventsEnabled
-            ? "auto"
-            : "none";
-          togglePointerEventsButton.classList.toggle(
-            "active",
-            isPointerEventsEnabled,
-          );
+          mockup.image.style.pointerEvents = isPointerEventsEnabled ? "auto" : "none";
+          togglePointerEventsButton.classList.toggle("active", isPointerEventsEnabled);
         }
       }
     });

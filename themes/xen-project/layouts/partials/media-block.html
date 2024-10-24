@@ -37,15 +37,15 @@
       {{ if or (findRE "\\.png$|\\.jpg$|\\.jpeg$|\\.avif$|\\.webp$|\\.gif$|\\.svg$" $lowerMedia) }}
         <img
           src="{{ $trimmedMedia }}"
-          alt="{{ .ImageAlt | default "Media image" }}"
+          alt="{{ .alt | default "Media image" }}"
           {{ if .ImageSize }}width="{{ .ImageSize }}" height="auto"{{ end }}
         />
       {{ else if findRE "\\.mp4$" $lowerMedia }}
-        {{ partial "video-player.html" (dict "url" $trimmedMedia) }}
+        {{ partial "video-player.html" (dict "url" $trimmedMedia "alt" .alt) }}
       {{ else if in $lowerMedia "youtube.com" }}
-        {{ partial "youtube.html" (dict "id" (index (last 1 (split $trimmedMedia "=")) 0)) }}
+        {{ partial "youtube.html" (dict "id" (index (last 1 (split $trimmedMedia "=")) 0) "alt" .alt) }}
       {{ else if in $lowerMedia "slideshare.net" }}
-        {{ partial "slideshare.html" (dict "url" $trimmedMedia) }}
+        {{ partial "slideshare.html" (dict "url" $trimmedMedia "title" .alt) }}
       {{ else }}
         {{ if hasPrefix $trimmedMedia "{{<" }}
           {{ $trimmedMedia | markdownify | replaceRE "</?pre>" "" | replaceRE "</?code>" "" | safeHTML }}

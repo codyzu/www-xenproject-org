@@ -13,16 +13,15 @@
   gap: 0;
   flex-direction: column;
   justify-content: space-between;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  padding: var(--pad-vertical) var(--pad-horizontal);
+  color: var(--color-text-secondary);
 
   @include tablet {
     --mg-sm: 16px;
     --mg-lg: 24px;
   }
-
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  padding: var(--pad-vertical) var(--pad-horizontal);
-  color: var(--color-text-secondary);
 
   &__date,
   &__label,
