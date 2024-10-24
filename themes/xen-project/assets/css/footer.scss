@@ -5,6 +5,10 @@
   --footer-max-height: none;
   --footer-menu-cols: 1;
 
+  border-top: 1px solid var(--color-brand-fill);
+  background: var(--color-brand-surface);
+  padding: var(--footer-padding);
+
   @include phone {
     --footer-menu-cols: 1;
   }
@@ -26,11 +30,6 @@
     --footer-menu-cols: 3;
     --footer-max-height: 700px;
   }
-
-  border-top: 1px solid var(--color-brand-fill);
-  background: var(--color-brand-surface);
-
-  padding: var(--footer-padding);
 }
 
 .footer__col {

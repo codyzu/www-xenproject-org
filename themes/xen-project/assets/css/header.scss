@@ -103,8 +103,8 @@
 
       > ul ul {
         align-items: flex-start;
-        background: var(--Default-surface, #fbfbfb);
-        border: 1px solid var(--Brand-fill, #85c241);
+        background: var(--color-surface);
+        border: 1px solid var(--color-brand-fill);
         display: flex;
         flex-direction: column;
         gap: 8px;

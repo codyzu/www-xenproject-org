@@ -21,7 +21,7 @@ menus:
     - Matrix
   content: For general queries and updates about the software. This channel is mainly for users and community members.For developer-specific questions use XenDevel instead.
   actions:
-    - url: "TODO"
+    - url: "https://matrix.to/#/#XenProject:matrix.org"
       text: Join
 
 - label: XenDevel 
@@ -29,7 +29,7 @@ menus:
     - Matrix
   content: For developers - if you have submitted patches to the developer mailing lists or are otherwise active on them, this channel is for you.It's also the best place to ask development-related questions to the Xen Project.
   actions:
-    - url: "TODO"
+    - url: "https://matrix.to/#/#XenDevel:matrix.org"
       text: Join
 
 - label: XenSocial
@@ -37,7 +37,7 @@ menus:
     - Matrix
   content: For community introductions, tech news, and your watercooler chats.
   actions:
-    - url: "TODO"
+    - url: "https://matrix.to/#/#XenSocial:matrix.org"
       text: Join
 {{</row-from-list>}}
 {{</section>}}
@@ -54,7 +54,7 @@ menus:
     - Discord
   content: For general queries and updates about XCP-ng, hosted on Discord.
   actions:
-    - url: "TODO"
+    - url: "https://discord.gg/Hr98F6wRvx"
       text: Join
 
 - label: Mirage
@@ -62,7 +62,7 @@ menus:
     - Discord
   content: For Mirage OS.
   actions:
-    - url: "TODO"
+    - url: "https://libera.chat/"
       text: Join
 {{</row-from-list>}}
 {{</section>}}

@@ -24,8 +24,8 @@
 
 {{ $headerLevel := .headerLevel  }}
 
-<!-- Le reste du contenu du fichier suit ici -->
-<div class="vertical-lists" {{ if .cols }}style="--cols:{{ .cols }};"{{ end }}>
+
+<div class="vertical-lists{{ with .class }} {{ . }}{{ end }}"{{ if .cols }} style="--cols:{{ .cols }};"{{ end }}>
   {{ range .lists }}
     <div class="list-column {{ with $.colClass }}{{ . }}{{ end }}">
       {{ if $headerLevel }}

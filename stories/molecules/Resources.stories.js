@@ -43,6 +43,16 @@ resources:
       },
     },
   },
+  render: (args) => html`
+    <div class="box-resources">
+      <h3 class="box-resources__title">Resources</h3>
+      <ul>
+        <li>
+          <a href="https://example.com/docs" target="_blank">Exemple resource</a>
+        </li>
+      </ul>
+    </div>
+  `,
 };
 
 export const Example = {
@@ -72,8 +82,8 @@ export const Example = {
           <h1>Page title</h1>
 
           <div class="description">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-            non eros varius, tincidunt tellus sit amet, maximus urna.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non eros varius, tincidunt tellus sit
+            amet, maximus urna.
           </div>
         </div>
       </div>

@@ -16,11 +16,11 @@ menus:
   {{<media-block
     title="Download"
     media="/img/logo-xen.svg"
-    imageAlt="Xen Project Logo"
+    alt="Xen Project Logo"
   >}}
   You can download vector graphics, images and logos.
   <p class="mg-t-md">
-    <a href="#" class="btn btn-primary">
+    <a href="https://downloads.xenproject.org/Branding/" class="btn btn-primary">
       Download branding
       <i class="fas fa-arrow-up-right-from-square"></i>
     </a>

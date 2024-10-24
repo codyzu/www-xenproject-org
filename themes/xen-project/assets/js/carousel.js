@@ -3,6 +3,8 @@
   const itemsBefore = 2;
   const itemsAfter = 1;
 
+  const { debounce } = window.XenSiteUtils;
+
   const carousel = (element) => {
     const carouselElement = element.querySelector(".carousel");
 
@@ -158,14 +160,6 @@
       }
 
       styleTag.innerHTML = rules.join("\n");
-    };
-
-    const debounce = (func, delay) => {
-      let timeoutId;
-      return (...args) => {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => func(...args), delay);
-      };
     };
 
     window.addEventListener(

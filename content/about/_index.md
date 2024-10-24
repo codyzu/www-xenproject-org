@@ -15,6 +15,7 @@ menus:
 {{<media-block
    title="A global open source community"
    media="/img/flatline/java.svg"
+   alt="Illustration of a laptop displaying code, with a cup of coffee and a notebook beside it, symbolizing a coding or development environment."
 >}}
 {{<md>}}
 
@@ -27,7 +28,7 @@ Find out more about how the community governs itself.
 {{</media-block>}}
 {{</section>}}
 
-{{<full-width-image src="/img/others/xen-team-photo-2.png" alt="Xen Project Team" class="image-ratio-large">}}
+{{<full-width-image src="/img/others/xen-team-photo-2.png" alt="Group photo of attendees at the Xen Project Developer and Design Summit, standing in front of a presentation screen with the Xen Project logo." class="image-ratio-large">}}
 
 
 {{<section>}}
@@ -35,6 +36,7 @@ Find out more about how the community governs itself.
    title="Open-source projects home"
    media="/img/flatline/data-process-with-xen-logo.svg"
    mediaPosition="right"
+   alt="Illustration of a computer monitor displaying bar charts and server racks labeled with Xen Project logos, representing data management and analysis."
 >}}
 {{<md>}}
 The Xen Project is the home for several virtualization-related open source projects. The community is focused on advancing virtualization in a number of different commercial and open source applications, including server virtualization, Infrastructure as a Services (IaaS), desktop virtualization, security applications, embedded and hardware appliances, and automotive/aviation.
@@ -48,6 +50,7 @@ Software hosted on XenProject.org is, and always will be, open source. The code 
 {{<media-block
    title="History"
    media="/img/flatline/timeline.svg"
+   alt="Illustration of a timeline with milestones for the years 2012, 2018, 2020, and 2024, representing project progress and development."
 >}}
 We recently celebrated 20 years in The Xen Project. The timeline shows key milestones over the years, starting from 2003 to the present day in 2024.
 
@@ -100,7 +103,7 @@ Projects under The Linux Foundation are independently funded software projects t
 Board members can propose and vote upon changes to the Xen Project. Members also gain valuable strategic insight into project plans and future scope.
 
 <p class="mg-t-md">
-  <a href="TODO" class="btn btn-secondary">Join the advisory board <i class="fas fa-arrow-right"></i></a>
+  <a href="/about/become-a-member/" class="btn btn-secondary">Join the advisory board <i class="fas fa-arrow-right"></i></a>
 </p>
 {{</media-block>}}
 {{</section>}}

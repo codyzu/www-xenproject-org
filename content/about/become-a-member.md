@@ -10,10 +10,11 @@ menus:
 ---
 
 {{<section>}}
-{{<media-block
-   title="The Xen Project members are companies that are committed to the market and technical success of the Xen Project"
-   media="/img/flatline/brainstorming-session.svg"
->}}
+  {{<media-block
+      title="The Xen Project members are companies that are committed to the market and technical success of the Xen Project"
+      media="/img/flatline/brainstorming-session.svg"
+      alt="Illustration of three people having a discussion with speech bubbles, symbolizing teamwork and communication."
+  >}}
 {{<md>}}
 The Xen Project members are companies that are committed to the market and technical success of the Xen Project.
 
@@ -49,9 +50,9 @@ Committers and maintainers are responsible for the technical development and are
 
 {{<section>}}
 {{<media-block
-   title="Improve engineering ROI"
-   media="/img/flatline/data-analysis.svg"
-   mediaPosition="right"
+    title="Improve engineering ROI"
+    media="/img/flatline/data-analysis.svg"
+    mediaPosition="right"
 >}}
 {{<md>}}
 The Xen Project is in the process of creating a new common test infrastructure. New test cases for specific hardware and software combinations will lead to higher quality project releases. In addition, a planned focus on a security and hardening framework will enhance the release readiness of the Xen Project.
@@ -63,22 +64,24 @@ The Advisory Board helps define test cases and prioritize release requirements, 
 
 {{<section>}}
 {{<media-block
-   title="Xen Project Insights"
-   media="/img/flatline/data-analyst.svg"
+    title="Xen Project Insights"
+    media="/img/flatline/data-analyst.svg"
+    alt="Illustration of a person interacting with charts and graphs on a tablet, representing data visualization and analysis."
 >}}
-{{<md>}}
-Board members can propose and vote upon changes to the Xen Project test and validation infrastructure and financial resource allocation.
+  {{<md>}}
+  Board members can propose and vote upon changes to the Xen Project test and validation infrastructure and financial resource allocation.
 
-By being an active Advisory Board participant, regular opportunities for discussions with technical leaders include the chance to share priorities and endorse new strategies. In return, members will gain valuable strategic insight into project plans and future scope.
-{{</md>}}
+  By being an active Advisory Board participant, regular opportunities for discussions with technical leaders include the chance to share priorities and endorse new strategies. In return, members will gain valuable strategic insight into project plans and future scope.
+  {{</md>}}
 {{</media-block>}}
 {{</section>}}
 
 {{<section>}}
 {{<media-block
-  title="Increase visibility"
-  media="/img/flatline/handshake.svg"
-  mediaPosition="right"
+    title="Increase visibility"
+    media="/img/flatline/handshake.svg"
+    mediaPosition="right"
+    alt="Illustration of two people shaking hands, symbolizing partnership and agreement."
 >}}
 {{<md>}}
 Board members can influence the marketing strategy and participate in a wide range of activities including press releases, brand visibility on the website, and giveaways at events.
@@ -89,8 +92,9 @@ Board members can influence the marketing strategy and participate in a wide ran
 
 {{<section>}}
 {{<media-block
-  title="Define policies"
-  media="/img/flatline/brainstorming.svg"
+    title="Define policies"
+    media="/img/flatline/brainstorming.svg"
+    alt="Illustration of a light bulb with a brain inside and speech bubbles around it, symbolizing innovation and creative thinking."
 >}}
 {{<md>}}
 Members help define policies, including trademark usage, compliance and certification of Xen derivatives. In addition, membership dues funds project infrastructure, such as hosting and test environments which are essential to the project.
@@ -134,8 +138,8 @@ The Board process will help ensure non-technical decisions are collectively dete
 
 {{<section>}}
 {{<media-block
-   title="Governed by Xen project members"
-   media=`{{<partial "blocks/logos-circle">}}`
+    title="Governed by Xen project members"
+    media=`{{<partial "blocks/logos-circle">}}`
 >}}
 {{<md>}}
 Board members can propose and vote upon changes to the Xen Project. Members also gain valuable strategic insight into project plans and future scope.
@@ -148,9 +152,10 @@ Board members can propose and vote upon changes to the Xen Project. Members also
 
 {{<section>}}
 {{<media-block
-   title="About Xen Project"
-   media="/img/flatline/data-process.svg"
-   mediaPosition="right"
+    title="About Xen Project"
+    media="/img/flatline/data-process.svg"
+    mediaPosition="right"
+    imageAlt="Illustration of a laptop displaying 3D bar charts, connected to cloud storage and file management icons, symbolizing data synchronization and integration."
 >}}
 {{<md>}}
 The mission of the Xen Project is to advance virtualisation technology across a wide range of commercial and open-source domains.

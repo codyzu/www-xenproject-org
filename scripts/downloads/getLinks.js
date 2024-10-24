@@ -2,10 +2,11 @@ import XenProvider from "./provider-xen.js";
 import WindowPVDrivers from "./provider-windowpvdrivers.js";
 import MirageOSProvider from "./provider-mirageos.js";
 import fs from "fs/promises";
-
+import path from "path";
 const params = { logErrors: true };
 const providers = [new XenProvider(), new WindowPVDrivers(), new MirageOSProvider()];
 const OUTPUT_FILE = "assets/data/downloads.json";
+const OUTPUT_FILE_STATIC = "static/data/downloads.json";
 const LATEST_OUTPUT_FILE = "assets/data/downloads-latest.json";
 
 async function getVersions(provider, existingVersionMap) {
@@ -117,6 +118,8 @@ async function main() {
   );
 
   await fs.writeFile(OUTPUT_FILE, JSON.stringify(output, null, 2));
+  await fs.mkdir(path.dirname(OUTPUT_FILE_STATIC), { recursive: true });
+  await fs.writeFile(OUTPUT_FILE_STATIC, JSON.stringify(output, null, 2));
 
   const latestVersionsData = createLatestVersionsData(output);
   await fs.writeFile(LATEST_OUTPUT_FILE, JSON.stringify(latestVersionsData, null, 2));

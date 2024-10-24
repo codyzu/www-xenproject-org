@@ -112,8 +112,9 @@ aside:
 
 {{<section>}}
   {{<media-block
-    title="TITLE (TODO)"
+    title="Versatile Open-Source Virtualization"
     media="/img/flatline/data-center.svg"
+    alt="Illustration of a person managing server racks, representing data management and server maintenance."
   >}}
 The Xen Project hypervisor is an open-source type-1 or baremetal hypervisor, which makes it possible to run many instances of an operating system or indeed different operating systems in parallel on a single machine (or host). The Xen Project hypervisor is the only type-1 hypervisor that is available as open source. It is used as the basis for a number of different commercial and open source applications, such as: server virtualization, Infrastructure as a Service (IaaS), desktop virtualization, security applications, embedded and hardware appliances. The Xen Project hypervisor is powering the largest clouds in production today.
 {{</media-block>}}
@@ -122,18 +123,18 @@ The Xen Project hypervisor is an open-source type-1 or baremetal hypervisor, whi
 
 {{<section class="background-normal"  >}}
   {{<features-list cols="2">}}
-  - title: Fast Start
-    icon: fas fa-power-off
-    description: MirageOS applications takes a few milliseconds to start-up instead of the few minutes that takes traditional OS.
-  - title: Small Binaries
-    icon: fas fa-floppy-disk
-    description: "MirageOS binaries are self-contained: they do not need an additional OS to execute. Despite this, the size of MirageOS binary is usually a few megabytes."
-  - title: Small Footprint
-    icon: fas fa-minimize
-    description: MirageOS applications use a few megabytes of memory, while traditional application and their associated OS waste gigabytes for simple applications.
-  - title: Safe Logic
-    icon: fas fa-code
-    description: MirageOS applications are written in OCaml, an industrial strength programming language supporting functional, imperative and object-oriented styles.
+  - title: Small footprint and interface
+    icon: fas fa-memory
+    description: Because it uses a microkernel design, with a small memory footprint and a restricted interface to guests, it is more robust and secure than other hypervisors.
+  - title: Operating system agnostic
+    icon: fas fa-cogs
+    description: Most installations run with Linux as the main control stack (aka "domain 0”). But a number of other operating systems can be used instead, including NetBSD and FreeBSD.
+  - title: Driver Isolation
+    icon: fas fa-shield-alt
+    description: The Xen Project hypervisor has the capability to allow the main device driver for a system to run inside of a virtual machine. If the driver crashes, or is compromised, the VM containing the driver can be rebooted and the driver restarted without affecting the rest of the system.
+  - title: Paravirtualization
+    icon: fas fa-window-restore
+    description: Paravirtualization allows guests to avoid extra overhead, by making use of devices and interfaces that have been designed for a virtualized environment. Additionally Xen on x86 also supports fully paravirtualized guests, which can run on hardware that doesn’t support virtualization extensions.
   {{</features-list>}}
 {{</section>}}
 
@@ -143,6 +144,7 @@ The Xen Project hypervisor is an open-source type-1 or baremetal hypervisor, whi
   {{<media-block
     title="History"
     media="/img/flatline/timeline.svg"
+    alt="Illustration of a timeline with milestones for the years 2012, 2018, 2020, and 2024, representing project progress and development."
   >}}
 The Xen Project hypervisor is developed by a worldwide community of individuals, researchers and employees of companies and that follow the Xen Project Governance process. The project is supported by the Xen Project Advisory Board made up of project member companies that fund the Xen Project. You can find a contribution breakdowns under Contribution Acknowledgments.
 {{</media-block>}}

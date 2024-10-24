@@ -14,7 +14,7 @@ menus:
     title="Embedded systems redefined"
     media="/img/logos/arm-logo.svg"
     imageSize="50%"
-    imageAlt="ARM logo"
+    alt="ARM logo"
   >}}
 {{<md>}}
 At the core of every modern embedded system is software meticulously crafted and seamlessly integrated with hardware, dedicated to fulfilling a specific, vital function. This is where our journey begins.
@@ -25,7 +25,7 @@ Our focus extends beyond ARMv7 to encompass ARMv8, x86-64, and RISC-V, catering 
 {{</md>}}
 
 <p class="mg-t-md">
-  <a href="TODO" class="btn btn-primary">
+  <a href="https://wiki.xenproject.org/wiki/Embedded_and_Automotive/Archived/PV_Drivers/Project_Proposal" class="btn btn-primary">
     Read project proposal <i class="fas fa-arrow-right"></i>
   </a>
 </p>
@@ -38,6 +38,7 @@ Our focus extends beyond ARMv7 to encompass ARMv8, x86-64, and RISC-V, catering 
     title="What does this mean?"
     media="/img/flatline/data_and_settings.svg"
     mediaPosition="right"
+    alt="Illustration of a database icon with gears and a wrench, representing data management and configuration tools."
   >}}
   {{<md>}}
 - Xen revolutionizes embedded systems, enabling fully-featured operating systems like Linux to coexist with smaller and faster RTOSes such as Zephyr.
@@ -80,6 +81,7 @@ The Xen Project Hypervisor is uniquely placed to support a new range of use case
     title="Functional safety"
     media="/img/others/xen-progress-certification.png"
     mediaPosition="right"
+    alt="Slide titled 'Xen Project's Progress Toward Safety Certification' by Stefano Stabellini and team members from AMD and BUGSENG."
   >}}
 {{<md>}}
 With sponsorships from the likes of AMD, we’re on a mission to align Xen with top safety standards, including ISO 26262 ASIL D and IEC 61508 SIL 3.
@@ -95,6 +97,7 @@ Xen is not just a technology; it’s a vision coming to life, shaping the future
   {{<media-block
     title="Functional safety"
     media="/img/flatline/coding.svg"
+    alt="Illustration of a person typing code on a computer, symbolizing software development and programming."
   >}}
 {{<md>}}
 

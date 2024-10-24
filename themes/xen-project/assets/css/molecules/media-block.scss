@@ -11,17 +11,17 @@
   --media-h-padding: 6.9vw;
   --media-v-padding: 0;
 
-  @include tablet {
-    padding-top: var(--padding-v);
-    padding-bottom: var(--padding-v);
-  }
-
   display: flex;
   flex-wrap: nowrap;
   flex-direction: var(--flex-direction);
   justify-content: center;
   align-items: center;
   gap: var(--gap);
+
+  @include tablet {
+    padding-top: var(--padding-v);
+    padding-bottom: var(--padding-v);
+  }
 
   @include media-max("tablet") {
     &.media-block--mobile-bottom {

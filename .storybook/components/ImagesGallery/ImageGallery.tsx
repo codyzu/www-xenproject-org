@@ -1,5 +1,6 @@
 import React, { FC } from "react";
 import "./ImageGallery.scss";
+import StoryCopyButton from "../StoryCopyButton";
 
 type Props = {
   className?: string;
@@ -42,9 +43,7 @@ const ImageGallery: FC<Props> = ({ className = "", images, path }) => {
   const searchTermsArray = searchTerm.split(" ");
   const imagesFiltered = Object.keys(images).reduce((acc, group) => {
     acc[group] = images[group].filter((image) =>
-      searchTermsArray.every((searchTerm) =>
-        image.name.toLowerCase().includes(searchTerm.toLowerCase()),
-      ),
+      searchTermsArray.every((searchTerm) => image.name.toLowerCase().includes(searchTerm.toLowerCase())),
     );
     if (acc[group].length === 0) delete acc[group];
     return acc;
@@ -53,13 +52,8 @@ const ImageGallery: FC<Props> = ({ className = "", images, path }) => {
   return (
     <div className={`${className}`}>
       {toastClass != "" ? (
-        <div
-          className={`story-image-gallery_toast ${toastClass}`}
-          onAnimationEnd={handleToastAnimationEnd}
-        >
-          <div className="story-image-gallery_toast_message">
-            Copied to clipboard
-          </div>
+        <div className={`story-image-gallery_toast ${toastClass}`} onAnimationEnd={handleToastAnimationEnd}>
+          <div className="story-image-gallery_toast_message">Copied to clipboard</div>
         </div>
       ) : null}
       <div className="story-image-gallery_toolbar">
@@ -70,18 +64,12 @@ const ImageGallery: FC<Props> = ({ className = "", images, path }) => {
           onChange={handleSearch}
           onClick={handleSearch}
         />
-        <button
-          className={`mosaicBtn ${view === "mosaic" ? "active" : ""}`}
-          onClick={() => handleViewChange("mosaic")}
-        >
+        <button className={`mosaicBtn ${view === "mosaic" ? "active" : ""}`} onClick={() => handleViewChange("mosaic")}>
           <svg viewBox="0 0 24 24">
             <path d="M3 3h8v8H3V3zm0 10h8v8H3v-8zM13 3h8v8h-8V3zm0 10h8v8h-8v-8z" />
           </svg>
         </button>
-        <button
-          className={`listBtn ${view === "list" ? "active" : ""}`}
-          onClick={() => handleViewChange("list")}
-        >
+        <button className={`listBtn ${view === "list" ? "active" : ""}`} onClick={() => handleViewChange("list")}>
           <svg viewBox="0 0 24 24">
             <path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z" />
           </svg>
@@ -110,11 +98,7 @@ const ImageGallery: FC<Props> = ({ className = "", images, path }) => {
                     </div>
                     <div className="story-image-gallery_td">
                       {path + image.path}
-                      <input
-                        type="button"
-                        value="Copy"
-                        onClick={() => handleCopy(path + image.path)}
-                      />
+                      <StoryCopyButton textToCopy={path + image.path} />
                     </div>
                   </div>
                 ))}

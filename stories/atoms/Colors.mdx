@@ -1,49 +1,32 @@
 import { Meta, ColorPalette } from "@storybook/blocks";
 import ColorItem from "../../.storybook/components/ColorItem";
+import StoryCopyButton from "../../.storybook/components/StoryCopyButton";
+import CopyableCell from "../../.storybook/components/CopyableCell";
 import colors from "../json/colors.json";
 
 <Meta title="Atoms/Colors" />
-
-export const CopyButton = () => {
-  const copyColors = () => {
-    const colorText = colors.flatMap(group => 
-      group.colors.map(color => `${color.variableName}: ${color.value}`)
-    ).join('\n');
-    
-    navigator.clipboard.writeText(colorText)
-      .then(() => console.info('Colors copied to clipboard'))
-      .catch(err => console.error('Error copying colors:', err));
-  };
-
-return (
-
-<button onClick={copyColors}>Copy all colors</button>
-); };
 
 # Colors
 
 <div>
   {colors.map(({ name, colors }) => (
-    <div className={`mode-container ${name}`}>
+    <div key={name} className={`mode-container ${name}`}>
       <h1>{name}</h1>
       <div>
-        <ColorItem
-          key={name}
-          className="story-color-item"
-          title={name}
-          colors={colors}
-        />
+        <ColorItem key={name} className="story-color-item" title={name} colors={colors} />
       </div>
     </div>
   ))}
 </div>
 
 # Colors in a table
-<div><CopyButton/></div>
+
 <div>
+  <StoryCopyButton>Copy all colors</StoryCopyButton>
   <table>
     <thead>
       <tr>
+        <th>Color</th>
         <th>Variable</th>
         <th>Color Code</th>
       </tr>
@@ -52,8 +35,18 @@ return (
       {colors.flatMap((group) =>
         group.colors.map((color) => (
           <tr key={color.variableName}>
+            <td>
+              <div
+                style={{
+                  width: "40px",
+                  height: "20px",
+                  backgroundColor: color.value,
+                  border: "1px solid #ccc",
+                }}
+              />
+            </td>
             <td>{color.variableName}</td>
-            <td>{color.value}</td>
+            <CopyableCell name={color.value} />
           </tr>
         )),
       )}

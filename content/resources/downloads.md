@@ -9,11 +9,18 @@ menus:
     weight: 50
 ---
 
-<!-- {{<get-downloads-links>}} -->
 
 {{<section>}}
-{{<vertical-lists cols="3" col-class="list-column--sublists">}}
-{{<get-downloads-links>}}
+<div class="search-container download-search">
+  <form action="/search" method="get" class="search-form">
+    <input type="search" class="search-input" name="q" placeholder="Search downloads..." aria-label="Search downloads">
+    <button type="submit" aria-label="Submit search">
+      <i class="fas fa-search"></i>
+    </button>
+  </form>
+  <div class="search-results"></div>
+</div>
+{{<vertical-lists cols="3" col-class="list-column--sublists" class="mg-t-xl">}}
+  {{<get-downloads-links>}}
 {{</vertical-lists>}}
-
-{{</section>}} 
+{{</section>}}
