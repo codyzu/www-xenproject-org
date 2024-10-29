@@ -1,10 +1,41 @@
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width" />
-<title>
-  {{ if .IsHome }}
-    {{ site.Title }}
-  {{ else }}
-    {{ printf "%s | %s" .Title site.Title }}
-  {{ end }}
-</title>
-{{ partialCached "head/css.html" . }}
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <title>
+    {{ if .IsHome }}
+      {{ .Site.Title }} - Open Source Virtualization
+    {{ else }}
+      {{ .Title }} |
+      {{ .Site.Title }}
+    {{ end }}
+  </title>
+  <meta
+    name="description"
+    content="{{ with .Description }}
+      {{ . }}
+    {{ else }}
+      {{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}
+    {{ end }}"
+  />
+  {{ with .Params.keywords }}<meta name="keywords" content="{{ . }}" />{{ end }}
+
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta property="og:title" content="{{ .Title }}" />
+  <meta property="og:description" content="{{ .Description }}" />
+  <meta property="og:image" content="{{ .Site.Params.og_image | default "/img/logo-xen.svg" | absURL }}" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ .Title }}" />
+  <meta name="twitter:description" content="{{ .Description }}" />
+
+  <!-- Other important meta tags -->
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="{{ .Permalink }}" />
+  {{ partialCached "head/css.html" . }}
+</head>
