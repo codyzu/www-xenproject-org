@@ -1,6 +1,7 @@
 ---
 title: Xen Project branding
 description: Access Xen Project's official branding and logo guidelines. Download logos, learn about proper usage, and maintain brand consistency across all platforms.
+keywords: "Xen Project branding, Xen Project logo, Xen branding guidelines, Xen logo download, Xen brand consistency, Xen official branding, Xen logo usage, Xen vector graphics, Xen images, Xen brand templates, Xen mascots, Xen branding resources, Xen brand assets, Xen Project marketing, Xen Project design"
 date: 2024-01-14T07:07:07+01:00
 draft: false
 showInFooterOnly: true

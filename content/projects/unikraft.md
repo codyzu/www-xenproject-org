@@ -6,6 +6,7 @@ menus:
   main:
     parent: Projects
     weight: 100
+keywords: "unikraft, specialized kernels, lightweight virtualization, customized operating systems, unikernel technology, minimal OS, efficient virtualization, specialized virtualization, embedded virtualization, system optimization"
 ---
 
 {{<section>}}

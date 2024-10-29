@@ -1,6 +1,7 @@
 ---
 title: Contribution guidelines
 description: Please adhere to the following guidelines as you participate in the Xen Project community.
+keywords: "Xen Project contribution guidelines, contributing to Xen Project, Xen Project patches, Xen Project code submission, Xen Project community, Xen Project development, Xen Project code of conduct, Xen Project patch submission, Xen Project developer guide, Xen Project contribution process, Xen Project coding standards, Xen Project patch review, Xen Project code security, Xen Project static analysis, Xen Project Coverity Scan"
 date: 2024-01-14T07:07:07+01:00
 draft: false
 layout: content-only

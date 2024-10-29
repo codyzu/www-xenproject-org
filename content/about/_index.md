@@ -5,12 +5,12 @@ date: 2024-01-14T07:07:07+01:00
 draft: false
 type: page
 layout: single
+keywords: virtualization, xen hypervisor, open source, cloud computing, virtual machines, VM, server virtualization, IaaS, embedded virtualization, Linux Foundation, hardware virtualization, enterprise virtualization, data center, security, real-time systems, automotive virtualization, ARM support, XAPI, unikernel, cloud infrastructure, hypervisor technology, virtual machine monitor, cross-platform virtualization, system security, embedded systems, cloud orchestration, virtualization software, Xen community, open source technology, microkernel architecture, dom0, domU, paravirtualization, hardware-assisted virtualization, live migration, resource management, high availability, fault tolerance, bare metal hypervisor, type-1 hypervisor
 menus:
   main:
     parent: About
     weight: 10
 ---
-
 {{<section>}}
 {{<media-block
    title="A global open source community"
@@ -113,3 +113,4 @@ Board members can propose and vote upon changes to the Xen Project. Members also
 {{<section>}}
 {{<latest-news>}}
 {{</section>}}
+

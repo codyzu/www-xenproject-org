@@ -1,6 +1,8 @@
 ---
 title: Embedded & Automative
 description: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automative systems.
+keywords: "Xen Project embedded systems, Xen automotive applications, Xen real-time support, Xen fault-tolerance, Xen flexible architecture, Xen ARMv7 virtualization, Xen ARMv8 support, Xen x86-64 embedded, Xen RISC-V automotive, Xen hypervisor security, Xen isolation features, Xen embedded Linux, Xen RTOS integration, Xen 5G antennas, Xen industrial robots, Xen medical devices, Xen automotive systems, Xen hardware resource allocation, Xen VM communication, Xen OP-TEE integration"
+
 draft: false
 menus:
   main:

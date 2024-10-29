@@ -1,6 +1,7 @@
 ---
 title: Governance
-description: 
+description: Learn about the governance structure of the Xen Project, including its goals, principles, decision-making processes, and roles. Discover how the project ensures transparency, openness, and meritocracy in its operations.
+keywords: "Xen Project governance, open-source governance, Xen Project principles, Xen Project goals, Xen Project decision making, Xen Project roles, Xen Project sub-projects, Xen Project transparency, Xen Project meritocracy, Xen Project openness, Xen Project lifecycle, Xen Project community, Xen Project collaboration, Xen Project development, Xen Project teams"
 date: 2024-01-14T07:07:07+01:00
 draft: false
 menus:

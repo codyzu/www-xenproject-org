@@ -1,6 +1,7 @@
 ---
 title: Use cases
 description: See how The Xen Project operates in real life
+keywords: "Xen Project use cases, Xen hypervisor applications, Xen Server case study, AWS Xen EC2, Xen cloud computing, Xen enterprise virtualization, Xen security features, Xen embedded systems, Xen automotive applications, Xen data protection, Xen live migration, Xen dynamic memory allocation, Xen datacenter optimization, Xen resource utilization, Xen simplified management, Xen real-life operations"
 date: 2024-01-14T07:07:07+01:00
 draft: false
 menus:

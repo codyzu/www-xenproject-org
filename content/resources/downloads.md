@@ -1,12 +1,14 @@
 ---
 title: Downloads
 description: Find all the relevant resources to download on this page.
+keywords: "xen downloads, virtualization software, xen installation files, software downloads, virtualization tools, xen resources, software packages, installation packages, virtualization downloads, xen components, xen project downloads, hypervisor software, open source virtualization, xen hypervisor, download xen, xen project resources, virtualization technology, xen software, download virtualization tools, xen project installation, xen project software packages"
 date: 2024-01-14T07:07:07+01:00
 draft: false
 menus:
   main:
     parent: Resources
     weight: 50
+keywords: "xen downloads, virtualization software, xen installation files, software downloads, virtualization tools, xen resources, software packages, installation packages, virtualization downloads, xen components"
 ---
 
 

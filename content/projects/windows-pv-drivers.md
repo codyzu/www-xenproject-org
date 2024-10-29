@@ -14,6 +14,7 @@ aside:
         icon: fas fa-arrow-right
       - name: Documentation
         link: https://wiki.xenproject.org/wiki/Category:Windows_PV_Drivers
+keywords: "windows PV drivers, paravirtualization drivers, windows virtualization, xen windows support, virtual device drivers, windows virtual machines, paravirtualized windows, virtualization drivers, windows VM optimization, virtual hardware drivers"
 ---
 
 {{<section>}}

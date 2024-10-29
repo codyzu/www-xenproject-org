@@ -17,6 +17,7 @@ aside:
         url: "https://github.com/xapi-project/xen-api/blob/master/README.markdown"
       - name: Report a Bug
         url: "https://github.com/xapi-project/xen-api/issues"
+keywords: "XAPI, xen API, virtualization management, xen toolstack, virtual machine management, cloud orchestration, virtualization tools, resource management, VM lifecycle management, infrastructure management"
 ---
 
 {{<section>}}

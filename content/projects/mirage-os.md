@@ -6,6 +6,7 @@ menus:
   main:
     parent: Projects
     weight: 100
+keywords: "mirage os, unikernel, library operating system, secure virtualization, lightweight virtualization, OCaml unikernel, specialized operating system, cloud computing, minimalist OS, secure deployment"
 ---
 
 {{<section>}}

@@ -1,6 +1,7 @@
 ---
-title: Home
-draft: false
+title: "Xen Project"
+description: "The Xen Project develops enterprise-grade open source virtualization solutions trusted by millions of users. Secure, flexible, and powerful hypervisor technology."
+keywords: "Xen Project, open source virtualization, enterprise-grade hypervisor, secure virtualization, flexible hypervisor technology, powerful hypervisor, Xen community, virtualization solutions, Linux Foundation project, Xen subprojects, commercial virtualization, open-source domains, virtualization technology"
 ---
 {{<section >}} 
   {{<media-block
@@ -8,7 +9,7 @@ draft: false
     label="A Linux Foundation Project"
     title="Bring the power of <a href=\"#\">open virtualization</a> everywhere."
     titleLevel="1"
-    media="/img/flatline/data-process2.svg"
+    media="/img/flatline/data-process-with-xen-logo.svg"
     alt="Illustration of a computer monitor displaying bar charts, next to multiple server racks representing data management and analytics."
     mediaPosition="right"
     mobileMediaPosition="bottom"
