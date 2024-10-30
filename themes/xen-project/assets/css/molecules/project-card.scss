@@ -3,6 +3,7 @@
   --title-paddings: 0.25rem 0.5rem;
   --content-paddings: 0.75rem;
   --link-font-size: 1rem;
+  --content-line-height: 2;
   border: 0.0625rem solid var(--color-border);
   display: flex;
   flex-direction: column;
@@ -11,8 +12,9 @@
 
   @include tablet {
     --title-font-size: 1.5rem;
-    --content-paddings: 1.5rem 1rem;
-    --link-font-size: 1.25rem;
+    --content-paddings: 1.4rem 1rem;
+    --link-font-size: 1.22rem;
+    --content-line-height: 1.5;
   }
 
   &__title {
@@ -27,7 +29,7 @@
 
   &__content {
     padding: var(--content-paddings);
-    line-height: 2;
+    line-height: var(--content-line-height);
 
     p:first-child,
     p:last-child {

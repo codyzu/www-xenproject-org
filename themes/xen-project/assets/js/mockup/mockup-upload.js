@@ -146,33 +146,36 @@ const mockupUpload = {
     async function loadSavedImages() {
       const images = await getImagesFromIndexedDB();
       savedImagesOptions.innerHTML = ""; // Clear existing options
-      images.forEach((image) => {
-        const option = document.createElement("span");
-        option.className = "custom-option";
-        option.dataset.value = image.id;
-        option.textContent = `${image.fileName.replace(/\.+?$/, "")}`;
-        savedImagesOptions.appendChild(option);
+      images
+        .sort((a, b) => (a.fileName < b.fileName ? -1 : 1))
+        .forEach((image) => {
+          const option = document.createElement("span");
+          option.className = "custom-option";
+          option.dataset.value = image.id;
+          option.textContent = `${image.fileName.replace(/\..+$/, "")}`;
+          savedImagesOptions.appendChild(option);
 
-        option.addEventListener("click", async () => {
-          const db = await openDB();
-          const transaction = db.transaction(storeName, "readonly");
-          const store = transaction.objectStore(storeName);
-          store.get(parseInt(option.dataset.value)).onsuccess = (event) => {
-            const selectedImage = event.target.result;
-            if (selectedImage.error) {
-              console.error("Error getting image from IndexedDB:", selectedImage.error);
-            } else {
-              if (selectedImage?.data) {
-                createImage(selectedImage.data); // Use the base64 data directly
-                customSelectTrigger.textContent = option.textContent;
-                customSelect.classList.remove("open");
+          option.addEventListener("click", async () => {
+            const db = await openDB();
+            const transaction = db.transaction(storeName, "readonly");
+            const store = transaction.objectStore(storeName);
+            store.get(parseInt(option.dataset.value)).onsuccess = (event) => {
+              const selectedImage = event.target.result;
+              if (selectedImage.error) {
+                console.error("Error getting image from IndexedDB:", selectedImage.error);
               } else {
-                console.error("Image data not found for ID:", option.dataset.value);
+                if (selectedImage?.data) {
+                  createImage(selectedImage.data); // Use the base64 data directly
+                  saveToLocalStorage("mockupMockupImage", selectedImage.data);
+                  customSelectTrigger.textContent = option.textContent;
+                  customSelect.classList.remove("open");
+                } else {
+                  console.error("Image data not found for ID:", option.dataset.value);
+                }
               }
-            }
-          };
+            };
+          });
         });
-      });
     }
 
     customSelectTrigger.addEventListener("click", () => {

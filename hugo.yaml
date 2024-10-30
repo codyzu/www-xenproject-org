@@ -11,7 +11,11 @@ module:
 
 build:
   writeStats: true
-
+  processing:
+    css: true
+    css:
+      includePaths: []
+      sourceMap: true
 outputs:
   home:
     - HTML

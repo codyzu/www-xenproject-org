@@ -23,7 +23,7 @@
         </div>
       {{ else if eq .type "members-list" }}
         <div class="box-members">
-          <h3 class="box-members__title">{{ .name }}</h3>
+          <h3 class="box-members__title">{{ .name | markdownify }}</h3>
           <ul>
             {{ range .items }}
               <li>

@@ -10,9 +10,9 @@ menus:
 aside: 
   - type: resource
     items:
-      - name: "**Github repository**"
+      - name: "Github repository"
         link: https://github.com/hvmi
-      - name: Documentation
+      - name: "Documentation"
         link: https://hvmi.readthedocs.io/
 ---
 

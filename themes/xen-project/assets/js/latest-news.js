@@ -19,9 +19,8 @@
     };
   })();
 
-  const newsCardTemplate = createTemplate();
-
   const latestnews = async (element) => {
+    const newsCardTemplate = createTemplate();
     const container = element.querySelector(".latest-news_container");
     const { maxCards, blogFilter, tagFilter } = container.dataset;
     const blogIds = blogFilter?.split(",") || blogs.map((blog) => blog.id);

@@ -9,7 +9,19 @@
   padding-bottom: 0;
 }
 
+@include tablet {
+  .page-aside {
+    width: 420px;
+  }
+}
+
 .page-single {
+  @include tablet {
+    > .article {
+      padding-top: var(--sp-xl);
+    }
+  }
+
   &.with-aside {
     display: flex;
     flex-direction: column;

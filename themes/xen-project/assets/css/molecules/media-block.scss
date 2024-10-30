@@ -35,7 +35,7 @@
 
   @include tablet {
     --gap: var(--sp-xl);
-    --content-gap: var(--sp-md);
+    --content-gap: var(--sp-xs);
     --content-line-height: 1.67;
     --flex-direction: row-reverse;
     --media-max-width: 100%;
