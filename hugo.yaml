@@ -17,6 +17,7 @@ outputs:
     - HTML
     - RSSoui appelle
     - HEADER
+    - FOOTER
 
 outputFormats:
   HEADER:
@@ -24,6 +25,12 @@ outputFormats:
     baseName: "header"
     isPlainText: true
     rel: "header"
+    notAlternative: true
+  FOOTER:
+    mediaType: "text/html"
+    baseName: "footer"
+    isPlainText: true
+    rel: "footer"
     notAlternative: true
 
 menus:
