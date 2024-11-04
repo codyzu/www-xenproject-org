@@ -55,7 +55,7 @@ Software hosted on XenProject.org is, and always will be, open source. The code 
 We recently celebrated 20 years in The Xen Project. The timeline shows key milestones over the years, starting from 2003 to the present day in 2024.
 
 <p class="mg-t-md">
-  <a href="TODO" class="btn btn-secondary">Discover Xen Project history <i class="fas fa-arrow-up-right-from-square"></i></a>
+  <a href="https://15anniversary.xenproject.org/" class="btn btn-secondary">Discover Xen Project history <i class="fas fa-arrow-up-right-from-square"></i></a>
 </p>
 {{</media-block>}}
 {{</section>}}

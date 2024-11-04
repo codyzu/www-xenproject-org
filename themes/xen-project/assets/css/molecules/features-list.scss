@@ -1,91 +1,102 @@
+// CSS Custom Properties
+:root {
+  --feature-border-radius: 8px;
+  --feature-padding: 1.5rem;
+  --features-columns-count: 1;
+  --feature-item-title-font-size: 2rem;
+  --feature-item-title-gap: 0.5rem;
+
+  @include tablet {
+    --features-columns-count: 2;
+    --feature-item-title-font-size: 2.5rem;
+    --feature-item-title-gap: 1.3rem;
+  }
+
+  @include desktop {
+    --features-columns-count: 3;
+  }
+}
+
 // Mixins
 @mixin flex-center {
   display: flex;
   align-items: flex-start;
 }
 
-// Styles
+// Features List Component
 .features-list {
   --gap: var(--sp-sm-lg);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--gap);
   list-style: none;
-  padding: 0;
   margin: 0;
+  padding: 0;
 
   @include tablet {
     --gap: var(--sp-lg);
   }
 
+  // List items
   li {
+    --li-width: calc(100% / var(--features-columns-count) - var(--gap));
     margin: 0;
-    padding: 0;
+    flex: 1 1 var(--li-width);
   }
 
-  @media (max-width: 1024px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @media (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-
-  &--cols-2 {
-    grid-template-columns: repeat(1, 1fr);
-
-    .with-aside & {
-      @include tablet-up {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-  }
-  &--cols-4 {
-    grid-template-columns: repeat(4, 1fr);
-  }
+  //
 }
 
+// Feature Item Component
 .feature-item {
-  --item-title-font-size: 2rem;
-  --item-title-gap: 0.5rem;
-  padding: 1.5rem;
-  border-radius: 8px;
-  @include flex-center;
-
-  @include tablet {
-    --item-title-font-size: 2.5rem;
-    --item-title-gap: 1.3rem;
-  }
-
-  .feature-item__icon {
-    font-size: 0.8em;
-  }
-
-  i {
-    font-size: 1.5rem;
-    color: var(--color-action-fill);
-  }
+  padding: var(--feature-padding);
+  border-radius: var(--feature-border-radius);
+  border-radius: 16px;
+  background: var(--color-brand-surface);
+  padding: 40px;
 
   &-content {
     flex: 1;
   }
 
-  .feature-item__title {
-    display: flex;
-    gap: var(--item-title-gap);
-    font-size: var(--item-title-font-size);
+  // Icon styles
+  &__icon {
+    display: flex !important;
+    width: 72px;
+    height: 72px;
+    justify-content: center;
     align-items: center;
-    font-weight: 700;
+    font-size: 0.8em;
+    border-radius: 100px;
+    border: 2px solid var(--color-surface);
+    color: var(--color-surface);
+    background: var(--Crazy-Green-to-blue, linear-gradient(90deg, #85c241 0%, #3199cc 100%));
+    box-shadow:
+      0px 11px 15px 0px rgba(71, 84, 103, 0.1),
+      0px 9px 46px 0px rgba(71, 84, 103, 0.06),
+      0px 24px 38px 0px rgba(71, 84, 103, 0.04);
+    font-size: 1.5rem;
+  }
+
+  // Title styles
+  &__title {
+    display: flex;
+    gap: var(--feature-item-title-gap);
+    font-size: var(--feature-item-title-font-size);
+    font-weight: 500;
     color: var(--color-action-fill);
     margin: 0 0 1.05rem;
     padding-bottom: 0.28em;
-    border-bottom: 2px solid var(--color-brand-fill);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
+  // Paragraph styles
   p {
     font-size: 1.2rem;
     color: var(--color-text);
     margin: 0;
-    line-height: 150%;
+    line-height: 1.5;
   }
 }

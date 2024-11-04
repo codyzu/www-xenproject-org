@@ -1,4 +1,7 @@
 .socials {
+  --socials-icon-background: var(--color-brand-fill);
+  --socials-icon-color: var(--color-text);
+  --socials-icon-color-hover: var(--color-surface);
   display: flex;
   margin: 0;
   list-style: none;
@@ -25,17 +28,17 @@
     display: flex;
     padding: 8px;
     border-radius: 50%;
-    background: var(--color-action-fill);
+    background: var(--socials-icon-background);
     width: 32px;
     height: 32px;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    color: var(--color-action-on-fill);
+    color: var(--socials-icon-color);
   }
 
   a:hover {
-    background: var(--color-action-fill-hover);
+    color: var(--socials-icon-color-hover);
   }
 
   i {

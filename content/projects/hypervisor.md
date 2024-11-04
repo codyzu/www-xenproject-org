@@ -13,7 +13,7 @@ aside:
       - title: Project Management
         items:
           - name: "Status: Active"
-            icon: fa-check
+            icon: fas fa-check
           - name: Features (unstable)
             link: https://xenbits.xen.org/docs/unstable/SUPPORT.html
             icon: fa-road

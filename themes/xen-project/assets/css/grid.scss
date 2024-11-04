@@ -1,10 +1,7 @@
-.container,
-.container-small {
-  max-width: calc(var(--container-width) + var(--container-paddings, 0) * 2);
-  margin-left: var(--container-margins, auto);
-  margin-right: var(--container-margins, auto);
-  padding-left: var(--container-paddings);
-  padding-right: var(--container-paddings);
+.container {
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .container-full {
@@ -36,7 +33,28 @@ section {
   margin-top: var(--block-space);
 }
 
-.cols {
+.container-row {
+  --min-col-width: 380px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--gap, 1rem);
+
+  > * {
+    flex: 1 1 calc(var(--min-col-width));
+    min-width: var(--min-col-width);
+  }
+
+  > .col {
+    display: block;
+  }
+
+  .cols-2 {
+    --min-col-width: 560px;
+  }
+}
+
+.cols,
+.row {
   display: flex;
   flex-direction: row;
   gap: var(--sp-lg);
@@ -63,5 +81,11 @@ section {
     @supports (--cols: 0) {
       flex: 0 0 calc((100% - (var(--cols, 1) - 1) * var(--sp-lg)) / var(--cols, 1));
     }
+  }
+}
+
+@for $i from 1 through 5 {
+  .cols-#{$i} {
+    --cols: #{$i};
   }
 }

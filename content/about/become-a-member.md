@@ -122,7 +122,7 @@ The Board process will help ensure non-technical decisions are collectively dete
 {{</vertical-lists>}}
 
 <p class="txt-c mg-t-lg">
-  <a href="TODO" class="btn btn-primary">
+  <a href="https://enrollment.lfx.linuxfoundation.org/?project=xen" class="btn btn-primary">
     Apply now
     <i class="fas fa-arrow-right"></i>
   </a>

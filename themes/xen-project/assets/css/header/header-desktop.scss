@@ -7,7 +7,6 @@
     --nav-margin-left: 0;
     --header-height: 84px;
     --header-font-size: 16px;
-    background-color: var(--color-brand-surface);
 
     @include desktop {
       --gap: 40px;
@@ -104,8 +103,8 @@
 
       > ul ul {
         align-items: flex-start;
-        background: var(--color-surface);
-        border: 1px solid var(--color-brand-fill);
+        background: var(--header-color-menu-background);
+        border: 1px solid var(--header-color-menu-border);
         display: flex;
         flex-direction: column;
         gap: 8px;
@@ -127,12 +126,12 @@
       list-style: none;
 
       a {
-        color: var(--color-action-text);
+        color: var(--header-color-link);
         font-weight: 500;
         text-decoration: none;
 
         &:hover {
-          color: var(--color-action-text-hover);
+          color: var(--header-color-link-hover);
         }
       }
 

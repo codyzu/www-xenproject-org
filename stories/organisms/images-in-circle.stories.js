@@ -17,12 +17,12 @@ export default {
     docs: {
       description: {
         component: `
-Le composant **ImagesInCircle** utilise un partial et un shortcode pour afficher des images dans un cercle. 
-- **Shortcode**: Le shortcode \`images-in-circle\` prend une classe CSS optionnelle et un contenu JSON pour les images. 
-- **Partial**: Le partial \`images-in-circle.html\` génère une liste d'images avec des transformations CSS appliquées.
+The **ImagesInCircle** component uses a partial and a shortcode to display images in a circle.
+- **Shortcode**: The \`images-in-circle\` shortcode takes an optional CSS class and JSON content for the images.
+- **Partial**: The \`images-in-circle.html\` partial generates a list of images with applied CSS transformations.
 
-### Utilisation
-1. **Shortcode**: Utilisez le shortcode dans vos fichiers de contenu pour inclure des images en cercle.
+### Usage
+1. **Shortcode**: Use the shortcode in your content files to include images in a circle.
    \`\`\`html
    {{</* images-in-circle class="custom-class" */>}}
    [
@@ -32,7 +32,7 @@ Le composant **ImagesInCircle** utilise un partial et un shortcode pour afficher
    {{</* /images-in-circle */>}}
    \`\`\`
 
-2. **Partial**: Le partial est utilisé pour rendre les images avec les styles appropriés.
+2. **Partial**: The partial is used to render the images with appropriate styles.
         `,
       },
     },

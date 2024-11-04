@@ -1,152 +1,125 @@
 .footer {
+  --footer-background: var(--color-text-secondary);
+  --footer-links-color: var(--color-surface);
+  --footer-text-color: var(--color-surface);
+  --footer-title-color: var(--color-brand-fill);
+  --footer-menu-cols: auto;
   --footer-padding: 24px 12px;
   --gap: 24px;
   --gap-lg: 40px;
-  --footer-max-height: none;
-  --footer-menu-cols: 1;
 
-  border-top: 1px solid var(--color-brand-fill);
-  background: var(--color-brand-surface);
+  background: var(--footer-background);
   padding: var(--footer-padding);
+  color: var(--footer-text-color);
 
   @include phone {
-    --footer-menu-cols: 1;
+    --footer-menu-cols: 2;
   }
 
   @include tablet {
-    --footer-menu-cols: 2;
-    --footer-max-height: 1300px;
-  }
-
-  @include tablet-up {
-    --footer-max-height: 1000px;
-  }
-
-  @include desktop {
-    --footer-menu-cols: 2;
-  }
-
-  @include desktop-up {
     --footer-menu-cols: 3;
-    --footer-max-height: 700px;
+    --footer-padding: var(--sp-lg) var(--sp-lg);
+  }
+
+  h3 {
+    color: var(--footer-title-color);
+  }
+
+  a {
+    color: var(--footer-links-color);
+    text-decoration: none;
+    font-weight: 500;
+  }
+}
+
+.footer__text {
+  display: flex;
+  gap: var(--gap-lg);
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  > .footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-sm);
+    flex: 1 0;
   }
 }
 
 .footer__col {
   display: flex;
   flex-direction: column;
-  gap: var(--gap-lg);
-
-  > div {
-    display: flex;
-    flex-direction: column;
-    gap: var(--gap);
-  }
+  gap: var(--gap-sm);
 
   p {
     margin: 0;
   }
 
-  h2 {
-    &:first-child {
-      margin-top: 0;
-    }
+  h2:first-child {
+    margin-top: 0;
   }
 
   .footer__text {
     flex: 0 1 auto;
   }
-
-  &.footer__menu {
-    ul,
-    li {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    ul {
-      display: flex;
-      flex: 1 0;
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    li {
-      font-size: 20px;
-      font-weight: 700;
-    }
-
-    li a {
-      color: var(--color-text);
-      text-decoration: none;
-      display: block;
-    }
-
-    ul ul {
-      gap: 13px;
-      margin-top: 16px;
-    }
-    li li {
-      font-size: 18px;
-      font-weight: 500;
-
-      a {
-        color: var(--color-action-text);
-      }
-
-      a::after {
-        font-family: var(--font-family-icons);
-        margin-left: 10px;
-        content: var(--icon-arrow-right);
-      }
-
-      a[target="_blank"]::after {
-        content: var(--arrow-up-right-from-square);
-      }
-    }
-  }
 }
-@include tablet {
-  .footer {
-    --footer-padding: 40px;
-    --gap: 80px;
 
-    .footer-content {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      max-width: 1920px;
-      margin: 0 auto;
-      gap: var(--gap);
+.footer__menu {
+  margin-top: var(--sp-lg);
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  ul {
+    display: flex;
+    flex: 1 0;
+    flex-direction: column;
+    gap: 24px;
+  }
 
-      @include tablet {
-        flex-direction: row;
-      }
+  > ul {
+    display: block;
+    column-count: var(--footer-menu-cols);
+    column-gap: 40px;
+  }
+
+  > ul > li {
+    margin-bottom: var(--sp-md);
+    break-inside: avoid;
+  }
+
+  li {
+    font-weight: 700;
+  }
+
+  li a {
+    display: block;
+    color: var(--footer-title-color);
+  }
+
+  ul ul {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+    margin-top: 16px;
+  }
+  li li {
+    font-weight: 500;
+
+    a {
+      color: var(--footer-links-color);
     }
 
-    .footer__text {
-      flex: 0 1 40%;
-
-      > div {
-        gap: 20px;
-      }
+    a::after {
+      font-family: var(--font-family-icons);
+      margin-left: 10px;
+      content: var(--icon-arrow-right);
     }
 
-    .footer__menu {
-      flex: 1;
-      > ul {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        max-height: var(--footer-max-height);
-        align-content: flex-start;
-        gap: 40px var(--gap);
-
-        > li {
-          flex: 0 1 0;
-          width: calc(100% / var(--footer-menu-cols) - var(--gap));
-        }
-      }
+    a[target="_blank"]::after {
+      content: var(--arrow-up-right-from-square);
     }
   }
 }

@@ -12,6 +12,21 @@ menus:
 
 {{<section>}}
   {{<media-block
+    title="Qubes OS & Xen Project"
+    media="/img/flatline/data-process.svg"
+    mediaPosition="right"
+    alt="Illustration of a laptop displaying 3D bar charts, connected to cloud and file management icons, representing data integration and synchronization."
+  >}}
+Qubes OS is a security-focused operating system based on Xen. The goal of Qubes OS is to create a reasonably secure environment that is also practical and usable, capable of playing the role of a daily driver rather than a highly situational solution - and Xen is a major reason why we can confidently say that Qubes OS succeeds.
+<p class="mg-t-md">
+
+  <a href="/pdf/Qubes-OS-and-Xen-Project.pdf" class="btn btn-secondary">Read the Complete Case Study <i class="fas fa-arrow-up-right-from-square"></i></a>
+</p>
+  {{</media-block>}}
+{{</section>}}
+
+{{<section>}}
+  {{<media-block
     title="Xen Server case study"
     media="/img/flatline/data-process.svg"
     alt="Illustration of a laptop displaying 3D bar charts, connected to cloud and file management icons, representing data integration and synchronization."

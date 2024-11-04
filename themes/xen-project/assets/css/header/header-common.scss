@@ -1,0 +1,10 @@
+.header {
+  --header-color-border: var(--color-brand-fill);
+  --header-color-link: var(--color-surface);
+  --header-color-link-hover: var(--color-border);
+  --header-color-text: var(--color-text-secondary);
+  --header-color-menu-toggle: var(--color-action-text);
+  --header-color-background: var(--color-text-secondary);
+  --header-color-menu-background: var(--header-color-background);
+  --header-color-menu-border: var(--header-color-border);
+}

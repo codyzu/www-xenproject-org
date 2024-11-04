@@ -20,13 +20,11 @@ aside:
   {{<media-block
     title="What is HVMI?"
     media="https://xenproject.org/wp-content/uploads/sites/79/2020/07/github-hvmi-v2_Kek0TiK6.compressed.mp4"
-    alt="Video of a presentation about HVMI"
+    alt="Video of a presentation about HVMI"   
   >}}
 HVMI stands for Hypervisor-based Memory Introspection. The technology leverages Virtual Machine Introspection (VMI) APIs in the Xen and KVM hypervisors. By gaining introspection of the raw memory of running guest virtual machines, HVMI can apply security logic to detect and prevent the use of common attack techniques, such as buffer overflows, heap spray, code injection, and so-on.
 {{</media-block>}}
 {{</section>}}
-
-
 
 {{<section>}}
   {{<media-block

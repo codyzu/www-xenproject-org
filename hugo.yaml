@@ -50,7 +50,7 @@ menus:
     - name: "Documentation"
       pageRef: "/documentation"
       weight: 30
-      url: "https://docs.xenproject.org"
+      url: "https://wiki.xenproject.org/wiki/Index_Guide"
       params:
         class: "custom-class"
         target: "_blank"
