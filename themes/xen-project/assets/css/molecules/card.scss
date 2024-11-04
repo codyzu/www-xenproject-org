@@ -1,0 +1,82 @@
+.card {
+  --card-color: var(--color-brand-fill);
+  --card-secondary-color: var(--color-brand-fill-pressed);
+  --card-tag-text-color: var(--color-brand-text-hover);
+  --card-date-color: var(--color-text-secondary);
+  --card-author-color: var(--color-text);
+  --card-background-color: #fff;
+
+  color: var(--color-text-secondary);
+  border-top: 12px solid var(--card-color);
+  border-radius: 8px;
+  padding: 24px;
+  background: var(--card-background-color);
+  box-shadow:
+    0px 11px 15px 0px rgba(71, 84, 103, 0.1),
+    0px 9px 46px 0px rgba(71, 84, 103, 0.06),
+    0px 24px 38px 0px rgba(71, 84, 103, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__label {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 1.25;
+  }
+
+  &__date {
+    color: var(--card-date-color);
+    margin-top: -4px;
+    line-height: 1;
+  }
+
+  &__content {
+    flex: 1;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__actions {
+    margin-top: 16px;
+    justify-self: flex-start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  &__tag {
+    display: inline-block;
+    border-radius: 2.5em;
+    background: var(--card-secondary-color);
+    color: var(--card-tag-text-color);
+    padding: 0.1em 0.6em;
+    line-height: 1;
+    font-size: 0.8em;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: -0.025em;
+  }
+
+  &__author {
+    font-size: 0.8em;
+    line-height: 1;
+    font-weight: 500;
+    &,
+    & a {
+      color: var(--card-author-color);
+    }
+  }
+
+  &--news {
+    --card-color: var(--color-action-fill);
+    --card-secondary-color: var(--color-action-surface);
+    --card-tag-text-color: var(--color-action-text);
+    --card-date-color: var(--color-text-secondary);
+  }
+}

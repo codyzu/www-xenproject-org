@@ -1,17 +1,10 @@
-{{/* Stocke le contenu markdownifié dans une variable */}}
 {{ $content := .Inner | markdownify }}
-
-{{/* Gestion des différents cas */}}
 {{ if .IsNamedParams }}
-  {{ if .Get "col" }}
-    <div class="col">{{ $content }}</div>
-  {{ else if .Get "container" }}
-    <div class="container container-{{ .Get "container" }}">{{ $content }}</div>
-  {{ end }}
-{{ else }}
-  {{ if eq (.Get 0) "col" }}
-    <div class="col">{{ $content }}</div>
-  {{ else }}
+  {{ $class := .Get "class" }}
+  {{ $container := .Get "container" }}
+  <div class="{{ with $class }}{{ . }}{{ end }}{{ with $container }}container container-{{ . }}{{ end }}">
     {{ $content }}
-  {{ end }}
+  </div>
+{{ else }}
+  {{ $content }}
 {{ end }}

@@ -1,0 +1,9 @@
+.latest-news_container {
+  .card--news .card__content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

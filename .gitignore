@@ -3,3 +3,8 @@
 node_modules
 *storybook.log
 mockups
+storybook-static
+
+.DS_Store
+.env
+thumbs.db

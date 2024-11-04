@@ -2,10 +2,10 @@
   const selector = ".latest-news";
   const blogs = [
     {
-      id: "vates",
-      name: "Vates blog",
-      url: "http://localhost:2368",
-      API_KEY: "2e157e7c6896c98386e1022189",
+      id: "xenprojectblog",
+      name: "xenproject blog",
+      url: "/blog",
+      API_KEY: "aca0295269765205d553f5c953",
     },
   ];
 
@@ -22,10 +22,10 @@
   const latestnews = async (element) => {
     const newsCardTemplate = createTemplate();
     const container = element.querySelector(".latest-news_container");
-    const { maxCards, blogFilter, tagFilter } = container.dataset;
+    const { maxCards, blogFilter, tagFilter } = element.dataset;
     const blogIds = blogFilter?.split(",") || blogs.map((blog) => blog.id);
     const tags = (tagFilter?.split(",") || []).filter((tag) => tag !== "");
-    const posts = await getLatestPost({ maxCards: maxCards * 1 || 3, blogFilter: blogIds, tagFilter: tags });
+    const posts = await getLatestPost({ maxCards: maxCards * 1 || 10, blogFilter: blogIds, tagFilter: tags });
     container.innerHTML = posts.map(newsCardTemplate).join("");
   };
 

@@ -5,7 +5,7 @@ export default {
   tags: ["autodocs"],
   render: (args) => html`
      <div class="conversation-card conversation-card--small">
-          <div class="label">Conversation Card</div>
+          <h3 class="label">Conversation Card</h3>
           <div class="tags">
             <span class="tag">Tag 1</span>
             <span class="tag">Tag 2</span>
@@ -27,13 +27,13 @@ export default {
   `,
 };
 
-export const ProjectCard = {
+export const ConversationCard = {
   render: (args) => html`
     <div class="story-row">
       ${["", "small"].map(
         (size) => html`
         <div class="conversation-card ${size ? `conversation-card--${size}` : ""}">
-          <div class="label">Conversation Card ${size}</div>
+          <h3 class="label">Conversation Card ${size}</h3>
           <div class="tags">
             <span class="tag">Tag 1</span>
             <span class="tag">Tag 2</span>

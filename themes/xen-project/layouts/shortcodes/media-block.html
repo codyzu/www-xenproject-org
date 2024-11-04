@@ -8,6 +8,7 @@
 {{ $title := .Get "title" | default "" }}
 {{ $titleLevel := .Get "titleLevel" | default "2" }}
 {{ $class := .Get "class" | default "" }}
+{{ $animate := .Get "animate" | default "false" }}
 
 {{ partial "media-block.html" (dict
   "Content" $content
@@ -21,5 +22,6 @@
   "Title" $title
   "TitleLevel" $titleLevel
   "Class" $class
+  "Animate" $animate
   )
 }}

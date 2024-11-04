@@ -7,12 +7,12 @@
 .container-full {
   max-width: none;
   padding: 0;
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: calc(var(--container-paddings) * -1);
+  margin-right: calc(var(--container-paddings) * -1);
 }
 
 .container-small {
-  --container-width: 1120px;
+  // --container-width: 1120px;
 }
 
 .page-top .description {
@@ -33,7 +33,7 @@ section {
   margin-top: var(--block-space);
 }
 
-.container-row {
+.section-row {
   --min-col-width: 380px;
   display: flex;
   flex-wrap: wrap;

@@ -1,4 +1,4 @@
-baseURL: "https://xenproject.local/"
+baseURL: "https://local.xenproject.org/"
 
 languageCode: "en-us"
 title: "Xen Project"

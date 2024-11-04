@@ -1,12 +1,16 @@
 (() => {
-  var selector = ".carousel-container";
+  const selector = ".carousel-container";
+  const itemSelector = ".carousel-item";
   const itemsBefore = 2;
   const itemsAfter = 1;
 
   const { debounce } = window.XenSiteUtils;
 
-  const carousel = (element) => {
+  const carousel = async (element) => {
     const carouselElement = element.querySelector(".carousel");
+    let prev = element.querySelector(".prev");
+    let next = element.querySelector(".next");
+    let items = await waitForElements(carouselElement, itemSelector);
 
     const carouselClone = carouselElement.cloneNode(true);
     carouselClone.classList.add("carousel-clone");
@@ -22,7 +26,7 @@
     const getItemInformations = () => {
       carouselElement.before(carouselClone);
       carouselClone.style.setProperty("width", carouselElement.offsetWidth + "px");
-      const items = carouselClone.querySelectorAll(".carousel-item");
+      const items = carouselClone.querySelectorAll(itemSelector);
       if (!items.length) return 0;
       const item2 = items[1];
       let occupiedSpace = item2.offsetLeft;
@@ -40,10 +44,6 @@
     };
 
     // element.classList.add("carousel-start-init");
-
-    let prev = element.querySelector(".prev");
-    let next = element.querySelector(".next");
-    let items = element.querySelectorAll(".carousel-item");
 
     // add the clone the last item to the first place and for the first item to the last place
     // generic function to clone N last items to the first place and N first items to the last place
@@ -64,13 +64,13 @@
     cloneItemsReverse(items, itemsAfter);
 
     const moveNext = function () {
-      let items = element.querySelectorAll(".carousel-item");
+      let items = element.querySelectorAll(itemSelector);
       carouselElement.appendChild(items[0]);
     };
     next.addEventListener("click", moveNext);
 
     const movePrev = function () {
-      let items = element.querySelectorAll(".carousel-item");
+      let items = element.querySelectorAll(itemSelector);
       carouselElement.prepend(items[items.length - 1]);
     };
     prev.addEventListener("click", movePrev);
@@ -143,7 +143,7 @@
       for (let i = 1; i <= maxItems; i++) {
         if ((i >= itemsBefore && i < maxItems - itemsAfter) || i - itemsBefore === 0) {
           opacity = 1;
-        } else if (i === maxItems - itemsAfter) {
+        } else if (i === maxItems - itemsAfter || i === itemsBefore - 1) {
           opacity = 0.2;
         } else {
           opacity = 0;
@@ -171,6 +171,29 @@
     generateStyles(element);
 
     carouselElement.classList.add("carousel-initialized");
+  };
+
+  const waitForElements = (element, selector) => {
+    return new Promise((resolve) => {
+      const items = element.querySelectorAll(selector);
+      if (items.length) {
+        resolve(items);
+        return;
+      }
+
+      const observer = new MutationObserver((mutations) => {
+        const items = element.querySelectorAll(selector);
+        if (items.length) {
+          observer.disconnect();
+          resolve(items);
+        }
+      });
+
+      observer.observe(element, {
+        childList: true,
+        subtree: true,
+      });
+    });
   };
 
   [...document.querySelectorAll(selector)].forEach((elm) => {

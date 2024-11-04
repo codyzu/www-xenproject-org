@@ -1,0 +1,14 @@
+<div class="card {{ .class }}">
+  <h3 class="card__label">{{ .title | safeHTML }}</h3>
+  <div class="card__content">{{ .description | safeHTML }}</div>
+  <div class="card__actions">
+    <a href="{{ .link }}" class="join-button">
+      {{ .linkText | default "Join" }} <i class="fas fa-arrow-up-right-from-square"></i>
+    </a>
+    {{ if .secondaryLink }}
+      <a href="{{ .secondaryLink }}" class="join-button">
+        {{ .secondaryLinkText | default "Join" }} <i class="fas fa-arrow-up-right-from-square"></i>
+      </a>
+    {{ end }}
+  </div>
+</div>

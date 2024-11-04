@@ -1,0 +1,134 @@
+.home-hero-animated {
+  position: relative;
+  overflow: hidden;
+  margin-left: calc(var(--content-padding-horizontal) * -1);
+  margin-right: calc(var(--content-padding-horizontal) * -1);
+
+  .container {
+    padding-left: var(--content-padding-horizontal);
+    padding-right: var(--content-padding-horizontal);
+  }
+
+  .media-block {
+    position: relative;
+    z-index: 10;
+  }
+
+  .animated-home-server,
+  .animated-home-shadow-screen {
+    position: absolute;
+    z-index: 1;
+  }
+
+  .animated-home-server {
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 3;
+    opacity: 0;
+    animation: homeFadeInUp 1s ease forwards;
+    animation-delay: 0.5s;
+    width: 80%;
+    @include tablet {
+      width: auto;
+    }
+  }
+
+  .animated-home-shadow-screen {
+    bottom: 150px;
+    left: 56%;
+    transform: translateX(40px);
+    z-index: 2;
+    opacity: 0;
+    animation: homeFadeInRight 1.2s ease forwards;
+    animation-delay: 0s;
+    width: 454px;
+  }
+  .animated-home-wire {
+    left: 70%;
+    bottom: 50px;
+  }
+
+  .media-block__media {
+    opacity: 0;
+    animation: homeFadeInTopLeft 0.8s ease forwards;
+  }
+}
+
+.home-section-hero {
+  margin-bottom: 0;
+  margin-top: 0;
+  padding-bottom: 200px;
+
+  .hero-block {
+    margin-top: 40px;
+
+    @include tablet {
+      margin-top: 100px;
+    }
+  }
+
+  @include desktop {
+    padding-bottom: 260px;
+  }
+  .media-block {
+    flex-direction: column;
+  }
+
+  @include tablet {
+    padding-bottom: 300px;
+    .media-block {
+      flex-direction: row;
+    }
+
+    .media-block__content {
+      flex-basis: 52%;
+    }
+  }
+}
+
+:root {
+  --home-shadow-screen-left: -45%;
+  --home-server-top: -55%;
+
+  @include tablet {
+    --home-shadow-screen-left: 100px;
+  }
+
+  @include desktop {
+    --home-shadow-screen-left: 54px;
+  }
+}
+
+@keyframes homeFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(0);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(var(--home-server-top));
+  }
+}
+
+@keyframes homeFadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(var(--home-shadow-screen-left));
+  }
+}
+
+@keyframes homeFadeInTopLeft {
+  from {
+    opacity: 0;
+    transform: translate(-70px, -70px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+}

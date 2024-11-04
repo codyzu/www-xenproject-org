@@ -39,6 +39,7 @@
   flex-wrap: wrap;
 
   > .footer__col {
+    min-width: 280px;
     display: flex;
     flex-direction: column;
     gap: var(--sp-sm);

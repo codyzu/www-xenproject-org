@@ -1,0 +1,10 @@
+{{ $items := .items | transform.Unmarshal }}
+{{ range $items }}
+  {{ partial "card.html" (dict
+    "title" .title
+    "description" .description
+    "link" .link
+    "class" "carousel-item"
+    )
+  }}
+{{ end }}

@@ -4,7 +4,11 @@
     background-{{ . }}
   {{ end }} section-space"
 >
-  <div class="container{{- if $containerType }}-{{ $containerType }}{{- end }}">
+  <div
+    class="container{{- if $containerType }}-{{ $containerType }}{{- end }}
+    {{- with .Get "row" }}{{ if eq . "true" }} section-row{{ end }}{{- end }}
+    {{- with .Get "cols" }} cols-{{ . }}{{- end }}"
+  >
     {{- if eq (.Get "md") "true" -}}
       {{- .Inner | markdownify -}}
     {{- else -}}

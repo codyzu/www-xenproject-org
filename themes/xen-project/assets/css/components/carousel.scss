@@ -1,7 +1,6 @@
 @use "sass:math";
 
 .carousel-container {
-  overflow: hidden;
   --min-height: 100px;
   --content-padding: 12px;
   --item-width: auto;
@@ -10,6 +9,10 @@
   --number-of-items: 1;
   --space-between-items: 40px;
   --height: auto;
+  padding-bottom: 40px;
+  overflow: hidden;
+  // margin-left: calc(var(--content-padding-horizontal) * -1);
+  // margin-right: calc(var(--content-padding-horizontal) * -1);
 
   @include phone {
     --number-of-items: 2;
@@ -17,7 +20,7 @@
 
   @include tablet {
     --number-of-items: 2;
-    --max-width: 1668px;
+    --max-width: calc(var(--container-width) + var(--content-padding) * 2);
     --content-padding: 80px;
   }
 
@@ -26,7 +29,7 @@
   }
 
   @include desktop {
-    --number-of-items: 4;
+    --number-of-items: 3;
   }
 
   .carousel-content {

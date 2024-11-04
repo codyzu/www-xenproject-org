@@ -5,10 +5,7 @@
     content: "";
     display: table;
   }
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding: 0 var(--content-padding-horizontal);
 }
 
 @include tablet {

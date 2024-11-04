@@ -18,6 +18,10 @@
   {{ end }}
     {{ $class }}
   "
+  
+  {{ if eq .Animate "true" }}
+    data-animate="true"
+  {{ end }}
 >
   <div class="media-block__content">
     {{ if .Label }}
@@ -39,6 +43,7 @@
           src="{{ $trimmedMedia }}"
           alt="{{ .alt | default "Media image" }}"
           {{ if .ImageSize }}width="{{ .ImageSize }}" height="auto"{{ end }}
+          loading="lazy"
         />
       {{ else if findRE "\\.mp4$" $lowerMedia }}
         {{ partial "video-player.html" (dict "url" $trimmedMedia "alt" .alt) }}

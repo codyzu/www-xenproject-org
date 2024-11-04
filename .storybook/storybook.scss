@@ -105,17 +105,40 @@ h1 {
 }
 
 .story-row {
+  --max-width: 300px;
+  --cols: 2;
+
   display: flex;
   gap: 24px;
-
   flex-direction: column;
   flex: 0 auto;
 
-  @media (min-width: 600px) {
-    flex-direction: row;
-    flex: 0 33%;
-  }
   > * {
-    max-width: 300px;
+    flex: 1 0 calc((100% / var(--cols) - (var(--cols) - 1) * 24px));
+    max-width: var(--max-width);
+  }
+
+  &.cols-1,
+  &.cols-2,
+  &.cols-3,
+  &.cols-4 {
+    --max-width: none;
+  }
+
+  &.cols-2 {
+    --cols: 2;
+  }
+
+  &.cols-3 {
+    --cols: 3;
+  }
+
+  &.cols-4 {
+    --cols: 4;
+  }
+
+  @media (min-width: 500px) {
+    flex-direction: row;
+    --cols: 3;
   }
 }

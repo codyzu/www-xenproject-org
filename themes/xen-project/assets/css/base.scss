@@ -54,4 +54,9 @@ li {
 
 a {
   color: var(--color-action-text);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

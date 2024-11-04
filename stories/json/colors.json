@@ -51,33 +51,9 @@
       },
       {
         "group": "action",
-        "name": "action-text-hover",
-        "variableName": "--color-action-text-hover",
-        "value": "#004e86"
-      },
-      {
-        "group": "action",
-        "name": "action-text-pressed",
-        "variableName": "--color-action-text-pressed",
-        "value": "#003b64"
-      },
-      {
-        "group": "action",
         "name": "action-fill",
         "variableName": "--color-action-fill",
         "value": "#0077cc"
-      },
-      {
-        "group": "action",
-        "name": "action-fill-hover",
-        "variableName": "--color-action-fill-hover",
-        "value": "#005fa3"
-      },
-      {
-        "group": "action",
-        "name": "action-fill-pressed",
-        "variableName": "--color-action-fill-pressed",
-        "value": "#00477a"
       },
       {
         "group": "action",
@@ -104,33 +80,9 @@
       },
       {
         "group": "brand",
-        "name": "brand-text-hover",
-        "variableName": "--color-brand-text-hover",
-        "value": "#456322"
-      },
-      {
-        "group": "brand",
-        "name": "brand-text-pressed",
-        "variableName": "--color-brand-text-pressed",
-        "value": "#344a19"
-      },
-      {
-        "group": "brand",
         "name": "brand-fill",
         "variableName": "--color-brand-fill",
         "value": "#85c241"
-      },
-      {
-        "group": "brand",
-        "name": "brand-fill-hover",
-        "variableName": "--color-brand-fill-hover",
-        "value": "#9dce67"
-      },
-      {
-        "group": "brand",
-        "name": "brand-fill-pressed",
-        "variableName": "--color-brand-fill-pressed",
-        "value": "#b6da8d"
       },
       {
         "group": "brand",

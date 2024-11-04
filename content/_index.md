@@ -3,14 +3,15 @@ title: "Xen Project"
 description: "The Xen Project develops enterprise-grade open source virtualization solutions trusted by millions of users. Secure, flexible, and powerful hypervisor technology."
 keywords: "Xen Project, open source virtualization, enterprise-grade hypervisor, secure virtualization, flexible hypervisor technology, powerful hypervisor, Xen community, virtualization solutions, Linux Foundation project, Xen subprojects, commercial virtualization, open-source domains, virtualization technology"
 ---
-{{<section >}} 
+
+{{<section class="home-section-hero home-hero-animated" >}} 
   {{<media-block
     class="hero-block"
     label="A Linux Foundation Project"
     title="Bring the power of <a href=\"#\">open virtualization</a> everywhere."
     titleLevel="1"
-    media="/img/flatline/data-process-with-xen-logo.svg"
-    alt="Illustration of a computer monitor displaying bar charts, next to multiple server racks representing data management and analytics."
+    media="/img/flatline/screen-with-xen-logo.webp"
+    alt="Illustration of a computer monitor displaying bar charts with Xen Project Logo"
     mediaPosition="right"
     mobileMediaPosition="bottom"
   >}}
@@ -23,10 +24,12 @@ keywords: "Xen Project, open source virtualization, enterprise-grade hypervisor,
   domains.
   {{</md>}}
   {{</media-block>}}
+  <img class="animated-home-server" src="/img/decorative/home-servers.webp" alt=""/>
+  <img class="animated-home-shadow-screen" src="/img/decorative/screen-with-wire.svg" alt=""/>
 {{</section>}}
 
 
-{{<section class="section-square-rounded">}}
+{{<section class="section-square-rounded no-mt">}}
   {{<features-list>}}
   - title: Open-source
     icon: fas fa-code
@@ -50,32 +53,26 @@ keywords: "Xen Project, open source virtualization, enterprise-grade hypervisor,
 {{</section>}}
 
 
-{{<section container="small">}}
-<div class="line">
-{{<md col>}}
+{{<section row="true" cols="3">}}
+{{<md class="col">}}
 ## A virtualization **revolution**
 The Xen Project focuses on revolutionizing virtualization by providing a versatile and powerful hypervisor that addresses the evolving needs of diverse industries :
 {{</md>}}
 
-{{<md col>}}
+{{<md class="col presentation-list">}}
 - **Empower Innovation:** Tailored virtualization to drive progress across various domains.
-
 - **Enhance Cloud Ecosystems:** Elevate cloud capabilities with high-performing, reliable virtualization.
-
 - **Secure Critical Systems:** Safeguard data and applications through industry-leading security.
-
 - **Revolutionize Embedded Technologies:** Transform embedded and automotive sectors with mature, safe, secure solutions.
 {{</md>}}
 </div>
 {{</section>}}
 
 
-
 {{<section container="full">}}
-{{<carousel class="mg-t-lg">}}
+{{<carousel class="mg-t-lg carousel-container-width">}}
 {{<getpages "projects">}}
 {{</carousel>}}
-
 
 
 <p class="mob-mg-v-xl mg-v-xxl txt-c">
@@ -85,16 +82,17 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
 </p>
 {{</section>}}
 
-{{<section>}}
+{{<section container="full">}}
 {{<latest-news>}}
 {{</section>}}
 
 
-{{<section background="curve-reverse">}}
+{{<section class="section-square-primary">}}
   {{<media-block
     title="Governed by Xen project **members**"
     media=`{{<partial "blocks/logos-circle">}}`
     mediaMobilePosition="top"
+    animate="true"
   >}}
   Board members can propose and vote upon changes to the Xen Project.Members also gain valuable strategic insight into project plans and future scope.
 
@@ -105,23 +103,22 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
 
   
   {{<media-block
-    class="block-space"
     title="Lead by a **dedicated community**"
     media="/img/flatline/team-work.svg"
     mediaPosition="right"
     mediaMobilePosition="bottom"
     alt="Illustration of three people carrying a large pie chart with one segment separated, symbolizing teamwork and data analysis."
+    class="block-space"
+    animate="true"
   >}}
   The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology.
 With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.
 
   <p class="mg-t-md">
-    <a href="/contribute/get-started">Get started <i class="fas fa-arrow-right"></i></a>
+    <a href="/contribute/get-started" class="btn btn-primary">Get started <i class="fas fa-arrow-right"></i></a>
   </p>
   {{</media-block>}}
 {{</section>}}
-
-
 
 
 {{<section>}}
@@ -130,11 +127,12 @@ With diverse backgrounds and expertise, members actively contribute to Xen's evo
     media="/img/flatline/data-process.svg"
     mediaMobilePosition="bottom"
     alt="Illustration of a laptop displaying 3D bar charts, connected to various cloud and file management icons, representing data integration and cloud storage."
+    animate="true"
   >}}
  The mission of the Xen Project is to advance virtualisation technology across a wide range of commercial and open-source domains.
 
   <p class="mg-t-md">
-    <a href="/about">Learn about Xen Project<i class="fas fa-arrow-right"></i></a>
+    <a href="/about" class="btn btn-secondary">Learn about Xen Project<i class="fas fa-arrow-right"></i></a>
   </p>
   {{</media-block>}}
 {{</section>}}

@@ -1,7 +1,8 @@
 :root {
 }
 
-[class*="background-"] {
+[class*="background-"],
+.section-square-primary {
   .images-in-circle {
     --bg-color: var(--color-brand-surface);
   }

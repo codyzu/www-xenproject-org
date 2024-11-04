@@ -1,32 +1,46 @@
-<div class="latest-news">
-  <h2>
-    Latest <strong>news</strong>
-    <a href="htttps://blog.xen-project.org" class="title-external-link"
-      >Read all news <i class="fas fa-arrow-up-right-from-square"></i
-    ></a>
-  </h2>
+<div class="latest-news  " data-max-cards="10">
+  <div class="container">
+    <h2>
+      Latest <strong>news</strong>
+      <a href="/blog" class="title-external-link">Read all news <i class="fas fa-arrow-right"></i></a>
+    </h2>
+  </div>
   <script type="text/html" class="latest-news-template">
-    <div class="news-card">
-      <div class="news-card__date">${XenSiteUtils.formatDate(_.published_at)}</div>
-      <h3 class="news-card__label">${_.title}</h3>
+    <div class="carousel-item card card--news">
+      <div class="card__label">${_.title}</div>
       ${_.tags ? `
-      <div class="news-card__tag">
-        ${_.tags.map(tag => `<a href="${tag.url}" target="_blank">${tag.name}</a>`).join(" ")}
+      <div class="card__date">${XenSiteUtils.formatDate(_.published_at)}</div>
+      <div class="card__tags">
+        ${_.tags.map(tag => `<span class="card__tag"><a href="${tag.url}" target="_blank">${tag.name}</a></span
+        >`).join(" ")}
       </div>
       ` : ""}
-      <p class="news-card__description">${_.excerpt}</p>
+      <p class="card__content">${_.excerpt}</p>
       ${_.authors ? `
-      <div class="news-card__author">
-        By ${_.authors.map(author => `<a href="${author.url}" target="_blank">${author.name}</a>`).join(", ")}
+      <div class="card__author">
+        by ${_.authors.map(author => `<a href="${author.url}" target="_blank">${author.name}</a>`).join(", ")}
       </div>
       ` : ""}
-      <p class="news-card__read-more p1-bold">
-        <a href="${_.url}">
+      <div class="card__actions">
+        <a href="${_.url}" class="join-button">
           Read more
           <i class="fas fa-arrow-up-right-from-square"></i>
         </a>
-      </p>
+      </div>
     </div>
   </script>
-  <div class="latest-news_container news-container"></div>
+
+  <div class="carousel-container carousel-container-width">
+    <div class="carousel-content">
+      <div class="carousel latest-news_container news-container"></div>
+      <div class="carousel-buttons">
+        <button class="carousel-button prev">
+          <i class="fas fa-arrow-left"></i>
+        </button>
+        <button class="carousel-button next">
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>
