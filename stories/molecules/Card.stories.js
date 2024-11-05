@@ -30,7 +30,7 @@ export default {
 export const Card = {
   render: (args) => html`
     <div class="story-row ">
-      ${["", "card--news"].map(
+      ${["", "card--news", "card--bg"].map(
         (cls) => html`
         <div class="card ${cls}">
           <div class="card__label">Conversation Card ${cls.replace(/card--/g, "")}</div>

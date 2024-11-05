@@ -18,6 +18,7 @@ menus:
     title="Download"
     media="/img/logo-xen.svg"
     alt="Xen Project Logo"
+    animate="true"
   >}}
   You can download vector graphics, images and logos.
   <p class="mg-t-md">
@@ -31,8 +32,7 @@ menus:
 
 
 
-{{<section background="curve">}}
-{{<container type="small">}}
+{{<section class="section-square-primary">}}
 {{<md>}}
 ## Usage
 
@@ -66,10 +66,9 @@ You can use the images and material without attribution when used in a context t
     - Give-away of a Xen Fu Panda button, sticker, mug, etc. at a kids event
 {{</vertical-lists>}}
 
-{{</container>}}
 {{</section>}}
 
-{{<section md="true" container="small">}}
+{{<section md="true">}}
 
 ## Trademark policy
 

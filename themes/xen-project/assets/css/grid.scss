@@ -68,18 +68,21 @@ section {
 .row {
   display: flex;
   flex-direction: row;
-  gap: var(--sp-lg);
+  --gap: var(--sp-lg);
+  gap: var(--gap);
   justify-content: flex-start;
   align-items: stretch;
   flex-wrap: wrap;
 
+  --min-col-width: 300px;
   > *,
   > .col {
     flex: 1;
 
     // Ajout de la gestion des colonnes
     @supports (--cols: 0) {
-      flex: 0 0 calc((100% - (var(--cols, 1) - 1) * var(--sp-lg)) / var(--cols, 1));
+      flex: 1 0 calc((100% / var(--cols)) - var(--gap));
+      min-width: calc((100% / var(--cols)) - var(--gap));
     }
   }
 }

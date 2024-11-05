@@ -21,7 +21,7 @@ aside:
         link: https://xenbits.xenproject.org/governance/resolving-disagreement.html
 ---
 
-{{<section md="true" container="small content-markdown">}}
+{{<section md="true" class="content-markdown">}}
 *Last updated: 16th November 2023*
 
 ## Our Pledge

@@ -22,6 +22,7 @@ menus:
   title="2024 edition"
   media=`{{<youtube src="https://www.youtube.com/embed/qZcCCm_PaHs"
      title="Xen Project Summit 2024"  >}}`
+  animate="true"
 >}}
 
 We have some thrilling news to share with you all. The highly anticipated talks from this year’s Xen Summit are now live on YouTube! Whether you attended the summit in person or couldn’t make it this time, you can now access all the insightful presentations and discussions online.
@@ -34,6 +35,7 @@ We have some thrilling news to share with you all. The highly anticipated talks 
   title="Why You Should Watch the Xen Summit Talks"
   media=`{{<youtube src="https://www.youtube.com/embed/bmbY40fJZsQ" title="Xen Project Summit 2024 Weather Report"  >}}`
   mediaPosition="right"
+  animate="true"
 >}}
 
 The Xen Summit gathers experts, developers, and enthusiasts from around the world to discuss the latest advancements and future directions of our Project. This year’s summit featured a fantastic lineup of speakers who shared their knowledge on a wide range of topics.
@@ -41,7 +43,7 @@ The Xen Summit gathers experts, developers, and enthusiasts from around the worl
 {{</media-block>}}
 {{</section>}}
 
-{{<section background="curve" class="txt-c">}}
+{{<section class="section-square-primary txt-c">}}
 {{<md>}}
 ## Join the **conversation**
 

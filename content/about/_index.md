@@ -11,11 +11,13 @@ menus:
     parent: About
     weight: 10
 ---
+
 {{<section>}}
 {{<media-block
    title="A global open source community"
    media="/img/flatline/java.svg"
    alt="Illustration of a laptop displaying code, with a cup of coffee and a notebook beside it, symbolizing a coding or development environment."
+   animate="true"
 >}}
 {{<md>}}
 
@@ -28,6 +30,7 @@ Find out more about how the community governs itself.
 {{</media-block>}}
 {{</section>}}
 
+
 {{<full-width-image src="/img/others/xen-team-photo-2.png" alt="Group photo of attendees at the Xen Project Developer and Design Summit, standing in front of a presentation screen with the Xen Project logo." class="image-ratio-large">}}
 
 
@@ -37,6 +40,7 @@ Find out more about how the community governs itself.
    media="/img/flatline/data-process-with-xen-logo.svg"
    mediaPosition="right"
    alt="Illustration of a computer monitor displaying bar charts and server racks labeled with Xen Project logos, representing data management and analysis."
+   animate="true"
 >}}
 {{<md>}}
 The Xen Project is the home for several virtualization-related open source projects. The community is focused on advancing virtualization in a number of different commercial and open source applications, including server virtualization, Infrastructure as a Services (IaaS), desktop virtualization, security applications, embedded and hardware appliances, and automotive/aviation.
@@ -51,6 +55,7 @@ Software hosted on XenProject.org is, and always will be, open source. The code 
    title="History"
    media="/img/flatline/timeline.svg"
    alt="Illustration of a timeline with milestones for the years 2012, 2018, 2020, and 2024, representing project progress and development."
+   animate="true"
 >}}
 We recently celebrated 20 years in The Xen Project. The timeline shows key milestones over the years, starting from 2003 to the present day in 2024.
 
@@ -87,6 +92,8 @@ If you are unsure which technology is right for you, check out our team portals.
 {{<media-block
    title="A Linux Foundation collaborative project"
    media="/img/logos/logo-linux-foundation.svg"
+   alt="The Linux Foundation logo"
+   animate="true"
 >}}
 {{<md>}}
 Projects under The Linux Foundation are independently funded software projects that harness the power of collaborative development to fuel innovation across industries and ecosystems. By spreading the collaborative DNA of the largest collaborative software development project in history, The Linux Foundation provides the essential collaborative and organizational framework so project hosts can focus on innovation and results. Linux Foundation Collaborative Projects span the enterprise, mobile, and embedded markets and are backed by many of the largest names in computing.
@@ -98,7 +105,9 @@ Projects under The Linux Foundation are independently funded software projects t
 {{<media-block
    title="Governed by Xen project members"
    media=`{{<partial "blocks/logos-circle">}}`
+   alt="Xen Project members logos"
    mediaPosition="right"
+   animate="true"
 >}}
 Board members can propose and vote upon changes to the Xen Project. Members also gain valuable strategic insight into project plans and future scope.
 
