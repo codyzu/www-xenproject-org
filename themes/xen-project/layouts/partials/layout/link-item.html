@@ -1,10 +1,19 @@
 <li>
-  <a href="{{ .link }}" target="_blank">
-    {{ .name }}
-    {{ if .icon }}
-      <i class="{{ .icon }}"></i>
-    {{ else }}
-      <i class="fas fa-arrow-up-right-from-square"></i>
-    {{ end }}
-  </a>
+  {{ if .link }}
+    <a href="{{ .link }}" {{ if and (not (hasPrefix .link "/")) (not (hasPrefix .link "./")) }}target="_blank"{{ end }}>
+      {{ .name | markdownify }}
+      {{ if .icon }}
+        <i class="{{ .icon }}"></i>
+      {{ else }}
+        <i class="fas fa-arrow-up-right-from-square"></i>
+      {{ end }}
+    </a>
+  {{ else }}
+    <span>
+      {{ .name | markdownify }}
+      {{ if .icon }}
+        <i class="{{ .icon }}"></i>
+      {{ end }}
+    </span>
+  {{ end }}
 </li>

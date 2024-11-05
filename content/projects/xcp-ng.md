@@ -33,7 +33,7 @@ aside:
         url: "https://github.com/xcp-ng"
       - name: Dev Docs
         url: "https://github.com/xcp-ng/xcp/wiki#development"
-  - name: Project Team
+  - name: Team
     type: members-list
     items:
       - name: Project Lead
@@ -47,7 +47,7 @@ aside:
     title="Turnkey **open-source hypervisor**"
     media="/img/others/xcp-ng-badge.webp"
     alt="Logo of XCP-ng : Illustration of a red rocket ship blasting off into space with a circular background, symbolizing innovation and progress."
-
+    animate="true"
   >}}
   {{<md>}}
 XCP-ng enables an easy way to deploy a VM based infrastructure using Xen as the hypervisor and XAPI to deliver an out of the box, turnkey, solution. XCP-ng satisfies the needs of any sized organization from their thriving community of homelabbers to massive data centers. **XCP-ng is built to run in numerous configurations for any type of production environment.**
@@ -62,6 +62,7 @@ XCP-ng enables an easy way to deploy a VM based infrastructure using Xen as the 
     media="/img/flatline/timeline.svg"
     mediaPosition="right"
     alt="Illustration of a timeline with milestones for the years 2012, 2018, 2020, and 2024, representing project progress and development."
+    animate="true"
   >}}
   {{<md>}}
 In 2018 XCP-ng was born, following Citrix System’s announcement to remove features from their free version and place them behind paid tiers. XCP-ng was launched with the intentions of revitalizing the original goals of the XCP project, to **provide free and community back version of XenServer.**
@@ -70,7 +71,7 @@ In 2018 XCP-ng was born, following Citrix System’s announcement to remove feat
 {{</section>}}
 
 
-{{<section class="background-normal"  >}}
+{{<section class="section-square-rounded"  >}}
   {{<features-list cols="2">}}
     - title: Scalable
       icon: fas fa-expand
@@ -93,7 +94,7 @@ In 2018 XCP-ng was born, following Citrix System’s announcement to remove feat
     title="How to **get started?**"
     media="/img/flatline/start-up.svg"
     alt="Illustration of a green rocket launching from a laptop screen, symbolizing a startup or new project launch."
-
+    animate="true"
   >}}
   {{<md>}}
   There are many ways to get started with XCP-ng. There are a number of **video training tutorials** on our youtube channel, **step-by-step written instructions** in our documentation, and a training course for XCP-ng is coming soon.
@@ -122,6 +123,7 @@ In 2018 XCP-ng was born, following Citrix System’s announcement to remove feat
   media="/img/flatline/coding.svg"
   mediaPosition="right"
   alt="Illustration of a person typing code on a computer, symbolizing software development and programming."
+  animate="true"
 >}}
   {{<md>}}
   The XCP-ng platform benefits from **15 dedicated employees** and the assistance of contributors like yourself. Within our documentation, you can find more detailed information about our development process, **how you can be involved in future** updates and testing of the platform.

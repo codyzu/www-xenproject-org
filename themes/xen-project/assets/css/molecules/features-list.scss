@@ -15,6 +15,18 @@
   @include desktop {
     --features-columns-count: 3;
   }
+
+  .features-list--cols-2 {
+    --features-columns-count: 2;
+  }
+
+  .features-list--cols-3 {
+    --features-columns-count: 3;
+  }
+
+  .features-list--cols-4 {
+    --features-columns-count: 4;
+  }
 }
 
 // Mixins
@@ -42,6 +54,7 @@
     --li-width: calc(100% / var(--features-columns-count) - var(--gap));
     margin: 0;
     flex: 1 1 var(--li-width);
+    min-width: 300px;
   }
 
   //

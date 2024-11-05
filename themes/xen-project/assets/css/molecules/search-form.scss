@@ -13,7 +13,10 @@
       flex-grow: 1;
       border: none;
       background: transparent;
-      padding: 10px;
+      padding: 0 24px;
+      line-height: 2;
+      height: 3em;
+      font-size: 1rem;
 
       &::placeholder {
         color: var(--color-text-secondary);
@@ -26,6 +29,8 @@
       border: none;
       padding: 8px 12px;
       cursor: pointer;
+      margin-right: 8px;
+      font-size: 1.1em;
     }
   }
   .search-results ul {

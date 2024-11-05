@@ -1,14 +1,19 @@
 .header {
   --header-height: 52px;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
-  align-items: center;
   background: var(--header-color-background);
-  border-bottom: 1px solid var(--header-color-border);
-  position: relative;
+  border-bottom: none;
   padding: var(--sp-xs) var(--sp-sm);
-  height: var(--header-height);
+
+  .header-inner {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: var(--header-height);
+    max-width: var(--container-width);
+    margin: 0 auto;
+  }
 }
 
 .header-logo {

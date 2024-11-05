@@ -11,14 +11,14 @@ menus:
 aside: 
   - type: resource
     items:
-      - name: https://xenbits.xenproject.org/governance/communication-guide.html
-        link: Communication Guide
-      - name: https://xenbits.xenproject.org/governance/code-review-guide.html
-        link: Code Review Guide
-      - name: https://xenbits.xenproject.org/governance/communication-practice.html
-        link: Communication Best Practice
-      - name: https://xenbits.xenproject.org/governance/resolving-disagreement.html
-        link: Resolving Disagreement
+      - name: Communication Guide
+        link: https://xenbits.xenproject.org/governance/communication-guide.html
+      - name: Code Review Guide
+        link: https://xenbits.xenproject.org/governance/code-review-guide.html
+      - name: Communication Best Practice
+        link: https://xenbits.xenproject.org/governance/communication-practice.html
+      - name: Resolving Disagreement
+        link: https://xenbits.xenproject.org/governance/resolving-disagreement.html
 ---
 
 {{<section md="true" container="small content-markdown">}}

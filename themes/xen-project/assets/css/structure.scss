@@ -1,55 +1,36 @@
 .main {
-  // break margin
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  align-items: stretch;
+  padding-top: 80px;
+
+  &.has-aside {
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   &::before,
   &::after {
     content: "";
     display: table;
   }
-  padding: 0 var(--content-padding-horizontal);
-}
 
-@include tablet {
   .page-aside {
-    width: 420px;
-  }
-}
+    min-width: 400px;
+    flex: 0 0 400px;
 
-.page-single {
-  @include tablet {
-    > .article {
-      padding-top: var(--sp-xl);
+    @media (max-width: 900px) {
+      min-width: 100%;
+      flex: 1 0 100%;
     }
   }
 
-  &.with-aside {
-    display: flex;
-    flex-direction: column;
-    gap: var(--sp-lg);
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1920px;
-
-    @include tablet {
-      flex-direction: row;
-      gap: 0;
-
-      > .article,
-      > .page-aside {
-        padding-top: var(--sp-xl);
-      }
-
-      > .article h1 {
-        margin-top: 0;
-      }
-    }
-  }
-
-  @include tablet {
-    .single-content {
-      margin-top: var(--sp-lg);
-      .section-space:first-child {
-        margin-top: 0;
-      }
-    }
+  .article {
+    flex: 1;
+    padding: 0 var(--content-padding-horizontal);
+    width: 100%;
   }
 }

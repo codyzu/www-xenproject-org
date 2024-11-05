@@ -96,6 +96,9 @@
     const init = (element) => {
       const searchInput = element.querySelector(".search-input");
       resultsContainer = element.querySelector(".search-results");
+      element.querySelector("form").addEventListener("submit", (e) => {
+        e.preventDefault();
+      });
 
       // Load data immediately
       loadDownloadsData();
@@ -115,9 +118,6 @@
       }, 300);
 
       searchInput.addEventListener("input", debouncedSearch);
-
-      searchInput.value = "xen sss";
-      searchInput.dispatchEvent(new Event("input"));
     };
     init(element);
   };

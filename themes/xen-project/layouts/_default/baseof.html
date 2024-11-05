@@ -5,7 +5,7 @@
   </head>
   <body class="{{ block "bodyClass" . }}{{ end }} {{ .Params.bodyClass }}">
     {{ partial "header.html" . }}
-    <main class="main">
+    <main class="main{{ if .Page.Params.aside }} has-aside{{ end }}">
       {{ block "main" . }}{{ end }}
     </main>
     {{ partial "footer.html" . }}

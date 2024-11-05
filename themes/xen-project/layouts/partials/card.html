@@ -1,13 +1,18 @@
+{{ $defaultIcon := "fa-arrow-up-right-from-square" }}
+{{ $defaultLinkText := "Join" }}
+
+
 <div class="card {{ .class }}">
   <h3 class="card__label">{{ .title | safeHTML }}</h3>
   <div class="card__content">{{ .description | safeHTML }}</div>
   <div class="card__actions">
     <a href="{{ .link }}" class="join-button">
-      {{ .linkText | default "Join" }} <i class="fas fa-arrow-up-right-from-square"></i>
+      {{ .linkText | default $defaultLinkText }} <i class="fas {{ .linkIcon | default $defaultIcon }}"></i>
     </a>
     {{ if .secondaryLink }}
-      <a href="{{ .secondaryLink }}" class="join-button">
-        {{ .secondaryLinkText | default "Join" }} <i class="fas fa-arrow-up-right-from-square"></i>
+      <a href="{{ .secondaryLink }}" class="btn btn-tertiary join-button">
+        {{ .secondaryLinkText | default $defaultLinkText }}
+        <i class="fas {{ .secondaryLinkIcon | default $defaultIcon }}"></i>
       </a>
     {{ end }}
   </div>

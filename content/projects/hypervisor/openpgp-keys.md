@@ -1,0 +1,70 @@
+---
+title: OpenPGP Keys
+description: OpenPGP Keys for the Xen Project
+keywords: "Xen Project, OpenPGP, PGP keys, security, cryptographic keys"
+draft: false
+---
+
+{{<section md="true">}}
+# The Hypervisor Team’s OpenPGP Keys
+
+The Hypervisor team uses OpenPGP when necessary to provide essential confidentiality and integrity. Our current set of in-use, published, keys are these:
+
+## Xen Project tree code signing and announcements
+
+We use this key to sign git tags on xen.git and qemu-xen-*.git, whenever we make a Xen Project release.
+
+We also use it to sign Xen Project security advisories from the security team.
+
+```text
+pub   2048R/57E82BD9 2010-04-06        
+      Key fingerprint = 23E3 222C 145F 4475 FA80  60A7 83FE 14C9 57E8 2BD9  
+uid   Xen.org Xen tree code signing (signatures on the
+      xen hypervisor and tools) <pgp@xen.org>
+```
+
+## Security team incoming email
+
+If you need to send encrypted email to the Xen Project security team, please use this key. We prefer that routine communications not be encrypted.
+
+```text
+pub   2048R/82D3A964 2012-05-02
+      Key fingerprint = F1F9 380F 6287 0056 A186  2CC0 743A 3FCA 82D3 A964  
+uid   Xen.org (incoming email) <security@xen.org>
+```
+
+```text
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v1.4.12 (GNU/Linux)
+mQENBE+hNqgBCADYua5OFR0/Jeu0rByk+Obk6+SewIeGej1FAcjo+Cvpcr1dfnLB
+AhmmhbfMb++qr6SG6Ek+cUQogYAFvZcEcusbRPy4MIzJkqoPSyOUhCxZoxWNWUfh
+Ddt0TWA3Hs1vYmFOe+2jvlL3h7yAsGMYO8jo6ow8ceBEOmf8Q5BLq2OPkNpGcaHE
+hbSv0VZ3mdHM30ynY6GubIwsc68LZ5hTORTSjKaj2WVCe4OorBMZte5Im+6MOEUb
+CjynqPJSU9KNFhIhUuyXp1vn0gZ2N5QSpkghpzBJLzeBNEI6ecV3Q0p+/pq8EvEA
+uUSNLUEbIZ/NSLqyTVMc9HZxnPu59im8wB9rABEBAAG0K1hlbi5vcmcgKGluY29t
+aW5nIGVtYWlsKSA8c2VjdXJpdHlAeGVuLm9yZz6JATgEEwECACIFAk+hNqgCGwMG
+CwkIBwMCBhUIAgkKCwQWAgMBAh4BAheAAAoJEHQ6P8qC06lk1y0H/2PjjQyPDZVS
+4zIVnR4xQOQ1KphPCdSTPlhj+VVrjZZNXWGCUKvJShL84XIONH62fIgQE/6CTWXJ
+tx6i4u1oAtFH4+8HayFjg609lxx9frJ4tJkJitw5TT6VEGAambchIG5QaP9hepgy
+rVXjQ0X2ot0jgpwL6G3sx0L1gewiMALXtGT6oTqLjXius/nv69yRe26wxU1GX80o
+WWH/5p585xt54C1XnhDEVzp0S9UW7VAAVDCWuSefSrihh3jZi4QE1fnGRwO0RfeL
+h1sXeuMn9uFIz0CmaCbAp5PeUyNb6wgG60h4JLCDyhJntoHfq8pQLEJ8G9nvjDfw
+8BLvkBKYNvaIRgQQEQIABgUCUVv1xQAKCRCR4BLxp7SsZHgRAJ0XZO6Ids87Wp7q
+djuti9yoTByh1gCgjzZL+llMzUAvTHPUvnY054utm365AQ0ET6E2qAEIALqWNlGF
+d3uIj+DXZ40/i7fsoPb+HaYaG6Y+7+ZWxMxUeQDTLBnTYiAa+EGVutc4v52BXH8R
+Zc9I/NH9lBT2/AwaEVSomxLicbixXUGoFC9kMp/VP1xwWJ+gm+ZEnQzY+2AFJGMv
+qEsGocQA7yLw121JUOrorny3CqpHykPUF3fqp4n/GL47VTaKxlsoV8o2JgZZ62NJ
+lkBtnbA4ODzhWr6cA21smWFgsfFJ+EkXb1NEeYLs8CWtTn2EiQXlZTQ8OgBPahfv
+LZ+AJ4sM/Raoi2c3UIQrlCsg9BoojKMkLi8XUrywr8HEJYjhBYObCgbmaeIEfmrw
+5XJqOKlMg40XY+MAEQEAAYkBHwQYAQIACQUCT6E2qAIbDAAKCRB0Oj/KgtOpZDhJ
+B/0XtxrlVuRttpjK1PEYK/A/9h47VH9p0UvVYCH+ZS2a+sTgsapx0zp4uni8wtyt
+kvGw/EM06D4ZoaWAUcjXILNKGdi62q/z+WAfdEY/WrONxAbr2Dtv/LT00/2nifYU
+9O1vGYS1Kx/B3D8fU0w+2Sjv+hYjbGDWn619etC8dNEIxczH6V/cVOZf0D2KhoBf
+MCHUoKeuAfaIKDMxOZjb7sajfUW70cxFFWYqH96Py01oxDroOKzy0x62iVdsYFGB
+3FvcD9tDWsxVWwGHA8DKEfKMuNPiuapzdxdrNm5AQilSUlfD65KK9d3kQdoOUPdP
+WoIQnz8GnHMPDe997SuwxWGb
+=Ne4C
+-----END PGP PUBLIC KEY BLOCK-----
+```
+
+{{</section>}}

@@ -16,6 +16,7 @@ menus:
     media="/img/flatline/data-process.svg"
     mediaPosition="right"
     alt="Illustration of a laptop displaying 3D bar charts, connected to cloud and file management icons, representing data integration and synchronization."
+    animate="true"
   >}}
 Qubes OS is a security-focused operating system based on Xen. The goal of Qubes OS is to create a reasonably secure environment that is also practical and usable, capable of playing the role of a daily driver rather than a highly situational solution - and Xen is a major reason why we can confidently say that Qubes OS succeeds.
 <p class="mg-t-md">
@@ -30,6 +31,7 @@ Qubes OS is a security-focused operating system based on Xen. The goal of Qubes 
     title="Xen Server case study"
     media="/img/flatline/data-process.svg"
     alt="Illustration of a laptop displaying 3D bar charts, connected to cloud and file management icons, representing data integration and synchronization."
+    animate="true"
   >}}
 Xen Server, powered by the Xen Project hypervisor, offers a robust virtualization platform for enterprise environments. It enables efficient resource utilization, simplified management, and enhanced security for organizations of all sizes. With features like live migration and dynamic memory allocation, Xen Server optimizes datacenter operations and reduces downtime.
   {{</media-block>}}
@@ -41,6 +43,7 @@ Xen Server, powered by the Xen Project hypervisor, offers a robust virtualizatio
     mediaPosition="right"
     media="/img/flatline/data-hosting.svg"
     alt="Illustration of servers surrounded by cloud icons with upload and download arrows, representing cloud computing and data storage."
+    animate="true"
   >}}
 Amazon Web Services (AWS) leverages the Xen Project hypervisor to power its Elastic Compute Cloud (EC2) service. This implementation demonstrates the scalability and reliability of Xen in large-scale cloud environments. AWS's success with Xen has revolutionized cloud computing, offering flexible and cost-effective solutions for businesses worldwide.
   {{</media-block>}}
@@ -51,6 +54,7 @@ Amazon Web Services (AWS) leverages the Xen Project hypervisor to power its Elas
     title="Security"
     media="/img/flatline/data-process.svg"
     alt="Illustration of a laptop displaying 3D bar charts, connected to cloud and file management icons, representing data integration and synchronization."
+    animate="true"
   >}}
 The Xen Project hypervisor prioritizes security through its unique architecture and ongoing development efforts. Its small codebase and isolation features minimize the attack surface, while regular security updates address emerging threats. Xen's security-first approach makes it an ideal choice for organizations with stringent data protection requirements.
 <p class="mg-t-md">
@@ -66,6 +70,7 @@ The Xen Project hypervisor prioritizes security through its unique architecture 
     media="/img/flatline/data_and_settings.svg"
     mediaPosition="right"
     alt="Illustration of a database icon with gears and a wrench, representing data management and configuration tools."
+    animate="true"
   >}}
 Xen Project's virtualization technology is increasingly adopted in embedded systems and automotive applications. It enables the consolidation of multiple systems onto a single hardware platform, reducing costs and complexity. In automotive, Xen supports the development of advanced infotainment systems and autonomous driving technologies while ensuring critical safety features remain isolated.
 
@@ -77,7 +82,7 @@ Xen Project's virtualization technology is increasingly adopted in embedded syst
 {{</section>}}
 
 
-{{<section md="true" background="curve-reverse" container="small">}}
+{{<section md="true" class="section-square-primary">}}
 ## Did you know?
 
 There are several virtualization technologies available in the world today. Our Xen Project virtualization and cloud software includes many powerful features that make it an excellent choice for many organizations.
@@ -98,14 +103,11 @@ Conservative estimates show that Xen has an active user base of 10+ million; the
 
 
 {{<section container="full">}}
-{{<center class="mg-t-lg">}}
-  ### Projects
-{{</center>}}
 {{<carousel class="mg-t-lg">}}
   {{<getpages "projects">}}
 {{</carousel>}}
 
 <p class="mg-t-xl txt-c">
-  <a href="/projects/all-projects" class="btn btn-secondary">Discover all projects <i class="fas fa-arrow-right"></i></a>
+  <a href="/projects/all-projects" class="btn btn-primary">Discover all projects <i class="fas fa-arrow-right"></i></a>
 </p>
 {{</section>}}

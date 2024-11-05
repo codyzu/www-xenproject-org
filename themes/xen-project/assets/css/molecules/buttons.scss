@@ -1,5 +1,5 @@
 .btn {
-  --border-radius: 0.125rem;
+  --border-radius: 0.4em;
   --border-size: 0.125rem;
   --color-active: var(--color-action-fill-pressed);
   --color-disabled: var(--color-border);
@@ -72,7 +72,7 @@
 
   &-secondary,
   &-tertiary {
-    background-color: var(--color-surface);
+    background-color: var(--color-surface-secondary);
     color: var(--color-primary);
   }
 
