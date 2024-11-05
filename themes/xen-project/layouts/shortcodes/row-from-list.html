@@ -2,6 +2,7 @@
 {{ $cols := .Get "cols" }}
 {{ $class := .Get "class" }}
 {{ $yamlData := .Inner | unmarshal }}
+{{ $componentClass := .Get "component-class" }}
 
 
 <div
@@ -9,6 +10,6 @@
   {{ if $cols }}style="--cols: {{ $cols }};"{{ end }}
 >
   {{ range $yamlData }}
-    {{ partial $component . }}
+    {{ partial $component (merge . (dict "class" $componentClass)) }}
   {{ end }}
 </div>

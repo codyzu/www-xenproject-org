@@ -5,15 +5,24 @@
 <div class="card {{ .class }}">
   <h3 class="card__label">{{ .title | safeHTML }}</h3>
   <div class="card__content">{{ .description | safeHTML }}</div>
-  <div class="card__actions">
-    <a href="{{ .link }}" class="join-button">
-      {{ .linkText | default $defaultLinkText }} <i class="fas {{ .linkIcon | default $defaultIcon }}"></i>
-    </a>
-    {{ if .secondaryLink }}
-      <a href="{{ .secondaryLink }}" class="btn btn-tertiary join-button">
-        {{ .secondaryLinkText | default $defaultLinkText }}
-        <i class="fas {{ .secondaryLinkIcon | default $defaultIcon }}"></i>
+  {{ if .tags }}
+    <div class="card__tags">
+      {{ range .tags }}
+        <span class="card__tag">{{ . }}</span>
+      {{ end }}
+    </div>
+  {{ end }}
+  {{ if .link }}
+    <div class="card__actions">
+      <a href="{{ .link }}" class="join-button">
+        {{ .linkText | default $defaultLinkText }} <i class="fas {{ .linkIcon | default $defaultIcon }}"></i>
       </a>
-    {{ end }}
-  </div>
+      {{ if .secondaryLink }}
+        <a href="{{ .secondaryLink }}" class="btn btn-tertiary join-button">
+          {{ .secondaryLinkText | default $defaultLinkText }}
+          <i class="fas {{ .secondaryLinkIcon | default $defaultIcon }}"></i>
+        </a>
+      {{ end }}
+    </div>
+  {{ end }}
 </div>

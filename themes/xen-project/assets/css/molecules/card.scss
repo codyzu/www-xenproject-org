@@ -1,13 +1,15 @@
 .card {
   --card-color: var(--color-brand-fill);
+  --card-border-size: 12px;
   --card-secondary-color: var(--color-brand-fill-pressed);
   --card-tag-text-color: var(--color-brand-text-hover);
   --card-date-color: var(--color-text-secondary);
   --card-author-color: var(--color-text);
   --card-background-color: #fff;
-
+  --card-title-color: inherit;
+  --card-title-weight: bold;
   color: var(--color-text-secondary);
-  border-top: 12px solid var(--card-color);
+  border-top: var(--card-border-size) solid var(--card-color);
   border-radius: 8px;
   padding: 24px;
   background: var(--card-background-color);
@@ -21,8 +23,9 @@
 
   &__label {
     font-size: 24px;
-    font-weight: bold;
+    font-weight: var(--card-title-weight);
     line-height: 1.25;
+    color: var(--card-title-color);
   }
 
   &__date {
@@ -78,5 +81,14 @@
     --card-secondary-color: var(--color-action-surface);
     --card-tag-text-color: var(--color-action-text);
     --card-date-color: var(--color-text-secondary);
+  }
+
+  &--bg {
+    --card-background-color: var(--color-brand-surface);
+    --card-border-size: 0;
+    --card-secondary-color: var(--color-action-surface);
+    --card-tag-text-color: var(--color-action-text);
+    --card-title-color: var(--color-action-text);
+    --card-title-weight: 500;
   }
 }

@@ -16,30 +16,27 @@ menus:
 ## Xen Project Matrix
 {{</md>}}
 
-{{<row-from-list component="conversation-card" cols="3">}}  
-- label: XenProject
+{{<row-from-list component="card" component-class="card--bg" cols="3">}}  
+- title: XenProject
   tags:
     - Matrix
-  content: For general queries and updates about the software. This channel is mainly for users and community members.For developer-specific questions use XenDevel instead.
-  actions:
-    - url: "https://matrix.to/#/#XenProject:matrix.org"
-      text: Join
+  description: For general queries and updates about the software. This channel is mainly for users and community members.For developer-specific questions use XenDevel instead.
+  link: "https://matrix.to/#/#XenProject:matrix.org"
+  linkText: Join
 
-- label: XenDevel 
+- title: XenDevel 
   tags:
     - Matrix
-  content: For developers - if you have submitted patches to the developer mailing lists or are otherwise active on them, this channel is for you.It's also the best place to ask development-related questions to the Xen Project.
-  actions:
-    - url: "https://matrix.to/#/#XenDevel:matrix.org"
-      text: Join
+  description: For developers - if you have submitted patches to the developer mailing lists or are otherwise active on them, this channel is for you.It's also the best place to ask development-related questions to the Xen Project.
+  link: "https://matrix.to/#/#XenDevel:matrix.org"
+  linkText: Join
 
-- label: XenSocial
+- title: XenSocial
   tags: 
     - Matrix
-  content: For community introductions, tech news, and your watercooler chats.
-  actions:
-    - url: "https://matrix.to/#/#XenSocial:matrix.org"
-      text: Join
+  description: For community introductions, tech news, and your watercooler chats.
+  link: "https://matrix.to/#/#XenSocial:matrix.org"
+  linkText: Join
 {{</row-from-list>}}
 {{</section>}}
 
@@ -50,25 +47,23 @@ menus:
 {{</md>}}
 
 {{<row-from-list component="conversation-card" cols="3">}} 
-- label: XCP-ng
+- title: XCP-ng
   tags:
     - Discord
-  content: For general queries and updates about XCP-ng, hosted on Discord.
-  actions:
-    - url: "https://discord.gg/Hr98F6wRvx"
-      text: Join
+  description: For general queries and updates about XCP-ng, hosted on Discord.
+  link: "https://discord.gg/Hr98F6wRvx"
+  linkText: Join
 
-- label: Mirage
+- title: Mirage
   tags:
     - Discord
-  content: For Mirage OS.
-  actions:
-    - url: "https://libera.chat/"
-      text: Join
+  description: For Mirage OS.
+  link: "https://libera.chat/"
+  linkText: Join
 {{</row-from-list>}}
 {{</section>}}
 
-{{<section md="true" container="small">}}
+{{<section md="true">}}
 ### Netiquette
 
 Netiquette encourages individuals to be considerate, kind, and mindful of the impact their words and actions can have on others in the online community.
