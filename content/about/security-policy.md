@@ -56,7 +56,7 @@ aside:
         name: Tim Deegan
 ---
 
-{{<section md="true" container="small">}}
+{{<section md="true" class="content-markdown">}}
 This document has come in effect in December 2011 and will be reviewed periodically: see [Change History](#change-history) for a detailed list of changes.
 
 ## Introduction

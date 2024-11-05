@@ -4,13 +4,12 @@ description: OpenPGP Keys for the Xen Project
 keywords: "Xen Project, OpenPGP, PGP keys, security, cryptographic keys"
 draft: false
 ---
-
-{{<section md="true">}}
-# The Hypervisor Team’s OpenPGP Keys
+{{<section md="true" class="content-markdown">}}
+## The Hypervisor Team’s OpenPGP Keys
 
 The Hypervisor team uses OpenPGP when necessary to provide essential confidentiality and integrity. Our current set of in-use, published, keys are these:
 
-## Xen Project tree code signing and announcements
+### Xen Project tree code signing and announcements
 
 We use this key to sign git tags on xen.git and qemu-xen-*.git, whenever we make a Xen Project release.
 
@@ -23,7 +22,7 @@ uid   Xen.org Xen tree code signing (signatures on the
       xen hypervisor and tools) <pgp@xen.org>
 ```
 
-## Security team incoming email
+### Security team incoming email
 
 If you need to send encrypted email to the Xen Project security team, please use this key. We prefer that routine communications not be encrypted.
 

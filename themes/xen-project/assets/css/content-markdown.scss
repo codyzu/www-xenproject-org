@@ -43,9 +43,12 @@
     margin-top: 1.5em;
     margin-bottom: 0.8em;
   }
-
+  pre[style] {
+    display: block;
+  }
   pre code {
-    background: var(--color-surface-secondary);
+    background: var(--color-border);
+    color: var(--color-text-secondary);
     display: block;
     padding: var(--sp-sm) var(--sp-lg);
     line-height: 1.4;

@@ -4,7 +4,7 @@
 
 <div class="card {{ .class }}">
   <h3 class="card__label">{{ .title | safeHTML }}</h3>
-  <div class="card__content">{{ .description | safeHTML }}</div>
+  <div class="card__content">{{ .description | markdownify | safeHTML }}</div>
   {{ if .tags }}
     <div class="card__tags">
       {{ range .tags }}

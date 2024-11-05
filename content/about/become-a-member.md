@@ -15,6 +15,7 @@ menus:
       title="The Xen Project members are companies that are committed to the market and technical success of the Xen Project"
       media="/img/flatline/brainstorming-session.svg"
       alt="Illustration of three people having a discussion with speech bubbles, symbolizing teamwork and communication."
+      animate="true"
   >}}
 {{<md>}}
 The Xen Project members are companies that are committed to the market and technical success of the Xen Project.
@@ -26,8 +27,8 @@ Committers and maintainers are responsible for the technical development and are
 {{</media-block>}}
 {{</section>}}
 
-{{<section background="curve" class="txt-c">}}
-  {{<md>}} 
+{{<section class="section-square-rounded">}}
+  {{<md class="txt-c">}} 
   ## Main responsibilities
   {{</md>}}
 
@@ -53,7 +54,9 @@ Committers and maintainers are responsible for the technical development and are
 {{<media-block
     title="Improve engineering ROI"
     media="/img/flatline/data-analysis.svg"
+    alt="Illustration of a person analyzing data, symbolizing data analysis and decision-making."
     mediaPosition="right"
+    animate="true"
 >}}
 {{<md>}}
 The Xen Project is in the process of creating a new common test infrastructure. New test cases for specific hardware and software combinations will lead to higher quality project releases. In addition, a planned focus on a security and hardening framework will enhance the release readiness of the Xen Project.
@@ -68,6 +71,7 @@ The Advisory Board helps define test cases and prioritize release requirements, 
     title="Xen Project Insights"
     media="/img/flatline/data-analyst.svg"
     alt="Illustration of a person interacting with charts and graphs on a tablet, representing data visualization and analysis."
+    animate="true"
 >}}
   {{<md>}}
   Board members can propose and vote upon changes to the Xen Project test and validation infrastructure and financial resource allocation.
@@ -83,6 +87,7 @@ The Advisory Board helps define test cases and prioritize release requirements, 
     media="/img/flatline/handshake.svg"
     mediaPosition="right"
     alt="Illustration of two people shaking hands, symbolizing partnership and agreement."
+    animate="true"
 >}}
 {{<md>}}
 Board members can influence the marketing strategy and participate in a wide range of activities including press releases, brand visibility on the website, and giveaways at events.
@@ -96,6 +101,7 @@ Board members can influence the marketing strategy and participate in a wide ran
     title="Define policies"
     media="/img/flatline/brainstorming.svg"
     alt="Illustration of a light bulb with a brain inside and speech bubbles around it, symbolizing innovation and creative thinking."
+    animate="true"
 >}}
 {{<md>}}
 Members help define policies, including trademark usage, compliance and certification of Xen derivatives. In addition, membership dues funds project infrastructure, such as hosting and test environments which are essential to the project.
@@ -106,7 +112,7 @@ The Board process will help ensure non-technical decisions are collectively dete
 {{</section>}}
 
 
-{{<section background="curve-reverse" >}}
+{{<section class="section-square-primary">}}
 {{<md>}}
 ### How to **join?**
 {{</md>}}
@@ -141,6 +147,7 @@ The Board process will help ensure non-technical decisions are collectively dete
 {{<media-block
     title="Governed by Xen project members"
     media=`{{<partial "blocks/logos-circle">}}`
+    animate="true"
 >}}
 {{<md>}}
 Board members can propose and vote upon changes to the Xen Project. Members also gain valuable strategic insight into project plans and future scope.
@@ -157,6 +164,7 @@ Board members can propose and vote upon changes to the Xen Project. Members also
     media="/img/flatline/data-process.svg"
     mediaPosition="right"
     imageAlt="Illustration of a laptop displaying 3D bar charts, connected to cloud storage and file management icons, symbolizing data synchronization and integration."
+    animate="true"
 >}}
 {{<md>}}
 The mission of the Xen Project is to advance virtualisation technology across a wide range of commercial and open-source domains.

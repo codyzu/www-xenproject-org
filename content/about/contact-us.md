@@ -13,13 +13,14 @@ menus:
 
 {{<section>}}
 
-{{<vertical-lists>}}
+{{<row-from-list component="card" component-class="card--bg" cols="3">}} 
 - title: Development
-  text: For development questions, please begin by asking on the mailing lists or Matrix. These are generally the fastest ways to get an answer.
+  description: For development questions, please begin by asking on the mailing lists or Matrix. These are generally the fastest ways to get an answer.
 - title: GDPR
-  text: For GDPR requests, please contact gdpr@xenproject.org.
+  description: For GDPR requests, please contact gdpr@xenproject.org.
 - title: Other
-  text: For all other questions, please contact community.manager@xenproject.org.
-{{</vertical-lists>}}
+  description: For all other questions, please contact community.manager@xenproject.org.
+{{</row-from-list>}}
+
 
 {{</section>}}

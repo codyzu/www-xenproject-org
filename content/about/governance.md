@@ -11,7 +11,7 @@ menus:
 ---
 
 
-{{<section md="true" container="small content-markdown">}}
+{{<section md="true" class="content-markdown">}}
 ## Goals
 
 The goals of Xen Project Governance are to:

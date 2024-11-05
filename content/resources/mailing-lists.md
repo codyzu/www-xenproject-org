@@ -15,6 +15,8 @@ keywords: "xen mailing lists, community communication, developer discussions, te
   {{<media-block
     title="What does this mean?"
     media="/img/flatline/new-message.svg"
+    alt="Illustration of a person sending a message, symbolizing communication."
+    animate="true"
   >}}
   {{<md>}}
 - Xen revolutionizes embedded systems, enabling fully-featured operating systems like Linux to coexist with smaller and faster RTOSes such as Zephyr.
@@ -26,7 +28,6 @@ keywords: "xen mailing lists, community communication, developer discussions, te
 
 
 {{<section class="section-square-primary txt-c">}}
-  
   {{<md>}}
   Consider **searching in archives**, the answer you are looking might already exist!
   {{</md>}}

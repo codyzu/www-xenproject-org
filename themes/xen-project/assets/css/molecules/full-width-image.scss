@@ -1,4 +1,13 @@
 .full-width-image {
+  max-width: calc(1920px + var(--container-paddings) * 2);
+  margin-left: calc(var(--container-paddings) * -1);
+  margin-right: calc(var(--container-paddings) * -1);
+
+  @media (min-width: 2000px) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   img {
     width: 100%;
     height: auto;
