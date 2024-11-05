@@ -17,7 +17,7 @@ menus:
   {{<list-pages "projects">}}
 {{</section>}}
 
-{{<section background="curve" class="txt-c">}}
+{{<section class="section-square-primary txt-c">}}
   {{<md>}}
   ### Join the **conversation**
   {{</md>}}
@@ -39,12 +39,13 @@ menus:
     title="Lead by a <strong>dedicated community</strong>"
     media="/img/flatline/team-work.svg"
     alt="Illustration of a team working together on a project, with a shared vision and goal."
+    animate="true"
   >}}
   The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology.
   With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.
 
   <p class="mg-t-md">
-    <a href="/contribute/get-started/" class="btn btn-secondary">
+    <a href="/contribute/get-started/" class="btn btn-primary">
      Get started <i class="fas fa-arrow-right"></i>
     </a>
   </p>
@@ -56,8 +57,9 @@ menus:
   {{<media-block
     title="About **Xen Project**</strong>"
     media="/img/flatline/data-process.svg"
-    mediaPosition="right"
     alt="Illustration of a laptop displaying 3D bar charts, connected to cloud storage and file management icons, symbolizing data synchronization and integration."
+    mediaPosition="right"
+    animate="true"
   >}}
 The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology.
 With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.

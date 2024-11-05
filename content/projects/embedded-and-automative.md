@@ -17,6 +17,7 @@ menus:
     media="/img/logos/arm-logo.svg"
     imageSize="50%"
     alt="ARM logo"
+    animate="true"
   >}}
 {{<md>}}
 At the core of every modern embedded system is software meticulously crafted and seamlessly integrated with hardware, dedicated to fulfilling a specific, vital function. This is where our journey begins.
@@ -41,6 +42,8 @@ Our focus extends beyond ARMv7 to encompass ARMv8, x86-64, and RISC-V, catering 
     media="/img/flatline/data_and_settings.svg"
     mediaPosition="right"
     alt="Illustration of a database icon with gears and a wrench, representing data management and configuration tools."
+    animate="true"
+
   >}}
   {{<md>}}
 - Xen revolutionizes embedded systems, enabling fully-featured operating systems like Linux to coexist with smaller and faster RTOSes such as Zephyr.
@@ -50,7 +53,7 @@ Our focus extends beyond ARMv7 to encompass ARMv8, x86-64, and RISC-V, catering 
 {{</media-block>}}
 {{</section>}}
 
-{{<section background="normal">}}
+{{<section class="section-square-rounded">}}
   {{<features-list cols="3">}}
     - title: Real-Time and Cache Coloring
       icon: fas fa-clock-rotate-left
@@ -70,6 +73,8 @@ Our focus extends beyond ARMv7 to encompass ARMv8, x86-64, and RISC-V, catering 
   {{<media-block
     title="Why Xen Project?"
     media=`{{<youtube id="uuBhqwbaObE" title="Xen Project's Progress Toward Safety Certification"  >}}`
+    animate="true"
+
   >}}
 
 The Xen Project Hypervisor is uniquely placed to support a new range of use cases, building on top of 14 years of usage within the data center. In particular, its isolation and security features, flexible virtualization mode and architecture, driver disaggregation, and ARM support (only 47K lines of code) make it a perfect fit for embedded applications.
@@ -84,6 +89,7 @@ The Xen Project Hypervisor is uniquely placed to support a new range of use case
     media="/img/others/xen-progress-certification.png"
     mediaPosition="right"
     alt="Slide titled 'Xen Project's Progress Toward Safety Certification' by Stefano Stabellini and team members from AMD and BUGSENG."
+    animate="true"
   >}}
 {{<md>}}
 With sponsorships from the likes of AMD, we’re on a mission to align Xen with top safety standards, including ISO 26262 ASIL D and IEC 61508 SIL 3.
@@ -100,6 +106,7 @@ Xen is not just a technology; it’s a vision coming to life, shaping the future
     title="Functional safety"
     media="/img/flatline/coding.svg"
     alt="Illustration of a person typing code on a computer, symbolizing software development and programming."
+    animate="true"
   >}}
 {{<md>}}
 

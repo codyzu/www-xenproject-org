@@ -16,98 +16,98 @@ aside:
             icon: fas fa-check
           - name: Features (unstable)
             link: https://xenbits.xen.org/docs/unstable/SUPPORT.html
-            icon: fa-road
+            icon: fas fa-road
       - title: Team Processes
         items:
           - name: Maintenance
             link: http://wiki.xenproject.org/wiki/Xen_Maintenance_Releases
-            icon: fa-wrench
+            icon: fas fa-wrench
           - name: Security Process
-            link: /about-xen/security-policy/
-            icon: fa-key
+            link: /about/security-policy
+            icon: fas fa-key
           - name: OpenPGP Keys
             link: /developers/openpgp-keys
-            icon: fa-key
+            icon: fas fa-key
       - title: Users
         items:
           - name: Downloads
             link: /xen-project-archives/
-            icon: fa-cube
+            icon: fas fa-cube
           - name: Docs
             link: https://wiki.xenproject.org/wiki/Main_Page#Xen_Started
-            icon: fa-book
+            icon: fas fa-book
           - name: xen-users@ mailing list
             link: /help/mailing-list#general
-            icon: fa-envelope
+            icon: fas fa-envelope
           - name: "IRC: #xen"
             link: /help/irc/
-            icon: fa-comments-o
+            icon: fas fa-comments-o
           - name: Report a Bug
             link: http://wiki.xenproject.org/wiki/Reporting_Bugs_against_Xen
-            icon: fa-bug
+            icon: fas fa-bug
           - name: Xen Project Test Days
             link: http://wiki.xenproject.org/wiki/Xen_Test_Days
-            icon: fa-calendar-check-o
+            icon: fas fa-calendar-check-o
           - name: Security Announcements
             link: https://xenbits.xen.org/xsa/
-            icon: fa-bullhorn
+            icon: fas fa-bullhorn
       - title: Developers
         items:
           - name: xen-devel@ mailing list
             link: /help/mailing-list#devel
-            icon: fa-envelope
+            icon: fas fa-envelope
           - name: "IRC: #xendevel"
             link: /help/irc/
-            icon: fa-comments-o
+            icon: fas fa-comments-o
           - name: Browse Xen.git
             link: http://xenbits.xenproject.org/gitweb/?p=xen.git;a=summary
-            icon: fa-code-fork
+            icon: fas fa-code-fork
           - name: Repositories and Branches
             link: http://wiki.xenproject.org/wiki/Xen_Repositories
-            icon: fa-git
+            icon: fas fa-git
           - name: Submitting Patches
             link: http://wiki.xenproject.org/wiki/Submitting_Xen_Patches
-            icon: fa-medkit
+            icon: fas fa-medkit
           - name: Docs (API and Test)
             link: /help/documentation/#xen
-            icon: fa-book
+            icon: fas fa-book
           - name: Wiki Dev Home
             link: http://wiki.xenproject.org/wiki/XenDevHome
-            icon: fa-globe
+            icon: fas fa-globe
           - name: Projects for Newbies
             link: https://wiki.xenproject.org/wiki/Outreach_Program_Projects
-            icon: fa-cube
+            icon: fas fa-cube
       - title: Project Team
         items:
           - name: "Release Manager: Henry Wang"
-            icon: fa-briefcase
+            icon: fas fa-briefcase
           - name: Andy Cooper
-            icon: fa-star
+            icon: fas fa-star
           - name: George Dunlap
             icon: fa-star
           - name: Jan Beulich
-            icon: fa-star
+            icon: fas fa-star
           - name: Julien Grall
-            icon: fa-star
+            icon: fas fa-star
           - name: Stefano Stabellini
-            icon: fa-star
+            icon: fas fa-star
           - name: Wei Liu
-            icon: fa-star
+            icon: fas fa-star
           - name: Maintainers
             link: http://xenbits.xenproject.org/gitweb/?p=xen.git;a=blob;f=MAINTAINERS;hb=HEAD
             icon: fa-wrench
       - title: Committer Emeritus
         items:
           - name: Keir Fraser
-            icon: fa-star
+            icon: fas fa-star
           - name: Ian Campbell
-            icon: fa-star
+            icon: fas fa-star
           - name: Tim Deegan
             icon: fa-star
           - name: Ian Jackson
-            icon: fa-star
+            icon: fas fa-star
           - name: Konrad R Wilk
-            icon: fa-star
+            icon: fas fa-star
 ---
 
 

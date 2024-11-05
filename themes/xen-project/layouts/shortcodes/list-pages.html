@@ -5,12 +5,13 @@
 
 <div class="list-pages">
   {{ range $projects }}
-    {{ partial "project-card.html" (dict
+    {{ partial "card.html" (dict
       "title" .Title
       "description" .Description
       "link" .Permalink
       "linkText" "Discover"
-      "class" "project-card"
+      "linkIcon" "fas fa-arrow-right"
+      "class" ""
       )
     }}
   {{ end }}
