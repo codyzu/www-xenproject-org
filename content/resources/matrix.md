@@ -11,7 +11,7 @@ menus:
 ---
 
 
-{{<section>}}
+{{<section class="section-square-rounded">}}
 {{<md>}}
 ## Xen Project Matrix
 {{</md>}}
@@ -38,15 +38,12 @@ menus:
   link: "https://matrix.to/#/#XenSocial:matrix.org"
   linkText: Join
 {{</row-from-list>}}
-{{</section>}}
 
-
-{{<section>}}
-{{<md>}}
+{{<md class="mg-t-xl">}}
 ## Projects
 {{</md>}}
 
-{{<row-from-list component="conversation-card" cols="3">}} 
+{{<row-from-list component="card" component-class="card--bg" cols="3">}} 
 - title: XCP-ng
   tags:
     - Discord

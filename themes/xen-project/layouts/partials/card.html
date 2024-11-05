@@ -18,7 +18,7 @@
         {{ .linkText | default $defaultLinkText }} <i class="fas {{ .linkIcon | default $defaultIcon }}"></i>
       </a>
       {{ if .secondaryLink }}
-        <a href="{{ .secondaryLink }}" class="btn btn-tertiary join-button">
+        <a href="{{ .secondaryLink }}" class="join-button">
           {{ .secondaryLinkText | default $defaultLinkText }}
           <i class="fas {{ .secondaryLinkIcon | default $defaultIcon }}"></i>
         </a>
