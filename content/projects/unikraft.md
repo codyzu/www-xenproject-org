@@ -14,6 +14,7 @@ keywords: "unikraft, specialized kernels, lightweight virtualization, customized
     title="Basic concepts"
     media="https://www.slideshare.net/slideshow/embed_code/key/hzJl1EbWmxfFUN"
     alt="Slide for Unikraft's basic concepts on slideshare.net"
+    animate="true"
   >}}
 The high-level goal of Unikraft is to be able to build unikernels targeted at specific applications without requiring the time-consuming, expert work that building such a unikernel requires today. An additional goal (or hope) of Unikraft is that all developers interested in unikernel development would contribute by supplying libraries rather than working on independent projects with different code bases as it is done now.
 {{</media-block>}}
@@ -27,6 +28,7 @@ The high-level goal of Unikraft is to be able to build unikernels targeted at sp
     media="/img/others/unikraft-architecture.png"
     mediaPosition="right"
     alt="Diagram showing the process of selecting applications, configuring libraries, building, and running unikernel binaries with various components like network stack, filesystem, schedulers, and memory allocators."
+    animate="true"
   >}}
   {{<md>}}
   The main idea behind Unikraft is depicted in Figure 1 and consists of two basic components:
@@ -65,6 +67,7 @@ The high-level goal of Unikraft is to be able to build unikernels targeted at sp
     title="License"
     media="/img/flatline/coding2.svg"
     alt="Illustration of hands typing code on a laptop with documents and a cup of coffee, symbolizing software development and workflow."
+    animate="true"
   >}}
   {{<md>}}
   The main license of the run-time components of Unikraft is a 3-clause BSD license unless there is a good reason not to use it (e.g. we may import 2-clause BSD licensed code from Mini-OS, which we would not anticipate to change). The Makefile system would be licensed under GPL v2 or later as we want to be able to use KConfig functionality from Buildroot/Linux.

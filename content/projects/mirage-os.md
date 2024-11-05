@@ -14,6 +14,7 @@ keywords: "mirage os, unikernel, library operating system, secure virtualization
     title="About us"
     media="/img/flatline/data_and_settings.svg"
     alt="Illustration of a database icon with gears and a wrench, representing data management and configuration tools."
+    animate="true"
   >}}
 MirageOS is a library operating system that constructs unikernels for secure, high-performance, low-energy footprint applications across various hypervisor and embedded platforms. It is available as an open-source project created and maintained by the MirageOS Core Team. A unikernel can be customised based on the target architecture by picking the relevant MirageOS libraries and compiling them into a standalone operating system, strictly containing the functionality necessary for the target. This minimises the unikernel’s footprint, increasing the security of the deployed operating system.
 {{</media-block>}}
@@ -26,7 +27,7 @@ The MirageOS architecture can be divided into operating system libraries, typed 
 {{</section>}}
 
 
-{{<section class="background-normal"  >}}
+{{<section  class="section-square-rounded" >}}
   {{<features-list cols="2">}}
   - title: Fast Start
     icon: fas fa-power-off
@@ -49,6 +50,7 @@ The MirageOS architecture can be divided into operating system libraries, typed 
     media="/img/flatline/coding.svg"
     mediaPosition="right"
     alt="Illustration of a person typing code on a computer, symbolizing software development and programming."
+    animate="true"
   >}}
 Mirage OS follows a standard Github workflow and has its own Developer Portal. All developer-related information such as documentation, development team members, and other information related to the development of Mirage OS can be found there as well.
 {{</media-block>}}
@@ -59,6 +61,7 @@ Mirage OS follows a standard Github workflow and has its own Developer Portal. A
     title="License"
     media="/img/flatline/coding2.svg"
     alt="Illustration of hands typing code on a laptop with documents and a cup of coffee, symbolizing software development and workflow."
+    animate="true"
   >}}
 {{<md>}}
   The Mirage codebase is released under the ISC license, with some portions of code released under LGPLv2.

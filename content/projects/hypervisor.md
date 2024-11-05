@@ -26,21 +26,21 @@ aside:
             link: /about/security-policy
             icon: fas fa-key
           - name: OpenPGP Keys
-            link: /developers/openpgp-keys
+            link: ./openpgp-keys
             icon: fas fa-key
       - title: Users
         items:
           - name: Downloads
-            link: /xen-project-archives/
+            link: /resources/downloads/
             icon: fas fa-cube
           - name: Docs
             link: https://wiki.xenproject.org/wiki/Main_Page#Xen_Started
             icon: fas fa-book
           - name: xen-users@ mailing list
-            link: /help/mailing-list#general
+            link: /resources/mailing-lists/#xen-project-hypervisor
             icon: fas fa-envelope
           - name: "IRC: #xen"
-            link: /help/irc/
+            link: /resources/mailing-lists/#xen-project-hypervisor
             icon: fas fa-comments-o
           - name: Report a Bug
             link: http://wiki.xenproject.org/wiki/Reporting_Bugs_against_Xen
@@ -54,7 +54,7 @@ aside:
       - title: Developers
         items:
           - name: xen-devel@ mailing list
-            link: /help/mailing-list#devel
+            link: /resources/mailing-lists/#xen-project-hypervisor
             icon: fas fa-envelope
           - name: "IRC: #xendevel"
             link: /help/irc/
@@ -122,7 +122,7 @@ The Xen Project hypervisor is an open-source type-1 or baremetal hypervisor, whi
 {{</section>}}
 
 
-{{<section class="background-normal"  >}}
+{{<section class="section-square-rounded">}}
   {{<features-list cols="2">}}
   - title: Small footprint and interface
     icon: fas fa-memory

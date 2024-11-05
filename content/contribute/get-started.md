@@ -15,6 +15,7 @@ menu:
     title="Contributing to Xen: an introduction"
     media=`https://www.youtube.com/embed/F6TDJnYtcY8`
     alt="Video of a presentation about Contributing to Xen on Youtube"
+    animate="true"
 >}}
 We've collated some information to help you get started, click here for resources.
 
@@ -26,7 +27,7 @@ We've collated some information to help you get started, click here for resource
 {{</media-block>}}
 {{</section>}}
 
-{{<section background="curve">}}
+{{<section class="section-square-primary">}}
 {{<vertical-lists cols="2">}}
 - title: "**Read** documentation"
   text: >
@@ -46,8 +47,9 @@ We've collated some information to help you get started, click here for resource
 {{<media-block
     title="Access more resources"
     media=`/img/flatline/java.svg`
-    mediaPosition="right"
     alt="Illustration of a laptop displaying code, with a cup of coffee and a notebook beside it, symbolizing a coding or development environment."
+    mediaPosition="right"
+    animate="true"
 >}}
 
 <p class="mg-t-md"><a href="https://www.youtube.com/channel/UCGukhVf8pWrUVdse6KR6SRw">Youtube channel<i class="fas fa-arrow-up-right-from-square"></i></a></p>
@@ -62,6 +64,7 @@ We've collated some information to help you get started, click here for resource
 {{<media-block
     title="Advised by Xen project **members**"
     media=`{{<partial "blocks/logos-circle">}}`
+    animate="true"
 >}}
   The Xen Project Advisory Board is composed of experienced members who provide guidance and support to the project. Their expertise helps shape the direction and ensures the success of the Xen Project. By collaborating with the advisory board, we can address challenges and seize opportunities in the virtualization technology landscape.
 
@@ -77,8 +80,9 @@ We've collated some information to help you get started, click here for resource
 {{<media-block
     title="Become a member"
     media="/img/flatline/team-meeting.svg"
-    mediaPosition="right"
     alt="Illustration of three people discussing around a table with documents, representing teamwork and collaboration."
+    mediaPosition="right"
+    animate="true"
 >}}
 By being an active Advisory Board participant, regular opportunities for discussions with technical leaders include the chance to share priorities and endorse new strategies. In return, members will gain valuable strategic insight into project plans and future scope.
   <p class="mg-t-md">
