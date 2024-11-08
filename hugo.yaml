@@ -1,8 +1,15 @@
-baseURL: "https://local.xenproject.org/"
+# base config used for production
+
+baseURL: "https://beta.xenproject.org/"
 
 languageCode: "en-us"
 title: "Xen Project"
 theme: "xen-project"
+
+
+params:
+  blogApiKey: "b047d7f627a90f40798d11dcba"
+
 
 module:
   hugoVersion:
@@ -20,22 +27,16 @@ outputs:
   home:
     - HTML
     - RSSoui appelle
-    - HEADER
-    - FOOTER
+    - HEADERFOOTER
 
 outputFormats:
-  HEADER:
+  HEADERFOOTER:
     mediaType: "text/html"
-    baseName: "header"
+    baseName: "headerfooter"
     isPlainText: true
-    rel: "header"
+    rel: "headerfooter"
     notAlternative: true
-  FOOTER:
-    mediaType: "text/html"
-    baseName: "footer"
-    isPlainText: true
-    rel: "footer"
-    notAlternative: true
+  
 
 menus:
   main:
@@ -62,9 +63,6 @@ menus:
       parent: "Resources"
       weight: 60
       url: "/blog"
-      params:
-        class: "custom-class"
-        target: "_blank"
     - name: "About"
       url: "/about"
       weight: 50
