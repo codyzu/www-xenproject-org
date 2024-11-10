@@ -66,6 +66,7 @@
       "card__actions",
       "card__content",
       "card__label",
+      "card__link",
       "card__tag",
       "card__tags",
       "carousel",

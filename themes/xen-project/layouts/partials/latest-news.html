@@ -7,6 +7,7 @@
   </div>
   <script type="text/html" class="latest-news-template">
     <div class="carousel-item card card--news">
+      <a href="${_.url}" class="card__link" aria-label="Read more about ${_.title}"></a>
       <div class="card__label">${_.title}</div>
       ${_.tags ? `
       <div class="card__date">${XenSiteUtils.formatDate(_.published_at)}</div>

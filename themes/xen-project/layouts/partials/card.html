@@ -3,12 +3,13 @@
 
 
 <div class="card {{ .class }}">
+  <a href="{{ .link }}" class="card__link" aria-label="Read more about {{ .title }}"></a>
   <h3 class="card__label">{{ .title | safeHTML }}</h3>
   <div class="card__content">{{ .description | markdownify | safeHTML }}</div>
   {{ if .tags }}
     <div class="card__tags">
       {{ range .tags }}
-        <span class="card__tag">{{ . }}</span>
+        <span class="card__tag tag">{{ . }}</span>
       {{ end }}
     </div>
   {{ end }}

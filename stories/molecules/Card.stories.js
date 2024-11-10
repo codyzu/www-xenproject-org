@@ -33,12 +33,13 @@ export const Card = {
       ${["", "card--news", "card--bg"].map(
         (cls) => html`
         <div class="card ${cls}">
+          <a href="/newpage" class="card__link" aria-label="Read more"></a>
           <div class="card__label">Conversation Card ${cls.replace(/card--/g, "")}</div>
           <div class="card__date">aug, 5th 2024</div>
           <div class="card__tags">
-            <span class="card__tag">Tag 1</span>
-            <span class="card__tag">Tag 2</span>
-            <span class="card__tag">Tag 3</span>
+            <a class="card__tag">Tag 1</a>
+            <a class="card__tag">Tag 2</a>
+            <a class="card__tag">Tag 3</a>
           </div>
           <p class="card__content">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non
@@ -48,10 +49,10 @@ export const Card = {
             by <a href="/">John Doe</a>
           </div>
           <div class="card__actions">
-            <a href="/" class="join-button"
+            <a href="/newpage"
               >Join <i class="fas fa-arrow-up-right-from-square"></i
             ></a>
-            <a href="/" class="join-button">Join
+            <a href="/" >Join
             <i class="fas fa-arrow-up-right-from-square"></i
             ></a></a>
           </div>

@@ -63,6 +63,7 @@ const AllComponentsTemplate = (args, { loaded: { stories } }) => {
         overflow: hidden;
         max-width: 100%;
         max-height: 100%;
+        background: #fff;
       }
       .component-card:hover {
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
