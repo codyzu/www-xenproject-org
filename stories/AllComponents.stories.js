@@ -23,7 +23,7 @@ async function loadStories() {
 }
 
 const AllComponentsTemplate = (args, { loaded: { stories } }) => {
-  let columns = 3; // Default number of columns
+  let columns = 1; // Default number of columns
 
   const updateColumns = (event) => {
     columns = event.target.value;

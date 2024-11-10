@@ -4,8 +4,26 @@ export default {
   title: "Molecules/Card",
   tags: ["autodocs"],
   render: (args) => html`
-    <div class="card card--small">
-      <div class="label">Conversation Card</div>
+    <script>
+      let i = 0;
+      const classes = ["", "card--news", "card--bg"];
+      setInterval(() => {
+        document.getElementById("card").classList.remove(...classes.filter(c=>c!=""));
+        const j = i % classes.length;
+        i++;
+        var newClass = classes[j];
+        if(newClass) {
+          document.getElementById("card").classList.add(newClass);
+        }
+      }, 1000);
+    </script>
+    <style>
+      .card {
+        min-height: 350px;
+      }
+    </style>
+    <div class="card " id="card">
+      <div class="label">Card</div>
       <div class="tags">
         <span class="tag">Tag 1</span>
         <span class="tag">Tag 2</span>
@@ -13,7 +31,7 @@ export default {
       </div>
       <p class="content">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum non
-        eros varius, tincidunt tellus sit amet, maximus urna.
+        eros varius, tincidunt
       </p>
       <div class="actions">
         <a href="/" class="btn btn-tertiary join-button"
