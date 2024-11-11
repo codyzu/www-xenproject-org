@@ -1,7 +1,0 @@
-<div class="project-card {{ .class }}">
-  <h3 class="project-card__title">{{ .title | safeHTML }}</h3>
-  <div class="project-card__content">{{ .description | safeHTML }}</div>
-  <a href="{{ .link }}" class="project-card__link btn btn-tertiary">
-    {{ .linkText | default "Discover" }} <i class="fas fa-arrow-right"></i>
-  </a>
-</div>

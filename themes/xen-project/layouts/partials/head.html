@@ -41,4 +41,8 @@
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="{{ .Permalink }}" />
   {{ partialCached "head/css.html" . }}
+
+  <script>
+    const siteParams = {{ .Site.Params  }};
+  </script>
 </head>

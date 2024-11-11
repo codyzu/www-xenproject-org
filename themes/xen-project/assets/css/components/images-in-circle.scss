@@ -8,17 +8,26 @@
   }
 }
 
+@property --start-angle {
+  syntax: "<number>";
+  initial-value: -360;
+  inherits: false;
+}
+@keyframes rotate-images {
+  to {
+    --start-angle: 0;
+  }
+}
 .images-in-circle {
   --padding: 30px;
   --circle-dimensions: 80%;
   --img-width: 30%;
   --translate: -100%;
-
   --size: calc(var(--circle-dimensions) + (var(--padding) * 2));
   --bg-color: var(--color-surface-secondary);
   --index: 0;
   --total: 1;
-  --start-angle: 0deg;
+
   --img-padding: 0.6rem;
 
   position: relative;
@@ -43,9 +52,8 @@
   }
 
   li {
-    --angle: calc(var(--start-angle) + (360deg / var(--total)) * var(--index));
+    --angle: calc((var(--start-angle) * 1deg) + (360deg / var(--total)) * var(--index));
     --scale: 1;
-
     position: absolute;
     top: 50%;
     left: 50%;
@@ -78,4 +86,8 @@
       }
     }
   }
+}
+
+.animate .images-in-circle li {
+  animation: rotate-images 1s ease-out forwards;
 }

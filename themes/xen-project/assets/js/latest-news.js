@@ -5,7 +5,7 @@
       id: "xenprojectblog",
       name: "xenproject blog",
       url: "/blog",
-      API_KEY: "aca0295269765205d553f5c953",
+      API_KEY: siteParams.blogapikey,
     },
   ];
 
