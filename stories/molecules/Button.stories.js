@@ -4,7 +4,11 @@ import { html } from "lit";
 export default {
   title: "Molecules/Button",
   tags: ["autodocs"],
-  render: (args) => html` <button type="button" class="btn btn-primary">Primary button</button> `,
+  render: (args) => html`
+    <div><button type="button" class="btn btn-primary">Primary button</button></div>
+    <div><button type="button" class="btn btn-secondary">Secondary button</button></div>
+    <div><button type="button" class="btn btn-tertiary">Tertiary button</button></div>
+  `,
 };
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args

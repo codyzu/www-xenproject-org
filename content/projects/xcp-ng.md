@@ -101,13 +101,13 @@ In 2018 XCP-ng was born, following Citrix System’s announcement to remove feat
   {{</md>}}
 
 <p class="mg-t-md">
-  <a href="https://www.youtube.com/watch?v=VpGC5zuLjSs">
+  <a href="https://www.youtube.com/watch?v=VpGC5zuLjSs" class="btn btn-tertiary">
     Watch training <i class="fas fa-arrow-up-right-from-square"></i>
   </a>
 </p>
 
 <p class="mg-t-sm">
-  <a href="https://docs.xcp-ng.org/">
+  <a href="https://docs.xcp-ng.org/" class="btn btn-tertiary">
     Read step-by-step documentation instructions
     <i class="fas fa-arrow-up-right-from-square"></i>
   </a>
@@ -131,7 +131,7 @@ In 2018 XCP-ng was born, following Citrix System’s announcement to remove feat
   {{</md>}}
 
   <p class="mg-t-md">
-    <a href="https://xcp-ng.org/docs/develprocess.html">
+    <a href="https://xcp-ng.org/docs/develprocess.html" class="btn btn-tertiary">
       Read about XCP-ng development process <i class="fas fa-arrow-up-right-from-square"></i>
     </a>
   </p>

@@ -31,13 +31,13 @@ We've collated some information to help you get started, click here for resource
 {{<vertical-lists cols="2">}}
 - title: "**Read** documentation"
   text: >
-    <p><a href="http://wiki.xenproject.org/">Access documentation <i class="fas fa-arrow-up-right-from-square"></i></a></p>
-    <p><a href="https://wiki.xenproject.org/wiki/Index_Guide">How to use documentation <i class="fas fa-arrow-up-from-square"></i></a></p>
+    <p><a href="http://wiki.xenproject.org/" class="btn btn-tertiary">Access documentation <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+    <p><a href="https://wiki.xenproject.org/wiki/Index_Guide" class="btn btn-tertiary">How to use documentation <i class="fas fa-arrow-up-from-square"></i></a></p>
     
 - title: "**Communicate** with others"
   text: >
-    <p><a href="TODO">Access documentation <i class="fas fa-arrow-up-right-from-square"></i></a></p>
-    <p><a href="TODO">How to use documentation <i class="fas fa-arrow-up-from-square"></i></a></p>
+    <p><a href="TODO" class="btn btn-tertiary">Access documentation <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+    <p><a href="TODO" class="btn btn-tertiary">How to use documentation <i class="fas fa-arrow-up-from-square"></i></a></p>
 
 {{</vertical-lists>}}
 {{</section>}}
@@ -52,10 +52,10 @@ We've collated some information to help you get started, click here for resource
     animate="true"
 >}}
 
-<p class="mg-t-md"><a href="https://www.youtube.com/channel/UCGukhVf8pWrUVdse6KR6SRw">Youtube channel<i class="fas fa-arrow-up-right-from-square"></i></a></p>
-<p><a href="/contribute/guidelines">Contribution guidelines<i class="fas fa-up-right-from-square"></i></a></p>
-<p><a href="/contribute/governance">Governance<i class="fas fa-arrow-right"></i></a></p>
-<p><a href="/security">Security policy<i class="fas fa-arrow-right"></i></a></p>
+<p class="mg-t-md"><a href="https://www.youtube.com/channel/UCGukhVf8pWrUVdse6KR6SRw" class="btn btn-tertiary">Youtube channel<i class="fas fa-arrow-up-right-from-square"></i></a></p>
+<p><a href="/contribute/guidelines" class="btn btn-tertiary">Contribution guidelines<i class="fas fa-up-right-from-square"></i></a></p>
+<p><a href="/contribute/governance" class="btn btn-tertiary">Governance<i class="fas fa-arrow-right"></i></a></p>
+<p><a href="/security" class="btn btn-tertiary">Security policy<i class="fas fa-arrow-right"></i></a></p>
 {{</media-block>}}
 {{</section>}}
 
