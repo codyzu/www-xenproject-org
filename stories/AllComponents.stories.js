@@ -45,6 +45,9 @@ const AllComponentsTemplate = (args, { loaded: { stories } }) => {
 
   return html`
     <style>
+      body {
+        background: #fff;
+      }
       .component-grid {
         display: grid;
         grid-template-columns: repeat(${columns}, 1fr);
@@ -54,7 +57,7 @@ const AllComponentsTemplate = (args, { loaded: { stories } }) => {
         position: relative;
         border: 1px solid #e0e0e0;
         border-radius: 12px;
-        padding: 20px;
+
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         cursor: pointer;
         transition: all 0.3s ease;
@@ -63,7 +66,7 @@ const AllComponentsTemplate = (args, { loaded: { stories } }) => {
         overflow: hidden;
         max-width: 100%;
         max-height: 100%;
-        background: #fff;
+        background: #ededed;
       }
       .component-card:hover {
         box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
@@ -83,6 +86,12 @@ const AllComponentsTemplate = (args, { loaded: { stories } }) => {
         border-bottom: 2px solid #f0f0f0;
         font-size: 1.2em;
         color: #333;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 0;
+        padding: 12px;
       }
       .component-content {
         flex-grow: 1;
@@ -90,6 +99,9 @@ const AllComponentsTemplate = (args, { loaded: { stories } }) => {
         align-items: center;
         justify-content: center;
         overflow: hidden;
+        flex-direction: column;
+        gap: 12px;
+        padding: 20px;
       }
     </style>
     <h1>All Components</h1>

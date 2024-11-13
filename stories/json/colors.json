@@ -91,5 +91,16 @@
         "value": "#1e2b0e"
       }
     ]
+  },
+  {
+    "name": "txt",
+    "colors": [
+      {
+        "group": "txt",
+        "name": "txt-base",
+        "variableName": "--color-txt-base",
+        "value": "#0062a7"
+      }
+    ]
   }
 ]

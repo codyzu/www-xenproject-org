@@ -1,7 +1,7 @@
-import "../public/font-awesomepro/fontawesome.css"; // Adjust the path as needed
-import "../public/font-awesomepro/regular.css";
-import "../public/font-awesomepro/solid.css";
-import "../public/font-awesomepro/brands.css";
+import "../static/font-awesomepro/fontawesome.css"; // Adjust the path as needed
+import "../static/font-awesomepro/regular.css";
+import "../static/font-awesomepro/solid.css";
+import "../static/font-awesomepro/brands.css";
 
 import "../themes/xen-project/assets/css/main.scss"; // Adjust the path as needed
 

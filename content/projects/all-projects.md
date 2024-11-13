@@ -11,10 +11,11 @@ menus:
     parent: Projects
     name: All projects
     weight: 100
+exclude: "hidden"
 ---
 
 {{<section>}}
-  {{<list-pages "projects">}}
+  {{<list-pages "projects" "hidden">}}
 {{</section>}}
 
 {{<section class="section-square-primary txt-c">}}

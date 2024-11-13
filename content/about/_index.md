@@ -36,7 +36,6 @@ Find out more about how the community governs itself.
 
 {{<section>}}
 {{<media-block
-   title="Open-source projects home"
    media="/img/flatline/data-process-with-xen-logo.svg"
    mediaPosition="right"
    alt="Illustration of a computer monitor displaying bar charts and server racks labeled with Xen Project logos, representing data management and analysis."
@@ -66,26 +65,26 @@ We recently celebrated 20 years in The Xen Project. The timeline shows key miles
 {{</section>}}
 
 
-{{<section>}}
-{{<media-block
-   title="Open-source technologies"
-   media="/img/flatline/team-work.svg"
-   mediaPosition="right"
->}}
-{{<md>}}
+{{<section class="section-square-rounded">}}
+{{<row class="cols-2">}}
+{{<col md="true">}}
+## Open-source technologies
+
 The Xen Project has created a number of open source technologies for specific purposes:
 
-- The Xen Project* Hypervisor is the open source standard for hardware virtualization and the foundation for all solutions hosted on the Xen Project website. It includes a build configuration for Arm that targets embedded and mobile devices on the Arm architecture.
-
-- Drivers for the Xen Project* Hypervisor are delivered with host operating systems such as Linux and BSD distributions. The project maintains Windows drivers, which are developed as part of the Windows PV Drivers project.
-
-- XAPI is a Xen Project toolstack for an enterprise-ready virtualization platforms based on the Xen Hypervisor. XAPI adds further management functionality to Xen and adds many integrations for cloud, storage, and networking solutions. XAPI is used by the Citrix Hypervisor, XCP-ng and Magrana Server.
-
-- The project also hosts a number of Unikernel technologies: Unikernel, which is an SDK to build Unikernel bases; Mirage OS which is a Ocaml based Unikernel.
-
 If you are unsure which technology is right for you, check out our team portals. In addition, read the Xen Overview document to learn about Xen's architecture, components and some of the key choices you will have to make.
-{{</md>}}
-{{</media-block>}}
+{{</col>}}
+
+{{<col md="true" class="color-txt-base">}}
+- **The Xen Project© Hypervisor** is the open source standard for hardware virtualization and the foundation for all solutions hosted on the Xen Project website. It includes a build configuration for Arm that targets embedded and mobile devices on the Arm architecture.
+
+- **Drivers for the Xen Project© Hypervisor** are delivered with host operating systems such as Linux and BSD distributions. The project maintains Windows drivers, which are developed as part of the Windows PV Drivers project.
+
+- **XAPI** is a Xen Project toolstack for an enterprise-ready virtualization platforms based on the Xen Hypervisor. XAPI adds further management functionality to Xen and adds many integrations for cloud, storage, and networking solutions. XAPI is used by the Citrix Hypervisor, XCP-ng and Magrana Server.
+
+- **The project also hosts a number of Unikernel technologies:** Unikraft, which is an SDK to build Unikernel bases; Mirage OS which is a Ocaml based Unikernel.
+{{</col>}}
+{{</row>}}
 {{</section>}}
 
 {{<section>}}

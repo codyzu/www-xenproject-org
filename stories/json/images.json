@@ -11,6 +11,10 @@
     {
       "name": "home-wire.png",
       "path": "/decorative/home-wire.png"
+    },
+    {
+      "name": "screen-with-wire.svg",
+      "path": "/decorative/screen-with-wire.svg"
     }
   ],
   "figures": [
@@ -79,6 +83,10 @@
     {
       "name": "data-process2.svg",
       "path": "/flatline/data-process2.svg"
+    },
+    {
+      "name": "data-storage.svg",
+      "path": "/flatline/data-storage.svg"
     },
     {
       "name": "data_and_settings.svg",

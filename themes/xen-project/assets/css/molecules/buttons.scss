@@ -7,11 +7,15 @@
   --color-hover: var(--color-action-fill-hover);
   --color-primary: var(--color-action-fill);
   --color-secondary: var(--color-action-on-fill);
+  --icon-left: 0px;
+  --icon-margin: 0.375em;
 
   display: inline-block;
+  align-items: center;
   position: relative;
-  padding: 0.444em 1em;
+  --left-padding: 1em;
 
+  padding: 0.444em calc(2em - var(--left-padding)) 0.444em var(--left-padding);
   font-size: 1.125rem;
   letter-spacing: 0.00555555em;
   line-height: 1.2;
@@ -24,8 +28,10 @@
   cursor: pointer;
 
   transition:
-    background-color 0.3s,
-    box-shadow 0.3s;
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out,
+    padding-left 0.3s ease-in-out,
+    padding-right 0.3s ease-in-out;
 
   @include tablet {
     font-size: 1.25rem;
@@ -44,6 +50,16 @@
     z-index: 100;
   }
 
+  // button icon
+  .fas {
+    transform: translateX(var(--icon-left));
+    transition: transform 0.3s ease-in-out;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none !important;
+    margin-left: var(--icon-margin);
+  }
+
   // States
   &:focus::after,
   &.focus::after {
@@ -53,11 +69,17 @@
   &:hover,
   &.hover {
     --color-primary: var(--color-hover);
+    --icon-left: 0.3em;
   }
+
+  // &:has(.fas):hover {
+  // --left-padding: 0.7em;
+  // }
 
   &:active,
   &.active {
     --color-primary: var(--color-active);
+    --icon-left: 0.6em;
   }
 
   &:focus,
@@ -72,12 +94,52 @@
 
   &-secondary,
   &-tertiary {
-    background-color: var(--color-surface-secondary);
+    background-color: #fff;
     color: var(--color-primary);
   }
 
+  &-primary,
+  &-secondary {
+    text-decoration: none !important;
+  }
+
   &-tertiary {
+    position: relative;
+    padding: 2px;
     background-color: transparent;
     border: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      transform: scaleX(0);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: currentColor;
+      transition: transform 0.25s ease-out;
+      transform-origin: bottom left;
+    }
+
+    &:has(.fas) {
+      --icon-width: 1em;
+    }
+    &:has(.fa-arrow-right),
+    &:has(.fa-arrow-up-right-from-square) {
+      --icon-width: 0.75em;
+    }
+
+    &:has(.fas)::before {
+      right: calc(var(--icon-left) + var(--icon-width) + var(--icon-margin) + 0.2em);
+    }
+
+    &:hover::before {
+      transform: scaleX(1);
+    }
   }
 }

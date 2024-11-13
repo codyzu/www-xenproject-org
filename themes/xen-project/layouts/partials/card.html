@@ -4,8 +4,11 @@
 
 <div class="card {{ .class }}">
   <a href="{{ .link }}" class="card__link" aria-label="Read more about {{ .title }}"></a>
-  <h3 class="card__label">{{ .title | safeHTML }}</h3>
-  <div class="card__content">{{ .description | markdownify | safeHTML }}</div>
+  {{ if .titleLevel }}
+    <h{{ .titleLevel }} class="card__label">{{ .title | safeHTML }}</h{{ .titleLevel }}>
+  {{ else }}
+    <h3 class="card__label">{{ .title | safeHTML }}</h3>
+  {{ end }}
   {{ if .tags }}
     <div class="card__tags">
       {{ range .tags }}
@@ -13,6 +16,7 @@
       {{ end }}
     </div>
   {{ end }}
+  <div class="card__content">{{ .description | markdownify | safeHTML }}</div>
   {{ if .link }}
     <div class="card__actions">
       <a href="{{ .link }}" class="join-button">

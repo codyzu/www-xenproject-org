@@ -2,7 +2,6 @@ import fs from "fs";
 import * as sass from "sass";
 import storyScriptConfig from "../storyscripts.config.js";
 
-
 const main = async () => {
   const { colorVariablesFilePath, storyDestJsonFolder } = storyScriptConfig;
   const filePath = colorVariablesFilePath;
@@ -22,7 +21,7 @@ const main = async () => {
   fs.writeFileSync(fileExportPath, JSON.stringify(json, null, 2));
 };
 
-const groups = ["action", "brand"];
+const groups = ["txt", "action", "brand"];
 
 const getColors = (css) => {
   const regex = /--color-(.+?)\s*:\s*(#.+);/g;

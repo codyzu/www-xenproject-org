@@ -31,6 +31,9 @@ $color-brand-on-fill: #1e2b0e;
   --color-action-fill-pressed: #{mix(#000, $color-action-fill, 40%)};
   --color-action-on-fill: #f7fbfd;
 
+  // text colors
+  --color-txt-base: #{$color-action-text};
+
   // brand colors
   --color-brand-surface: #{$color-brand-surface};
   --color-brand-text: #{$color-brand-text};

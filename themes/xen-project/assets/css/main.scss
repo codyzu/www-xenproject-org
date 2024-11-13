@@ -1,6 +1,7 @@
 @import "./mediaqueries.scss";
 @import "./variables.scss";
 @import "./colors.scss";
+@import "./colors-classes.scss";
 @import "./fonts.scss";
 @import "./base.scss";
 @import "./typography.scss";
@@ -9,7 +10,6 @@
 @import "./backgrounds.scss";
 @import "./socials.scss";
 @import "./structure.scss";
-@import "./footer.scss";
 @import "./lists.scss";
 @import "./molecules/buttons.scss";
 @import "./molecules/media-block.scss";
@@ -39,6 +39,7 @@
 @import "./layout/page-single-aside.scss";
 @import "./layout/aside.scss";
 @import "./header/header.scss";
+@import "./footer.scss";
 @import "./animation/home-animation.scss";
 // overrides classes
 @import "./spaces.scss";

@@ -8,7 +8,7 @@ keywords: "Xen Project, open source virtualization, enterprise-grade hypervisor,
   {{<media-block
     class="hero-block"
     label="A Linux Foundation Project"
-    title="Bring the power of <a href=\"#\">open virtualization</a> everywhere."
+    title="Bring the power of open virtualization everywhere."
     titleLevel="1"
     media="/img/flatline/screen-with-xen-logo.webp"
     alt="Illustration of a computer monitor displaying bar charts with Xen Project Logo"
@@ -71,7 +71,7 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
 
 {{<section container="full">}}
 {{<carousel class="mg-t-lg carousel-container-width">}}
-{{<getpages "projects">}}
+{{<getpages "projects" "hidden">}}
 {{</carousel>}}
 
 

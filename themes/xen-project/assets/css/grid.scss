@@ -11,10 +11,6 @@
   margin-right: calc(var(--container-paddings) * -1);
 }
 
-.container-small {
-  // --container-width: 1120px;
-}
-
 .page-top .description {
   max-width: 700px;
 }
@@ -73,17 +69,12 @@ section {
   justify-content: flex-start;
   align-items: stretch;
   flex-wrap: wrap;
-
+  --cols: 3;
   --min-col-width: 300px;
   > *,
   > .col {
-    flex: 1;
-
-    // Ajout de la gestion des colonnes
-    @supports (--cols: 0) {
-      flex: 1 0 calc((100% / var(--cols)) - var(--gap));
-      min-width: calc((100% / var(--cols)) - var(--gap));
-    }
+    min-width: var(--min-col-width);
+    flex: 0 0 calc((100% / var(--cols)) - var(--gap));
   }
 }
 

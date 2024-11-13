@@ -32,7 +32,7 @@ Committers and maintainers are responsible for the technical development and are
   ## Main responsibilities
   {{</md>}}
 
-  {{<features-list cols="4">}}
+  {{<features-list cols="2">}}
   - title: Financial oversight
     icon: fas fa-money-bill-alt
     description: Budget management and investment decisions on infrastructure and project operations.
@@ -113,19 +113,20 @@ The Board process will help ensure non-technical decisions are collectively dete
 
 
 {{<section class="section-square-primary">}}
-{{<md>}}
-### How to **join?**
+{{<md class="txt-c">}}
+## How to **join?**
 {{</md>}}
 
-{{<vertical-lists cols="3" headerLevel="4">}}
+{{<row-from-list component="card" component-class="card--bg-white" cols="3" class="mg-t-md">}} 
 - title: Step 1
-  text: Review membership benefits and requirements on the Xen Project website.
+  description: Review membership benefits and requirements on the Xen Project website.
 - title: Step 2
-  text: Contact the Xen Project team to discuss membership options and fees.
+  description: Contact the Xen Project team to discuss membership options and fees.
 - title: Step 3
-  text: Complete the membership application and submit payment to join.
+  description: Complete the membership application and submit payment to join.
+{{</row-from-list>}}
+    
 
-{{</vertical-lists>}}
 
 <p class="txt-c mg-t-lg">
   <a href="https://enrollment.lfx.linuxfoundation.org/?project=xen" class="btn btn-primary">
@@ -147,13 +148,19 @@ The Board process will help ensure non-technical decisions are collectively dete
 {{<media-block
     title="Governed by Xen project members"
     media=`{{<partial "blocks/logos-circle">}}`
+    mediaPosition="right"
     animate="true"
 >}}
 {{<md>}}
 Board members can propose and vote upon changes to the Xen Project. Members also gain valuable strategic insight into project plans and future scope.
-
-[Join the advisory board](link-to-xen-project-advisory-board)
 {{</md>}}
+
+<p class="mg-t-md">
+<a href="/about/project-members" class="btn btn-secondary">
+Meet the advisory board
+<i class="fas fa-arrow-right"></i>
+</a>
+</p>
 {{</media-block>}}
 {{</section>}}
 
@@ -162,14 +169,18 @@ Board members can propose and vote upon changes to the Xen Project. Members also
 {{<media-block
     title="About Xen Project"
     media="/img/flatline/data-process.svg"
-    mediaPosition="right"
     imageAlt="Illustration of a laptop displaying 3D bar charts, connected to cloud storage and file management icons, symbolizing data synchronization and integration."
     animate="true"
 >}}
 {{<md>}}
 The mission of the Xen Project is to advance virtualisation technology across a wide range of commercial and open-source domains.
-
-[Learn about Xen Project](link-to-xen-project-information)
 {{</md>}}
+
+<p class="mg-t-md">
+<a href="/about" class="btn btn-secondary">
+Learn about Xen Project
+<i class="fas fa-arrow-right"></i>
+</a>
+</p>
 {{</media-block>}}
 {{</section>}}
