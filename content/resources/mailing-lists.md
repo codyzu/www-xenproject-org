@@ -13,27 +13,31 @@ keywords: "xen mailing lists, community communication, developer discussions, te
 
 {{<section>}}
   {{<media-block
-    title="What does this mean?"
+    title="Mailing list usage"
     media="/img/flatline/new-message.svg"
     alt="Illustration of a person sending a message, symbolizing communication."
     animate="true"
   >}}
   {{<md>}}
-- Xen revolutionizes embedded systems, enabling fully-featured operating systems like Linux to coexist with smaller and faster RTOSes such as Zephyr.
-- Xen's ability to allocate hardware resources with precision and support multiple communication paradigms between VMs has made it indispensable in diverse applications, from 5G antennas and industrial robots to medical devices and automobiles.
-- A significant amount of work has been completed in this area since the team started in 2014. Most work has occurred in Linux, Xen, and OP-TEE.
-{{</md>}}
-{{</media-block>}}
+Xen Project mailing lists have a web as well as an email interface.
+
+- Send an email command to **[mylist-request@lists.xenproject.org](mailto:mylist-request@lists.xenproject.org)** (mylist may, for example, be xen-announce) with one of the [following commands](https://www.list.org/mailman-member/node41.html) in the subject line. Common commands are `help`, `subscribe`, and `unsubscribe`. Alternatively, you can use the SUBSCRIBE buttons below.
+
+- Go to **[https://lists.xenproject.org/mailman/listinfo/mylist](https://lists.xenproject.org/mailman/listinfo/mylist)** (mylist may, for example, be xen-announce) and use the web interface to subscribe, unsubscribe, or log into the list management interface.
+
+- You can send a note to a Xen Project mailing list without being subscribed to it, but your post will be moderated.
+
+- If you have problems, please email **[community.manager@xenproject.org](mailto:community.manager@xenproject.org)**.
+  {{</md>}}
+  {{</media-block>}}
 {{</section>}}
 
 
-{{<section class="section-square-primary txt-c">}}
-  {{<md>}}
-  Consider **searching in archives**, the answer you are looking might already exist!
-  {{</md>}}
+{{<section class="txt-c">}}
+  <h2>{{<md>}}Consider **searching in archives**, the answer you are looking might already exist!{{</md>}}</h2>
 
   <p class="mg-t-md ">
-    <a href="https://lists.xenproject.org/archives/" class="btn btn-primary">
+    <a href="https://lists.xenproject.org/archives/" class="btn btn-secondary">
       Check out archives <i class="fas fa-arrow-up-right-from-square"></i>
     </a>
     </p>
@@ -108,7 +112,7 @@ keywords: "xen mailing lists, community communication, developer discussions, te
 ### Xen Project Hypervisor
 {{</md>}}
 
-{{<row-from-list component="card" component-class="card--bg" cols="3">}} 
+{{<row-from-list component="card" component-class="card--bg" cols="3" class="mg-t-md">}} 
 - title: XEN-DEVEL@
   tags:
     - Mailing list
@@ -134,7 +138,7 @@ keywords: "xen mailing lists, community communication, developer discussions, te
   {{<md>}}
   ### Mirage OS
   {{</md>}}
-  {{<row-from-list component="card" component-class="card--bg" cols="1">}} 
+  {{<row-from-list component="card" component-class="card--bg" cols="1" class="mg-t-md">}} 
   - title: MIRAGEOS-DEVEL@
     tags:
       - Mailing list
@@ -149,7 +153,7 @@ keywords: "xen mailing lists, community communication, developer discussions, te
   {{<md>}}
   ### Unikraft
   {{</md>}}
-  {{<row-from-list component="card" component-class="card--bg" cols="1">}} 
+  {{<row-from-list component="card" component-class="card--bg" cols="1"  class="mg-t-md">}} 
   - title: MINIOS-DEVEL@ (INCLUDES UNIKRAFT DEVELOPMENT) 
     tags:
       - Mailing list
@@ -165,7 +169,7 @@ keywords: "xen mailing lists, community communication, developer discussions, te
   {{<md>}}
   ### XAPI
   {{</md>}}
-  {{<row-from-list component="card" component-class="card--bg" cols="1">}} 
+  {{<row-from-list component="card" component-class="card--bg" cols="1"  class="mg-t-md">}} 
   - title: XEN-API@
     tags:
       - Mailing list
@@ -183,7 +187,7 @@ keywords: "xen mailing lists, community communication, developer discussions, te
 {{<md>}}
 ### XCP-ng
 {{</md>}}
-{{<row-from-list component="card" component-class="card--bg" cols="3" class="mg-b-lg">}} 
+{{<row-from-list component="card" component-class="card--bg" cols="3" class="mg-t-md">}} 
 - title: XCP-NG FORUMS
   tags:
     - Forum
@@ -211,10 +215,10 @@ keywords: "xen mailing lists, community communication, developer discussions, te
 {{</row-from-list>}}
 
 
-{{<md>}}
+{{<md class="mg-t-md">}}
 ### Windows PV Drivers
 {{</md>}}
-{{<row-from-list component="card" component-class="card--bg" cols="3">}} 
+{{<row-from-list component="card" component-class="card--bg" cols="3" class="mg-t-md">}} 
 - title: WIN-PV-DEVEL@
   tags:
     - Mailing list
@@ -228,9 +232,9 @@ keywords: "xen mailing lists, community communication, developer discussions, te
 
 {{<md class="mg-t-xl">}}
 ## Advisory board
-
 {{</md>}}
-{{<row-from-list component="card" component-class="card--bg" cols="3">}} 
+
+{{<row-from-list component="card" component-class="card--bg" cols="3" class="mg-v-md">}} 
 - title: PREDISCLOSURE-APPLICATIONS@
   tags:
     - Mailing list

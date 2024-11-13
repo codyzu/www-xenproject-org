@@ -17,13 +17,13 @@ aside:
     items:
       - name: OpenPGP Keys
         link: /developers/openpgp-keys
-        icon: fa-key
+        icon: fas fa-key
       - name: Raise a security issue
         link: /help/mailing-list#security-at
-        icon: fa-key
+        icon: fas fa-key
       - name: List Applications
         link: /help/mailing-list#predisclosure-applications
-        icon: fa-key
+        icon: fas fa-key
   - type: members-list
     name: Team Members 
     items:

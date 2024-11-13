@@ -6,8 +6,10 @@
   --card-date-color: var(--color-text-secondary);
   --card-author-color: var(--color-text);
   --card-background-color: #fff;
-  --card-title-color: inherit;
+  --card-title-color: var(--color-text);
   --card-title-weight: bold;
+  --card-title-size: 24px;
+
   color: var(--color-text-secondary);
   border-top: var(--card-border-size) solid var(--card-color);
   border-radius: 8px;
@@ -28,7 +30,7 @@
   }
 
   &__label {
-    font-size: 24px;
+    font-size: var(--card-title-size);
     font-weight: var(--card-title-weight);
     line-height: 1.25;
     color: var(--card-title-color);
@@ -108,6 +110,17 @@
     --card-tag-text-color: var(--color-action-text);
     --card-title-color: var(--color-action-text);
     --card-title-weight: 500;
+  }
+
+  &--bg-white {
+    --card-background-color: #fff;
+    --card-border-size: 0;
+    --card-secondary-color: var(--color-action-surface);
+    --card-tag-text-color: var(--color-action-text);
+    --card-title-color: var(--color-action-text);
+    --card-title-weight: 500;
+    --card-title-size: 36px;
+    box-shadow: none;
   }
 }
 

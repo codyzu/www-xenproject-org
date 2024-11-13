@@ -1,9 +1,17 @@
+{{/*  dont format this file, use "save without formatting option" */}}
+
 {{ $currentPage := .Page }}
 {{ $section := default "projects" (.Get 0) }}
+{{ $exclude := default "" (.Get 1) }}
 {{ $projects := where (where .Site.RegularPages "Section" $section) "Permalink" "ne" $currentPage.Permalink }}
+{{ if $exclude }}
+  {{ $projects = where $projects ".Params.exclude" "ne" $exclude }}
+{{ end }}
+
 
 {{ range $projects }}
   - title: {{ .Title }}
     description: {{ .Description }}
     link: {{ .Permalink }}
+    linkIcon: "fas fa-arrow-right"
 {{ end }}

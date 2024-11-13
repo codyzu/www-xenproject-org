@@ -6,7 +6,7 @@
 
 
 <div
-  class="row {{ if $class }}{{ $class }}{{ end }}"
+  class="row row-from-list {{ if $class }}{{ $class }}{{ end }}"
   {{ if $cols }}style="--cols: {{ $cols }};"{{ end }}
 >
   {{ range $yamlData }}

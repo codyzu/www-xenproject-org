@@ -13,9 +13,9 @@ menus:
 {{<section>}}
   {{<media-block
     title="Qubes OS & Xen Project"
-    media="/img/flatline/data-process.svg"
+    media="/img/flatline/data-storage.svg"
     mediaPosition="right"
-    alt="Illustration of a laptop displaying 3D bar charts, connected to cloud and file management icons, representing data integration and synchronization."
+    alt="Illustration of a data storage concept with various elements representing data protection, cloud storage, and secure data management."
     animate="true"
   >}}
 Qubes OS is a security-focused operating system based on Xen. The goal of Qubes OS is to create a reasonably secure environment that is also practical and usable, capable of playing the role of a daily driver rather than a highly situational solution - and Xen is a major reason why we can confidently say that Qubes OS succeeds.
@@ -52,7 +52,7 @@ Amazon Web Services (AWS) leverages the Xen Project hypervisor to power its Elas
 {{<section>}}
   {{<media-block
     title="Security"
-    media="/img/flatline/data-process.svg"
+    media="/img/flatline/security.svg"
     alt="Illustration of a laptop displaying 3D bar charts, connected to cloud and file management icons, representing data integration and synchronization."
     animate="true"
   >}}
@@ -104,7 +104,7 @@ Conservative estimates show that Xen has an active user base of 10+ million; the
 
 {{<section container="full">}}
 {{<carousel class="mg-t-lg">}}
-  {{<getpages "projects">}}
+  {{<getpages "projects" "hidden">}}
 {{</carousel>}}
 
 <p class="mg-t-xl txt-c">
