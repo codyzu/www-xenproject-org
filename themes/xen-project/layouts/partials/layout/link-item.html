@@ -1,6 +1,10 @@
 <li>
   {{ if .link }}
-    <a href="{{ .link }}" {{ if and (not (hasPrefix .link "/")) (not (hasPrefix .link "./")) }}target="_blank"{{ end }}>
+    <a
+      href="{{ .link }}"
+      {{ if and (not (hasPrefix .link "/")) (not (hasPrefix .link "./")) }}target="_blank"{{ end }}
+      class="btn btn-tertiary"
+    >
       {{ .name | markdownify }}
       {{ if .icon }}
         <i class="{{ .icon }}"></i>

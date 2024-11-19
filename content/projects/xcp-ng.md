@@ -13,26 +13,26 @@ aside:
     type: resource
     items: 
       - name: Downloads
-        url: "https://xcp-ng.org/#easy-to-install"
+        link: "https://xcp-ng.org/#easy-to-install"
       - name: Docs
-        url: "https://github.com/xcp-ng/xcp/wiki"
+        link: "https://github.com/xcp-ng/xcp/wiki"
       - name: Forums
-        url: "https://xcp-ng.org/forum/"
+        link: "https://xcp-ng.org/forum/"
       - name: "IRC: #xcp-ng"
-        url: "/help/irc/"
+        link: "/help/irc/"
       - name: Report a Bug
-        url: "https://github.com/xcp-ng/xcp/issues"
+        link: "https://github.com/xcp-ng/xcp/issues"
   - name: Developers
     type: resource
     items:
       - name: Developer Forum
-        url: "https://xcp-ng.org/forum/category/7/development"
+        link: "https://xcp-ng.org/forum/category/7/development"
       - name: "IRC: #xcp-ng-dev"
-        url: "/help/irc/"
+        link: "/help/irc/"
       - name: Browse Git
-        url: "https://github.com/xcp-ng"
+        link: "https://github.com/xcp-ng"
       - name: Dev Docs
-        url: "https://github.com/xcp-ng/xcp/wiki#development"
+        link: "https://github.com/xcp-ng/xcp/wiki#development"
   - name: Team
     type: members-list
     items:

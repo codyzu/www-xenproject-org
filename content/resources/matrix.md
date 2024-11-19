@@ -16,7 +16,7 @@ menus:
 ## Xen Project Matrix
 {{</md>}}
 
-{{<row-from-list component="card" component-class="card--bg" cols="3">}}  
+{{<row-from-list component="card" component-class="card--bg" cols="3" title-level="2">}}  
 - title: XenProject
   tags:
     - Matrix
@@ -43,7 +43,7 @@ menus:
 ## Projects
 {{</md>}}
 
-{{<row-from-list component="card" component-class="card--bg" cols="3">}} 
+{{<row-from-list component="card" component-class="card--bg" cols="3" titleLevel="2">}} 
 - title: XCP-ng
   tags:
     - Discord

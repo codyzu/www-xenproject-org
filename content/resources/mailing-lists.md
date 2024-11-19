@@ -50,7 +50,7 @@ Xen Project mailing lists have a web as well as an email interface.
 ## General
 {{</md>}}
 
-{{<row-from-list component="card" component-class="card--bg" cols="3">}} 
+{{<row-from-list component="card" component-class="card--bg" titleLevel="2" cols="3">}} 
 - title: XEN-ANNOUNCE@
   tags:
     - Mailing list
@@ -112,7 +112,7 @@ Xen Project mailing lists have a web as well as an email interface.
 ### Xen Project Hypervisor
 {{</md>}}
 
-{{<row-from-list component="card" component-class="card--bg" cols="3" class="mg-t-md">}} 
+{{<row-from-list component="card" component-class="card--bg" titleLevel="2" cols="3" class="mg-t-md">}} 
 - title: XEN-DEVEL@
   tags:
     - Mailing list
@@ -138,7 +138,7 @@ Xen Project mailing lists have a web as well as an email interface.
   {{<md>}}
   ### Mirage OS
   {{</md>}}
-  {{<row-from-list component="card" component-class="card--bg" cols="1" class="mg-t-md">}} 
+  {{<row-from-list component="card" component-class="card--bg" titleLevel="2" cols="1" class="mg-t-md">}} 
   - title: MIRAGEOS-DEVEL@
     tags:
       - Mailing list
@@ -153,7 +153,7 @@ Xen Project mailing lists have a web as well as an email interface.
   {{<md>}}
   ### Unikraft
   {{</md>}}
-  {{<row-from-list component="card" component-class="card--bg" cols="1"  class="mg-t-md">}} 
+  {{<row-from-list component="card" component-class="card--bg" titleLevel="2" cols="1"  class="mg-t-md">}} 
   - title: MINIOS-DEVEL@ (INCLUDES UNIKRAFT DEVELOPMENT) 
     tags:
       - Mailing list
@@ -169,7 +169,7 @@ Xen Project mailing lists have a web as well as an email interface.
   {{<md>}}
   ### XAPI
   {{</md>}}
-  {{<row-from-list component="card" component-class="card--bg" cols="1"  class="mg-t-md">}} 
+  {{<row-from-list component="card" component-class="card--bg" titleLevel="2" cols="1"  class="mg-t-md">}} 
   - title: XEN-API@
     tags:
       - Mailing list
@@ -187,7 +187,7 @@ Xen Project mailing lists have a web as well as an email interface.
 {{<md>}}
 ### XCP-ng
 {{</md>}}
-{{<row-from-list component="card" component-class="card--bg" cols="3" class="mg-t-md">}} 
+{{<row-from-list component="card" component-class="card--bg" titleLevel="2" cols="3" class="mg-t-md">}} 
 - title: XCP-NG FORUMS
   tags:
     - Forum
@@ -218,7 +218,7 @@ Xen Project mailing lists have a web as well as an email interface.
 {{<md class="mg-t-md">}}
 ### Windows PV Drivers
 {{</md>}}
-{{<row-from-list component="card" component-class="card--bg" cols="3" class="mg-t-md">}} 
+{{<row-from-list component="card" component-class="card--bg" titleLevel="2" cols="3" class="mg-t-md">}} 
 - title: WIN-PV-DEVEL@
   tags:
     - Mailing list
@@ -234,7 +234,7 @@ Xen Project mailing lists have a web as well as an email interface.
 ## Advisory board
 {{</md>}}
 
-{{<row-from-list component="card" component-class="card--bg" cols="3" class="mg-v-md">}} 
+{{<row-from-list component="card" component-class="card--bg" titleLevel="2" cols="3" class="mg-v-md">}} 
 - title: PREDISCLOSURE-APPLICATIONS@
   tags:
     - Mailing list

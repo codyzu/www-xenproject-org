@@ -124,13 +124,14 @@
       --icon-left: 0;
       vertical-align: middle;
       line-height: 1;
-    }
-    a:hover {
-      --icon-left: 0.6em;
-      text-decoration: underline;
+      text-decoration: none !important;
       &::before {
         right: 1.6em;
       }
+    }
+    a:hover {
+      --icon-left: 0.6em;
+      text-decoration: none;
     }
 
     a:active {

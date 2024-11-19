@@ -17,11 +17,6 @@ export default {
         }
       }, 1000);
     </script>
-    <style>
-      .card {
-        min-height: 350px;
-      }
-    </style>
     <div class="card " id="card">
       <div class="label">Card</div>
       <div class="tags">

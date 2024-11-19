@@ -7,10 +7,18 @@
   const { debounce } = window.XenSiteUtils;
 
   const carousel = async (element) => {
+    const infiniteLoop = false;
+    const itemsBefore = 2;
+    const itemsAfter = 2;
+
     const carouselElement = element.querySelector(".carousel");
     let prev = element.querySelector(".prev");
     let next = element.querySelector(".next");
     let items = await waitForElements(carouselElement, itemSelector);
+
+    // add attributes to first and last items
+    items[0].dataset.first = true;
+    items[items.length - 1].dataset.last = true;
 
     const carouselClone = carouselElement.cloneNode(true);
     carouselClone.classList.add("carousel-clone");
@@ -23,6 +31,7 @@
     carouselClone.style.setProperty("pointer-events", "none");
     carouselClone.style.setProperty("visibility", "hidden");
     carouselClone.style.setProperty("height", "100");
+
     const getItemInformations = () => {
       carouselElement.before(carouselClone);
       carouselClone.style.setProperty("width", carouselElement.offsetWidth + "px");
@@ -64,6 +73,11 @@
     cloneItemsReverse(items, itemsAfter);
 
     const moveNext = function () {
+      if (
+        !infiniteLoop &&
+        element.querySelectorAll(itemSelector)[element.querySelectorAll(itemSelector).length - 1].dataset.last
+      )
+        return;
       let items = element.querySelectorAll(itemSelector);
       carouselElement.appendChild(items[0]);
     };
@@ -71,6 +85,8 @@
 
     const movePrev = function () {
       let items = element.querySelectorAll(itemSelector);
+      const item = items[itemsBefore];
+      if (!infiniteLoop && item.dataset.first) return;
       carouselElement.prepend(items[items.length - 1]);
     };
     prev.addEventListener("click", movePrev);
@@ -85,7 +101,6 @@
     carouselElement.addEventListener("touchend", (e) => {
       moveX = e.changedTouches[0].clientX - startX;
       if (Math.abs(moveX) > 50) {
-        // Seuil de 50px pour considérer comme un swipe
         if (moveX > 0) {
           movePrev();
         } else {
@@ -132,9 +147,6 @@
           --height: ${height}px;
         }
       `);
-
-      const itemsBefore = 3;
-      const itemsAfter = 2;
 
       const carouselWidth = carouselElement.offsetWidth;
       const maxItems = Math.floor(carouselWidth / occupiedSpace) + 1 + itemsBefore + itemsAfter;

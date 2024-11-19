@@ -1,6 +1,8 @@
 import { html } from "lit";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
+const DEFAULT_COLUMNS = 3;
+
 const storiesList = [
   {
     group: "Molecules",
@@ -23,11 +25,21 @@ async function loadStories() {
 }
 
 const AllComponentsTemplate = (args, { loaded: { stories } }) => {
-  let columns = 1; // Default number of columns
+  let columns = DEFAULT_COLUMNS;
+  let zoom = 1;
 
   const updateColumns = (event) => {
     columns = event.target.value;
     document.querySelector(".component-grid").style.gridTemplateColumns = `repeat(${columns}, 1fr)`;
+  };
+
+  const updateZoom = (event) => {
+    zoom = event.target.value;
+    document.querySelectorAll(".component-content").forEach((el) => {
+      el.style.transform = `scale(${zoom})`;
+      el.style.width = `${100 / zoom}%`;
+      el.style.height = `${100 / zoom}%`;
+    });
   };
 
   const scaleContent = (element) => {
@@ -98,16 +110,34 @@ const AllComponentsTemplate = (args, { loaded: { stories } }) => {
         display: flex;
         align-items: center;
         justify-content: center;
-        overflow: hidden;
         flex-direction: column;
         gap: 12px;
         padding: 20px;
+        transform-origin: top left;
+        width: 100%;
+        height: 100%;
+      }
+      .controls {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+      }
+      .control-group {
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
     </style>
     <h1>All Components</h1>
-    <div>
-      <label for="columns">Columns:</label>
-      <input id="columns" type="range" min="1" max="6" value="${columns}" @input="${updateColumns}" />
+    <div class="controls">
+      <div class="control-group">
+        <label for="columns">Columns:</label>
+        <input id="columns" type="range" min="1" max="6" value="${columns}" @input="${updateColumns}" />
+      </div>
+      <div class="control-group">
+        <label for="zoom">Zoom:</label>
+        <input id="zoom" type="range" min="0.1" max="2" step="0.1" value="${zoom}" @input="${updateZoom}" />
+      </div>
     </div>
     ${stories.map((group) => {
       return html`

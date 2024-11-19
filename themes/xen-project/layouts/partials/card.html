@@ -19,11 +19,11 @@
   <div class="card__content">{{ .description | markdownify | safeHTML }}</div>
   {{ if .link }}
     <div class="card__actions">
-      <a href="{{ .link }}" class="join-button">
+      <a href="{{ .link }}" class="join-button btn btn-tertiary">
         {{ .linkText | default $defaultLinkText }} <i class="fas {{ .linkIcon | default $defaultIcon }}"></i>
       </a>
       {{ if .secondaryLink }}
-        <a href="{{ .secondaryLink }}" class="join-button">
+        <a href="{{ .secondaryLink }}" class="join-button btn btn-tertiary">
           {{ .secondaryLinkText | default $defaultLinkText }}
           <i class="fas {{ .secondaryLinkIcon | default $defaultIcon }}"></i>
         </a>

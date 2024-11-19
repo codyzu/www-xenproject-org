@@ -28,7 +28,7 @@
       <div class="media-block__label">{{ .Label }}</div>
     {{ end }}
     {{ if .Title }}
-      <h{{ $titleLevel }} class="media-block__title">{{ $title | safeHTML }}</h{{ $titleLevel }}>
+      <h{{ $titleLevel }} class="media-block__title {{ .TitleClass }}">{{ $title | safeHTML }}</h{{ $titleLevel }}>
     {{ end }}
     <div class="media-block__text">
       {{ .Content  | safeHTML }}

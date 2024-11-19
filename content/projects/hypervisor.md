@@ -116,6 +116,7 @@ aside:
     title="Versatile Open-Source Virtualization"
     media="/img/flatline/data-center.svg"
     alt="Illustration of a person managing server racks, representing data management and server maintenance."
+    animate="true"
   >}}
 The Xen Project hypervisor is an open-source type-1 or baremetal hypervisor, which makes it possible to run many instances of an operating system or indeed different operating systems in parallel on a single machine (or host). The Xen Project hypervisor is the only type-1 hypervisor that is available as open source. It is used as the basis for a number of different commercial and open source applications, such as: server virtualization, Infrastructure as a Service (IaaS), desktop virtualization, security applications, embedded and hardware appliances. The Xen Project hypervisor is powering the largest clouds in production today.
 {{</media-block>}}
@@ -146,6 +147,7 @@ The Xen Project hypervisor is an open-source type-1 or baremetal hypervisor, whi
     title="History"
     media="/img/flatline/timeline.svg"
     alt="Illustration of a timeline with milestones for the years 2012, 2018, 2020, and 2024, representing project progress and development."
+    animate="true"
   >}}
 The Xen Project hypervisor is developed by a worldwide community of individuals, researchers and employees of companies and that follow the Xen Project Governance process. The project is supported by the Xen Project Advisory Board made up of project member companies that fund the Xen Project. You can find a contribution breakdowns under Contribution Acknowledgments.
 {{</media-block>}}

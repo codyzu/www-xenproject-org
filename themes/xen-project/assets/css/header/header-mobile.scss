@@ -216,3 +216,16 @@
     display: block;
   }
 }
+
+.header .menu a {
+  @extend .btn;
+  @extend .btn-tertiary;
+  --icon-width: 0.8em;
+  --icon-margin: 0em;
+  --padding: 0em;
+
+  font-size: 1em;
+  &::before {
+    right: calc(var(--icon-left) + var(--icon-width) + var(--icon-margin) + 0.2em + var(--padding));
+  }
+}
