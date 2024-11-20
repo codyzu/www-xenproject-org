@@ -30,7 +30,11 @@ section {
 }
 
 .section-row {
-  --min-col-width: 380px;
+  --min-col-width: 300px;
+  @include tablet {
+    --min-col-width: 380px;
+  }
+
   display: flex;
   flex-wrap: wrap;
   gap: var(--gap, 1rem);

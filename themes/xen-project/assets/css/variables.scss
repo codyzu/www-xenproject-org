@@ -1,6 +1,6 @@
 :root {
   --container-width: 1312px;
-  --content-padding-horizontal: 40px;
+  --content-padding-horizontal: 20px;
 
   --font-size: 1em;
   --font-family: "gotham", sans-serif;
@@ -26,6 +26,8 @@
   --p1-font-size: 1.125rem; /* 18px */
 
   @include tablet {
+    --content-padding-horizontal: 40px;
+
     --container-paddings: var(--sp-lg);
     --section-space: 100px;
     --block-space: 160px;

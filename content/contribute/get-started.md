@@ -31,7 +31,7 @@ We've collated some information to help you get started, click here for resource
 {{<vertical-lists cols="2">}}
 - title: "**Read** documentation"
   text: >
-    <p><a href="http://wiki.xenproject.org/" class="btn btn-tertiary">Access documentation <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+    <p><a href="https://wiki.xenproject.org/" class="btn btn-tertiary">Access documentation <i class="fas fa-arrow-up-right-from-square"></i></a></p>
     <p><a href="https://wiki.xenproject.org/wiki/Index_Guide" class="btn btn-tertiary">How to use documentation <i class="fas fa-arrow-up-from-square"></i></a></p>
     
 - title: "**Communicate** with others"

@@ -134,12 +134,12 @@ The Board process will help ensure non-technical decisions are collectively dete
     <i class="fas fa-arrow-right"></i>
   </a>
 </p>
-<p class="txt-c">
+<!-- <p class="txt-c">
   <a href="TODO" class="btn btn-tertiary">
     Need some help?
     <i class="fas fa-arrow-right"></i>
   </a>
-</p>
+</p> -->
 
 {{</section>}}
 

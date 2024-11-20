@@ -54,7 +54,11 @@
     --li-width: calc(100% / var(--features-columns-count) - var(--gap));
     margin: 0;
     flex: 1 1 var(--li-width);
-    min-width: 300px;
+    min-width: 240px;
+
+    @include tablet {
+      min-width: 300px;
+    }
   }
 
   //
