@@ -70,7 +70,7 @@
 
   &:hover,
   &.hover,
-  body .card:hover & {
+  body .card:not(:has(.card__actions a:nth-child(2))):hover & {
     --color-primary: var(--color-hover);
     --icon-left: 0.3em;
   }
@@ -140,7 +140,7 @@
     }
 
     &:hover::before,
-    body .card:hover &::before {
+    body .card:not(:has(.card__actions a:nth-child(2))):hover &::before {
       transform: scaleX(1);
     }
   }

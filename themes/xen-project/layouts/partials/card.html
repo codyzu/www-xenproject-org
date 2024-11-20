@@ -3,7 +3,7 @@
 
 
 <div class="card {{ .class }}">
-  <a href="{{ .link }}" class="card__link" aria-label="Read more about {{ .title }}"></a>
+  <a href="{{ .link }}" class="card__link"  aria-hidden="true" tabindex="-1"></a>
   {{ if .titleLevel }}
     <h{{ .titleLevel }} class="card__label">{{ .title | safeHTML }}</h{{ .titleLevel }}>
   {{ else }}
@@ -23,7 +23,7 @@
         {{ .linkText | default $defaultLinkText }} <i class="fas {{ .linkIcon | default $defaultIcon }}"></i>
       </a>
       {{ if .secondaryLink }}
-        <a href="{{ .secondaryLink }}" class="join-button btn btn-tertiary">
+        <a href="{{ .secondaryLink }}" class="join-button btn btn-tertiary" aria-label="{{ .secondaryLinkText | default $defaultLinkText }} about {{ .title }}">
           {{ .secondaryLinkText | default $defaultLinkText }}
           <i class="fas {{ .secondaryLinkIcon | default $defaultIcon }}"></i>
         </a>

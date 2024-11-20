@@ -23,7 +23,7 @@
   flex-direction: column;
   gap: 10px;
   position: relative;
-  cursor: pointer;
+  //cursor: pointer;
 
   img {
     max-width: 100%;
@@ -60,6 +60,13 @@
     right: 0;
     bottom: 0;
     z-index: 1;
+  }
+
+  &:has(.card__actions a:nth-child(2)) {
+    .card__link {
+      display: none;
+    }
+    /* some other styles are applied to the "card__actions a" in buttons.scss file */
   }
 
   /* Pour que les autres liens restent cliquables */

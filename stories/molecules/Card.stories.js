@@ -46,7 +46,7 @@ export const Card = {
       ${["", "card--news", "card--bg"].map(
         (cls) => html`
         <div class="card ${cls}">
-          <a href="/newpage" class="card__link" aria-label="Read more"></a>
+          <a href="/newpage" class="card__link" aria-hidden="true" tabindex="-1"></a>
           <div class="card__label">Conversation Card ${cls.replace(/card--/g, "")}</div>
           <div class="card__date">aug, 5th 2024</div>
           <div class="card__tags">
@@ -62,7 +62,7 @@ export const Card = {
             by <a href="/">John Doe</a>
           </div>
           <div class="card__actions">
-            <a href="/newpage"
+            <a href="/newpage" 
               >Join <i class="fas fa-arrow-up-right-from-square"></i
             ></a>
             <a href="/" >Join
