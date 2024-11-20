@@ -1,6 +1,6 @@
 .socials {
   --socials-icon-background: var(--color-brand-fill);
-  --socials-icon-color: var(--color-action-on-fill);
+  --socials-icon-color: var(--color-text);
   --socials-icon-color-hover: var(--color-surface);
   display: flex;
   margin: 0;
@@ -37,7 +37,8 @@
     color: var(--socials-icon-color);
   }
 
-  a:hover {
+  a:hover,
+  a:focus {
     color: var(--socials-icon-color-hover);
   }
 

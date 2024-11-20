@@ -38,21 +38,49 @@
       }
     };
   };
-  mobileMenu();
 
-  const menu = document.querySelector(".header .menu");
-  let hasTouchCapability, hasMouseCapability;
-  const menuFirstLevelEventHandler = (e) => {
-    hasTouchCapability = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
-    if (!hasTouchCapability) return;
+  const headerDesktopEvents = () => {
+    const menu = document.querySelector(".header .menu");
+    if (!menu) return;
+    let hasTouchCapability, hasMouseCapability;
+    const menuFirstLevelEventHandler = (e) => {
+      hasTouchCapability = "ontouchstart" in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+      if (!hasTouchCapability) return;
 
-    const li = e.target.closest("li");
-    if (e.target.matches("a") && li.parentElement === menu && e.target.target !== "_blank" && li.querySelector("ul")) {
-      e.preventDefault();
-    }
+      const li = e.target.closest("li");
+      if (
+        e.target.matches("a") &&
+        li.parentElement === menu &&
+        e.target.target !== "_blank" &&
+        li.querySelector("ul")
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    const menuKeyboardHandler = (e) => {
+      if (e.key === "Enter") {
+        const li = e.target.closest("li");
+        if (li && li.parentElement === menu && li.querySelector("ul")) {
+          e.preventDefault();
+          li.classList.toggle("active");
+        }
+      } else if (e.key === "Escape") {
+        // Ferme tous les sous-menus ouverts
+        const activeMenus = menu.querySelectorAll("li.active");
+        activeMenus.forEach((li) => li.classList.remove("active"));
+      }
+    };
+    menu.addEventListener("click", menuFirstLevelEventHandler);
+    menu.addEventListener("keydown", menuKeyboardHandler);
   };
 
+  const applyMenuEvents = () => {
+    headerDesktopEvents();
+    mobileMenu();
+  };
+  window.applyMenuEvents = applyMenuEvents;
   document.addEventListener("DOMContentLoaded", () => {
-    menu.addEventListener("click", menuFirstLevelEventHandler);
+    applyMenuEvents();
   });
 })();

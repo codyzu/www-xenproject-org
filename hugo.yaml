@@ -29,6 +29,9 @@ build:
   writeStats: true
   processing:
     css: true
+    js:
+      targetPath: "js/main.js"
+      noHash: true
     css:
       includePaths: []
       sourceMap: true
