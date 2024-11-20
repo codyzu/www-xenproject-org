@@ -21,7 +21,7 @@ MirageOS is a library operating system that constructs unikernels for secure, hi
 {{</section>}}
 
 {{<section md="true">}}
-### Our architecture
+## Our architecture
 
 The MirageOS architecture can be divided into operating system libraries, typed signatures, and a metaprogramming compiler. The operating system libraries implement various functionalities, ranging from low-level network card drivers to full reimplementations of the TLS protocol, as well as the Git protocol to store versioned data. A set of typed signatures ensures that the OS libraries are consistent and work well in conjunction with each other. Most importantly, MirageOS is also a metaprogramming compiler that can input OCaml source code along with its dependencies, and a deployment target description to generate an executable unikernel, i.e., a specialised binary artefact containing only the code needed to run on the target platform. Overall, MirageOS focuses on providing a small, well-defined, typed interface with the system components of the target architecture.
 {{</section>}}

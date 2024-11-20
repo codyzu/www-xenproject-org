@@ -19,19 +19,26 @@
 
 .title-with-gradient-underline {
   strong {
+    --underline-height: 0.07em;
     display: block;
     white-space: nowrap;
     position: relative;
 
-    &::after {
-      display: block;
-      content: "";
-      position: absolute;
-      bottom: -0.04em;
-      left: 0;
-      right: 0;
-      height: 0.07em;
-      background: linear-gradient(90deg, #07c 0%, rgba(255, 255, 255, 0) 100%);
+    background: linear-gradient(90deg, #07c 0%, rgba(255, 255, 255, 0) 100%);
+    background-repeat: no-repeat;
+    background-size: 0% var(--underline-height);
+    background-position: bottom left;
+    padding-bottom: calc(var(--underline-height) - 0.02em);
+    animation: backgroundSizeAnimation 1s ease-in-out forwards;
+    animation-delay: 1s;
+  }
+
+  @keyframes backgroundSizeAnimation {
+    0% {
+      background-size: 0% var(--underline-height);
+    }
+    100% {
+      background-size: 100% var(--underline-height);
     }
   }
 }

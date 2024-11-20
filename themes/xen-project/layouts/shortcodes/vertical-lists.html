@@ -3,4 +3,5 @@
 {{ $colClass := .Get "col-class" }}
 {{ $headerLevel := .Get "headerLevel" }}
 {{ $class := .Get "class" }}
+
 {{ partial "vertical-lists.html" (dict "lists" $yaml "cols" $cols "colClass" $colClass "headerLevel" $headerLevel "class" $class) }}

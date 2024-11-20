@@ -7,7 +7,7 @@
   --color-hover: var(--color-action-fill-hover);
   --color-primary: var(--color-action-fill);
   --color-secondary: var(--color-action-on-fill);
-  --icon-left: 0px;
+  --icon-left: 0em;
   --icon-margin: 0.375em;
 
   display: inline-block;
@@ -69,7 +69,8 @@
   }
 
   &:hover,
-  &.hover {
+  &.hover,
+  body .card:hover & {
     --color-primary: var(--color-hover);
     --icon-left: 0.3em;
   }
@@ -107,6 +108,7 @@
     padding: var(--padding);
     background-color: transparent;
     border: none;
+    --decal: 0.2em;
 
     &:hover {
       text-decoration: none;
@@ -126,18 +128,19 @@
     }
 
     &:has(.fas) {
-      --icon-width: 1em;
+      --icon-width: 0.9em;
     }
     &:has(.fa-arrow-right),
     &:has(.fa-arrow-up-right-from-square) {
-      --icon-width: 0.75em;
+      --icon-width: 0.85em;
     }
 
     &:has(.fas)::before {
-      right: calc(var(--icon-left) + var(--icon-width) + var(--icon-margin) + 0.2em + var(--padding));
+      right: calc(var(--icon-width) + var(--icon-margin) + var(--decal) + var(--padding));
     }
 
-    &:hover::before {
+    &:hover::before,
+    body .card:hover &::before {
       transform: scaleX(1);
     }
   }

@@ -12,8 +12,8 @@ menus:
 ---
 
 
-{{<section container="full">}}
-{{<full-width-image src="/img/photos/xen-project-2023-group-photo.png" alt="Xen Project 2023 group photo" title="Xen Project 2023 group photo">}}
+{{<section >}}
+{{<full-width-image src="/img/photos/xen-project-2023-group-photo.png" alt="Xen Project 2023 group photo" title="Xen Project 2023 group photo" class="rounded-corners">}}
 {{</section>}}
 
 

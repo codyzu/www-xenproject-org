@@ -102,6 +102,7 @@ h1,
 h2,
 h3 {
   strong {
+    font-weight: inherit;
     color: var(--color-action-text);
   }
 

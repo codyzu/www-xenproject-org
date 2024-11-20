@@ -11,6 +11,15 @@ params:
   blogApiKey: "b047d7f627a90f40798d11dcba"
 
 
+minify:
+  disableXML: true
+  minifyOutput: true
+  tdewolff:
+    html:
+      keepWhitespace: false
+      keepEndTags: false
+      keepQuotes: false
+      keepComments: false
 module:
   hugoVersion:
     extended: true

@@ -1,5 +1,10 @@
 (() => {
-  const selector = ".carousel-container";
+  const /* The `selector` constant is storing a CSS selector string that is used to select elements in
+  the DOM. In this code snippet, the `selector` constant is set to `".carousel-container"`,
+  which means it is targeting elements with the class name "carousel-container". This selector
+  is then used to find and initialize carousel functionality on those elements in the
+  document. */
+    selector = ".carousel-container";
   const itemSelector = ".carousel-item";
   const itemsBefore = 2;
   const itemsAfter = 1;
@@ -7,7 +12,9 @@
   const { debounce } = window.XenSiteUtils;
 
   const carousel = async (element) => {
-    const infiniteLoop = false;
+    const uniqueid = Math.random().toString(36).substring(2, 15);
+    element.classList.add("carousel-container-" + uniqueid);
+    const infiniteLoop = true;
     const itemsBefore = 2;
     const itemsAfter = 2;
 
@@ -141,7 +148,7 @@
       }
 
       rules.push(`
-        .carousel-container {
+        .carousel-container-${uniqueid} {
           --item-width: ${itemWidth}px;
           --item-position: ${occupiedSpace}px;
           --height: ${height}px;

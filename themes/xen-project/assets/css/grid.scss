@@ -78,6 +78,9 @@ section {
   }
 }
 
+.row-from-list .card__content {
+}
+
 @for $i from 1 through 5 {
   .cols-#{$i} {
     --cols: #{$i};

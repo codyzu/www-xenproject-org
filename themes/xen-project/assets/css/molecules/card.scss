@@ -51,13 +51,6 @@
   &__content {
     flex: 1;
     line-height: 1.25;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 6;
-    line-clamp: 6;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    word-break: break-word;
   }
 
   &__link {
@@ -153,4 +146,23 @@
   font-weight: 500;
   line-height: 150%;
   letter-spacing: -0.025em;
+}
+
+.carousel .card__content {
+  display: block;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: none;
+  line-clamp: none;
+}
+
+.card-blog {
+  .card__content {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 6;
+    line-clamp: 6;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+  }
 }
