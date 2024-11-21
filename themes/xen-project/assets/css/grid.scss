@@ -69,9 +69,16 @@ section {
   flex-direction: row;
   gap: var(--sp-lg);
   justify-content: space-between;
+  flex-wrap: wrap;
+  @include phone {
+    flex-wrap: nowrap;
+  }
 
   .col {
-    flex: 1;
+    flex: 1 1 100%;
+    @include phone {
+      flex: 1;
+    }
   }
 }
 
