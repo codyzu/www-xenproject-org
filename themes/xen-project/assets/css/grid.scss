@@ -29,6 +29,16 @@ section {
   margin-top: var(--block-space);
 }
 
+.col {
+  h2,
+  h3,
+  h4 {
+    &:first-child {
+      margin-top: 0;
+    }
+  }
+}
+
 .section-row {
   --min-col-width: 300px;
   @include tablet {
@@ -69,24 +79,29 @@ section {
   display: flex;
   flex-direction: row;
   --gap: var(--sp-lg);
+  --cols: 3;
+  --min-col-width: 300px;
   gap: var(--gap);
   justify-content: flex-start;
   align-items: stretch;
   flex-wrap: wrap;
-  --cols: 3;
-  --min-col-width: 300px;
+
   > *,
   > .col {
-    min-width: var(--min-col-width);
-    flex: 0 0 calc((100% / var(--cols)) - var(--gap));
+    flex: 1 1 auto;
+
+    @include phone {
+      --basis: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+      min-width: var(--min-col-width);
+      flex: 1 1 var(--basis);
+    }
   }
 }
 
-.row-from-list .card__content {
-}
-
 @for $i from 1 through 5 {
-  .cols-#{$i} {
-    --cols: #{$i};
+  @include phone {
+    .cols-#{$i} {
+      --cols: #{$i};
+    }
   }
 }

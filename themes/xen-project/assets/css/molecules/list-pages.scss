@@ -1,21 +1,35 @@
 .list-pages {
-  --gap: var(--sp-md);
-  --cols: 2;
+  --gap: 12px;
+  --cols: 1;
+  --basis: 100%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: var(--gap);
 
+  @include phone {
+    --cols: 2;
+  }
+
   @include tablet {
+    --gap: var(--sp-md);
     --cols: 3;
   }
 
-  @include tablet-up {
+  @include desktop {
     --cols: 4;
   }
 
-  > * {
-    --basis: calc((100% / var(--cols)) - var(--gap));
-    flex: 0 0 var(--basis);
+  > *,
+  > .card {
+    // flex: 1;
+    // width: 100%;
+    // flex-basis: auto;
+
+    @include phone {
+      --basis: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+      width: auto;
+      flex: 0 0 var(--basis);
+    }
   }
 }

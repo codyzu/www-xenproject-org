@@ -4,7 +4,11 @@
   flex-wrap: wrap;
   justify-content: stretch;
   align-items: stretch;
-  padding-top: 80px;
+  padding-top: 30px;
+
+  @include phone {
+    padding-top: 80px;
+  }
 
   &.has-aside {
     max-width: 1920px;

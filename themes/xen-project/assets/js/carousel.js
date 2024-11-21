@@ -192,6 +192,12 @@
     carouselElement.classList.add("carousel-initialized");
   };
 
+  /**
+   * Waits for elements matching the selector to be present in the DOM within the given element.
+   * @param {HTMLElement} element - The parent element to observe for the selector.
+   * @param {string} selector - The CSS selector to match the elements.
+   * @returns {Promise<NodeListOf<Element>>} A promise that resolves with the matched elements.
+   */
   const waitForElements = (element, selector) => {
     return new Promise((resolve) => {
       const items = element.querySelectorAll(selector);

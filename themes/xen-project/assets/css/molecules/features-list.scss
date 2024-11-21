@@ -7,6 +7,7 @@
   --feature-item-title-gap: 0.5rem;
 
   @include tablet {
+    --feature-padding: 2.5rem;
     --features-columns-count: 2;
     --feature-item-title-font-size: 2.5rem;
     --feature-item-title-gap: 1.3rem;
@@ -70,7 +71,14 @@
   border-radius: var(--feature-border-radius);
   border-radius: 16px;
   background: var(--color-brand-surface);
-  padding: 40px;
+  --title-direction: column;
+  --icon-font-size: 0.6em;
+  --icon-size: 36px;
+
+  @include tablet {
+    // --title-direction: column;
+    --icon-font-size: 1.8rem;
+  }
 
   &-content {
     flex: 1;
@@ -78,12 +86,14 @@
 
   // Icon styles
   &__icon {
+    --icon-size: 2.5em;
+    font-size: var(--icon-font-size);
+    width: var(--icon-size);
+    height: var(--icon-size);
     display: flex !important;
-    width: 72px;
-    height: 72px;
+
     justify-content: center;
     align-items: center;
-    font-size: 0.8em;
     border-radius: 100px;
     border: 2px solid var(--color-surface);
     color: var(--color-surface);
@@ -92,12 +102,12 @@
       0px 11px 15px 0px rgba(71, 84, 103, 0.1),
       0px 9px 46px 0px rgba(71, 84, 103, 0.06),
       0px 24px 38px 0px rgba(71, 84, 103, 0.04);
-    font-size: 1.5rem;
   }
 
   // Title styles
   &__title {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--feature-item-title-gap);
     font-size: var(--feature-item-title-font-size);
     font-weight: 500;
@@ -105,7 +115,7 @@
     margin: 0 0 1.05rem;
     padding-bottom: 0.28em;
     display: flex;
-    flex-direction: column;
+    flex-direction: var(--title-direction);
     align-items: flex-start;
   }
 

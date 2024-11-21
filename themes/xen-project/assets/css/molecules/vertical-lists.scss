@@ -4,15 +4,24 @@
   justify-content: space-between;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: var(--sp-lg) var(--sp-md);
+  --gap: var(--sp-md);
+  gap: var(--sp-lg) var(--gap);
   margin-top: var(--sp-md);
 
+  @media (max-width: 600px) {
+    --cols: 1 !important;
+  }
+
   .list-column {
-    flex-basis: calc((100% / var(--cols)) - var(--sp-md));
+    --basis: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
+    flex: 1 1 var(--basis);
+    word-break: break-word;
+    overflow-wrap: break-word;
+    //flex-basis: calc((100% / var(--cols)) - var(--sp-md));
   }
 }
+
 .list-column {
-  flex: 1;
   --border-left: 2px solid var(--color-brand-fill);
   padding-left: var(--sp-sm-md);
   //border-left: var(--border-left);

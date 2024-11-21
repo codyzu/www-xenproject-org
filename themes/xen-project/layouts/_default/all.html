@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <div class="all-pages">
+    <h1>{{ .Title }}</h1>
+
+    <ul>
+      {{ range .Site.Pages }}
+        {{ if not .Params.hidden }}
+          <li>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </div>
+{{ end }}

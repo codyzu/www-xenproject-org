@@ -43,6 +43,6 @@
   {{ partialCached "head/css.html" . }}
 
   <script>
-    const siteParams = {{ .Site.Params  }};
+    var siteParams = window.siteParams = {{ .Site.Params  }};
   </script>
 </head>

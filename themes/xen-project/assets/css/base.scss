@@ -55,6 +55,13 @@ li {
 a {
   color: var(--color-action-text);
   text-decoration: none;
+  word-break: break-word;
+  overflow-wrap: break-word;
+
+  @media (max-width: 600px) {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
 
   &:hover {
     text-decoration: underline;

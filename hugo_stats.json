@@ -48,6 +48,7 @@
     "classes": [
       "active",
       "align-flex-start",
+      "all-pages",
       "ancestor",
       "animated-home-server",
       "animated-home-shadow-screen",
@@ -86,6 +87,7 @@
       "container",
       "container-full",
       "content-markdown",
+      "date",
       "description",
       "download-search",
       "fa",

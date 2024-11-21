@@ -13,8 +13,10 @@
   }
 
   th {
-    background-color: #f2f2f2;
+    background-color: var(--color-text-secondary);
+    color: #fff;
     font-weight: bold;
+    border: 1px solid #fff;
   }
 
   tr {
@@ -36,6 +38,23 @@
       font-style: italic;
     }
   }
+  // Styles responsive
+  @media screen and (max-width: 768px) {
+    table {
+      display: block;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    td,
+    th {
+      padding: 0.5rem 0.8rem;
+    }
+
+    td:last-child {
+      white-space: normal;
+    }
+  }
 
   h1,
   h2,
@@ -54,5 +73,14 @@
     line-height: 1.4;
     margin-top: var(--sp-sm);
     margin-bottom: var(--sp-sm);
+    width: 100%;
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+
+  @media (max-width: 600px) {
+    p {
+      word-break: break-word;
+    }
   }
 }

@@ -11,8 +11,6 @@
   --height: auto;
   padding-bottom: 40px;
   overflow: hidden;
-  // margin-left: calc(var(--content-padding-horizontal) * -1);
-  // margin-right: calc(var(--content-padding-horizontal) * -1);
 
   @include phone {
     --number-of-items: 2;

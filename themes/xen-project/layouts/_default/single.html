@@ -8,7 +8,7 @@
   {{ if eq $asidePosition "before" }}
     {{ partial "aside.html" . }}
   {{ end }}
-  <article class="article" data-blog-api-key="{{ .Site.Params.blogApiKey }}">
+  <article class="article">
     <div class="container page-top">
       <h1>{{ .Title }}</h1>
       <div class="description">
