@@ -82,7 +82,7 @@
     }
 
     .media-block__content {
-      flex-basis: 52%;
+      flex-basis: calc(52% - var(--gap));
     }
   }
 }
