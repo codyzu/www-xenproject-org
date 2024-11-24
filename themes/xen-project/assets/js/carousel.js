@@ -4,11 +4,11 @@
   const itemsContainerSelector = ".carousel";
   const itemSelector = ".carousel-item";
 
-  const { debounce } = window.XenSiteUtils;
+  const { debounce, waitForElements } = window.XenSiteUtils;
 
   const carousel = async (element) => {
     const itemsContainer = element.querySelector(itemsContainerSelector);
-    const items = element.querySelectorAll(itemSelector);
+    const items = await waitForElements(element, itemSelector);
 
     const firstItem = items[0].cloneNode(true);
     firstItem.innerHTML = "";
@@ -30,34 +30,34 @@
         behavior: "smooth",
       });
     });
+
+    function updateCarouselTabIndexes() {
+      const items = element.querySelectorAll(".carousel-item");
+
+      items.forEach((item) => {
+        const rect = item.getBoundingClientRect();
+        const isVisible = rect.left >= 0 && rect.right <= window.innerWidth;
+
+        item.classList.toggle("carousel-item--hidden", !isVisible);
+        const links = item.querySelectorAll("a");
+
+        links.forEach((link) => {
+          if (link.getAttribute("aria-hidden") !== "true") {
+            if (isVisible) {
+              link.removeAttribute("tabindex");
+            } else {
+              link.setAttribute("tabindex", "-1");
+            }
+          }
+        });
+      });
+    }
+
+    element.querySelector(".carousel").addEventListener("scroll", updateCarouselTabIndexes);
+    updateCarouselTabIndexes();
   };
 
   [...document.querySelectorAll(selector)].forEach((elm) => {
     carousel(elm);
   });
-
-  function updateCarouselTabIndexes() {
-    const items = document.querySelectorAll(".carousel-item");
-
-    items.forEach((item) => {
-      const rect = item.getBoundingClientRect();
-      const isVisible = rect.left >= 0 && rect.right <= window.innerWidth;
-
-      item.classList.toggle("carousel-item--hidden", !isVisible);
-      const links = item.querySelectorAll("a");
-
-      links.forEach((link) => {
-        if (link.getAttribute("aria-hidden") !== "true") {
-          if (isVisible) {
-            link.removeAttribute("tabindex");
-          } else {
-            link.setAttribute("tabindex", "-1");
-          }
-        }
-      });
-    });
-  }
-
-  document.querySelector(".carousel").addEventListener("scroll", updateCarouselTabIndexes);
-  updateCarouselTabIndexes();
 })();

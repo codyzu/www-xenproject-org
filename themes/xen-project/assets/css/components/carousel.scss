@@ -61,14 +61,14 @@
   }
 
   .carousel-content-inner {
-    --opacity: 0.2;
+    --opacity: 0.1;
     --mask-image: linear-gradient(
       to right,
       transparent,
-      rgba(0, 0, 0, var(--opacity)) calc(var(--mask-size) - 5%),
+      rgba(0, 0, 0, var(--opacity)) calc(var(--mask-size) - 2%),
       black calc(var(--mask-size) + 5%),
       black calc(100% - var(--mask-size) - 5%),
-      rgba(0, 0, 0, var(--opacity)) calc(100% - var(--mask-size) + 5%),
+      rgba(0, 0, 0, var(--opacity)) calc(100% - var(--mask-size) + 2%),
       transparent
     );
     mask-image: var(--mask-image);

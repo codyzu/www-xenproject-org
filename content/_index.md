@@ -71,7 +71,7 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
 
 
 {{<section container="full">}}
-{{<carousel class="mg-t-lg carousel-container-width">}}
+{{<carousel class="mg-t-lg">}}
 {{<getpages "projects" "hidden">}}
 {{</carousel>}}
 
