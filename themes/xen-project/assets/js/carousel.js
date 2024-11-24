@@ -17,18 +17,33 @@
     const lastItem = firstItem.cloneNode(true);
     itemsContainer.append(lastItem);
 
-    element.querySelector(".carousel-button.prev").addEventListener("click", () => {
-      itemsContainer.scrollBy({
-        left: -firstItem.clientWidth,
-        behavior: "smooth",
-      });
+    let isHovered = false;
+    let hasBeenFocused = false;
+    element.addEventListener("mouseenter", (e) => {
+      isHovered = true;
+    });
+    element.addEventListener("mouseleave", () => {
+      isHovered = false;
     });
 
-    element.querySelector(".carousel-button.next").addEventListener("click", () => {
-      itemsContainer.scrollBy({
-        left: firstItem.clientWidth,
-        behavior: "smooth",
-      });
+    element.addEventListener("focusin", () => {
+      hasBeenFocused = true;
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (hasBeenFocused || isHovered) {
+        if (event.key === "ArrowLeft") {
+          itemsContainer.scrollBy({
+            left: -firstItem.clientWidth,
+            behavior: "smooth",
+          });
+        } else if (event.key === "ArrowRight") {
+          itemsContainer.scrollBy({
+            left: firstItem.clientWidth,
+            behavior: "smooth",
+          });
+        }
+      }
     });
 
     function updateCarouselTabIndexes() {
