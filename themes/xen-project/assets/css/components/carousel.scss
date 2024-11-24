@@ -13,6 +13,7 @@
   --negative-margin-multiplier: 3;
   --carousel-negative-margin: calc((var(--item-width) + var(--gap)) * -1 * var(--negative-margin-multiplier));
   --color-background: var(--color-surface-secondary);
+  --item-shadow-height: 26px;
   overflow: hidden;
 
   @include phone {
@@ -85,6 +86,7 @@
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
+    padding: 0 0 var(--item-shadow-height);
 
     &::-webkit-scrollbar {
       display: none;
@@ -109,7 +111,7 @@
     max-width: 100px;
     margin-left: auto;
     margin-right: auto;
-    margin-top: var(--sp-sm-md);
+    //margin-top: calc(var(--item-shadow-height) * -1);
 
     @include tablet {
       position: absolute;
