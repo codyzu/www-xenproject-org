@@ -1,33 +1,37 @@
 @use "sass:math";
 
 .carousel-container {
-  --min-height: 100px;
   --content-padding: 12px;
-  --item-width: auto;
-  --item-position: 0;
   --max-width: none;
-  --number-of-items: 1;
-  --space-between-items: 40px;
-  --height: auto;
-  padding-bottom: 40px;
+  --gap: 40px;
+  --cols: 1;
+  --items-before: 1;
+  --items-after: 1;
+  --total-cols: calc(var(--cols) + var(--items-before) + var(--items-after));
+  --item-width: calc((100% - (var(--total-cols) - 1) * var(--gap)) / var(--total-cols));
+  --mask-size: var(--item-width);
+  --negative-margin-multiplier: 3;
+  --carousel-negative-margin: calc((var(--item-width) + var(--gap)) * -1 * var(--negative-margin-multiplier));
+  --color-background: var(--color-surface-secondary);
   overflow: hidden;
 
   @include phone {
-    --number-of-items: 2;
+    //--cols: 2;
   }
 
   @include tablet {
-    --number-of-items: 2;
+    --cols: 2;
     --max-width: calc(var(--container-width) + var(--content-padding) * 2);
     --content-padding: 80px;
+    --negative-margin-multiplier: 1.66;
   }
 
   @include tablet-up {
-    --number-of-items: 3;
+    --cols: 3;
   }
 
   @include desktop {
-    --number-of-items: 3;
+    --cols: 3;
   }
 
   .carousel-content {
@@ -38,22 +42,63 @@
     margin: 0 auto;
   }
 
+  .carousel-item--clone {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .carousel-item {
+    scroll-snap-align: start;
+
+    &--hidden {
+      pointer-events: none;
+    }
+  }
+
+  .carousel-content {
+    width: 100%;
+    position: relative;
+  }
+
+  .carousel-content-inner {
+    --opacity: 0.2;
+    --mask-image: linear-gradient(
+      to right,
+      transparent,
+      rgba(0, 0, 0, var(--opacity)) calc(var(--mask-size) - 5%),
+      black calc(var(--mask-size) + 5%),
+      black calc(100% - var(--mask-size) - 5%),
+      rgba(0, 0, 0, var(--opacity)) calc(100% - var(--mask-size) + 5%),
+      transparent
+    );
+    mask-image: var(--mask-image);
+    -webkit-mask-image: var(--mask-image);
+    margin-left: var(--carousel-negative-margin);
+    margin-right: var(--carousel-negative-margin);
+    overflow: hidden;
+  }
+
   .carousel {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-between-items);
-    align-items: stretch;
-    position: relative;
-    height: var(--height);
+    gap: var(--gap);
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    html.has-js & {
+      flex-wrap: nowrap;
+    }
 
     &-item {
-      --index: 0;
-      --transform: calc(var(--item-position) * (var(--index)));
-      flex: 1 0 calc(100% / var(--number-of-items) - var(--space-between-items));
-      top: 0;
-      min-height: var(--min-height);
-      left: 0;
       width: var(--item-width);
+      min-width: var(--item-width);
+      max-width: var(--item-width);
+      flex: 1 1 var(--item-width);
     }
   }
 
@@ -91,15 +136,4 @@
     height: 2.25rem;
     font-size: 1.25rem;
   }
-}
-
-.carousel-initialized .carousel-item {
-  position: absolute;
-  transform: translateX(var(--transform));
-  opacity: 0;
-  display: none;
-  transition:
-    transform 0.5s ease,
-    opacity 0.8s ease;
-  height: 100%;
 }

@@ -1,7 +1,9 @@
 <div class="carousel-container {{ with .class }}{{ . }}{{ end }}">
   <div class="carousel-content">
-    <div class="carousel">
-      {{ partial "carousel-items.html" (dict "items" .content) }}
+    <div class="carousel-content-inner">
+      <div class="carousel">
+        {{ partial "carousel-items.html" (dict "items" .content) }}
+      </div>
     </div>
     <div class="carousel-buttons">
       <button class="carousel-button prev">

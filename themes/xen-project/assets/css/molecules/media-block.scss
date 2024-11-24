@@ -34,16 +34,6 @@
   &:has(video) {
     --media-h-padding: 0 !important;
   }
-  // &::before {
-  //   content: "";
-  //   position: absolute;
-  //   top: 0;
-  //   left: 50%;
-  //   width: 1px;
-  //   height: 100%;
-  //   background-color: red;
-  //   transform: translateX(-50%);
-  // }
 
   &.image-small {
     .media-block__media {
