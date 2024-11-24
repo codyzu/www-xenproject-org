@@ -1,78 +1,76 @@
 (() => {
   document.documentElement.classList.add("has-js");
-  const selector = ".carousel-container";
-  const itemsContainerSelector = ".carousel";
-  const itemSelector = ".carousel-item";
+  const selectors = {
+    container: ".carousel-container",
+    itemsContainer: ".carousel",
+    item: ".carousel-item",
+  };
 
-  const { debounce, waitForElements } = window.XenSiteUtils;
+  const { waitForElements } = window.XenSiteUtils;
 
   const carousel = async (element) => {
-    const itemsContainer = element.querySelector(itemsContainerSelector);
-    const items = await waitForElements(element, itemSelector);
+    const itemsContainer = element.querySelector(selectors.itemsContainer);
+    const items = await waitForElements(element, selectors.item);
 
-    const firstItem = items[0].cloneNode(true);
-    firstItem.innerHTML = "";
-    firstItem.classList.add("carousel-item--clone");
-    itemsContainer.prepend(firstItem);
-    const lastItem = firstItem.cloneNode(true);
-    itemsContainer.append(lastItem);
+    const cloneItem = items[0].cloneNode(true);
+    cloneItem.innerHTML = "";
+    cloneItem.classList.add("carousel-item--clone");
 
-    let isHovered = false;
-    let hasBeenFocused = false;
-    element.addEventListener("mouseenter", (e) => {
-      isHovered = true;
-    });
-    element.addEventListener("mouseleave", () => {
-      isHovered = false;
-    });
+    itemsContainer.prepend(cloneItem.cloneNode(true));
+    itemsContainer.append(cloneItem);
 
-    element.addEventListener("focusin", () => {
-      hasBeenFocused = true;
-    });
+    let state = { isHovered: false, hasBeenFocused: false };
 
-    document.addEventListener("keydown", (event) => {
-      if (hasBeenFocused || isHovered) {
-        if (event.key === "ArrowLeft") {
-          itemsContainer.scrollBy({
-            left: -firstItem.clientWidth,
-            behavior: "smooth",
-          });
-        } else if (event.key === "ArrowRight") {
-          itemsContainer.scrollBy({
-            left: firstItem.clientWidth,
-            behavior: "smooth",
-          });
-        }
+    const next = () => {
+      itemsContainer.scrollBy({
+        left: cloneItem.clientWidth,
+        behavior: "smooth",
+      });
+    };
+
+    const prev = () => {
+      itemsContainer.scrollBy({
+        left: -cloneItem.clientWidth,
+        behavior: "smooth",
+      });
+    };
+
+    element.addEventListener("mouseenter", () => (state.isHovered = true));
+    element.addEventListener("mouseleave", () => (state.isHovered = false));
+    element.addEventListener("focusin", () => (state.hasBeenFocused = true));
+    element.addEventListener("focusout", () => (state.hasBeenFocused = false));
+
+    const prevButton = element.querySelector(".prev");
+    const nextButton = element.querySelector(".next");
+
+    prevButton?.addEventListener("click", prev);
+    nextButton?.addEventListener("click", next);
+
+    document.addEventListener("keydown", ({ key }) => {
+      if (state.hasBeenFocused || state.isHovered) {
+        if (key === "ArrowLeft") prev();
+        if (key === "ArrowRight") next();
       }
     });
 
-    function updateCarouselTabIndexes() {
-      const items = element.querySelectorAll(".carousel-item");
-
-      items.forEach((item) => {
-        const rect = item.getBoundingClientRect();
-        const isVisible = rect.left >= 0 && rect.right <= window.innerWidth;
+    const updateCarouselTabIndexes = () => {
+      element.querySelectorAll(".carousel-item").forEach((item) => {
+        const { left, right } = item.getBoundingClientRect();
+        const isVisible = left >= 0 && right <= window.innerWidth;
 
         item.classList.toggle("carousel-item--hidden", !isVisible);
-        const links = item.querySelectorAll("a");
-
-        links.forEach((link) => {
+        item.querySelectorAll("a").forEach((link) => {
           if (link.getAttribute("aria-hidden") !== "true") {
-            if (isVisible) {
-              link.removeAttribute("tabindex");
-            } else {
-              link.setAttribute("tabindex", "-1");
-            }
+            link.toggleAttribute("tabindex", !isVisible);
+            isVisible ? link.removeAttribute("tabindex") : link.setAttribute("tabindex", "-1");
           }
         });
       });
-    }
+    };
 
-    element.querySelector(".carousel").addEventListener("scroll", updateCarouselTabIndexes);
+    itemsContainer.addEventListener("scroll", updateCarouselTabIndexes);
     updateCarouselTabIndexes();
   };
 
-  [...document.querySelectorAll(selector)].forEach((elm) => {
-    carousel(elm);
-  });
+  document.querySelectorAll(selectors.container).forEach(carousel);
 })();
