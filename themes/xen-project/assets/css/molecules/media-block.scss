@@ -47,7 +47,10 @@
 
   &.image-small {
     .media-block__media {
-      --media-h-padding: 30%;
+      img {
+        width: 100%;
+        max-width: 200px;
+      }
     }
   }
 
@@ -109,7 +112,7 @@
     }
 
     img {
-      width: 100%;
+      max-width: 100%;
       height: auto;
       object-fit: contain;
     }
