@@ -8,38 +8,30 @@ menus:
   main:
     parent: Projects
     weight: 100
-aside: 
-  - name: Users
-    type: resource
-    items: 
-      - name: Downloads
-        link: "https://xcp-ng.org/#easy-to-install"
-      - name: Docs
-        link: "https://github.com/xcp-ng/xcp/wiki"
-      - name: Forums
-        link: "https://xcp-ng.org/forum/"
-      - name: "IRC: #xcp-ng"
-        link: "/help/irc/"
-      - name: Report a Bug
-        link: "https://github.com/xcp-ng/xcp/issues"
-  - name: Developers
-    type: resource
-    items:
-      - name: Developer Forum
-        link: "https://xcp-ng.org/forum/category/7/development"
-      - name: "IRC: #xcp-ng-dev"
-        link: "/help/irc/"
-      - name: Browse Git
-        link: "https://github.com/xcp-ng"
-      - name: Dev Docs
-        link: "https://github.com/xcp-ng/xcp/wiki#development"
-  - name: Team
-    type: members-list
-    items:
-      - name: Project Lead
-        name: Olivier Lambert
-      - name: Committer
-        name: Samuel Verschelde
+# aside: 
+#   - name: Users
+#     type: resource
+#     items: 
+#       - name: Downloads
+#         link: "https://xcp-ng.org/#easy-to-install"
+#       - name: Docs
+#         link: "https://github.com/xcp-ng/xcp/wiki"
+#       - name: Forums
+#         link: "https://xcp-ng.org/forum/"
+#       - name: "IRC: #xcp-ng"
+#         link: "/help/irc/"
+#       - name: Report a Bug
+#         link: "https://github.com/xcp-ng/xcp/issues"
+#   - name: Developers
+#     type: resource
+#     items:
+#       - name: Developer Forum
+#         link: "https://xcp-ng.org/forum/category/7/development"
+#       - name: Browse Git
+#         link: "https://github.com/xcp-ng"
+#       - name: Dev Docs
+#         link: "https://github.com/xcp-ng/xcp/wiki#development"
+  
 ---
 
 {{<section>}}

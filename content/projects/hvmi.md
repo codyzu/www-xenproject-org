@@ -11,7 +11,7 @@ aside:
   - type: resource
     items:
       - name: "Github repository"
-        link: https://github.com/hvmi
+        link: https://github.com/bitdefender/hvmi
       - name: "Documentation"
         link: https://hvmi.readthedocs.io/
 ---

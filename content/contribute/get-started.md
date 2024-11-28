@@ -20,8 +20,8 @@ menu:
 We've collated some information to help you get started, click here for resources.
 
 <p class="mg-t-md">
-  <a href="http://TODO" class="btn btn-primary">
-    Download support <i class="fas fa-download"></i>
+  <a href="https://wiki.xenproject.org/wiki/Main_Page" class="btn btn-primary">
+    View documentation <i class="fas fa-arrow-up-right-from-square"></i></a></a>
   </a> 
 </p>
 {{</media-block>}}
@@ -36,8 +36,8 @@ We've collated some information to help you get started, click here for resource
     
 - title: "**Communicate** with others"
   text: >
-    <p><a href="TODO" class="btn btn-tertiary">Access documentation <i class="fas fa-arrow-up-right-from-square"></i></a></p>
-    <p><a href="TODO" class="btn btn-tertiary">How to use documentation <i class="fas fa-arrow-up-from-square"></i></a></p>
+    <p><a href="/resources/matrix" class="btn btn-tertiary">Matrix<i class="fas fa-arrow-right"></i></a></p>
+    <p><a href="/resources/mailing-lists/" class="btn btn-tertiary">Mailing Lists<i class="fas fa-arrow-right"></i></a></p>
 
 {{</vertical-lists>}}
 {{</section>}}
