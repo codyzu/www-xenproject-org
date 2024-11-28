@@ -98,7 +98,7 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
   Board members can propose and vote upon changes to the Xen Project.Members also gain valuable strategic insight into project plans and future scope.
 
   <p class="mg-t-md">
-    <a href="/xen-project/advisors" class="btn btn-secondary">Join the advisory board <i class="fas fa-arrow-right"></i></a>
+    <a href="/about/become-a-member" class="btn btn-secondary">Join the advisory board <i class="fas fa-arrow-right"></i></a>
   </p>
   {{</media-block>}}
 
