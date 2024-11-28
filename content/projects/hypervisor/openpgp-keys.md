@@ -2,8 +2,12 @@
 title: OpenPGP Keys
 description: OpenPGP Keys for the Xen Project
 keywords: "Xen Project, OpenPGP, PGP keys, security, cryptographic keys"
+date: 2024-12-14T07:07:07+01:00
 draft: false
+exclude_from_list: true
+exclude: "hidden"
 ---
+
 {{<section md="true" class="content-markdown">}}
 ## The Hypervisor Team’s OpenPGP Keys
 
