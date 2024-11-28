@@ -118,7 +118,7 @@ Honda is a global leader in automotive manufacturing and technology innovation. 
 Improve engineering ROI, gain project insight and increase visibility among many benefits of joining as a member.
 
 <p class="mg-t-md">
-  <a href="link-to-membership-page" class="btn btn-secondary">Become a member <i class="fas fa-arrow-up-right-from-square"></i></a>
+  <a href="/about/become-a-member/" class="btn btn-secondary">Become a member <i class="fas fa-arrow-up-right-from-square"></i></a>
 </p>
 {{</media-block>}}
 {{</section>}}

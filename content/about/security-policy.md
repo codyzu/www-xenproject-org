@@ -67,7 +67,7 @@ We want to encourage people to report bugs they find to us. Therefore we will tr
 
 ## Scope of this process
 
-This process primarily covers the [Xen Hypervisor Project](/developers/teams/xen-hypervisor/). Specific information about features with security support can be found in
+This process primarily covers the [Xen Hypervisor Project](/projects/hypervisor/). Specific information about features with security support can be found in
 
 1.  [SUPPORT.md](http://xenbits.xen.org/gitweb/?p=xen.git;a=blob;f=SUPPORT.md) in the releases’ tar ball and its xen.git tree and on [web pages generated from the SUPPORT.md file](https://xenbits.xen.org/docs/unstable/support-matrix.html)
 2.  For releases that do not contain SUPPORT.md, this information can be found on the [Release Feature wiki page](https://wiki.xenproject.org/wiki/Xen_Project_Release_Features)
@@ -172,7 +172,7 @@ The `-discuss` list is moderated by the Xen Project Security Team. Announcements
 
 ### Predisclosure list membership application process
 
-Organisations who meet the criteria should contact `predisclosure-applications@lists.xenproject<dot>org` (which is a public [mailing list](/help/mailing-list.html#predisclosure-applications)) if they wish to receive pre-disclosure of advisories.
+Organisations who meet the criteria should contact `predisclosure-applications@lists.xenproject<dot>org` (which is a public [mailing list](/resources/mailing-lists)) if they wish to receive pre-disclosure of advisories.
 
 You must include in the e-mail:
 

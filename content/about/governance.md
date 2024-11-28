@@ -14,7 +14,7 @@ aside:
     items:
       - name: Governance
         link: https://xenbits.xenproject.org/governance/core-governance.html
-        icon: fas fa-right-arrow
+        icon: fas fa-up-right-from-square
 ---
 
 
@@ -56,7 +56,7 @@ The Xen Project consists of a number of sub-projects: each sub-project makes tec
 
 ### Sub-projects and Teams
 
-The Xen Project organizes itself into a number of sub-projects, which follow the [Project Governance](#project-governance) (or Project Lifecycle) as outlined in this document. Sub-projects (sometimes simply referred to as projects) are run by individuals and are often referred to as teams to highlight the collaborative nature of development. For example, each sub-project has a [team portal](/developers/teams) on Xenproject.org. Sub-projects own and are responsible for a collection of source repositories and other resources (e.g. test infrastructure, CI infrastructure, …), which we call **sub-project assets** (or team assets) in this document.
+The Xen Project organizes itself into a number of sub-projects, which follow the [Project Governance](#project-governance) (or Project Lifecycle) as outlined in this document. Sub-projects (sometimes simply referred to as projects) are run by individuals and are often referred to as teams to highlight the collaborative nature of development. For example, each sub-project has a [team portal](/projects/all-projects/)) on Xenproject.org. Sub-projects own and are responsible for a collection of source repositories and other resources (e.g. test infrastructure, CI infrastructure, …), which we call **sub-project assets** (or team assets) in this document.
 
 Sub-projects can either be **incubation projects** or **mature projects** as outlined in [Basic Project Life Cycle](#basic-project-life-cycle). In line with the meritocratic principle, mature projects have more influence than incubation projects, on [project wide decisions](#project-wide-decision-making).
 
@@ -66,11 +66,11 @@ The Xen Project has a community manager, whose primary role it is to support the
 
 ### Xen Project Advisory Board
 
-The [Xen Project Advisory Board](/join) consists of members who are committed to steering the project to advance its market and technical success, and who serve as positive ambassadors for the project. The Xen Project Advisory Board manages non-technical aspects of the Xen Project including funding for shared project infrastructure, marketing and events, and managing the Xen Project trademark. The Advisory Board leaves all technical decisions to the open source meritocracy.
+The [Xen Project Advisory Board](/about/become-a-member/) consists of members who are committed to steering the project to advance its market and technical success, and who serve as positive ambassadors for the project. The Xen Project Advisory Board manages non-technical aspects of the Xen Project including funding for shared project infrastructure, marketing and events, and managing the Xen Project trademark. The Advisory Board leaves all technical decisions to the open source meritocracy.
 
 ### The Linux Foundation
 
-The Xen Project is a [Linux Foundation](/linux-foundation) Collaborative Project. Collaborative Projects are independently funded software projects that harness the power of collaborative development to fuel innovation across industries and ecosystems. By spreading the collaborative DNA of the largest collaborative software development project in history, The Linux Foundation provides the essential collaborative and organizational framework so projects can focus on innovation and results.
+The Xen Project is a [Linux Foundation](https://www.linuxfoundation.org/) Collaborative Project. Collaborative Projects are independently funded software projects that harness the power of collaborative development to fuel innovation across industries and ecosystems. By spreading the collaborative DNA of the largest collaborative software development project in history, The Linux Foundation provides the essential collaborative and organizational framework so projects can focus on innovation and results.
 
 ### Mentor
 
@@ -100,17 +100,17 @@ Larger sub-projects such as the Hypervisor may have special maintainer roles suc
 
 ### Committers
 
-Committers are Maintainers that are allowed to commit changes into the source code repository. The committer acts on the wishes of the maintainers and applies changes that have been approved by the respective maintainer(s) to the source tree. Due to their status in the community, committers can also act as referees should disagreements amongst maintainers arise. Committers are listed on the sub-project's team portal (e.g. [Hypervisor team portal](/developers/teams/hypervisor)) and/or in the projects MAINTAINERS files.
+Committers are Maintainers that are allowed to commit changes into the source code repository. The committer acts on the wishes of the maintainers and applies changes that have been approved by the respective maintainer(s) to the source tree. Due to their status in the community, committers can also act as referees should disagreements amongst maintainers arise. Committers are listed on the sub-project's team portal (e.g. [Hypervisor team portal](/projects/hypervisor/)) and/or in the projects MAINTAINERS files.
 
 ### Security Response Team (short: Security Team)
 
-Each sub-project may have a security response team, that is responsible for receiving, reviewing, and responding to security incident reports for the sub-projects assets according to its security response process (e.g. [Hypervisor Security Problem Response Process](/developers/security-policy)).
+Each sub-project may have a security response team, that is responsible for receiving, reviewing, and responding to security incident reports for the sub-projects assets according to its security response process (e.g. [Hypervisor Security Problem Response Process](/about/security-policy/)).
 
 ### Project Leadership Team and Project Lead
 
 Sub-projects and teams hosted on Xenproject.org are managed by a Project Leadership Team. The leadership team is made up of distinguished community members, but the exact composition may depend on the sub-project. For example, in the case of the Hypervisor sub-project, all committers and the release manager, are part of the leadership team. The leadership team owns the sub-projects processes, the overall architecture and all assets within the project and makes [sub-project wide decisions](#leadership-team-decisions) on behalf of its community.
 
-A sub-projects leadership team members are listed on the sub-project's team portal (e.g. [Hypervisor team portal](/developers/teams/hypervisor)).
+A sub-projects leadership team members are listed on the sub-project's team portal (e.g. [Hypervisor team portal](/projects/hypervisor)).
 
 The Leadership Team may elect a Project Lead who is also a member of the Leadership Team. Project Leads are the public figurehead of the project and are responsible for the health of the project. Project Leads can also act as [referees](#conflict-resolution) should the Project Leadership Team become paralysed.
 
@@ -120,7 +120,7 @@ Making contributions in Xen follows the conventions as they are known in the Lin
 
 More information on making contributions can be found in the following documents:
 
-- [Contribution Guidelines](/help/contribution-guidelines)
+- [Contribution Guidelines](/contribute/contribution-guidelines/)
 - [Review Then Commit Policy](#review-then-commit)
 
 ## Decision Making, Conflict Resolution, Role Nominations and Elections
@@ -278,7 +278,7 @@ Project wide decisions are made through **formal global votes** and are conducte
 - Specific votes on creating, graduating, completing/archiving of sub-projects as outlined in [project governance](#project-governance).
 - Changes to this document, where sub-projects cannot specialise. In particular the sections: [goals](#goals), [principles](#principles), [project wide decision making](#project-decisions) and [project governance](#project-governance) (and small parts of [Xen Project wide roles](#roles-global), [project team roles](#roles-local) and [decision making](#decisions) that are needed for project governance or **apply to all sub-projects** as stated in those sections).
 - Changes to this document where sub-projects can specialise require at least one mature project other than the Hypervisor project to be impacted significantly by the change. The sections in question, are [project team roles](#roles-local) and [decision making](#decisions). These sections define the **gold standard** of how the original Hypervisor Project operates. In other cases, the Hypervisor project leadership team can agree changes to these sections, as they are essentially reference definitions. Other sub-projects have to be consulted, and have to be given time to adapt to changes.
-- Changes to existing global namespace policies (e.g. [Mailing List Conventions](/help/mailing-list/mailing-list-conventions/)) and creation of new project wide namespace policies.
+- Changes to existing global namespace policies (e.g. [Mailing List Conventions](/resources/mailing-lists/)) and creation of new project wide namespace policies.
 - Changes to the boundary of what policies are project local and global decision: e.g. a decision to introduce a global Security Vulnerability Response Process that affects all sub-projects.
 
 Global votes are arranged by the community manager when needed (e.g. for a project review or a global process change). Who exactly has input on a proposal and can vote on it, depends on the type of change as outlined below:
@@ -305,7 +305,7 @@ Voting is conducted **per project** in line with the following rules:
 
 ## Community Decisions with Funding and Legal Implications
 
-In some cases sub-project local and global decisions **may require input** from the [Advisory Board](#roles-ab) and/or the \[Linux Foundation\] (#roles-lf). For example, if a proposal by a project leadership team or a global project decision requires that the project hires a staff member or contractor (e.g. a PR consultant, marketing manager) or requires the funding of new infrastructure (e.g. additional test hardware or services) to implement said proposal, then funding would need to be secured from the Advisory Board or from other sources.
+In some cases sub-project local and global decisions **may require input** from the [Advisory Board](#roles-ab) and/or the [Linux Foundation](#roles-lf). For example, if a proposal by a project leadership team or a global project decision requires that the project hires a staff member or contractor (e.g. a PR consultant, marketing manager) or requires the funding of new infrastructure (e.g. additional test hardware or services) to implement said proposal, then funding would need to be secured from the Advisory Board or from other sources.
 
 If for example, a community proposal required the Linux Foundation to sign a legal agreement with a 3rd party on behalf of the project/sub-project, then of course a review of such an agreement and a signature by the Linux Foundation would be required.
 
@@ -493,7 +493,7 @@ Add specialisations to this section, as they surface.
   - Clarify scope and eligible votes in Formal Votes; refer to this section from Requesting Reviews, Reviews and Voting rather than duplicating
   - Rename xen.org to xenproject.org or Xen Project throughout the document (except in the history)
   - Refer to sub-projects and teams instead of projects where appropriate
-- **[v1.2](index.php?option=com_content&view=archive&year=2013&month=3) May 2012:** Minor changes
+- **1.2 May 2012:** Minor changes
   - Fixed typo and ambiguity in the role of Project Lead.
   - Added section on Conflict Resolution.
 - **v1.1 Oct 2011:** Minor changes

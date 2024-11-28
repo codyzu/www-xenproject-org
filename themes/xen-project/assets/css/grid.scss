@@ -97,10 +97,10 @@ section {
   > .col {
     flex: 1 1 auto;
 
-    @include phone {
+    @include tablet-up {
       --basis: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols));
       min-width: var(--min-col-width);
-      flex: 1 1 var(--basis);
+      flex: 0 1 var(--basis);
     }
   }
 }

@@ -3,7 +3,9 @@
 
 
 <div class="card {{ .class }}">
-  <a href="{{ .link }}" class="card__link"  aria-hidden="true" tabindex="-1"></a>
+  {{ if and .link (not .secondaryLink) }}
+    <a href="{{ .link }}" class="card__link"  aria-hidden="true" tabindex="-1"></a>
+  {{ end }}
   {{ if .titleLevel }}
     <h{{ .titleLevel }} class="card__label">{{ .title | safeHTML }}</h{{ .titleLevel }}>
   {{ else }}

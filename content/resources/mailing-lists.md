@@ -196,22 +196,18 @@ Xen Project mailing lists have a web as well as an email interface.
   linkText: All forums
   secondaryLink: "https://xcp-ng.org/forum/category/7/development"
   secondaryLinkText: Development
-
 - title: XCP-NG NEWSLETTER
   tags:
     - Newsletter
   description: This list is for those using and installing the Xen Project software.
   link: "http://eepurl.com/gtO5-H"
   linkText: Subscribe
-
 - title: XCP-ng-dev
   tags:
     - Forum
   description: For developer specific questions and those who want to contribute, this channel is for you, based on XCP-ng forum.
-  link: "TODO"
+  link: "https://xcp-ng.org/forum/category/19/xcp-ng"
   linkText: Info
-  secondaryLink: "TODO"
-  secondaryLinkText: Archives
 {{</row-from-list>}}
 
 

@@ -86,7 +86,7 @@ We've collated some information to help you get started, click here for resource
 >}}
 By being an active Advisory Board participant, regular opportunities for discussions with technical leaders include the chance to share priorities and endorse new strategies. In return, members will gain valuable strategic insight into project plans and future scope.
   <p class="mg-t-md">
-    <a href="/security" class="btn btn-secondary">Join the advisory board<i class="fas fa-arrow-right"></i></a>
+    <a href="/about/become-a-member/" class="btn btn-secondary">Join the advisory board<i class="fas fa-arrow-right"></i></a>
   </p>
 {{</media-block>}}
 {{</section>}}
