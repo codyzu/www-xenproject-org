@@ -37,7 +37,7 @@ Xen Project mailing lists have a web as well as an email interface.
   <h2>{{<md>}}Consider **searching in archives**, the answer you are looking might already exist!{{</md>}}</h2>
 
   <p class="mg-t-md ">
-    <a href="https://lists.xenproject.org/archives/" class="btn btn-secondary">
+    <a href="https://lore.kernel.org/xen-devel/" class="btn btn-secondary">
       Check out archives <i class="fas fa-arrow-up-right-from-square"></i>
     </a>
     </p>
@@ -107,7 +107,7 @@ Xen Project mailing lists have a web as well as an email interface.
 
 
 {{<md class="mg-t-xl">}}
-## Developpers
+## Developers
 
 ### Xen Project Hypervisor
 {{</md>}}

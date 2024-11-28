@@ -11,14 +11,8 @@ menus:
 aside: 
   - type: resource
     items:
-      - name: Communication Guide
-        link: https://xenbits.xenproject.org/governance/communication-guide.html
-      - name: Code Review Guide
-        link: https://xenbits.xenproject.org/governance/code-review-guide.html
-      - name: Communication Best Practice
-        link: https://xenbits.xenproject.org/governance/communication-practice.html
-      - name: Resolving Disagreement
-        link: https://xenbits.xenproject.org/governance/resolving-disagreement.html
+      - name: Code of Conduct
+        link: https://xenbits.xenproject.org/governance/index.html
 ---
 
 {{<section md="true" class="content-markdown">}}

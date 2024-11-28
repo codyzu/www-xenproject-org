@@ -52,10 +52,10 @@ We've collated some information to help you get started, click here for resource
     animate="true"
 >}}
 
-<p class="mg-t-md"><a href="https://www.youtube.com/channel/UCGukhVf8pWrUVdse6KR6SRw" class="btn btn-tertiary">Youtube channel<i class="fas fa-arrow-up-right-from-square"></i></a></p>
-<p><a href="/contribute/guidelines" class="btn btn-tertiary">Contribution guidelines<i class="fas fa-up-right-from-square"></i></a></p>
-<p><a href="/contribute/governance" class="btn btn-tertiary">Governance<i class="fas fa-arrow-right"></i></a></p>
-<p><a href="/security" class="btn btn-tertiary">Security policy<i class="fas fa-arrow-right"></i></a></p>
+<p class="mg-t-md"><a href="https://www.youtube.com/@Xen_Project" class="btn btn-tertiary">Youtube channel<i class="fas fa-arrow-up-right-from-square"></i></a></p>
+<p><a href="/contribute/contribution-guidelines" class="btn btn-tertiary">Contribution guidelines<i class="fas fa-up-right-from-square"></i></a></p>
+<p><a href="/about/governance" class="btn btn-tertiary">Governance<i class="fas fa-arrow-right"></i></a></p>
+<p><a href="/about/security-policy" class="btn btn-tertiary">Security policy<i class="fas fa-arrow-right"></i></a></p>
 {{</media-block>}}
 {{</section>}}
 
