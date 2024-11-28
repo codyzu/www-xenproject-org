@@ -10,104 +10,108 @@ menus:
 aside:
   - type: resource
     items:
-      - title: Project Management
-        items:
-          - name: "Status: Active"
-            icon: fas fa-check
-          - name: Features (unstable)
-            link: https://xenbits.xen.org/docs/unstable/SUPPORT.html
-            icon: fas fa-road
-      - title: Team Processes
-        items:
-          - name: Maintenance
-            link: http://wiki.xenproject.org/wiki/Xen_Maintenance_Releases
-            icon: fas fa-wrench
-          - name: Security Process
-            link: /about/security-policy
-            icon: fas fa-key
-          - name: OpenPGP Keys
-            link: ./openpgp-keys
-            icon: fas fa-key
-      - title: Users
-        items:
-          - name: Downloads
-            link: /resources/downloads/
-            icon: fas fa-cube
-          - name: Docs
-            link: https://wiki.xenproject.org/wiki/Main_Page#Xen_Started
-            icon: fas fa-book
-          - name: xen-users@ mailing list
-            link: /resources/mailing-lists/#xen-project-hypervisor
-            icon: fas fa-envelope
-          - name: "IRC: #xen"
-            link: /resources/mailing-lists/#xen-project-hypervisor
-            icon: fas fa-comments-o
-          - name: Report a Bug
-            link: http://wiki.xenproject.org/wiki/Reporting_Bugs_against_Xen
-            icon: fas fa-bug
-          - name: Xen Project Test Days
-            link: http://wiki.xenproject.org/wiki/Xen_Test_Days
-            icon: fas fa-calendar-check-o
-          - name: Security Announcements
-            link: https://xenbits.xen.org/xsa/
-            icon: fas fa-bullhorn
-      - title: Developers
-        items:
-          - name: xen-devel@ mailing list
-            link: /resources/mailing-lists/#xen-project-hypervisor
-            icon: fas fa-envelope
-          - name: "IRC: #xendevel"
-            link: /help/irc/
-            icon: fas fa-comments-o
-          - name: Browse Xen.git
-            link: http://xenbits.xenproject.org/gitweb/?p=xen.git;a=summary
-            icon: fas fa-code-fork
-          - name: Repositories and Branches
-            link: http://wiki.xenproject.org/wiki/Xen_Repositories
-            icon: fas fa-git
-          - name: Submitting Patches
-            link: http://wiki.xenproject.org/wiki/Submitting_Xen_Patches
-            icon: fas fa-medkit
-          - name: Docs (API and Test)
-            link: /help/documentation/#xen
-            icon: fas fa-book
-          - name: Wiki Dev Home
-            link: http://wiki.xenproject.org/wiki/XenDevHome
-            icon: fas fa-globe
-          - name: Projects for Newbies
-            link: https://wiki.xenproject.org/wiki/Outreach_Program_Projects
-            icon: fas fa-cube
-      - title: Project Team
-        items:
-          - name: "Release Manager: Henry Wang"
-            icon: fas fa-briefcase
-          - name: Andy Cooper
-            icon: fas fa-star
-          - name: George Dunlap
-            icon: fa-star
-          - name: Jan Beulich
-            icon: fas fa-star
-          - name: Julien Grall
-            icon: fas fa-star
-          - name: Stefano Stabellini
-            icon: fas fa-star
-          - name: Wei Liu
-            icon: fas fa-star
-          - name: Maintainers
-            link: http://xenbits.xenproject.org/gitweb/?p=xen.git;a=blob;f=MAINTAINERS;hb=HEAD
-            icon: fa-wrench
-      - title: Committer Emeritus
-        items:
-          - name: Keir Fraser
-            icon: fas fa-star
-          - name: Ian Campbell
-            icon: fas fa-star
-          - name: Tim Deegan
-            icon: fa-star
-          - name: Ian Jackson
-            icon: fas fa-star
-          - name: Konrad R Wilk
-            icon: fas fa-star
+      - name: Features (unstable)
+        link: https://xenbits.xen.org/docs/unstable/SUPPORT.html
+        icon: fas fa-road
+      - name: Browse Xen.git
+        link: http://xenbits.xenproject.org/gitweb/?p=xen.git;a=summary
+        icon: fas fa-code-fork
+      - name: Submitting Patches
+        link: http://wiki.xenproject.org/wiki/Submitting_Xen_Patches
+        icon: fas fa-medkit
+
+
+
+      # - title: Project Management
+      #   items:
+      #     - name: "Status: Active"
+      #       icon: fas fa-check
+      # - title: Team Processes
+      #   items:
+      #     - name: Maintenance
+      #       link: http://wiki.xenproject.org/wiki/Xen_Maintenance_Releases
+      #       icon: fas fa-wrench
+      #     - name: Security Process
+      #       link: /about/security-policy
+      #       icon: fas fa-key
+      #     - name: OpenPGP Keys
+      #       link: ./openpgp-keys
+      #       icon: fas fa-key
+      # - title: Users
+      #   items:
+      #     - name: Downloads
+      #       link: /resources/downloads/
+      #       icon: fas fa-cube
+      #     - name: Docs
+      #       link: https://wiki.xenproject.org/wiki/Main_Page#Xen_Started
+      #       icon: fas fa-book
+      #     - name: xen-users@ mailing list
+      #       link: /resources/mailing-lists/#xen-project-hypervisor
+      #       icon: fas fa-envelope
+      #     - name: "IRC: #xen"
+      #       link: /resources/mailing-lists/#xen-project-hypervisor
+      #       icon: fas fa-comments-o
+      #     - name: Report a Bug
+      #       link: http://wiki.xenproject.org/wiki/Reporting_Bugs_against_Xen
+      #       icon: fas fa-bug
+      #     - name: Xen Project Test Days
+      #       link: http://wiki.xenproject.org/wiki/Xen_Test_Days
+      #       icon: fas fa-calendar-check-o
+      #     - name: Security Announcements
+      #       link: https://xenbits.xen.org/xsa/
+      #       icon: fas fa-bullhorn
+      # - title: Developers
+      #   items:
+      #     - name: xen-devel@ mailing list
+      #       link: /resources/mailing-lists/#xen-project-hypervisor
+      #       icon: fas fa-envelope
+      #     - name: "IRC: #xendevel"
+      #       link: /help/irc/
+      #       icon: fas fa-comments-o
+         
+      #     - name: Repositories and Branches
+      #       link: http://wiki.xenproject.org/wiki/Xen_Repositories
+      #       icon: fas fa-git
+      #     - name: Docs (API and Test)
+      #       link: /help/documentation/#xen
+      #       icon: fas fa-book
+      #     - name: Wiki Dev Home
+      #       link: http://wiki.xenproject.org/wiki/XenDevHome
+      #       icon: fas fa-globe
+      #     - name: Projects for Newbies
+      #       link: https://wiki.xenproject.org/wiki/Outreach_Program_Projects
+      #       icon: fas fa-cube
+      # - title: Project Team
+      #   items:
+      #     - name: "Release Manager: Henry Wang"
+      #       icon: fas fa-briefcase
+      #     - name: Andy Cooper
+      #       icon: fas fa-star
+      #     - name: George Dunlap
+      #       icon: fa-star
+      #     - name: Jan Beulich
+      #       icon: fas fa-star
+      #     - name: Julien Grall
+      #       icon: fas fa-star
+      #     - name: Stefano Stabellini
+      #       icon: fas fa-star
+      #     - name: Wei Liu
+      #       icon: fas fa-star
+      #     - name: Maintainers
+      #       link: http://xenbits.xenproject.org/gitweb/?p=xen.git;a=blob;f=MAINTAINERS;hb=HEAD
+      #       icon: fa-wrench
+      # - title: Committer Emeritus
+      #   items:
+      #     - name: Keir Fraser
+      #       icon: fas fa-star
+      #     - name: Ian Campbell
+      #       icon: fas fa-star
+      #     - name: Tim Deegan
+      #       icon: fa-star
+      #     - name: Ian Jackson
+      #       icon: fas fa-star
+      #     - name: Konrad R Wilk
+      #       icon: fas fa-star
 ---
 
 

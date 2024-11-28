@@ -9,7 +9,7 @@ menus:
     parent: Projects
     weight: 100
 # aside: 
-#   - name: Users
+#   - name: Resources
 #     type: resource
 #     items: 
 #       - name: Downloads

@@ -3,7 +3,7 @@
     {{ range .Params.aside }}
       {{ if eq .type "resource" }}
         <div class="box-resources">
-          <h3 class="box-resources__title">Resources</h3>
+          <h3 class="box-resources__title">{{ if .name }}{{ .name }}{{ else }}Resources{{ end }}</h3>
           <ul>
             {{ range .items }}
               {{ if .title }}
