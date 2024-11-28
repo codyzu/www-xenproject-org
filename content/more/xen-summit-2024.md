@@ -20,8 +20,8 @@ menus:
 {{<section>}}
 {{<media-block
   title="2024 edition"
-  media=`{{<youtube src="https://www.youtube.com/embed/qZcCCm_PaHs"
-     title="Xen Project Summit 2024"  >}}`
+  media="https://www.youtube.com/embed/qZcCCm_PaHs"
+  alt="Xen Project Summit 2024"
   animate="true"
 >}}
 
@@ -33,7 +33,8 @@ We have some thrilling news to share with you all. The highly anticipated talks 
 {{<section>}}
 {{<media-block
   title="Why You Should Watch the Xen Summit Talks"
-  media=`{{<youtube src="https://www.youtube.com/embed/bmbY40fJZsQ" title="Xen Project Summit 2024 Weather Report"  >}}`
+  media="https://www.youtube.com/embed/bmbY40fJZsQ"
+  alt="Xen Project Summit 2024 Weather Report"
   mediaPosition="right"
   animate="true"
 >}}

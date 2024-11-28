@@ -12,48 +12,48 @@ menus:
     weight: 50
 
 asidePosition: before
-aside:
-  - type: resource
-    items:
-      - name: OpenPGP Keys
-        link: /developers/openpgp-keys
-        icon: fas fa-key
-      - name: Raise a security issue
-        link: /help/mailing-list#security-at
-        icon: fas fa-key
-      - name: List Applications
-        link: /help/mailing-list#predisclosure-applications
-        icon: fas fa-key
-  - type: members-list
-    name: Team Members 
-    items:
-      - icon: fa-star
-        name: Andrew Cooper
-      - icon: fa-star
-        name: George Dunlap
-      - icon: fa-star
-        name: Ian Jackson
-      - icon: fa-star
-        name: Jan Beulich
-      - icon: fa-star
-        name: Julien Grall
-      - icon: fa-star
-        name: Jürgen Groß
-      - icon: fa-star
-        name: Stefano Stabellini
-      - icon: fa-star
-        name: Wei Liu
-      - icon: fa-star
-        name: Roger Pau Monné
-  - type: members-list
-    name: Emeritus Team Members
-    items: 
-      - icon: fa-star
-        name: Ian Campbell
-      - icon: fa-star
-        name: Konrad R Wilk
-      - icon: fa-star
-        name: Tim Deegan
+# aside:
+#   - type: resource
+#     items:
+#       - name: OpenPGP Keys
+#         link: /developers/openpgp-keys
+#         icon: fas fa-key
+#       - name: Raise a security issue
+#         link: /help/mailing-list#security-at
+#         icon: fas fa-key
+#       - name: List Applications
+#         link: /help/mailing-list#predisclosure-applications
+#         icon: fas fa-key
+#   - type: members-list
+#     name: Team Members 
+#     items:
+#       - icon: fa-star
+#         name: Andrew Cooper
+#       - icon: fa-star
+#         name: George Dunlap
+#       - icon: fa-star
+#         name: Ian Jackson
+#       - icon: fa-star
+#         name: Jan Beulich
+#       - icon: fa-star
+#         name: Julien Grall
+#       - icon: fa-star
+#         name: Jürgen Groß
+#       - icon: fa-star
+#         name: Stefano Stabellini
+#       - icon: fa-star
+#         name: Wei Liu
+#       - icon: fa-star
+#         name: Roger Pau Monné
+#   - type: members-list
+#     name: Emeritus Team Members
+#     items: 
+#       - icon: fa-star
+#         name: Ian Campbell
+#       - icon: fa-star
+#         name: Konrad R Wilk
+#       - icon: fa-star
+#         name: Tim Deegan
 ---
 
 {{<section md="true" class="content-markdown">}}

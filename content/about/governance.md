@@ -8,6 +8,13 @@ menus:
   main:
     parent: About
     weight: 40
+
+aside:
+  - type: resource
+    items:
+      - name: Governance
+        link: https://xenbits.xenproject.org/governance/core-governance.html
+        icon: fas fa-right-arrow
 ---
 
 

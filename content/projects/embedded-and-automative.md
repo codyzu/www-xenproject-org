@@ -72,9 +72,9 @@ Our focus extends beyond ARMv7 to encompass ARMv8, x86-64, and RISC-V, catering 
 {{<section>}}
   {{<media-block
     title="Why Xen Project?"
-    media=`{{<youtube id="uuBhqwbaObE" title="Xen Project's Progress Toward Safety Certification"  >}}`
+    media="https://www.youtube.com/embed/uuBhqwbaObE"
+    alt="Xen Project's Progress Toward Safety Certification"
     animate="true"
-
   >}}
 
 The Xen Project Hypervisor is uniquely placed to support a new range of use cases, building on top of 14 years of usage within the data center. In particular, its isolation and security features, flexible virtualization mode and architecture, driver disaggregation, and ARM support (only 47K lines of code) make it a perfect fit for embedded applications.

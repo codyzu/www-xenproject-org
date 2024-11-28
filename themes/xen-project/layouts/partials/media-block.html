@@ -48,7 +48,7 @@
       {{ else if findRE "\\.mp4$" $lowerMedia }}
         {{ partial "video-player.html" (dict "url" $trimmedMedia "alt" .alt) }}
       {{ else if in $lowerMedia "youtube.com" }}
-        {{ partial "youtube.html" (dict "id" (index (last 1 (split $trimmedMedia "=")) 0) "alt" .alt) }}
+        {{ partial "youtube.html" (dict "src" $trimmedMedia "title" .alt) }}
       {{ else if in $lowerMedia "slideshare.net" }}
         {{ partial "slideshare.html" (dict "url" $trimmedMedia "title" .alt) }}
       {{ else }}

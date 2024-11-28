@@ -20,7 +20,7 @@ keywords: "windows PV drivers, paravirtualization drivers, windows virtualizatio
 {{<section>}}
   {{<media-block
     title="About Windows PV Drivers"
-    media=`{{<youtube id="3R_IxOlP548" title="Xen Project's Progress Toward Safety Certification"  >}}`
+    media="https://www.youtube.com/embed/3R_IxOlP548"
     alt="Video of a presentation about Windows PV Drivers on Youtube"
     animate="true"
   >}}

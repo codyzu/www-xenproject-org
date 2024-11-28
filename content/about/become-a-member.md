@@ -36,9 +36,20 @@ Committers and maintainers are responsible for the technical development and are
   - title: Financial oversight
     icon: fas fa-money-bill-alt
     description: Budget management and investment decisions on infrastructure and project operations.
-  - title: Membership requirements
+  - title: Annual pricing
     icon: fas fa-users
-    description: Annual membership fees.
+    description: |
+      **Premier Member**: $40,000
+      
+      **Advisory Board Governing Member**: $30,000
+      
+      **Startup Member***: $10,000
+      
+      **Associate Member****: Free
+
+      *\* Startup members must have less than 100 employees and require approval from Governing Board Members.*
+      
+      *\*\* Associate Members are free and available to pre-approved Associate Members of The Linux Foundation e.g. Government or Academic institutions*
   - title: Steer the project
     icon: fas fa-chart-line
     description: To advance its market and technical success by raising awareness.
@@ -134,12 +145,6 @@ The Board process will help ensure non-technical decisions are collectively dete
     <i class="fas fa-arrow-right"></i>
   </a>
 </p>
-<!-- <p class="txt-c">
-  <a href="TODO" class="btn btn-tertiary">
-    Need some help?
-    <i class="fas fa-arrow-right"></i>
-  </a>
-</p> -->
 
 {{</section>}}
 

@@ -76,9 +76,9 @@ If you are unsure which technology is right for you, check out our team portals.
 {{</col>}}
 
 {{<col md="true" class="color-txt-base">}}
-- **The Xen Project© Hypervisor** is the open source standard for hardware virtualization and the foundation for all solutions hosted on the Xen Project website. It includes a build configuration for Arm that targets embedded and mobile devices on the Arm architecture.
+- **The Xen Project Hypervisor** is the open source standard for hardware virtualization and the foundation for all solutions hosted on the Xen Project website. It includes a build configuration for Arm that targets embedded and mobile devices on the Arm architecture.
 
-- **Drivers for the Xen Project© Hypervisor** are delivered with host operating systems such as Linux and BSD distributions. The project maintains Windows drivers, which are developed as part of the Windows PV Drivers project.
+- **Drivers for the Xen Project Hypervisor** are delivered with host operating systems such as Linux and BSD distributions. The project maintains Windows drivers, which are developed as part of the Windows PV Drivers project.
 
 - **XAPI** is a Xen Project toolstack for an enterprise-ready virtualization platforms based on the Xen Hypervisor. XAPI adds further management functionality to Xen and adds many integrations for cloud, storage, and networking solutions. XAPI is used by the Citrix Hypervisor, XCP-ng and Magrana Server.
 

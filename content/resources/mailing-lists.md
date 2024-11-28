@@ -235,6 +235,21 @@ Xen Project mailing lists have a web as well as an email interface.
 {{</md>}}
 
 {{<row-from-list component="card" component-class="card--bg" titleLevel="2" cols="3" class="mg-v-md align-flex-start">}} 
+- title: ADVISORY-BOARD@
+  tags:
+    - Mailing list
+  description: A discussion list for members of the Xen Project Advisory Board. The list is invite-only.
+  link: "http://wiki.xenproject.org/wiki/Category:Advisory_Board"
+  linkText: Info
+{{</row-from-list>}}
+
+
+
+{{<md class="mg-t-xl">}}
+## Predisclosure
+{{</md>}}
+
+{{<row-from-list component="card" component-class="card--bg" titleLevel="2" cols="3" class="mg-v-md align-flex-start">}} 
 - title: PREDISCLOSURE-APPLICATIONS@
   tags:
     - Mailing list
@@ -247,26 +262,6 @@ Xen Project mailing lists have a web as well as an email interface.
   secondaryLink: "https://lists.xenproject.org/archives/html/predisclosure-applications"
   secondaryLinkText: Archives
 
-- title: ADVISORY-BOARD@
-  tags:
-    - Mailing list
-  description: A discussion list for members of the Xen Project Advisory Board. The list is invite-only.
-  link: "http://wiki.xenproject.org/wiki/Category:Advisory_Board"
-  linkText: Info
 {{</row-from-list>}}
 {{</section>}}
 
-
-
-{{<section class="txt-c">}}
-<a href="http://wiki.xenproject.org/wiki/Xen_Users_Netiquette" class="btn btn-primary">
-  Mailing list Netiquette
-  <i class="fas fa-arrow-up-right-from-square"></i>
-</a>
-
-<a href="http://wiki.xenproject.org/wiki/Xen_Mailing_List_Moderators" class="btn btn-secondary mg-l-lg">
-  Mailing list moderators
-  <i class="fas fa-arrow-up-right-from-square"></i> 
-</a>
-
-{{</section>}}

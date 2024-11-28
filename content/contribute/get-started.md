@@ -13,7 +13,7 @@ menu:
 {{<section>}}
 {{<media-block
     title="Contributing to Xen: an introduction"
-    media=`https://www.youtube.com/embed/F6TDJnYtcY8`
+    media="https://www.youtube.com/embed/F6TDJnYtcY8"
     alt="Video of a presentation about Contributing to Xen on Youtube"
     animate="true"
 >}}
