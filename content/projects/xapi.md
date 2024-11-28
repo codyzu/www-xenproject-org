@@ -10,7 +10,7 @@ aside:
   - type: resource
     items:
       - name: "**Github project**"
-        link: "https://github.com/xapi-project/xapi"
+        link: "https://github.com/xapi-project/xen-api"
       - name: Documentation
         link: "http://xapi-project.github.io/" 
       - name: Contribute
