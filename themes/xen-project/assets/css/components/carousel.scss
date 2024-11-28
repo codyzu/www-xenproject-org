@@ -137,5 +137,12 @@
     width: 2.25rem;
     height: 2.25rem;
     font-size: 1.25rem;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+
+    &:disabled {
+      opacity: 0.2;
+      cursor: not-allowed;
+    }
   }
 }

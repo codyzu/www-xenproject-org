@@ -97,7 +97,7 @@ XenServer is a high-performance virtualization platform designed for enterprise 
 {{<section>}}
 {{<media-block
    title="Honda"
-   media="/img/logos/honda-logo.webp"
+   media="/img/logos/honda-logo.svg"
    alt="Logo of Honda"
    class="image-small"
    animate="true"

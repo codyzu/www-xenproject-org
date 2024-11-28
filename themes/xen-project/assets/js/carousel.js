@@ -68,8 +68,20 @@
       });
     };
 
-    itemsContainer.addEventListener("scroll", updateCarouselTabIndexes);
+    const updateButtonStates = () => {
+      const { scrollLeft, scrollWidth, clientWidth } = itemsContainer;
+      prevButton.disabled = scrollLeft <= 10;
+      nextButton.disabled = Math.ceil(scrollLeft + clientWidth) >= scrollWidth - 10;
+    };
+
+    itemsContainer.addEventListener("scroll", () => {
+      updateCarouselTabIndexes();
+      updateButtonStates();
+    });
+
+    // Initial states
     updateCarouselTabIndexes();
+    updateButtonStates();
   };
 
   document.querySelectorAll(selectors.container).forEach(carousel);
