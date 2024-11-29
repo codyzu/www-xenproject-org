@@ -1,14 +1,13 @@
 ---
-title: "Xen Summit 2024 - Annual Conference & Community Event"
+title: "Xen Summit 2024"
 description: "Join the Xen Project Summit 2024, the premier event for virtualization technology. Connect with experts, discover innovations, and shape the future of virtualization."
 keywords: "xen summit, virtualization conference, xen project event, 2024 summit, tech conference, hypervisor technology"
 date: 2024-01-14T07:07:07+01:00
 draft: false
-showInFooterOnly: true
 menus:
   main:
-    parent: More
-    weight: 100
+    parent: Resources
+    weight: 12
 ---
 
 

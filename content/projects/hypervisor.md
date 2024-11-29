@@ -6,7 +6,7 @@ draft: false
 menus:
   main:
     parent: Projects
-    weight: 100
+    weight: 90
 aside:
   - type: resource
     items:

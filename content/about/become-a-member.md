@@ -24,6 +24,13 @@ The Members are complementary to the role of committers and maintainers, with bo
 
 Committers and maintainers are responsible for the technical development and are the final decision makers on code contributions to the Xen Project.
 {{</md>}}
+
+<p class="mg-t-lg">
+  <a href="https://enrollment.lfx.linuxfoundation.org/?project=xen" class="btn btn-primary">
+    Join now
+    <i class="fas fa-arrow-right"></i>
+  </a>
+</p>
 {{</media-block>}}
 {{</section>}}
 
@@ -139,12 +146,19 @@ The Board process will help ensure non-technical decisions are collectively dete
     
 
 
-<p class="txt-c mg-t-lg">
+<div class="txt-c mg-t-lg">
+<p>
   <a href="https://enrollment.lfx.linuxfoundation.org/?project=xen" class="btn btn-primary">
-    Apply now
+    Join now
     <i class="fas fa-arrow-right"></i>
   </a>
-</p>
+  <p class="txt-c mg-t-sm">
+      Need some help? 
+      <a href="mailto:community.manager@xenproject.org" target="_blank">
+      <strong>Email us here</strong>
+      </a>
+  </p>
+</div>
 
 {{</section>}}
 

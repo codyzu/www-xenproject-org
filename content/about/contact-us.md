@@ -7,7 +7,7 @@ draft: false
 menus:
   main:
     parent: About
-    weight: 30
+    weight: 100
 ---
 
 {{<section>}}
@@ -16,9 +16,9 @@ menus:
 - title: Development
   description: For development questions, please begin by asking on the mailing lists or Matrix. These are generally the fastest ways to get an answer.
 - title: GDPR
-  description: For GDPR requests, please contact [gdpr@xenproject.org](mailto:gdpr@xenproject.org).
+  description: For GDPR requests, please contact [gdpr@xenproject.org](mailto:gdpr@xenproject.org)
 - title: Other
-  description: For all other questions, please contact [community.manager@xenproject.org](mailto:community.manager@xenproject.org).
+  description: For all other questions, please contact [community.manager@xenproject.org](mailto:community.manager@xenproject.org)
 {{</row-from-list>}}
 
 

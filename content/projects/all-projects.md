@@ -9,7 +9,7 @@ menus:
   main:
     parent: Projects
     name: All projects
-    weight: 100
+    weight: 10
 exclude: "hidden"
 ---
 
