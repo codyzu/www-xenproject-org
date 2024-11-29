@@ -40,7 +40,7 @@ menus:
 {{</row-from-list>}}
 
 {{<md class="mg-t-xl">}}
-## Projects
+## Other Channels
 {{</md>}}
 
 {{<row-from-list component="card" component-class="card--bg" cols="3" titleLevel="2">}} 
