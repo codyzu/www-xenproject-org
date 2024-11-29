@@ -44,8 +44,8 @@ The Windows PV Drivers team at the Xen Project is maintaining and developing the
     The team plans to perform regular builds of the drivers and aims to test them using the Microsoft HCK. The team further plans to provide logo-signed builds of the drivers in future commercial Xen offerings. The team may also provide logo-signed drivers via Microsoft’s Windows Update mechanism, making them widely available to anyone running Windows under Xen (not just XenServer) without the need to build the drivers themselves. 
 
     <p class="mg-t-md">
-      <a href="https://xenbits.xen.org/gitweb/?p=pvdrivers/win.git;a=summary" class="btn btn-primary">
-       Download developement builds
+      <a href="/projects/windows-pv-drivers" class="btn btn-primary">
+       Download development builds
        <i class="fas fa-arrow-up-right-from-square"></i>
       </a>
     </p>
