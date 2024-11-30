@@ -4,6 +4,7 @@ description: Join the Xen community and become a member to actively contribute t
 keywords: "Xen Project membership, open-source virtualization, join Xen community, Xen Project contributors, Xen Project members, virtualization technology, Xen Project benefits, become a Xen member, Xen Project involvement, Xen Project participation"
 date: 2024-01-14T07:07:07+01:00
 draft: false
+header: false
 menus:
   main:
     parent: About

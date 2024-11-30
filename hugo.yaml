@@ -71,10 +71,26 @@ menus:
     - name: "Resources"
       pageRef: "/resources"
       weight: 40
+
+    - name: "More"
+      pageRef: "/More"
+      params:
+        header: false
+      weight: 100
+
     - name: "Blog"
       parent: "Resources"
       weight: 60
       url: "/blog"
+
+    - name: "Blog"
+      parent: "More"
+      params:
+        header: false
+      weight: 61
+      url: "/blog/tag/releases/"
+
     - name: "About"
       url: "/about"
       weight: 50
+   

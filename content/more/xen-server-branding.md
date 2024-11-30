@@ -4,11 +4,14 @@ description: Access Xen Project's official branding and logo guidelines. Downloa
 keywords: "Xen Project branding, Xen Project logo, Xen branding guidelines, Xen logo download, Xen brand consistency, Xen official branding, Xen logo usage, Xen vector graphics, Xen images, Xen brand templates, Xen mascots, Xen branding resources, Xen brand assets, Xen Project marketing, Xen Project design"
 date: 2024-01-14T07:07:07+01:00
 draft: false
-showInFooterOnly: true
+header: false
 menus:
   main:
     parent: More
     weight: 100
+    params:
+      header: false
+      footer: true
 ---
 
 
