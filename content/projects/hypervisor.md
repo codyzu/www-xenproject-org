@@ -12,13 +12,13 @@ aside:
     items:
       - name: Features (unstable)
         link: https://xenbits.xen.org/docs/unstable/SUPPORT.html
-        icon: fas fa-road
+        icon: fas fa-arrow-up-right-from-square
       - name: Browse Xen.git
         link: http://xenbits.xenproject.org/gitweb/?p=xen.git;a=summary
-        icon: fas fa-code-fork
+        icon: fas fa-arrow-up-right-from-square
       - name: Submitting Patches
         link: http://wiki.xenproject.org/wiki/Submitting_Xen_Patches
-        icon: fas fa-medkit
+        icon: fas fa-arrow-up-right-from-square
 
 
       # - title: Project Management
