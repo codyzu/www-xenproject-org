@@ -30,8 +30,8 @@ Xen-project More - Xen Summit 2024 0 document 1 phone
 Xen-project More - Xen Summit 2024 desktop
 Xen-project Projects - All Projects 0 document 1 phone
 Xen-project Projects - All Projects desktop
-Xen-project Projects - Embedded and Automative 0 document 1 phone
-Xen-project Projects - Embedded and Automative desktop
+Xen-project Projects - Embedded and Automotive 0 document 1 phone
+Xen-project Projects - Embedded and Automotive desktop
 Xen-project Projects - HVMI 0 document 1 phone
 Xen-project Projects - HVMI desktop
 Xen-project Projects - Hypervisor 0 document 1 phone
@@ -84,8 +84,8 @@ Xen-project_More_-_Xen_Summit_2024_0_document_0_desktop
 Xen-project_More_-_Xen_Summit_2024_0_document_1_phone
 Xen-project_Projects_-_All_Projects_0_document_0_desktop
 Xen-project_Projects_-_All_Projects_0_document_1_phone
-Xen-project_Projects_-_Embedded_and_Automative_0_document_0_desktop
-Xen-project_Projects_-_Embedded_and_Automative_0_document_1_phone
+Xen-project_Projects_-_Embedded_and_Automotive_0_document_0_desktop
+Xen-project_Projects_-_Embedded_and_Automotive_0_document_1_phone
 Xen-project_Projects_-_HVMI_0_document_0_desktop
 Xen-project_Projects_-_HVMI_0_document_1_phone
 Xen-project_Projects_-_Hypervisor_0_document_0_desktop

@@ -1,6 +1,6 @@
 ---
-title: Embedded & Automative
-description: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automative systems.
+title: Embedded & Automotive
+description: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automotive systems.
 keywords: "Xen Project embedded systems, Xen automotive applications, Xen real-time support, Xen fault-tolerance, Xen flexible architecture, Xen ARMv7 virtualization, Xen ARMv8 support, Xen x86-64 embedded, Xen RISC-V automotive, Xen hypervisor security, Xen isolation features, Xen embedded Linux, Xen RTOS integration, Xen 5G antennas, Xen industrial robots, Xen medical devices, Xen automotive systems, Xen hardware resource allocation, Xen VM communication, Xen OP-TEE integration"
 
 draft: false
@@ -65,7 +65,7 @@ Our focus extends beyond ARMv7 to encompass ARMv8, x86-64, and RISC-V, catering 
 
     - title: Cortex-R52 and R82 Support
       icon: fas fa-handshake
-      description: A collaboration between ARM and AMD/Xilinx is expanding Xen's capabilities to microcontrollers and MMU-less embedded processors. This innovation marks a significant leap for virtualization in embedded systems.
+      description: An active collaboration between ARM and AMD/Xilinx is expanding Xen’s capabilities to microcontrollers and MMU-less embedded processors. This innovation soon to be upstreamed, marks a significant leap for virtualization in embedded systems.
   {{</features-list>}}
 {{</section>}}
 

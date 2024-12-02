@@ -75,7 +75,7 @@ The Xen Project hypervisor prioritizes security through its unique architecture 
 Xen Project's virtualization technology is increasingly adopted in embedded systems and automotive applications. It enables the consolidation of multiple systems onto a single hardware platform, reducing costs and complexity. In automotive, Xen supports the development of advanced infotainment systems and autonomous driving technologies while ensuring critical safety features remain isolated.
 
 <p class="mg-t-md">
-  <a href="/projects/embedded-and-automative" class="btn btn-secondary">Read Automotive Virtualization by Xen <i class="fas fa-arrow-up-right-from-square"></i></a>
+  <a href="/projects/embedded-and-automotive" class="btn btn-secondary">Read Automotive Virtualization by Xen <i class="fas fa-arrow-up-right-from-square"></i></a>
 </p>
 
   {{</media-block>}}

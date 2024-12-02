@@ -45,7 +45,7 @@ For details about what to include in your patch, you should start with the [patc
 
 ### Escalation
 
-If you submitted a patch to the xen-devel mailing list or bugzilla and did not receive a response within 5 business days, please send an email to xen-devel and in the first line of that email, include this phrase "Patch escalation: no response for x days".
+If you submitted a patch to the xen-devel mailing list and did not receive a response within 5 business days, please send an email to xen-devel and in the first line of that email, include this phrase "Patch escalation: no response for x days".
 
 This is one case where you should "top post" to make sure that the escalation text is read.
 
