@@ -145,21 +145,6 @@
   letter-spacing: -0.025em;
 }
 
-.card__tag,
-.tag {
-  display: inline-block;
-  border-radius: 2.5em;
-  background: var(--card-secondary-color);
-  color: var(--card-tag-text-color);
-  padding: 0.1em 0.6em;
-  line-height: 1;
-  font-size: 0.8em;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 150%;
-  letter-spacing: -0.025em;
-}
-
 .carousel .card__content {
   display: block;
   -webkit-box-orient: vertical;
@@ -177,4 +162,12 @@
     text-overflow: ellipsis;
     word-break: break-word;
   }
+}
+
+.count-posts {
+  --card-color: var(--color-action-fill);
+  --card-secondary-color: var(--color-action-surface);
+  --card-tag-text-color: var(--color-action-text);
+  --card-date-color: var(--color-text-secondary);
+  @extend .card__tag;
 }
