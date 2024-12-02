@@ -34,7 +34,7 @@
     for (const { url, API_KEY, name } of blogs.filter((blog) => blogFilter.includes(blog.id))) {
       try {
         const res = await fetch(
-          `${url}/ghost/api/content/posts/?key=${API_KEY}&limit=${tagFilter.length > 0 ? 100 : maxCards}&include=authors,tags${
+          `${url}/ghost/api/content/posts/?key=${API_KEY}&limit=${tagFilter.length > 0 ? 100 : maxCards}&include=tags${
             tagFilter.length > 0 ? `&filter=tags:${tagFilter}` : ""
           }`,
         );
