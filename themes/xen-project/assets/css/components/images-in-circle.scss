@@ -8,17 +8,8 @@
   }
 }
 
-@property --start-angle {
-  syntax: "<number>";
-  initial-value: -360;
-  inherits: false;
-}
-@keyframes rotate-images {
-  to {
-    --start-angle: 0;
-  }
-}
 .images-in-circle {
+  --start-angle: 0;
   --padding: 30px;
   --circle-dimensions: 80%;
   --img-width: 30%;
@@ -52,7 +43,7 @@
   }
 
   li {
-    --angle: calc((var(--start-angle) * 1deg) + (360deg / var(--total)) * var(--index));
+    --angle: calc((var(--start-angle) * 1deg) + (360deg / var(--total)) * var(--index) + var(--angle-fix));
     --scale: 1;
     position: absolute;
     top: 50%;
