@@ -1,3 +1,18 @@
+:root {
+  --home-shadow-screen-left: -45%;
+  --home-server-top: -104%;
+  --home-shadow-screen-bottom: 170px;
+  --home-hero-padding-bottom: 180px;
+  @include tablet {
+    --home-shadow-screen-left: 140px;
+    --home-hero-padding-bottom: 320px;
+  }
+
+  @include desktop {
+    --home-shadow-screen-left: 54px;
+  }
+}
+
 .home-hero-animated {
   position: relative;
   overflow: hidden;
@@ -35,7 +50,7 @@
   }
 
   .animated-home-shadow-screen {
-    bottom: 150px;
+    bottom: var(--home-shadow-screen-bottom);
     left: 56%;
     transform: translateX(40px);
     z-index: 2;
@@ -58,25 +73,17 @@
 .home-section-hero {
   margin-bottom: 0;
   margin-top: 0;
-  padding-bottom: 200px;
+  padding-bottom: var(--home-hero-padding-bottom);
 
   .hero-block {
     margin-top: 40px;
-
-    @include tablet {
-      margin-top: 100px;
-    }
   }
 
-  @include desktop {
-    padding-bottom: 260px;
-  }
   .media-block {
     flex-direction: column;
   }
 
   @include tablet {
-    padding-bottom: 300px;
     .media-block {
       flex-direction: row;
     }
@@ -84,19 +91,6 @@
     .media-block__content {
       flex-basis: calc(52% - var(--gap));
     }
-  }
-}
-
-:root {
-  --home-shadow-screen-left: -45%;
-  --home-server-top: -55%;
-
-  @include tablet {
-    --home-shadow-screen-left: 100px;
-  }
-
-  @include desktop {
-    --home-shadow-screen-left: 54px;
   }
 }
 
