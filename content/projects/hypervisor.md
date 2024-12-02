@@ -7,18 +7,18 @@ menus:
   main:
     parent: Projects
     weight: 90
-# aside:
-#   - type: resource
-#     items:
-#       - name: Features (unstable)
-#         link: https://xenbits.xen.org/docs/unstable/SUPPORT.html
-#         icon: fas fa-road
-#       - name: Browse Xen.git
-#         link: http://xenbits.xenproject.org/gitweb/?p=xen.git;a=summary
-#         icon: fas fa-code-fork
-#       - name: Submitting Patches
-#         link: http://wiki.xenproject.org/wiki/Submitting_Xen_Patches
-#         icon: fas fa-medkit
+aside:
+  - type: resource
+    items:
+      - name: Features (unstable)
+        link: https://xenbits.xen.org/docs/unstable/SUPPORT.html
+        icon: fas fa-road
+      - name: Browse Xen.git
+        link: http://xenbits.xenproject.org/gitweb/?p=xen.git;a=summary
+        icon: fas fa-code-fork
+      - name: Submitting Patches
+        link: http://wiki.xenproject.org/wiki/Submitting_Xen_Patches
+        icon: fas fa-medkit
 
 
       # - title: Project Management
@@ -123,7 +123,7 @@ menus:
   >}}
 The Xen Project hypervisor is an open-source type-1 or baremetal hypervisor, which makes it possible to run many instances of an operating system or indeed different operating systems in parallel on a single machine (or host). The Xen Project hypervisor is the only type-1 hypervisor that is available as open source. It is used as the basis for a number of different commercial and open source applications, such as: server virtualization, Infrastructure as a Service (IaaS), desktop virtualization, security applications, embedded and hardware appliances. The Xen Project hypervisor is powering the largest clouds in production today.
 
-  <p class="mg-t-md"><strong>Ressources</strong></p>
+  <!-- <p class="mg-t-md"><strong>Ressources</strong></p>
   <p class="mg-t-md">
     <a href="https://xenbits.xen.org/docs/unstable/SUPPORT.html" class="btn btn-tertiary">
       Features (unstable) <i class="fas fa-arrow-up-right-from-square"></i>
@@ -140,7 +140,7 @@ The Xen Project hypervisor is an open-source type-1 or baremetal hypervisor, whi
     <a href="http://wiki.xenproject.org/wiki/Submitting_Xen_Patches" class="btn btn-tertiary">
       Submitting Patches <i class="fas fa-arrow-up-right-from-square"></i>
     </a>
-  </p>
+  </p> -->
 {{</media-block>}}
 {{</section>}}
 
