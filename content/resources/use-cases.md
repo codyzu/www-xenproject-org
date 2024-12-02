@@ -98,7 +98,7 @@ A virtualization technology that only supports one Cloud technology locks you in
 
 ### Reliable technology with a solid track record
 
-Conservative estimates show that Xen has an active user base of 10+ million; these are users, not merely hypervisor installations which are an order of magnitude higher. Amazon Web Services alone runs ½ million virtualized Xen Project instances according to a recent study and other cloud providers such as Rackspace and hosting companies use the hypervisor at an extremely large scale. Our software is the basis of successful commercial virtualization products from Citrix, Huawei, Inspur, and Oracle. It is clear that many major industry players regard our software as a safe virtualization platform for even the largest clouds.
+Conservative estimates show that Xen has an active user base of 10+ million; these are users, not merely hypervisor installations which are an order of magnitude higher. Amazon Web Services alone runs many virtualized Xen Project instances according to a recent study and other cloud providers such as Rackspace and hosting companies use the hypervisor at an extremely large scale. Our software is the basis of successful commercial virtualization products from Citrix, Huawei, Inspur, and Oracle. It is clear that many major industry players regard our software as a safe virtualization platform for even the largest clouds.
 {{</section>}}
 
 
