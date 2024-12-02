@@ -14,7 +14,7 @@ menus:
 
 {{<row-from-list component="card" component-class="card--bg" cols="3">}} 
 - title: Development
-  description: For development questions, please begin by asking on the mailing lists or Matrix. These are generally the fastest ways to get an answer.
+  description: For development questions, please begin by asking on the [mailing lists](/resources/mailing-lists) or [Matrix](/resources/matrix). These are generally the fastest ways to get an answer.
 - title: GDPR
   description: For GDPR requests, please contact [gdpr@xenproject.org](mailto:gdpr@xenproject.org)
 - title: Other
