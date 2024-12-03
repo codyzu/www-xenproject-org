@@ -26,13 +26,6 @@ Since 2011, following the groundbreaking announcement of the Xen port to ARMv7 w
 
 Our focus extends beyond ARMv7 to encompass ARMv8, x86-64, and RISC-V, catering to both embedded and automotive applications. We’re not just part of the evolution; we’re leading it.
 {{</md>}}
-
-<p class="mg-t-md">
-  <a href="https://wiki.xenproject.org/wiki/Embedded_and_Automotive/Archived/PV_Drivers/Project_Proposal" class="btn btn-primary">
-    Read project proposal <i class="fas fa-arrow-right"></i>
-  </a>
-</p>
-
 {{</media-block>}}
 {{</section>}}
 
