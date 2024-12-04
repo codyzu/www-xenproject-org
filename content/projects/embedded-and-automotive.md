@@ -14,7 +14,10 @@ menus:
 {{<section>}}
   {{<media-block
     title="Embedded systems redefined"
-    media="/img/logos/arm-logo.svg"
+    media=`<div class="w-100">
+    <div class="txt-l"><img src="/img/logos/arm-logo.svg" alt="ARM logo" width="250" /></div>
+    <div class="txt-r mg-t-lg"><img src="/img/logos/amd-logo.svg" alt="AMD logo" width="250" /></div>
+    </div>`
     imageSize="50%"
     alt="ARM logo"
     animate="true"

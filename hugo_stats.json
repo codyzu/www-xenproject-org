@@ -127,6 +127,7 @@
       "features-list",
       "features-list--cols-2",
       "features-list--cols-3",
+      "flex",
       "footer",
       "footer-content",
       "footer__col",
@@ -146,6 +147,7 @@
       "image-small",
       "images-in-circle",
       "join-button",
+      "justify-center",
       "latest-news",
       "latest-news-template",
       "latest-news_container",
@@ -206,8 +208,11 @@
       "title-external-link",
       "title-with-gradient-underline",
       "txt-c",
+      "txt-l",
+      "txt-r",
       "vertical-lists",
       "video-container",
+      "w-100",
       "youtube-video-container"
     ],
     "ids": [
