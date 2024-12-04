@@ -12,7 +12,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "storybook-tasks": "node scripts/storybook-tasks.js",
-    "sb-images": "node scripts/storytasks/storybook-images.js"
+    "sb-images": "node scripts/storytasks/storybook-images.js",
+    "doc": "node scripts/documentation/generate-thumbnails.js && node scripts/documentation/images.js"
   },
   "author": "",
   "license": "ISC",
@@ -40,7 +41,8 @@
     "puppeteer": "^23.7.0",
     "remark-gfm": "^4.0.0",
     "robotjs": "^0.6.0",
-    "sass": "^1.80.6"
+    "sass": "^1.80.6",
+    "sharp": "^0.33.2"
   },
   "volta": {
     "node": "22.7.0"

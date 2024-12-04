@@ -66,7 +66,7 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
 - **Secure Critical Systems:** Safeguard data and applications through industry-leading security.
 - **Revolutionize Embedded Technologies:** Transform embedded and automotive sectors with mature, safe, secure solutions.
 {{</md>}}
-</div>
+
 {{</section>}}
 
 
