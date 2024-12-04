@@ -36,7 +36,7 @@ exclude: "hidden"
 
 {{<section>}}
   {{<media-block
-    title="Lead by a <strong>dedicated community</strong>"
+    title="Led by a <strong>dedicated community</strong>"
     media="/img/flatline/team-work.svg"
     alt="Illustration of a team working together on a project, with a shared vision and goal."
     animate="true"

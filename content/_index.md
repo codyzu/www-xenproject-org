@@ -104,7 +104,7 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
 
   
   {{<media-block
-    title="Lead by a **dedicated community**"
+    title="Led by a **dedicated community**"
     media="/img/flatline/team-work.svg"
     mediaPosition="right"
     mediaMobilePosition="bottom"
