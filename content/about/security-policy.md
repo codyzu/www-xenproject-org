@@ -25,7 +25,7 @@ asidePosition: before
 #         link: /help/mailing-list#predisclosure-applications
 #         icon: fas fa-key
 #   - type: members-list
-#     name: Team Members 
+#     name: Team Members
 #     items:
 #       - icon: fa-star
 #         name: Andrew Cooper
@@ -47,7 +47,7 @@ asidePosition: before
 #         name: Roger Pau Monné
 #   - type: members-list
 #     name: Emeritus Team Members
-#     items: 
+#     items:
 #       - icon: fa-star
 #         name: Ian Campbell
 #       - icon: fa-star
@@ -81,19 +81,19 @@ Vulnerabilities reported against other Xen Project teams will be handled on a be
     1.  Those of us on the Hypervisor team who are aware of the problem will notify security@xenproject if disclosure wasn’t made there already.
     2.  If the vulnerability is not already public, security@xenproject will negotiate with discoverer regarding embargo date and disclosure schedule. See below for detailed discussion.
 3.  Furthermore, also in parallel:
-    
+
     1.  security@xenproject will check whether the discoverer, or other people already aware of the problem, have allocated a CVE number. If not, we will acquire a CVE candidate number ourselves, and make sure that everyone who is aware of the problem is also aware of the CVE number.
     2.  If we think other software systems (for example, competing hypervisor systems) are likely to be affected by the same vulnerability, we will try to make those other projects aware of the problem and include them in the advisory preparation process.
-    
+
     (This may rely on the other project(s) having documented and responsive security contact points)
-    
+
     3.  We will prepare or check patch(es) which fix the vulnerability. This would ideally include all relevant backports. Patches will be tightly targeted on fixing the specific security vulnerability in the smallest, simplest and most reliable way. Where necessary domain specific experts within the community will be brought in to help with patch preparation.
     4.  We will determine which systems/configurations/versions are vulnerable, and what the impact of the vulnerability is. Depending on the nature of the vulnerability this may involve sharing information about the vulnerability (in confidence, if the issue is embargoed) with hardware vendors and/or other software projects.
     5.  We will write a Xen advisory including information from (b)-(f)
 4.  **Advisory pre-release:**This occurs only if the advisory is embargoed (ie, the problem is not already public):As soon as our advisory is available, we will send it, including patches, to members of the Xen security pre-disclosure list. For more information about this list, see below.In the event that we do not have a patch available two working weeks before the disclosure date, we aim to send an advisory that reflects the current state of knowledge to the Xen security pre-disclosure list. An updated advisory will be published as soon as available.
-    
+
     At this stage the advisory will be clearly marked with the embargo date.
-    
+
 5.  **Advisory public release:**At the embargo date we will publish the advisory, and push bugfix changesets to public revision control trees.Public advisories will be posted to xen-devel, xen-users and xen-annnounce and will be added to the [Security Announcements Page](http://xenbits.xen.org/xsa/) (note that Advisories before XSA-26 were published [here](http://wiki.xenproject.org/wiki/Security_Announcements_%28Historical%29)) . Copies will also be sent to the pre-disclosure list.
 6.  **Updates**If new information or better patches become available, or we discover mistakes, we may issue an amended (revision 2 or later) public advisory. This will also be sent to the pre-disclosure list.
 7.  **Post embargo transparency:**During an embargo period the Security Response Team may be required to make potentially controverial decisions in private, since they cannot confer with the community without breaking the embargo. The Security Response Team will attempt to make such decisions following the guidance of this document and where necessary their own best judgement. Following the embargo period any such decisions will be disclosed to the community in the interests of transparency and to help provide guidance should a similar decision be required in the future.
@@ -333,6 +333,5 @@ This is a list of organisations on the pre-disclosure list (not email addresses 
 -   **v1.2 Apr 2012:** Added pre-disclosure list
 -   **v1.1 Feb 2012:** Added link to Security Announcements wiki page
 -   **v1.0 Dec 2011:** Intial document published after review
-
 
 {{</section>}}
