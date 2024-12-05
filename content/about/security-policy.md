@@ -252,6 +252,7 @@ This is a list of organisations on the pre-disclosure list (not email addresses 
 -   Memset
 -   Namecheap Inc
 -   NFOServers.com
+-   NixOS
 -   Novell
 -   OnApp.com / SolusVM.com
 -   OnePoundWebHosting Ltd
@@ -288,6 +289,7 @@ This is a list of organisations on the pre-disclosure list (not email addresses 
 
 ## Change History
 
+-   **v3.24 Dec 5th 2024:** Added NixOS
 -   **v3.23 Aug 8th 2019:** Added DornerWorks Ltd
 -   **v3.22 Aug 6th 2019:** Remove Linode
 -   **v3.21 Nov 19th 2018:** Added XCP-ng.org
