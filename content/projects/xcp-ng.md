@@ -53,7 +53,7 @@ XCP-ng enables an easy way to deploy a VM based infrastructure using Xen as the 
     title="Project’s **history**"
     media="/img/others/xcp-ng-project-s-history.svg"
     mediaPosition="right"
-    alt="Illustration of a timeline with milestones for the years 2012, 2018, 2020, and 2024, representing project progress and development."
+    alt="Illustration of a timeline with milestones for the years 2018, 2020, 2022 and 2024, representing project progress and development."
     animate="true"
   >}}
   {{<md>}}
