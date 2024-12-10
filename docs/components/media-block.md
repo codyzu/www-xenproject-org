@@ -18,6 +18,7 @@ The `media-block` is a flexible component for displaying content with a media el
   class="bg-light border-rounded"
   animate="true"
 >}}
+{{<md>}}
   ## A remarkable innovation
 
   Our revolutionary new technology improves productivity by **50%**.
@@ -26,7 +27,7 @@ The `media-block` is a flexible component for displaying content with a media el
   * Optimized performance
   * Intuitive interface
   * Maximum compatibility
-
+{{</md>}}
   <div class="mt-4">
     <a href="/demo" class="btn btn-primary">
       Request a demo <i class="fas fa-arrow-right"></i>
@@ -50,3 +51,5 @@ The `media-block` is a flexible component for displaying content with a media el
 | `animate`             | string | "false"       | Activates block animation: `"true"` or `"false"`                                                                                                                                |
 
 The content between the shortcode tags can include Markdown and HTML.
+
+TODO: ajoute un paragraphe qui explique l'utilisation du tag md dans la partie texte du meidablock

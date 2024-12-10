@@ -54,7 +54,9 @@
       "animated-home-shadow-screen",
       "article",
       "background-curve-reverse-top",
+      "bg-light",
       "block-space",
+      "border-rounded",
       "box-resources",
       "box-resources__title",
       "btn",
@@ -179,6 +181,7 @@
       "mg-v-xxl",
       "mob-mg-v-xl",
       "mt-2",
+      "mt-4",
       "next",
       "no-mt",
       "p1-book",
@@ -205,6 +208,7 @@
       "socials",
       "socials-footer",
       "tag",
+      "text-primary",
       "title-external-link",
       "title-with-gradient-underline",
       "txt-c",
@@ -216,6 +220,7 @@
       "youtube-video-container"
     ],
     "ids": [
+      "a-remarkable-innovation",
       "a-virtualization-revolution",
       "advisory-board",
       "archivation-review",
