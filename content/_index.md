@@ -11,10 +11,12 @@ keywords: "Xen Project, open source virtualization, enterprise-grade hypervisor,
     title="Bring the power of **open virtualization** everywhere."
     titleLevel="1"
     titleClass="title-with-gradient-underline"
-    media="/img/flatline/screen-with-xen-logo.webp"
-    alt="Illustration of a computer monitor displaying bar charts with Xen Project Logo"
+    media=`<div class="animated-home-screen-container">
+      <img src="/img/flatline/screen-with-xen-logo.webp" class="animated-home-screen" alt="Illustration of a computer monitor displaying bar charts with Xen Project Logo">
+    <img class="animated-home-shadow-screen" src="/img/decorative/screen-with-wire.svg" alt=""/>
+    </div>
+    `
     mediaPosition="right"
-    mobileMediaPosition="bottom"
   >}}
   {{<md>}}
   The Xen Project team is a global open source community that develops the Xen
@@ -26,7 +28,7 @@ keywords: "Xen Project, open source virtualization, enterprise-grade hypervisor,
   {{</md>}}
   {{</media-block>}}
   <img class="animated-home-server" src="/img/decorative/home-servers.webp" alt=""/>
-  <img class="animated-home-shadow-screen" src="/img/decorative/screen-with-wire.svg" alt=""/>
+  
 {{</section>}}
 
 

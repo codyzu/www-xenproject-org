@@ -1,21 +1,12 @@
 :root {
-  --home-shadow-screen-left: -45%;
   --home-server-top: -104%;
-  --home-shadow-screen-bottom: 170px;
-  --home-hero-padding-bottom: 180px;
-  @include tablet {
-    --home-shadow-screen-left: 140px;
-    --home-hero-padding-bottom: 320px;
-  }
-
-  @include desktop {
-    --home-shadow-screen-left: 54px;
-  }
+  --home-hero-padding-bottom: 0; //clamp(170px, 45%, 337px);
 }
 
 .home-hero-animated {
   position: relative;
   overflow: hidden;
+  padding-bottom: 10%;
   margin-left: calc(var(--content-padding-horizontal) * -1);
   margin-right: calc(var(--content-padding-horizontal) * -1);
 
@@ -26,47 +17,57 @@
 
   .media-block {
     position: relative;
-    z-index: 10;
   }
 
-  .animated-home-server,
+  .media-block__media {
+    position: relative;
+    padding: 0 40px;
+    align-self: flex-end;
+    @include tablet {
+      padding: 0;
+    }
+  }
+
+  .animated-home-screen-container {
+    position: relative;
+  }
+
   .animated-home-shadow-screen {
     position: absolute;
     z-index: 1;
   }
 
   .animated-home-server {
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-50%);
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    transform: translateY(100%);
     z-index: 3;
     opacity: 0;
     animation: homeFadeInUp 1s ease forwards;
     animation-delay: 0.5s;
     width: 80%;
-    @include tablet {
-      width: auto;
-    }
+    max-width: 600px;
+    margin-bottom: 10px;
+  }
+
+  .animated-home-screen {
+    position: relative;
+    z-index: 2;
+    animation: homeFadeInTopLeft 0.8s ease forwards;
+    animation-delay: 0s;
   }
 
   .animated-home-shadow-screen {
-    bottom: var(--home-shadow-screen-bottom);
-    left: 56%;
-    transform: translateX(40px);
-    z-index: 2;
+    padding: 6.2% 7.6% 0;
+    top: 25%;
+    left: 11%;
+    width: 100%;
+    transform: translateX(0);
+    z-index: 1;
     opacity: 0;
-    animation: homeFadeInRight 1.2s ease forwards;
+    animation: homeFadeInRight 0.8s ease forwards;
     animation-delay: 0s;
-    width: 454px;
-  }
-  .animated-home-wire {
-    left: 70%;
-    bottom: 50px;
-  }
-
-  .media-block__media {
-    opacity: 0;
-    animation: homeFadeInTopLeft 0.8s ease forwards;
   }
 }
 
@@ -95,13 +96,9 @@
 }
 
 @keyframes homeFadeInUp {
-  from {
-    opacity: 0;
-    transform: translateX(-50%) translateY(0);
-  }
   to {
     opacity: 1;
-    transform: translateX(-50%) translateY(var(--home-server-top));
+    transform: translateY(0);
   }
 }
 

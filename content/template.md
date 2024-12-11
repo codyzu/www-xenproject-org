@@ -13,7 +13,7 @@ menus:
 <!-- Section block : Content must always be between section -->
 {{<section>}}
 
-{{<section>}}
+{{</section>}}
 
 
 <!-- Mediablock : block with image and text, refer to the doc "docs/components/media-block.md" -->
