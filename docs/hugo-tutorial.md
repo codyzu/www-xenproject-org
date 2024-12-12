@@ -19,7 +19,6 @@ This tutorial will guide you through the common tasks for managing and updating 
   - [Adding Images](#adding-images)
   - [Image Sizing](#image-sizing)
 - [Page Components](#page-components)
-  - [Downloadable Content](#downloadable-content)
 - [Site Navigation](#site-navigation)
   - [Adding New Pages](#adding-new-pages)
   - [Header/Footer Modification](#headerfooter-modification)
@@ -134,18 +133,6 @@ Available image classes:
 ## Page Components
 
 All page components are available in the [Components Guide](components.md)
-
-
-### Downloadable Content
-
-Add downloadable resources:
-
-```markdown
-{{</* get-downloads-links 
-  title="Downloads"
-  category="resources" 
-*/>}}
-```
 
 ## Site Navigation
 
