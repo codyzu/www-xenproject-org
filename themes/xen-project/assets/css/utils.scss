@@ -10,6 +10,23 @@ img.rounded-corners,
 .rounded-corners img {
   border-radius: 16px;
 }
+.small-image,
+.medium-image,
+.large-image {
+  max-width: 100%;
+}
+
+.small-image {
+  max-width: 300px;
+}
+
+.medium-image {
+  max-width: 500px;
+}
+
+.large-image {
+  max-width: 800px;
+}
 
 .w-100 {
   width: 100%;

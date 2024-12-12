@@ -5,9 +5,14 @@ description: "A component for displaying the latest blog posts in a carousel"
 
 # Latest News Component
 
+The Latest News component displays the most recent blog posts in a carousel format with navigation buttons. It automatically fetches and displays up to 10 latest posts from the blog section.
+
 [![Latest news component](../images/latest-news-thumb.png)](../images/latest-news.png)
 
-The Latest News component displays the most recent blog posts in a carousel format with navigation buttons. It automatically fetches and displays up to 10 latest posts from the blog section.
+- [Basic Usage](#basic-usage)
+- [Features](#features)
+
+
 
 ## Basic Usage
 

@@ -4,6 +4,14 @@
 
 The `features-list` component allows you to display a grid of features with icons, titles, and descriptions.
 
+- [Usage](#usage)
+- [Parameters](#parameters)
+  - [Shortcode Parameters](#shortcode-parameters)
+  - [Item Parameters](#item-parameters)
+- [Example](#example)
+- [Technical Notes](#technical-notes)
+
+
 ## Usage
 
 To use this component in your Markdown pages, use the following shortcode syntax:

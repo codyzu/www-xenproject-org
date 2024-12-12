@@ -5,15 +5,23 @@ description: "A carousel component for displaying a rotating list of items"
 
 # Carousel Component
 
-[![Carousel component](../images/carousel-thumb.png)](../images/carousel.png)
 
 The carousel component allows you to display a rotating list of items in a slider format with navigation buttons.
+[![Carousel component](../images/carousel-thumb.png)](../images/carousel.png)
+
+
+- [Basic Usage](#basic-usage)
+- [With Custom Class](#with-custom-class)
+- [Structure of Project Items](#structure-of-project-items)
+- [HTML Structure](#html-structure)
+- [Features](#features)
+
 
 ## Basic Usage
 
 The most common use case is to display all projects using the `getpages` shortcode:
 
-```html
+```markdown
 {{<carousel>}}
 {{<getpages "projects" "hidden">}}
 {{</carousel>}}
@@ -23,7 +31,7 @@ The most common use case is to display all projects using the `getpages` shortco
 
 You can add a custom class to the carousel container:
 
-```html
+```markdown
 {{<carousel class="mg-t-lg">}}
 {{<getpages "projects" "hidden">}}
 {{</carousel>}}

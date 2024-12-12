@@ -9,6 +9,15 @@ description: "Documentation for the vertical-lists component"
 
 The `vertical-lists` component allows you to create columnar layouts with titled sections. Each section can contain text, links, or other content.
 
+- [Usage](#usage)
+- [Parameters](#parameters)
+- [List Item Properties](#list-item-properties)
+- [Examples](#examples)
+  - [Example with Mixed Title Formatting](#example-with-mixed-title-formatting)
+- [Styling](#styling)
+- [Best Practices](#best-practices)
+
+
 ## Usage
 
 Basic structure:
