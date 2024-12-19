@@ -22,7 +22,7 @@ class XenProvider extends Provider {
   }
 
   async getFilesAndFolders(version) {
-    const url = `${this.baseURL}/${version}`;
+    const url = `${this.baseURL}${version}`;
     console.log("Xen : retrieve files and folders for version", version);
     const { data } = await axios.get(url);
     const $ = cheerio.load(data);

@@ -9,43 +9,43 @@
         "files": [
           {
             "name": "bin.tgz/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.3-0/bin.tgz/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.3-0/bin.tgz/"
           },
           {
             "name": "iso/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.3-0/iso/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.3-0/iso/"
           },
           {
             "name": "kernel-3.0.3-fc5/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.3-0/kernel-3.0.3-fc5/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.3-0/kernel-3.0.3-fc5/"
           },
           {
             "name": "kernel-3.0.3-opensuse10x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.3-0/kernel-3.0.3-opensuse10x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.3-0/kernel-3.0.3-opensuse10x/"
           },
           {
             "name": "kernel-3.0.3-rhel4x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.3-0/kernel-3.0.3-rhel4x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.3-0/kernel-3.0.3-rhel4x/"
           },
           {
             "name": "kernel-3.0.3-sles9x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.3-0/kernel-3.0.3-sles9x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.3-0/kernel-3.0.3-sles9x/"
           },
           {
             "name": "kernel-rhel3x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.3-0/kernel-rhel3x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.3-0/kernel-rhel3x/"
           },
           {
             "name": "kernel-rhel4x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.3-0/kernel-rhel4x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.3-0/kernel-rhel4x/"
           },
           {
             "name": "kernel-sles9x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.3-0/kernel-sles9x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.3-0/kernel-sles9x/"
           },
           {
             "name": "src.tgz/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.3-0/src.tgz/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.3-0/src.tgz/"
           }
         ]
       },
@@ -55,27 +55,27 @@
         "files": [
           {
             "name": "bin.tgz/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.4-1/bin.tgz/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.4-1/bin.tgz/"
           },
           {
             "name": "kernel-3.0.4-fc5/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.4-1/kernel-3.0.4-fc5/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.4-1/kernel-3.0.4-fc5/"
           },
           {
             "name": "kernel-3.0.4-opensuse10x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.4-1/kernel-3.0.4-opensuse10x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.4-1/kernel-3.0.4-opensuse10x/"
           },
           {
             "name": "kernel-3.0.4-rhel4x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.4-1/kernel-3.0.4-rhel4x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.4-1/kernel-3.0.4-rhel4x/"
           },
           {
             "name": "kernel-3.0.4-sles9x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.4-1/kernel-3.0.4-sles9x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.4-1/kernel-3.0.4-sles9x/"
           },
           {
             "name": "src.tgz/",
-            "url": "https://downloads.xenproject.org/release/xen//3.0.4-1/src.tgz/"
+            "url": "https://downloads.xenproject.org/release/xen/3.0.4-1/src.tgz/"
           }
         ]
       },
@@ -85,23 +85,23 @@
         "files": [
           {
             "name": "bin.tgz/",
-            "url": "https://downloads.xenproject.org/release/xen//3.1.0/bin.tgz/"
+            "url": "https://downloads.xenproject.org/release/xen/3.1.0/bin.tgz/"
           },
           {
             "name": "kernel-3.1-opensuse10x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.1.0/kernel-3.1-opensuse10x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.1.0/kernel-3.1-opensuse10x/"
           },
           {
             "name": "kernel-3.1-rhel4x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.1.0/kernel-3.1-rhel4x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.1.0/kernel-3.1-rhel4x/"
           },
           {
             "name": "kernel-3.1-rhel5x/",
-            "url": "https://downloads.xenproject.org/release/xen//3.1.0/kernel-3.1-rhel5x/"
+            "url": "https://downloads.xenproject.org/release/xen/3.1.0/kernel-3.1-rhel5x/"
           },
           {
             "name": "src.tgz/",
-            "url": "https://downloads.xenproject.org/release/xen//3.1.0/src.tgz/"
+            "url": "https://downloads.xenproject.org/release/xen/3.1.0/src.tgz/"
           }
         ]
       },
@@ -111,7 +111,7 @@
         "files": [
           {
             "name": "xen-3.1.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.1.3/xen-3.1.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.1.3/xen-3.1.3.tar.gz"
           }
         ]
       },
@@ -121,7 +121,7 @@
         "files": [
           {
             "name": "xen-3.1.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.1.4/xen-3.1.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.1.4/xen-3.1.4.tar.gz"
           }
         ]
       },
@@ -131,23 +131,23 @@
         "files": [
           {
             "name": "centos-5.1/",
-            "url": "https://downloads.xenproject.org/release/xen//3.2.0/centos-5.1/"
+            "url": "https://downloads.xenproject.org/release/xen/3.2.0/centos-5.1/"
           },
           {
             "name": "fedora-8/",
-            "url": "https://downloads.xenproject.org/release/xen//3.2.0/fedora-8/"
+            "url": "https://downloads.xenproject.org/release/xen/3.2.0/fedora-8/"
           },
           {
             "name": "linux-2.6.18-xen-3.2.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.2.0/linux-2.6.18-xen-3.2.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.2.0/linux-2.6.18-xen-3.2.0.tar.gz"
           },
           {
             "name": "opensuse-10.3/",
-            "url": "https://downloads.xenproject.org/release/xen//3.2.0/opensuse-10.3/"
+            "url": "https://downloads.xenproject.org/release/xen/3.2.0/opensuse-10.3/"
           },
           {
             "name": "xen-3.2.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.2.0/xen-3.2.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.2.0/xen-3.2.0.tar.gz"
           }
         ]
       },
@@ -157,7 +157,7 @@
         "files": [
           {
             "name": "xen-3.2.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.2.1/xen-3.2.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.2.1/xen-3.2.1.tar.gz"
           }
         ]
       },
@@ -167,7 +167,7 @@
         "files": [
           {
             "name": "xen-3.2.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.2.2/xen-3.2.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.2.2/xen-3.2.2.tar.gz"
           }
         ]
       },
@@ -177,7 +177,7 @@
         "files": [
           {
             "name": "xen-3.2.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.2.3/xen-3.2.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.2.3/xen-3.2.3.tar.gz"
           }
         ]
       },
@@ -187,11 +187,11 @@
         "files": [
           {
             "name": "linux-2.6.18-xen-3.3.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.3.0/linux-2.6.18-xen-3.3.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.3.0/linux-2.6.18-xen-3.3.0.tar.gz"
           },
           {
             "name": "xen-3.3.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.3.0/xen-3.3.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.3.0/xen-3.3.0.tar.gz"
           }
         ]
       },
@@ -201,7 +201,7 @@
         "files": [
           {
             "name": "xen-3.3.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.3.1/xen-3.3.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.3.1/xen-3.3.1.tar.gz"
           }
         ]
       },
@@ -211,7 +211,7 @@
         "files": [
           {
             "name": "xen-3.3.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.3.2/xen-3.3.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.3.2/xen-3.3.2.tar.gz"
           }
         ]
       },
@@ -221,15 +221,15 @@
         "files": [
           {
             "name": "linux-2.6.18-xen-3.4.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.4.0/linux-2.6.18-xen-3.4.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.4.0/linux-2.6.18-xen-3.4.0.tar.gz"
           },
           {
             "name": "xen-3.4.0-xen.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.4.0/xen-3.4.0-xen.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.4.0/xen-3.4.0-xen.tar.gz"
           },
           {
             "name": "xen-3.4.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.4.0/xen-3.4.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.4.0/xen-3.4.0.tar.gz"
           }
         ]
       },
@@ -239,7 +239,7 @@
         "files": [
           {
             "name": "xen-3.4.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.4.1/xen-3.4.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.4.1/xen-3.4.1.tar.gz"
           }
         ]
       },
@@ -249,11 +249,11 @@
         "files": [
           {
             "name": "linux-2.6.18-xen-3.4.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.4.2/linux-2.6.18-xen-3.4.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.4.2/linux-2.6.18-xen-3.4.2.tar.gz"
           },
           {
             "name": "xen-3.4.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.4.2/xen-3.4.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.4.2/xen-3.4.2.tar.gz"
           }
         ]
       },
@@ -263,11 +263,11 @@
         "files": [
           {
             "name": "xen-3.4.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.4.3/xen-3.4.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.4.3/xen-3.4.3.tar.gz"
           },
           {
             "name": "xen-3.4.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//3.4.3/xen-3.4.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/3.4.3/xen-3.4.3.tar.gz.sig"
           }
         ]
       },
@@ -277,11 +277,11 @@
         "files": [
           {
             "name": "xen-3.4.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//3.4.4/xen-3.4.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/3.4.4/xen-3.4.4.tar.gz"
           },
           {
             "name": "xen-3.4.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//3.4.4/xen-3.4.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/3.4.4/xen-3.4.4.tar.gz.sig"
           }
         ]
       },
@@ -291,11 +291,11 @@
         "files": [
           {
             "name": "xen-4.0.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.0.0/xen-4.0.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.0.0/xen-4.0.0.tar.gz"
           },
           {
             "name": "xen-4.0.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.0.0/xen-4.0.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.0.0/xen-4.0.0.tar.gz.sig"
           }
         ]
       },
@@ -305,11 +305,11 @@
         "files": [
           {
             "name": "xen-4.0.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.0.1/xen-4.0.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.0.1/xen-4.0.1.tar.gz"
           },
           {
             "name": "xen-4.0.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.0.1/xen-4.0.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.0.1/xen-4.0.1.tar.gz.sig"
           }
         ]
       },
@@ -319,11 +319,11 @@
         "files": [
           {
             "name": "xen-4.0.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.0.2/xen-4.0.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.0.2/xen-4.0.2.tar.gz"
           },
           {
             "name": "xen-4.0.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.0.2/xen-4.0.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.0.2/xen-4.0.2.tar.gz.sig"
           }
         ]
       },
@@ -333,11 +333,11 @@
         "files": [
           {
             "name": "xen-4.0.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.0.3/xen-4.0.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.0.3/xen-4.0.3.tar.gz"
           },
           {
             "name": "xen-4.0.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.0.3/xen-4.0.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.0.3/xen-4.0.3.tar.gz.sig"
           }
         ]
       },
@@ -347,11 +347,11 @@
         "files": [
           {
             "name": "xen-4.0.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.0.4/xen-4.0.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.0.4/xen-4.0.4.tar.gz"
           },
           {
             "name": "xen-4.0.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.0.4/xen-4.0.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.0.4/xen-4.0.4.tar.gz.sig"
           }
         ]
       },
@@ -361,11 +361,11 @@
         "files": [
           {
             "name": "xen-4.1.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.0/xen-4.1.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.0/xen-4.1.0.tar.gz"
           },
           {
             "name": "xen-4.1.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.0/xen-4.1.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.0/xen-4.1.0.tar.gz.sig"
           }
         ]
       },
@@ -375,11 +375,11 @@
         "files": [
           {
             "name": "xen-4.1.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.1/xen-4.1.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.1/xen-4.1.1.tar.gz"
           },
           {
             "name": "xen-4.1.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.1/xen-4.1.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.1/xen-4.1.1.tar.gz.sig"
           }
         ]
       },
@@ -389,11 +389,11 @@
         "files": [
           {
             "name": "xen-4.1.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.2/xen-4.1.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.2/xen-4.1.2.tar.gz"
           },
           {
             "name": "xen-4.1.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.2/xen-4.1.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.2/xen-4.1.2.tar.gz.sig"
           }
         ]
       },
@@ -403,11 +403,11 @@
         "files": [
           {
             "name": "xen-4.1.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.3/xen-4.1.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.3/xen-4.1.3.tar.gz"
           },
           {
             "name": "xen-4.1.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.3/xen-4.1.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.3/xen-4.1.3.tar.gz.sig"
           }
         ]
       },
@@ -417,11 +417,11 @@
         "files": [
           {
             "name": "xen-4.1.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.4/xen-4.1.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.4/xen-4.1.4.tar.gz"
           },
           {
             "name": "xen-4.1.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.4/xen-4.1.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.4/xen-4.1.4.tar.gz.sig"
           }
         ]
       },
@@ -431,11 +431,11 @@
         "files": [
           {
             "name": "xen-4.1.5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.5/xen-4.1.5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.5/xen-4.1.5.tar.gz"
           },
           {
             "name": "xen-4.1.5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.1.5/xen-4.1.5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.1.5/xen-4.1.5.tar.gz.sig"
           }
         ]
       },
@@ -445,11 +445,11 @@
         "files": [
           {
             "name": "xen-4.2.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.0-rc2/xen-4.2.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.0-rc2/xen-4.2.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.2.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.0-rc2/xen-4.2.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.0-rc2/xen-4.2.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -459,11 +459,11 @@
         "files": [
           {
             "name": "xen-4.2.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.0-rc5/xen-4.2.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.0-rc5/xen-4.2.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.2.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.0-rc5/xen-4.2.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.0-rc5/xen-4.2.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -473,11 +473,11 @@
         "files": [
           {
             "name": "xen-4.2.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.0/xen-4.2.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.0/xen-4.2.0.tar.gz"
           },
           {
             "name": "xen-4.2.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.0/xen-4.2.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.0/xen-4.2.0.tar.gz.sig"
           }
         ]
       },
@@ -487,11 +487,11 @@
         "files": [
           {
             "name": "xen-4.2.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.1/xen-4.2.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.1/xen-4.2.1.tar.gz"
           },
           {
             "name": "xen-4.2.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.1/xen-4.2.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.1/xen-4.2.1.tar.gz.sig"
           }
         ]
       },
@@ -501,11 +501,11 @@
         "files": [
           {
             "name": "xen-4.2.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.2/xen-4.2.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.2/xen-4.2.2.tar.gz"
           },
           {
             "name": "xen-4.2.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.2/xen-4.2.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.2/xen-4.2.2.tar.gz.sig"
           }
         ]
       },
@@ -515,11 +515,11 @@
         "files": [
           {
             "name": "xen-4.2.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.3/xen-4.2.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.3/xen-4.2.3.tar.gz"
           },
           {
             "name": "xen-4.2.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.3/xen-4.2.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.3/xen-4.2.3.tar.gz.sig"
           }
         ]
       },
@@ -529,11 +529,11 @@
         "files": [
           {
             "name": "xen-4.2.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.4/xen-4.2.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.4/xen-4.2.4.tar.gz"
           },
           {
             "name": "xen-4.2.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.4/xen-4.2.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.4/xen-4.2.4.tar.gz.sig"
           }
         ]
       },
@@ -543,11 +543,11 @@
         "files": [
           {
             "name": "xen-4.2.5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.5/xen-4.2.5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.5/xen-4.2.5.tar.gz"
           },
           {
             "name": "xen-4.2.5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.2.5/xen-4.2.5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.2.5/xen-4.2.5.tar.gz.sig"
           }
         ]
       },
@@ -557,11 +557,11 @@
         "files": [
           {
             "name": "xen-4.3.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc1/xen-4.3.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc1/xen-4.3.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.3.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc1/xen-4.3.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc1/xen-4.3.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -571,11 +571,11 @@
         "files": [
           {
             "name": "xen-4.3.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc2/xen-4.3.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc2/xen-4.3.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.3.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc2/xen-4.3.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc2/xen-4.3.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -585,11 +585,11 @@
         "files": [
           {
             "name": "xen-4.3.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc3/xen-4.3.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc3/xen-4.3.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.3.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc3/xen-4.3.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc3/xen-4.3.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -599,11 +599,11 @@
         "files": [
           {
             "name": "xen-4.3.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc4/xen-4.3.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc4/xen-4.3.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.3.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc4/xen-4.3.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc4/xen-4.3.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -613,11 +613,11 @@
         "files": [
           {
             "name": "xen-4.3.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc5/xen-4.3.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc5/xen-4.3.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.3.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc5/xen-4.3.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc5/xen-4.3.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -627,11 +627,11 @@
         "files": [
           {
             "name": "xen-4.3.0-rc6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc6/xen-4.3.0-rc6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc6/xen-4.3.0-rc6.tar.gz"
           },
           {
             "name": "xen-4.3.0-rc6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0-rc6/xen-4.3.0-rc6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0-rc6/xen-4.3.0-rc6.tar.gz.sig"
           }
         ]
       },
@@ -641,11 +641,11 @@
         "files": [
           {
             "name": "xen-4.3.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0/xen-4.3.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0/xen-4.3.0.tar.gz"
           },
           {
             "name": "xen-4.3.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.0/xen-4.3.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.0/xen-4.3.0.tar.gz.sig"
           }
         ]
       },
@@ -655,11 +655,11 @@
         "files": [
           {
             "name": "xen-4.3.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.1/xen-4.3.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.1/xen-4.3.1.tar.gz"
           },
           {
             "name": "xen-4.3.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.1/xen-4.3.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.1/xen-4.3.1.tar.gz.sig"
           }
         ]
       },
@@ -669,11 +669,11 @@
         "files": [
           {
             "name": "xen-4.3.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.2/xen-4.3.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.2/xen-4.3.2.tar.gz"
           },
           {
             "name": "xen-4.3.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.2/xen-4.3.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.2/xen-4.3.2.tar.gz.sig"
           }
         ]
       },
@@ -683,11 +683,11 @@
         "files": [
           {
             "name": "xen-4.3.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.3/xen-4.3.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.3/xen-4.3.3.tar.gz"
           },
           {
             "name": "xen-4.3.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.3/xen-4.3.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.3/xen-4.3.3.tar.gz.sig"
           }
         ]
       },
@@ -697,11 +697,11 @@
         "files": [
           {
             "name": "xen-4.3.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.4/xen-4.3.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.4/xen-4.3.4.tar.gz"
           },
           {
             "name": "xen-4.3.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.3.4/xen-4.3.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.3.4/xen-4.3.4.tar.gz.sig"
           }
         ]
       },
@@ -711,11 +711,11 @@
         "files": [
           {
             "name": "xen-4.4.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc1/xen-4.4.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc1/xen-4.4.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.4.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc1/xen-4.4.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc1/xen-4.4.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -725,11 +725,11 @@
         "files": [
           {
             "name": "xen-4.4.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc2/xen-4.4.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc2/xen-4.4.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.4.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc2/xen-4.4.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc2/xen-4.4.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -739,11 +739,11 @@
         "files": [
           {
             "name": "xen-4.4.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc3/xen-4.4.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc3/xen-4.4.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.4.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc3/xen-4.4.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc3/xen-4.4.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -753,11 +753,11 @@
         "files": [
           {
             "name": "xen-4.4.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc4/xen-4.4.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc4/xen-4.4.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.4.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc4/xen-4.4.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc4/xen-4.4.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -767,11 +767,11 @@
         "files": [
           {
             "name": "xen-4.4.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc5/xen-4.4.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc5/xen-4.4.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.4.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc5/xen-4.4.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc5/xen-4.4.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -781,11 +781,11 @@
         "files": [
           {
             "name": "xen-4.4.0-rc6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc6/xen-4.4.0-rc6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc6/xen-4.4.0-rc6.tar.gz"
           },
           {
             "name": "xen-4.4.0-rc6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0-rc6/xen-4.4.0-rc6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0-rc6/xen-4.4.0-rc6.tar.gz.sig"
           }
         ]
       },
@@ -795,11 +795,11 @@
         "files": [
           {
             "name": "xen-4.4.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0/xen-4.4.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0/xen-4.4.0.tar.gz"
           },
           {
             "name": "xen-4.4.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.0/xen-4.4.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.0/xen-4.4.0.tar.gz.sig"
           }
         ]
       },
@@ -809,11 +809,11 @@
         "files": [
           {
             "name": "xen-4.4.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.1/xen-4.4.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.1/xen-4.4.1.tar.gz"
           },
           {
             "name": "xen-4.4.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.1/xen-4.4.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.1/xen-4.4.1.tar.gz.sig"
           }
         ]
       },
@@ -823,11 +823,11 @@
         "files": [
           {
             "name": "xen-4.4.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.2/xen-4.4.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.2/xen-4.4.2.tar.gz"
           },
           {
             "name": "xen-4.4.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.2/xen-4.4.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.2/xen-4.4.2.tar.gz.sig"
           }
         ]
       },
@@ -837,11 +837,11 @@
         "files": [
           {
             "name": "xen-4.4.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.3/xen-4.4.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.3/xen-4.4.3.tar.gz"
           },
           {
             "name": "xen-4.4.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.3/xen-4.4.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.3/xen-4.4.3.tar.gz.sig"
           }
         ]
       },
@@ -851,11 +851,11 @@
         "files": [
           {
             "name": "xen-4.4.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.4/xen-4.4.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.4/xen-4.4.4.tar.gz"
           },
           {
             "name": "xen-4.4.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.4.4/xen-4.4.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.4.4/xen-4.4.4.tar.gz.sig"
           }
         ]
       },
@@ -865,11 +865,11 @@
         "files": [
           {
             "name": "xen-4.5.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.0-rc1/xen-4.5.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.0-rc1/xen-4.5.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.5.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.0-rc1/xen-4.5.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.0-rc1/xen-4.5.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -879,11 +879,11 @@
         "files": [
           {
             "name": "xen-4.5.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.0-rc2/xen-4.5.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.0-rc2/xen-4.5.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.5.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.0-rc2/xen-4.5.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.0-rc2/xen-4.5.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -893,11 +893,11 @@
         "files": [
           {
             "name": "xen-4.5.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.0-rc3/xen-4.5.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.0-rc3/xen-4.5.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.5.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.0-rc3/xen-4.5.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.0-rc3/xen-4.5.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -907,11 +907,11 @@
         "files": [
           {
             "name": "xen-4.5.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.0-rc4/xen-4.5.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.0-rc4/xen-4.5.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.5.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.0-rc4/xen-4.5.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.0-rc4/xen-4.5.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -921,11 +921,11 @@
         "files": [
           {
             "name": "xen-4.5.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.0/xen-4.5.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.0/xen-4.5.0.tar.gz"
           },
           {
             "name": "xen-4.5.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.0/xen-4.5.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.0/xen-4.5.0.tar.gz.sig"
           }
         ]
       },
@@ -935,11 +935,11 @@
         "files": [
           {
             "name": "xen-4.5.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.1/xen-4.5.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.1/xen-4.5.1.tar.gz"
           },
           {
             "name": "xen-4.5.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.1/xen-4.5.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.1/xen-4.5.1.tar.gz.sig"
           }
         ]
       },
@@ -949,11 +949,11 @@
         "files": [
           {
             "name": "xen-4.5.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.2/xen-4.5.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.2/xen-4.5.2.tar.gz"
           },
           {
             "name": "xen-4.5.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.2/xen-4.5.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.2/xen-4.5.2.tar.gz.sig"
           }
         ]
       },
@@ -963,11 +963,11 @@
         "files": [
           {
             "name": "xen-4.5.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.3/xen-4.5.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.3/xen-4.5.3.tar.gz"
           },
           {
             "name": "xen-4.5.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.3/xen-4.5.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.3/xen-4.5.3.tar.gz.sig"
           }
         ]
       },
@@ -982,11 +982,11 @@
         "files": [
           {
             "name": "xen-4.5.5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.5/xen-4.5.5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.5/xen-4.5.5.tar.gz"
           },
           {
             "name": "xen-4.5.5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.5.5/xen-4.5.5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.5.5/xen-4.5.5.tar.gz.sig"
           }
         ]
       },
@@ -996,11 +996,11 @@
         "files": [
           {
             "name": "xen-4.6.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.0-rc1/xen-4.6.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.0-rc1/xen-4.6.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.6.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.0-rc1/xen-4.6.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.0-rc1/xen-4.6.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -1010,7 +1010,7 @@
         "files": [
           {
             "name": "xen-4.6.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.0-rc2/xen-4.6.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.0-rc2/xen-4.6.0-rc2.tar.gz"
           }
         ]
       },
@@ -1020,11 +1020,11 @@
         "files": [
           {
             "name": "xen-4.6.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.0-rc3/xen-4.6.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.0-rc3/xen-4.6.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.6.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.0-rc3/xen-4.6.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.0-rc3/xen-4.6.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -1034,11 +1034,11 @@
         "files": [
           {
             "name": "xen-4.6.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.0-rc4/xen-4.6.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.0-rc4/xen-4.6.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.6.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.0-rc4/xen-4.6.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.0-rc4/xen-4.6.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -1048,11 +1048,11 @@
         "files": [
           {
             "name": "xen-4.6.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.0-rc5/xen-4.6.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.0-rc5/xen-4.6.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.6.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.0-rc5/xen-4.6.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.0-rc5/xen-4.6.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -1062,11 +1062,11 @@
         "files": [
           {
             "name": "xen-4.6.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.0/xen-4.6.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.0/xen-4.6.0.tar.gz"
           },
           {
             "name": "xen-4.6.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.0/xen-4.6.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.0/xen-4.6.0.tar.gz.sig"
           }
         ]
       },
@@ -1076,11 +1076,11 @@
         "files": [
           {
             "name": "xen-4.6.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.1/xen-4.6.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.1/xen-4.6.1.tar.gz"
           },
           {
             "name": "xen-4.6.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.1/xen-4.6.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.1/xen-4.6.1.tar.gz.sig"
           }
         ]
       },
@@ -1090,11 +1090,11 @@
         "files": [
           {
             "name": "xen-4.6.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.3/xen-4.6.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.3/xen-4.6.3.tar.gz"
           },
           {
             "name": "xen-4.6.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.3/xen-4.6.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.3/xen-4.6.3.tar.gz.sig"
           }
         ]
       },
@@ -1104,11 +1104,11 @@
         "files": [
           {
             "name": "xen-4.6.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.4/xen-4.6.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.4/xen-4.6.4.tar.gz"
           },
           {
             "name": "xen-4.6.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.4/xen-4.6.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.4/xen-4.6.4.tar.gz.sig"
           }
         ]
       },
@@ -1118,11 +1118,11 @@
         "files": [
           {
             "name": "xen-4.6.5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.5/xen-4.6.5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.5/xen-4.6.5.tar.gz"
           },
           {
             "name": "xen-4.6.5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.5/xen-4.6.5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.5/xen-4.6.5.tar.gz.sig"
           }
         ]
       },
@@ -1132,11 +1132,11 @@
         "files": [
           {
             "name": "xen-4.6.6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.6/xen-4.6.6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.6/xen-4.6.6.tar.gz"
           },
           {
             "name": "xen-4.6.6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.6.6/xen-4.6.6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.6.6/xen-4.6.6.tar.gz.sig"
           }
         ]
       },
@@ -1146,11 +1146,11 @@
         "files": [
           {
             "name": "xen-4.7.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc1/xen-4.7.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc1/xen-4.7.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.7.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc1/xen-4.7.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc1/xen-4.7.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -1160,11 +1160,11 @@
         "files": [
           {
             "name": "xen-4.7.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc2/xen-4.7.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc2/xen-4.7.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.7.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc2/xen-4.7.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc2/xen-4.7.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -1174,11 +1174,11 @@
         "files": [
           {
             "name": "xen-4.7.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc3/xen-4.7.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc3/xen-4.7.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.7.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc3/xen-4.7.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc3/xen-4.7.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -1188,11 +1188,11 @@
         "files": [
           {
             "name": "xen-4.7.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc4/xen-4.7.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc4/xen-4.7.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.7.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc4/xen-4.7.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc4/xen-4.7.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -1202,11 +1202,11 @@
         "files": [
           {
             "name": "xen-4.7.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc5/xen-4.7.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc5/xen-4.7.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.7.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc5/xen-4.7.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc5/xen-4.7.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -1216,11 +1216,11 @@
         "files": [
           {
             "name": "xen-4.7.0-rc6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc6/xen-4.7.0-rc6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc6/xen-4.7.0-rc6.tar.gz"
           },
           {
             "name": "xen-4.7.0-rc6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0-rc6/xen-4.7.0-rc6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0-rc6/xen-4.7.0-rc6.tar.gz.sig"
           }
         ]
       },
@@ -1230,11 +1230,11 @@
         "files": [
           {
             "name": "xen-4.7.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0/xen-4.7.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0/xen-4.7.0.tar.gz"
           },
           {
             "name": "xen-4.7.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.0/xen-4.7.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.0/xen-4.7.0.tar.gz.sig"
           }
         ]
       },
@@ -1244,11 +1244,11 @@
         "files": [
           {
             "name": "xen-4.7.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.1/xen-4.7.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.1/xen-4.7.1.tar.gz"
           },
           {
             "name": "xen-4.7.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.1/xen-4.7.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.1/xen-4.7.1.tar.gz.sig"
           }
         ]
       },
@@ -1258,11 +1258,11 @@
         "files": [
           {
             "name": "xen-4.7.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.2/xen-4.7.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.2/xen-4.7.2.tar.gz"
           },
           {
             "name": "xen-4.7.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.2/xen-4.7.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.2/xen-4.7.2.tar.gz.sig"
           }
         ]
       },
@@ -1272,11 +1272,11 @@
         "files": [
           {
             "name": "xen-4.7.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.3/xen-4.7.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.3/xen-4.7.3.tar.gz"
           },
           {
             "name": "xen-4.7.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.3/xen-4.7.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.3/xen-4.7.3.tar.gz.sig"
           }
         ]
       },
@@ -1286,11 +1286,11 @@
         "files": [
           {
             "name": "xen-4.7.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.4/xen-4.7.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.4/xen-4.7.4.tar.gz"
           },
           {
             "name": "xen-4.7.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.4/xen-4.7.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.4/xen-4.7.4.tar.gz.sig"
           }
         ]
       },
@@ -1300,11 +1300,11 @@
         "files": [
           {
             "name": "xen-4.7.5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.5/xen-4.7.5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.5/xen-4.7.5.tar.gz"
           },
           {
             "name": "xen-4.7.5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.5/xen-4.7.5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.5/xen-4.7.5.tar.gz.sig"
           }
         ]
       },
@@ -1314,11 +1314,11 @@
         "files": [
           {
             "name": "xen-4.7.6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.6/xen-4.7.6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.6/xen-4.7.6.tar.gz"
           },
           {
             "name": "xen-4.7.6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.7.6/xen-4.7.6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.7.6/xen-4.7.6.tar.gz.sig"
           }
         ]
       },
@@ -1328,11 +1328,11 @@
         "files": [
           {
             "name": "xen-4.8.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc1/xen-4.8.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc1/xen-4.8.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.8.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc1/xen-4.8.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc1/xen-4.8.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -1342,11 +1342,11 @@
         "files": [
           {
             "name": "xen-4.8.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc2/xen-4.8.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc2/xen-4.8.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.8.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc2/xen-4.8.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc2/xen-4.8.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -1356,11 +1356,11 @@
         "files": [
           {
             "name": "xen-4.8.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc3/xen-4.8.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc3/xen-4.8.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.8.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc3/xen-4.8.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc3/xen-4.8.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -1370,11 +1370,11 @@
         "files": [
           {
             "name": "xen-4.8.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc4/xen-4.8.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc4/xen-4.8.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.8.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc4/xen-4.8.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc4/xen-4.8.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -1384,11 +1384,11 @@
         "files": [
           {
             "name": "xen-4.8.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc5/xen-4.8.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc5/xen-4.8.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.8.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc5/xen-4.8.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc5/xen-4.8.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -1398,11 +1398,11 @@
         "files": [
           {
             "name": "xen-4.8.0-rc6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc6/xen-4.8.0-rc6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc6/xen-4.8.0-rc6.tar.gz"
           },
           {
             "name": "xen-4.8.0-rc6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc6/xen-4.8.0-rc6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc6/xen-4.8.0-rc6.tar.gz.sig"
           }
         ]
       },
@@ -1412,11 +1412,11 @@
         "files": [
           {
             "name": "xen-4.8.0-rc7.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc7/xen-4.8.0-rc7.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc7/xen-4.8.0-rc7.tar.gz"
           },
           {
             "name": "xen-4.8.0-rc7.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc7/xen-4.8.0-rc7.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc7/xen-4.8.0-rc7.tar.gz.sig"
           }
         ]
       },
@@ -1426,11 +1426,11 @@
         "files": [
           {
             "name": "xen-4.8.0-rc8.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc8/xen-4.8.0-rc8.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc8/xen-4.8.0-rc8.tar.gz"
           },
           {
             "name": "xen-4.8.0-rc8.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0-rc8/xen-4.8.0-rc8.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0-rc8/xen-4.8.0-rc8.tar.gz.sig"
           }
         ]
       },
@@ -1440,11 +1440,11 @@
         "files": [
           {
             "name": "xen-4.8.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0/xen-4.8.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0/xen-4.8.0.tar.gz"
           },
           {
             "name": "xen-4.8.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.0/xen-4.8.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.0/xen-4.8.0.tar.gz.sig"
           }
         ]
       },
@@ -1454,11 +1454,11 @@
         "files": [
           {
             "name": "xen-4.8.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.1/xen-4.8.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.1/xen-4.8.1.tar.gz"
           },
           {
             "name": "xen-4.8.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.1/xen-4.8.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.1/xen-4.8.1.tar.gz.sig"
           }
         ]
       },
@@ -1468,11 +1468,11 @@
         "files": [
           {
             "name": "xen-4.8.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.2/xen-4.8.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.2/xen-4.8.2.tar.gz"
           },
           {
             "name": "xen-4.8.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.2/xen-4.8.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.2/xen-4.8.2.tar.gz.sig"
           }
         ]
       },
@@ -1482,11 +1482,11 @@
         "files": [
           {
             "name": "xen-4.8.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.3/xen-4.8.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.3/xen-4.8.3.tar.gz"
           },
           {
             "name": "xen-4.8.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.3/xen-4.8.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.3/xen-4.8.3.tar.gz.sig"
           }
         ]
       },
@@ -1496,11 +1496,11 @@
         "files": [
           {
             "name": "xen-4.8.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.4/xen-4.8.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.4/xen-4.8.4.tar.gz"
           },
           {
             "name": "xen-4.8.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.4/xen-4.8.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.4/xen-4.8.4.tar.gz.sig"
           }
         ]
       },
@@ -1510,11 +1510,11 @@
         "files": [
           {
             "name": "xen-4.8.5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.5/xen-4.8.5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.5/xen-4.8.5.tar.gz"
           },
           {
             "name": "xen-4.8.5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.8.5/xen-4.8.5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.8.5/xen-4.8.5.tar.gz.sig"
           }
         ]
       },
@@ -1529,11 +1529,11 @@
         "files": [
           {
             "name": "xen-4.9.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc2/xen-4.9.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc2/xen-4.9.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.9.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc2/xen-4.9.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc2/xen-4.9.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -1543,11 +1543,11 @@
         "files": [
           {
             "name": "xen-4.9.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc3/xen-4.9.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc3/xen-4.9.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.9.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc3/xen-4.9.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc3/xen-4.9.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -1557,11 +1557,11 @@
         "files": [
           {
             "name": "xen-4.9.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc4/xen-4.9.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc4/xen-4.9.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.9.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc4/xen-4.9.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc4/xen-4.9.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -1571,11 +1571,11 @@
         "files": [
           {
             "name": "xen-4.9.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc5/xen-4.9.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc5/xen-4.9.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.9.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc5/xen-4.9.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc5/xen-4.9.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -1585,11 +1585,11 @@
         "files": [
           {
             "name": "xen-4.9.0-rc6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc6/xen-4.9.0-rc6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc6/xen-4.9.0-rc6.tar.gz"
           },
           {
             "name": "xen-4.9.0-rc6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc6/xen-4.9.0-rc6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc6/xen-4.9.0-rc6.tar.gz.sig"
           }
         ]
       },
@@ -1599,11 +1599,11 @@
         "files": [
           {
             "name": "xen-4.9.0-rc7.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc7/xen-4.9.0-rc7.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc7/xen-4.9.0-rc7.tar.gz"
           },
           {
             "name": "xen-4.9.0-rc7.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc7/xen-4.9.0-rc7.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc7/xen-4.9.0-rc7.tar.gz.sig"
           }
         ]
       },
@@ -1613,11 +1613,11 @@
         "files": [
           {
             "name": "xen-4.9.0-rc8.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc8/xen-4.9.0-rc8.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc8/xen-4.9.0-rc8.tar.gz"
           },
           {
             "name": "xen-4.9.0-rc8.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc8/xen-4.9.0-rc8.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc8/xen-4.9.0-rc8.tar.gz.sig"
           }
         ]
       },
@@ -1627,11 +1627,11 @@
         "files": [
           {
             "name": "xen-4.9.0-rc9.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc9/xen-4.9.0-rc9.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc9/xen-4.9.0-rc9.tar.gz"
           },
           {
             "name": "xen-4.9.0-rc9.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0-rc9/xen-4.9.0-rc9.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0-rc9/xen-4.9.0-rc9.tar.gz.sig"
           }
         ]
       },
@@ -1641,11 +1641,11 @@
         "files": [
           {
             "name": "xen-4.9.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0/xen-4.9.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0/xen-4.9.0.tar.gz"
           },
           {
             "name": "xen-4.9.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.0/xen-4.9.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.0/xen-4.9.0.tar.gz.sig"
           }
         ]
       },
@@ -1655,11 +1655,11 @@
         "files": [
           {
             "name": "xen-4.9.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.1/xen-4.9.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.1/xen-4.9.1.tar.gz"
           },
           {
             "name": "xen-4.9.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.1/xen-4.9.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.1/xen-4.9.1.tar.gz.sig"
           }
         ]
       },
@@ -1669,11 +1669,11 @@
         "files": [
           {
             "name": "xen-4.9.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.2/xen-4.9.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.2/xen-4.9.2.tar.gz"
           },
           {
             "name": "xen-4.9.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.2/xen-4.9.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.2/xen-4.9.2.tar.gz.sig"
           }
         ]
       },
@@ -1683,11 +1683,11 @@
         "files": [
           {
             "name": "xen-4.9.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.3/xen-4.9.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.3/xen-4.9.3.tar.gz"
           },
           {
             "name": "xen-4.9.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.3/xen-4.9.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.3/xen-4.9.3.tar.gz.sig"
           }
         ]
       },
@@ -1697,11 +1697,11 @@
         "files": [
           {
             "name": "xen-4.9.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.4/xen-4.9.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.4/xen-4.9.4.tar.gz"
           },
           {
             "name": "xen-4.9.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.9.4/xen-4.9.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.9.4/xen-4.9.4.tar.gz.sig"
           }
         ]
       },
@@ -1711,11 +1711,11 @@
         "files": [
           {
             "name": "xen-4.10.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc1/xen-4.10.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc1/xen-4.10.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.10.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc1/xen-4.10.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc1/xen-4.10.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -1725,11 +1725,11 @@
         "files": [
           {
             "name": "xen-4.10.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc2/xen-4.10.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc2/xen-4.10.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.10.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc2/xen-4.10.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc2/xen-4.10.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -1739,11 +1739,11 @@
         "files": [
           {
             "name": "xen-4.10.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc3/xen-4.10.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc3/xen-4.10.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.10.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc3/xen-4.10.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc3/xen-4.10.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -1753,11 +1753,11 @@
         "files": [
           {
             "name": "xen-4.10.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc4/xen-4.10.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc4/xen-4.10.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.10.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc4/xen-4.10.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc4/xen-4.10.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -1767,11 +1767,11 @@
         "files": [
           {
             "name": "xen-4.10.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc5/xen-4.10.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc5/xen-4.10.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.10.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc5/xen-4.10.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc5/xen-4.10.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -1781,11 +1781,11 @@
         "files": [
           {
             "name": "xen-4.10.0-rc6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc6/xen-4.10.0-rc6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc6/xen-4.10.0-rc6.tar.gz"
           },
           {
             "name": "xen-4.10.0-rc6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc6/xen-4.10.0-rc6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc6/xen-4.10.0-rc6.tar.gz.sig"
           }
         ]
       },
@@ -1795,11 +1795,11 @@
         "files": [
           {
             "name": "xen-4.10.0-rc7.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc7/xen-4.10.0-rc7.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc7/xen-4.10.0-rc7.tar.gz"
           },
           {
             "name": "xen-4.10.0-rc7.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc7/xen-4.10.0-rc7.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc7/xen-4.10.0-rc7.tar.gz.sig"
           }
         ]
       },
@@ -1809,11 +1809,11 @@
         "files": [
           {
             "name": "xen-4.10.0-rc8.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc8/xen-4.10.0-rc8.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc8/xen-4.10.0-rc8.tar.gz"
           },
           {
             "name": "xen-4.10.0-rc8.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0-rc8/xen-4.10.0-rc8.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0-rc8/xen-4.10.0-rc8.tar.gz.sig"
           }
         ]
       },
@@ -1823,11 +1823,11 @@
         "files": [
           {
             "name": "xen-4.10.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0/xen-4.10.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0/xen-4.10.0.tar.gz"
           },
           {
             "name": "xen-4.10.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.0/xen-4.10.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.0/xen-4.10.0.tar.gz.sig"
           }
         ]
       },
@@ -1837,11 +1837,11 @@
         "files": [
           {
             "name": "xen-4.10.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.1/xen-4.10.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.1/xen-4.10.1.tar.gz"
           },
           {
             "name": "xen-4.10.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.1/xen-4.10.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.1/xen-4.10.1.tar.gz.sig"
           }
         ]
       },
@@ -1851,11 +1851,11 @@
         "files": [
           {
             "name": "xen-4.10.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.2/xen-4.10.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.2/xen-4.10.2.tar.gz"
           },
           {
             "name": "xen-4.10.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.2/xen-4.10.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.2/xen-4.10.2.tar.gz.sig"
           }
         ]
       },
@@ -1865,11 +1865,11 @@
         "files": [
           {
             "name": "xen-4.10.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.3/xen-4.10.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.3/xen-4.10.3.tar.gz"
           },
           {
             "name": "xen-4.10.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.3/xen-4.10.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.3/xen-4.10.3.tar.gz.sig"
           }
         ]
       },
@@ -1879,11 +1879,11 @@
         "files": [
           {
             "name": "xen-4.10.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.4/xen-4.10.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.4/xen-4.10.4.tar.gz"
           },
           {
             "name": "xen-4.10.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.10.4/xen-4.10.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.10.4/xen-4.10.4.tar.gz.sig"
           }
         ]
       },
@@ -1893,11 +1893,11 @@
         "files": [
           {
             "name": "xen-4.11.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc1/xen-4.11.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc1/xen-4.11.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.11.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc1/xen-4.11.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc1/xen-4.11.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -1907,11 +1907,11 @@
         "files": [
           {
             "name": "xen-4.11.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc2/xen-4.11.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc2/xen-4.11.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.11.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc2/xen-4.11.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc2/xen-4.11.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -1921,11 +1921,11 @@
         "files": [
           {
             "name": "xen-4.11.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc3/xen-4.11.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc3/xen-4.11.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.11.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc3/xen-4.11.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc3/xen-4.11.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -1935,11 +1935,11 @@
         "files": [
           {
             "name": "xen-4.11.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc4/xen-4.11.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc4/xen-4.11.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.11.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc4/xen-4.11.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc4/xen-4.11.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -1949,11 +1949,11 @@
         "files": [
           {
             "name": "xen-4.11.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc5/xen-4.11.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc5/xen-4.11.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.11.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc5/xen-4.11.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc5/xen-4.11.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -1963,11 +1963,11 @@
         "files": [
           {
             "name": "xen-4.11.0-rc6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc6/xen-4.11.0-rc6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc6/xen-4.11.0-rc6.tar.gz"
           },
           {
             "name": "xen-4.11.0-rc6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc6/xen-4.11.0-rc6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc6/xen-4.11.0-rc6.tar.gz.sig"
           }
         ]
       },
@@ -1977,11 +1977,11 @@
         "files": [
           {
             "name": "xen-4.11.0-rc7.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc7/xen-4.11.0-rc7.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc7/xen-4.11.0-rc7.tar.gz"
           },
           {
             "name": "xen-4.11.0-rc7.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0-rc7/xen-4.11.0-rc7.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0-rc7/xen-4.11.0-rc7.tar.gz.sig"
           }
         ]
       },
@@ -1991,11 +1991,11 @@
         "files": [
           {
             "name": "xen-4.11.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0/xen-4.11.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0/xen-4.11.0.tar.gz"
           },
           {
             "name": "xen-4.11.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.0/xen-4.11.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.0/xen-4.11.0.tar.gz.sig"
           }
         ]
       },
@@ -2005,11 +2005,11 @@
         "files": [
           {
             "name": "xen-4.11.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.1/xen-4.11.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.1/xen-4.11.1.tar.gz"
           },
           {
             "name": "xen-4.11.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.1/xen-4.11.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.1/xen-4.11.1.tar.gz.sig"
           }
         ]
       },
@@ -2019,11 +2019,11 @@
         "files": [
           {
             "name": "xen-4.11.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.2/xen-4.11.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.2/xen-4.11.2.tar.gz"
           },
           {
             "name": "xen-4.11.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.2/xen-4.11.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.2/xen-4.11.2.tar.gz.sig"
           }
         ]
       },
@@ -2033,11 +2033,11 @@
         "files": [
           {
             "name": "xen-4.11.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.3/xen-4.11.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.3/xen-4.11.3.tar.gz"
           },
           {
             "name": "xen-4.11.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.3/xen-4.11.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.3/xen-4.11.3.tar.gz.sig"
           }
         ]
       },
@@ -2047,11 +2047,11 @@
         "files": [
           {
             "name": "xen-4.11.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.4/xen-4.11.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.4/xen-4.11.4.tar.gz"
           },
           {
             "name": "xen-4.11.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.11.4/xen-4.11.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.11.4/xen-4.11.4.tar.gz.sig"
           }
         ]
       },
@@ -2061,11 +2061,11 @@
         "files": [
           {
             "name": "xen-4.12.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc1/xen-4.12.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc1/xen-4.12.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.12.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc1/xen-4.12.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc1/xen-4.12.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -2075,11 +2075,11 @@
         "files": [
           {
             "name": "xen-4.12.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc3/xen-4.12.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc3/xen-4.12.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.12.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc3/xen-4.12.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc3/xen-4.12.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -2089,11 +2089,11 @@
         "files": [
           {
             "name": "xen-4.12.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc4/xen-4.12.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc4/xen-4.12.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.12.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc4/xen-4.12.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc4/xen-4.12.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -2103,11 +2103,11 @@
         "files": [
           {
             "name": "xen-4.12.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc5/xen-4.12.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc5/xen-4.12.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.12.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc5/xen-4.12.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc5/xen-4.12.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -2117,11 +2117,11 @@
         "files": [
           {
             "name": "xen-4.12.0-rc6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc6/xen-4.12.0-rc6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc6/xen-4.12.0-rc6.tar.gz"
           },
           {
             "name": "xen-4.12.0-rc6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc6/xen-4.12.0-rc6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc6/xen-4.12.0-rc6.tar.gz.sig"
           }
         ]
       },
@@ -2131,11 +2131,11 @@
         "files": [
           {
             "name": "xen-4.12.0-rc7.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc7/xen-4.12.0-rc7.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc7/xen-4.12.0-rc7.tar.gz"
           },
           {
             "name": "xen-4.12.0-rc7.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0-rc7/xen-4.12.0-rc7.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0-rc7/xen-4.12.0-rc7.tar.gz.sig"
           }
         ]
       },
@@ -2145,11 +2145,11 @@
         "files": [
           {
             "name": "xen-4.12.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0/xen-4.12.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0/xen-4.12.0.tar.gz"
           },
           {
             "name": "xen-4.12.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.0/xen-4.12.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.0/xen-4.12.0.tar.gz.sig"
           }
         ]
       },
@@ -2159,11 +2159,11 @@
         "files": [
           {
             "name": "xen-4.12.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.1/xen-4.12.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.1/xen-4.12.1.tar.gz"
           },
           {
             "name": "xen-4.12.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.1/xen-4.12.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.1/xen-4.12.1.tar.gz.sig"
           }
         ]
       },
@@ -2173,11 +2173,11 @@
         "files": [
           {
             "name": "xen-4.12.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.2/xen-4.12.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.2/xen-4.12.2.tar.gz"
           },
           {
             "name": "xen-4.12.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.2/xen-4.12.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.2/xen-4.12.2.tar.gz.sig"
           }
         ]
       },
@@ -2187,11 +2187,11 @@
         "files": [
           {
             "name": "xen-4.12.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.3/xen-4.12.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.3/xen-4.12.3.tar.gz"
           },
           {
             "name": "xen-4.12.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.3/xen-4.12.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.3/xen-4.12.3.tar.gz.sig"
           }
         ]
       },
@@ -2201,11 +2201,11 @@
         "files": [
           {
             "name": "xen-4.12.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.4/xen-4.12.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.4/xen-4.12.4.tar.gz"
           },
           {
             "name": "xen-4.12.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.12.4/xen-4.12.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.12.4/xen-4.12.4.tar.gz.sig"
           }
         ]
       },
@@ -2215,11 +2215,11 @@
         "files": [
           {
             "name": "xen-4.13.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0-rc1/xen-4.13.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0-rc1/xen-4.13.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.13.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0-rc1/xen-4.13.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0-rc1/xen-4.13.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -2229,11 +2229,11 @@
         "files": [
           {
             "name": "xen-4.13.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0-rc2/xen-4.13.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0-rc2/xen-4.13.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.13.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0-rc2/xen-4.13.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0-rc2/xen-4.13.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -2243,11 +2243,11 @@
         "files": [
           {
             "name": "xen-4.13.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0-rc3/xen-4.13.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0-rc3/xen-4.13.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.13.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0-rc3/xen-4.13.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0-rc3/xen-4.13.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -2257,11 +2257,11 @@
         "files": [
           {
             "name": "xen-4.13.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0-rc4/xen-4.13.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0-rc4/xen-4.13.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.13.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0-rc4/xen-4.13.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0-rc4/xen-4.13.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -2271,11 +2271,11 @@
         "files": [
           {
             "name": "xen-4.13.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0-rc5/xen-4.13.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0-rc5/xen-4.13.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.13.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0-rc5/xen-4.13.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0-rc5/xen-4.13.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -2285,11 +2285,11 @@
         "files": [
           {
             "name": "xen-4.13.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0/xen-4.13.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0/xen-4.13.0.tar.gz"
           },
           {
             "name": "xen-4.13.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.0/xen-4.13.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.0/xen-4.13.0.tar.gz.sig"
           }
         ]
       },
@@ -2299,11 +2299,11 @@
         "files": [
           {
             "name": "xen-4.13.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.1/xen-4.13.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.1/xen-4.13.1.tar.gz"
           },
           {
             "name": "xen-4.13.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.1/xen-4.13.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.1/xen-4.13.1.tar.gz.sig"
           }
         ]
       },
@@ -2313,11 +2313,11 @@
         "files": [
           {
             "name": "xen-4.13.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.2/xen-4.13.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.2/xen-4.13.2.tar.gz"
           },
           {
             "name": "xen-4.13.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.2/xen-4.13.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.2/xen-4.13.2.tar.gz.sig"
           }
         ]
       },
@@ -2327,11 +2327,11 @@
         "files": [
           {
             "name": "xen-4.13.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.3/xen-4.13.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.3/xen-4.13.3.tar.gz"
           },
           {
             "name": "xen-4.13.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.3/xen-4.13.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.3/xen-4.13.3.tar.gz.sig"
           }
         ]
       },
@@ -2341,11 +2341,11 @@
         "files": [
           {
             "name": "xen-4.13.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.4/xen-4.13.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.4/xen-4.13.4.tar.gz"
           },
           {
             "name": "xen-4.13.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.4/xen-4.13.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.4/xen-4.13.4.tar.gz.sig"
           }
         ]
       },
@@ -2355,11 +2355,11 @@
         "files": [
           {
             "name": "xen-4.13.5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.5/xen-4.13.5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.5/xen-4.13.5.tar.gz"
           },
           {
             "name": "xen-4.13.5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.13.5/xen-4.13.5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.13.5/xen-4.13.5.tar.gz.sig"
           }
         ]
       },
@@ -2369,11 +2369,11 @@
         "files": [
           {
             "name": "xen-4.14.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc1/xen-4.14.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc1/xen-4.14.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.14.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc1/xen-4.14.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc1/xen-4.14.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -2383,11 +2383,11 @@
         "files": [
           {
             "name": "xen-4.14.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc2/xen-4.14.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc2/xen-4.14.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.14.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc2/xen-4.14.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc2/xen-4.14.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -2397,11 +2397,11 @@
         "files": [
           {
             "name": "xen-4.14.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc3/xen-4.14.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc3/xen-4.14.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.14.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc3/xen-4.14.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc3/xen-4.14.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -2411,11 +2411,11 @@
         "files": [
           {
             "name": "xen-4.14.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc4/xen-4.14.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc4/xen-4.14.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.14.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc4/xen-4.14.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc4/xen-4.14.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -2425,11 +2425,11 @@
         "files": [
           {
             "name": "xen-4.14.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc5/xen-4.14.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc5/xen-4.14.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.14.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc5/xen-4.14.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc5/xen-4.14.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -2439,11 +2439,11 @@
         "files": [
           {
             "name": "xen-4.14.0-rc6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc6/xen-4.14.0-rc6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc6/xen-4.14.0-rc6.tar.gz"
           },
           {
             "name": "xen-4.14.0-rc6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0-rc6/xen-4.14.0-rc6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0-rc6/xen-4.14.0-rc6.tar.gz.sig"
           }
         ]
       },
@@ -2453,11 +2453,11 @@
         "files": [
           {
             "name": "xen-4.14.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0/xen-4.14.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0/xen-4.14.0.tar.gz"
           },
           {
             "name": "xen-4.14.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.0/xen-4.14.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.0/xen-4.14.0.tar.gz.sig"
           }
         ]
       },
@@ -2467,11 +2467,11 @@
         "files": [
           {
             "name": "xen-4.14.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.1/xen-4.14.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.1/xen-4.14.1.tar.gz"
           },
           {
             "name": "xen-4.14.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.1/xen-4.14.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.1/xen-4.14.1.tar.gz.sig"
           }
         ]
       },
@@ -2481,11 +2481,11 @@
         "files": [
           {
             "name": "xen-4.14.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.2/xen-4.14.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.2/xen-4.14.2.tar.gz"
           },
           {
             "name": "xen-4.14.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.2/xen-4.14.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.2/xen-4.14.2.tar.gz.sig"
           }
         ]
       },
@@ -2495,11 +2495,11 @@
         "files": [
           {
             "name": "xen-4.14.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.3/xen-4.14.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.3/xen-4.14.3.tar.gz"
           },
           {
             "name": "xen-4.14.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.3/xen-4.14.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.3/xen-4.14.3.tar.gz.sig"
           }
         ]
       },
@@ -2509,11 +2509,11 @@
         "files": [
           {
             "name": "xen-4.14.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.4/xen-4.14.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.4/xen-4.14.4.tar.gz"
           },
           {
             "name": "xen-4.14.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.4/xen-4.14.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.4/xen-4.14.4.tar.gz.sig"
           }
         ]
       },
@@ -2523,11 +2523,11 @@
         "files": [
           {
             "name": "xen-4.14.5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.5/xen-4.14.5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.5/xen-4.14.5.tar.gz"
           },
           {
             "name": "xen-4.14.5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.5/xen-4.14.5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.5/xen-4.14.5.tar.gz.sig"
           }
         ]
       },
@@ -2537,11 +2537,11 @@
         "files": [
           {
             "name": "xen-4.14.6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.6/xen-4.14.6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.6/xen-4.14.6.tar.gz"
           },
           {
             "name": "xen-4.14.6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.14.6/xen-4.14.6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.14.6/xen-4.14.6.tar.gz.sig"
           }
         ]
       },
@@ -2551,11 +2551,11 @@
         "files": [
           {
             "name": "xen-4.15.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0-rc1/xen-4.15.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0-rc1/xen-4.15.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.15.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0-rc1/xen-4.15.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0-rc1/xen-4.15.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -2565,11 +2565,11 @@
         "files": [
           {
             "name": "xen-4.15.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0-rc2/xen-4.15.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0-rc2/xen-4.15.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.15.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0-rc2/xen-4.15.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0-rc2/xen-4.15.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -2579,11 +2579,11 @@
         "files": [
           {
             "name": "xen-4.15.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0-rc3/xen-4.15.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0-rc3/xen-4.15.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.15.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0-rc3/xen-4.15.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0-rc3/xen-4.15.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -2593,11 +2593,11 @@
         "files": [
           {
             "name": "xen-4.15.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0-rc4/xen-4.15.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0-rc4/xen-4.15.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.15.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0-rc4/xen-4.15.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0-rc4/xen-4.15.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -2607,11 +2607,11 @@
         "files": [
           {
             "name": "xen-4.15.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0-rc5/xen-4.15.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0-rc5/xen-4.15.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.15.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0-rc5/xen-4.15.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0-rc5/xen-4.15.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -2621,11 +2621,11 @@
         "files": [
           {
             "name": "xen-4.15.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0/xen-4.15.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0/xen-4.15.0.tar.gz"
           },
           {
             "name": "xen-4.15.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.0/xen-4.15.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.0/xen-4.15.0.tar.gz.sig"
           }
         ]
       },
@@ -2635,11 +2635,11 @@
         "files": [
           {
             "name": "xen-4.15.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.1/xen-4.15.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.1/xen-4.15.1.tar.gz"
           },
           {
             "name": "xen-4.15.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.1/xen-4.15.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.1/xen-4.15.1.tar.gz.sig"
           }
         ]
       },
@@ -2649,11 +2649,11 @@
         "files": [
           {
             "name": "xen-4.15.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.2/xen-4.15.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.2/xen-4.15.2.tar.gz"
           },
           {
             "name": "xen-4.15.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.2/xen-4.15.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.2/xen-4.15.2.tar.gz.sig"
           }
         ]
       },
@@ -2663,11 +2663,11 @@
         "files": [
           {
             "name": "xen-4.15.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.3/xen-4.15.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.3/xen-4.15.3.tar.gz"
           },
           {
             "name": "xen-4.15.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.3/xen-4.15.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.3/xen-4.15.3.tar.gz.sig"
           }
         ]
       },
@@ -2677,11 +2677,11 @@
         "files": [
           {
             "name": "xen-4.15.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.4/xen-4.15.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.4/xen-4.15.4.tar.gz"
           },
           {
             "name": "xen-4.15.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.4/xen-4.15.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.4/xen-4.15.4.tar.gz.sig"
           }
         ]
       },
@@ -2691,11 +2691,11 @@
         "files": [
           {
             "name": "xen-4.15.5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.5/xen-4.15.5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.5/xen-4.15.5.tar.gz"
           },
           {
             "name": "xen-4.15.5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.5/xen-4.15.5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.5/xen-4.15.5.tar.gz.sig"
           }
         ]
       },
@@ -2705,11 +2705,11 @@
         "files": [
           {
             "name": "xen-4.15.6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.6/xen-4.15.6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.6/xen-4.15.6.tar.gz"
           },
           {
             "name": "xen-4.15.6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.6/xen-4.15.6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.6/xen-4.15.6.tar.gz.sig"
           }
         ]
       },
@@ -2719,11 +2719,11 @@
         "files": [
           {
             "name": "xen-4.15.7.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.7/xen-4.15.7.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.7/xen-4.15.7.tar.gz"
           },
           {
             "name": "xen-4.15.7.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.15.7/xen-4.15.7.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.15.7/xen-4.15.7.tar.gz.sig"
           }
         ]
       },
@@ -2733,11 +2733,11 @@
         "files": [
           {
             "name": "xen-4.16.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.0-rc1/xen-4.16.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.0-rc1/xen-4.16.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.16.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.0-rc1/xen-4.16.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.0-rc1/xen-4.16.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -2747,11 +2747,11 @@
         "files": [
           {
             "name": "xen-4.16.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.0-rc2/xen-4.16.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.0-rc2/xen-4.16.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.16.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.0-rc2/xen-4.16.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.0-rc2/xen-4.16.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -2761,11 +2761,11 @@
         "files": [
           {
             "name": "xen-4.16.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.0-rc3/xen-4.16.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.0-rc3/xen-4.16.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.16.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.0-rc3/xen-4.16.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.0-rc3/xen-4.16.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -2775,11 +2775,11 @@
         "files": [
           {
             "name": "xen-4.16.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.0-rc4/xen-4.16.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.0-rc4/xen-4.16.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.16.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.0-rc4/xen-4.16.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.0-rc4/xen-4.16.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -2789,11 +2789,11 @@
         "files": [
           {
             "name": "xen-4.16.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.0/xen-4.16.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.0/xen-4.16.0.tar.gz"
           },
           {
             "name": "xen-4.16.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.0/xen-4.16.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.0/xen-4.16.0.tar.gz.sig"
           }
         ]
       },
@@ -2803,11 +2803,11 @@
         "files": [
           {
             "name": "xen-4.16.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.1/xen-4.16.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.1/xen-4.16.1.tar.gz"
           },
           {
             "name": "xen-4.16.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.1/xen-4.16.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.1/xen-4.16.1.tar.gz.sig"
           }
         ]
       },
@@ -2817,11 +2817,11 @@
         "files": [
           {
             "name": "xen-4.16.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.2/xen-4.16.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.2/xen-4.16.2.tar.gz"
           },
           {
             "name": "xen-4.16.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.2/xen-4.16.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.2/xen-4.16.2.tar.gz.sig"
           }
         ]
       },
@@ -2831,11 +2831,11 @@
         "files": [
           {
             "name": "xen-4.16.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.3/xen-4.16.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.3/xen-4.16.3.tar.gz"
           },
           {
             "name": "xen-4.16.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.3/xen-4.16.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.3/xen-4.16.3.tar.gz.sig"
           }
         ]
       },
@@ -2845,11 +2845,11 @@
         "files": [
           {
             "name": "xen-4.16.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.4/xen-4.16.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.4/xen-4.16.4.tar.gz"
           },
           {
             "name": "xen-4.16.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.4/xen-4.16.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.4/xen-4.16.4.tar.gz.sig"
           }
         ]
       },
@@ -2859,11 +2859,11 @@
         "files": [
           {
             "name": "xen-4.16.5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.5/xen-4.16.5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.5/xen-4.16.5.tar.gz"
           },
           {
             "name": "xen-4.16.5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.5/xen-4.16.5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.5/xen-4.16.5.tar.gz.sig"
           }
         ]
       },
@@ -2873,11 +2873,11 @@
         "files": [
           {
             "name": "xen-4.16.6.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.6/xen-4.16.6.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.6/xen-4.16.6.tar.gz"
           },
           {
             "name": "xen-4.16.6.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.6/xen-4.16.6.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.6/xen-4.16.6.tar.gz.sig"
           }
         ]
       },
@@ -2887,11 +2887,11 @@
         "files": [
           {
             "name": "xen-4.16.7.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.7/xen-4.16.7.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.7/xen-4.16.7.tar.gz"
           },
           {
             "name": "xen-4.16.7.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.16.7/xen-4.16.7.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.16.7/xen-4.16.7.tar.gz.sig"
           }
         ]
       },
@@ -2901,11 +2901,11 @@
         "files": [
           {
             "name": "xen-4.17.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.0-rc1/xen-4.17.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.0-rc1/xen-4.17.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.17.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.0-rc1/xen-4.17.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.0-rc1/xen-4.17.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -2915,11 +2915,11 @@
         "files": [
           {
             "name": "xen-4.17.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.0-rc2/xen-4.17.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.0-rc2/xen-4.17.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.17.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.0-rc2/xen-4.17.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.0-rc2/xen-4.17.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -2929,11 +2929,11 @@
         "files": [
           {
             "name": "xen-4.17.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.0-rc3/xen-4.17.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.0-rc3/xen-4.17.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.17.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.0-rc3/xen-4.17.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.0-rc3/xen-4.17.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -2943,11 +2943,11 @@
         "files": [
           {
             "name": "xen-4.17.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.0-rc4/xen-4.17.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.0-rc4/xen-4.17.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.17.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.0-rc4/xen-4.17.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.0-rc4/xen-4.17.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -2957,11 +2957,11 @@
         "files": [
           {
             "name": "xen-4.17.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.0/xen-4.17.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.0/xen-4.17.0.tar.gz"
           },
           {
             "name": "xen-4.17.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.0/xen-4.17.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.0/xen-4.17.0.tar.gz.sig"
           }
         ]
       },
@@ -2971,11 +2971,11 @@
         "files": [
           {
             "name": "xen-4.17.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.1/xen-4.17.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.1/xen-4.17.1.tar.gz"
           },
           {
             "name": "xen-4.17.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.1/xen-4.17.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.1/xen-4.17.1.tar.gz.sig"
           }
         ]
       },
@@ -2985,11 +2985,11 @@
         "files": [
           {
             "name": "xen-4.17.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.2/xen-4.17.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.2/xen-4.17.2.tar.gz"
           },
           {
             "name": "xen-4.17.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.2/xen-4.17.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.2/xen-4.17.2.tar.gz.sig"
           }
         ]
       },
@@ -2999,11 +2999,11 @@
         "files": [
           {
             "name": "xen-4.17.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.3/xen-4.17.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.3/xen-4.17.3.tar.gz"
           },
           {
             "name": "xen-4.17.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.3/xen-4.17.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.3/xen-4.17.3.tar.gz.sig"
           }
         ]
       },
@@ -3013,11 +3013,11 @@
         "files": [
           {
             "name": "xen-4.17.4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.4/xen-4.17.4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.4/xen-4.17.4.tar.gz"
           },
           {
             "name": "xen-4.17.4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.4/xen-4.17.4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.4/xen-4.17.4.tar.gz.sig"
           }
         ]
       },
@@ -3027,11 +3027,11 @@
         "files": [
           {
             "name": "xen-4.17.5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.5/xen-4.17.5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.5/xen-4.17.5.tar.gz"
           },
           {
             "name": "xen-4.17.5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.17.5/xen-4.17.5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.17.5/xen-4.17.5.tar.gz.sig"
           }
         ]
       },
@@ -3041,11 +3041,11 @@
         "files": [
           {
             "name": "xen-4.18.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0-rc1/xen-4.18.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0-rc1/xen-4.18.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.18.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0-rc1/xen-4.18.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0-rc1/xen-4.18.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -3055,11 +3055,11 @@
         "files": [
           {
             "name": "xen-4.18.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0-rc2/xen-4.18.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0-rc2/xen-4.18.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.18.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0-rc2/xen-4.18.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0-rc2/xen-4.18.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -3069,11 +3069,11 @@
         "files": [
           {
             "name": "xen-4.18.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0-rc3/xen-4.18.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0-rc3/xen-4.18.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.18.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0-rc3/xen-4.18.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0-rc3/xen-4.18.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -3083,11 +3083,11 @@
         "files": [
           {
             "name": "xen-4.18.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0-rc4/xen-4.18.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0-rc4/xen-4.18.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.18.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0-rc4/xen-4.18.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0-rc4/xen-4.18.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -3097,11 +3097,11 @@
         "files": [
           {
             "name": "xen-4.18.0-rc5.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0-rc5/xen-4.18.0-rc5.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0-rc5/xen-4.18.0-rc5.tar.gz"
           },
           {
             "name": "xen-4.18.0-rc5.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0-rc5/xen-4.18.0-rc5.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0-rc5/xen-4.18.0-rc5.tar.gz.sig"
           }
         ]
       },
@@ -3111,11 +3111,11 @@
         "files": [
           {
             "name": "xen-4.18.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0/xen-4.18.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0/xen-4.18.0.tar.gz"
           },
           {
             "name": "xen-4.18.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.0/xen-4.18.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.0/xen-4.18.0.tar.gz.sig"
           }
         ]
       },
@@ -3125,11 +3125,11 @@
         "files": [
           {
             "name": "xen-4.18.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.1/xen-4.18.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.1/xen-4.18.1.tar.gz"
           },
           {
             "name": "xen-4.18.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.1/xen-4.18.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.1/xen-4.18.1.tar.gz.sig"
           }
         ]
       },
@@ -3139,11 +3139,11 @@
         "files": [
           {
             "name": "xen-4.18.2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.2/xen-4.18.2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.2/xen-4.18.2.tar.gz"
           },
           {
             "name": "xen-4.18.2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.2/xen-4.18.2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.2/xen-4.18.2.tar.gz.sig"
           }
         ]
       },
@@ -3153,11 +3153,11 @@
         "files": [
           {
             "name": "xen-4.18.3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.3/xen-4.18.3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.3/xen-4.18.3.tar.gz"
           },
           {
             "name": "xen-4.18.3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.18.3/xen-4.18.3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.18.3/xen-4.18.3.tar.gz.sig"
           }
         ]
       },
@@ -3167,11 +3167,11 @@
         "files": [
           {
             "name": "xen-4.19.0-rc1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.0-rc1/xen-4.19.0-rc1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.0-rc1/xen-4.19.0-rc1.tar.gz"
           },
           {
             "name": "xen-4.19.0-rc1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.0-rc1/xen-4.19.0-rc1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.0-rc1/xen-4.19.0-rc1.tar.gz.sig"
           }
         ]
       },
@@ -3181,11 +3181,11 @@
         "files": [
           {
             "name": "xen-4.19.0-rc2.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.0-rc2/xen-4.19.0-rc2.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.0-rc2/xen-4.19.0-rc2.tar.gz"
           },
           {
             "name": "xen-4.19.0-rc2.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.0-rc2/xen-4.19.0-rc2.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.0-rc2/xen-4.19.0-rc2.tar.gz.sig"
           }
         ]
       },
@@ -3195,11 +3195,11 @@
         "files": [
           {
             "name": "xen-4.19.0-rc3.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.0-rc3/xen-4.19.0-rc3.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.0-rc3/xen-4.19.0-rc3.tar.gz"
           },
           {
             "name": "xen-4.19.0-rc3.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.0-rc3/xen-4.19.0-rc3.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.0-rc3/xen-4.19.0-rc3.tar.gz.sig"
           }
         ]
       },
@@ -3209,11 +3209,11 @@
         "files": [
           {
             "name": "xen-4.19.0-rc4.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.0-rc4/xen-4.19.0-rc4.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.0-rc4/xen-4.19.0-rc4.tar.gz"
           },
           {
             "name": "xen-4.19.0-rc4.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.0-rc4/xen-4.19.0-rc4.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.0-rc4/xen-4.19.0-rc4.tar.gz.sig"
           }
         ]
       },
@@ -3223,11 +3223,11 @@
         "files": [
           {
             "name": "xen-4.19.0.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.0/xen-4.19.0.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.0/xen-4.19.0.tar.gz"
           },
           {
             "name": "xen-4.19.0.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.0/xen-4.19.0.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.0/xen-4.19.0.tar.gz.sig"
           }
         ]
       },
@@ -3237,11 +3237,11 @@
         "files": [
           {
             "name": "xen-4.19.1.tar.gz",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.1/xen-4.19.1.tar.gz"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.1/xen-4.19.1.tar.gz"
           },
           {
             "name": "xen-4.19.1.tar.gz.sig",
-            "url": "https://downloads.xenproject.org/release/xen//4.19.1/xen-4.19.1.tar.gz.sig"
+            "url": "https://downloads.xenproject.org/release/xen/4.19.1/xen-4.19.1.tar.gz.sig"
           }
         ]
       }
