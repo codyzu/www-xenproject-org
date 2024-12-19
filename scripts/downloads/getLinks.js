@@ -117,12 +117,13 @@ async function main() {
     }),
   );
 
-  await fs.writeFile(OUTPUT_FILE, JSON.stringify(output, null, 2));
+  const output_json = JSON.stringify(output, null, 2) + "\n";
+  await fs.writeFile(OUTPUT_FILE, output_json);
   await fs.mkdir(path.dirname(OUTPUT_FILE_STATIC), { recursive: true });
-  await fs.writeFile(OUTPUT_FILE_STATIC, JSON.stringify(output, null, 2));
+  await fs.writeFile(OUTPUT_FILE_STATIC, output_json);
 
-  const latestVersionsData = createLatestVersionsData(output);
-  await fs.writeFile(LATEST_OUTPUT_FILE, JSON.stringify(latestVersionsData, null, 2));
+  const latest_json = JSON.stringify(createLatestVersionsData(output), null, 2) + "\n";
+  await fs.writeFile(LATEST_OUTPUT_FILE, latest_json);
 }
 
 main().catch(console.error);
