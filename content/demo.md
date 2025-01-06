@@ -12,5 +12,5 @@ menus:
 
 <!-- Section block : Content must always be between section -->
 {{<section>}}
-
+![Alt text of the image](/img/figures/panda.png)
 {{</section>}}
