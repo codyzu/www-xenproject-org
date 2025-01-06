@@ -142,6 +142,7 @@
       "header-logo",
       "header-nav",
       "hero-block",
+      "highlight",
       "home-hero-animated",
       "home-section-hero",
       "image-ratio-large",
@@ -158,7 +159,6 @@
       "main",
       "media-block",
       "media-block--left",
-      "media-block--mobile-bottom",
       "media-block--right",
       "media-block__content",
       "media-block__label",
@@ -296,12 +296,14 @@
       "scope-of-this-process",
       "security-response-team-members",
       "security-response-team-short-security-team",
+      "security-team-incoming-email",
       "specific-process",
       "sponsor",
       "sub-projects-and-teams",
       "submitting-patches-to-the-xen-project-codebase",
       "supports-multiple-cloud-platforms-cloudstack-openstack",
       "supports-multiple-guest-operating-systems-linux-windows-netbsd-freebsd",
+      "the-hypervisor-teams-openpgp-keys",
       "the-linux-foundation",
       "the-unikraft-build-tool",
       "trademark-policy",
@@ -317,6 +319,7 @@
       "xen-project-advisory-board",
       "xen-project-hypervisor",
       "xen-project-matrix",
+      "xen-project-tree-code-signing-and-announcements",
       "xen-project-wide-roles"
     ]
   }
