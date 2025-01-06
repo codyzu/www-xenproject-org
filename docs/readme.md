@@ -1,13 +1,9 @@
 # Documentation
 
-## Links
+## Tutorials
 
-- [Tutorial](hugo-tutorial.md)
-- [Page editing](page-editing.md)
-- [Page advanced editing](page-advanced-editing.md)
+- [Edit a page](edit-a-page.md)
+
+# Other pages
+
 - [Components](components.md)  
-
-
-## Main editing actions
-
-- [update headers and content](update-headers-and-content.md)
