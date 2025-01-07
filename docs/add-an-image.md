@@ -4,6 +4,8 @@
 
 <video src="videos/add-an-image.mp4" controls></video>
 
+[Download video](videos/add-an-image.mp4)
+
 ## Tutorial
 
 - Go to folder `static/img`
