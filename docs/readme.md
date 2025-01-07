@@ -2,8 +2,10 @@
 
 ## Tutorials
 
-- [Edit a page](edit-a-page.md)
+- [Edit a page](tutorial/edit-a-page.md)
+- [Add an image](tutorial/add-an-image.md)
 
 # Other pages
 
 - [Components](components.md)  
+- [Images](images.md)  
