@@ -8,9 +8,9 @@
 
 ## Create a new file
 
-Click on the `+ ` icon and select `New file`
+Click on the "+" icon and select `New file`
 
- ![alt text](../images/gitlab/create-new-file.png)
+![alt text](../images/gitlab/create-new-file.png)
 
 ## Start editing the file
 
@@ -37,7 +37,6 @@ menus:
 ```
 
 For more information about the front matter, you can read the [Front matter documentation](page-editing.md#front-matter)
-
 
 Add the content of the page between, dont forget each part of section must be between the `{{<section>}}` and `{{</section>}}` tags
 
