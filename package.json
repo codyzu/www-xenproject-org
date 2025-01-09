@@ -13,7 +13,8 @@
     "build-storybook": "storybook build",
     "storybook-tasks": "node scripts/storybook-tasks.js",
     "sb-images": "node scripts/storytasks/storybook-images.js",
-    "doc": "node scripts/documentation/generate-thumbnails.js && node scripts/documentation/images.js"
+    "doc": "node scripts/documentation/generate-thumbnails.js && node scripts/documentation/images.js",
+    "downloads": "node scripts/downloads/getLinks.js"
   },
   "author": "",
   "license": "ISC",
@@ -36,6 +37,7 @@
     "@storybook/preset-scss": "^1.0.3",
     "axios": "^1.7.7",
     "cheerio": "^1.0.0",
+    "dotenv": "^16.4.7",
     "functional-lit-element": "^0.2.2",
     "haunted": "^5.0.0",
     "puppeteer": "^23.7.0",

@@ -2,7 +2,7 @@
 
 ## Video of this tutorial
 
-<video src="videos/edit-a-page.mp4" controls></video>
+<video src="../videos/edit-a-page.mp4" controls></video>
 
 
 # Tutorial
@@ -11,12 +11,12 @@
 
 - Go to the `content` folder
   
-![Content folder structure](images/gitlab/content-folder.png)
+![Content folder structure](../images/gitlab/content-folder.png)
 
 - Open the page you want to update
 - Click on Edit -> Edit single file
 
-![Edit single file](images/gitlab/page-edit-single-file.png)
+![Edit single file](../images/gitlab/page-edit-single-file.png)
 
 
 ## Update the Header of the page
@@ -27,7 +27,7 @@ You can have more information of the front matter here : [Front matter](page-edi
 
 > **Warning**: Any change of the front matter of a page could change the header (ie: change the title of the page)
 
-![Header of the page](images/gitlab/page-edit-header.png)
+![Header of the page](../images/gitlab/page-edit-header.png)
 
 
 ### Default Parameters
@@ -124,7 +124,7 @@ Or you can mix components and <md> tags.
 ```
 
 Example : 
-![code component both sides](images/gitlab/code-component-both-sides.png)
+![code component both sides](../images/gitlab/code-component-both-sides.png)
 
 ## Components:
 
@@ -134,11 +134,11 @@ All Component can be seen in the page [Components](components.md)
 
 - Clic on the button `Commit changes`
 
-![Commit button](images/gitlab/commit-change-button.png)
+![Commit button](../images/gitlab/commit-change-button.png)
 
 - Write a message for the commit
 - Verify the branch is `main` if you want to make a change in production.
 - Clic on the button `Commit changes`
 
-![Commit changes](images/gitlab/commit-change-dialog.png)
+![Commit changes](../images/gitlab/commit-change-dialog.png)
 

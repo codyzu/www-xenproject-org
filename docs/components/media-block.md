@@ -38,16 +38,17 @@ Your content goes here
 
 ## Parameters
 
-| Parameter     | Description                           | Required | Default |
-| ------------- | ------------------------------------- | -------- | ------- |
-| title         | Block title                           | No       | ""      |
-| media         | URL to media (image or video)         | Yes      | -       |
-| alt           | Alt text for media                    | Yes      | -       |
-| mediaPosition | Position of media ("left" or "right") | No       | "left"  |
-| animate       | Enable animation                      | No       | false   |
-| titleLevel    | Heading level (1-6)                   | No       | 2       |
-| titleClass    | Additional CSS classes for title      | No       | ""      |
-| class         | Additional CSS classes for block      | No       | ""      |
+| Parameter     | Description                           | Required | Default | Values             |
+| ------------- | ------------------------------------- | -------- | ------- | ------------------ |
+| title         | Block title                           | No       | ""      | -                  |
+| media         | URL to media (image or video)         | Yes      | -       | -                  |
+| alt           | Alt text for media                    | Yes      | -       | -                  |
+| mediaPosition | Position of media ("left" or "right") | No       | "left"  | "left", "right"    |
+| animate       | Enable animation                      | No       | false   | true, false        |
+| titleLevel    | Heading level (1-6)                   | No       | 2       | 1, 2, 3, 4, 5, 6   |
+| titleClass    | Additional CSS classes for title      | No       | ""      | -                  |
+| class         | Additional CSS classes for block      | No       | ""      | -                  |
+| ImageSize     | Size of the image (width)             | No       | -       | 100px, 50%, etc... |
 
 ## Examples
 

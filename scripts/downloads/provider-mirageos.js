@@ -1,11 +1,13 @@
 import Provider from "./Provider.class.js";
 import axios from "axios";
+import dotenv from "dotenv";
 
 class MirageOSProvider extends Provider {
   constructor() {
     super("Mirage OS", "mirageos", "https://api.github.com/repos/mirage/mirage/releases");
     this.versionPattern = /^v?\d+\.\d+\.\d+(_beta\d+)?(-rc\d+)?(-\d+)?$/;
-    this.token = "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";
+    dotenv.config();
+    this.token = process.env.GITHUB_TOKEN;
   }
 
   async getVersions() {
