@@ -3272,6 +3272,20 @@
             "url": "https://downloads.xenproject.org/release/xen/4.20.0-rc1/xen-4.20.0-rc1.tar.gz.sig"
           }
         ]
+      },
+      {
+        "name": "4.20.0-rc2",
+        "link": "https://downloads.xenproject.org/release/xen/4.20.0-rc2/",
+        "files": [
+          {
+            "name": "xen-4.20.0-rc2.tar.gz",
+            "url": "https://downloads.xenproject.org/release/xen/4.20.0-rc2/xen-4.20.0-rc2.tar.gz"
+          },
+          {
+            "name": "xen-4.20.0-rc2.tar.gz.sig",
+            "url": "https://downloads.xenproject.org/release/xen/4.20.0-rc2/xen-4.20.0-rc2.tar.gz.sig"
+          }
+        ]
       }
     ]
   },
