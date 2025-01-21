@@ -20,8 +20,8 @@ We use this key to sign git tags on xen.git and qemu-xen-*.git, whenever we make
 We also use it to sign Xen Project security advisories from the security team.
 
 ```text
-pub   2048R/57E82BD9 2010-04-06        
-      Key fingerprint = 23E3 222C 145F 4475 FA80  60A7 83FE 14C9 57E8 2BD9  
+pub   2048R/57E82BD9 2010-04-06
+      Key fingerprint = 23E3 222C 145F 4475 FA80  60A7 83FE 14C9 57E8 2BD9
 uid   Xen.org Xen tree code signing (signatures on the
       xen hypervisor and tools) <pgp@xen.org>
 ```
@@ -32,7 +32,7 @@ If you need to send encrypted email to the Xen Project security team, please use
 
 ```text
 pub   2048R/82D3A964 2012-05-02
-      Key fingerprint = F1F9 380F 6287 0056 A186  2CC0 743A 3FCA 82D3 A964  
+      Key fingerprint = F1F9 380F 6287 0056 A186  2CC0 743A 3FCA 82D3 A964
 uid   Xen.org (incoming email) <security@xen.org>
 ```
 
