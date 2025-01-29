@@ -10,6 +10,19 @@ menus:
     weight: 12
 ---
 
+{{<section >}}
+{{<md>}}
+## Xen Summit 2025: Save the Date!
+
+Xen Summit 2025 will take place at the AMD office in San Jose, California, from September 15 to 17.
+
+[Checkout the map of the AMD-Xilinx campus for more details on the location and directions.](https://www.xilinx.com/publications/about/Xilinx_Campus_Map_Directions.pdf)
+
+Stay tuned for updates on the CfP opening and registration.
+
+{{</md>}}
+{{</section>}}
+
 
 {{<section >}}
 {{<full-width-image src="/img/photos/xen-project-2023-group-photo.png" alt="Xen Project 2023 group photo" title="Xen Project 2023 group photo" class="rounded-corners">}}
