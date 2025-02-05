@@ -12,13 +12,13 @@ menus:
 
 {{<section >}}
 {{<md>}}
-## Xen Summit 2025: Save the Date!
+## Xen Summit 2025: Call for Papers!
 
-Xen Summit 2025 will take place at the AMD office in San Jose, California, from September 15 to 17.
+Xen Summit 2025 will take place in the heart of Silicon Valley at the AMD office in San Jose, California, from September 15 to 17.
 
-[Checkout the map of the AMD-Xilinx campus for more details on the location and directions.](https://www.xilinx.com/publications/about/Xilinx_Campus_Map_Directions.pdf)
+The [Call for Papers is now open!](https://sessionize.com/xen-summit-2025/) Submit to speak at the event.
 
-Stay tuned for updates on the CfP opening and registration.
+Checkout the [map](https://www.xilinx.com/publications/about/Xilinx_Campus_Map_Directions.pdf) of the AMD (formerly Xilinx) campus for more details on the location and directions.
 
 {{</md>}}
 {{</section>}}
