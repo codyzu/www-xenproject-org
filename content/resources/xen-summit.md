@@ -11,6 +11,11 @@ menus:
 ---
 
 {{<section >}}
+{{<full-width-image src="/img/others/xen-summit-2025-banner.png" alt="Xen Summit 2025" title="Xen Summit 2025" class="rounded-corners">}}
+{{</section>}}
+
+
+{{<section >}}
 {{<md>}}
 ## Xen Summit 2025: Call for Papers!
 
@@ -21,11 +26,6 @@ The [Call for Papers is now open!](https://sessionize.com/xen-summit-2025/) Subm
 Checkout the [map](https://www.xilinx.com/publications/about/Xilinx_Campus_Map_Directions.pdf) of the AMD (formerly Xilinx) campus for more details on the location and directions.
 
 {{</md>}}
-{{</section>}}
-
-
-{{<section >}}
-{{<full-width-image src="/img/photos/xen-project-2023-group-photo.png" alt="Xen Project 2023 group photo" title="Xen Project 2023 group photo" class="rounded-corners">}}
 {{</section>}}
 
 
