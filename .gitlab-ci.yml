@@ -48,6 +48,9 @@ deploy:
 
 publish:
   script:
+    - apk add nodejs npm python3 make g++ libx11-dev libxcb-dev libxtst-dev libpng-dev
+    - npm ci
+    - node scripts/downloads/getLinks.js
     - hugo --baseURL "https://xenproject.org/"
     - tar caf site.tar.gz public
   artifacts:
