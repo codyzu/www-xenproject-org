@@ -17,6 +17,18 @@ menus:
 
 {{<section >}}
 {{<md>}}
+## Xen Summit 2025: Register now!
+
+Register now to lock in the low early-bird tickets.
+
+[Click here to register]().
+
+{{</md>}}
+{{</section>}}
+
+
+{{<section >}}
+{{<md>}}
 ## Xen Summit 2025: Call for Papers!
 
 Xen Summit 2025 will take place in the heart of Silicon Valley at the AMD office in San Jose, California, from September 15 to 17.
