@@ -43,6 +43,7 @@
   }
 
   li {
+    --angle-fix: 0deg;
     --angle: calc((var(--start-angle) * 1deg) + (360deg / var(--total)) * var(--index) + var(--angle-fix));
     --scale: 1;
     position: absolute;

@@ -9,6 +9,18 @@ const images = [
   { name: "VATES", src: "/img/logos/vates-logo.svg", scale: "1.0" },
 ];
 
+const renderImagesInCircle = () => html`
+  <ul class="images-in-circle">
+    ${images.map(
+      (image) => html`
+        <li>
+          <img src="${image.src}" alt="${image.name}" style="transform: scale(${image.scale});" />
+        </li>
+      `,
+    )}
+  </ul>
+`;
+
 // Documentation sur l'utilisation du partial et du shortcode
 export default {
   title: "Organisms/ImagesInCircle",
@@ -23,7 +35,7 @@ The **ImagesInCircle** component uses a partial and a shortcode to display image
 
 ### Usage
 1. **Shortcode**: Use the shortcode in your content files to include images in a circle.
-   \`\`\`html
+   \`\`\`
    {{</* images-in-circle class="custom-class" */>}}
    [
      {"name": "Image1", "src": "/path/to/image1.jpg", "scale": "1.0"},
@@ -37,29 +49,7 @@ The **ImagesInCircle** component uses a partial and a shortcode to display image
       },
     },
   },
-  render: () => html`
-    <ul class="images-in-circle">
-      ${images.map(
-        (image) => html`
-          <li>
-            <img src="${image.src}" alt="${image.name}" style="transform: scale(${image.scale});" />
-          </li>
-        `,
-      )}
-    </ul>
-  `,
+  render: renderImagesInCircle,
 };
 
-export const Example = {
-  render: () => html`
-    <ul class="images-in-circle">
-      ${images.map(
-        (image) => html`
-          <li>
-            <img src="${image.src}" alt="${image.name}" style="transform: scale(${image.scale});" />
-          </li>
-        `,
-      )}
-    </ul>
-  `,
-};
+export const Example = { render: renderImagesInCircle };
