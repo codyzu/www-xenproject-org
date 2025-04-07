@@ -38,7 +38,7 @@ build:
 outputs:
   home:
     - HTML
-    - RSSoui appelle
+    - RSS
     - HEADERFOOTER
 
 outputFormats:

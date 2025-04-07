@@ -165,6 +165,10 @@
       "path": "/logos/epam-logo.svg"
     },
     {
+      "name": "honda-logo.svg",
+      "path": "/logos/honda-logo.svg"
+    },
+    {
       "name": "logo-linux-foundation.svg",
       "path": "/logos/logo-linux-foundation.svg"
     },
@@ -191,12 +195,24 @@
       "path": "/others/xcp-ng-badge.webp"
     },
     {
+      "name": "xcp-ng-project-s-history.svg",
+      "path": "/others/xcp-ng-project-s-history.svg"
+    },
+    {
       "name": "xcp-ng.png",
       "path": "/others/xcp-ng.png"
     },
     {
       "name": "xen-progress-certification.png",
       "path": "/others/xen-progress-certification.png"
+    },
+    {
+      "name": "xen-project-s-history.svg",
+      "path": "/others/xen-project-s-history.svg"
+    },
+    {
+      "name": "xen-summit-2025-banner.png",
+      "path": "/others/xen-summit-2025-banner.png"
     },
     {
       "name": "xen-team-photo-1.png",
