@@ -24,7 +24,7 @@ const config = {
           scss: {
             silenceDeprecations: ["legacy-js-api"],
             additionalData: `
-            @use "./storybook.scss";
+            @import "@/.storybook/storybook.scss";
             `,
           },
         },
