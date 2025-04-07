@@ -1,8 +1,8 @@
 /** @type { import('@storybook/web-components-vite').StorybookConfig } */
 
 import remarkGfm from "remark-gfm";
-const { mergeConfig } = require("vite");
-const path = require("path");
+import { mergeConfig } from "vite";
+import path from "path";
 
 const config = {
   stories: ["../stories/**/*.mdx", "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
@@ -12,32 +12,26 @@ const config = {
     "@storybook/addon-essentials",
     {
       name: "@storybook/addon-docs",
-      options: {
-        mdxPluginOptions: {
-          mdxCompileOptions: {
-            remarkPlugins: [remarkGfm],
-          },
-        },
-      },
+      options: { mdxPluginOptions: { mdxCompileOptions: { remarkPlugins: [remarkGfm] } } },
     },
   ],
-  framework: {
-    name: "@storybook/web-components-vite",
-    options: {},
-  },
+  framework: { name: "@storybook/web-components-vite", options: {} },
   viteFinal: async (config, { configType }) => {
     return mergeConfig(config, {
+      resolve: { alias: { "@": path.resolve(__dirname, "../") } },
       css: {
         preprocessorOptions: {
           scss: {
             silenceDeprecations: ["legacy-js-api"],
             additionalData: `
-            @import "./.storybook/storybook.scss";
+            @use "./storybook.scss";
             `,
           },
         },
       },
+      optimizeDeps: { include: ["storybook-dark-mode"] },
     });
   },
 };
+
 export default config;
