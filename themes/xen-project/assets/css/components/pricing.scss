@@ -1,0 +1,52 @@
+.ticket-pricing {
+  --gap: var(--sp-md);
+  --cols: 1;
+  --col-min-height: var(--sp-xxxxl);
+
+  @include phone {
+    --cols: 2;
+  }
+
+  @include tablet {
+    --cols: 3;
+  }
+
+  padding-top: var(--sp-xxl);
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--gap);
+  }
+
+  .ticket-group {
+    grid-template-columns: repeat(var(--cols), 1fr);
+    grid-auto-rows: minmax(var(--col-min-height), max-content);
+    display: none; // Hide all ticket groups by default
+    flex-direction: row;
+    gap: var(--gap);
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .toggle-input {
+    display: none; // Hide the radio inputs
+  }
+
+  .toggle-input:not(:checked) + .toggle-label {
+    background-color: transparent;
+    color: var(--color-text);
+    border-color: var(--color-action-fill);
+  }
+
+  // Show the in-person tickets when the "inPerson" radio is checked
+  div:has(#inPerson:checked) ~ .ticket-groups #inPersonTickets {
+    display: grid;
+  }
+
+  // Show the virtual tickets when the "virtual" radio is checked
+  div:has(#virtual:checked) ~ .ticket-groups #virtualTickets {
+    display: grid;
+  }
+}

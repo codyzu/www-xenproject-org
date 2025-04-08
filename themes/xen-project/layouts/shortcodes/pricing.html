@@ -1,0 +1,41 @@
+<section id="pricing" class="ticket-pricing">
+  <div class="container">
+    <div>
+      <input type="radio" id="inPerson" name="ticketType" class="toggle-input" checked />
+      <label for="inPerson" class="toggle-label btn">In-Person</label>
+
+      <input type="radio" id="virtual" name="ticketType" class="toggle-input" />
+      <label for="virtual" class="toggle-label btn">Virtual</label>
+    </div>
+
+    <div class="ticket-groups">
+      <!-- In-Person Tickets -->
+      <div id="inPersonTickets" class="ticket-group">
+        {{ range .Site.Data.tickets.tickets.inPerson }}
+          {{ partial "card.html" (dict
+            "title" .title
+            "description" .description
+            "link" .link
+            "linkText" .linkText
+            "class" "ticket-card"
+            )
+          }}
+        {{ end }}
+      </div>
+
+      <!-- Virtual Tickets -->
+      <div id="virtualTickets" class="ticket-group">
+        {{ range .Site.Data.tickets.tickets.virtual }}
+          {{ partial "card.html" (dict
+            "title" .title
+            "description" .description
+            "link" .link
+            "linkText" .linkText
+            "class" "ticket-card"
+            )
+          }}
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
