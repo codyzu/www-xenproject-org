@@ -1,0 +1,31 @@
+{{/* Shortcode to dynamically list research papers from the data file with improved layout and styling. */}}
+
+{{ $papers := index .Site.Data "research-papers" "papers" }}
+
+
+<section class="research-paper-section container">
+  {{ range $papers }}
+    <!-- <section class="research-paper-section container"> -->
+    <!-- <div class="media-block"> -->
+    <div class="column">
+      <h2 class="research-paper-title">{{ .title }}</h2>
+      <p class="research-paper-description">{{ .description }}</p>
+    </div>
+    <div class="column">
+      <div class="research-paper-meta">
+        <div><strong>Publication Date:</strong> {{ .publication_date }}</div>
+        <div class="tags">
+          <strong>Tags:</strong>
+          {{ range .tags }}<span class="research-paper-tags">{{ . | safeHTML }}</span>{{ end }}
+        </div>
+      </div>
+      <div class="research-paper-link">
+        <a href="{{ .url }}" class="btn btn-primary"
+          >Read the Full Paper <i class="fas fa-arrow-up-right-from-square"></i
+        ></a>
+      </div>
+    </div>
+    <!-- </div> -->
+    <!-- </section> -->
+  {{ end }}
+</section>
