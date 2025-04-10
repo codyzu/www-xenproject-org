@@ -5,8 +5,6 @@
 
 <section class="research-paper-section container">
   {{ range $papers }}
-    <!-- <section class="research-paper-section container"> -->
-    <!-- <div class="media-block"> -->
     <div class="column">
       <h2 class="research-paper-title">{{ .title }}</h2>
       <p class="research-paper-description">{{ .description }}</p>
@@ -15,17 +13,20 @@
       <div class="research-paper-meta">
         <div><strong>Publication Date:</strong> {{ .publication_date }}</div>
         <div class="tags">
-          <strong>Tags:</strong>
-          {{ range .tags }}<span class="research-paper-tags">{{ . | safeHTML }}</span>{{ end }}
+          <div><strong>Tags:</strong></div>
+          {{ range .tags }}<div class="research-paper-tags">{{ . }}</div>{{ end }}
+        </div>
+        <div>
+          <strong>Authors:</strong>
+          {{ $sortedAuthors := sort .authors }}
+          {{ delimit $sortedAuthors ", " }}
         </div>
       </div>
-      <div class="research-paper-link">
+      <div>
         <a href="{{ .url }}" class="btn btn-primary"
           >Read the Full Paper <i class="fas fa-arrow-up-right-from-square"></i
         ></a>
       </div>
     </div>
-    <!-- </div> -->
-    <!-- </section> -->
   {{ end }}
 </section>

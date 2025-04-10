@@ -1,12 +1,25 @@
+# To contribute a new research paper, please add it to the end of the `papers` list below.
+# Ensure the `publication_date` is in ISO short date format (YYYY-MM-DD).
+# Papers are automatically sorted in reverse chronological order (newest first) on the website.
+# Once added, submit a merge request to the repository.
+
 papers:
   - title: "Deconstructing Xen"
     description: |
-      This work systematically analyze the 191 Xen hypervisor vulnerabilities from Xen Security
-      Advisories, revealing that the majority are in the core hypervisor not Dom0, and provides
+      This work systematically analyzes the 191 Xen hypervisor vulnerabilities from Xen Security
+      Advisories, revealing that the majority are in the core hypervisor, not Dom0, and provides
       a novel deconstruction of Xen into a security monitor, a shared service domain, and per-VM
       Xen slices that are isolated by a least-privileged sandboxing framework.
-    url: "https://www.semanticscholar.org/paper/Deconstructing-Xen-Shi-Wu/6772a66a3196d23a90bdd849c858ebe763c084a4?utm_source=direct_link"
+    url: "https://www.ndss-symposium.org/ndss2017/ndss-2017-programme/deconstructing-xen/"
     publication_date: "2017-02-27"
+    authors:
+      - Lei Shi
+      - Yuming Wu
+      - Yubin Xia
+      - Nathan Dautenhahn
+      - Haibo Chen
+      - Binyu Zang
+      - Jinming Li
     tags:
       - hypervisor
       - dom0
@@ -18,8 +31,14 @@ papers:
       aimed at improving nested virtualization performance. The authors demonstrate that
       NEVE allows hypervisors running real application workloads to achieve significantly
       better performance than current ARM nested virtualization support.
-    url: "https://www.cs.columbia.edu/~nieh/pubs/sosp2017_neve.pdf"
+    url: "https://dl.acm.org/doi/10.1145/3132747.3132754"
     publication_date: "2017-10-28"
+    authors:
+      - Jintack Lim
+      - Christoffer Dall
+      - Shih-Wei Li
+      - Jason Nieh
+      - Marc Zyngier
     tags:
       - ARM
       - nested virtualization
@@ -30,8 +49,18 @@ papers:
       This foundational paper introduces Xen, detailing its architecture and performance
       benefits compared to other virtualization techniques. It is pivotal in understanding
       the principles behind paravirtualization.
-    url: "https://www.cl.cam.ac.uk/research/srg/netos/papers/2003-xensosp.pdf"
+    url: "https://dl.acm.org/doi/10.1145/945445.945462"
     publication_date: "2003-10-01"
+    authors:
+      - Paul Barham
+      - Boris Dragovic
+      - Keir Fraser
+      - Steven Hand
+      - Tim Harris
+      - Alex Ho
+      - Rolf Neugebauer
+      - Ian Pratt
+      - Andrew Warfield
     tags:
       - xen
       - virtualization
@@ -43,6 +72,9 @@ papers:
       and solutions related to virtualizing I/O devices within the Xen architecture.
     url: "https://research.ibm.com/haifa/Workshops/systems-and-storage2005/papers/xen-io.pdf"
     publication_date: "2005-06-01"
+    authors:
+      - Muli Ben-Yehuda
+      - Jon D. Mason
     tags:
       - xen
       - I/O
@@ -53,8 +85,13 @@ papers:
       Addressing the need for performance isolation in virtualized environments, this work
       explores mechanisms to ensure that virtual machines running on Xen do not interfere
       with each other's performance.
-    url: "https://cseweb.ucsd.edu/~dgupta/papers/mware06-xenqos.pdf"
+    url: "https://link.springer.com/chapter/10.1007/11925071_18"
     publication_date: "2006-06-01"
+    authors:
+      - Diwaker Gupta
+      - Ludmila Cherkasova
+      - Rob Gardner
+      - Amin Vahdat
     tags:
       - xen
       - performance
@@ -66,6 +103,9 @@ papers:
       failures transparently to the hosted virtual machines, enhancing system resilience.
     url: "https://arxiv.org/abs/2101.09282"
     publication_date: "2021-01-22"
+    authors:
+      - Michael Le
+      - Yuval Tamir
     tags:
       - xen
       - resilience
@@ -77,6 +117,9 @@ papers:
       focusing on their applicability in Arm-based mixed-criticality systems.
     url: "https://arxiv.org/abs/2303.11186"
     publication_date: "2023-03-20"
+    authors:
+      - José Martins
+      - Sandro Pinto
     tags:
       - xen
       - arm
@@ -89,6 +132,13 @@ papers:
       hypervisor, aiming to reduce the attack surface of commodity OS kernels.
     url: "https://arxiv.org/abs/1802.07062"
     publication_date: "2018-02-20"
+    authors:
+      - Zhi Zhang
+      - Yueqiang Cheng
+      - Surya Nepal
+      - Dongxi Liu
+      - Qingni Shen
+      - Fethi Rabhi
     tags:
       - xen
       - security
@@ -100,6 +150,12 @@ papers:
       predictable performance in virtualized cloud environments using the Xen hypervisor.
     url: "https://arxiv.org/abs/2009.09104"
     publication_date: "2020-09-18"
+    authors:
+      - Esmail Asyabi
+      - Azer Bestavros
+      - Renato Mancuso
+      - Richard West
+      - Erfan Sharafzadeh
     tags:
       - xen
       - scheduling
