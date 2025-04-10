@@ -1,6 +1,6 @@
 {{/* Shortcode to dynamically list research papers from the data file with improved layout and styling. */}}
 
-{{ $papers := index .Site.Data "research-papers" "papers" }}
+{{ $papers := sort (index .Site.Data "research-papers" "papers") "publication_date" "desc" }}
 
 
 <section class="research-paper-section container">

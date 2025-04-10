@@ -10,6 +10,12 @@ menus:
     weight: 14
 ---
 
+{{<section md="true" class="section-intro">}}
+## Introduction to Xen Research
+
+The Xen Project has been instrumental in advancing virtualization technology. This page highlights key academic research papers that delve into the architecture, performance, and security of the Xen hypervisor, showcasing its impact on both industry and academia.
+{{</section>}}
+
 {{< research-papers >}}
 
 {{<section md="true" class="section-square-primary">}}

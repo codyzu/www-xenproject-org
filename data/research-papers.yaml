@@ -6,7 +6,7 @@ papers:
       a novel deconstruction of Xen into a security monitor, a shared service domain, and per-VM
       Xen slices that are isolated by a least-privileged sandboxing framework.
     url: "https://www.semanticscholar.org/paper/Deconstructing-Xen-Shi-Wu/6772a66a3196d23a90bdd849c858ebe763c084a4?utm_source=direct_link"
-    publication_date: "27 Feb 2017"
+    publication_date: "2017-02-27"
     tags:
       - hypervisor
       - dom0
@@ -19,7 +19,7 @@ papers:
       NEVE allows hypervisors running real application workloads to achieve significantly
       better performance than current ARM nested virtualization support.
     url: "https://www.cs.columbia.edu/~nieh/pubs/sosp2017_neve.pdf"
-    publication_date: "28 Oct 2017"
+    publication_date: "2017-10-28"
     tags:
       - ARM
       - nested virtualization
@@ -31,7 +31,7 @@ papers:
       benefits compared to other virtualization techniques. It is pivotal in understanding
       the principles behind paravirtualization.
     url: "https://www.cl.cam.ac.uk/research/srg/netos/papers/2003-xensosp.pdf"
-    publication_date: "01 Oct 2003"
+    publication_date: "2003-10-01"
     tags:
       - xen
       - virtualization
@@ -42,7 +42,7 @@ papers:
       This paper provides an in-depth look at Xen's I/O subsystem, discussing the challenges
       and solutions related to virtualizing I/O devices within the Xen architecture.
     url: "https://research.ibm.com/haifa/Workshops/systems-and-storage2005/papers/xen-io.pdf"
-    publication_date: "01 Jun 2005"
+    publication_date: "2005-06-01"
     tags:
       - xen
       - I/O
@@ -54,7 +54,7 @@ papers:
       explores mechanisms to ensure that virtual machines running on Xen do not interfere
       with each other's performance.
     url: "https://cseweb.ucsd.edu/~dgupta/papers/mware06-xenqos.pdf"
-    publication_date: "01 Jun 2006"
+    publication_date: "2006-06-01"
     tags:
       - xen
       - performance
@@ -65,7 +65,7 @@ papers:
       This study introduces ReHype, a mechanism designed to recover the Xen hypervisor from
       failures transparently to the hosted virtual machines, enhancing system resilience.
     url: "https://arxiv.org/abs/2101.09282"
-    publication_date: "22 Jan 2021"
+    publication_date: "2021-01-22"
     tags:
       - xen
       - resilience
@@ -76,7 +76,7 @@ papers:
       This paper evaluates static partitioning hypervisors, including Xen's Dom0-less mode,
       focusing on their applicability in Arm-based mixed-criticality systems.
     url: "https://arxiv.org/abs/2303.11186"
-    publication_date: "20 Mar 2023"
+    publication_date: "2023-03-20"
     tags:
       - xen
       - arm
@@ -88,7 +88,7 @@ papers:
       Discussing security enhancements, this research presents KASR, implemented on the Xen
       hypervisor, aiming to reduce the attack surface of commodity OS kernels.
     url: "https://arxiv.org/abs/1802.07062"
-    publication_date: "20 Feb 2018"
+    publication_date: "2018-02-20"
     tags:
       - xen
       - security
@@ -99,7 +99,7 @@ papers:
       Focusing on CPU scheduling, this paper introduces Akita, a scheduler designed to deliver
       predictable performance in virtualized cloud environments using the Xen hypervisor.
     url: "https://arxiv.org/abs/2009.09104"
-    publication_date: "18 Sep 2020"
+    publication_date: "2020-09-18"
     tags:
       - xen
       - scheduling
