@@ -29,3 +29,14 @@ The Xen Project has been a cornerstone of virtualization research for years. Its
 
 Explore the cutting-edge research that continues to shape the future of virtualization.
 {{</section>}}
+
+{{<section md="true" class="section-contribute">}}
+## Contribute Your Research
+
+Do you have research related to the Xen Project? We welcome contributions to our archive! You can:
+
+- Submit a merge request directly to our [research-papers.yaml file on GitLab](https://gitlab.com/xen-project/www-xenproject-org/-/blob/main/data/research-papers.yaml).
+- Email your paper details to [community.manager@xenproject.org](mailto:community.manager@xenproject.org).
+
+Help us grow the Xen research community!
+{{</section>}}
