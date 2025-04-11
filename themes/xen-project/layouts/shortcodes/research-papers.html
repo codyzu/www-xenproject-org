@@ -3,6 +3,44 @@
 {{ $papers := sort (index .Site.Data "research-papers" "papers") "publication_date" "desc" }}
 
 
+<script src="https://cdn.jsdelivr.net/npm/ag-grid-community/dist/ag-grid-community.min.js"></script>
+<script id="research-papers-data" type="application/json">
+  {{ $papers | jsonify | safeJS }}
+</script>
+<script>
+  let gridOptions;
+  let grid;
+  document.addEventListener("DOMContentLoaded", function () {
+    const papersData = JSON.parse(document.getElementById("research-papers-data").text);
+    console.log(papersData);
+    gridOptions = {
+      columnDefs: [
+        { headerName: "Title", field: "title" },
+        { headerName: "Description", field: "description" },
+        { headerName: "Publication Date", field: "publication_date" },
+        { headerName: "Tags", field: "tags" },
+        { headerName: "Authors", field: "authors" },
+      ],
+      rowData: papersData,
+      domLayout: "autoHeight",
+    };
+    console.log("options", gridOptions);
+    const gridDiv = document.querySelector("#myGrid");
+    grid = agGrid.createGrid(gridDiv, gridOptions);
+    console.log("grid", grid);
+    // gridOptions.api.setRowData(papersData);
+    // gridOptions.api.sizeColumnsToFit();
+  });
+
+  function filterPapers() {
+    console.log("filter");
+    const input = document.getElementById("research-paper-search");
+    const filterValue = input.value.toLowerCase();
+    grid.setGridOption("quickFilterText", filterValue);
+    // console.log("grid", gridOptions.api);
+  }
+</script>
+
 <section class="research-paper-section container">
   {{ range $papers }}
     <div class="column">
@@ -29,4 +67,15 @@
       </div>
     </div>
   {{ end }}
+</section>
+
+<section class="container">
+  <input
+    type="text"
+    id="research-paper-search"
+    placeholder="Search for research papers..."
+    class="search-input"
+    oninput="filterPapers()"
+  />
+  <div id="myGrid"></div>
 </section>
