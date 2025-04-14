@@ -110,6 +110,20 @@ Honda is a global leader in automotive manufacturing and technology innovation. 
 
 {{<section>}}
 {{<media-block
+   title="Renesas"
+   media="/img/logos/renesas-logo.png"
+   alt="Logo of Renesas"
+   class="image-small"
+   animate="true"
+>}}
+Renesas is a premier supplier of advanced semiconductor solutions that empowers a safer, smarter and more sustainable future where technology helps make our lives easier. A leading global provider of microcontrollers, Renesas combines our expertise in embedded processing, analog and power to deliver complete semiconductor solutions for automotive, industrial, infrastructure and IoT applications.
+
+<p class="mt-2"><a href="https://www.renesas.com/" class="btn btn-tertiary">Discover Renesas <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+{{</media-block>}}
+{{</section>}}
+
+{{<section>}}
+{{<media-block
    title="Join as a member"
    media="/img/flatline/brainstorming-session.svg"
    alt="Illustration of three people having a discussion with speech bubbles, symbolizing teamwork and communication."
