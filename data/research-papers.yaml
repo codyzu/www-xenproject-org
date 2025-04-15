@@ -160,3 +160,16 @@ papers:
       - xen
       - scheduling
       - cloud
+
+  - title: "Cody & Damien Use Xen A Lot"
+    description: |
+      Some long stuff about Xen stuff.
+    url: "https://vates.tech"
+    publication_date: "2020-09-18"
+    authors:
+      - Cody Zuschlag
+      - Damien Thenot
+    tags:
+      - xen
+      - scheduling
+      - cloud
