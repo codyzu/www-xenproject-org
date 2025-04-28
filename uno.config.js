@@ -19,7 +19,7 @@ export default defineConfig({
   },
   theme: {
     maxWidth: {
-      '8xl': `${1312 + 40 + 40}px`,
+      // '8xl': `${1312 + 40 + 40}px`,
     },
     colors: {
       primary: '#101828',
@@ -31,4 +31,9 @@ export default defineConfig({
       'action-active': '#00477A'
     }
   },
+  shortcuts: {
+    'uno-section': `uno-section-base uno-px-3 md:uno-px-10 uno-max-w-[1392px]`,
+    'uno-section-nested': `uno-section-base uno-max-w-[1312px]`, 
+    'uno-section-base': 'uno-flex uno-flex-col uno-flex-1 uno-gap-6 uno-mx-auto uno-pb-10 uno-w-full',
+  }
 })
