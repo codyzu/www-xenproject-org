@@ -18,7 +18,7 @@
 #   https://gitlab.com/pages/hugo/-/blob/main/README.md#use-a-custom-theme.
 #
 default:
-  image: "${CI_TEMPLATE_REGISTRY_HOST}/pages/hugo/hugo_extended:0.132.2"
+  image: hugomods/hugo:exts-0.147.0
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
@@ -31,13 +31,15 @@ variables:
 
 test:
   script:
-    - hugo
+    - npm ci
+    - npm run build
   rules:
     - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
 
 deploy:
   script:
-    - hugo --baseURL "https://beta.xenproject.org/"
+    - npm ci
+    - npm run build -- -- --baseURL "https://beta.xenproject.org/"
     - tar caf site.tar.gz public
   artifacts:
     paths:
@@ -48,10 +50,10 @@ deploy:
 
 publish:
   script:
-    - apk add nodejs npm python3 make g++ libx11-dev libxcb-dev libxtst-dev libpng-dev
+    # - apk add nodejs npm python3 make g++ libx11-dev libxcb-dev libxtst-dev libpng-dev
     - npm ci
     - node scripts/downloads/getLinks.js
-    - hugo --baseURL "https://xenproject.org/"
+    - npm run build -- -- --baseURL "https://xenproject.org/"
     - tar caf site.tar.gz public
   artifacts:
     paths:

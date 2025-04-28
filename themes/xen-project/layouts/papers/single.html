@@ -1,0 +1,51 @@
+{{ define "main" }}
+  {{ $papers := where site.Data.papers "id" .File.ContentBaseName }}
+  {{ $paper := index $papers 0 }}
+
+  {{ $asidePosition := .Page.Params.asidePosition | default "before" }}
+  {{ if eq $asidePosition "before" }}
+    {{ partial "aside.html" . }}
+  {{ end }}
+
+
+  <article class="uno-flex uno-flex-col uno-gap-6 uno-mx-auto uno-max-w-8xl uno-px-6 md:uno-px-12 uno-pb-10">
+    {{ if not $paper }}
+      <div class="uno-text-center">
+        <h1 class="uno-text-4xl uno-font-bold uno-mb-4">Paper Not Found</h1>
+        <p class="uno-text-lg">No paper matches ID: {{ .File.ContentBaseName }}</p>
+      </div>
+    {{ else }}
+      <div class="">
+        <h1 class="uno-text-4xl uno-font-bold uno-mb-4">{{ $paper.title }}</h1>
+        <div class="uno-text-lg uno-text-secondary uno-mb-6">
+          {{ if $paper.abstract }}
+            <p><strong>Abstract:</strong> {{ $paper.abstract }}</p>
+          {{ end }}
+        </div>
+      </div>
+
+      <div class="uno-text-lg uno-text-secondary uno-leading-8">
+        <strong>Authors:</strong> {{ delimit $paper.authors ", " }}
+      </div>
+
+      <div class="uno-text-lg uno-text-secondary uno-leading-8">
+        <strong>Year:</strong> {{ $paper.year }}
+      </div>
+
+      <div class="uno-text-lg uno-flex uno-flex-wrap uno-gap-2 uno-items-center">
+        <div class="uno-font-semibold">Tags:</div>
+        {{ range $paper.tags }}
+          <div class="uno-px-2 uno-py-1 uno-rounded-lg uno-bg-brand uno-text-secondary">{{ . }}</div>
+        {{ end }}
+      </div>
+
+      {{ if $paper.url }}
+        <icon-button class="uno-self-start" href="{{ $paper.url }}"><div>Read the Full Paper</div></icon-button>
+      {{ end }}
+    {{ end }}
+  </article>
+
+  {{ if eq $asidePosition "after" }}
+    {{ partial "aside.html" . }}
+  {{ end }}
+{{ end }}

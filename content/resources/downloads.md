@@ -8,7 +8,7 @@ menus:
   main:
     parent: Resources
     weight: 50
-keywords: "xen downloads, virtualization software, xen installation files, software downloads, virtualization tools, xen resources, software packages, installation packages, virtualization downloads, xen components"
+# keywords: "xen downloads, virtualization software, xen installation files, software downloads, virtualization tools, xen resources, software packages, installation packages, virtualization downloads, xen components"
 ---
 
 

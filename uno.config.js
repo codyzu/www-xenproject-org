@@ -1,0 +1,33 @@
+// uno.config.js
+import { defineConfig, presetWind3, presetIcons } from 'unocss'
+
+export default defineConfig({
+  
+  presets: [presetWind3({prefix: 'uno-', }), presetIcons({
+    extraProperties: {
+      'display': 'inline-block',
+      'vertical-align': 'middle',
+    },
+  }),],
+  content: {
+    pipeline: {
+      include: [
+        /\.(js|html|md)($|\?)/,
+        './themes/xen-project/layouts/**/*.html',
+      ]
+    }
+  },
+  theme: {
+    maxWidth: {
+      '8xl': '1300px',
+    },
+    colors: {
+      primary: '#101828',
+      secondary: '#475467',
+      brand: '#f3f9ec',
+      action: '#0077cc',
+      'action-hover': '#005FA3',
+      'action-active': '#00477A'
+    }
+  },
+})

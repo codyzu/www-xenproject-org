@@ -8,7 +8,7 @@ menus:
   main:
     parent: Resources
     weight: 100
-keywords: "xen mailing lists, community communication, developer discussions, technical support, community forums, xen announcements, development communication, user support, community engagement, technical discussions"
+# keywords: "xen mailing lists, community communication, developer discussions, technical support, community forums, xen announcements, development communication, user support, community engagement, technical discussions"
 ---
 
 {{<section>}}

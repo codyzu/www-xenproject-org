@@ -47,4 +47,10 @@
       </ul>
     </div>
   </div>
+
+  {{ if hugo.IsProduction }}
+    <script type="module" src="/js/bundle.js"></script>
+  {{ else }}
+    <script type="module" src="http://localhost:5173/themes/xen-project/assets/js/bundle.js"></script>
+  {{ end }}
 </footer>

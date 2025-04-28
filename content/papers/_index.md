@@ -10,7 +10,7 @@ menus:
     weight: 14
 ---
 
-{{<section md="true" class="section-intro">}}
+{{<section md="true" class="section-intro bg-blue-500">}}
 ## Introduction to Xen Research
 
 The Xen Project has been instrumental in advancing virtualization technology. This page highlights key academic research papers that delve into the architecture, performance, and security of the Xen hypervisor, showcasing its impact on both industry and academia.
@@ -35,7 +35,7 @@ Explore the cutting-edge research that continues to shape the future of virtuali
 
 Do you have research related to the Xen Project? We welcome contributions to our archive! You can:
 
-- Submit a merge request directly to our [research-papers.yaml file on GitLab](https://gitlab.com/xen-project/www-xenproject-org/-/blob/main/data/research-papers.yaml).
+- Submit a merge request directly with your added bibtex file. See the [guide on GitLab](https://gitlab.com/xen-project/www-xenproject-org/-/blob/main/papers/README.md).
 - Email your paper details to [community.manager@xenproject.org](mailto:community.manager@xenproject.org).
 
 Help us grow the Xen research community!
