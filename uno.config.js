@@ -19,13 +19,14 @@ export default defineConfig({
   },
   theme: {
     maxWidth: {
-      '8xl': '1300px',
+      '8xl': `${1312 + 40 + 40}px`,
     },
     colors: {
       primary: '#101828',
       secondary: '#475467',
       brand: '#f3f9ec',
       action: '#0077cc',
+      'action-text': '#0062a7',
       'action-hover': '#005FA3',
       'action-active': '#00477A'
     }

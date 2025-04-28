@@ -42,7 +42,9 @@
     class="uno-grid uno-grid-cols-1 md:uno-grid-cols-[2fr_1fr] uno-gap-y-2 md:uno-gap-y-16 uno-gap-x-6"
   >
     <tbody class="uno-contents">
-      {{ range sort site.Data.papers "year" "desc" "title" "asc" }}
+      {{ $sortedByTitle := sort site.Data.papers "title" "asc" }}
+      {{ $sortedPapers := sort $sortedByTitle "year" "desc" }}
+      {{ range $sortedPapers }}
         <tr class="uno-contents uno-parent">
           <td class="uno-flex uno-flex-col uno-gap-4 parent-not-first:uno-m-t-14 md:parent-not-first:uno-m-t-0">
             <div class="uno-text-4xl uno-font-medium">
