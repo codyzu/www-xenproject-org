@@ -1,12 +1,20 @@
 ---
 title: Unikraft
 description: Unikraft is an open-source project for building efficient, secure unikernels. It provides customizable libraries and tools to create lightweight, single-purpose operating systems.
+keywords:
+  - Xen Project
+  - Unikraft
+  - unikernels
+  - lightweight virtualization
+  - customized OS
+  - embedded systems
+  - system optimization
+  - development
 draft: false
 menus:
   main:
     parent: Projects
     weight: 100
-keywords: "unikraft, specialized kernels, lightweight virtualization, customized operating systems, unikernel technology, minimal OS, efficient virtualization, specialized virtualization, embedded virtualization, system optimization"
 ---
 
 {{<section>}}

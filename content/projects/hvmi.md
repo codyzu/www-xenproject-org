@@ -1,7 +1,14 @@
 ---
 title: HVMI
 description: Explore Xen Project's Hypervisor Memory Introspection (HVMI). Learn how HVMI enhances security by providing real-time monitoring and protection for virtualized environments.
-keywords: "HVMI, Hypervisor Memory Introspection, Xen Project HVMI, HVMI security, virtualized environment protection, real-time monitoring, memory introspection, VMI APIs, Xen hypervisor, KVM hypervisor, security logic, attack prevention, buffer overflow detection, heap spray prevention, code injection prevention, Bitdefender HVMI, GravityZone Hypervisor Introspection, open-source HVMI, HVMI community, HVMI development, HVMI features, HVMI use-cases"
+keywords:
+  - Xen Project
+  - HVMI
+  - memory introspection
+  - virtualization security
+  - real-time monitoring
+  - attack prevention
+  - development
 draft: false
 menus:
   main:
@@ -15,7 +22,6 @@ aside:
       - name: "Documentation"
         link: https://hvmi.readthedocs.io/
 ---
-
 {{<section>}}
   {{<media-block
     title="What is HVMI?"

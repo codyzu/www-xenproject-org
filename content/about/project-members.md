@@ -1,7 +1,22 @@
 ---
 title: Xen Project members
 description: Meet the board members of Xen Project. Learn about their roles, backgrounds, and contributions to the governance and strategic direction of the leading open source hypervisor project.
-keywords: "Xen Project members, Xen Project board members, open-source hypervisor governance, Xen Project leadership, AMD Xen Project, ARM Xen Project, AWS Xen Project, Epam Xen Project, Xen Project strategic direction, Xen Project contributions, Xen Project roles, Xen Project backgrounds, Xen Project governance, Xen Project community, Xen Project innovation"
+keywords:
+  - Xen Project
+  - AMD
+  - ARM
+  - AWS
+  - Epam
+  - Vates
+  - XenServer
+  - Honda
+  - governance
+  - leadership
+  - collaboration
+  - innovation
+  - contributions
+  - member organizations
+  - open source
 date: 2024-01-14T07:07:07+01:00
 draft: false
 menus:

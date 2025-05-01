@@ -1,7 +1,13 @@
 ---
 title: "Xen Summit"
 description: "Xen Summit is our annual event where the community connects with experts, discovers innovations, and shapes the future of virtualization."
-keywords: "xen summit, virtualization conference, xen project event, 2025 summit, tech conference, hypervisor technology"
+keywords:
+  - Xen Project
+  - Xen Summit
+  - virtualization conference
+  - tech conference
+  - hypervisor technology
+  - community event
 date: 2024-01-14T07:07:07+01:00
 draft: false
 menus:

@@ -1,7 +1,16 @@
 ---
 title: Hypervisor
 description: Discover Xen Hypervisor, the open-source virtualization platform.
-keywords: "Xen Hypervisor, open-source virtualization, x86 virtualization, ARM virtualization, Xen Project, hypervisor technology, virtualization platform, Xen architecture, Xen features, Xen performance, Xen security, Xen scalability, Xen community, Xen development, Xen support, Xen documentation, Xen downloads, Xen project management, Xen team processes, Xen user resources, Xen developer resources"
+keywords:
+  - Xen Project
+  - hypervisor
+  - virtualization
+  - architecture
+  - scalability
+  - security
+  - performance
+  - development
+  - support
 draft: false
 menus:
   main:

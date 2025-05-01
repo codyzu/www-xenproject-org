@@ -1,7 +1,14 @@
 ---
 title: Matrix
 description: Engage in real-time discussions and collaboration with the Xen community on Matrix.
-keywords: "Xen Project Matrix, real-time discussions, Xen community collaboration, Matrix channels, XenProject channel, XenDevel channel, XenSocial channel, join Matrix, Xen Project resources, open-source virtualization, Xen Project support, Xen Project communication, Xen Project development, Xen Project news, Xen Project updates"
+keywords:
+  - Xen Project
+  - Matrix
+  - real-time discussions
+  - community collaboration
+  - communication channels
+  - development support
+  - open-source virtualization
 date: 2024-01-14T07:07:07+01:00
 draft: false
 menus:

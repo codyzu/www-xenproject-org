@@ -1,8 +1,18 @@
 ---
 title: XCP-ng
 description: XCP-ng (Xen Cloud Platform-next generation) is the turnkey distribution of the Xen Project Hypervisor relying mostly on the Xen Hypervisor and then Xen API (XAPI).
-keywords: "XCP-ng, Xen Cloud Platform, XCP-ng hypervisor, XCP-ng distribution, Xen Project Hypervisor, XAPI, VM infrastructure, open-source hypervisor, XCP-ng deployment, XCP-ng community, XCP-ng data centers, XCP-ng production environment, XCP-ng features, XCP-ng support, XCP-ng documentation, XCP-ng forums, XCP-ng downloads, XCP-ng development, XCP-ng project team"
-
+keywords:
+  - Xen Project
+  - XCP-ng
+  - Xen Cloud Platform
+  - hypervisor
+  - virtualization
+  - VM infrastructure
+  - open-source
+  - deployment
+  - community
+  - documentation
+  - support
 draft: false
 menus:
   main:
