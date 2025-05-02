@@ -1,0 +1,61 @@
+{{/* Usage:
+  {{ partial "vite-asset.html" "bundle-main.js"
+}}
+{{ partial "vite-asset.html" "hardware-status.js" }}
+
+*/}}
+{{ $devServer := "http://localhost:5173/themes/xen-project/assets/js/vite/" }}
+{{ $isDev := not hugo.IsProduction }}
+
+{{/* Load and parse the manifest from /static/.vite/manifest.json */}}
+{{ $manifestPath := "themes/xen-project/static/.vite/manifest.json" }}
+{{ $manifestContent := "" }}
+{{ if not $isDev }}
+  {{ $manifestContent = readFile $manifestPath }}
+  {{ if not $manifestContent }}
+    {{ errorf "vite-asset: Could not load manifest from %s" $manifestPath }}
+  {{ end }}
+{{ end }}
+
+{{ $manifest := "" }}
+{{ if $manifestContent }}
+  {{ $manifest = $manifestContent | transform.Unmarshal }}
+{{ end }}
+
+{{ $assetName := . }}
+
+{{/* Find the manifest entry by matching the end of the key in production mode */}}
+{{ $asset := false }}
+{{ if not $isDev }}
+  {{ range $key, $value := $manifest }}
+    {{ if strings.HasSuffix $key $assetName }}
+      {{ $asset = $value }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ if $asset }}
+  {{ $file := $asset.file }}
+  {{ if strings.HasSuffix $file ".js" }}
+    <script type="module" src="/{{ $file }}" defer></script>
+  {{ end }}
+  {{ if not $isDev }}
+    {{ with $asset.css }}
+      {{ range . }}
+        <link rel="stylesheet" href="/{{ . }}" />
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+{{ else if $isDev }}
+  {{ if strings.HasSuffix $assetName ".js" }}
+    <script type="module" src="{{ printf "%s%s" $devServer $assetName }}" defer></script>
+  {{ else if strings.HasSuffix $assetName ".css" }}
+    {{/* Skip CSS inclusion in development mode */}}
+  {{ else }}
+    {{ errorf "vite-asset: Unrecognized file type or missing manifest entry for '%s'" $assetName }}
+  {{ end }}
+
+{{ else }}
+  {{ errorf "vite-asset: File '%s' not found in manifest and not in development mode." $assetName }}
+{{ end }}

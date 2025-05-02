@@ -27,18 +27,18 @@ export default defineConfig({
     }
   ],
   build: {
-    lib: {
-      entry: './themes/xen-project/assets/js/bundle-main.js',
-      name: 'MainScript',
-      fileName: () => 'bundle-main.js', // Output name
-      formats: ['es'], // Output as ES module
-    },
+    manifest: true,
     outDir: 'themes/xen-project/static',
     rollupOptions: {
+      input: {
+        'bundle-main': './themes/xen-project/assets/js/vite/bundle-main.js',
+        'hardware-status': './themes/xen-project/assets/js/vite/hardware-status.js',
+        // add more as needed
+      },
       output: {
-        entryFileNames: 'js/bundle.js',
-        assetFileNames: 'css/bundle.css',
-        manualChunks: undefined, // Disable code splitting
+        entryFileNames: 'js/[name]-[hash].js',
+        assetFileNames: 'css/[name]-[hash].css',
+        manualChunks: undefined,
       },
     },
   },

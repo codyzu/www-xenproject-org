@@ -45,7 +45,19 @@
   <link rel="canonical" href="{{ .Permalink }}" />
   {{ partialCached "head/css.html" . }}
 
+
+  <!-- Load main bundle -->
+  {{ partial "vite-asset.html" "bundle-main.js" }}
+
+
+  <!-- Load additional scripts from front matter -->
+  {{ with .Params.scripts }}
+    {{ range . }}
+      {{ partial "vite-asset.html" . }}
+    {{ end }}
+  {{ end }}
+
   <script>
-    var siteParams = window.siteParams = {{ .Site.Params  }};
+    var siteParams = window.siteParams = {{ .Site.Params }};
   </script>
 </head>

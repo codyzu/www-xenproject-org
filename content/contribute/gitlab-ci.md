@@ -19,7 +19,11 @@ menus:
   main:
     parent: Contribute
     weight: 60
+scripts:
+  - hardware-status.js
 ---
+
+{{< div "hardware-grid" >}}{{</div>}}
 
 {{<section md="true" class="content-markdown">}}
 ### GitLab CI Integration for Custom Hardware

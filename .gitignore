@@ -14,8 +14,7 @@ hugo_build.lock
 .hugo_build.lock
 
 # unocss and vite bundle output
-themes/xen-project/static/js/bundle.js
-themes/xen-project/static/css/bundle.css
+themes/xen-project/static
 
 # Research papers generated files
 content/papers/*.md
