@@ -32,7 +32,8 @@ const HARDWARE_ICONS = {
   ampere: 'i-mdi-cpu-64-bit',
   pi: 'i-simple-icons-raspberrypi',
   rockchip: 'i-mdi-chip',
-  intel: 'i-fa6-solid-microchip',
+  intel: 'i-mdi-desktop-classic',
+  arm: 'i-mdi-robot',
   unknown: 'i-mdi-help-box'
 };
 
@@ -42,7 +43,16 @@ const getHardwareIcon = (jobName) => {
   if (name.includes('pi')) return HARDWARE_ICONS.pi;
   if (name.includes('rockchip')) return HARDWARE_ICONS.rockchip;
   if (name.includes('x86') || name.includes('intel')) return HARDWARE_ICONS.intel;
+  if (name.includes('arm')) return HARDWARE_ICONS.arm;
   return HARDWARE_ICONS.unknown;
+};
+
+const getDisplayName = (jobName) => {
+  return jobName
+    .replace(/^xilinx-smoke-/, '')
+    .replace(/-gcc(-debug)?$/, '')
+    .replace(/^(zen3|pi|ampere|rockchip|x86|arm|intel)[^-]*-/, '')
+    .slice(0, 30); // limit to 30 chars
 };
 
 async function initHardwareGrid() {
@@ -59,6 +69,7 @@ async function initHardwareGrid() {
         pipelines(first: 1) {
           nodes {
             id
+            iid
             jobs {
               nodes {
                 name
@@ -88,28 +99,54 @@ async function initHardwareGrid() {
   });
 
   const data = await res.json();
+  console.log('data', data);
+  if (data.errors) {
+    console.error("GraphQL errors:", data.errors);
+    return;
+  }
   const jobs = data?.data?.project?.pipelines?.nodes?.[0]?.jobs?.nodes || [];
   const hardwareJobs = jobs.filter(j =>
-    j.stage?.name === 'test' && !j.name.toLowerCase().includes('qemu')
+    j.stage?.name === 'test' &&
+    !j.name.toLowerCase().includes('qemu') &&
+    !j.name.toLowerCase().includes('suspend') &&
+    j.name !== 'build-each-commit-gcc'
   ).toSorted((a, b) => a.name.localeCompare(b.name));
 
   container.innerHTML = '';
-  container.className = 'uno-flex uno-flex-wrap uno-gap-4 uno-justify-start uno-p-8';
+  container.className = 'uno-section uno-m-t-10';
+
+  const grid = document.createElement('div');
+  grid.className = 'uno-flex uno-flex-wrap uno-gap-4 uno-justify-start';
+
+  const pipeline = data?.data?.project?.pipelines?.nodes?.[0];
   hardwareJobs.forEach(job => {
     const div = document.createElement('div');
     const style = STATUS_STYLES[job.status] || STATUS_STYLES.DEFAULT;
     div.className = clsx(
-      'uno-p-4 uno-rounded-xl uno-text-center uno-shadow uno-hover:scale-105 uno-transition-all uno-w-[200px]',
+      'uno-px-3 uno-py-2 uno-rounded-lg uno-shadow uno-flex uno-items-start uno-gap-3 uno-text-xs uno-w-[260px] uno-min-h-[64px]',
       style.color
     );
     div.innerHTML = `
-      <h3 class="uno-font-bold uno-text-sm uno-mb-2">${job.name}</h3>
-      <div class="${getHardwareIcon(job.name)} uno-text-3xl uno-mb-1"></div>
-      <div class="${style.icon} uno-text-2xl uno-mb-1" title="${job.status}"></div>
-      <p class="uno-text-xs">${job.detailedStatus.label}</p>
+      <div class="${getHardwareIcon(job.name)} uno-text-lg" title="Hardware"></div>
+      <div class="uno-flex-1 uno-text-left uno-whitespace-normal">${getDisplayName(job.name)}</div>
+      <div class="uno-flex uno-items-center uno-gap-1 uno-text-right">
+        <div class="${style.icon} uno-text-base" title="${job.status}"></div>
+        <div class="uno-hidden sm:uno-inline">${job.detailedStatus.label}</div>
+      </div>
     `;
-    container.appendChild(div);
+    grid.appendChild(div);
   });
+
+  container.appendChild(grid);
+
+  if (pipeline?.id && pipeline?.iid) {
+    const numericId = pipeline.id.split('/').pop();
+    const link = document.createElement('a');
+    link.href = `https://gitlab.com/${PROJECT_PATH}/-/pipelines/${numericId}`;
+    link.textContent = 'View on GitLab';
+    link.className = 'uno-block uno-mt-4 uno-text-blue-600 hover:uno-underline uno-text-sm';
+    container.appendChild(link);
+  }
 }
 
 initHardwareGrid();
