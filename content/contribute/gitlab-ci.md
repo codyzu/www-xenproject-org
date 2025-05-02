@@ -1,7 +1,18 @@
 ---
 title: GitLab CI Integration
 description: Learn how to integrate custom hardware test runners into the Xen Project's GitLab CI pipeline for seamless testing on every build.
-keywords: "GitLab CI, Xen Project CI, custom hardware testing, CI test runners, integrated systems testing, automobile manufacturers, hardware vendors, continuous integration, Xen Project builds, GitLab CI runners"
+keywords:
+  - Xen Project
+  - GitLab CI
+  - CI
+  - custom hardware testing
+  - CI test runners
+  - integrated systems testing
+  - automobile manufacturers
+  - hardware vendors
+  - continuous integration
+  - builds
+  - GitLab CI runners
 date: 2025-04-30T00:00:00+01:00
 draft: false
 menus:
