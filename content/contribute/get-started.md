@@ -1,7 +1,20 @@
 ---
 title: Get started
 description: Begin your journey with Xen Project. Follow our step-by-step installation and setup guide to deploy Xen hypervisor. Access essential resources, tutorials, and support for a smooth start.
-keywords: "Xen Project, Xen hypervisor, Xen installation guide, Xen setup tutorial, Xen resources, Xen support, Xen tutorials, Xen getting started, Xen deployment, Xen beginner guide, Xen community, Xen contribution, Xen development, Xen open source, Xen project documentation"
+keywords:
+  - Xen Project
+  - hypervisor
+  - installation guide
+  - setup tutorial
+  - resources
+  - support
+  - tutorials
+  - beginner guide
+  - community
+  - contribution
+  - development
+  - open source
+  - documentation
 date: 2024-01-14T07:07:07+01:00
 draft: false
 menu:

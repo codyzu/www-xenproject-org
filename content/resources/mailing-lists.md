@@ -1,14 +1,22 @@
 ---
 title: Join mailing lists
 description: Join the Xen mailing list community to stay updated on the latest developments, discussions, and announcements.
-keywords: "Xen mailing lists, Xen community communication, Xen developer discussions, Xen technical support, Xen community forums, Xen announcements, Xen development communication, Xen user support, Xen community engagement, Xen technical discussions, Xen project updates, Xen release announcements, Xen security advisories, Xen event announcements, Xen project collaboration"
+keywords:
+  - Xen Project
+  - mailing lists
+  - community communication
+  - developer discussions
+  - technical support
+  - announcements
+  - collaboration
+  - security advisories
+  - project updates
 date: 2024-01-14T07:07:07+01:00
 draft: false
 menus:
   main:
     parent: Resources
     weight: 100
-# keywords: "xen mailing lists, community communication, developer discussions, technical support, community forums, xen announcements, development communication, user support, community engagement, technical discussions"
 ---
 
 {{<section>}}

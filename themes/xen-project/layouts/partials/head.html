@@ -16,13 +16,16 @@
   </title>
   <meta
     name="description"
-    content="{{ with .Description }}
-      {{ . }}
-    {{ else }}
-      {{ with .Summary }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}
-    {{ end }}"
+    content="{{- with .Description -}}
+      {{- . -}}
+    {{- else -}}
+      {{- with .Summary -}}{{- . -}}{{- else -}}{{- .Site.Params.description -}}{{- end -}}
+    {{- end -}}"
   />
-  {{ with .Params.keywords }}<meta name="keywords" content="{{ . }}" />{{ end }}
+
+  {{ with .Params.keywords }}
+    <meta name="keywords" content="{{ delimit . ",  " }}" />
+  {{ end }}
 
 
   <!-- Open Graph / Facebook -->

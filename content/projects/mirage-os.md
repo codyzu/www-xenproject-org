@@ -1,12 +1,20 @@
 ---
 title: Mirage OS
 description: MirageOS is a library operating system that constructs unikernels for secure, high-performance, low-energy footprint applications.
+keywords:
+  - Xen Project
+  - Mirage OS
+  - unikernels
+  - library OS
+  - secure virtualization
+  - lightweight OS
+  - cloud computing
+  - development
 draft: false
 menus:
   main:
     parent: Projects
     weight: 100
-keywords: "mirage os, unikernel, library operating system, secure virtualization, lightweight virtualization, OCaml unikernel, specialized operating system, cloud computing, minimalist OS, secure deployment"
 ---
 
 {{<section>}}

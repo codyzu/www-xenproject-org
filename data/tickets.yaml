@@ -8,7 +8,7 @@ tickets:
         - Exclusive in-person only design sessions with community experts
         - Access to the partner expo
         - Networking opportunities
-      link: "https://cvent.me/0MKQzz"
+      link: "https://register.linuxfoundation.org/xen-summit-2025"
       linkText: "Buy Ticket"
 
     - title: "Standard $300"
@@ -19,7 +19,7 @@ tickets:
         - Exclusive in-person only design sessions with community experts
         - Access to the partner expo
         - Networking opportunities
-      link: "https://cvent.me/0MKQzz"
+      link: "https://register.linuxfoundation.org/xen-summit-2025"
       linkText: "Buy Ticket"
 
     - title: "Academic $50"
@@ -30,7 +30,7 @@ tickets:
         - Learn about the latest in Xen and virtualization
         - Network with industry experts and organizations
         - Participate in a vibrant community
-      link: "https://cvent.me/0MKQzz"
+      link: "https://register.linuxfoundation.org/xen-summit-2025"
       linkText: "Buy Ticket"
 
     - title: "Speaker FREE"
@@ -49,7 +49,7 @@ tickets:
         - Access from anywhere
         - Live stream access
         - Interactive Q&A
-      link: "https://cvent.me/D15LdA"
+      link: "https://register.linuxfoundation.org/zZ42lz"
       linkText: "Buy Ticket"
 
     - title: "Virtual Academic FREE"
@@ -57,5 +57,5 @@ tickets:
       description: |
         - Free for students and faculty (requires verification)
         - All benefits of the virtual ticket
-      link: "https://cvent.me/D15LdA"
+      link: "https://register.linuxfoundation.org/zZ42lz"
       linkText: "Register"

@@ -1,8 +1,17 @@
 ---
 title: Security policy
 description: Xen Security Problem Response Process
-keywords: "Xen Security Policy, Xen Security Process, Xen Security Response, Xen Security Team, Xen Security Issues, Xen Security Problem, Xen Security Disclosure, Xen Security Reporting, Xen Security Management, Xen Security Procedures, Xen Security Guidelines, Xen Security Best Practices, Xen Security Protocols, Xen Security Measures, Xen Security Standards, Xen Security Compliance, Xen Security Vulnerabilities, Xen Security Threats, Xen Security Mitigation, Xen Security Solutions"
-
+keywords:
+  - security policy
+  - security process
+  - vulnerability reporting
+  - security disclosure
+  - security guidelines
+  - security compliance
+  - threat mitigation
+  - security best practices
+  - security response
+  - security team
 date: 2024-01-14T07:07:07+01:00
 draft: false
 layout: single

@@ -1,7 +1,18 @@
 ---
 title: Xen Project Code of Conduct
 description: Learn about the Code of Conduct for the Xen Project, which outlines the standards for behavior in the community and the steps to report unacceptable behavior.
-keywords: "Xen Project, Code of Conduct, harassment-free community, inclusive environment, diversity, community standards, respectful communication, welcoming language, empathy, constructive feedback, collaboration, anti-discrimination, online harassment, community guidelines, effective communication, community pledge"
+keywords:
+  - Xen Project
+  - Code of Conduct
+  - harassment-free community
+  - inclusive environment
+  - diversity
+  - respectful communication
+  - collaboration
+  - anti-discrimination
+  - community standards
+  - effective communication
+  - community pledge
 date: 2023-11-16T00:00:00+01:00
 draft: false
 menus:
@@ -13,7 +24,6 @@ aside:
     items:
       - name: Code of Conduct
         link: https://xenbits.xenproject.org/governance/index.html
-        
 ---
 
 {{<section md="true" class="content-markdown">}}

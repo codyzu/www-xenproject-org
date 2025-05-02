@@ -1,6 +1,16 @@
 ---
 title: XAPI
-description: The XAPI project is an enterprise ready toolstack for use with the Xen Project hypervisor
+description: The XAPI project is an enterprise-ready toolstack for use with the Xen Project hypervisor.
+keywords:
+  - Xen Project
+  - XAPI
+  - virtualization management
+  - toolstack
+  - VM lifecycle
+  - cloud orchestration
+  - resource management
+  - infrastructure
+  - development
 draft: false
 menus:
   main:
@@ -17,7 +27,6 @@ aside:
         link: "https://github.com/xapi-project/xen-api/blob/master/README.markdown"
       - name: Report a Bug
         link: "https://github.com/xapi-project/xen-api/issues"
-keywords: "XAPI, xen API, virtualization management, xen toolstack, virtual machine management, cloud orchestration, virtualization tools, resource management, VM lifecycle management, infrastructure management"
 ---
 
 {{<section>}}

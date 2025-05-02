@@ -1,7 +1,17 @@
 ---
 title: "Xen Project"
 description: "The Xen Project develops enterprise-grade open source virtualization solutions trusted by millions of users. Secure, flexible, and powerful hypervisor technology."
-keywords: "Xen Project, open source virtualization, enterprise-grade hypervisor, secure virtualization, flexible hypervisor technology, powerful hypervisor, Xen community, virtualization solutions, Linux Foundation project, Xen subprojects, commercial virtualization, open-source domains, virtualization technology"
+keywords:
+  - Xen Project
+  - open source virtualization
+  - enterprise-grade hypervisor
+  - secure virtualization
+  - flexible hypervisor
+  - virtualization solutions
+  - Linux Foundation
+  - community
+  - innovation
+  - technology
 ---
 
 {{<section class="home-section-hero home-hero-animated" >}} 

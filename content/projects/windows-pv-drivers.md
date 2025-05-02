@@ -1,6 +1,15 @@
 ---
 title: Windows PV Drivers
 description: Windows PV Drivers enhance the performance and efficiency of Windows virtual machines. Access documentation and support for seamless integration.
+keywords:
+  - Xen Project
+  - Windows PV Drivers
+  - paravirtualization
+  - virtualization
+  - device drivers
+  - VM optimization
+  - documentation
+  - support
 draft: false
 menus:
   main:
@@ -14,7 +23,6 @@ aside:
         icon: fas fa-arrow-right
       - name: Documentation
         link: https://wiki.xenproject.org/wiki/Category:Windows_PV_Drivers
-keywords: "windows PV drivers, paravirtualization drivers, windows virtualization, xen windows support, virtual device drivers, windows virtual machines, paravirtualized windows, virtualization drivers, windows VM optimization, virtual hardware drivers"
 ---
 
 {{<section>}}
