@@ -153,6 +153,7 @@ async function initHardwareGrid() {
       'uno-px-3 uno-py-2 uno-rounded-lg uno-flex uno-flex-col uno-items-start uno-gap-3 uno-text-xs',
       'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
       'uno-shadow-xl uno-shadow-gray-300 uno-bg-white uno-text-primary',
+      'even:uno-animate-fade-in-left odd:uno-animate-fade-in-right',
       // style.color
     );
     div.innerHTML = `
