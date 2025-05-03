@@ -4,27 +4,27 @@ import clsx from "clsx";
 const STATUS_STYLES = {
   SUCCESS: {
     icon: "i-fa6-solid:circle-check",
-    color: "uno-bg-green-100 uno-text-green-800"
+    color: "uno-text-green-500"
   },
   FAILED: {
     icon: "i-fa6-solid:circle-xmark",
-    color: "uno-bg-red-100 uno-text-red-800"
+    color: "uno-text-red-500"
   },
   CREATED: {
     icon: "i-fa6-solid-hourglass-half",
-    color: "uno-bg-yellow-100 uno-text-yellow-800"
+    color: "uno-text-yellow-500"
   },
   PENDING: {
     icon: "i-fa6-solid-hourglass-half",
-    color: "uno-bg-yellow-100 uno-text-yellow-800"
+    color: "uno-text-yellow-500"
   },
   RUNNING: {
     icon: "i-fa6-solid-hourglass-half",
-    color: "uno-bg-yellow-100 uno-text-yellow-800"
+    color: "uno-text-yellow-500"
   },
   DEFAULT: {
     icon: "i-fa6-solid-circle-question",
-    color: "uno-bg-gray-100 uno-text-gray-800"
+    color: "uno-text-gray-500"
   }
 };
 
@@ -32,8 +32,8 @@ const HARDWARE_ICONS = {
   ampere: 'i-mdi-cpu-64-bit',
   pi: 'i-simple-icons-raspberrypi',
   rockchip: 'i-mdi-chip',
-  intel: 'i-mdi-desktop-classic',
-  arm: 'i-mdi-robot',
+  intel: 'i-fa6-solid-microchip',
+  arm: 'i-mdi-raspberry-pi',
   unknown: 'i-mdi-help-box'
 };
 
@@ -47,13 +47,34 @@ const getHardwareIcon = (jobName) => {
   return HARDWARE_ICONS.unknown;
 };
 
-const getDisplayName = (jobName) => {
-  return jobName
-    .replace(/^xilinx-smoke-/, '')
-    .replace(/-gcc(-debug)?$/, '')
-    .replace(/^(zen3|pi|ampere|rockchip|x86|arm|intel)[^-]*-/, '')
-    .slice(0, 30); // limit to 30 chars
-};
+function parseJobName(name) {
+  const parts = name.split('-');
+
+  const [platform, testType, ...rest] = parts;
+  let mode, arch, compiler;
+  const variantParts = [];
+
+  for (const part of rest) {
+    if (!mode && /^(dom0|dom0less|pv|pvh|hvm)$/.test(part)) {
+      mode = part;
+    } else if (!arch && /^(x86(?:_64)?|arm(?:64|32)|ppc64le|riscv64)$/.test(part)) {
+      arch = part;
+    } else if (!compiler && /^(gcc|clang)$/.test(part)) {
+      compiler = part;
+    } else {
+      variantParts.push(part);
+    }
+  }
+
+  return {
+    platform,
+    testType,
+    mode,
+    arch,
+    compiler,
+    variant: variantParts.join(', ')
+  };
+}
 
 async function initHardwareGrid() {
   console.log('hello cody');
@@ -104,35 +125,58 @@ async function initHardwareGrid() {
     console.error("GraphQL errors:", data.errors);
     return;
   }
+
   const jobs = data?.data?.project?.pipelines?.nodes?.[0]?.jobs?.nodes || [];
-  const hardwareJobs = jobs.filter(j =>
-    j.stage?.name === 'test' &&
-    !j.name.toLowerCase().includes('qemu') &&
-    !j.name.toLowerCase().includes('suspend') &&
-    j.name !== 'build-each-commit-gcc'
-  ).toSorted((a, b) => a.name.localeCompare(b.name));
+  const hardwareJobs = jobs
+    .map(job => {
+      const parsed = parseJobName(job.name);
+      return { ...job, parsed };
+    })
+    .filter(job => job.stage?.name === 'test')
+    .filter(job => job.parsed.platform !== 'qemu')
+    .filter(job => job.parsed.testType !== 'suspend')
+    .filter(job => job.name !== 'build-each-commit-gcc')
+    .toSorted((a, b) => a.name.localeCompare(b.name));
 
   container.innerHTML = '';
   container.className = 'uno-section uno-m-t-10';
 
   const grid = document.createElement('div');
-  grid.className = 'uno-flex uno-flex-wrap uno-gap-4 uno-justify-start';
+  // grid.className = 'uno-flex uno-flex-wrap uno-gap-4 uno-justify-start';
+  grid.className = 'uno-grid uno-grid-cols-2 sm:uno-grid-cols-2 md:uno-grid-cols-3 lg:uno-grid-cols-4 uno-gap-4 uno-justify-start';
 
   const pipeline = data?.data?.project?.pipelines?.nodes?.[0];
   hardwareJobs.forEach(job => {
     const div = document.createElement('div');
     const style = STATUS_STYLES[job.status] || STATUS_STYLES.DEFAULT;
     div.className = clsx(
-      'uno-px-3 uno-py-2 uno-rounded-lg uno-shadow uno-flex uno-items-start uno-gap-3 uno-text-xs uno-w-[260px] uno-min-h-[64px]',
-      style.color
+      'uno-px-3 uno-py-2 uno-rounded-lg uno-flex uno-flex-col uno-items-start uno-gap-3 uno-text-xs',
+      'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
+      'uno-shadow-xl uno-shadow-gray-300 uno-bg-white uno-text-primary',
+      // style.color
     );
     div.innerHTML = `
-      <div class="${getHardwareIcon(job.name)} uno-text-lg" title="Hardware"></div>
-      <div class="uno-flex-1 uno-text-left uno-whitespace-normal">${getDisplayName(job.name)}</div>
-      <div class="uno-flex uno-items-center uno-gap-1 uno-text-right">
-        <div class="${style.icon} uno-text-base" title="${job.status}"></div>
-        <div class="uno-hidden sm:uno-inline">${job.detailedStatus.label}</div>
+      <div class="uno-flex uno-flex-row uno-justify-between uno-gap-2 uno-items-start">
+        <div class="${getHardwareIcon(job.name)} uno-text-4xl" title="Hardware"></div>
+        <div class="uno-flex-col">
+          <div>Platform: <strong>${job.parsed.platform}</strong></div>
+          <div>Architecture: <strong>${job.parsed.arch}</strong></div>
+          ${job.parsed.mode ? `<div>Mode: <strong>${job.parsed.mode}</strong></div>` : ''}
+        </div>
       </div>
+      
+      <div class="uno-flex uno-items-center uno-gap-2 uno-text-right uno-rounded-full uno-p-x-2 uno-p-y-1 uno-bg-secondary uno-text-white">
+        <div class="${style.icon} uno-text-base ${style.color}" title="${job.status}"></div>
+        <div class="">${job.detailedStatus.label}</div>
+      </div>
+
+      <details class="uno-flex uno-flex-col uno-gap-1 uno-group">
+        <summary class="marker:uno-hidden uno-list-none uno-flex uno-flex-row uno-gap-2 uno-items-center uno-text-action-text hover:uno-cursor-pointer">
+          <div>details</div>
+          <div class="i-fa6-solid-arrow-right group-open:uno-rotate-90 uno-transition-transform uno-duration-300 uno-ease-out" title="${job.status}"></div>
+        </summary>
+        <div>${job.name}</div>
+      </details>
     `;
     grid.appendChild(div);
   });

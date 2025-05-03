@@ -28,7 +28,10 @@ export default defineConfig({
       action: '#0077cc',
       'action-text': '#0062a7',
       'action-hover': '#005FA3',
-      'action-active': '#00477A'
+      'action-active': '#00477A',
+      brand: {
+        fill: '#85c241'
+      }
     }
   },
   shortcuts: {
