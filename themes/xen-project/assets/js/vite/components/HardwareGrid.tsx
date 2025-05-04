@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useState, useRef } from 'preact/hooks';
 import clsx from 'clsx';
 import { z } from 'zod';
 
@@ -32,7 +32,7 @@ const statusStyles = {
 
 type StatusType = keyof typeof statusStyles;
 
-const harwareIcons = {
+const hardwareIcons = {
   ampere: 'i-mdi-cpu-64-bit',
   pi: 'i-simple-icons-raspberrypi',
   rockchip: 'i-mdi-chip',
@@ -43,12 +43,12 @@ const harwareIcons = {
 
 function getHardwareIcon(name: string) {
   name = name.toLowerCase();
-  if (name.includes('ampere')) return harwareIcons.ampere;
-  if (name.includes('pi')) return harwareIcons.pi;
-  if (name.includes('rockchip')) return harwareIcons.rockchip;
-  if (name.includes('x86') || name.includes('intel')) return harwareIcons.intel;
-  if (name.includes('arm')) return harwareIcons.arm;
-  return harwareIcons.unknown;
+  if (name.includes('ampere')) return hardwareIcons.ampere;
+  if (name.includes('pi')) return hardwareIcons.pi;
+  if (name.includes('rockchip')) return hardwareIcons.rockchip;
+  if (name.includes('x86') || name.includes('intel')) return hardwareIcons.intel;
+  if (name.includes('arm')) return hardwareIcons.arm;
+  return hardwareIcons.unknown;
 }
 
 function parseJobName(name: string) {
@@ -161,6 +161,87 @@ type ParsedJobType = z.infer<typeof PipelineSchema>['jobs']['nodes'][number] & {
   };
 };
 
+function JobGroup({ platform, jobs, index }: { platform: string; jobs: ParsedJobType[]; index: number }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const groupRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (groupRef.current) {
+      observer.observe(groupRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={groupRef}
+      data-platform={platform}
+      class={clsx(
+        'uno-opacity-0 uno-transition-all uno-animate-duration-300 uno-animate-fill-forwards',
+        index % 2 === 0 ? 'uno-translate-x-[-100%] ' : 'uno-translate-x-[100%]',
+        isVisible &&
+          (index % 2 === 0
+            ? 'uno-animate-fade-in-left'
+            : 'uno-animate-fade-in-right')
+      )}
+    >
+      <h3 class="uno-text-lg uno-font-semibold uno-mb-2 uno-mt-4">Platform: {platform}</h3>
+      <div class="uno-grid uno-grid-cols-2 sm:uno-grid-cols-2 md:uno-grid-cols-3 lg:uno-grid-cols-4 uno-gap-4 uno-justify-start">
+        {jobs.map(job => {
+          const style = statusStyles[job.status as StatusType] || statusStyles.DEFAULT;
+          return (
+            <div
+              class={clsx(
+                'uno-px-3 uno-py-2 uno-rounded-lg uno-flex uno-flex-col uno-items-start uno-gap-3 uno-text-xs',
+                'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
+                'uno-shadow-xl uno-shadow-gray-300 uno-bg-white uno-text-primary'
+              )}
+            >
+              <div class="uno-flex uno-items-start uno-gap-2">
+                <div class={`${getHardwareIcon(job.name)} uno-text-4xl uno-flex-shrink-0`} title="Hardware" />
+                <div class="uno-flex uno-gap-1 uno-flex-wrap uno-items-center">
+                  {job.parsed.arch && <span class="uno-bg-gray-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs uno-font-semibold">{job.parsed.arch}</span>}
+                  {job.parsed.mode && <span class="uno-bg-green-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs">{job.parsed.mode}</span>}
+                  {job.parsed.compiler && <span class="uno-bg-blue-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs">{job.parsed.compiler}</span>}
+                  {job.parsed.variant && job.parsed.variant.split(', ').map(v => (
+                    <span class="uno-bg-yellow-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs" title={`Variant: ${v}`}>{v}</span>
+                  ))}
+                </div>
+              </div>
+              <div class="uno-flex uno-items-center uno-gap-2 uno-text-right uno-rounded-full uno-p-x-1 uno-p-r-2 uno-p-y-1 uno-bg-secondary uno-text-white">
+                <div class={`${style.icon} uno-text-base ${style.color}`} title={job.status}></div>
+                <div>{job.detailedStatus.label}</div>
+              </div>
+              <details class="uno-flex uno-flex-col uno-gap-1 uno-group">
+                <summary class="marker:uno-hidden uno-list-none uno-flex uno-flex-row uno-gap-2 uno-items-center uno-text-action-text hover:uno-cursor-pointer">
+                  <div>details</div>
+                  <div class="i-fa6-solid-arrow-right group-open:uno-rotate-90 uno-transition-transform uno-duration-300 uno-ease-out" />
+                </summary>
+                <div>{job.name}</div>
+                <a href={`https://gitlab.com/xen-project/hardware/xen/-/jobs/${job.id.split('/').pop()}`} target="_blank" class="uno-text-blue-600 hover:uno-underline uno-text-xs">
+                  View job on GitLab
+                </a>
+              </details>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 export function HardwareGrid() {
   const [pipeline, setPipeline] = useState<any>(null);
   const [jobs, setJobs] = useState<ParsedJobType[]>([]);
@@ -197,50 +278,8 @@ export function HardwareGrid() {
 
   return (
     <div class="uno-section">
-      {Object.entries(grouped).map(([platform, jobs]) => (
-        <div>
-          <h3 class="uno-text-lg uno-font-semibold uno-mb-2 uno-mt-4">Platform: {platform}</h3>
-          <div class="uno-grid uno-grid-cols-2 sm:uno-grid-cols-2 md:uno-grid-cols-3 lg:uno-grid-cols-4 uno-gap-4 uno-justify-start">
-            {jobs.map(job => {
-              const style = statusStyles[job.status as StatusType] || statusStyles.DEFAULT;
-              return (
-                <div
-                  class={clsx(
-                    'uno-px-3 uno-py-2 uno-rounded-lg uno-flex uno-flex-col uno-items-start uno-gap-3 uno-text-xs',
-                    'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
-                    'uno-shadow-xl uno-shadow-gray-300 uno-bg-white uno-text-primary'
-                  )}
-                >
-                  <div class="uno-flex uno-items-start uno-gap-2">
-                    <div class={`${getHardwareIcon(job.name)} uno-text-4xl uno-flex-shrink-0`} title="Hardware" />
-                    <div class="uno-flex uno-gap-1 uno-flex-wrap uno-items-center">
-                      {job.parsed.arch && <span class="uno-bg-gray-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs uno-font-semibold">{job.parsed.arch}</span>}
-                      {job.parsed.mode && <span class="uno-bg-green-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs">{job.parsed.mode}</span>}
-                      {job.parsed.compiler && <span class="uno-bg-blue-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs">{job.parsed.compiler}</span>}
-                      {job.parsed.variant && job.parsed.variant.split(', ').map(v => (
-                        <span class="uno-bg-yellow-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs" title={`Variant: ${v}`}>{v}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <div class="uno-flex uno-items-center uno-gap-2 uno-text-right uno-rounded-full uno-p-x-1 uno-p-r-2 uno-p-y-1 uno-bg-secondary uno-text-white">
-                    <div class={`${style.icon} uno-text-base ${style.color}`} title={job.status}></div>
-                    <div>{job.detailedStatus.label}</div>
-                  </div>
-                  <details class="uno-flex uno-flex-col uno-gap-1 uno-group">
-                    <summary class="marker:uno-hidden uno-list-none uno-flex uno-flex-row uno-gap-2 uno-items-center uno-text-action-text hover:uno-cursor-pointer">
-                      <div>details</div>
-                      <div class="i-fa6-solid-arrow-right group-open:uno-rotate-90 uno-transition-transform uno-duration-300 uno-ease-out" />
-                    </summary>
-                    <div>{job.name}</div>
-                    <a href={`https://gitlab.com/xen-project/hardware/xen/-/jobs/${job.id.split('/').pop()}`} target="_blank" class="uno-text-blue-600 hover:uno-underline uno-text-xs">
-                      View job on GitLab
-                    </a>
-                  </details>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+      {Object.entries(grouped).map(([platform, jobs], index) => (
+        <JobGroup platform={platform} jobs={jobs} index={index} />
       ))}
       {pipeline && (
         <a

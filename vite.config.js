@@ -40,7 +40,6 @@ export default defineConfig({
       output: {
         entryFileNames: 'js/[name]-[hash].js',
         assetFileNames: 'css/[name]-[hash].css',
-        manualChunks: undefined,
       },
     },
   },
