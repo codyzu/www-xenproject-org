@@ -12,7 +12,7 @@ export default defineConfig({
   content: {
     pipeline: {
       include: [
-        /\.(js|html|md)($|\?)/,
+        /\.(js|jsx|ts|tsx|html|md)($|\?)/,
         './themes/xen-project/layouts/**/*.html',
       ]
     }

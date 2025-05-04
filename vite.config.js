@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import UnoCSS from 'unocss/vite'
 import { plugin as markdownPlugin } from 'vite-plugin-markdown'
+import preact from '@preact/preset-vite';
 
 export default defineConfig({
   base: '/',
@@ -24,7 +25,8 @@ export default defineConfig({
           return ''; // Return an empty string to prevent output
         }
       },
-    }
+    },
+    preact(), // Add Preact plugin
   ],
   build: {
     manifest: true,
@@ -32,7 +34,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         'bundle-main': './themes/xen-project/assets/js/vite/bundle-main.js',
-        'hardware-status': './themes/xen-project/assets/js/vite/hardware-status.js',
+        'hardware-status': './themes/xen-project/assets/js/vite/hardware-status.tsx',
         // add more as needed
       },
       output: {

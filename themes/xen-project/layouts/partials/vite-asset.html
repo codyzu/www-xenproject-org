@@ -48,7 +48,7 @@
   {{ end }}
 
 {{ else if $isDev }}
-  {{ if strings.HasSuffix $assetName ".js" }}
+  {{ if or (strings.HasSuffix $assetName ".js") (strings.HasSuffix $assetName ".tsx") }}
     <script type="module" src="{{ printf "%s%s" $devServer $assetName }}" defer></script>
   {{ else if strings.HasSuffix $assetName ".css" }}
     {{/* Skip CSS inclusion in development mode */}}

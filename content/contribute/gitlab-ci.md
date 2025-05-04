@@ -20,7 +20,7 @@ menus:
     parent: Contribute
     weight: 60
 scripts:
-  - hardware-status.js
+  - hardware-status.tsx
 ---
 
 {{<section md="true" class="content-markdown">}}
