@@ -76,21 +76,19 @@ function parseJobName(name) {
   };
 }
 
-async function initHardwareGrid() {
-  console.log('hello cody');
-  const container = document.getElementById('hardware-grid');
-  if (!container) return;
-
-  const GITLAB_API_URL = 'https://gitlab.com/api/graphql';
-  const PROJECT_PATH = 'xen-project/hardware/xen';
-
+async function getLatestNonScheduledPipeline(apiUrl, projectPath, maxTries = 5) {
   const query = `
-    query getLatestPipeline($projectPath: ID!) {
+    query getLatestPipeline($projectPath: ID!, $after: String) {
       project(fullPath: $projectPath) {
-        pipelines(first: 1) {
+        pipelines(first: 1, after: $after) {
+          pageInfo {
+            endCursor
+            hasNextPage
+          }
           nodes {
             id
             iid
+            source
             jobs {
               nodes {
                 name
@@ -110,23 +108,44 @@ async function initHardwareGrid() {
     }
   `;
 
-  const res = await fetch(GITLAB_API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-      // Add Authorization header only if you use a token
-    },
-    body: JSON.stringify({ query, variables: { projectPath: PROJECT_PATH } })
-  });
+  let afterCursor = null;
+  for (let i = 0; i < maxTries; i++) {
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ query, variables: { projectPath, after: afterCursor } })
+    });
 
-  const data = await res.json();
-  console.log('data', data);
-  if (data.errors) {
-    console.error("GraphQL errors:", data.errors);
-    return;
+    const data = await res.json();
+    if (data.errors) {
+      console.error("GraphQL errors:", data.errors);
+      return null;
+    }
+
+    const page = data?.data?.project?.pipelines;
+    const next = page?.pageInfo?.endCursor;
+    const node = page?.nodes?.[0];
+
+    if (!node) break;
+    if (node.source !== 'schedule') return node;
+
+    afterCursor = next;
   }
+  return null;
+}
 
-  const jobs = data?.data?.project?.pipelines?.nodes?.[0]?.jobs?.nodes || [];
+async function initHardwareGrid() {
+  console.log('hello cody');
+  const container = document.getElementById('hardware-grid');
+  if (!container) return;
+
+  const GITLAB_API_URL = 'https://gitlab.com/api/graphql';
+  const PROJECT_PATH = 'xen-project/hardware/xen';
+
+  const pipeline = await getLatestNonScheduledPipeline(GITLAB_API_URL, PROJECT_PATH);
+  if (!pipeline) return;
+
+  const jobs = pipeline?.jobs?.nodes || [];
   const hardwareJobs = jobs
     .map(job => {
       const parsed = parseJobName(job.name);
@@ -145,7 +164,7 @@ async function initHardwareGrid() {
   // grid.className = 'uno-flex uno-flex-wrap uno-gap-4 uno-justify-start';
   grid.className = 'uno-grid uno-grid-cols-2 sm:uno-grid-cols-2 md:uno-grid-cols-3 lg:uno-grid-cols-4 uno-gap-4 uno-justify-start';
 
-  const pipeline = data?.data?.project?.pipelines?.nodes?.[0];
+  // const pipeline = data?.data?.project?.pipelines?.nodes?.[0];
   hardwareJobs.forEach(job => {
     const div = document.createElement('div');
     const style = STATUS_STYLES[job.status] || STATUS_STYLES.DEFAULT;
