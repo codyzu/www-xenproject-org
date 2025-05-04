@@ -91,6 +91,7 @@ async function getLatestNonScheduledPipeline(apiUrl, projectPath, maxTries = 5) 
             source
             jobs {
               nodes {
+                id
                 name
                 status
                 stage {
@@ -158,56 +159,75 @@ async function initHardwareGrid() {
     .toSorted((a, b) => a.name.localeCompare(b.name));
 
   container.innerHTML = '';
-  container.className = 'uno-section uno-m-t-10';
+  container.className = 'uno-section';
 
-  const grid = document.createElement('div');
-  // grid.className = 'uno-flex uno-flex-wrap uno-gap-4 uno-justify-start';
-  grid.className = 'uno-grid uno-grid-cols-2 sm:uno-grid-cols-2 md:uno-grid-cols-3 lg:uno-grid-cols-4 uno-gap-4 uno-justify-start';
+  // Group jobs by parsed.platform
+  const groupedJobs = hardwareJobs.reduce((acc, job) => {
+    const key = job.parsed.platform || 'unknown';
+    if (!acc[key]) acc[key] = [];
+    acc[key].push(job);
+    return acc;
+  }, {});
 
-  // const pipeline = data?.data?.project?.pipelines?.nodes?.[0];
-  hardwareJobs.forEach(job => {
-    const div = document.createElement('div');
-    const style = STATUS_STYLES[job.status] || STATUS_STYLES.DEFAULT;
-    div.className = clsx(
-      'uno-px-3 uno-py-2 uno-rounded-lg uno-flex uno-flex-col uno-items-start uno-gap-3 uno-text-xs',
-      'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
-      'uno-shadow-xl uno-shadow-gray-300 uno-bg-white uno-text-primary',
-      'even:uno-animate-fade-in-left odd:uno-animate-fade-in-right',
-      // style.color
-    );
-    div.innerHTML = `
-      <div class="uno-flex uno-flex-row uno-justify-between uno-gap-2 uno-items-start">
-        <div class="${getHardwareIcon(job.name)} uno-text-4xl" title="Hardware"></div>
-        <div class="uno-flex-col">
-          <div>Platform: <strong>${job.parsed.platform}</strong></div>
-          <div>Architecture: <strong>${job.parsed.arch}</strong></div>
-          ${job.parsed.mode ? `<div>Mode: <strong>${job.parsed.mode}</strong></div>` : ''}
+  Object.entries(groupedJobs).forEach(([platform, jobs]) => {
+    const heading = document.createElement('h3');
+    heading.textContent = `Platform: ${platform}`;
+    heading.className = 'uno-text-lg uno-font-semibold uno-mb-2 uno-mt-4';
+    container.appendChild(heading);
+
+    const groupGrid = document.createElement('div');
+    groupGrid.className = 'uno-grid uno-grid-cols-2 sm:uno-grid-cols-2 md:uno-grid-cols-3 lg:uno-grid-cols-4 uno-gap-4 uno-justify-start';
+
+    jobs.forEach(job => {
+      const div = document.createElement('div');
+      const style = STATUS_STYLES[job.status] || STATUS_STYLES.DEFAULT;
+      div.className = clsx(
+        'uno-px-3 uno-py-2 uno-rounded-lg uno-flex uno-flex-col uno-items-start uno-gap-3 uno-text-xs',
+        'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
+        'uno-shadow-xl uno-shadow-gray-300 uno-bg-white uno-text-primary',
+        'even:uno-animate-fade-in-left odd:uno-animate-fade-in-right'
+      );
+      div.innerHTML = `
+        <div class="uno-flex uno-items-start uno-gap-2">
+          <div class="${getHardwareIcon(job.name)} uno-text-4xl uno-flex-shrink-0" title="Hardware"></div>
+          <div class="uno-flex uno-gap-1 uno-flex-wrap uno-items-center">
+            ${job.parsed.arch ? `<span class="uno-bg-gray-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs uno-font-semibold">${job.parsed.arch}</span>` : ''}
+            ${job.parsed.mode ? `<span class="uno-bg-green-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs">${job.parsed.mode}</span>` : ''}
+            ${job.parsed.compiler ? `<span class="uno-bg-blue-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs">${job.parsed.compiler}</span>` : ''}
+            ${job.parsed.variant
+              ? job.parsed.variant.split(', ').map(v =>
+                  `<span class="uno-bg-yellow-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs" title="Variant: ${v}">${v}</span>`
+                ).join('')
+              : ''
+            }
+          </div>
         </div>
-      </div>
-      
-      <div class="uno-flex uno-items-center uno-gap-2 uno-text-right uno-rounded-full uno-p-x-2 uno-p-y-1 uno-bg-secondary uno-text-white">
-        <div class="${style.icon} uno-text-base ${style.color}" title="${job.status}"></div>
-        <div class="">${job.detailedStatus.label}</div>
-      </div>
 
-      <details class="uno-flex uno-flex-col uno-gap-1 uno-group">
-        <summary class="marker:uno-hidden uno-list-none uno-flex uno-flex-row uno-gap-2 uno-items-center uno-text-action-text hover:uno-cursor-pointer">
-          <div>details</div>
-          <div class="i-fa6-solid-arrow-right group-open:uno-rotate-90 uno-transition-transform uno-duration-300 uno-ease-out" title="${job.status}"></div>
-        </summary>
-        <div>${job.name}</div>
-      </details>
-    `;
-    grid.appendChild(div);
+        <div class="uno-flex uno-items-center uno-gap-2 uno-text-right uno-rounded-full uno-p-x-2 uno-p-y-1 uno-bg-secondary uno-text-white">
+          <div class="${style.icon} uno-text-base ${style.color}" title="${job.status}"></div>
+          <div class="">${job.detailedStatus.label}</div>
+        </div>
+
+        <details class="uno-flex uno-flex-col uno-gap-1 uno-group">
+          <summary class="marker:uno-hidden uno-list-none uno-flex uno-flex-row uno-gap-2 uno-items-center uno-text-action-text hover:uno-cursor-pointer">
+            <div>details</div>
+            <div class="i-fa6-solid-arrow-right group-open:uno-rotate-90 uno-transition-transform uno-duration-300 uno-ease-out" title="${job.status}"></div>
+          </summary>
+          <div>${job.name}</div>
+          <a href="https://gitlab.com/xen-project/hardware/xen/-/jobs/${job.id.split('/').pop()}" target="_blank" class="uno-text-blue-600 hover:uno-underline uno-text-xs">View job on GitLab</a>
+        </details>
+      `;
+      groupGrid.appendChild(div);
+    });
+
+    container.appendChild(groupGrid);
   });
-
-  container.appendChild(grid);
 
   if (pipeline?.id && pipeline?.iid) {
     const numericId = pipeline.id.split('/').pop();
     const link = document.createElement('a');
     link.href = `https://gitlab.com/${PROJECT_PATH}/-/pipelines/${numericId}`;
-    link.textContent = 'View on GitLab';
+    link.textContent = 'View pipeline on GitLab';
     link.className = 'uno-block uno-mt-4 uno-text-blue-600 hover:uno-underline uno-text-sm';
     container.appendChild(link);
   }
