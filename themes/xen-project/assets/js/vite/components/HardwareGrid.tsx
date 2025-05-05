@@ -189,11 +189,11 @@ function JobGroup({ platform, jobs, index }: { platform: string; jobs: ParsedJob
       ref={groupRef}
       data-platform={platform}
       class={clsx(
-        'uno-opacity-0 uno-animate-duration-300 uno-animate-fill-forwards uno-animate-ease-out',
+        'uno-opacity-0 uno-animate-fill-forwards',
         isVisible &&
           (index % 2 === 0
-            ? 'uno-animate-fade-in-left'
-            : 'uno-animate-fade-in-right')
+            ? 'uno-animate-fade-in-left-short'
+            : 'uno-animate-fade-in-right-short')
       )}
     >
       <h3 class="uno-text-lg uno-font-semibold uno-mb-2 uno-mt-4">Platform: {platform}</h3>

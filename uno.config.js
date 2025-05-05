@@ -42,7 +42,27 @@ export default defineConfig({
         'on-fill': '#1e2b0e',
         text: '#567c2a',
       }
-    }
+    },
+    animation: {
+      keyframes: {
+        'fade-in-left-short': `{
+          from { opacity:0;transform:translate3d(-150px,0,0) }
+          to { opacity:1;transform:translate3d(0,0,0) }
+        }`,
+        'fade-in-right-short': `{
+          from { opacity:0;transform:translate3d(150px,0,0) }
+          to { opacity:1;transform:translate3d(0,0,0) }
+        }`,
+      },
+      durations: {
+        'fade-in-left-short': '0.8s',
+        'fade-in-right-short': '0.8s',
+      },
+      timingFns: {
+        'fade-in-left-short': 'ease-out',
+        'fade-in-right-short': 'ease-out',
+      },
+    },
   },
   shortcuts: {
     'uno-section': `uno-section-base uno-px-3 md:uno-px-10 uno-max-w-[1392px]`,

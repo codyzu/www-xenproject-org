@@ -91,14 +91,7 @@ Real hardware tests cover booting Dom0, DomU, and Dom0less setups, PCI passthrou
 
 {{< diagram-test-hardware >}}
 
-{{<section>}}
-{{<media-block
-  media="/img/flatline/data-process-with-xen-logo.svg"
-  alt="Xen Project GitLab CI"
-  animate="true"
-  mediaPosition="right"
->}}
-{{<md>}}
+{{<section md="true" class="content-markdown">}}
 ## Bring Your Own Hardware (BYOH) 🛠️
 
 One of Xen's most powerful features is the ability to **connect your own hardware to the public CI grid**:
@@ -112,10 +105,7 @@ This is ideal for:
 - 🚗 **Automotive teams** testing ECUs or infotainment platforms
 - 🏭 **Industrial users** with specialized hardware or I/O
 - 📦 **Edge/IoT deployments** using Raspberry Pi, Rockchip, or custom boards
-{{</md>}}
-{{</media-block>}}
 {{</section>}}
-
 
 {{<section md="true" class="content-markdown">}}
 ## Test Coverage Highlights
