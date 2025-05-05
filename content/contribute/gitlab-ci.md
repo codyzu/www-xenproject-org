@@ -24,43 +24,82 @@ scripts:
 ---
 
 {{<section md="true" class="content-markdown">}}
-## Xen CI on GitLab ⚙️
+# GitLab CI: The Primary Test Infrastructure for Xen
+
+The Xen Project relies on GitLab CI as its primary test infrastructure, enabling continuous integration and validation across a wide range of hardware and software configurations. This system ensures that every change to Xen is thoroughly tested, helping maintain quality and stability. Explore how it works, what tests are run, and how you can contribute or integrate your own hardware into the testing grid.
+{{</section>}}
+
+{{<section>}}
+{{<media-block
+  media="/img/flatline/data_and_settings.svg"
+  alt="Xen Project GitLab CI"
+  animate="true"
+>}}
+{{<md>}}
+## What is GitLab CI?
 
 Xen Project’s upstream development is backed by a powerful, public GitLab CI system. It runs over 100 automated tests across multiple architectures and hardware platforms, every time new code is pushed.
 
-But this isn’t your typical cloud CI setup.
+But this isn’t your typical cloud CI setup...
+{{</md>}}
+{{</media-block>}}
+{{</section>}}
 
----
+{{<section>}}
+{{<media-block
+  media="{{< diagram-ci >}}"
+  alt="Xen Project GitLab CI"
+  animate="true"
+  mediaPosition="right"
+>}}
+{{<md>}}
+## CI Workflow Overview
 
-### Why This Matters for You ✅
+Xen’s GitLab CI system orchestrates build and test jobs across various environments to ensure code quality and hardware compatibility.
 
-Whether you're building cloud infrastructure or deploying Xen in **industrial**, **automotive**, or **embedded systems**, validation on real hardware is critical.
+## Build Jobs
 
-With Xen’s CI system:
+Xen’s GitLab CI includes build jobs across multiple Linux distributions such as Debian, Fedora, and Alpine, ensuring compatibility and successful builds in diverse environments.
 
-- You can **connect your own devices** (development boards, embedded targets, automotive platforms) directly to the test grid.
-- Every commit to Xen can be **automatically tested against your hardware**, with full traceability and access to logs.
-- There's **no need to pay for cloud lab time**. You can run and debug tests directly in your own environment.
+## Test Jobs
 
-This is a **key differentiator** that sets Xen apart from both open source and proprietary hypervisors.  
-**You stay in control, and testing fits into your workflow, not the other way around.**
+To validate the builds, Xen's GitLab CI includes test jobs that fall into 2 categories: QEMU and Hardware.
 
----
+{{</md>}}
+{{</media-block>}}
+{{</section>}}
 
-### What the CI Tests 🧪
+{{<section>}}
+{{<media-block
+  media="{{< diagram-test-qemu >}}"
+  alt="Xen Project GitLab CI"
+  animate="true"
+>}}
+{{<md>}}
+### Test Jobs: QEMU
 
-Xen’s GitLab CI covers a wide range of functionality:
+Virtualization tests are performed using QEMU emulation, allowing rapid validation of Xen features in a virtualized environment.
+{{</md>}}
+{{</media-block>}}
+{{</section>}}
 
-- **Build jobs** across Linux distributions (Debian, Fedora, Alpine, etc.)
-- **Virtualization tests** using QEMU and real hardware
-- **Boot tests** for Dom0, DomU, and Dom0less setups
-- PCI passthrough and suspend/resume tests
-- Static analysis (e.g. cppcheck, MISRA C)
-- Architectures: **x86**, **ARM32**, **ARM64**, **RISC-V**, **PowerPC**
+{{<section md="true" class="content-markdown">}}
+### Test Jobs: Hardware
 
----
+Real hardware tests cover booting Dom0, DomU, and Dom0less setups, PCI passthrough, suspend/resume functionality, and static analysis tools like cppcheck and MISRA C.
+{{</section>}}
 
-### Bring Your Own Hardware (BYOH) 🛠️
+{{< diagram-test-hardware >}}
+
+{{<section>}}
+{{<media-block
+  media="/img/flatline/data-process-with-xen-logo.svg"
+  alt="Xen Project GitLab CI"
+  animate="true"
+  mediaPosition="right"
+>}}
+{{<md>}}
+## Bring Your Own Hardware (BYOH) 🛠️
 
 One of Xen's most powerful features is the ability to **connect your own hardware to the public CI grid**:
 
@@ -73,23 +112,48 @@ This is ideal for:
 - 🚗 **Automotive teams** testing ECUs or infotainment platforms
 - 🏭 **Industrial users** with specialized hardware or I/O
 - 📦 **Edge/IoT deployments** using Raspberry Pi, Rockchip, or custom boards
+{{</md>}}
+{{</media-block>}}
+{{</section>}}
 
----
 
-### Live Test Grid 📊
+{{<section md="true" class="content-markdown">}}
+## Test Coverage Highlights
+
+Xen’s GitLab CI covers a wide range of functionality:
+
+- Architectures: **x86**, **ARM32**, **ARM64**, **RISC-V**, **PowerPC**
+- PCI passthrough and suspend/resume tests
+- Static analysis (e.g. cppcheck, MISRA C)
+{{</section>}}
+
+{{<section md="true" class="content-markdown">}}
+## Live Test Grid 📊
 
 Here’s a real-time snapshot of the latest hardware tests running in the Xen CI system:
 
+[View on GitLab](https://gitlab.com/xen-project/hardware/xen/-/pipelines)
 {{</section>}}
 
 {{< div "hardware-grid" >}}{{</div>}}
 
 {{<section md="true" class="content-markdown">}}
+## Why This Matters for You ✅
 
-[View on GitLab](https://gitlab.com/xen-project/hardware/xen/-/pipelines)
+Whether you're building cloud infrastructure or deploying Xen in **industrial**, **automotive**, or **embedded systems**, validation on real hardware is critical.
 
----
+With Xen’s CI system:
 
+- You can **connect your own devices** (development boards, embedded targets, automotive platforms) directly to the test grid.
+- Every commit to Xen can be **automatically tested against your hardware**, with full traceability and access to logs.
+- There's **no need to pay for cloud lab time**. You can run and debug tests directly in your own environment.
+
+This is a **key differentiator** that sets Xen apart from both open source and proprietary hypervisors.  
+**You stay in control, and testing fits into your workflow, not the other way around.**
+{{</section>}}
+
+{{<section class="section-square-primary">}}
+{{<md>}}
 ## Get Involved 🤝
 
 Want to contribute hardware or learn more?
@@ -99,5 +163,20 @@ Want to contribute hardware or learn more?
 - ✉️ **Email our Community Manager**: [community.manager@xenproject.org](mailto:community.manager@xenproject.org)
 
 We’re always happy to help you get started or connect with others using Xen in production.
+{{</md>}}
+{{</section>}}
 
+{{<section>}}
+{{<media-block
+  title="Xen Project GitLab CI"
+  media="https://www.youtube.com/embed/9_DV_KZ3d9M"
+  alt="Xen Project GitLab CI"
+  animate="true"
+>}}
+{{<md>}}
+### Watch the Full Overview 🎥
+
+Want a deeper dive into how Xen’s CI works? Check out this talk from the 2023 Xen Developer & Design Summit
+{{</md>}}
+{{</media-block>}}
 {{</section>}}
