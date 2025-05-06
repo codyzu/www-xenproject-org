@@ -117,12 +117,13 @@ Xen’s GitLab CI covers a wide range of functionality:
 - Static analysis (e.g. cppcheck, MISRA C)
 {{</section>}}
 
-{{<section md="true" class="content-markdown">}}
+{{<section class="content-markdown">}}
+{{<md>}}
 ## Live Test Grid 📊
 
 Here’s a real-time snapshot of the latest hardware tests running in the Xen CI system:
-
-[View on GitLab](https://gitlab.com/xen-project/hardware/xen/-/pipelines)
+{{</md>}}
+{{<icon-button href="https://gitlab.com/xen-project/hardware/xen/-/pipelines">}}View on GitLab{{</icon-button>}}
 {{</section>}}
 
 {{< div "hardware-grid" >}}{{</div>}}

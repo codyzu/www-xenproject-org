@@ -41,7 +41,7 @@
         </div>
 
         {{ if $paper.url }}
-          <icon-button class="uno-self-start" href="{{ $paper.url }}"><div>Read the Full Paper</div></icon-button>
+          <div data-component="IconButton" data-href="{{ $paper.url }}" data-target="_blank">Read the Full Paper</div>
         {{ end }}
       {{ end }}
     </article>

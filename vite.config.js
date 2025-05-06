@@ -1,43 +1,33 @@
 import { defineConfig } from 'vite'
 import UnoCSS from 'unocss/vite'
-import { plugin as markdownPlugin } from 'vite-plugin-markdown'
 import preact from '@preact/preset-vite';
 
 export default defineConfig({
   base: '/',
   plugins: [
-    UnoCSS(),
     UnoCSS({
-      mode: 'shadow-dom',
+      extractors: [
+        {
+          extractor: (code) => code.match(/[\w:/-]+(?<!:)/g) || [],
+          extensions: ['md'],
+        },
+      ],
     }),
-    markdownPlugin({
-      mode: ['html'], // Process Markdown as HTML
-      markdownIt: {
-        html: true, // Enable HTML in Markdown
-      },
-    }),
-    {
-      // We don't want to output the markdown files after unocss has processed them
-      name: 'remove-markdown-output',
-      enforce: 'pre',
-      transform(code, id) {
-        if (id.endsWith('.md')) {
-          return ''; // Return an empty string to prevent output
-        }
-      },
-    },
-    preact(), // Add Preact plugin
+    preact(),
   ],
   build: {
     manifest: true,
     outDir: 'themes/xen-project/static',
     rollupOptions: {
       input: {
-        'bundle-main': './themes/xen-project/assets/js/vite/bundle-main.js',
+        'bundle-main': './themes/xen-project/assets/js/vite/bundle-main.tsx',
         'hardware-status': './themes/xen-project/assets/js/vite/hardware-status.tsx',
-        // add more as needed
       },
       output: {
+        manualChunks: {
+          // Split out the vendor code into separate chunks
+          preact: ['preact', 'preact/hooks']
+        },
         entryFileNames: 'js/[name]-[hash].js',
         assetFileNames: 'css/[name]-[hash].css',
       },
@@ -49,4 +39,8 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
   },
+  resolve: {
+    // Ensure preact is only bundled once
+    dedupe: ['preact', 'preact/hooks']
+  }
 })

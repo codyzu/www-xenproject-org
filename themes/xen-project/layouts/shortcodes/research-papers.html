@@ -69,7 +69,7 @@
               {{ delimit $sortedAuthors ", " }}
             </div>
 
-            <icon-button class="uno-self-start" href="{{ .url }}">Read the Full Paper</icon-button>
+            <div data-component="IconButton" data-href="{{ .url }}" data-target="_blank">Read the Full Paper</div>
           </td>
         </tr>
       {{ end }}

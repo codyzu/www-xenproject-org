@@ -276,7 +276,7 @@ export function HardwareGrid() {
   }
 
   return (
-    <div class="uno-section">
+    <div class="uno-section-nested">
       {Object.entries(grouped).map(([platform, jobs], index) => (
         <JobGroup platform={platform} jobs={jobs} index={index} />
       ))}
