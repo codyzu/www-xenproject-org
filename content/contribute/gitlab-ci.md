@@ -65,17 +65,10 @@ Xen’s GitLab CI includes build jobs across multiple Linux distributions such a
 
 To validate the builds, Xen's GitLab CI includes test jobs that fall into 2 categories: QEMU and Hardware.
 
-{{</md>}}
-{{</media-block>}}
-{{</section>}}
+### Test Jobs: Hardware
 
-{{<section>}}
-{{<media-block
-  media="{{< diagram-test-qemu >}}"
-  alt="Xen Project GitLab CI"
-  animate="true"
->}}
-{{<md>}}
+Real hardware tests cover booting Dom0, DomU, and Dom0less setups, PCI passthrough, suspend/resume functionality, and static analysis tools like cppcheck and MISRA C.
+
 ### Test Jobs: QEMU
 
 Virtualization tests are performed using QEMU emulation, allowing rapid validation of Xen features in a virtualized environment.
@@ -84,12 +77,21 @@ Virtualization tests are performed using QEMU emulation, allowing rapid validati
 {{</section>}}
 
 {{<section md="true" class="content-markdown">}}
-### Test Jobs: Hardware
+## Compare Test Job Types 🔍
 
-Real hardware tests cover booting Dom0, DomU, and Dom0less setups, PCI passthrough, suspend/resume functionality, and static analysis tools like cppcheck and MISRA C.
+Xen CI supports both virtualized test environments and real hardware validation. Here's a quick side-by-side look at how QEMU-based and hardware-based test jobs differ:
 {{</section>}}
 
-{{< diagram-test-hardware >}}
+{{<section class="container">}}
+<div class="uno-flex uno-flex-col lg:uno-flex-row uno-gap-12 uno-justify-center uno-mt-6">
+  <div class="uno-opacity-0 uno-animate-fill-forwards" data-uno-animate="uno-animate-fade-in-left-short">
+    {{< diagram-test-qemu >}}
+  </div>
+  <div class="uno-opacity-0 uno-animate-fill-forwards" data-uno-animate="uno-animate-fade-in-right-short">
+    {{< diagram-test-hardware >}}
+  </div>
+</div>
+{{</section>}}
 
 {{<section md="true" class="content-markdown">}}
 ## Bring Your Own Hardware (BYOH) 🛠️
