@@ -56,7 +56,11 @@ But this isn’t your typical cloud CI setup...
 ## CI Workflow Overview
 
 Xen’s GitLab CI system orchestrates build and test jobs across various environments to ensure code quality and hardware compatibility.
+{{</md>}}
 
+{{<icon-button href="https://gitlab.com/xen-project/hardware/xen/-/pipelines">}}View on GitLab{{</icon-button>}}
+
+{{<md>}}
 ## Build Jobs
 
 Xen’s GitLab CI includes build jobs across multiple Linux distributions such as Debian, Fedora, and Alpine, ensuring compatibility and successful builds in diverse environments.
@@ -108,9 +112,7 @@ This is ideal for:
 - 🚗 **Automotive teams** testing ECUs or infotainment platforms
 - 🏭 **Industrial users** with specialized hardware or I/O
 - 📦 **Edge/IoT deployments** using Raspberry Pi, Rockchip, or custom boards
-{{</section>}}
 
-{{<section md="true" class="content-markdown">}}
 ## Test Coverage Highlights
 
 Xen’s GitLab CI covers a wide range of functionality:
@@ -118,15 +120,10 @@ Xen’s GitLab CI covers a wide range of functionality:
 - Architectures: **x86**, **ARM32**, **ARM64**, **RISC-V**, **PowerPC**
 - PCI passthrough and suspend/resume tests
 - Static analysis (e.g. cppcheck, MISRA C)
-{{</section>}}
 
-{{<section class="content-markdown">}}
-{{<md>}}
 ## Live Test Grid 📊
 
 Here’s a real-time snapshot of the latest hardware tests running in the Xen CI system:
-{{</md>}}
-{{<icon-button href="https://gitlab.com/xen-project/hardware/xen/-/pipelines">}}View on GitLab{{</icon-button>}}
 {{</section>}}
 
 {{< div "hardware-grid" >}}{{</div>}}

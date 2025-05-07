@@ -3,6 +3,7 @@ import { useEffect, useState } from 'preact/hooks';
 import { GraphQLResponseSchema, ParsedJob } from './schema';
 import JobGroup from './JobGroup';
 import { parseJobName } from './parse-job-name';
+import IconButton from '../IconButton';
 
 async function getLatestNonScheduledPipeline(apiUrl: string, projectPath: string, maxTries = 5) {
   const query = `
@@ -96,15 +97,10 @@ export function HardwareGrid() {
       {Array.from(jobs.entries()).map(([platform, jobs], index) => (
         <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
       ))}
-      {pipeline && (
-        <a
-          href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
-          class="uno-block uno-mt-4 uno-text-blue-600 hover:uno-underline uno-text-sm"
-          target="_blank"
-        >
-          View pipeline on GitLab
-        </a>
-      )}
+      {pipeline && (<IconButton
+        href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
+        class="uno-self-start"
+      >View Pipeline on GitLab</IconButton>)}
     </div>
   );
 }
