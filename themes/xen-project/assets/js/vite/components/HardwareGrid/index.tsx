@@ -99,7 +99,7 @@ export function HardwareGrid() {
       ))}
       {pipeline && (<IconButton
         href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
-        class="uno-self-start"
+        class="uno-self-start uno-mt-10"
       >View Pipeline on GitLab</IconButton>)}
     </div>
   );
