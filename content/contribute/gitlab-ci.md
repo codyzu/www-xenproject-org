@@ -65,13 +65,14 @@ Xen’s GitLab CI includes build jobs across multiple Linux distributions such a
 
 To validate the builds, Xen's GitLab CI includes test jobs that fall into 2 categories: QEMU and Hardware.
 
-### Test Jobs: Hardware
+### QEMU
+
+Most tests are performed using QEMU emulation, allowing rapid validation of Xen features in an emulated environment.
+
+### Hardware
 
 Real hardware tests cover booting Dom0, DomU, and Dom0less setups, PCI passthrough, suspend/resume functionality, and static analysis tools like cppcheck and MISRA C.
 
-### Test Jobs: QEMU
-
-Virtualization tests are performed using QEMU emulation, allowing rapid validation of Xen features in a virtualized environment.
 {{</md>}}
 {{</media-block>}}
 {{</section>}}
@@ -79,7 +80,7 @@ Virtualization tests are performed using QEMU emulation, allowing rapid validati
 {{<section md="true" class="content-markdown">}}
 ## Compare Test Job Types 🔍
 
-Xen CI supports both virtualized test environments and real hardware validation. Here's a quick side-by-side look at how QEMU-based and hardware-based test jobs differ:
+Xen CI supports both emulated test environments and real hardware validation. Here's a quick side-by-side look at how QEMU-based and hardware-based test jobs differ:
 {{</section>}}
 
 {{<section class="container">}}
