@@ -1,3 +1,10 @@
+if(import.meta.env.MODE !== 'production') {
+  // @ts-expect-error no types for preact/debug
+  import('preact/debug').then(() => {
+    console.log('Preact debug mode enabled');
+  })
+}
+
 import { h, render } from 'preact';
 import IconButton from './components/IconButton';
 import 'uno.css';
