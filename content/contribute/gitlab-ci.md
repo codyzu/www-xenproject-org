@@ -29,6 +29,31 @@ scripts:
 The Xen Project relies on GitLab CI as its primary test infrastructure, enabling continuous integration and validation across a wide range of hardware and software configurations. This system ensures that every change to Xen is thoroughly tested, helping maintain quality and stability. Explore how it works, what tests are run, and how you can contribute or integrate your own hardware into the testing grid.
 {{</section>}}
 
+{{<section md="true" class="section-square-rounded">}}
+### Unlike anything else...
+\
+🚀 Unlike most open source projects, Xen CI lets you:
+- 🛠️ [Run tests on your own hardware](#bring-your-own-hardware-byoh-) from your own lab
+- 📡 See [live public results](#live-test-grid-) from the global test grid
+
+This level of transparency and extensibility is practically unheard of in other hypervisor projects.
+{{</section>}}
+
+{{<section md="true" class="content-markdown">}}
+## Why This Matters for You ✅
+
+Whether you're building cloud infrastructure or deploying Xen in **industrial**, **automotive**, or **embedded systems**, validation on real hardware is critical.
+
+With Xen’s CI system:
+
+- You can **connect your own devices** (development boards, embedded targets, automotive platforms) directly to the test grid
+- Every commit to Xen can be **automatically tested against your hardware**, with full traceability and access to logs
+- There's **no need to pay for cloud lab time**. You can run and debug tests directly in your own environment
+
+This is a **key differentiator** that sets Xen apart from both open source and proprietary hypervisors.  
+**You stay in control, and testing fits into your workflow, not the other way around.**
+{{</section>}}
+
 {{<section>}}
 {{<media-block
   media="/img/flatline/data_and_settings.svg"
@@ -41,6 +66,22 @@ The Xen Project relies on GitLab CI as its primary test infrastructure, enabling
 Xen Project’s upstream development is backed by a powerful, public GitLab CI system. It runs over 100 automated tests across multiple architectures and hardware platforms, every time new code is pushed.
 
 But this isn’t your typical cloud CI setup...
+{{</md>}}
+{{</media-block>}}
+{{</section>}}
+
+{{<section>}}
+{{<media-block
+  title="Xen Project GitLab CI"
+  media="https://www.youtube.com/embed/9_DV_KZ3d9M"
+  alt="Xen Project GitLab CI"
+  animate="true"
+  mediaPosition="right"
+>}}
+{{<md>}}
+### Watch the Full Overview 🎥
+
+Want a deeper dive into how Xen’s CI works? Check out this talk from the 2023 Xen Developer & Design Summit
 {{</md>}}
 {{</media-block>}}
 {{</section>}}
@@ -61,6 +102,9 @@ Xen’s GitLab CI system orchestrates build and test jobs across various environ
 {{<icon-button href="https://gitlab.com/xen-project/hardware/xen/-/pipelines">}}View on GitLab{{</icon-button>}}
 
 {{<md>}}
+\
+Every CI pipeline starts by building Xen across a wide range of Linux distributions. Here’s how that works.
+
 ## Build Jobs
 
 Xen’s GitLab CI includes build jobs across multiple Linux distributions such as Debian, Fedora, and Alpine, ensuring compatibility and successful builds in diverse environments.
@@ -82,6 +126,8 @@ Real hardware tests cover booting Dom0, DomU, and Dom0less setups, PCI passthrou
 {{</section>}}
 
 {{<section md="true" class="content-markdown">}}
+Wondering how the virtual and hardware tests compare? Here’s a side-by-side look.
+
 ## Compare Test Job Types 🔍
 
 Xen CI supports both emulated test environments and real hardware validation. Here's a quick side-by-side look at how QEMU-based and hardware-based test jobs differ:
@@ -128,21 +174,6 @@ Here’s a real-time snapshot of the latest hardware tests running in the Xen CI
 
 {{< div "hardware-grid" >}}{{</div>}}
 
-{{<section md="true" class="content-markdown">}}
-## Why This Matters for You ✅
-
-Whether you're building cloud infrastructure or deploying Xen in **industrial**, **automotive**, or **embedded systems**, validation on real hardware is critical.
-
-With Xen’s CI system:
-
-- You can **connect your own devices** (development boards, embedded targets, automotive platforms) directly to the test grid.
-- Every commit to Xen can be **automatically tested against your hardware**, with full traceability and access to logs.
-- There's **no need to pay for cloud lab time**. You can run and debug tests directly in your own environment.
-
-This is a **key differentiator** that sets Xen apart from both open source and proprietary hypervisors.  
-**You stay in control, and testing fits into your workflow, not the other way around.**
-{{</section>}}
-
 {{<section class="section-square-primary">}}
 {{<md>}}
 ## Get Involved 🤝
@@ -155,19 +186,4 @@ Want to contribute hardware or learn more?
 
 We’re always happy to help you get started or connect with others using Xen in production.
 {{</md>}}
-{{</section>}}
-
-{{<section>}}
-{{<media-block
-  title="Xen Project GitLab CI"
-  media="https://www.youtube.com/embed/9_DV_KZ3d9M"
-  alt="Xen Project GitLab CI"
-  animate="true"
->}}
-{{<md>}}
-### Watch the Full Overview 🎥
-
-Want a deeper dive into how Xen’s CI works? Check out this talk from the 2023 Xen Developer & Design Summit
-{{</md>}}
-{{</media-block>}}
 {{</section>}}
