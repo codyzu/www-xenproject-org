@@ -34,9 +34,18 @@ The Xen Project relies on GitLab CI as its primary test infrastructure, enabling
 \
 🚀 Unlike most open source projects, Xen CI lets you:
 - 🛠️ [Run tests on your own hardware](#bring-your-own-hardware-byoh-) from your own lab
-- 📡 See [live public results](#live-test-grid-) from the global test grid
+- 📡 See [live public results](#-live-test-grid-see-xen-ci-in-action) from the global test grid
 
 This level of transparency and extensibility is practically unheard of in other hypervisor projects.
+{{</section>}}
+
+{{<section class="content-markdown">}}
+{{<md>}}
+## 🌐 Live Test Grid: See Xen CI in Action
+
+Want proof? Here's a real-time view of Xen running on real boards across our global test grid:
+{{</md>}}
+{{< div "hardware-grid" >}}{{</div>}}
 {{</section>}}
 
 {{<section md="true" class="content-markdown">}}
@@ -145,6 +154,18 @@ Xen CI supports both emulated test environments and real hardware validation. He
 {{</section>}}
 
 {{<section md="true" class="content-markdown">}}
+## Test Coverage Highlights
+
+Xen CI covers a wide range of scenarios to ensure high-quality releases across diverse environments:
+
+- ✅ Architectures: **x86**, **ARM32**, **ARM64**, **RISC-V**, **PowerPC**
+- 🔁 Features: Dom0 boot, DomU launch, Dom0less, suspend/resume, PCI passthrough
+- 🧪 Tools: Static analysis with **cppcheck**, **MISRA C**, and more
+- 🧩 Environments: QEMU virtualized tests and real baremetal boards
+- 🧷 OS coverage: Debian, Fedora, Alpine, and FreeBSD (via Cirrus-CI)
+
+> Additional testing is also performed on [Cirrus-CI](https://cirrus-ci.com/github/xen-project/xen), especially for FreeBSD builds and QEMU smoke tests.
+
 ## Bring Your Own Hardware (BYOH) 🛠️
 
 One of Xen's most powerful features is the ability to **connect your own hardware to the public CI grid**:
@@ -159,12 +180,7 @@ This is ideal for:
 - 🏭 **Industrial users** with specialized hardware or I/O
 - 📦 **Edge/IoT deployments** using Raspberry Pi, Rockchip, or custom boards
 
-## 🌐 Live Test Grid: See Xen CI in Action
-
-Here’s a real-time snapshot of the latest hardware tests running in the Xen CI system:
 {{</section>}}
-
-{{< div "hardware-grid" >}}{{</div>}}
 
 {{<section class="section-square-primary">}}
 {{<md>}}
@@ -179,5 +195,3 @@ Want to test Xen on your own hardware? Want to learn more?
 We’re always happy to help you get started or connect with others using Xen in production.
 {{</md>}}
 {{</section>}}
-
-
