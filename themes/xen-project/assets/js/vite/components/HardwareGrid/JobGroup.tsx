@@ -74,13 +74,21 @@ export default function JobGroup({ platform, jobs, index }: { platform: string; 
           return (
             <div
               class={clsx(
-                'uno-px-3 uno-py-2 uno-rounded-lg uno-flex uno-flex-col uno-items-start uno-gap-3 uno-text-xs',
+                'uno-px-3 uno-py-4 uno-rounded-lg uno-flex uno-flex-col uno-items-start uno-gap-3 uno-text-xs',
                 'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
                 'uno-shadow-xl uno-shadow-gray-300 uno-bg-white uno-text-primary'
               )}
             >
               <div class="uno-flex uno-items-start uno-gap-2">
-                {job.parsed.icons.map(icon => (<div key={icon} class={clsx(icon, 'uno-text-4xl uno-flex-shrink-0 uno-text-secondary')} />))}
+                <div class="uno-flex uno-flex-col uno-gap-2 uno-items-start">
+                  <div class="uno-flex uno-gap-2">
+                    {job.parsed.icons.map(icon => (<div key={icon} class={clsx(icon, 'uno-text-4xl uno-flex-shrink-0 uno-text-secondary')} />))}
+                  </div>
+                  <div class="uno-flex uno-items-center uno-gap-2 uno-text-right uno-rounded-full uno-p-x-1 uno-p-r-2 uno-p-y-1 uno-bg-secondary uno-text-white">
+                    <div class={`${style.icon} uno-text-base ${style.color}`} title={job.status}></div>
+                    <div>{job.detailedStatus.label}</div>
+                  </div>
+                </div>
                 <div class="uno-flex uno-gap-1 uno-flex-wrap uno-items-center">
                   <span class="uno-bg-gray-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs uno-font-semibold">{job.parsed.arch}</span>
                   {job.parsed.compiler && <span class="uno-bg-blue-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs">{job.parsed.compiler}</span>}
@@ -88,10 +96,6 @@ export default function JobGroup({ platform, jobs, index }: { platform: string; 
                     <span class="uno-bg-yellow-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs" title={`Variant: ${v}`}>{v}</span>
                   ))}
                 </div>
-              </div>
-              <div class="uno-flex uno-items-center uno-gap-2 uno-text-right uno-rounded-full uno-p-x-1 uno-p-r-2 uno-p-y-1 uno-bg-secondary uno-text-white">
-                <div class={`${style.icon} uno-text-base ${style.color}`} title={job.status}></div>
-                <div>{job.detailedStatus.label}</div>
               </div>
               <details class="uno-flex uno-flex-col uno-gap-1 uno-group">
                 <summary class="marker:uno-hidden uno-list-none uno-flex uno-flex-row uno-gap-2 uno-items-center uno-text-action-text hover:uno-cursor-pointer">
