@@ -1,9 +1,10 @@
 ---
-title: GitLab CI Integration
+title: Continuous Integration
 description: Learn how to integrate custom hardware test runners into the Xen Project's GitLab CI pipeline for seamless testing on every build.
 keywords:
   - Xen Project
   - GitLab CI
+  - Cirrus CI
   - CI
   - custom hardware testing
   - CI test runners
@@ -164,7 +165,7 @@ Xen CI covers a wide range of scenarios to ensure high-quality releases across d
 - 🧩 Environments: QEMU virtualized tests and real baremetal boards
 - 🧷 OS coverage: Debian, Fedora, Alpine, and FreeBSD (via Cirrus-CI)
 
-> Additional testing is also performed on [Cirrus-CI](https://cirrus-ci.com/github/xen-project/xen), especially for FreeBSD builds and QEMU smoke tests.
+> Additional testing is also performed on [Cirrus-CI](https://cirrus-ci.com/github/xen-project/xen) for [FreeBSD](http://freebsd.org/) builds using a full [LLVM](http://llvm.org/) based toolchain.
 
 ## Bring Your Own Hardware (BYOH) 🛠️
 
