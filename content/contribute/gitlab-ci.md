@@ -79,7 +79,7 @@ But this isn’t your typical cloud CI setup...
   mediaPosition="right"
 >}}
 {{<md>}}
-### Watch the Full Overview 🎥
+### 🎥 Watch: GitLab CI in Action at Xen Summit
 
 Want a deeper dive into how Xen’s CI works? Check out this talk from the 2023 Xen Developer & Design Summit
 {{</md>}}
@@ -128,7 +128,7 @@ Real hardware tests cover booting Dom0, DomU, and Dom0less setups, PCI passthrou
 {{<section md="true" class="content-markdown">}}
 Wondering how the virtual and hardware tests compare? Here’s a side-by-side look.
 
-## Compare Test Job Types 🔍
+## QEMU vs Hardware: How They Differ 🔍
 
 Xen CI supports both emulated test environments and real hardware validation. Here's a quick side-by-side look at how QEMU-based and hardware-based test jobs differ:
 {{</section>}}
@@ -159,15 +159,7 @@ This is ideal for:
 - 🏭 **Industrial users** with specialized hardware or I/O
 - 📦 **Edge/IoT deployments** using Raspberry Pi, Rockchip, or custom boards
 
-## Test Coverage Highlights
-
-Xen’s GitLab CI covers a wide range of functionality:
-
-- Architectures: **x86**, **ARM32**, **ARM64**, **RISC-V**, **PowerPC**
-- PCI passthrough and suspend/resume tests
-- Static analysis (e.g. cppcheck, MISRA C)
-
-## Live Test Grid 📊
+## 🌐 Live Test Grid: See Xen CI in Action
 
 Here’s a real-time snapshot of the latest hardware tests running in the Xen CI system:
 {{</section>}}
@@ -178,7 +170,7 @@ Here’s a real-time snapshot of the latest hardware tests running in the Xen CI
 {{<md>}}
 ## Get Involved 🤝
 
-Want to contribute hardware or learn more?
+Want to test Xen on your own hardware? Want to learn more?
 
 - 💬 **Join the discussion** on [matrix](/resources/matrix/)
 - 📬 **Subscribe to the [mailing lists](/resources/mailing-lists/)**
@@ -187,3 +179,5 @@ Want to contribute hardware or learn more?
 We’re always happy to help you get started or connect with others using Xen in production.
 {{</md>}}
 {{</section>}}
+
+
