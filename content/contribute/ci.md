@@ -130,7 +130,7 @@ Most tests are performed using QEMU emulation, allowing rapid validation of Xen 
 
 ### Hardware
 
-Real hardware tests cover booting Dom0, DomU, and Dom0less setups, PCI passthrough, suspend/resume functionality, and static analysis tools like cppcheck and MISRA C.
+Real hardware tests cover booting Dom0, DomU, and Dom0less setups, PCI passthrough, and suspend/resume functionality.
 
 {{</md>}}
 {{</media-block>}}
