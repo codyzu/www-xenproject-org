@@ -3,7 +3,10 @@ import { useEffect, useState } from 'preact/hooks';
 import { GraphQLResponseSchema, ParsedJob } from './schema';
 import JobGroup from './JobGroup';
 import { parseJobName } from './parse-job-name';
-import IconButton from '../IconButton';
+import useEmblaCarousel from 'embla-carousel-react';
+import ButtonBase from '../ButtonBase';
+import ButtonExternalLink from '../ButtonExternalLink';
+import { DotButton, useDotButton } from './CarouselButtons';
 
 async function getLatestNonScheduledPipeline(apiUrl: string, projectPath: string, maxTries = 5) {
   const query = `
@@ -92,23 +95,48 @@ export function HardwareGrid() {
     load();
   }, []);
 
+  const [emblaRef, emblaApi] = useEmblaCarousel({loop: true})
+  const {
+    selectedIndex,
+    scrollSnaps,
+    onDotButtonClick
+  } = useDotButton(emblaApi);
+
+  if (!pipeline) {
+    return null;
+  }
+
   return (
-    <div class="uno-section-nested">
-      <div>
-        <div class="uno-w-full uno-overflow-x-hidden uno-relative">
-          <div class="uno-flex uno-flex-row uno-w-full uno-overflow-x-scroll uno-gap-8 uno-p-b-10">
-            {Array.from(jobs.entries()).map(([platform, jobs], index) => (
-              <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
-            ))}
-          </div>
-          <div class="uno-absolute uno-left-0 uno-top-0 uno-w-[5rem] uno-h-full uno-bg-gradient-to-r uno-from-surface-secondary uno-from-opacity-80 uno-flex uno-flex-col uno-justify-center uno-items-center">
-            <div class="uno-rounded-full uno-bg-action uno-w-[3rem] uno-h-[3rem] uno-flex uno-items-center uno-justify-center"><div class="i-fa6-solid-arrow-left uno-text-white" /></div>
+    <div class="uno-flex uno-flex-col uno-max-w-[1472px] uno-w-full uno-relative uno-m-x-auto">
+      <div class="embla uno-w-full uno-overflow-hidden uno-relative" ref={emblaRef}>
+        <div class="embla__container uno-flex uno-p-b-8 uno-m-l--4">
+          {Array.from(jobs.entries()).map(([platform, jobs], index) => (
+            <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
+          ))}
+        </div>
+        <div class="uno-hidden sm:uno-absolute uno-left-0 uno-top-0 uno-w-[5rem] uno-h-full uno-bg-gradient-to-r uno-from-surface-secondary uno-flex uno-flex-col uno-justify-center uno-items-center uno-pointer-events-none uno-touch-none" />
+        <div class="uno-hidden sm:uno-absolute uno-right-0 uno-top-0 uno-w-[5rem] uno-h-full uno-bg-gradient-to-l uno-from-surface-secondary uno-flex uno-flex-col uno-justify-center uno-items-center uno-pointer-events-none uno-touch-none" />
+      </div>
+      <div class="uno-flex uno-flex-col uno-max-w-[1312px] uno-m-x-auto uno-relative uno-w-full uno-m-t--2 uno-gap-10">
+        <div class="uno-flex uno-gap-4 uno-justify-start">
+          <ButtonBase icon="i-fa6-solid-arrow-left" iconPosition="left" onClick={() => emblaApi?.scrollPrev()}>Prev</ButtonBase>
+          <ButtonBase icon="i-fa6-solid-arrow-right" iconPosition="right" onClick={() => emblaApi?.scrollNext()}>Next</ButtonBase>
+          <div class="uno-flex-grow" />
+          <div class="uno-flex uno-gap-2 uno-items-center uno-justify-self-end">
+            {scrollSnaps.map((_, index) => (
+              <DotButton
+                key={index}
+                index={index}
+                selectedIndex={selectedIndex}
+                onDotButtonClick={onDotButtonClick}
+            />
+            ))} 
           </div>
         </div>
-        {pipeline && (<IconButton
-          href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
-          class="uno-self-start uno-mt-4"
-        >View Pipeline on GitLab</IconButton>)}
+        <ButtonExternalLink
+            href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
+            class="uno-self-start"
+          >View Pipeline on GitLab</ButtonExternalLink>
       </div>
     </div>
   );

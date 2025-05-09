@@ -6,7 +6,7 @@ if(import.meta.env.MODE !== 'production') {
 }
 
 import { h, render } from 'preact';
-import IconButton from './components/IconButton';
+import ButtonExternalLink from './components/ButtonExternalLink';
 import 'uno.css';
 
 // Eagerly import the markdown content files so that they are processed by UnoCSS
@@ -18,14 +18,13 @@ renderButtons();
 observeAndAnimate();
 
 function renderButtons() {
-  try{
+  try {
     document.querySelectorAll('div[data-component="IconButton"]').forEach((el) => {
       const href = el.getAttribute('data-href') || '';
-      const target = el.getAttribute('data-target') || '_blank';
       const children = el.innerHTML;
       el.innerHTML = ''; // Clear the inner HTML to avoid duplicate content
 
-      render(<IconButton href={href} target={target}>{children}</IconButton>, el);
+      render(<ButtonExternalLink href={href}>{children}</ButtonExternalLink>, el);
     });
   } catch (error) {
     console.error('Error rendering buttons:', error);

@@ -1,4 +1,4 @@
-import { h } from 'preact';
+import { h, Fragment } from 'preact';
 import { useEffect, useState, useRef } from 'preact/hooks';
 import clsx from 'clsx';
 import { ParsedJob } from './schema';
@@ -56,99 +56,33 @@ export default function JobGroup({ platform, jobs, index }: { platform: string; 
   }, []);
 
   return (
-    <div class="uno-card uno-flex-1 uno-grid uno-grid-cols-[auto_auto] uno-content-start uno-auto-rows-auto uno-items-center uno-gap-1">
-      {/* <div class="uno-flex uno-items-start uno-gap-2"> */}
+    <div class="embla__slide uno-flex-[0_0_100%] sm:uno-flex-[0_0_30rem] uno-min-w-0 uno-p-l-4 uno-flex">
+      <div class="uno-card uno-grid uno-grid-cols-[1fr_auto] uno-content-start uno-auto-rows-auto uno-items-center uno-gap-1 uno-w-full">
         <div class="uno-text-2xl uno-font-semibold">{platform}</div>
-        {/* <div class="uno-flex uno-flex-col uno-gap-2 uno-items-start"> */}
-          <div class="uno-flex uno-flex-col uno-gap-2 uno-items-center">
-            {jobs[0].parsed.icons.map(icon => (
-              <div key={icon} class=" uno-border-1 uno-border-secondary uno-rounded-lg uno-border-solid uno-border uno-shadow-xl uno-shadow-gray-300">
-                <div class={clsx(icon, 'uno-text-6xl uno-flex-shrink-0 uno-text-secondary')} />
-              </div>
-            ))}
-          </div>
-        {/* </div> */}
-        {/* <div class="uno-flex uno-gap-1 uno-flex-wrap uno-items-center">
-          <span class="uno-bg-gray-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs uno-font-semibold">{jobs[0].parsed.arch}</span>
-          {jobs[0].parsed.compiler && <span class="uno-bg-blue-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs">{jobs[0].parsed.compiler}</span>}
-          {jobs[0].parsed.variant && jobs[0].parsed.variant.map(v => (
-            <span class="uno-bg-yellow-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs" title={`Variant: ${v}`}>{v}</span>
+        <div class="uno-flex uno-flex-col uno-gap-2 uno-items-center">
+          {jobs[0].parsed.icons.map(icon => (
+            <div key={icon} class=" uno-border-1 uno-border-secondary uno-rounded-lg uno-border-solid uno-border uno-shadow-xl uno-shadow-gray-300 uno-p-1">
+              <div class={clsx(icon, 'uno-text-6xl uno-flex-shrink-0 uno-text-secondary')} />
+            </div>
           ))}
-        </div> */}
-      {/* </div> */}
-      
-      <div class="uno-grid-col-span-2 uno-text-lg uno-font-semibold">Jobs:</div>
-      {jobs.map(job => {
-        const style = statusStyles[job.status as StatusType] || statusStyles.DEFAULT;
-        return (
-        <>
-          {/* <div class="uno-min-w-auto uno-whitespace-nowrap"> */}
-            <a href={`https://gitlab.com/xen-project/hardware/xen/-/jobs/${job.id.split('/').pop()}`} target="_blank" class="uno-text-blue-600 hover:uno-underline uno-text-xs uno-min-w-xs">
-              {job.name}
-            </a>
-          {/* </div> */}
-          <div class="uno-flex uno-items-center uno-gap-2 uno-text-right uno-rounded-full uno-p-x-1 uno-p-r-2 uno-p-y-1 uno-bg-secondary uno-text-white">
-            <div class={clsx(style.icon, style.color, 'uno-text-base')} title={job.status}></div>
-            <div class="uno-text-xs">{job.detailedStatus.label}</div>
-          </div>
-        </>
-      )})}
+        </div>
+    
+        <div class="uno-grid-col-span-2 uno-text-lg uno-font-semibold">Jobs:</div>
+        {jobs.map(job => {
+          const style = statusStyles[job.status as StatusType] || statusStyles.DEFAULT;
+          return (
+            <Fragment key={job.id}>
+              <a href={`https://gitlab.com/xen-project/hardware/xen/-/jobs/${job.id.split('/').pop()}`} target="_blank" class="uno-text-blue-600 hover:uno-underline uno-text-xs uno-flex-1">
+                {job.name}
+              </a>
+              <div class="uno-flex uno-items-center uno-gap-2 uno-text-right uno-rounded-full uno-p-x-1 uno-p-r-2 uno-p-y-1 uno-bg-secondary uno-text-white">
+                <div class={clsx(style.icon, style.color, 'uno-text-base')} title={job.status}></div>
+                <div class="uno-text-xs">{job.detailedStatus.label}</div>
+              </div>
+            </Fragment>
+          )}
+        )}
+      </div>
     </div>
-    // <div
-    //   ref={groupRef}
-    //   data-platform={platform}
-    //   class={clsx(
-    //     'uno-opacity-0 uno-animate-fill-forwards',
-    //     isVisible &&
-    //       (index % 2 === 0
-    //         ? 'uno-animate-fade-in-left-short'
-    //         : 'uno-animate-fade-in-right-short')
-    //   )}
-    // >
-    //   <h3 class="uno-text-lg uno-font-semibold uno-mb-2 uno-mt-4">{platform}</h3>
-    //   <div class="uno-grid uno-grid-cols-2 sm:uno-grid-cols-2 md:uno-grid-cols-3 lg:uno-grid-cols-4 uno-gap-4 uno-justify-start">
-    //     {jobs.map(job => {
-    //       const style = statusStyles[job.status as StatusType] || statusStyles.DEFAULT;
-    //       return (
-    //         <div
-    //           class={clsx(
-    //             'uno-px-3 uno-py-4 uno-rounded-lg uno-flex uno-flex-col uno-items-start uno-gap-3 uno-text-xs',
-    //             'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
-    //             'uno-shadow-xl uno-shadow-gray-300 uno-bg-white uno-text-primary'
-    //           )}
-    //         >
-              // <div class="uno-flex uno-items-start uno-gap-2">
-              //   <div class="uno-flex uno-flex-col uno-gap-2 uno-items-start">
-              //     <div class="uno-flex uno-gap-2">
-              //       {job.parsed.icons.map(icon => (<div key={icon} class={clsx(icon, 'uno-text-4xl uno-flex-shrink-0 uno-text-secondary')} />))}
-              //     </div>
-              //     <div class="uno-flex uno-items-center uno-gap-2 uno-text-right uno-rounded-full uno-p-x-1 uno-p-r-2 uno-p-y-1 uno-bg-secondary uno-text-white">
-              //       <div class={`${style.icon} uno-text-base ${style.color}`} title={job.status}></div>
-              //       <div>{job.detailedStatus.label}</div>
-              //     </div>
-              //   </div>
-              //   <div class="uno-flex uno-gap-1 uno-flex-wrap uno-items-center">
-              //     <span class="uno-bg-gray-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs uno-font-semibold">{job.parsed.arch}</span>
-              //     {job.parsed.compiler && <span class="uno-bg-blue-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs">{job.parsed.compiler}</span>}
-              //     {job.parsed.variant && job.parsed.variant.map(v => (
-              //       <span class="uno-bg-yellow-100 uno-px-2 uno-py-0.5 uno-rounded uno-text-xs" title={`Variant: ${v}`}>{v}</span>
-              //     ))}
-              //   </div>
-              // </div>
-    //           <details class="uno-flex uno-flex-col uno-gap-1 uno-group">
-    //             <summary class="marker:uno-hidden uno-list-none uno-flex uno-flex-row uno-gap-2 uno-items-center uno-text-action-text hover:uno-cursor-pointer">
-    //               <div>details</div>
-    //               <div class="i-fa6-solid-arrow-right group-open:uno-rotate-90 uno-transition-transform uno-duration-300 uno-ease-out" />
-    //             </summary>
-    //             <div>{job.name}</div>
-    //             <a href={`https://gitlab.com/xen-project/hardware/xen/-/jobs/${job.id.split('/').pop()}`} target="_blank" class="uno-text-blue-600 hover:uno-underline uno-text-xs">
-    //               View job on GitLab
-    //             </a>
-    //           </details>
-    //         </div>
-    //       );
-    //     })}
-    //   </div>
-    // </div>
   );
 }

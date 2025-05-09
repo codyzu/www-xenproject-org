@@ -1,9 +1,8 @@
 {{ $icon := .Get "icon" | default "i-fa6-solid-arrow-up-right-from-square" }}
 {{ $text := .Inner }}
 {{ $href := .Get "href" | default "" }}
-{{ $target := .Get "target" | default "_blank" }}
 
 
-<div data-component="IconButton" data-href="{{ $href }}" data-target="{{ $target }}">
+<div data-component="IconButton" data-href="{{ $href }}">
   {{ $text }}
 </div>

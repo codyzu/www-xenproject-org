@@ -46,8 +46,9 @@ This level of transparency and extensibility is practically unheard of in other 
 
 Want proof? Here's a real-time view of Xen running on real boards across our global test grid:
 {{</md>}}
-{{< div "hardware-grid" >}}{{</div>}}
 {{</section>}}
+
+{{< div "hardware-grid" >}}{{</div>}}
 
 {{<section md="true" class="content-markdown">}}
 ## Why This Matters for You ✅
