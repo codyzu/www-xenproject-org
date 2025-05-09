@@ -94,13 +94,22 @@ export function HardwareGrid() {
 
   return (
     <div class="uno-section-nested">
-      {Array.from(jobs.entries()).map(([platform, jobs], index) => (
-        <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
-      ))}
-      {pipeline && (<IconButton
-        href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
-        class="uno-self-start uno-mt-10"
-      >View Pipeline on GitLab</IconButton>)}
+      <div>
+        <div class="uno-w-full uno-overflow-x-hidden uno-relative">
+          <div class="uno-flex uno-flex-row uno-w-full uno-overflow-x-scroll uno-gap-8 uno-p-b-10">
+            {Array.from(jobs.entries()).map(([platform, jobs], index) => (
+              <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
+            ))}
+          </div>
+          <div class="uno-absolute uno-left-0 uno-top-0 uno-w-[5rem] uno-h-full uno-bg-gradient-to-r uno-from-surface-secondary uno-from-opacity-80 uno-flex uno-flex-col uno-justify-center uno-items-center">
+            <div class="uno-rounded-full uno-bg-action uno-w-[3rem] uno-h-[3rem] uno-flex uno-items-center uno-justify-center"><div class="i-fa6-solid-arrow-left uno-text-white" /></div>
+          </div>
+        </div>
+        {pipeline && (<IconButton
+          href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
+          class="uno-self-start uno-mt-4"
+        >View Pipeline on GitLab</IconButton>)}
+      </div>
     </div>
   );
 }
