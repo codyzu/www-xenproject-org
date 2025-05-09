@@ -130,8 +130,8 @@ export function HardwareGrid() {
             ))} 
           </div>
           <div class="uno-hidden sm:uno-flex uno-flex-grow" />
-          <ButtonBase icon="i-fa6-solid-arrow-right" iconPosition="right" onClick={() => emblaApi?.scrollNext()}>Next</ButtonBase>
-          <ButtonBase icon="i-fa6-solid-arrow-left" iconPosition="left" onClick={() => emblaApi?.scrollPrev()}>Prev</ButtonBase>
+          <ButtonBase class="uno-touch-manipulation" icon="i-fa6-solid-arrow-right" iconPosition="right" onClick={() => emblaApi?.scrollNext()}>Next</ButtonBase>
+          <ButtonBase class="uno-touch-manipulation" icon="i-fa6-solid-arrow-left" iconPosition="left" onClick={() => emblaApi?.scrollPrev()}>Prev</ButtonBase>
         </div>
         <ButtonExternalLink
             href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
