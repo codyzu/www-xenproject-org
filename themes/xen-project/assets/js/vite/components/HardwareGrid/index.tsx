@@ -118,11 +118,8 @@ export function HardwareGrid() {
         <div class="uno-hidden sm:uno-absolute uno-right-0 uno-top-0 uno-w-[5rem] uno-h-full uno-bg-gradient-to-l uno-from-surface-secondary uno-flex uno-flex-col uno-justify-center uno-items-center uno-pointer-events-none uno-touch-none" />
       </div>
       <div class="uno-flex uno-flex-col uno-max-w-[1312px] uno-m-x-auto uno-relative uno-w-full uno-m-t--2 uno-gap-10">
-        <div class="uno-flex uno-gap-4 uno-justify-start">
-          <ButtonBase icon="i-fa6-solid-arrow-left" iconPosition="left" onClick={() => emblaApi?.scrollPrev()}>Prev</ButtonBase>
-          <ButtonBase icon="i-fa6-solid-arrow-right" iconPosition="right" onClick={() => emblaApi?.scrollNext()}>Next</ButtonBase>
-          <div class="uno-flex-grow" />
-          <div class="uno-flex uno-gap-2 uno-items-center uno-justify-self-end">
+        <div class="uno-flex uno-flex-row-reverse uno-gap-4 uno-justify-center sm:uno-justify-start uno-flex-wrap sm:uno-flex-nowrap">
+        <div class="uno-flex uno-gap-2 uno-items-center uno-justify-self-end">
             {scrollSnaps.map((_, index) => (
               <DotButton
                 key={index}
@@ -132,6 +129,9 @@ export function HardwareGrid() {
             />
             ))} 
           </div>
+          <div class="uno-hidden sm:uno-flex uno-flex-grow" />
+          <ButtonBase icon="i-fa6-solid-arrow-right" iconPosition="right" onClick={() => emblaApi?.scrollNext()}>Next</ButtonBase>
+          <ButtonBase icon="i-fa6-solid-arrow-left" iconPosition="left" onClick={() => emblaApi?.scrollPrev()}>Prev</ButtonBase>
         </div>
         <ButtonExternalLink
             href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
