@@ -119,7 +119,7 @@ export function HardwareGrid() {
       </div>
       <div class="uno-flex uno-flex-col uno-max-w-[1312px] uno-m-x-auto uno-relative uno-w-full uno-m-t--2 uno-gap-10">
         <div class="uno-flex uno-flex-row-reverse uno-gap-4 uno-justify-center sm:uno-justify-start uno-flex-wrap sm:uno-flex-nowrap">
-        <div class="uno-flex uno-gap-2 uno-items-center uno-justify-self-end">
+          <div class="uno-flex uno-gap-2 uno-w-full sm:uno-w-auto uno-items-center uno-justify-center">
             {scrollSnaps.map((_, index) => (
               <DotButton
                 key={index}
@@ -135,7 +135,7 @@ export function HardwareGrid() {
         </div>
         <ButtonExternalLink
             href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
-            class="uno-self-start"
+            class="uno-self-center sm:uno-self-start"
           >View Pipeline on GitLab</ButtonExternalLink>
       </div>
     </div>
