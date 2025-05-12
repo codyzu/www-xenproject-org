@@ -6,7 +6,6 @@
   "main": "index.js",
   "scripts": {
     "hugo": "npx hugo",
-    "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "storybook-tasks": "node scripts/storybook-tasks.js",
@@ -19,7 +18,8 @@
     "vite:build": "vite build",
     "hugo:dev": "hugo server -D --logLevel debug --config hugo.yaml,hugo.dev.yaml --disableFastRender",
     "hugo:build": "hugo --minify",
-    "papers": "node scripts/papers/parse-research-papers.js"
+    "papers": "node scripts/papers/parse-research-papers.js",
+    "lint": "xo"
   },
   "author": "",
   "license": "ISC",
@@ -46,6 +46,7 @@
     "chalk": "^5.4.1",
     "clsx": "^2.1.1",
     "concurrently": "^9.1.2",
+    "embla-carousel": "^8.6.0",
     "prettier": "^3.3.3",
     "prettier-plugin-go-template": "^0.0.15",
     "storybook": "^8.4.2",
@@ -53,6 +54,7 @@
     "unocss": "^66.1.0-beta.12",
     "vite": "^5.4.18",
     "vite-plugin-markdown": "^2.2.0",
+    "xo": "^0.61.0-2",
     "zod": "^3.24.3"
   },
   "dependencies": {

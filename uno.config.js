@@ -1,22 +1,21 @@
-// uno.config.js
-import { defineConfig, presetWind3, presetIcons } from 'unocss'
-import { clsx } from 'clsx'
+// Uno.config.js
+import {defineConfig, presetWind3, presetIcons} from 'unocss';
+import {clsx} from 'clsx';
 
 export default defineConfig({
-  
-  presets: [presetWind3({prefix: 'uno-', }), presetIcons({
-    extraProperties: {
-      'display': 'inline-block',
-      'vertical-align': 'middle',
-    },
-  }),],
+  presets: [
+    presetWind3({prefix: 'uno-'}),
+    presetIcons({
+      extraProperties: {
+        display: 'inline-block',
+        'vertical-align': 'middle',
+      },
+    }),
+  ],
   content: {
     pipeline: {
-      include: [
-        /\.(js|jsx|ts|tsx|html|md)($|\?)/,
-        './themes/xen-project/layouts/**/*.html',
-      ]
-    }
+      include: [/\.(js|jsx|ts|tsx|html|md)($|\?)/, './themes/xen-project/layouts/**/*.html'],
+    },
   },
   theme: {
     maxWidth: {
@@ -28,7 +27,7 @@ export default defineConfig({
       border: '#dbdbdb',
       surface: {
         DEFAULT: '#fbfbfb',
-        secondary: '#ededed'
+        secondary: '#ededed',
       },
       action: {
         DEFAULT: '#0077cc',
@@ -42,7 +41,7 @@ export default defineConfig({
         fill: '#85c241',
         'on-fill': '#1e2b0e',
         text: '#567c2a',
-      }
+      },
     },
     animation: {
       keyframes: {
@@ -67,13 +66,14 @@ export default defineConfig({
   },
   shortcuts: {
     'uno-section': `uno-section-base uno-px-3 md:uno-px-10 uno-max-w-[1392px]`,
-    'uno-section-nested': `uno-section-base uno-max-w-[1312px]`, 
+    'uno-section-nested': `uno-section-base uno-max-w-[1312px]`,
     'uno-section-base': 'uno-flex uno-flex-col uno-flex-1 uno-gap-6 uno-mx-auto uno-pb-10 uno-w-full',
-    'uno-surface-brand': 'uno-flex uno-flex-col uno-items-center uno-text-base uno-text-primary uno-bg-brand uno-rounded-3xl uno-p-10',
+    'uno-surface-brand':
+      'uno-flex uno-flex-col uno-items-center uno-text-base uno-text-primary uno-bg-brand uno-rounded-3xl uno-p-10',
     'uno-card': clsx(
       'uno-px-6 uno-py-4 uno-rounded-lg',
       'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
-      'uno-shadow-xl uno-shadow-gray-300 uno-bg-white uno-text-primary'
+      'uno-shadow-xl uno-shadow-gray-300 uno-bg-white uno-text-primary',
     ),
-  }
-})
+  },
+});

@@ -1,16 +1,19 @@
 import clsx from 'clsx';
-import { FunctionalComponent } from 'preact';
-import ButtonBase from './ButtonBase';
+import {type ComponentChildren, type FunctionalComponent} from 'preact';
+import ButtonBase from './ButtonBase.tsx';
 
-const ButtonExternalLink: FunctionalComponent<{
-  href?: string;
-  class?: string;
-}> = ({
+export default function ButtonExternalLink({
   href = '',
   class: customClasses,
   children,
-}) => {
-  return <ButtonBase href={href} class={customClasses} icon="i-fa6-solid-arrow-up-right-from-square">{children}</ButtonBase>;
-};
-
-export default ButtonExternalLink;
+}: {
+  readonly href?: string;
+  readonly class?: string;
+  readonly children: ComponentChildren;
+}) {
+  return (
+    <ButtonBase href={href} class={customClasses} icon="i-fa6-solid-arrow-up-right-from-square">
+      {children}
+    </ButtonBase>
+  );
+}

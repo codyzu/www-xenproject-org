@@ -1,11 +1,11 @@
-import { defineConfig } from 'vite'
-import UnoCSS from 'unocss/vite'
+import {defineConfig} from 'vite';
+import unoCSS from 'unocss/vite';
 import preact from '@preact/preset-vite';
 
 export default defineConfig({
   base: '/',
   plugins: [
-    UnoCSS({
+    unoCSS({
       extractors: [
         {
           extractor: (code) => code.match(/[\w:/-]+(?<!:)/g) || [],
@@ -26,7 +26,7 @@ export default defineConfig({
       output: {
         manualChunks: {
           // Split out the vendor code into separate chunks
-          preact: ['preact', 'preact/hooks']
+          preact: ['preact', 'preact/hooks'],
         },
         entryFileNames: 'js/[name]-[hash].js',
         assetFileNames: 'css/[name]-[hash].css',
@@ -41,6 +41,6 @@ export default defineConfig({
   },
   resolve: {
     // Ensure preact is only bundled once
-    dedupe: ['preact', 'preact/hooks']
-  }
-})
+    dedupe: ['preact', 'preact/hooks'],
+  },
+});

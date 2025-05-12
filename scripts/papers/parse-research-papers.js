@@ -1,9 +1,11 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+#!/usr/bin/env node
+import fs from 'node:fs';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+import process from 'node:process';
 import bibtexParse from '@orcid/bibtex-parse-js';
 import chalk from 'chalk';
-import { z } from 'zod';
+import {z} from 'zod';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -20,17 +22,17 @@ const schema = z.object({
   entryTags: z.object({
     title: z.string(),
     author: z.string(),
-    year: z.string().regex(/^\d{4}$/, "Year must be a 4-digit year"),
+    year: z.string().regex(/^\d{4}$/, 'Year must be a 4-digit year'),
     url: z.string().url().optional(),
     keywords: z.string().optional(),
     abstract: z.string().optional(),
     journal: z.string().optional(),
-    booktitle: z.string().optional()
-  })
+    booktitle: z.string().optional(),
+  }),
 });
 
 // Read all .bib files
-const files = fs.readdirSync(bibDir).filter(f => f.endsWith('.bib'));
+const files = fs.readdirSync(bibDir).filter((f) => f.endsWith('.bib'));
 
 const papers = [];
 let failed = false;
@@ -42,8 +44,8 @@ for (const file of files) {
 
   try {
     parsed = bibtexParse.toJSON(raw);
-  } catch (err) {
-    console.error(chalk.red(`❌ Failed to parse ${file}: ${err.message}`));
+  } catch (error) {
+    console.error(chalk.red(`❌ Failed to parse ${file}: ${error.message}`));
     failed = true;
     continue;
   }
@@ -64,15 +66,13 @@ for (const file of files) {
     continue;
   }
 
-  const { citationKey, entryTags } = validation.data;
+  const {citationKey, entryTags} = validation.data;
   const id = citationKey.toLowerCase();
   const title = decodeLatexEscapes(entryTags.title);
-  const authors = entryTags.author.split(' and ').map(a => decodeLatexEscapes(a.trim()));
-  const year = entryTags.year;
+  const authors = entryTags.author.split(' and ').map((a) => decodeLatexEscapes(a.trim()));
+  const {year} = entryTags;
   const tags = entryTags.keywords
-    ? entryTags.keywords
-        .split(',')
-        .map(t => decodeLatexEscapes(t.trim()).toLowerCase())
+    ? entryTags.keywords.split(',').map((t) => decodeLatexEscapes(t.trim()).toLowerCase())
     : [];
 
   // Default to null for missing fields
@@ -80,8 +80,8 @@ for (const file of files) {
   const journal = entryTags.journal
     ? decodeLatexEscapes(entryTags.journal)
     : entryTags.booktitle
-    ? decodeLatexEscapes(entryTags.booktitle)
-    : null;
+      ? decodeLatexEscapes(entryTags.booktitle)
+      : null;
   const url = entryTags.url || null;
 
   const paper = {
@@ -93,14 +93,14 @@ for (const file of files) {
     tags,
     abstract,
     journal,
-    source_file: file
+    sourceFile: file,
   };
 
   papers.push(paper);
 
   // Generate .md file for Hugo
   const mdContent = `---
-title: "${title.replace(/"/g, '\\"')}"
+title: "${title.replaceAll('"', String.raw`\"`)}"
 paper_id: "${id}"
 date: ${year}-01-01
 draft: false
@@ -115,14 +115,14 @@ aside:
 <!-- Paper page generated from ${file} -->
 `;
 
-  fs.mkdirSync(contentOutputDir, { recursive: true });
+  fs.mkdirSync(contentOutputDir, {recursive: true});
   const mdPath = path.join(contentOutputDir, `${id}.md`);
   fs.writeFileSync(mdPath, mdContent);
   console.log(chalk.green(`✅ Wrote: ${mdPath}`));
 }
 
 // Write papers.json
-fs.mkdirSync(path.dirname(dataOutput), { recursive: true });
+fs.mkdirSync(path.dirname(dataOutput), {recursive: true});
 fs.writeFileSync(dataOutput, JSON.stringify(papers, null, 2));
 console.log(chalk.blue(`📦 Wrote: ${dataOutput}`));
 
@@ -135,10 +135,10 @@ if (failed) {
 console.log(chalk.bgGreen.black(`\n✅ All BibTeX files parsed and exported successfully.`));
 
 // Can't find a package to do this, so we do it manually in order to support escaped accents
-function decodeLatexEscapes(str) {
-  if (!str) {
-    return str
-  };
+function decodeLatexEscapes(string_) {
+  if (!string_) {
+    return string_;
+  }
 
   const mappings = {
     '\\"a': 'ä',
@@ -189,7 +189,7 @@ function decodeLatexEscapes(str) {
     // Add more mappings if you encounter new cases!
   };
 
-  let unescaped = str;
+  let unescaped = string_;
 
   // Replace known mappings
   for (const [latex, unicode] of Object.entries(mappings)) {
@@ -197,16 +197,16 @@ function decodeLatexEscapes(str) {
   }
 
   // Handle wrapped braces around single character escapes like {\"e}
-  unescaped = unescaped.replace(/\{\\(["'`^~c])([a-zA-Z])\}/g, (match, accent, letter) => {
+  unescaped = unescaped.replaceAll(/{\\(["'`^~c])([a-zA-Z])}/g, (match, accent, letter) => {
     const lookup = `\\${accent}${letter}`;
     return mappings[lookup] || match;
   });
 
   // Handle special {ss} case (ß)
-  unescaped = unescaped.replace(/\{\\ss\{\}\}/g, 'ß');
+  unescaped = unescaped.replaceAll(String.raw`{\ss{}}`, 'ß');
 
   // Remove leftover simple { } wrapping (non-math)
-  unescaped = unescaped.replace(/\{([^{}]+)\}/g, '$1');
+  unescaped = unescaped.replaceAll(/{([^{}]+)}/g, '$1');
 
   return unescaped;
 }

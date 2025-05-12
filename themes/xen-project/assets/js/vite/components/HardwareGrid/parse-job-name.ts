@@ -1,12 +1,12 @@
-import { ParsedJobTokens } from "./schema";
+import {type ParsedJobTokens} from './schema.ts';
 
 export function parseJobName(name: string): ParsedJobTokens | undefined {
   // Normalize the name by replacing x86-64 with x86_64
-  const normalizedName = name.replace(/x86-64/g, 'x86_64');
+  const normalizedName = name.replaceAll('x86-64', 'x86_64');
   const parts = normalizedName.split('-');
   const platform = parts[0];
   const tokens = parts.slice(1);
-  const knownCompilers = ['gcc', 'clang'];
+  const knownCompilers = new Set(['gcc', 'clang']);
   const archPrefixes = ['x86', 'arm', 'ppc', 'riscv'];
   const archPattern = new RegExp(`^(${archPrefixes.join('|')})[\\w-]*$`);
 
@@ -25,17 +25,17 @@ export function parseJobName(name: string): ParsedJobTokens | undefined {
     return undefined;
   }
 
-  const result = {
+  const result: ParsedJobTokens = {
     platform,
     arch,
     friendlyPlatform: platform,
     icons: [],
     name,
-  } as ParsedJobTokens;
+  };
 
   // Compiler
   for (let i = 0; i < tokens.length; i++) {
-    if (knownCompilers.includes(tokens[i])) {
+    if (knownCompilers.has(tokens[i])) {
       result.compiler = tokens[i];
       tokens.splice(i, 1);
       break;
@@ -51,50 +51,48 @@ export function parseJobName(name: string): ParsedJobTokens | undefined {
 }
 
 function expandJobFields(job: ParsedJobTokens) {
-  let arch = job.arch;
+  let {arch} = job;
   let friendlyPlatform = job.platform;
-  let icons = [];
+  const icons = [];
 
   // Friendly platform names
   if (friendlyPlatform === 'adl') {
     friendlyPlatform = 'Intel Alder Lake (i5-12600K)';
-    icons.push('i-lineicons-intel');
-    icons.push('i-mdi-cpu-64-bit');
+    icons.push('i-lineicons-intel', 'i-mdi-cpu-64-bit');
   }
+
   if (friendlyPlatform === 'kbl') {
     friendlyPlatform = 'Intel Kaby Lake (i7-7567U)';
-    icons.push('i-lineicons-intel');
-    icons.push('i-mdi-cpu-64-bit');
+    icons.push('i-lineicons-intel', 'i-mdi-cpu-64-bit');
   }
+
   if (friendlyPlatform === 'zen2') {
     friendlyPlatform = 'AMD Zen 2';
-    icons.push('i-lineicons-amd');
-    icons.push('i-mdi-cpu-64-bit');
+    icons.push('i-lineicons-amd', 'i-mdi-cpu-64-bit');
   }
+
   if (friendlyPlatform === 'zen3p') {
     friendlyPlatform = 'AMD Zen 3+';
-    icons.push('i-lineicons-amd');
-    icons.push('i-mdi-cpu-64-bit');
+    icons.push('i-lineicons-amd', 'i-mdi-cpu-64-bit');
   }
+
   if (friendlyPlatform === 'zen4') {
     friendlyPlatform = 'AMD Zen 4';
-    icons.push('i-lineicons-amd');
-    icons.push('i-mdi-cpu-64-bit');
+    icons.push('i-lineicons-amd', 'i-mdi-cpu-64-bit');
   }
+
   if (friendlyPlatform === 'xilinx') {
     if (arch === 'arm64') {
       friendlyPlatform = 'Xilinx Ultrascale+ MPSoC (ARM64)';
-      icons.push('i-file-icons-arm');
-      icons.push('i-mdi-cpu-64-bit');
+      icons.push('i-file-icons-arm', 'i-mdi-cpu-64-bit');
     } else {
       friendlyPlatform = 'AMD Ryzen Embedded v2000';
-      icons.push('i-lineicons-amd');
-      icons.push('i-mdi-cpu-64-bit');
+      icons.push('i-lineicons-amd', 'i-mdi-cpu-64-bit');
     }
   }
 
   // Friendly architecture names
-  if(arch === 'x86_64') {
+  if (arch === 'x86_64') {
     arch = 'x86-64';
   }
 

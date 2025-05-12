@@ -32,6 +32,7 @@ variables:
 test:
   script:
     - npm ci
+    - npm run lint
     - npm run build
   rules:
     - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
@@ -39,6 +40,7 @@ test:
 deploy:
   script:
     - npm ci
+    - npm run lint
     - npm run build -- -- --baseURL "https://beta.xenproject.org/"
     - tar caf site.tar.gz public
   artifacts:
@@ -52,6 +54,7 @@ publish:
   script:
     # - apk add nodejs npm python3 make g++ libx11-dev libxcb-dev libxtst-dev libpng-dev
     - npm ci
+    - npm run lint
     - node scripts/downloads/getLinks.js
     - npm run build -- -- --baseURL "https://xenproject.org/"
     - tar caf site.tar.gz public

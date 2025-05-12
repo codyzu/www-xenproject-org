@@ -1,6 +1,6 @@
-import { z } from 'zod';
+import {z} from 'zod';
 
-export const PipelineSchema = z.object({
+export const pipelineSchema = z.object({
   id: z.string(),
   iid: z.string(),
   source: z.string(),
@@ -10,19 +10,19 @@ export const PipelineSchema = z.object({
         id: z.string(),
         name: z.string(),
         status: z.string(),
-        stage: z.object({ name: z.string() }).nullable(),
+        stage: z.object({name: z.string()}).nullable(),
         detailedStatus: z.object({
           label: z.string(),
           favicon: z.string(),
         }),
-      })
+      }),
     ),
   }),
 });
 
-export type Pipeline = z.infer<typeof PipelineSchema>;
+export type Pipeline = z.infer<typeof pipelineSchema>;
 
-export const GraphQLResponseSchema = z.object({
+export const graphQlResponseSchema = z.object({
   data: z.object({
     project: z
       .object({
@@ -32,7 +32,7 @@ export const GraphQLResponseSchema = z.object({
               endCursor: z.string().nullable(),
               hasNextPage: z.boolean(),
             }),
-            nodes: z.array(PipelineSchema),
+            nodes: z.array(pipelineSchema),
           })
           .nullable(),
       })
@@ -40,14 +40,14 @@ export const GraphQLResponseSchema = z.object({
   }),
 });
 
-export type GraphQLResponse = z.infer<typeof GraphQLResponseSchema>;
+export type GraphQlResponse = z.infer<typeof graphQlResponseSchema>;
 
 export type ParsedJobTokens = {
   platform: string;
   friendlyPlatform: string;
   arch: string;
   compiler?: string;
-  // mode?: string;
+  // Mode?: string;
   variant?: string[];
   icons: string[];
   name: string;
@@ -56,4 +56,3 @@ export type ParsedJobTokens = {
 export type ParsedJob = Pipeline['jobs']['nodes'][number] & {
   parsed: ParsedJobTokens;
 };
-
