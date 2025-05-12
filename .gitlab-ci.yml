@@ -24,23 +24,27 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
   HUGO_ENV: production
 
-  #before_script:
-  #  - apk add --no-cache go curl bash nodejs
-  #  ## Uncomment the following if you use PostCSS. See https://gohugo.io/hugo-pipes/postcss/
-  #  # - npm install postcss postcss-cli autoprefixer
-
 test:
+  stage: test
   script:
-    - npm ci
+    - npm ci --cache .npm --prefer-offline
     - npm run lint
     - npm run build
   rules:
     - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+  cache:
+    - key: npm-cache-$CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - npm-cache-$CI_DEFAULT_BRANCH
+        - npm-cache-default
+      paths:
+        - .npm/
 
-deploy:
+deploy-beta:
+  stage: deploy
+  needs: [test]
   script:
     - npm ci
-    - npm run lint
     - npm run build -- -- --baseURL "https://beta.xenproject.org/"
     - tar caf site.tar.gz public
   artifacts:
@@ -49,12 +53,19 @@ deploy:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  cache:
+    - key: npm-cache-$CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - npm-cache-$CI_DEFAULT_BRANCH
+        - npm-cache-default
+      paths:
+        - .npm/
 
-publish:
+deploy-prod:
+  stage: publish
+  needs: [test]
   script:
-    # - apk add nodejs npm python3 make g++ libx11-dev libxcb-dev libxtst-dev libpng-dev
     - npm ci
-    - npm run lint
     - node scripts/downloads/getLinks.js
     - npm run build -- -- --baseURL "https://xenproject.org/"
     - tar caf site.tar.gz public
@@ -63,3 +74,10 @@ publish:
       - site.tar.gz
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  cache:
+    - key: npm-cache-$CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - npm-cache-$CI_DEFAULT_BRANCH
+        - npm-cache-default
+      paths:
+        - .npm/
