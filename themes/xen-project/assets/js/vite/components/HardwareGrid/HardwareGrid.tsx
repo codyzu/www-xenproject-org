@@ -43,8 +43,6 @@ async function getLatestNonScheduledPipeline(
     // eslint-disable-next-line no-await-in-loop
     const json: unknown = await response.json();
 
-    console.log('GraphQL response:', json);
-
     // Validate the response using Zod
     const parsed = graphQlResponseSchema.safeParse(json);
     if (!parsed.success) {
