@@ -56,6 +56,8 @@ async function getLatestNonScheduledPipeline(
     if (node.source !== 'schedule') return node;
     afterCursor = page?.pageInfo?.endCursor;
   }
+
+  console.error('No non-scheduled pipeline found');
 }
 
 export function HardwareGrid() {
