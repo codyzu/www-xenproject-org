@@ -4,17 +4,7 @@ import preact from '@preact/preset-vite';
 
 export default defineConfig({
   base: '/',
-  plugins: [
-    unoCSS({
-      extractors: [
-        {
-          extractor: (code) => code.match(/[\w:/-]+(?<!:)/g) || [],
-          extensions: ['md'],
-        },
-      ],
-    }),
-    preact(),
-  ],
+  plugins: [unoCSS(), preact()],
   build: {
     manifest: true,
     outDir: 'themes/xen-project/static',

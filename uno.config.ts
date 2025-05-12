@@ -26,10 +26,12 @@ export default defineConfig({
       secondary: '#475467',
       border: '#dbdbdb',
       surface: {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         DEFAULT: '#fbfbfb',
         secondary: '#ededed',
       },
       action: {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         DEFAULT: '#0077cc',
         text: '#0062a7',
         hover: '#005FA3',
@@ -37,6 +39,7 @@ export default defineConfig({
         surface: '#bcdef7',
       },
       brand: {
+        // eslint-disable-next-line @typescript-eslint/naming-convention
         DEFAULT: '#f3f9ec',
         fill: '#85c241',
         'on-fill': '#1e2b0e',
