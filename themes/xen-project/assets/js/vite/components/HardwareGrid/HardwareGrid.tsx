@@ -8,16 +8,11 @@ import JobGroup from './JobGroup.tsx';
 import {parseJobName} from './parse-job-name.ts';
 import {DotButton, useDotButton} from './CarouselButtons.tsx';
 
-async function getLatestNonScheduledPipeline(
-  apiUrl: string,
-  projectPath: string,
-  maxTries = 5,
-): Promise<Pipeline | undefined> {
+async function getLatestNonScheduledPipeline(apiUrl: string, projectPath: string): Promise<Pipeline | undefined> {
   const query = `
-    query getLatestPipeline($projectPath: ID!, $after: String) {
+    query getLatestPipeline($projectPath: ID!, $branch: String!) {
       project(fullPath: $projectPath) {
-        pipelines(first: 1, after: $after) {
-          pageInfo { endCursor hasNextPage }
+        pipelines(ref: $branch, first: 1, source: "push") {
           nodes {
             id iid source
             jobs {
@@ -32,32 +27,29 @@ async function getLatestNonScheduledPipeline(
       }
     }`;
 
-  let afterCursor = null;
-  for (let i = 0; i < maxTries; i++) {
-    // eslint-disable-next-line no-await-in-loop
-    const response: Response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({query, variables: {projectPath, after: afterCursor}}),
-    });
-    // eslint-disable-next-line no-await-in-loop
-    const json: unknown = await response.json();
+  const response: Response = await fetch(apiUrl, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({query, variables: {projectPath, branch: 'staging'}}),
+  });
 
-    // Validate the response using Zod
-    const parsed = graphQlResponseSchema.safeParse(json);
-    if (!parsed.success) {
-      console.error('Invalid GraphQL response:', parsed.error);
-      return;
-    }
+  const json: unknown = await response.json();
 
-    const page = parsed.data.data.project?.pipelines;
-    const node = page?.nodes?.[0];
-    if (!node) break;
-    if (node.source !== 'schedule') return node;
-    afterCursor = page?.pageInfo?.endCursor;
+  // Validate the response using Zod
+  const parsed = graphQlResponseSchema.safeParse(json);
+  if (!parsed.success) {
+    // Log validation errors for debugging
+    console.error('GraphQL response validation failed:', parsed.error);
+    return;
   }
 
-  console.error('No non-scheduled pipeline found');
+  const node = parsed.data.data.project?.pipelines?.nodes?.[0];
+
+  if (!node) {
+    console.warn('No pipeline found');
+  }
+
+  return node;
 }
 
 export function HardwareGrid() {
@@ -86,6 +78,10 @@ export function HardwareGrid() {
         })
         .filter((j) => j !== undefined)
         .sort((a, b) => a.name.localeCompare(b.name));
+
+      if (parsedJobs.length === 0) {
+        console.warn('No jobs found');
+      }
 
       // Group jobs by architecture
       const archJobs = new Map<string, ParsedJob[]>();
