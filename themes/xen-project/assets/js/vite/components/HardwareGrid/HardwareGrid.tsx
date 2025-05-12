@@ -1,6 +1,7 @@
 import {h} from 'preact';
 import {useEffect, useState} from 'preact/hooks';
 import useEmblaCarousel from 'embla-carousel-react';
+import clsx from 'clsx';
 import ButtonBase from '../ButtonBase.tsx';
 import ButtonExternalLink from '../ButtonExternalLink.tsx';
 import {graphQlResponseSchema, type Pipeline, type ParsedJob} from './schema.ts';
@@ -100,17 +101,28 @@ export function HardwareGrid() {
   const [emblaRef, emblaApi] = useEmblaCarousel({loop: true});
   const {selectedIndex, scrollSnaps, onDotButtonClick} = useDotButton(emblaApi);
 
-  if (!pipeline) {
-    return null;
-  }
-
   return (
-    <div className="uno-flex uno-flex-col uno-max-w-[1472px] uno-w-full uno-relative uno-m-x-auto">
+    <div
+      className={clsx(
+        'uno-flex uno-flex-col uno-max-w-[1472px] uno-w-full uno-relative uno-m-x-auto',
+        jobs.size === 0 && ' uno-blur-sm uno-animate-pulse uno-pointer-events-none uno-touch-none',
+      )}
+    >
       <div ref={emblaRef} className="embla uno-w-full uno-overflow-hidden uno-relative">
         <div className="embla__container uno-flex uno-p-b-8 uno-m-l--4">
-          {[...jobs.entries()].map(([platform, jobs], index) => (
-            <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
-          ))}
+          {jobs.size === 0
+            ? Array.from({length: 6}).map((_, index) => (
+                <div
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  className="uno-flex-[0_0_100%] sm:uno-flex-[0_0_30rem] uno-min-w-0 uno-p-l-4 uno-flex uno-p-y-4"
+                >
+                  <div className="uno-card uno-text-2xl uno-font-semibold uno-h-[29rem] uno-w-full">Loading...</div>
+                </div>
+              ))
+            : [...jobs.entries()].map(([platform, jobs], index) => (
+                <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
+              ))}
         </div>
         <div className="uno-hidden sm:uno-absolute uno-left-0 uno-top-0 uno-w-[5rem] uno-h-full uno-bg-gradient-to-r uno-from-surface-secondary uno-flex uno-flex-col uno-justify-center uno-items-center uno-pointer-events-none uno-touch-none" />
         <div className="uno-hidden sm:uno-absolute uno-right-0 uno-top-0 uno-w-[5rem] uno-h-full uno-bg-gradient-to-l uno-from-surface-secondary uno-flex uno-flex-col uno-justify-center uno-items-center uno-pointer-events-none uno-touch-none" />
@@ -142,7 +154,7 @@ export function HardwareGrid() {
           </ButtonBase>
         </div>
         <ButtonExternalLink
-          href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
+          href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline?.id?.split('/')?.pop() ?? ''}`}
           class="uno-self-center sm:uno-self-start"
         >
           View Pipeline on GitLab
