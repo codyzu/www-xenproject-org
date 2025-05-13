@@ -1,7 +1,6 @@
 import {type FlatXoConfig} from 'xo';
 
 const xoConfig: FlatXoConfig = [
-  // ReactPlugin.configs.flat['jsx-runtime'],
   {
     ignores: [
       'scripts/**/*.js',
@@ -13,13 +12,9 @@ const xoConfig: FlatXoConfig = [
     ],
   },
   {
-    // Files: ['**/*.{js,cjs,mjs,jsx,ts,cts,mts,tsx}'],
-    // ignores: ['tests/**', 'scripts/**'],
-    // ignores: ['scripts', 'tests'],
     space: true,
     prettier: true,
     react: true,
-    // Extends: [],
     rules: {
       'react/react-in-jsx-scope': 0,
     },
