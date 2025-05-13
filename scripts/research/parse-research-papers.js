@@ -12,8 +12,8 @@ const __dirname = path.dirname(__filename);
 
 // Define paths
 const bibDir = path.resolve(__dirname, '../../research');
-const dataOutput = path.resolve(__dirname, '../../data/papers.json');
-const contentOutputDir = path.resolve(__dirname, '../../content/papers');
+const dataOutput = path.resolve(__dirname, '../../data/research.json');
+const contentOutputDir = path.resolve(__dirname, '../../content/research');
 
 // Validation schema
 const schema = z.object({

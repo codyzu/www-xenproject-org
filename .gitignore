@@ -17,6 +17,6 @@ hugo_build.lock
 themes/xen-project/static
 
 # Research papers generated files
-content/papers/*.md
-!content/papers/_index.md
-data/papers.json
+content/research/*.md
+!content/research/_index.md
+data/research.json

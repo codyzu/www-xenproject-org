@@ -4,7 +4,7 @@ Thank you for contributing to the Xen Project research collection!
 
 We welcome new research papers related to Xen, virtualization, hypervisors, cloud computing, and related topics.
 
-This repository collects papers in **BibTeX** format to maintain a standard familiar to researchers and academics.
+This repository collects research papers in **BibTeX** format to maintain a standard familiar to researchers and academics.
 
 ## 📚 How to Add a New Paper
 

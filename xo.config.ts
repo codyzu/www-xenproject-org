@@ -5,7 +5,7 @@ const xoConfig: FlatXoConfig = [
   {
     ignores: [
       'scripts/**/*.js',
-      '!scripts/papers/**/*.js',
+      '!scripts/research/**/*.js',
       'tests',
       'themes/xen-project/assets/js/**/*.js',
       '!themes/xen-project/assets/js/vite/**/*.js',
