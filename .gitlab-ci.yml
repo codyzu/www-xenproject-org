@@ -25,6 +25,21 @@ variables:
   HUGO_ENV: production
   GIT_DEPTH: 1
 
+test:
+  script:
+    - npm ci --cache .npm --prefer-offline
+    - npm run lint
+    - npm run build
+  rules:
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE != "merge_request_event"
+  cache:
+    - key: npm-cache-$CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - npm-cache-$CI_DEFAULT_BRANCH
+        - npm-cache-default
+      paths:
+        - .npm/
+
 deploy-beta:
   script:
     - npm ci --cache .npm --prefer-offline
