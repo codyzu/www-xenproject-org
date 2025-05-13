@@ -17,6 +17,15 @@
 # - To change the theme, see
 #   https://gitlab.com/pages/hugo/-/blob/main/README.md#use-a-custom-theme.
 #
+
+workflow:
+  # Avoid duplicate pipelines for merge requests (for pushes and merge requests)
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
 default:
   image: hugomods/hugo:exts-0.147.0
 
