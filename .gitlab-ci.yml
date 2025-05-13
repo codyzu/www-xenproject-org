@@ -20,6 +20,7 @@
 
 workflow:
   # Avoid duplicate pipelines for merge requests (for pushes and merge requests)
+  # See: https://docs.gitlab.com/ci/yaml/workflow/#switch-between-branch-pipelines-and-merge-request-pipelines
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
     - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
