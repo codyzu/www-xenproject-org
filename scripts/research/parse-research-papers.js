@@ -108,7 +108,7 @@ aside:
   - type: resource
     items:
       - name: Academic Research
-        link: /papers
+        link: /research
         icon: fas fa-arrow-right
 ---
 

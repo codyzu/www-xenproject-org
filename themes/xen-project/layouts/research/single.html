@@ -1,5 +1,5 @@
 {{ define "main" }}
-  {{ $papers := where site.Data.papers "id" .File.ContentBaseName }}
+  {{ $papers := where site.Data.research "id" .File.ContentBaseName }}
   {{ $paper := index $papers 0 }}
 
   {{ $asidePosition := .Page.Params.asidePosition | default "before" }}
