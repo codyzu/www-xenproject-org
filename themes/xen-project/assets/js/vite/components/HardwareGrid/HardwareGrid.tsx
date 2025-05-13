@@ -115,7 +115,7 @@ export function HardwareGrid() {
                 <div
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
-                  className="uno-flex-[0_0_100%] sm:uno-flex-[0_0_30rem] uno-min-w-0 uno-p-l-4 uno-flex uno-p-y-4"
+                  className="uno-flex-[0_0_100%] sm:uno-flex-[0_0_30rem] uno-min-w-0 uno-p-l-4 uno-flex"
                 >
                   <div className="uno-card uno-text-2xl uno-font-semibold uno-h-[29rem] uno-w-full">Loading...</div>
                 </div>
