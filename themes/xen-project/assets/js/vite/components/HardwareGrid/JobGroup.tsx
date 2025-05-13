@@ -6,23 +6,23 @@ const statusStyles = {
   // These are hardcoded status values from GitLab
   /* eslint-disable @typescript-eslint/naming-convention */
   SUCCESS: {
-    icon: 'i-fa6-solid:circle-check',
+    icon: 'i-fa6-solid-circle-check',
     color: 'uno-text-green-500',
   },
   FAILED: {
-    icon: 'i-fa6-solid:circle-xmark',
+    icon: 'i-fa6-solid-circle-xmark',
     color: 'uno-text-red-500',
   },
   CREATED: {
-    icon: 'i-fa6-solid-hourglass-half',
+    icon: 'i-fa6-solid-clock',
     color: 'uno-text-yellow-500',
   },
   PENDING: {
-    icon: 'i-fa6-solid-hourglass-half',
+    icon: 'i-fa6-solid-clock',
     color: 'uno-text-yellow-500',
   },
   RUNNING: {
-    icon: 'i-fa6-solid-hourglass-half',
+    icon: 'i-fa6-solid-clock',
     color: 'uno-text-yellow-500',
   },
   DEFAULT: {
