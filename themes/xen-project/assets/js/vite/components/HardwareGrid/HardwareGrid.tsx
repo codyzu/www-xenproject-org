@@ -117,7 +117,9 @@ export function HardwareGrid() {
                   key={index}
                   className="uno-flex-[0_0_100%] sm:uno-flex-[0_0_30rem] uno-min-w-0 uno-p-l-4 uno-flex"
                 >
-                  <div className="uno-card uno-text-2xl uno-font-semibold uno-h-[29rem] uno-w-full">Loading...</div>
+                  <div className="uno-card uno-h-[29rem] uno-w-full">
+                    <div className="uno-text-2xl uno-font-semibold uno-m-t-14">Loading Architecture</div>
+                  </div>
                 </div>
               ))
             : [...jobs.entries()].map(([platform, jobs], index) => (
