@@ -23,6 +23,7 @@ default:
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
   HUGO_ENV: production
+  GIT_DEPTH: 1
 
 deploy-beta:
   script:
