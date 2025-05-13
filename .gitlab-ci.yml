@@ -24,6 +24,10 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
   HUGO_ENV: production
 
+stages:
+  - test
+  - deploy
+
 test:
   stage: test
   script:
@@ -62,7 +66,7 @@ deploy-beta:
         - .npm/
 
 deploy-prod:
-  stage: publish
+  stage: deploy
   needs: [test]
   script:
     - npm ci
