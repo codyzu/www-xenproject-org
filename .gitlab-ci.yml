@@ -24,31 +24,10 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
   HUGO_ENV: production
 
-stages:
-  - test
-  - deploy
-
-test:
-  stage: test
+deploy-beta:
   script:
     - npm ci --cache .npm --prefer-offline
     - npm run lint
-    - npm run build
-  rules:
-    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
-  cache:
-    - key: npm-cache-$CI_COMMIT_REF_SLUG
-      fallback_keys:
-        - npm-cache-$CI_DEFAULT_BRANCH
-        - npm-cache-default
-      paths:
-        - .npm/
-
-deploy-beta:
-  stage: deploy
-  needs: [test]
-  script:
-    - npm ci --cache .npm --prefer-offline
     - npm run build -- -- --baseURL "https://beta.xenproject.org/"
     - tar caf site.tar.gz public
   artifacts:
@@ -66,10 +45,9 @@ deploy-beta:
         - .npm/
 
 deploy-prod:
-  stage: deploy
-  needs: [test]
   script:
     - npm ci --cache .npm --prefer-offline
+    - npm run lint
     - node scripts/downloads/getLinks.js
     - npm run build -- -- --baseURL "https://xenproject.org/"
     - tar caf site.tar.gz public
