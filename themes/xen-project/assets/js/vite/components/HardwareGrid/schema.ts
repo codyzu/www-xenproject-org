@@ -28,10 +28,6 @@ export const graphQlResponseSchema = z.object({
       .object({
         pipelines: z
           .object({
-            pageInfo: z.object({
-              endCursor: z.string().nullable(),
-              hasNextPage: z.boolean(),
-            }),
             nodes: z.array(pipelineSchema),
           })
           .nullable(),

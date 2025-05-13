@@ -1,6 +1,7 @@
 import {h} from 'preact';
 import {useEffect, useState} from 'preact/hooks';
 import useEmblaCarousel from 'embla-carousel-react';
+import clsx from 'clsx';
 import ButtonBase from '../ButtonBase.tsx';
 import ButtonExternalLink from '../ButtonExternalLink.tsx';
 import {graphQlResponseSchema, type Pipeline, type ParsedJob} from './schema.ts';
@@ -8,16 +9,11 @@ import JobGroup from './JobGroup.tsx';
 import {parseJobName} from './parse-job-name.ts';
 import {DotButton, useDotButton} from './CarouselButtons.tsx';
 
-async function getLatestNonScheduledPipeline(
-  apiUrl: string,
-  projectPath: string,
-  maxTries = 5,
-): Promise<Pipeline | undefined> {
+async function getLatestNonScheduledPipeline(apiUrl: string, projectPath: string): Promise<Pipeline | undefined> {
   const query = `
-    query getLatestPipeline($projectPath: ID!, $after: String) {
+    query getLatestPipeline($projectPath: ID!, $branch: String!) {
       project(fullPath: $projectPath) {
-        pipelines(first: 1, after: $after) {
-          pageInfo { endCursor hasNextPage }
+        pipelines(ref: $branch, first: 1, source: "push") {
           nodes {
             id iid source
             jobs {
@@ -32,30 +28,29 @@ async function getLatestNonScheduledPipeline(
       }
     }`;
 
-  let afterCursor = null;
-  for (let i = 0; i < maxTries; i++) {
-    // eslint-disable-next-line no-await-in-loop
-    const response: Response = await fetch(apiUrl, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({query, variables: {projectPath, after: afterCursor}}),
-    });
-    // eslint-disable-next-line no-await-in-loop
-    const json: unknown = await response.json();
+  const response: Response = await fetch(apiUrl, {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({query, variables: {projectPath, branch: 'staging'}}),
+  });
 
-    // Validate the response using Zod
-    const parsed = graphQlResponseSchema.safeParse(json);
-    if (!parsed.success) {
-      console.error('Invalid GraphQL response:', parsed.error);
-      return;
-    }
+  const json: unknown = await response.json();
 
-    const page = parsed.data.data.project?.pipelines;
-    const node = page?.nodes?.[0];
-    if (!node) break;
-    if (node.source !== 'schedule') return node;
-    afterCursor = page?.pageInfo?.endCursor;
+  // Validate the response using Zod
+  const parsed = graphQlResponseSchema.safeParse(json);
+  if (!parsed.success) {
+    // Log validation errors for debugging
+    console.error('GraphQL response validation failed:', parsed.error);
+    return;
   }
+
+  const node = parsed.data.data.project?.pipelines?.nodes?.[0];
+
+  if (!node) {
+    console.warn('No pipeline found');
+  }
+
+  return node;
 }
 
 export function HardwareGrid() {
@@ -85,6 +80,10 @@ export function HardwareGrid() {
         .filter((j) => j !== undefined)
         .sort((a, b) => a.name.localeCompare(b.name));
 
+      if (parsedJobs.length === 0) {
+        console.warn('No jobs found');
+      }
+
       // Group jobs by architecture
       const archJobs = new Map<string, ParsedJob[]>();
       for (const job of parsedJobs) {
@@ -102,17 +101,28 @@ export function HardwareGrid() {
   const [emblaRef, emblaApi] = useEmblaCarousel({loop: true});
   const {selectedIndex, scrollSnaps, onDotButtonClick} = useDotButton(emblaApi);
 
-  if (!pipeline) {
-    return null;
-  }
-
   return (
-    <div className="uno-flex uno-flex-col uno-max-w-[1472px] uno-w-full uno-relative uno-m-x-auto">
+    <div
+      className={clsx(
+        'uno-flex uno-flex-col uno-max-w-[1472px] uno-w-full uno-relative uno-m-x-auto',
+        jobs.size === 0 && ' uno-blur-sm uno-animate-pulse uno-pointer-events-none uno-touch-none',
+      )}
+    >
       <div ref={emblaRef} className="embla uno-w-full uno-overflow-hidden uno-relative">
         <div className="embla__container uno-flex uno-p-b-8 uno-m-l--4">
-          {[...jobs.entries()].map(([platform, jobs], index) => (
-            <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
-          ))}
+          {jobs.size === 0
+            ? Array.from({length: 6}).map((_, index) => (
+                <div
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  className="uno-flex-[0_0_100%] sm:uno-flex-[0_0_30rem] uno-min-w-0 uno-p-l-4 uno-flex uno-p-y-4"
+                >
+                  <div className="uno-card uno-text-2xl uno-font-semibold uno-h-[29rem] uno-w-full">Loading...</div>
+                </div>
+              ))
+            : [...jobs.entries()].map(([platform, jobs], index) => (
+                <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
+              ))}
         </div>
         <div className="uno-hidden sm:uno-absolute uno-left-0 uno-top-0 uno-w-[5rem] uno-h-full uno-bg-gradient-to-r uno-from-surface-secondary uno-flex uno-flex-col uno-justify-center uno-items-center uno-pointer-events-none uno-touch-none" />
         <div className="uno-hidden sm:uno-absolute uno-right-0 uno-top-0 uno-w-[5rem] uno-h-full uno-bg-gradient-to-l uno-from-surface-secondary uno-flex uno-flex-col uno-justify-center uno-items-center uno-pointer-events-none uno-touch-none" />
@@ -144,7 +154,7 @@ export function HardwareGrid() {
           </ButtonBase>
         </div>
         <ButtonExternalLink
-          href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline.id.split('/').pop()}`}
+          href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline?.id?.split('/')?.pop() ?? ''}`}
           class="uno-self-center sm:uno-self-start"
         >
           View Pipeline on GitLab
