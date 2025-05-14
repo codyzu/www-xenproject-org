@@ -59,6 +59,15 @@ Act fast before the prices change. **Space is limited.**
 {{<pricing>}}
 {{</section>}}
 
+{{<section md="true">}}
+## Sponsorship Opportunities 🤝
+
+Interested in sponsoring Xen Summit 2025? Showcase your brand to a global audience of virtualization experts, developers, and industry leaders.
+
+📄 [Download the Sponsorship Prospectus](/pdf/xen-summit-2025-sponsorship-prospectus.pdf) to explore the benefits and opportunities available for sponsors.
+
+Support the Xen Project community and gain visibility at the premier virtualization event of the year!
+{{</section>}}
 
 {{<section md="true">}}
 ## Xen Summit 2025: Call for Papers 📣
