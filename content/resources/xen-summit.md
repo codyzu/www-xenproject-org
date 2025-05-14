@@ -69,10 +69,11 @@ Interested in sponsoring Xen Summit 2025? Showcase your brand to a global audien
 Support the Xen Project community and gain visibility at the premier virtualization event of the year!
 {{</section>}}
 
-{{<section md="true">}}
+{{<section>}}
+{{<md>}}
 ## Xen Summit 2025: Call for Papers 📣
 
-The [Call for Papers is now open!](https://sessionize.com/xen-summit-2025/)  
+The **Call for Papers is now open!**  
 Share your expertise and insights with the Xen community at the premier virtualization event of the year.
 
 🎤 **Why Submit?**  
@@ -80,7 +81,11 @@ Share your expertise and insights with the Xen community at the premier virtuali
 - Network with industry experts and peers.  
 - Enjoy **free admission** to the entire event as a speaker.  
 
-Submit your proposal today and be part of shaping the future of virtualization!  
+Submit your proposal today and be part of shaping the future of virtualization!
+{{</md>}}
+
+{{<icon-button href="https://sessionize.com/xen-summit-2025/">}}Call for Papers{{</icon-button>}}
+
 {{</section>}}
 
 
