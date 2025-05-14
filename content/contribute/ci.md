@@ -163,7 +163,7 @@ Xen CI covers a wide range of scenarios to ensure high-quality releases across d
 - ✅ Architectures: **x86**, **ARM32**, **ARM64**, **RISC-V**, **PowerPC**
 - 🔁 Features: Dom0 boot, DomU launch, Dom0less, suspend/resume, PCI passthrough
 - 🧪 Tools: Static analysis with **cppcheck**, **MISRA C**, and more
-- 🧩 Environments: QEMU virtualized tests and real baremetal boards
+- 🧩 Environments: QEMU emulated tests and real baremetal boards
 - 🧷 OS coverage: Debian, Fedora, Alpine, and FreeBSD (via Cirrus-CI)
 
 > Additional testing is also performed on [Cirrus-CI](https://cirrus-ci.com/github/xen-project/xen) for [FreeBSD](http://freebsd.org/) builds using a full [LLVM](http://llvm.org/) based toolchain.
