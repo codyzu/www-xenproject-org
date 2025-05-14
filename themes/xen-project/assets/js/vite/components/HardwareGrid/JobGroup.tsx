@@ -45,15 +45,15 @@ export default function JobGroup({
 }) {
   return (
     <div className="embla__slide uno-flex-[0_0_100%] sm:uno-flex-[0_0_30rem] uno-min-w-0 uno-p-l-4 uno-flex">
-      <div className="uno-card uno-grid uno-grid-cols-[1fr_auto] uno-content-start uno-auto-rows-auto uno-items-center uno-gap-1 uno-w-full">
-        <div className="uno-text-2xl uno-font-semibold">{platform}</div>
+      <div className="uno-card uno-grid uno-grid-cols-[1fr_auto] uno-content-start uno-auto-rows-auto uno-items-center uno-gap-1 uno-w-full uno-text-secondary">
+        <div className="uno-text-2xl uno-font-semibold uno-text-primary">{platform}</div>
         <div className="uno-flex uno-flex-col uno-gap-2 uno-items-center">
           {jobs[0].parsed.icons.map((icon) => (
             <div
               key={icon}
-              className=" uno-border-1 uno-border-secondary uno-rounded-lg uno-border-solid uno-border uno-shadow-xl uno-shadow-gray-300 uno-p-1"
+              className="uno-border-1 uno-border-secondary uno-rounded-lg uno-border-solid uno-border uno-shadow-xl uno-shadow-gray-300 uno-p-1"
             >
-              <div className={clsx(icon, 'uno-text-6xl uno-flex-shrink-0 uno-text-secondary')} />
+              <div className={clsx(icon, 'uno-text-6xl uno-flex-shrink-0')} />
             </div>
           ))}
         </div>
