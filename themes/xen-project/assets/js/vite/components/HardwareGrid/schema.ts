@@ -4,6 +4,7 @@ export const pipelineSchema = z.object({
   id: z.string(),
   iid: z.string(),
   source: z.string(),
+  createdAt: z.string(),
   jobs: z.object({
     nodes: z.array(
       z.object({

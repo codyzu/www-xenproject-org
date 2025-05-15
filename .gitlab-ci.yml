@@ -17,29 +17,42 @@
 # - To change the theme, see
 #   https://gitlab.com/pages/hugo/-/blob/main/README.md#use-a-custom-theme.
 #
+
+workflow:
+  # Avoid duplicate pipelines for merge requests (for pushes and merge requests)
+  # See: https://docs.gitlab.com/ci/yaml/workflow/#switch-between-branch-pipelines-and-merge-request-pipelines
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_COMMIT_BRANCH && $CI_OPEN_MERGE_REQUESTS
+      when: never
+    - if: $CI_COMMIT_BRANCH
+
 default:
   image: hugomods/hugo:exts-0.147.0
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
   HUGO_ENV: production
-
-  #before_script:
-  #  - apk add --no-cache go curl bash nodejs
-  #  ## Uncomment the following if you use PostCSS. See https://gohugo.io/hugo-pipes/postcss/
-  #  # - npm install postcss postcss-cli autoprefixer
+  GIT_DEPTH: 1
 
 test:
   script:
-    - npm ci
+    - npm ci --cache .npm --prefer-offline
     - npm run lint
     - npm run build
   rules:
-    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH
+    - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE != "merge_request_event"
+  cache:
+    - key: npm-cache-$CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - npm-cache-$CI_DEFAULT_BRANCH
+        - npm-cache-default
+      paths:
+        - .npm/
 
-deploy:
+deploy-beta:
   script:
-    - npm ci
+    - npm ci --cache .npm --prefer-offline
     - npm run lint
     - npm run build -- -- --baseURL "https://beta.xenproject.org/"
     - tar caf site.tar.gz public
@@ -49,11 +62,17 @@ deploy:
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  cache:
+    - key: npm-cache-$CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - npm-cache-$CI_DEFAULT_BRANCH
+        - npm-cache-default
+      paths:
+        - .npm/
 
-publish:
+deploy-prod:
   script:
-    # - apk add nodejs npm python3 make g++ libx11-dev libxcb-dev libxtst-dev libpng-dev
-    - npm ci
+    - npm ci --cache .npm --prefer-offline
     - npm run lint
     - node scripts/downloads/getLinks.js
     - npm run build -- -- --baseURL "https://xenproject.org/"
@@ -63,3 +82,10 @@ publish:
       - site.tar.gz
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  cache:
+    - key: npm-cache-$CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - npm-cache-$CI_DEFAULT_BRANCH
+        - npm-cache-default
+      paths:
+        - .npm/
