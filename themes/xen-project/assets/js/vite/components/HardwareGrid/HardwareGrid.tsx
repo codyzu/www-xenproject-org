@@ -16,6 +16,7 @@ async function getLatestNonScheduledPipeline(apiUrl: string, projectPath: string
         pipelines(ref: $branch, first: 1, source: "push") {
           nodes {
             id iid source
+            createdAt
             jobs {
               nodes {
                 id name status
@@ -56,6 +57,7 @@ async function getLatestNonScheduledPipeline(apiUrl: string, projectPath: string
 export function HardwareGrid() {
   const [pipeline, setPipeline] = useState<Pipeline>();
   const [jobs, setJobs] = useState<Map<string, ParsedJob[]>>(new Map());
+  const [pipelineDate, setPipelineDate] = useState<Date>(() => new Date());
 
   useEffect(() => {
     const load = async () => {
@@ -63,6 +65,9 @@ export function HardwareGrid() {
       const projectPath = 'xen-project/hardware/xen';
       const pipeline = await getLatestNonScheduledPipeline(gitlabApi, projectPath);
       if (!pipeline) return;
+
+      // Store the raw Date object in state
+      setPipelineDate(new Date(pipeline.createdAt));
 
       const parsedJobs = (pipeline.jobs.nodes || [])
         .filter((j) => j.stage?.name === 'test')
@@ -108,6 +113,12 @@ export function HardwareGrid() {
         jobs.size === 0 && ' uno-blur-sm uno-animate-pulse uno-pointer-events-none uno-touch-none',
       )}
     >
+      <div className="uno-flex uno-flex-wrap uno-items-center uno-gap-x-2 uno-justify-center uno-text-center uno-text-sm uno-font-semibold uno-m-b-4">
+        <div>Test pipeline triggered at:</div>
+        <div className="uno-font-mono">
+          {pipelineDate.toISOString().split('T')[0]} {pipelineDate.toISOString().split('T')[1].slice(0, 5)} (UTC)
+        </div>
+      </div>
       <div ref={emblaRef} className="embla uno-w-full uno-overflow-hidden uno-relative">
         <div className="embla__container uno-flex uno-p-b-8 uno-m-l--4">
           {jobs.size === 0
