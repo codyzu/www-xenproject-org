@@ -50,7 +50,8 @@ test:
       paths:
         - .npm/
 
-deploy-beta:
+# Artifact will be deployed to https://beta.xenproject.org/
+deploy:
   script:
     - npm ci --cache .npm --prefer-offline
     - npm run lint
@@ -70,7 +71,8 @@ deploy-beta:
       paths:
         - .npm/
 
-deploy-prod:
+# Artifact will be published to https://xenproject.org/
+publish:
   script:
     - npm ci --cache .npm --prefer-offline
     - npm run lint
