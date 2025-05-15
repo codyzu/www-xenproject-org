@@ -81,7 +81,7 @@ type MarkerData = {
   readonly details: string;
 };
 
-function Marker({text, details}: MarkerData) {
+function Marker({text, details}: Pick<MarkerData, 'text' | 'details'>) {
   return (
     <div className="uno-bg-gray uno-border-solid uno-border-1 uno-border-brand-fill uno-bg-opacity-60 uno-rounded-xl uno-p-2">
       <div className="uno-w-10 uno-h-10 i-mdi-cpu-64-bit" />
