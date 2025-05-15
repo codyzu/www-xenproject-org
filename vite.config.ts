@@ -1,10 +1,27 @@
 import {defineConfig} from 'vite';
 import unoCSS from 'unocss/vite';
 import preact from '@preact/preset-vite';
+import {compression} from 'vite-plugin-compression2';
 
 export default defineConfig({
   base: '/',
-  plugins: [unoCSS(), preact()],
+  plugins: [
+    unoCSS(),
+    preact(),
+    compression({
+      algorithm: 'brotliCompress',
+      // Ext: '.br',
+      // deleteOriginFile: false,
+      threshold: 1024,
+    } as const),
+    // Gzip compression for older browsers
+    compression({
+      algorithm: 'gzip',
+      // Ext: '.gz',
+      // deleteOriginFile: false,
+      threshold: 1024,
+    } as const),
+  ],
   build: {
     manifest: true,
     outDir: 'themes/xen-project/static',

@@ -1,7 +1,9 @@
-import {h} from 'preact';
-import {useEffect, useState} from 'preact/hooks';
+import {h, render, type RefObject} from 'preact';
+import {useEffect, useState, useLayoutEffect, useRef} from 'preact/hooks';
 import useEmblaCarousel from 'embla-carousel-react';
 import clsx from 'clsx';
+import Globe, {type GlobeMethods} from 'react-globe.gl';
+import useResizeObserver from '@react-hook/resize-observer';
 import ButtonBase from '../ButtonBase.tsx';
 import ButtonExternalLink from '../ButtonExternalLink.tsx';
 import {graphQlResponseSchema, type Pipeline, type ParsedJob} from './schema.ts';
@@ -54,10 +56,100 @@ async function getLatestNonScheduledPipeline(apiUrl: string, projectPath: string
   return node;
 }
 
+const useSize = (target: RefObject<HTMLDivElement>) => {
+  const [size, setSize] = useState<DOMRect>();
+
+  useLayoutEffect(() => {
+    if (target.current === null) {
+      return;
+    }
+
+    setSize(target.current.getBoundingClientRect());
+  }, [target]);
+
+  // Where the magic happens
+  useResizeObserver(target, (entry) => {
+    setSize(entry.contentRect);
+  });
+  return size;
+};
+
+type MarkerData = {
+  readonly lat: number;
+  readonly lng: number;
+  readonly text: string;
+  readonly details: string;
+};
+
+function Marker({text, details}: MarkerData) {
+  return (
+    <div className="uno-bg-gray uno-border-solid uno-border-1 uno-border-brand-fill uno-bg-opacity-60 uno-rounded-xl uno-p-2">
+      <div className="uno-w-10 uno-h-10 i-mdi-cpu-64-bit" />
+      <div className="uno-text-xs uno-font-semibold">{text}</div>
+      <div className="uno-text-xs uno-font-mono">{details}</div>
+    </div>
+  );
+}
+
+const sanJose = {lat: 37.3382, lng: -121.8863};
+const grenoble = {lat: 45.1885, lng: 5.7245};
+const boston = {lat: 42.3601, lng: -71.0589};
+const amsterdam = {lat: 52.3676, lng: 4.9041};
+
+const cities = [sanJose, grenoble, boston, amsterdam];
+
+const combinations = cities.flatMap((start, startIndex) =>
+  cities.filter((end, endIndex) => start !== end && endIndex > startIndex).map((end) => ({start, end})),
+);
+const arcsData = combinations.map(({start, end}) => ({
+  startLat: start.lat,
+  startLng: start.lng,
+  endLat: end.lat,
+  endLng: end.lng,
+  color: 'red',
+}));
+
+const N = 30;
+const gData: MarkerData[] = [
+  {
+    ...sanJose,
+    text: 'San Jose',
+    details: `Xen Project number San Jose`,
+  },
+  {
+    ...grenoble,
+    text: 'Grenoble',
+    details: `Xen Project number Grenoble`,
+  },
+  {
+    ...boston,
+    text: 'Boston',
+    details: `Xen Project number Boston`,
+  },
+  {
+    ...amsterdam,
+    text: 'Amsterdam',
+    details: `Xen Project number Amsterdam`,
+  },
+];
+
 export function HardwareGrid() {
   const [pipeline, setPipeline] = useState<Pipeline>();
   const [jobs, setJobs] = useState<Map<string, ParsedJob[]>>(new Map());
   const [pipelineDate, setPipelineDate] = useState<Date>(() => new Date());
+  const globeContainerRef = useRef<HTMLDivElement>(null);
+  const globeContainerSize = useSize(globeContainerRef);
+  const globeRef = useRef<GlobeMethods>();
+
+  useEffect(() => {
+    if (!globeRef.current) {
+      return;
+    }
+
+    // Auto-rotate
+    globeRef.current.controls().autoRotate = true;
+    globeRef.current.controls().autoRotateSpeed = 0.8;
+  }, [globeRef]);
 
   useEffect(() => {
     const load = async () => {
@@ -106,6 +198,8 @@ export function HardwareGrid() {
   const [emblaRef, emblaApi] = useEmblaCarousel({loop: true});
   const {selectedIndex, scrollSnaps, onDotButtonClick} = useDotButton(emblaApi);
 
+  console.log('globeSize', globeContainerSize);
+
   return (
     <div
       className={clsx(
@@ -113,6 +207,28 @@ export function HardwareGrid() {
         jobs.size === 0 && ' uno-blur-sm uno-animate-pulse uno-pointer-events-none uno-touch-none',
       )}
     >
+      <div ref={globeContainerRef} className="uno-h-120 uno-w-full uno-flex uno-flex-col uno-items-center">
+        {globeContainerSize ? (
+          <Globe
+            ref={globeRef}
+            globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-day.jpg"
+            width={globeContainerSize.width}
+            height={globeContainerSize.height}
+            htmlElementsData={gData}
+            htmlElement={(d) => {
+              const data = d as MarkerData;
+              const element = document.createElement('div');
+              render(<Marker {...data} />, element);
+              return element;
+            }}
+            arcsData={arcsData}
+            arcStroke={2}
+            arcAltitudeAutoScale={0.25}
+            arcColor={['#f87171', '#fbbf24', '#4ade80', '#fbbf24', '#f87171']}
+            backgroundColor="#ededed"
+          />
+        ) : null}
+      </div>
       <div className="uno-flex uno-flex-wrap uno-items-center uno-gap-x-2 uno-justify-center uno-text-center uno-text-sm uno-font-semibold uno-m-b-4">
         <div>Test pipeline triggered at:</div>
         <div className="uno-font-mono">
