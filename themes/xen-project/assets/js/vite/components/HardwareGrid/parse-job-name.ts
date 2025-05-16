@@ -25,60 +25,56 @@ export function parseJobName(name: string): ParsedJobTokens | undefined {
     return undefined;
   }
 
-  const result: ParsedJobTokens = {
-    platform,
-    arch,
-    friendlyPlatform: platform,
-    icons: [],
-    name,
-  };
-
   // Compiler
+  let compiler;
   for (let i = 0; i < tokens.length; i++) {
     if (knownCompilers.has(tokens[i])) {
-      result.compiler = tokens[i];
+      compiler = tokens[i];
       tokens.splice(i, 1);
       break;
     }
   }
 
-  // Remaining tokens = variant
-  if (tokens.length > 0) {
-    result.variant = tokens;
-  }
-
-  return expandJobFields(result);
+  return {...expandJobFields(arch, platform), platform, name, compiler, variant: tokens};
 }
 
-function expandJobFields(job: ParsedJobTokens) {
-  let {arch} = job;
-  let friendlyPlatform = job.platform;
+function expandJobFields(
+  arch: string,
+  platform: string,
+): {friendlyPlatform: string; arch: string; icons: string[]; location?: {name: string; lat: number; lng: number}} {
+  let friendlyPlatform = platform;
   const icons = [];
+  let location;
 
   // Friendly platform names
   if (friendlyPlatform === 'adl') {
     friendlyPlatform = 'Intel Alder Lake (i5-12600K)';
     icons.push('i-lineicons-intel', 'i-mdi-cpu-64-bit');
+    location = {name: 'Berlin', lat: 52.52, lng: 13.405};
   }
 
   if (friendlyPlatform === 'kbl') {
     friendlyPlatform = 'Intel Kaby Lake (i7-7567U)';
     icons.push('i-lineicons-intel', 'i-mdi-cpu-64-bit');
+    location = {name: 'Berlin', lat: 52.52, lng: 13.405};
   }
 
   if (friendlyPlatform === 'zen2') {
     friendlyPlatform = 'AMD Zen 2';
     icons.push('i-lineicons-amd', 'i-mdi-cpu-64-bit');
+    location = {name: 'Boston', lat: 42.3601, lng: -71.0589};
   }
 
   if (friendlyPlatform === 'zen3p') {
     friendlyPlatform = 'AMD Zen 3+';
     icons.push('i-lineicons-amd', 'i-mdi-cpu-64-bit');
+    location = {name: 'Boston', lat: 42.3601, lng: -71.0589};
   }
 
   if (friendlyPlatform === 'zen4') {
     friendlyPlatform = 'AMD Zen 4';
     icons.push('i-lineicons-amd', 'i-mdi-cpu-64-bit');
+    location = {name: 'Boston', lat: 42.3601, lng: -71.0589};
   }
 
   if (friendlyPlatform === 'xilinx') {
@@ -89,12 +85,11 @@ function expandJobFields(job: ParsedJobTokens) {
       friendlyPlatform = 'AMD Ryzen Embedded v2000';
       icons.push('i-lineicons-amd', 'i-mdi-cpu-64-bit');
     }
+
+    location = {name: 'San Jose', lat: 37.3382, lng: -121.8863};
   }
 
-  // Friendly architecture names
-  if (arch === 'x86_64') {
-    arch = 'x86-64';
-  }
+  const friendlyArch = arch === 'x86_64' ? 'x86-64' : arch;
 
-  return {...job, friendlyPlatform, arch, icons};
+  return {friendlyPlatform, arch: friendlyArch, icons, location};
 }

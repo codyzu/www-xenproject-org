@@ -48,11 +48,12 @@ type Location = {
 };
 
 const sanJose: Location = {lat: 37.3382, lng: -121.8863, name: 'San Jose', icons: ['i-mdi-cpu-64-bit']};
-const grenoble: Location = {lat: 45.1885, lng: 5.7245, name: 'Grenoble', icons: ['i-mdi-cpu-64-bit']};
+// Const grenoble: Location = {lat: 45.1885, lng: 5.7245, name: 'Grenoble', icons: ['i-mdi-cpu-64-bit']};
 const boston: Location = {lat: 42.3601, lng: -71.0589, name: 'Boston', icons: ['i-mdi-cpu-64-bit']};
-const amsterdam: Location = {lat: 52.3676, lng: 4.9041, name: 'Amsterdam', icons: ['i-mdi-cpu-64-bit']};
+// Const amsterdam: Location = {lat: 52.3676, lng: 4.9041, name: 'Amsterdam', icons: ['i-mdi-cpu-64-bit']};
+const berlin: Location = {lat: 52.52, lng: 13.405, name: 'Berlin', icons: ['i-mdi-cpu-64-bit']};
 
-const cities: Location[] = [sanJose, grenoble, boston, amsterdam];
+const cities: Location[] = [sanJose, boston, berlin];
 
 const combinations = cities.flatMap((start, startIndex) =>
   cities.filter((end, endIndex) => start !== end && endIndex > startIndex).map((end) => ({start, end})),
@@ -65,31 +66,33 @@ const arcsData = combinations.map(({start, end}) => ({
   // Color: 'red',
 }));
 
-const N = 30;
-const gData: MarkerData[] = [
-  {
-    ...sanJose,
-    text: 'San Jose',
-    details: `Xen Project number San Jose`,
-  },
-  {
-    ...grenoble,
-    text: 'Grenoble',
-    details: `Xen Project number Grenoble`,
-  },
-  {
-    ...boston,
-    text: 'Boston',
-    details: `Xen Project number Boston`,
-  },
-  {
-    ...amsterdam,
-    text: 'Amsterdam',
-    details: `Xen Project number Amsterdam`,
-  },
-];
+// Const N = 30;
+// const gData: MarkerData[] = [
+//   {
+//     ...sanJose,
+//     text: 'San Jose',
+//     details: `Xen Project number San Jose`,
+//   },
+//   {
+//     ...grenoble,
+//     text: 'Grenoble',
+//     details: `Xen Project number Grenoble`,
+//   },
+//   {
+//     ...boston,
+//     text: 'Boston',
+//     details: `Xen Project number Boston`,
+//   },
+//   {
+//     ...amsterdam,
+//     text: 'Amsterdam',
+//     details: `Xen Project number Amsterdam`,
+//   },
+// ];
 
 const northPole = {lat: 90, lng: 0};
+
+type JobLocation = {name: string; lat: number; lng: number; icons: string[]};
 
 export default function TestGlobe({jobs}: {readonly jobs: Map<string, ParsedJob[]>}) {
   const globeContainerRef = useRef<HTMLDivElement>(null);
@@ -113,7 +116,7 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, ParsedJob[
     globeRef.current.controls().autoRotate = true;
     globeRef.current.controls().autoRotateSpeed = 1.8;
 
-    // GlobeRef.current.pointOfView({...northPole, altitude: 0.6});
+    globeRef.current.pointOfView({...northPole, altitude: 0.6});
   }, [globeRef.current]);
 
   useEffect(() => {
@@ -166,9 +169,33 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, ParsedJob[
     // globeRef.current.controls().autoRotate = true;
     // globeRef.current.controls().autoRotateSpeed = 0.8;
     // globeRef.current.pointOfView({...northPole, altitude: 1});
-    // globeRef.current.pointOfView({...sanJose, altitude: 1.8}, 5000);
+    globeRef.current.pointOfView({...cities[0], altitude: 1.8}, 3000);
     // GlobeRef.current.controls().
   }, [jobs]);
+
+  console.log('Jobs', jobs);
+  const locations: JobLocation[] = [];
+
+  for (const jobGroup of jobs.values()) {
+    const job = jobGroup[0];
+
+    if (job.parsed.location === undefined) {
+      continue;
+    }
+
+    if (locations.some((l) => l.name === job.parsed.location?.name)) {
+      continue;
+    }
+
+    locations.push({
+      name: job.parsed.location.name,
+      lat: job.parsed.location.lat,
+      lng: job.parsed.location.lng,
+      icons: job.parsed.icons,
+    });
+  }
+
+  console.log('Locations', locations);
 
   return (
     <div
@@ -192,16 +219,17 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, ParsedJob[
           //   render(<Marker {...data} />, element);
           //   return element;
           // }}
-          htmlElementsData={cities}
-          htmlElement={(d) => {
-            const data = d as Location;
+          htmlElementsData={locations}
+          htmlElement={(data) => {
+            const location = data as JobLocation;
             const element = document.createElement('div');
+            // Console.log('Location', location);
             render(
               <div className="uno-card uno-bg-opacity-70 uno-flex uno-flex-col uno-items-center">
-                {data.icons.map((icon) => (
+                {location.icons.map((icon) => (
                   <div key={icon} className={clsx(icon, 'uno-text-3xl uno-flex-shrink-0')} />
                 ))}
-                <div className="uno-text-xs uno-font-semibold">{data.name}</div>
+                <div className="uno-text-xs uno-font-semibold">{location.name}</div>
               </div>,
               element,
             );

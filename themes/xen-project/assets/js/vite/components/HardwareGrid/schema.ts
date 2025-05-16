@@ -48,6 +48,11 @@ export type ParsedJobTokens = {
   variant?: string[];
   icons: string[];
   name: string;
+  location?: {
+    name: string;
+    lat: number;
+    lng: number;
+  };
 };
 
 export type ParsedJob = Pipeline['jobs']['nodes'][number] & {
