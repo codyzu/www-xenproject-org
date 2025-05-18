@@ -114,7 +114,7 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, ParsedJob[
     // });
 
     globeRef.current.controls().autoRotate = true;
-    globeRef.current.controls().autoRotateSpeed = 1.8;
+    globeRef.current.controls().autoRotateSpeed = -1.8;
 
     globeRef.current.pointOfView({...northPole, altitude: 0.6});
   }, [globeRef.current]);
