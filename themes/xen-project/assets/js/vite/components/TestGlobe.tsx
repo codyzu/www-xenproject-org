@@ -117,6 +117,7 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, ParsedJob[
     globeRef.current.controls().autoRotateSpeed = -1.8;
 
     globeRef.current.pointOfView({...northPole, altitude: 0.6});
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globeRef.current]);
 
   useEffect(() => {
@@ -225,11 +226,23 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, ParsedJob[
             const element = document.createElement('div');
             // Console.log('Location', location);
             render(
-              <div className="uno-card uno-bg-opacity-70 uno-flex uno-flex-col uno-items-center">
-                {location.icons.map((icon) => (
-                  <div key={icon} className={clsx(icon, 'uno-text-3xl uno-flex-shrink-0')} />
-                ))}
-                <div className="uno-text-xs uno-font-semibold">{location.name}</div>
+              <div className="uno-card uno-shadow-gray-700 uno-bg-opacity-80 uno-flex uno-flex-col uno-items-center uno-gap-1">
+                <div className="uno-flex uno-flex-row uno-gap-1">
+                  <div className="uno-text-xs uno-font-semibold">{location.name}</div>
+                  <div className="uno-h-2 uno-w-2 uno-rounded-full uno-bg-green-600 uno-animate-pulse" />
+                </div>
+                <div className="uno-flex uno-flex-row uno-gap-1 uno-text-secondary">
+                  {location.icons.map((icon) => (
+                    <div
+                      key={icon}
+                      className={clsx(
+                        'uno-rounded uno-border-1 uno-border-solid uno-border-black uno-flex uno-shadow-xl uno-shadow-gray-400',
+                      )}
+                    >
+                      <div className={clsx(icon, 'uno-w-8 uno-h-8')} />
+                    </div>
+                  ))}
+                </div>
               </div>,
               element,
             );
