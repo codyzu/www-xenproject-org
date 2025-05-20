@@ -29,6 +29,7 @@ export default defineConfig({
       input: {
         'bundle-main': './themes/xen-project/assets/js/vite/bundle-main.tsx',
         'hardware-status': './themes/xen-project/assets/js/vite/hardware-status.tsx',
+        'ci-status': './themes/xen-project/assets/js/vite/ci-status.tsx',
       },
       output: {
         manualChunks: {
@@ -45,6 +46,14 @@ export default defineConfig({
   server: {
     port: 5173,
     strictPort: true,
+    proxy: {
+      // Complicated regex to proxy anything that shouldn't be served by vite to hugo
+      '^/(?!themes/xen-project/assets/js/vite|node_modules|__uno|@vite)(?!.*\\?import&raw$).*': {
+        target: 'http://localhost:1313', // Your Hugo server
+        changeOrigin: true,
+        rewrite: (path) => path,
+      },
+    },
   },
   resolve: {
     // Ensure preact is only bundled once

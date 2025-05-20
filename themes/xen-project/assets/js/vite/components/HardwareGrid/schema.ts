@@ -1,23 +1,30 @@
 import {z} from 'zod';
 
+const jobSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  status: z.string(),
+  stage: z.object({name: z.string()}).nullable(),
+  detailedStatus: z.object({
+    label: z.string(),
+    favicon: z.string(),
+  }),
+});
+
+export type Job = z.infer<typeof jobSchema>;
+
 export const pipelineSchema = z.object({
   id: z.string(),
   iid: z.string(),
   source: z.string(),
+  duration: z.number().nullable(),
+  status: z.string(),
   createdAt: z.string(),
+  detailedStatus: z.object({
+    label: z.string(),
+  }),
   jobs: z.object({
-    nodes: z.array(
-      z.object({
-        id: z.string(),
-        name: z.string(),
-        status: z.string(),
-        stage: z.object({name: z.string()}).nullable(),
-        detailedStatus: z.object({
-          label: z.string(),
-          favicon: z.string(),
-        }),
-      }),
-    ),
+    nodes: z.array(jobSchema),
   }),
 });
 

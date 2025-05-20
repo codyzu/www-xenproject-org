@@ -1,130 +1,46 @@
 import {h, render, type RefObject} from 'preact';
-import {useEffect, useState, useLayoutEffect, useRef} from 'preact/hooks';
 import useEmblaCarousel from 'embla-carousel-react';
 import clsx from 'clsx';
 import ButtonBase from '../ButtonBase.tsx';
 import ButtonExternalLink from '../ButtonExternalLink.tsx';
-import TestGlobe from '../TestGlobe.tsx';
-import {graphQlResponseSchema, type Pipeline, type ParsedJob} from './schema.ts';
+import {type Job, useGitlabPipelineJobs} from './use-gitlab-pipeline-jobs.ts';
 import JobGroup from './JobGroup.tsx';
-import {parseJobName} from './parse-job-name.ts';
 import {DotButton, useDotButton} from './CarouselButtons.tsx';
 
-async function getLatestNonScheduledPipeline(apiUrl: string, projectPath: string): Promise<Pipeline | undefined> {
-  const query = `
-    query getLatestPipeline($projectPath: ID!, $branch: String!) {
-      project(fullPath: $projectPath) {
-        pipelines(ref: $branch, first: 1, source: "push") {
-          nodes {
-            id iid source
-            createdAt
-            jobs {
-              nodes {
-                id name status
-                stage { name }
-                detailedStatus { label favicon }
-              }
-            }
-          }
-        }
-      }
-    }`;
-
-  const response: Response = await fetch(apiUrl, {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({query, variables: {projectPath, branch: 'staging'}}),
-  });
-
-  const json: unknown = await response.json();
-
-  // Validate the response using Zod
-  const parsed = graphQlResponseSchema.safeParse(json);
-  if (!parsed.success) {
-    // Log validation errors for debugging
-    console.error('GraphQL response validation failed:', parsed.error);
-    return;
-  }
-
-  const node = parsed.data.data.project?.pipelines?.nodes?.[0];
-
-  if (!node) {
-    console.warn('No pipeline found');
-  }
-
-  return node;
-}
-
 export function HardwareGrid() {
-  const [pipeline, setPipeline] = useState<Pipeline>();
-  const [jobs, setJobs] = useState<Map<string, ParsedJob[]>>(new Map());
-  const [pipelineDate, setPipelineDate] = useState<Date>(() => new Date());
-
-  useEffect(() => {
-    const load = async () => {
-      const gitlabApi = 'https://gitlab.com/api/graphql';
-      const projectPath = 'xen-project/hardware/xen';
-      const pipeline = await getLatestNonScheduledPipeline(gitlabApi, projectPath);
-      if (!pipeline) return;
-
-      // Store the raw Date object in state
-      setPipelineDate(new Date(pipeline.createdAt));
-
-      const parsedJobs = (pipeline.jobs.nodes || [])
-        .filter((j) => j.stage?.name === 'test')
-        .filter((j) => !j.name.startsWith('qemu'))
-        .filter((j) => j.name !== 'build-each-commit-gcc')
-        .map((j) => {
-          const parsed = parseJobName(j.name);
-          if (!parsed) {
-            console.warn(`Unable to parse job name: ${j.name}`);
-            return;
-          }
-
-          return {...j, parsed};
-        })
-        .filter((j) => j !== undefined)
-        .sort((a, b) => a.name.localeCompare(b.name));
-
-      if (parsedJobs.length === 0) {
-        console.warn('No jobs found');
-      }
-
-      // Group jobs by architecture
-      const archJobs = new Map<string, ParsedJob[]>();
-      for (const job of parsedJobs) {
-        const platform = job.parsed.friendlyPlatform;
-        archJobs.set(platform, [...(archJobs.get(platform) ?? []), job]);
-      }
-
-      setPipeline(pipeline);
-      setJobs(archJobs);
-    };
-
-    void load();
-  }, []);
+  const {pipeline, jobs, pipelineDate, loading, error} = useGitlabPipelineJobs();
 
   const [emblaRef, emblaApi] = useEmblaCarousel({loop: true});
   const {selectedIndex, scrollSnaps, onDotButtonClick} = useDotButton(emblaApi);
+
+  const date = pipelineDate ?? new Date();
+
+  const jobsByPlatform = new Map<string, Job[]>();
+  for (const job of jobs ?? []) {
+    const {platform} = job;
+    jobsByPlatform.set(platform, [...(jobsByPlatform.get(platform) ?? []), job]);
+  }
 
   return (
     <div
       className={clsx(
         'uno-flex uno-flex-col uno-max-w-[1472px] uno-w-full uno-relative uno-m-x-auto',
-        jobs.size === 0 && ' uno-blur-sm uno-animate-pulse uno-pointer-events-none uno-touch-none',
+        (loading || error) && ' uno-blur-sm uno-animate-pulse uno-pointer-events-none uno-touch-none',
       )}
     >
-      <TestGlobe jobs={jobs} />
       <div className="uno-flex uno-flex-wrap uno-items-center uno-gap-x-2 uno-justify-center uno-text-center uno-text-sm uno-font-semibold uno-m-b-4">
         <div>Test pipeline triggered at:</div>
         <div className="uno-font-mono">
-          {pipelineDate.toISOString().split('T')[0]} {pipelineDate.toISOString().split('T')[1].slice(0, 5)} (UTC)
+          {date.toISOString().split('T')[0]} {date.toISOString().split('T')[1].slice(0, 5)} (UTC)
         </div>
       </div>
       <div ref={emblaRef} className="embla uno-w-full uno-overflow-hidden uno-relative">
         <div className="embla__container uno-flex uno-p-b-8 uno-m-l--4">
-          {jobs.size === 0
-            ? Array.from({length: 6}).map((_, index) => (
+          {!loading && !error
+            ? [...jobsByPlatform.entries()].map(([platform, jobs], index) => (
+                <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
+              ))
+            : Array.from({length: 6}).map((_, index) => (
                 <div
                   // eslint-disable-next-line react/no-array-index-key
                   key={index}
@@ -134,9 +50,6 @@ export function HardwareGrid() {
                     <div className="uno-text-2xl uno-font-semibold uno-m-t-14">Loading Architecture</div>
                   </div>
                 </div>
-              ))
-            : [...jobs.entries()].map(([platform, jobs], index) => (
-                <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
               ))}
         </div>
         <div className="uno-hidden sm:uno-absolute uno-left-0 uno-top-0 uno-w-[5rem] uno-h-full uno-bg-gradient-to-r uno-from-surface-secondary uno-flex uno-flex-col uno-justify-center uno-items-center uno-pointer-events-none uno-touch-none" />

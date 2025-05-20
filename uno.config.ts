@@ -66,6 +66,9 @@ export default defineConfig({
         'fade-in-right-short': 'ease-out',
       },
     },
+    boxShadow: {
+      'fade-in': 'inset 0 0 12px 12px var(--un-shadow-color)',
+    },
   },
   shortcuts: {
     'uno-section': `uno-section-base uno-px-3 md:uno-px-10 uno-max-w-[1392px]`,

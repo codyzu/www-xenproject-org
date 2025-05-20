@@ -4,6 +4,8 @@ import Globe, {type GlobeMethods} from 'react-globe.gl';
 import useResizeObserver from '@react-hook/resize-observer';
 import clsx from 'clsx';
 import {type ParsedJob} from './HardwareGrid/schema.ts';
+import {type Job} from './HardwareGrid/use-gitlab-pipeline-jobs.ts';
+import {type Status, StatusPill} from './HardwareGrid/StatusPill.tsx';
 
 const useSize = (target: RefObject<HTMLDivElement>) => {
   const [size, setSize] = useState<DOMRect>();
@@ -40,31 +42,31 @@ function Marker({text, details}: Pick<MarkerData, 'text' | 'details'>) {
   );
 }
 
-type Location = {
-  readonly lat: number;
-  readonly lng: number;
-  readonly name: string;
-  readonly icons: string[];
-};
+// Type Location = {
+//   readonly lat: number;
+//   readonly lng: number;
+//   readonly name: string;
+//   readonly icons: string[];
+// };
 
-const sanJose: Location = {lat: 37.3382, lng: -121.8863, name: 'San Jose', icons: ['i-mdi-cpu-64-bit']};
-// Const grenoble: Location = {lat: 45.1885, lng: 5.7245, name: 'Grenoble', icons: ['i-mdi-cpu-64-bit']};
-const boston: Location = {lat: 42.3601, lng: -71.0589, name: 'Boston', icons: ['i-mdi-cpu-64-bit']};
-// Const amsterdam: Location = {lat: 52.3676, lng: 4.9041, name: 'Amsterdam', icons: ['i-mdi-cpu-64-bit']};
-const berlin: Location = {lat: 52.52, lng: 13.405, name: 'Berlin', icons: ['i-mdi-cpu-64-bit']};
+// const sanJose: Location = {lat: 37.3382, lng: -121.8863, name: 'San Jose', icons: ['i-mdi-cpu-64-bit']};
+// // Const grenoble: Location = {lat: 45.1885, lng: 5.7245, name: 'Grenoble', icons: ['i-mdi-cpu-64-bit']};
+// const boston: Location = {lat: 42.3601, lng: -71.0589, name: 'Boston', icons: ['i-mdi-cpu-64-bit']};
+// // Const amsterdam: Location = {lat: 52.3676, lng: 4.9041, name: 'Amsterdam', icons: ['i-mdi-cpu-64-bit']};
+// const berlin: Location = {lat: 52.52, lng: 13.405, name: 'Berlin', icons: ['i-mdi-cpu-64-bit']};
 
-const cities: Location[] = [sanJose, boston, berlin];
+// const cities: Location[] = [sanJose, boston, berlin];
 
-const combinations = cities.flatMap((start, startIndex) =>
-  cities.filter((end, endIndex) => start !== end && endIndex > startIndex).map((end) => ({start, end})),
-);
-const arcsData = combinations.map(({start, end}) => ({
-  startLat: start.lat,
-  startLng: start.lng,
-  endLat: end.lat,
-  endLng: end.lng,
-  // Color: 'red',
-}));
+// const combinations = cities.flatMap((start, startIndex) =>
+//   cities.filter((end, endIndex) => start !== end && endIndex > startIndex).map((end) => ({start, end})),
+// );
+// const arcsData = combinations.map(({start, end}) => ({
+//   startLat: start.lat,
+//   startLng: start.lng,
+//   endLat: end.lat,
+//   endLng: end.lng,
+//   // Color: 'red',
+// }));
 
 // Const N = 30;
 // const gData: MarkerData[] = [
@@ -94,7 +96,7 @@ const northPole = {lat: 90, lng: 0};
 
 type JobLocation = {name: string; lat: number; lng: number; icons: string[]};
 
-export default function TestGlobe({jobs}: {readonly jobs: Map<string, ParsedJob[]>}) {
+export default function TestGlobe({jobs}: {readonly jobs: Map<string, Job[]>}) {
   const globeContainerRef = useRef<HTMLDivElement>(null);
   const globeContainerSize = useSize(globeContainerRef);
   const globeRef = useRef<GlobeMethods>();
@@ -105,18 +107,14 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, ParsedJob[
       return;
     }
 
-    // GlobeRef.current.controls().addEventListener('end', () => {
-    //   console.log('controls ended');
-    // });
-
-    // globeRef.current.camera().addEventListener('end', () => {
-    //   console.log('camera ended');
-    // });
-
     globeRef.current.controls().autoRotate = true;
     globeRef.current.controls().autoRotateSpeed = -1.8;
-
     globeRef.current.pointOfView({...northPole, altitude: 0.6});
+    const lights = globeRef.current.lights();
+    // Lights[0].intensity *= 4;
+    // Lights[1].intensity = 8;
+    // lights[0].intensity = 34;
+    // console.log('lights', globeRef.current.lights());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globeRef.current]);
 
@@ -154,8 +152,6 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, ParsedJob[
 
     // void rotateCities();
 
-    console.log('Globe rer set', globeRef.current);
-
     // Return () => {
     //   cancel = true;
     // };
@@ -170,114 +166,205 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, ParsedJob[
     // globeRef.current.controls().autoRotate = true;
     // globeRef.current.controls().autoRotateSpeed = 0.8;
     // globeRef.current.pointOfView({...northPole, altitude: 1});
-    globeRef.current.pointOfView({...cities[0], altitude: 1.8}, 3000);
+    const firstLocation = [...jobs.values()][0][0];
+    globeRef.current.pointOfView({lat: firstLocation.lat, lng: firstLocation.lng, altitude: 1.8}, 3000);
     // GlobeRef.current.controls().
   }, [jobs]);
 
-  console.log('Jobs', jobs);
-  const locations: JobLocation[] = [];
+  // Console.log('Jobs', jobs);
+  // const locations: JobLocation[] = [];
 
-  for (const jobGroup of jobs.values()) {
-    const job = jobGroup[0];
+  // for (const jobGroup of jobs.values()) {
+  //   const job = jobGroup[0];
 
-    if (job.parsed.location === undefined) {
-      continue;
+  //   if (job.parsed.location === undefined) {
+  //     continue;
+  //   }
+
+  //   if (locations.some((l) => l.name === job.parsed.location?.name)) {
+  //     continue;
+  //   }
+
+  //   locations.push({
+  //     name: job.parsed.location.name,
+  //     lat: job.parsed.location.lat,
+  //     lng: job.parsed.location.lng,
+  //     icons: job.parsed.icons,
+  //   });
+  // }
+
+  // console.log('Locations', locations);
+
+  type LocationData = {
+    location: string;
+    lat: number;
+    lng: number;
+    icons: string[];
+    status: Status;
+    count: number;
+  };
+
+  const locations: LocationData[] = [];
+  for (const [location, locationJobs] of jobs.entries()) {
+    const icons = [...new Set(locationJobs.flatMap((j) => j.icons))];
+
+    if (icons.includes('i-mdi-cpu-64-bit')) {
+      icons.splice(icons.indexOf('i-mdi-cpu-64-bit'), 1);
+      icons.push('i-mdi-cpu-64-bit');
     }
 
-    if (locations.some((l) => l.name === job.parsed.location?.name)) {
-      continue;
-    }
+    const status: Status = locationJobs.every((j) => j.raw.status === 'SUCCESS')
+      ? 'SUCCESS'
+      : locationJobs.some((j) => j.raw.status === 'FAILED')
+        ? 'FAILED'
+        : 'PENDING';
 
-    locations.push({
-      name: job.parsed.location.name,
-      lat: job.parsed.location.lat,
-      lng: job.parsed.location.lng,
-      icons: job.parsed.icons,
-    });
+    // Console.log('locationJobs', locationJobs);
+    const locationData: LocationData = {
+      location,
+      lat: locationJobs[0].lat,
+      lng: locationJobs[0].lng,
+      icons,
+      status,
+      count: 0,
+    };
+    locations.push(locationData);
   }
 
-  console.log('Locations', locations);
+  const [arcData, setArcData] = useState<
+    Array<{
+      startLat: number;
+      startLng: number;
+      endLat: number;
+      endLng: number;
+    }>
+  >([]);
+
+  useEffect(() => {
+    console.log('Jobs', jobs);
+    const endPoints: Array<{lat: number; lng: number}> = [...jobs.values()].map((jobGroup) => ({
+      lat: jobGroup[0].lat,
+      lng: jobGroup[0].lng,
+    }));
+
+    console.log('End points', endPoints);
+
+    const combinations = endPoints.flatMap((start, startIndex) =>
+      endPoints.filter((end, endIndex) => start !== end && endIndex > startIndex).map((end) => ({start, end})),
+    );
+
+    console.log('Combinations', combinations);
+
+    const nextArcData = combinations.map(({start, end}) => ({
+      startLat: start.lat,
+      startLng: start.lng,
+      endLat: end.lat,
+      endLng: end.lng,
+    }));
+
+    setArcData(nextArcData);
+
+    // Const handle = setInterval(() => {
+    //   setArcData((currentArcData) =>
+    //     currentArcData.map((arc) => ({
+    //       startLat: arc.endLat,
+    //       startLng: arc.endLng,
+    //       endLat: arc.startLat,
+    //       endLng: arc.startLng,
+    //     })),
+    //   );
+    // }, 4000);
+
+    // return () => {
+    //   clearInterval(handle);
+    // };
+  }, [jobs]);
+
+  // Const locations = [...jobs.entries()].map(([jobName, jobGroup]) => {;
 
   return (
-    <div
-      ref={globeContainerRef}
-      className="uno-w-full uno-h-120 uno-flex uno-flex-col uno-items-center uno-self-center"
-    >
-      {globeContainerSize ? (
-        <Globe
-          ref={globeRef}
-          animateIn={false}
-          globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-day.jpg"
-          // GlobeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg"
-          bumpImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png"
-          // BackgroundImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
-          width={globeContainerSize.width}
-          height={globeContainerSize.height}
-          // HtmlElementsData={gData}
-          // htmlElement={(d) => {
-          //   const data = d as MarkerData;
-          //   const element = document.createElement('div');
-          //   render(<Marker {...data} />, element);
-          //   return element;
-          // }}
-          htmlElementsData={locations}
-          htmlElement={(data) => {
-            const location = data as JobLocation;
-            const element = document.createElement('div');
-            // Console.log('Location', location);
-            render(
-              <div className="uno-card uno-shadow-gray-700 uno-bg-opacity-80 uno-flex uno-flex-col uno-items-center uno-gap-1">
-                <div className="uno-flex uno-flex-row uno-gap-1">
-                  <div className="uno-text-xs uno-font-semibold">{location.name}</div>
-                  <div className="uno-h-2 uno-w-2 uno-rounded-full uno-bg-green-600 uno-animate-pulse" />
-                </div>
-                <div className="uno-flex uno-flex-row uno-gap-1 uno-text-secondary">
-                  {location.icons.map((icon) => (
-                    <div
-                      key={icon}
-                      className={clsx(
-                        'uno-rounded uno-border-1 uno-border-solid uno-border-black uno-flex uno-shadow-xl uno-shadow-gray-400',
-                      )}
-                    >
-                      <div className={clsx(icon, 'uno-w-8 uno-h-8')} />
-                    </div>
-                  ))}
-                </div>
-              </div>,
-              element,
-            );
-            return element;
-          }}
-          arcsData={arcsData}
-          arcStroke={2}
-          arcAltitudeAutoScale={0.25}
-          arcColor={['#f87171', '#fbbf24', '#4ade80', '#fbbf24', '#f87171']}
-          arcDashGap={0.01}
-          arcDashLength={0.2}
-          arcDashAnimateTime={4000}
-          backgroundColor="#ededed"
-          // LabelsData={cities}
-          // labelText={(l) => {
-          //   return (l as Location).name;
-          // }}
-          // labelSize={2}
-          // labelDotRadius={6}
-          // labelColor={() => 'rgba(255, 255, 255, 0.8)'}
-          // LabelLabel={(l) => {
-          //   const location = l as Location;
-          //   return <div>{location.name}</div>;
-          //   // Return location.icons.map((icon) => (
-          //   //   <div key={icon} className={clsx(icon, 'uno-text-2xl uno-flex-shrink-0')} />
-          //   // ));
-          // }}
-          // OnAnimationEnd={() => {
-          //   console.log('Animation ended');
-          // }}
-          // onZoom={(x) => {
-          //   console.log('Zoom', x);
-          // }}
-        />
-      ) : null}
+    <div className="uno-w-full uno-h-120 uno-flex uno-self-center uno-relative">
+      <div className="uno-w-full uno-h-full uno-p-[1px] uno-flex">
+        <div ref={globeContainerRef} className="uno-w-full uno-h-full uno-flex uno-rounded-3xl uno-overflow-clip">
+          <Globe
+            ref={globeRef}
+            animateIn={false}
+            globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-day.jpg"
+            // GlobeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg"
+            // GlobeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
+            bumpImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png"
+            // BackgroundImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
+            width={globeContainerSize?.width ?? 0}
+            height={globeContainerSize?.height ?? 0}
+            // HtmlElementsData={gData}
+            // htmlElement={(d) => {
+            //   const data = d as MarkerData;
+            //   const element = document.createElement('div');
+            //   render(<Marker {...data} />, element);
+            //   return element;
+            // }}
+            htmlElementsData={locations}
+            htmlElement={(data) => {
+              const location = data as LocationData;
+              const element = document.createElement('div');
+              // Console.log('Location', location);
+              render(
+                <div className="uno-card uno-shadow-gray-700 uno-bg-opacity-80 uno-flex uno-flex-col uno-items-center uno-gap-1">
+                  <div className="uno-flex uno-flex-row uno-gap-1 uno-items-center">
+                    <div className="uno-text-xs uno-font-semibold">{location.location}</div>
+                    <StatusPill status={location.status} label={location.status.toLowerCase()} />
+                    {/* <div className="uno-h-2 uno-w-2 uno-rounded-full uno-bg-green-600 uno-animate-pulse" /> */}
+                  </div>
+                  <div className="uno-flex uno-flex-row uno-gap-1 uno-text-secondary">
+                    {location.icons.map((icon) => (
+                      <div
+                        key={icon}
+                        className={clsx(
+                          'uno-rounded uno-border-1 uno-border-solid uno-border-black uno-flex uno-shadow-xl uno-shadow-gray-400 uno-p-1',
+                        )}
+                      >
+                        <div className={clsx(icon, 'uno-w-8 uno-h-8')} />
+                      </div>
+                    ))}
+                  </div>
+                </div>,
+                element,
+              );
+              return element;
+            }}
+            arcsData={arcData}
+            arcStroke={2}
+            arcAltitudeAutoScale={0.25}
+            arcColor={['#f87171', '#fbbf24', '#4ade80', '#fbbf24', '#f87171']}
+            arcDashGap={0.01}
+            arcDashLength={0.05}
+            arcDashAnimateTime={2000}
+            arcsTransitionDuration={500}
+            backgroundColor="#ededed"
+            // LabelsData={cities}
+            // labelText={(l) => {
+            //   return (l as Location).name;
+            // }}
+            // labelSize={2}
+            // labelDotRadius={6}
+            // labelColor={() => 'rgba(255, 255, 255, 0.8)'}
+            // LabelLabel={(l) => {
+            //   const location = l as Location;
+            //   return <div>{location.name}</div>;
+            //   // Return location.icons.map((icon) => (
+            //   //   <div key={icon} className={clsx(icon, 'uno-text-2xl uno-flex-shrink-0')} />
+            //   // ));
+            // }}
+            // OnAnimationEnd={() => {
+            //   console.log('Animation ended');
+            // }}
+            // onZoom={(x) => {
+            //   console.log('Zoom', x);
+            // }}
+          />
+        </div>
+      </div>
+      <div className="uno-absolute uno-top-0 uno-left-0 uno-w-full uno-h-full uno-shadow-fade-in uno-shadow-surface-secondary uno-pointer-events-none uno-rounded-3xl" />
     </div>
   );
 }
