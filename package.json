@@ -12,12 +12,13 @@
     "sb-images": "node scripts/storytasks/storybook-images.js",
     "doc": "node scripts/documentation/generate-thumbnails.js && node scripts/documentation/images.js",
     "downloads": "node scripts/downloads/getLinks.js",
-    "dev": "concurrently --names vite,hugo --prefix-colors green,blue npm:vite:dev npm:hugo:dev",
-    "build": "npm run clean && npm run vite:build && npm run hugo:build",
+    "dev": "npm run research && concurrently --names vite,hugo --prefix-colors green,blue npm:vite:dev npm:hugo:dev",
+    "build": "npm run clean && npm run research && npm run vite:build && npm run hugo:build",
     "vite:dev": "vite",
     "vite:build": "vite build",
     "hugo:dev": "hugo server -D --logLevel debug --config hugo.yaml,hugo.dev.yaml --disableFastRender",
     "hugo:build": "hugo --minify",
+    "research": "node scripts/research/parse-research-papers.js",
     "lint": "xo",
     "clean": "rm -rf public"
   },
@@ -74,6 +75,5 @@
   },
   "volta": {
     "node": "22.7.0"
-  },
-  "packageManager": "pnpm@10.7.1+sha512.2d92c86b7928dc8284f53494fb4201f983da65f0fb4f0d40baafa5cf628fa31dae3e5968f12466f17df7e97310e30f343a648baea1b9b350685dafafffdf5808"
+  }
 }

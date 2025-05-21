@@ -1,0 +1,82 @@
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("papers-search");
+    const rows = document.querySelectorAll("#papers-table tbody tr");
+    const noResultsRow = document.getElementById("no-papers-results");
+
+    if (!searchInput || !rows.length) {
+      return;
+    }
+
+    searchInput.addEventListener("input", (e) => {
+      const queryTokens = e.target.value.toLowerCase().split(" ");
+      let hasResults = false;
+      rows.forEach((row) => {
+        const text = row.innerText.toLowerCase();
+        const isRowMatch = queryTokens.every((token) => text.includes(token));
+        row.style.display = isRowMatch ? "" : "none";
+        if (isRowMatch) {
+          hasResults = true;
+        }
+      });
+
+      noResultsRow.style.display = hasResults ? "none" : "flex";
+    });
+  });
+</script>
+
+<section class="uno-section-nested">
+  <div class="uno-flex uno-flex-row uno-gap-3 uno-items-start uno-items-center uno-w-full md:uno-w-2/3">
+    <div>Search Papers:</div>
+    <input
+      id="papers-search"
+      class="uno-p4 uno-rounded uno-flex-grow uno-flex-shrink uno-text-xl"
+      type="text"
+      placeholder="Title, description, date, tag, author..."
+    />
+  </div>
+
+  <table
+    id="papers-table"
+    class="uno-grid uno-grid-cols-1 md:uno-grid-cols-[2fr_1fr] uno-gap-y-2 md:uno-gap-y-16 uno-gap-x-6"
+  >
+    <tbody class="uno-contents">
+      {{ $sortedByTitle := sort site.Data.research "title" "asc" }}
+      {{ $sortedPapers := sort $sortedByTitle "year" "desc" }}
+      {{ range $sortedPapers }}
+        <tr class="uno-contents uno-parent">
+          <td class="uno-flex uno-flex-col uno-gap-4 parent-not-first:uno-m-t-14 md:parent-not-first:uno-m-t-0">
+            <div class="uno-text-4xl uno-font-medium">
+              <a href="/research/{{ .id }}/">{{ .title }}</a>
+            </div>
+            <div class="uno-text-xl uno-leading-8 uno-line-clamp-3">
+              {{ .abstract }}
+            </div>
+          </td>
+          <td class="uno-text-base uno-flex uno-flex-col uno-gap-2">
+            <div class="uno-flex uno-flex-row uno-gap-2">
+              <div class="uno-font-semibold">Published:</div>
+              <div>{{ .year }}</div>
+            </div>
+            <div class="uno-flex uno-flex-row uno-gap-2 uno-flex-wrap uno-items-center">
+              <div class="uno-font-semibold">Tags:</div>
+              {{ range .tags }}<div class="uno-p-1 uno-rounded-lg uno-bg-brand uno-p-2">{{ . }}</div>{{ end }}
+            </div>
+            <div>
+              <span class="uno-font-semibold">Authors:</span>
+              {{ $sortedAuthors := sort .authors }}
+              {{ delimit $sortedAuthors " and " }}
+            </div>
+
+            <div data-component="IconButton" data-href="{{ .url }}">Read the Full Paper</div>
+          </td>
+        </tr>
+      {{ end }}
+
+
+      <tr id="no-papers-results" class="uno-grid-cols-2 uno-flex-row uno-hidden">
+        <td class="uno-w-full">No papers found matching your search.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
