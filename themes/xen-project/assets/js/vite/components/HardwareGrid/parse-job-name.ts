@@ -60,19 +60,19 @@ function expandJobFields(
   }
 
   if (friendlyPlatform === 'zen2') {
-    friendlyPlatform = 'AMD Zen 2';
+    friendlyPlatform = 'AMD Zen 2 (Ryzen 5 4500U)';
     icons.push('i-lineicons-amd', 'i-mdi-cpu-64-bit');
     location = {name: 'Boston', lat: 42.3601, lng: -71.0589};
   }
 
   if (friendlyPlatform === 'zen3p') {
-    friendlyPlatform = 'AMD Zen 3+';
+    friendlyPlatform = 'AMD Zen 3+ (Ryzen 7 7735HS)';
     icons.push('i-lineicons-amd', 'i-mdi-cpu-64-bit');
     location = {name: 'Boston', lat: 42.3601, lng: -71.0589};
   }
 
   if (friendlyPlatform === 'zen4') {
-    friendlyPlatform = 'AMD Zen 4';
+    friendlyPlatform = 'AMD Zen 4 (Ryzen 5 7640U)';
     icons.push('i-lineicons-amd', 'i-mdi-cpu-64-bit');
     location = {name: 'Boston', lat: 42.3601, lng: -71.0589};
   }
