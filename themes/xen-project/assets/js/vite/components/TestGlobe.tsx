@@ -110,7 +110,7 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, Job[]>}) {
     globeRef.current.controls().autoRotate = true;
     globeRef.current.controls().autoRotateSpeed = -1.8;
     globeRef.current.pointOfView({...northPole, altitude: 0.6});
-    const lights = globeRef.current.lights();
+    // Const lights = globeRef.current.lights();
     // Lights[0].intensity *= 4;
     // Lights[1].intensity = 8;
     // lights[0].intensity = 34;
