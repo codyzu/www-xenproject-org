@@ -51,10 +51,10 @@ export default function CiStatus() {
               (staging)
             </code>
           </div>
-          <div className="uno-text-xs">
+          <div className="">
             Started at: <code className="uno-font-semibold">{pipelineDate.toLocaleString()}</code>
           </div>
-          <div className="uno-text-xs">
+          <div className="">
             Duration:{' '}
             <code className="uno-font-semibold">
               {pipeline.duration ? `${Math.floor(pipeline.duration / 60)}m${pipeline.duration % 60}s` : '-'}
@@ -73,7 +73,7 @@ export default function CiStatus() {
 
           return (
             <div key={location} className="uno-card">
-              <div className="uno-text-3xl uno-font-semibold">🌐 {location}</div>
+              <div className="uno-text-3xl uno-font-semibold uno-p-b-4">🌐 {location}</div>
               {Object.entries(jobsByPlatform).map(([platform, platformJobs]) => {
                 if (!platformJobs) {
                   return null;
@@ -81,7 +81,7 @@ export default function CiStatus() {
 
                 return (
                   <div key={platform} className="uno-flex uno-flex-col uno-gap-2">
-                    <div className="uno-text-2xl uno-font-semibold">{platform}</div>
+                    <div className="uno-text-2xl uno-font-semibold uno-p-t-4">{platform}</div>
                     {platformJobs.map((job) => {
                       // Const {platform, location, lat, lng, icons} = parseJobData(job.raw.name);
                       return (
@@ -102,7 +102,7 @@ export default function CiStatus() {
         })}
       </div>
       <div className="uno-grid uno-grid-cols-3">
-        <img className="uno-w-full uno-aspect-square uno-object-contain" src={boardAdl} />
+        <img className="uno-w-full uno-aspect-square uno-object-contain uno-card" src={boardAdl} />
       </div>
     </div>
   );

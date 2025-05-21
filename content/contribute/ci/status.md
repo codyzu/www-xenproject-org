@@ -13,7 +13,7 @@ scripts:
   - ci-status.tsx
 menus:
   main:
-    parent: "Continuous Integration"
+    parent: Contribute
     identifier: "ci-status"
     weight: 61
 ---

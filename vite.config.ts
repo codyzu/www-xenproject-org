@@ -37,7 +37,6 @@ export default defineConfig({
           preact: ['preact', 'preact/hooks'],
         },
         entryFileNames: 'js/[name]-[hash].js',
-        assetFileNames: 'css/[name]-[hash].css',
       },
     },
   },

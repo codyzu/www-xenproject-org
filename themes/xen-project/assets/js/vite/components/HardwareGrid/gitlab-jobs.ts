@@ -26,7 +26,7 @@ const platformLocations: PlatformLocation[] = [
   },
   {
     jobName: /^zen2/i,
-    platform: 'AMD Zen 2',
+    platform: 'AMD Zen 2 (Ryzen 5 4500U)',
     location: 'Boston',
     lat: 42.3601,
     lng: -71.0589,
@@ -34,7 +34,7 @@ const platformLocations: PlatformLocation[] = [
   },
   {
     jobName: /^zen3p/i,
-    platform: 'AMD Zen 3+',
+    platform: 'AMD Zen 3+ (Ryzen 7 7735HS)',
     location: 'Boston',
     lat: 42.3601,
     lng: -71.0589,
@@ -42,7 +42,7 @@ const platformLocations: PlatformLocation[] = [
   },
   {
     jobName: /^zen4/i,
-    platform: 'AMD Zen 4',
+    platform: 'AMD Zen 4 (Ryzen 5 7640U)',
     location: 'Boston',
     lat: 42.3601,
     lng: -71.0589,
