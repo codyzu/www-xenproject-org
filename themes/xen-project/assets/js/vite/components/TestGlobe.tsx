@@ -3,6 +3,9 @@ import {useEffect, useState, useLayoutEffect, useRef} from 'preact/hooks';
 import Globe, {type GlobeMethods} from 'react-globe.gl';
 import useResizeObserver from '@react-hook/resize-observer';
 import clsx from 'clsx';
+import earthTopology from '../assets/earth-topology.png';
+import nightSky from '../assets/night-sky.png';
+import earthDay from '../assets/earth-day.jpg';
 import {type ParsedJob} from './HardwareGrid/schema.ts';
 import {type Job} from './HardwareGrid/use-gitlab-pipeline-jobs.ts';
 import {type Status, StatusPill} from './HardwareGrid/StatusPill.tsx';
@@ -289,11 +292,14 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, Job[]>}) {
           <Globe
             ref={globeRef}
             animateIn={false}
-            globeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-day.jpg"
+            globeImageUrl={earthDay}
+            bumpImageUrl={earthTopology}
+            backgroundImageUrl={nightSky}
+            // GlobeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-day.jpg"
             // GlobeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg"
             // GlobeImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg"
-            bumpImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png"
-            // BackgroundImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
+            // bumpImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png"
+            // backgroundImageUrl="//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png"
             width={globeContainerSize?.width ?? 0}
             height={globeContainerSize?.height ?? 0}
             // HtmlElementsData={gData}
@@ -309,12 +315,12 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, Job[]>}) {
               const element = document.createElement('div');
               // Console.log('Location', location);
               render(
-                <div className="uno-card uno-shadow-gray-700 uno-bg-opacity-80 uno-flex uno-flex-col uno-items-center uno-gap-1">
-                  <div className="uno-flex uno-flex-row uno-gap-1 uno-items-center">
-                    <div className="uno-text-xs uno-font-semibold">{location.location}</div>
-                    <StatusPill status={location.status} label={location.status.toLowerCase()} />
-                    {/* <div className="uno-h-2 uno-w-2 uno-rounded-full uno-bg-green-600 uno-animate-pulse" /> */}
-                  </div>
+                <div className="uno-card uno-shadow-gray-500 uno-bg-opacity-80 uno-flex uno-flex-col uno-items-center uno-gap-1">
+                  {/* <div className="uno-flex uno-flex-row uno-gap-1 uno-items-center"> */}
+                  <div className="uno-text-sm uno-font-semibold">{location.location}</div>
+                  <StatusPill status={location.status} label={location.status.toLowerCase()} />
+                  {/* <div className="uno-h-2 uno-w-2 uno-rounded-full uno-bg-green-600 uno-animate-pulse" /> */}
+                  {/* </div> */}
                   <div className="uno-flex uno-flex-row uno-gap-1 uno-text-secondary">
                     {location.icons.map((icon) => (
                       <div
@@ -340,7 +346,8 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, Job[]>}) {
             arcDashLength={0.05}
             arcDashAnimateTime={2000}
             arcsTransitionDuration={500}
-            backgroundColor="#ededed"
+            backgroundColor="#000000"
+            // BackgroundColor="#ededed"
             // LabelsData={cities}
             // labelText={(l) => {
             //   return (l as Location).name;

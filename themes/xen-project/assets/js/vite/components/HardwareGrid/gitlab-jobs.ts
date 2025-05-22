@@ -1,3 +1,7 @@
+import intelI7 from '../../assets/intel-core-i7.png';
+import xilinxArm from '../../assets/xilinx-arm.webp';
+import amdRyzen from '../../assets/amd-ryzen.avif';
+
 type PlatformLocation = {
   jobName: RegExp;
   platform?: string;
@@ -5,6 +9,7 @@ type PlatformLocation = {
   lat?: number;
   lng?: number;
   icons?: string[];
+  image?: string;
 };
 
 const platformLocations: PlatformLocation[] = [
@@ -23,6 +28,7 @@ const platformLocations: PlatformLocation[] = [
     lat: 52.52,
     lng: 13.405,
     icons: ['i-lineicons-intel'],
+    image: intelI7,
   },
   {
     jobName: /^zen2/i,
@@ -55,6 +61,7 @@ const platformLocations: PlatformLocation[] = [
     location: 'San Jose',
     lat: 37.3382,
     lng: -121.8863,
+    image: xilinxArm,
   },
   {
     jobName: /^xilinx(?!.*arm64)/i,
@@ -63,6 +70,7 @@ const platformLocations: PlatformLocation[] = [
     location: 'San Jose',
     lat: 37.3382,
     lng: -121.8863,
+    image: amdRyzen,
   },
 
   // Add other locations here 👆
@@ -83,6 +91,7 @@ export function parseJobData(jobName: string): JobData {
   let lat = 0;
   let lng = 0;
   let icons: string[] = [];
+  let image;
 
   for (const platformLocation of platformLocations) {
     if (platformLocation.jobName.test(jobName)) {
@@ -91,6 +100,7 @@ export function parseJobData(jobName: string): JobData {
       lat = !lat && platformLocation.lat ? platformLocation.lat : lat;
       lng = !lng && platformLocation.lng ? platformLocation.lng : lng;
       icons = [...icons, ...(platformLocation.icons ?? [])];
+      image = platformLocation.image ?? image;
     }
   }
 
@@ -102,5 +112,6 @@ export function parseJobData(jobName: string): JobData {
     lat,
     lng,
     icons,
+    image,
   };
 }

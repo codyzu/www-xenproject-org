@@ -67,7 +67,7 @@ export default function CiStatus() {
       <Suspense fallback={<Loading />}>
         <TestGlobe jobs={jobsByLocation} />
       </Suspense>
-      <div className="uno-grid uno-grid-cols-2 uno-gap-4 uno-auto-rows-[1fr]">
+      <div className="uno-grid uno-grid-cols-2 uno-gap-4">
         {[...jobsByLocation.entries()].map(([location, locationJobs]) => {
           const jobsByPlatform = Object.groupBy(locationJobs, (job) => job.platform);
 
@@ -81,7 +81,14 @@ export default function CiStatus() {
 
                 return (
                   <div key={platform} className="uno-flex uno-flex-col uno-gap-2">
-                    <div className="uno-text-2xl uno-font-semibold uno-p-t-4">{platform}</div>
+                    <div className="uno-flex uno-flex-row uno-gap-2 uno-items-center uno-p-t-4">
+                      <div className="uno-text-2xl uno-font-semibold">{platform}</div>
+                      {platformJobs[0].image ? (
+                        <img className="uno-w-16" src={platformJobs[0].image} />
+                      ) : (
+                        <div className="uno-flex-grow" />
+                      )}
+                    </div>
                     {platformJobs.map((job) => {
                       // Const {platform, location, lat, lng, icons} = parseJobData(job.raw.name);
                       return (
