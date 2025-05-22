@@ -1,5 +1,5 @@
 // Uno.config.js
-import {defineConfig, presetWind3, presetIcons} from 'unocss';
+import {defineConfig, presetWind3, presetIcons, transformerVariantGroup} from 'unocss';
 import {clsx} from 'clsx';
 
 export default defineConfig({
@@ -12,6 +12,7 @@ export default defineConfig({
       },
     }),
   ],
+  transformers: [transformerVariantGroup()],
   content: {
     pipeline: {
       include: [/\.(js|jsx|ts|tsx|html|md)($|\?)/, './themes/xen-project/layouts/**/*.html'],
@@ -56,14 +57,31 @@ export default defineConfig({
           from { opacity:0;transform:translate3d(150px,0,0) }
           to { opacity:1;transform:translate3d(0,0,0) }
         }`,
+        grain: `{
+          0%, 100% { transform:translate(0, 0) }
+          10% { transform:translate(-5%, -10%) }
+          20% { transform:translate(-15%, 5%) }
+          30% { transform:translate(7%, -25%) }
+          40% { transform:translate(-5%, 25%) }
+          50% { transform:translate(-15%, 10%) }
+          60% { transform:translate(15%, 0%) }
+          70% { transform:translate(0%, 15%) }
+          80% { transform:translate(3%, 35%) }
+          90% { transform:translate(-10%, 10%) }
+        }`,
       },
       durations: {
         'fade-in-left-short': '0.8s',
         'fade-in-right-short': '0.8s',
+        grain: '1s',
       },
       timingFns: {
         'fade-in-left-short': 'ease-out',
         'fade-in-right-short': 'ease-out',
+        grain: 'steps(10)',
+      },
+      counts: {
+        grain: 'infinite',
       },
     },
     boxShadow: {

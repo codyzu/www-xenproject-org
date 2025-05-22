@@ -1,6 +1,7 @@
 import intelI7 from '../../assets/intel-core-i7.png';
 import xilinxArm from '../../assets/xilinx-arm.webp';
 import amdRyzen from '../../assets/amd-ryzen.avif';
+import zen2 from '../../assets/zen-2.png';
 
 type PlatformLocation = {
   jobName: RegExp;
@@ -37,6 +38,7 @@ const platformLocations: PlatformLocation[] = [
     lat: 42.3601,
     lng: -71.0589,
     icons: ['i-lineicons-amd'],
+    image: zen2,
   },
   {
     jobName: /^zen3p/i,
