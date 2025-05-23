@@ -8,10 +8,12 @@ import JobGroup from './JobGroup.tsx';
 import {DotButton, useDotButton} from './CarouselButtons.tsx';
 
 export function HardwareGrid() {
-  const {pipeline, jobs, pipelineDate, loading, error} = useGitlabPipelineJobs();
+  const {pipelines, loading, error} = useGitlabPipelineJobs(1);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({loop: true});
   const {selectedIndex, scrollSnaps, onDotButtonClick} = useDotButton(emblaApi);
+
+  const {jobs, pipelineDate, pipeline} = pipelines?.[0] ?? {};
 
   const date = pipelineDate ?? new Date();
 

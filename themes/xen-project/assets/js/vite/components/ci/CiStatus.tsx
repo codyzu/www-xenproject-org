@@ -4,6 +4,8 @@ import {parseJobData} from '../HardwareGrid/gitlab-jobs.ts';
 import {StatusPill} from '../HardwareGrid/StatusPill.tsx';
 import boardAdl from '../../assets/intel-core-i7.png';
 import LoadingGitlab from './LoadingGitlab.tsx';
+import PipelineTrends from './PipelineTrends.tsx';
+import PipelineTrends2 from './PipelineTrends2.tsx';
 
 const TestGlobe = lazy(async () => {
   const [module] = await Promise.all([
@@ -33,7 +35,7 @@ const TestGlobe = lazy(async () => {
 // }
 
 export default function CiStatus() {
-  const {loading, error, jobs, pipeline, pipelineDate} = useGitlabPipelineJobs();
+  const {loading, error, pipelines} = useGitlabPipelineJobs(10);
 
   if (loading) {
     return (
@@ -47,12 +49,14 @@ export default function CiStatus() {
     return <div>Error: {error}</div>;
   }
 
-  if (!jobs) {
-    return <div>No jobs found</div>;
+  if (!pipelines || pipelines.length === 0) {
+    return <div>No pipelines found</div>;
   }
 
+  const {pipeline: lastPipeline, jobs: lastJobs, pipelineDate: lastPipelineDate} = pipelines?.[0] ?? {};
+
   const jobsByLocation = new Map<string, Job[]>();
-  for (const job of jobs) {
+  for (const job of lastJobs) {
     const {location: city} = job;
     jobsByLocation.set(city, [...(jobsByLocation.get(city) ?? []), job]);
   }
@@ -66,24 +70,24 @@ export default function CiStatus() {
             <code className="uno-font-semibold">
               <a
                 className=""
-                href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${pipeline?.id?.split('/')?.pop() ?? ''}`}
+                href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${lastPipeline?.id?.split('/')?.pop() ?? ''}`}
               >
-                #{pipeline.id.split('/').at(-1)}
+                #{lastPipeline.id.split('/').at(-1)}
               </a>{' '}
               (staging)
             </code>
           </div>
           <div className="">
-            Started at: <code className="uno-font-semibold">{pipelineDate.toLocaleString()}</code>
+            Started at: <code className="uno-font-semibold">{lastPipelineDate.toLocaleString()}</code>
           </div>
           <div className="">
             Duration:{' '}
             <code className="uno-font-semibold">
-              {pipeline.duration ? `${Math.floor(pipeline.duration / 60)}m${pipeline.duration % 60}s` : '-'}
+              {lastPipeline.duration ? `${Math.floor(lastPipeline.duration / 60)}m${lastPipeline.duration % 60}s` : '-'}
             </code>
           </div>
           <div className="uno-flex-grow" />
-          <StatusPill status={pipeline.status} label={pipeline.detailedStatus.label} />
+          <StatusPill status={lastPipeline.status} label={lastPipeline.detailedStatus.label} />
         </div>
       </section>
       <Suspense
@@ -141,6 +145,12 @@ export default function CiStatus() {
           );
         })}
       </div>
+      <details open>
+        <summary className="text-blue-600 font-medium cursor-pointer">Show Test Trends</summary>
+        <div className="mt-4">
+          <PipelineTrends2 pipelines={pipelines} />
+        </div>
+      </details>
       <div className="uno-grid uno-grid-cols-3">
         <img className="uno-w-full uno-aspect-square uno-object-contain uno-card" src={boardAdl} />
       </div>

@@ -7,46 +7,46 @@ export type Job = {
   raw: RawJob;
 } & JobData;
 
+export type PipelineJobsResult = {
+  pipeline: Pipeline;
+  jobs: Job[];
+  pipelineDate: Date;
+};
+
 type PipelineResult =
   | {
       readonly loading: true;
       readonly error: undefined;
-      readonly pipeline: undefined;
-      readonly jobs: undefined;
-      readonly pipelineDate: undefined;
+      readonly pipelines: undefined;
     }
   | {
       readonly loading: false;
       readonly error: string;
-      readonly pipeline: undefined;
-      readonly jobs: undefined;
-      readonly pipelineDate: undefined;
+      readonly pipelines: undefined;
     }
   | {
       readonly loading: false;
       readonly error: undefined;
-      readonly pipeline: Pipeline;
-      readonly jobs: Job[];
-      readonly pipelineDate: Date;
+      readonly pipelines: PipelineJobsResult[];
     };
 
-export function useGitlabPipelineJobs(): PipelineResult {
+export function useGitlabPipelineJobs(count = 1): PipelineResult {
   const apiUrl = 'https://gitlab.com/api/graphql';
   const projectPath = 'xen-project/hardware/xen';
-  const [state, setState] = useState<{
-    pipeline: Pipeline;
-    jobs: Job[];
-    pipelineDate: Date;
-  }>();
+  const [state, setState] = useState<PipelineJobsResult[]>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string>();
 
   useEffect(() => {
-    async function getLatestNonScheduledPipeline(apiUrl: string, projectPath: string): Promise<Pipeline | undefined> {
+    async function getLatestNonScheduledPipelines(
+      apiUrl: string,
+      projectPath: string,
+      count: number,
+    ): Promise<Pipeline[] | undefined> {
       const query = `
-        query getLatestPipeline($projectPath: ID!, $branch: String!) {
+        query getLatestPipelines($projectPath: ID!, $branch: String!, $count: Int!) {
           project(fullPath: $projectPath) {
-            pipelines(ref: $branch, first: 1, source: "push") {
+            pipelines(ref: $branch, first: $count, source: "push") {
               nodes {
                 id iid source
                 duration
@@ -71,7 +71,7 @@ export function useGitlabPipelineJobs(): PipelineResult {
       const response: Response = await fetch(apiUrl, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({query, variables: {projectPath, branch: 'staging'}}),
+        body: JSON.stringify({query, variables: {projectPath, branch: 'staging', count}}),
       });
 
       const json: unknown = await response.json();
@@ -83,41 +83,36 @@ export function useGitlabPipelineJobs(): PipelineResult {
         return;
       }
 
-      const node = parsed.data.data.project?.pipelines?.nodes?.[0];
-      if (!node) {
-        setError('No pipeline found');
+      const nodes = parsed.data.data.project?.pipelines?.nodes;
+      if (!nodes || nodes.length === 0) {
+        setError('No pipelines found');
+        return;
       }
 
-      return node;
+      return nodes;
     }
 
     setLoading(true);
     setError(undefined);
     const load = async () => {
       try {
-        const pipeline = await getLatestNonScheduledPipeline(apiUrl, projectPath);
-        if (!pipeline) return;
-        const pipelineDate = new Date(pipeline.createdAt);
-        const parsedJobs = (pipeline.jobs.nodes || [])
-          .filter((j) => j.stage?.name === 'test')
-          .filter((j) => !j.name.startsWith('qemu'))
-          .filter((j) => j.name !== 'build-each-commit-gcc')
-          .map((j) => {
-            const jobData = parseJobData(j.name);
-            return {raw: j, ...jobData};
-            // Const parsed = parseJobName(j.name);
-            // if (!parsed) {
-            //   console.warn(`Unable to parse job name: ${j.name}`);
-            //   return;
-            // }
-
-            // return {...j, parsed};
-          })
-          .filter((j) => Boolean(j.platform))
-          // .filter((j) => j !== undefined)
-          .sort((a, b) => a.platform.localeCompare(b.platform));
-
-        setState({pipeline, jobs: parsedJobs, pipelineDate});
+        const pipelines = await getLatestNonScheduledPipelines(apiUrl, projectPath, count);
+        if (!pipelines) return;
+        const results: PipelineJobsResult[] = pipelines.map((pipeline) => {
+          const pipelineDate = new Date(pipeline.createdAt);
+          const parsedJobs = (pipeline.jobs.nodes || [])
+            .filter((j) => j.stage?.name === 'test')
+            .filter((j) => !j.name.startsWith('qemu'))
+            .filter((j) => j.name !== 'build-each-commit-gcc')
+            .map((j) => {
+              const jobData = parseJobData(j.name);
+              return {raw: j, ...jobData};
+            })
+            .filter((j) => Boolean(j.platform))
+            .sort((a, b) => a.platform.localeCompare(b.platform));
+          return {pipeline, jobs: parsedJobs, pipelineDate};
+        });
+        setState(results);
       } catch (error_) {
         setError((error_ as Error).message);
       } finally {
@@ -126,14 +121,14 @@ export function useGitlabPipelineJobs(): PipelineResult {
     };
 
     void load();
-  }, [apiUrl, projectPath]);
+  }, [apiUrl, projectPath, count]);
 
   if (loading) {
-    return {loading: true, error: undefined, pipeline: undefined, jobs: undefined, pipelineDate: undefined};
+    return {loading: true, error: undefined, pipelines: undefined};
   }
 
   if (error) {
-    return {loading: false, error, pipeline: undefined, jobs: undefined, pipelineDate: undefined};
+    return {loading: false, error, pipelines: undefined};
   }
 
   if (!state) {
@@ -141,5 +136,5 @@ export function useGitlabPipelineJobs(): PipelineResult {
     throw new Error('State is undefined');
   }
 
-  return {...state, loading: false, error: undefined};
+  return {pipelines: state, loading: false, error: undefined};
 }

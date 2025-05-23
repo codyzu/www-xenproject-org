@@ -290,9 +290,12 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, Job[]>}) {
     let handle: NodeJS.Timeout;
     function toggleFilter() {
       setFilterEnabled((previous) => !previous);
-      handle = setTimeout(() => {
-        toggleFilter();
-      }, Math.random() * 3000);
+      handle = setTimeout(
+        () => {
+          toggleFilter();
+        },
+        Math.random() * 3500 + 500,
+      );
     }
 
     toggleFilter();
