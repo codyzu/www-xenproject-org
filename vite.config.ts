@@ -47,7 +47,13 @@ export default defineConfig({
     strictPort: true,
     proxy: {
       // Complicated regex to proxy anything that shouldn't be served by vite to hugo
-      '^/(?!themes/xen-project/assets/js/vite|node_modules|__uno|@vite)(?!.*\\?import&raw$).*': {
+      // This includes:
+      // - themes/xen-project/assets/js/vite (the vite assets sources)
+      // - node_modules
+      // - __uno (the uno.css generated styles in dev mode)
+      // - @vite (the vite internal assets)
+      // - anything that ends with import&raw (used for raw imports in vite)
+      '^/(?!themes/xen-project/assets/js/vite|node_modules|__uno|@vite)(?!.*import&raw$).*': {
         target: 'http://localhost:1313', // Your Hugo server
         changeOrigin: true,
         rewrite: (path) => path,
