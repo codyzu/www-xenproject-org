@@ -18,6 +18,21 @@ type LocationData = {
   count: number;
 };
 
+type StatusValue = 'SUCCESS' | 'FAILED' | 'SKIPPED' | 'CANCELED' | 'missing' | 'unknown';
+const statusClassMap = new Map<StatusValue, string>([
+  ['SUCCESS', 'uno-shadow-green-500'],
+  ['FAILED', 'uno-shadow-red-500'],
+  ['SKIPPED', 'uno-shadow-gray-300'],
+  ['CANCELED', 'uno-shadow-yellow-300'],
+  ['missing', 'uno-shadow-gray-100'],
+  ['unknown', 'uno-shadow-orange-400'],
+]);
+
+function getStatusClass(status: string | undefined) {
+  if (status === undefined) return statusClassMap.get('missing')!;
+  return statusClassMap.get(status as StatusValue) ?? statusClassMap.get('unknown')!;
+}
+
 const northPole = {lat: 90, lng: 0};
 
 export default function TestGlobe({jobs}: {readonly jobs: Map<string, Job[]>}) {
@@ -59,6 +74,7 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, Job[]>}) {
   for (const [location, locationJobs] of jobs.entries()) {
     const icons = [...new Set(locationJobs.flatMap((j) => j.icons))];
 
+    // Keep the 64-bit CPU icon at the end of the icons array
     if (icons.includes('i-mdi-cpu-64-bit')) {
       icons.splice(icons.indexOf('i-mdi-cpu-64-bit'), 1);
       icons.push('i-mdi-cpu-64-bit');
@@ -180,7 +196,12 @@ function renderLocationHtmlElement(data: unknown) {
   const location = data as LocationData;
   const element = document.createElement('div');
   render(
-    <div className="uno-card uno-shadow-gray-500 uno-bg-opacity-80 uno-flex uno-flex-col uno-items-center uno-gap-1">
+    <div
+      className={clsx(
+        'uno-card uno-bg-opacity-80 uno-flex uno-flex-col uno-items-center uno-gap-1',
+        getStatusClass(location.status),
+      )}
+    >
       <div className="uno-text-sm uno-font-semibold">{location.location}</div>
       <StatusPill status={location.status} label={location.status.toLowerCase()} />
       <div className="uno-flex uno-flex-row uno-gap-1 uno-text-secondary">

@@ -1,7 +1,10 @@
-import intelI7 from '../../assets/intel-core-i7.png';
-import xilinxArm from '../../assets/xilinx-arm.webp';
-import amdRyzen from '../../assets/amd-ryzen.avif';
+import intelI7 from '../../assets/core-i7.png';
+import ryzenEmbedded from '../../assets/ryzen-embedded.png';
+import ultrascale from '../../assets/ultrascale.webp';
 import zen2 from '../../assets/zen-2.png';
+import zen3 from '../../assets/zen-3.svg';
+import zen4 from '../../assets/zen-4.png';
+import intelI5 from '../../assets/core-i5.png';
 
 type PlatformLocation = {
   jobName: RegExp;
@@ -21,6 +24,7 @@ const platformLocations: PlatformLocation[] = [
     lat: 52.52,
     lng: 13.405,
     icons: ['i-lineicons-intel'],
+    image: intelI5,
   },
   {
     jobName: /^kbl/i,
@@ -47,6 +51,7 @@ const platformLocations: PlatformLocation[] = [
     lat: 42.3601,
     lng: -71.0589,
     icons: ['i-lineicons-amd'],
+    image: zen3,
   },
   {
     jobName: /^zen4/i,
@@ -55,6 +60,7 @@ const platformLocations: PlatformLocation[] = [
     lat: 42.3601,
     lng: -71.0589,
     icons: ['i-lineicons-amd'],
+    image: zen4,
   },
   {
     jobName: /^xilinx.*arm64/i,
@@ -63,7 +69,7 @@ const platformLocations: PlatformLocation[] = [
     location: 'San Jose',
     lat: 37.3382,
     lng: -121.8863,
-    image: xilinxArm,
+    image: ultrascale,
   },
   {
     jobName: /^xilinx(?!.*arm64)/i,
@@ -72,7 +78,7 @@ const platformLocations: PlatformLocation[] = [
     location: 'San Jose',
     lat: 37.3382,
     lng: -121.8863,
-    image: amdRyzen,
+    image: ryzenEmbedded,
   },
 
   // Add other locations here 👆

@@ -1,5 +1,7 @@
-import {lazy, Suspense} from 'preact/compat';
+import {Fragment, lazy, Suspense} from 'preact/compat';
 import {type Job, useGitlabPipelineJobs} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
+import {StatusPill} from '../HardwareGrid/StatusPill.tsx';
+import boardAdl from '../../assets/intel-core-i7.png';
 import LoadingGitlab from './LoadingGitlab.tsx';
 import PipelineTrends from './PipelineTrends.tsx';
 import {JobHeatmap} from './JobHeatmap.tsx';
@@ -35,7 +37,7 @@ export default function CiStatus() {
     return <div>No pipelines found</div>;
   }
 
-  const {jobs: lastJobs} = pipelines[0];
+  const {pipeline: lastPipeline, jobs: lastJobs, pipelineDate: lastPipelineDate} = pipelines?.[0] ?? {};
 
   const jobsByLocation = new Map<string, Job[]>();
   for (const job of lastJobs) {
@@ -62,18 +64,17 @@ export default function CiStatus() {
         </Suspense>
         <LocationJobs jobsByLocation={jobsByLocation} />
       </section>
-      <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8">
-        <h3>Pipeline trends</h3>
-        <div className="">
-          <PipelineTrends pipelines={pipelines} />
-        </div>
-      </section>
-      <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8">
-        <h3>Job heatmap</h3>
-        <div className="">
-          <JobHeatmap pipelines={pipelines} />
-        </div>
-      </section>
+      <h3>Pipeline trends</h3>
+      <div className="">
+        <PipelineTrends pipelines={pipelines} />
+      </div>
+      <h3>Job heatmap</h3>
+      <div className="">
+        <JobHeatmap pipelines={pipelines} />
+      </div>
+      <div className="uno-grid uno-grid-cols-3">
+        <img className="uno-w-full uno-aspect-square uno-object-contain uno-card" src={boardAdl} />
+      </div>
     </div>
   );
 }
