@@ -2,7 +2,7 @@
 # Geekier CI status dashboard page
 # Front matter defines the page title, description, date, and scripts to include the `hardware-status.tsx` Vite component.
 title: "CI Status Dashboard"
-description: "A geeky real-time dashboard showing current CI status for the Xen Project."
+description: "Real-time continuous integration dashboard."
 date: 2025-05-19T00:00:00+01:00
 draft: false
 keywords:

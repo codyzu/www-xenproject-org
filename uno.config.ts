@@ -94,15 +94,11 @@ export default defineConfig({
     'uno-section-base': 'uno-flex uno-flex-col uno-flex-1 uno-gap-6 uno-mx-auto uno-pb-10 uno-w-full',
     'uno-surface-brand':
       'uno-flex uno-flex-col uno-items-center uno-text-base uno-text-primary uno-bg-brand uno-rounded-3xl uno-p-10',
-    // 'uno-card': clsx(
-    //   'uno-px-6 uno-py-4 uno-rounded-lg',
-    //   'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
-    //   'uno-shadow-xl uno-shadow-gray-700 uno-bg-white uno-text-primary',
-    // ),
     'uno-card': clsx(
       'uno-px-6 uno-py-4 uno-rounded-lg',
       'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
       'uno-shadow-xl uno-bg-white uno-text-primary',
     ),
+    'uno-surface': 'uno-bg-surface uno-p-x-6 uno-p-y-8 uno-rounded-lg uno-shadow-lg',
   },
 });

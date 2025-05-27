@@ -5,7 +5,7 @@ export function PipelineStatus({pipeline}: {readonly pipeline: PipelineJobsResul
   const {pipeline: lastPipeline, pipelineDate: lastPipelineDate} = pipeline;
 
   return (
-    <div className="uno-flex uno-flex-row uno-flex-wrap uno-gap-4 uno-items-center uno-w-full uno-text-sm uno-border-1 uno-border-solid uno-border-brand-fill uno-p-4 uno-rounded-xl uno-bg-surface">
+    <div className="uno-flex uno-flex-row uno-flex-wrap uno-gap-4 uno-items-center uno-w-full uno-text-sm uno-surface">
       <StatusPill status={lastPipeline.status} label={lastPipeline.detailedStatus.label} />
       <div className="uno-flex uno-flex-row uno-gap-4">
         <div>

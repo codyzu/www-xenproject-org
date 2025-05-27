@@ -16,7 +16,7 @@ export function LocationJobs({jobsByLocation}: {readonly jobsByLocation: Map<str
         return (
           <div
             key={location}
-            className="uno-card uno-grid uno-grid-cols-[1fr_auto] uno-gap-2 uno-content-start uno-items-center"
+            className="uno-card sm:last:odd:(uno-col-span-2 uno-justify-self-center uno-w-[calc(50%_-_1rem)]) uno-grid uno-grid-cols-[1fr_auto] uno-gap-2 uno-content-start uno-items-center"
           >
             <div className="uno-text-4xl uno-font-semibold uno-p-b-4">🌐 {location}</div>
             <div className="uno-p-b-4">

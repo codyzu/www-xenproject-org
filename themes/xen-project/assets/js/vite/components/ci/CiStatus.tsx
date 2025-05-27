@@ -44,12 +44,12 @@ export default function CiStatus() {
   }
 
   return (
-    <div className="uno-section-nested uno-animate-fade-in">
-      <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8">
+    <div className="uno-section-nested uno-animate-fade-in uno-m-t-8">
+      <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8" id="last-pipeline">
         <h3>Last pipeline</h3>
         <PipelineStatus pipeline={pipelines[0]} />
       </section>
-      <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8">
+      <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8" id="global-test-status">
         <h3>Global test status</h3>
         <Suspense
           fallback={
@@ -62,13 +62,13 @@ export default function CiStatus() {
         </Suspense>
         <LocationJobs jobsByLocation={jobsByLocation} />
       </section>
-      <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8">
+      <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8 id" id="pipeline-trends">
         <h3>Pipeline trends</h3>
         <div className="">
           <PipelineTrends pipelines={pipelines} />
         </div>
       </section>
-      <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8">
+      <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8" id="job-heatmap">
         <h3>Job heatmap</h3>
         <div className="">
           <JobHeatmap pipelines={pipelines} />

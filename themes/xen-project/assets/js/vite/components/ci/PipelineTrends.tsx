@@ -32,8 +32,7 @@ export default function PipelineTrends2({pipelines}: {readonly pipelines: Pipeli
   const hasOther = data.some((d) => d.Other > 0);
 
   return (
-    <div className="uno-card">
-      <h2 className="uno-text-xl uno-font-semibold uno-mb-4">Test Trend</h2>
+    <div className="uno-surface">
       <ResponsiveContainer width="100%" height={400}>
         <AreaChart data={data} stackOffset="none">
           <defs>
