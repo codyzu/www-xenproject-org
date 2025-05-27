@@ -6,9 +6,9 @@ import clsx from 'clsx';
 import earthTopology from '../assets/earth-topology.png';
 import nightSky from '../assets/night-sky.png';
 import earthDay from '../assets/earth-day.jpg';
-import {type ParsedJob} from './HardwareGrid/schema.ts';
-import {type Job} from './HardwareGrid/use-gitlab-pipeline-jobs.ts';
-import {type Status, StatusPill} from './HardwareGrid/StatusPill.tsx';
+import {type ParsedJob} from '../HardwareGrid/schema.ts';
+import {type Job} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
+import {type Status, StatusPill} from '../HardwareGrid/StatusPill.tsx';
 
 const useSize = (target: RefObject<HTMLDivElement>) => {
   const [size, setSize] = useState<DOMRect>();

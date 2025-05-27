@@ -8,7 +8,7 @@ import {JobHeatmap} from './JobHeatmap.tsx';
 
 const TestGlobe = lazy(async () => {
   const [module] = await Promise.all([
-    import('../TestGlobe.tsx'),
+    import('./TestGlobe.tsx'),
     new Promise((resolve) => {
       setTimeout(resolve, 3000);
     }),
