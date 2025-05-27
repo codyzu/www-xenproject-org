@@ -7,7 +7,7 @@ import nightSky from '../../assets/night-sky.png';
 import earthDay from '../../assets/earth-day.jpg';
 import {type Job} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
 import {type Status, StatusPill} from '../HardwareGrid/StatusPill.tsx';
-import useSize from './use-size.ts'; // <-- updated import
+import useSize from './use-size.ts';
 
 type LocationData = {
   location: string;
@@ -126,33 +126,10 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, Job[]>}) {
     setArcData(nextArcData);
   }, [jobs]);
 
-  const [filterEnabled, setFilterEnabled] = useState(false);
-  useEffect(() => {
-    let handle: NodeJS.Timeout;
-    function toggleFilter() {
-      setFilterEnabled((previous) => !previous);
-      handle = setTimeout(
-        () => {
-          toggleFilter();
-        },
-        Math.random() * 3500 + 500,
-      );
-    }
-
-    toggleFilter();
-
-    return () => {
-      clearTimeout(handle);
-    };
-  }, []);
-
   return (
     <div className="uno-w-full uno-h-120 uno-flex uno-self-center uno-relative uno-animate-jello uno-animate-duration-600 uno-overflow-clip">
       <div className="uno-relative uno-w-full uno-h-full uno-p-[1px] uno-flex uno-animate-fade-in">
-        <div
-          ref={globeContainerRef}
-          className="uno-relative uno-w-full uno-h-full uno-flex uno-rounded-3xl uno-overflow-hidden"
-        >
+        <div ref={globeContainerRef} className="uno-w-full uno-h-full uno-flex uno-rounded-3xl uno-overflow-hidden">
           <Globe
             ref={globeRef}
             animateIn={false}
@@ -172,18 +149,6 @@ export default function TestGlobe({jobs}: {readonly jobs: Map<string, Job[]>}) {
             arcDashAnimateTime={2000}
             arcsTransitionDuration={500}
             backgroundColor="#000000"
-          />
-          <div
-            className={clsx(
-              'uno-top--100% uno-left--100% uno-w-300% uno-h-300% uno-animate-grain uno-bg-[url(/img/noise-1600px.webp)] uno-content-empty uno-opacity-20 uno-pointer-events-none uno-bg-cover',
-              filterEnabled ? 'uno-absolute' : 'uno-hidden',
-            )}
-          />
-          <div
-            className={clsx(
-              'uno-absolute uno-z-10 uno-top-10 uno-left-10 uno-pointer-events-none i-mdi-wifi-alert uno-w-10 uno-h-10 uno-text-amber-500 uno-animate-duration-400 uno-animate-fill-forwards',
-              filterEnabled ? 'uno-animate-fade-in' : 'uno-animate-fade-out',
-            )}
           />
         </div>
       </div>
