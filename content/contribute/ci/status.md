@@ -1,6 +1,6 @@
 ---
 title: "CI status dashboard"
-description: "Xen Project real-time continuous integration dashboard."
+description: "Xen Project real-time continuous integration tests dashboard."
 date: 2025-05-19T00:00:00+01:00
 draft: false
 keywords:
