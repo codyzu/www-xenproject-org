@@ -8,8 +8,6 @@ import {
   Legend,
   ResponsiveContainer,
   type TooltipProps,
-  type CartesianAxisProps,
-  type XAxisProps,
 } from 'recharts';
 import {Fragment} from 'preact/jsx-runtime';
 import type {TickItem} from 'recharts/types/util/types';
@@ -31,14 +29,9 @@ export default function PipelineTrends2({pipelines}: {readonly pipelines: Pipeli
     };
   });
 
-  const pipelineUrls = Object.fromEntries(
-    pipelinesOldestFirst.map((p) => [`#${p.pipeline.id.split('/').at(-1)}`, p.pipeline.web_url]),
-  );
-
   const hasOther = data.some((d) => d.Other > 0);
 
   return (
-    // <div className="uno-mt-12 uno-p-4 uno-rounded-xl uno-border uno-border-solid uno-border-brand-fill uno-bg-surface">
     <div className="uno-card">
       <h2 className="uno-text-xl uno-font-semibold uno-mb-4">Test Trend</h2>
       <ResponsiveContainer width="100%" height={400}>
@@ -58,7 +51,6 @@ export default function PipelineTrends2({pipelines}: {readonly pipelines: Pipeli
             </linearGradient>
           </defs>
           <CartesianGrid strokeDasharray="4 4" stroke="#e5e7eb" />
-          {/* <XAxis dataKey="name" tick={{fill: '#64748b', fontSize: 13}} /> */}
           <XAxis dataKey="name" tick={<CustomXaxisTick />} />
           <YAxis
             allowDecimals={false}
@@ -71,20 +63,13 @@ export default function PipelineTrends2({pipelines}: {readonly pipelines: Pipeli
               style: {textAnchor: 'middle', fill: '#64748b', fontSize: 14},
             }}
           />
-          {/* <Tooltip
-            contentStyle={{borderRadius: 8, background: '#fff', border: '1px solid #e5e7eb', color: '#334155'}}
-          /> */}
           <Tooltip content={<CustomTooltip />} />
           <Legend
             formatter={(value: string) => {
-              // Console.log('entry', entry, 'value', value);
               return (
                 <div className="uno-inline-flex">
                   <StatusPill status={value.toUpperCase()} label={value} />
                 </div>
-                // <span className="uno-text-sm uno-font-semibold" style={{color: entry.color}}>
-                //   {value}
-                // </span>
               );
             }}
           />
@@ -127,22 +112,17 @@ export default function PipelineTrends2({pipelines}: {readonly pipelines: Pipeli
 }
 
 function CustomTooltip({active, payload, label}: TooltipProps<number, string>) {
-  console.log('CustomTooltip', {active, payload, label});
   if (!active || !payload?.length) return null;
   return (
     <div className="uno-grid uno-grid-cols-[auto_1fr] uno-gap-x-2 uno-gap-y-1 uno-bg-surface uno-border uno-border-gray-200 uno-rounded-lg uno-shadow-xl uno-p-3 uno-text-sm uno-bg-opacity-80">
       <div className="uno-font-semibold uno-mb-1 uno-col-span-2">{label}</div>
       {payload.map((entry) => (
         <Fragment key={entry.dataKey}>
-          {/* <div key={entry.dataKey} className="uno-grid uno-grid-cols-[auto_1fr] uno-gap-2 uno-items-center"> */}
-          {/* <span className="uno-inline-block uno-w-3 uno-h-3 uno-rounded-full" style={{background: entry.color}} /> */}
-          {/* <span>{entry.dataKey}:</span> */}
           <span className="uno-font-mono">{entry.value}</span>
           <StatusPill
             status={String(entry.dataKey ?? 'Other').toUpperCase()}
             label={String(entry.dataKey ?? 'Other')}
           />
-          {/* </div> */}
         </Fragment>
       ))}
     </div>
@@ -166,7 +146,6 @@ function CustomXaxisTick(props: any) {
         rel="noopener noreferrer"
         className="uno-text-action-text uno-font-mono"
       >
-        {/* <text x={0} y={0} dy={16} textAnchor="middle" fill="#64748b" fontSize={13} style={{cursor: 'pointer'}}> */}
         <text x={0} y={0} dy={16} textAnchor="middle" fill="currentColor" fontSize={13} style={{cursor: 'pointer'}}>
           {payload.value}
         </text>
