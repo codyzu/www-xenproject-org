@@ -1,11 +1,15 @@
 import {lazy, Suspense} from 'preact/compat';
 import {type Job, useGitlabPipelineJobs} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
 import LoadingGitlab from './LoadingGitlab.tsx';
-import PipelineTrends from './PipelineTrends.tsx';
 import {JobHeatmap} from './JobHeatmap.tsx';
 import {LocationJobs} from './LocationJobs.tsx';
 import {PipelineStatus} from './PipelineStatus.tsx';
 
+// We know the components will be used, so we can preload them to improve performance.
+void import('./TestGlobe.tsx');
+void import('./PipelineTrends.tsx');
+
+// Finally, lazy load the components so we can use Suspense
 const TestGlobe = lazy(async () => {
   const [module] = await Promise.all([
     import('./TestGlobe.tsx'),
@@ -15,6 +19,7 @@ const TestGlobe = lazy(async () => {
   ]);
   return module;
 });
+const PipelineTrends = lazy(async () => import('./PipelineTrends.tsx'));
 
 export default function CiStatus() {
   const {loading, error, pipelines} = useGitlabPipelineJobs(10);
@@ -72,9 +77,15 @@ export default function CiStatus() {
       </section>
       <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8 id" id="pipeline-trends">
         <h3>Pipeline trends</h3>
-        <div className="">
+        <Suspense
+          fallback={
+            <div className="uno-h-120 uno-flex uno-flex-col uno-items-center uno-justify-center">
+              <LoadingGitlab />
+            </div>
+          }
+        >
           <PipelineTrends pipelines={pipelines} />
-        </div>
+        </Suspense>
       </section>
       <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8" id="job-heatmap">
         <h3>Job heatmap</h3>
