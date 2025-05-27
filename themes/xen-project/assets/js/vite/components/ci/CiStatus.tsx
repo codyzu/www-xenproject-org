@@ -1,11 +1,10 @@
 import {Fragment, lazy, Suspense} from 'preact/compat';
 import {type Job, useGitlabPipelineJobs} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
-import {parseJobData} from '../HardwareGrid/gitlab-jobs.ts';
 import {StatusPill} from '../HardwareGrid/StatusPill.tsx';
 import boardAdl from '../../assets/intel-core-i7.png';
 import LoadingGitlab from './LoadingGitlab.tsx';
-import PipelineTrends from './PipelineTrends.tsx';
 import PipelineTrends2 from './PipelineTrends2.tsx';
+import {JobHeatmap} from './JobHeatmap.tsx';
 
 const TestGlobe = lazy(async () => {
   const [module] = await Promise.all([
@@ -63,8 +62,9 @@ export default function CiStatus() {
 
   return (
     <div className="uno-section-nested uno-animate-fade-in">
-      <section className="uno-flex uno-flex-col uno-text-sm uno-border-1 uno-border-solid uno-border-brand-fill uno-p-4 uno-rounded-xl uno-bg-surface">
-        <div className="uno-flex uno-flex-row uno-gap-4 uno-items-center uno-w-full">
+      <section className="uno-flex uno-flex-row uno-flex-wrap uno-gap-4 uno-items-center uno-w-full uno-text-sm uno-border-1 uno-border-solid uno-border-brand-fill uno-p-4 uno-rounded-xl uno-bg-surface">
+        <StatusPill status={lastPipeline.status} label={lastPipeline.detailedStatus.label} />
+        <div className="uno-flex uno-flex-row uno-gap-4">
           <div>
             Last pipeline run:{' '}
             <code className="uno-font-semibold">
@@ -86,9 +86,8 @@ export default function CiStatus() {
               {lastPipeline.duration ? `${Math.floor(lastPipeline.duration / 60)}m${lastPipeline.duration % 60}s` : '-'}
             </code>
           </div>
-          <div className="uno-flex-grow" />
-          <StatusPill status={lastPipeline.status} label={lastPipeline.detailedStatus.label} />
         </div>
+        {/* <div className="uno-flex-grow" /> */}
       </section>
       <Suspense
         fallback={
@@ -99,7 +98,7 @@ export default function CiStatus() {
       >
         <TestGlobe jobs={jobsByLocation} />
       </Suspense>
-      <div className="uno-grid uno-grid-cols-2 uno-gap-4">
+      <div className="uno-grid uno-grid-cols-1 sm:uno-grid-cols-2 uno-gap-4">
         {[...jobsByLocation.entries()].map(([location, locationJobs]) => {
           const jobsByPlatform = Object.groupBy(locationJobs, (job) => job.platform);
 
@@ -145,10 +144,16 @@ export default function CiStatus() {
           );
         })}
       </div>
-      <details open>
+      <details open className="uno-parent">
         <summary className="text-blue-600 font-medium cursor-pointer">Show Test Trends</summary>
-        <div className="mt-4">
+        <div className="mt-4 parent-open:uno-scale-100 uno-scale-0">
           <PipelineTrends2 pipelines={pipelines} />
+        </div>
+      </details>
+      <details open className="uno-parent">
+        <summary className="text-blue-600 font-medium cursor-pointer">Show Test Trends</summary>
+        <div className="mt-4 parent-open:uno-scale-100 uno-scale-0">
+          <JobHeatmap pipelines={pipelines} />
         </div>
       </details>
       <div className="uno-grid uno-grid-cols-3">
