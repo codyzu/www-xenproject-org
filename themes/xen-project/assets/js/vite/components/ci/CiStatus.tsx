@@ -16,23 +16,6 @@ const TestGlobe = lazy(async () => {
   return module;
 });
 
-// Const TestGlobe = lazy(async () =>
-//   Promise.all([
-//     import('../TestGlobe.tsx'),
-//     new Promise((resolve) => {
-//       setTimeout(resolve, 3000);
-//     }),
-//   ]).then(([module]) => module),
-// );
-
-// Function Loading() {
-//   return (
-//     <div className="text-3xl uno-flex uno-flex-col uno-items-center uno-animate-pulse">
-//       <div>Loading...</div>
-//     </div>
-//   );
-// }
-
 export default function CiStatus() {
   const {loading, error, pipelines} = useGitlabPipelineJobs(10);
 
@@ -87,7 +70,6 @@ export default function CiStatus() {
             </code>
           </div>
         </div>
-        {/* <div className="uno-flex-grow" /> */}
       </section>
       <Suspense
         fallback={

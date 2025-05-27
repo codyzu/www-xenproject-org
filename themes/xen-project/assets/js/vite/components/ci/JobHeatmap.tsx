@@ -1,5 +1,3 @@
-/** @jsxImportSource preact */
-// import {type Pipeline} from '../HardwareGrid/schema.ts';
 import {Fragment} from 'preact/jsx-runtime';
 import clsx from 'clsx';
 import {type PipelineJobsResult} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
@@ -52,7 +50,6 @@ export function JobHeatmap({pipelines: pipelinesNewestFirst}: {readonly pipeline
         ))}
         {jobNames.map((jobName) => (
           <Fragment key={`job-${jobName}`}>
-            {/* Job name header */}
             <div className="uno-bg-white uno-font-medium uno-break-words uno-whitespace-normal uno-p-x-1 uno-p-y-2 uno-text-right">
               {jobName}
             </div>

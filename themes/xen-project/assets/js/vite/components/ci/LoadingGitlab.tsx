@@ -30,7 +30,6 @@ export default function LoadingGitlab() {
     <div className="uno-flex uno-flex-col uno-items-center uno-animate-pulse uno-text-secondary uno-font-mono">
       <div className={clsx('uno-text-5xl uno-animate-bounce', message.icon)} />
       <div className="uno-text-xl uno-animate-pulse">{message.text}</div>
-      {/* <div className="uno-text-sm">This may take a few seconds...</div> */}
     </div>
   );
 }
