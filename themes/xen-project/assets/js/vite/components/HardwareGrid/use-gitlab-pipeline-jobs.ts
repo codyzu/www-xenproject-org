@@ -77,16 +77,16 @@ export function useGitlabPipelineJobs(count = 1): PipelineResult {
       const json: unknown = await response.json();
       console.log('GraphQL response:', json);
       const parsed = graphQlResponseSchema.safeParse(json);
+
       if (!parsed.success) {
         console.error('GraphQL response validation failed:', parsed.error);
-        setError('GraphQL response validation failed');
-        return;
+        throw new Error('GraphQL response validation failed');
       }
 
       const nodes = parsed.data.data.project?.pipelines?.nodes;
       if (!nodes || nodes.length === 0) {
-        setError('No pipelines found');
-        return;
+        console.error('No pipelines found in the response');
+        throw new Error('No pipelines found');
       }
 
       return nodes;
@@ -114,6 +114,7 @@ export function useGitlabPipelineJobs(count = 1): PipelineResult {
         });
         setState(results);
       } catch (error_) {
+        console.error('Error fetching pipelines:', error_);
         setError((error_ as Error).message);
       } finally {
         setLoading(false);
