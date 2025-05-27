@@ -38,7 +38,7 @@ export default function CiStatus() {
   const {jobs: lastJobs} = pipelines[0];
 
   const jobsByLocation = new Map<string, Job[]>();
-  for (const job of lastJobs) {
+  for (const job of lastJobs.toSorted((a, b) => a.location.localeCompare(b.location))) {
     const {location: city} = job;
     jobsByLocation.set(city, [...(jobsByLocation.get(city) ?? []), job]);
   }
