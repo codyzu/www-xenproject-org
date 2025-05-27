@@ -3,7 +3,7 @@ import {type Job, useGitlabPipelineJobs} from '../HardwareGrid/use-gitlab-pipeli
 import {StatusPill} from '../HardwareGrid/StatusPill.tsx';
 import boardAdl from '../../assets/intel-core-i7.png';
 import LoadingGitlab from './LoadingGitlab.tsx';
-import PipelineTrends2 from './PipelineTrends2.tsx';
+import PipelineTrends from './PipelineTrends.tsx';
 import {JobHeatmap} from './JobHeatmap.tsx';
 
 const TestGlobe = lazy(async () => {
@@ -129,7 +129,7 @@ export default function CiStatus() {
       <details open className="uno-parent">
         <summary className="text-blue-600 font-medium cursor-pointer">Show Test Trends</summary>
         <div className="mt-4 parent-open:uno-scale-100 uno-scale-0">
-          <PipelineTrends2 pipelines={pipelines} />
+          <PipelineTrends pipelines={pipelines} />
         </div>
       </details>
       <details open className="uno-parent">
