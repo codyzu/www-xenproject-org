@@ -20,7 +20,8 @@
     "hugo:build": "hugo --minify",
     "research": "node scripts/research/parse-research-papers.js",
     "lint": "xo",
-    "clean": "rm -rf public"
+    "clean": "rm -rf public",
+    "serve": "serve public"
   },
   "author": "",
   "license": "ISC",
@@ -50,6 +51,7 @@
     "embla-carousel": "^8.6.0",
     "prettier": "^3.3.3",
     "prettier-plugin-go-template": "^0.0.15",
+    "serve": "^14.2.4",
     "storybook": "^8.4.2",
     "storybook-addon-sass-postcss": "^0.3.2",
     "unocss": "^66.1.0-beta.12",
