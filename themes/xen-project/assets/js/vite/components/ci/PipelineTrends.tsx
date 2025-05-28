@@ -135,7 +135,6 @@ type CustomXaxisTickProps = {
 };
 
 function CustomXaxisTick(props: any) {
-  console.log('CustomXaxisTick', props);
   const {payload, x, y} = props as CustomXaxisTickProps;
   return (
     <g transform={`translate(${x},${y})`}>
