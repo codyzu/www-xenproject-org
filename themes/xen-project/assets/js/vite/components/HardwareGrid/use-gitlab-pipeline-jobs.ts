@@ -55,11 +55,23 @@ export function useGitlabPipelineJobs(count = 1): PipelineResult {
                 detailedStatus {
                   label
                 }
-                jobs {
+                stages {
                   nodes {
-                    id name status
-                    stage { name }
-                    detailedStatus { label favicon }
+                    name
+                    groups {
+                      nodes {
+                        name
+                        jobs {
+                          nodes {
+                            id
+                            name
+                            status
+                            stage { name }
+                            detailedStatus { label favicon }
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -100,9 +112,11 @@ export function useGitlabPipelineJobs(count = 1): PipelineResult {
         if (!pipelines) return;
         const results: PipelineJobsResult[] = pipelines.map((pipeline) => {
           const pipelineDate = new Date(pipeline.createdAt);
-          const parsedJobs = (pipeline.jobs.nodes || [])
-            .filter((j) => j.stage?.name === 'test')
-            .filter((j) => !j.name.startsWith('qemu'))
+          const jobs: RawJob[] = (pipeline.stages?.nodes ?? [])
+            .filter((stage) => stage.name === 'test')
+            .flatMap((stage) => stage.groups?.nodes ?? [])
+            .flatMap((group) => group.jobs?.nodes ?? []);
+          const parsedJobs: Job[] = jobs
             .filter((j) => j.name !== 'build-each-commit-gcc')
             .map((j) => {
               const jobData = parseJobData(j.name);

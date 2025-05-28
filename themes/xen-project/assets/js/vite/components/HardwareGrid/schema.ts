@@ -13,6 +13,20 @@ const jobSchema = z.object({
 
 export type Job = z.infer<typeof jobSchema>;
 
+export const groupSchema = z.object({
+  name: z.string(),
+  jobs: z.object({
+    nodes: z.array(jobSchema),
+  }),
+});
+
+export const stageSchema = z.object({
+  name: z.string(),
+  groups: z.object({
+    nodes: z.array(groupSchema),
+  }),
+});
+
 export const pipelineSchema = z.object({
   id: z.string(),
   iid: z.string(),
@@ -23,9 +37,11 @@ export const pipelineSchema = z.object({
   detailedStatus: z.object({
     label: z.string(),
   }),
-  jobs: z.object({
-    nodes: z.array(jobSchema),
-  }),
+  stages: z
+    .object({
+      nodes: z.array(stageSchema),
+    })
+    .nullable(),
 });
 
 export type Pipeline = z.infer<typeof pipelineSchema>;
@@ -62,6 +78,6 @@ export type ParsedJobTokens = {
   };
 };
 
-export type ParsedJob = Pipeline['jobs']['nodes'][number] & {
+export type ParsedJob = z.infer<typeof jobSchema> & {
   parsed: ParsedJobTokens;
 };
