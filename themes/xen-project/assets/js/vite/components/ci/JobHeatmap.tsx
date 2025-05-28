@@ -38,13 +38,13 @@ export function JobHeatmap({pipelines: pipelinesNewestFirst}: {readonly pipeline
         {pipelines.map((p) => (
           <div
             key={`header-${p.pipeline.id}`}
-            className="uno-flex uno-flex-col-reverse uno-text-action-text uno-font-mono uno-text-sm uno-leading-none uno-rotate-180 uno-write-vertical-left uno-p-t-2 uno-items-start uno-justify-center uno-text-sm"
+            className="uno-justify-self-stretch uno-flex uno-flex-row uno-gap-2 uno-font-mono uno-text-sm uno-leading-none uno-rotate-180 uno-write-vertical-left uno-p-t-2 uno-items-stretch uno-justify-start uno-text-sm"
           >
             <a
               href={`https://gitlab.com/xen-project/hardware/xen/-/pipelines/${p.pipeline.id.split('/').at(-1) ?? ''}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:uno-underline "
+              className="hover:uno-no-underline uno-text-action-text uno-align-middle uno-text-center uno-flex uno-items-center"
             >
               #{p.pipeline.id.split('/').at(-1)} {p.pipelineDate.toISOString().split('T').at(0)}
             </a>
@@ -63,7 +63,7 @@ export function JobHeatmap({pipelines: pipelinesNewestFirst}: {readonly pipeline
                 <div
                   key={`cell-${p.pipeline.id}-${jobName}`}
                   className={clsx(
-                    'uno-min-w-8 uno-max-w-auto uno-min-h-6 uno-max-h-auto uno-aspect-square uno-rounded-sm',
+                    'uno-w-8 uno-h-8 uno-place-self-center uno-rounded-sm',
                     getStatusClass(status),
                     'hover:(uno-scale-120 uno-shadow-xl uno-opacity-80) uno-transition-transform uno-duration-140 uno-ease-in-out',
                   )}
