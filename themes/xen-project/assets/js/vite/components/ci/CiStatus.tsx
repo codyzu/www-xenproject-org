@@ -1,5 +1,10 @@
 import {lazy, Suspense, useMemo, useState} from 'preact/compat';
-import {type JobWithLocation, useGitlabPipelineJobs} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
+import {
+  getJobGroupStatus,
+  Job,
+  type JobWithLocation,
+  useGitlabPipelineJobs,
+} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
 import {type Location} from '../HardwareGrid/gitlab-jobs.ts';
 import LoadingGitlab from './LoadingGitlab.tsx';
 import {JobHeatmap} from './JobHeatmap.tsx';
@@ -169,22 +174,4 @@ export default function CiStatus() {
       </section>
     </div>
   );
-}
-
-function getJobGroupStatus(jobs: JobWithLocation[]): string {
-  const statuses = new Set(jobs.map((j) => j.raw.status).filter((j) => j !== 'SKIPPED' && j !== 'CANCELED'));
-
-  const status =
-    // If only success, then set as success
-    statuses.size === 1 && statuses.has('SUCCESS')
-      ? 'SUCCESS'
-      : // In order of priority, choose the best status
-        statuses.has('FAILED')
-        ? 'FAILED'
-        : statuses.has('PENDING')
-          ? 'PENDING'
-          : statuses.has('RUNNING')
-            ? 'RUNNING'
-            : 'UNKNOWN';
-  return status;
 }

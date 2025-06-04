@@ -1,35 +1,41 @@
-import {Fragment} from 'preact/compat';
-import {type Status, StatusPill} from '../HardwareGrid/StatusPill.tsx';
-import {type Job} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
-import {type Location} from '../HardwareGrid/gitlab-jobs.ts';
+import {Fragment, useMemo} from 'preact/compat';
+import {StatusPill} from '../HardwareGrid/StatusPill.tsx';
+import {getJobGroupStatus, type JobWithLocation} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
 import {type JobLocation} from './CiStatus.tsx';
 
-type JobWithLocation = Job & {
-  location: Location;
-};
-
 export function LocationJobs({locations}: {readonly locations: Map<string, JobLocation>}) {
-  // Const jobsByLocation = new Map<string, Job[]>();
-  // const hardwareLocations = new Map<string, Location>();
-  // const qemuLocations = new Map<string, Location>();
+  const jobsByLocation = useMemo(() => {
+    // Group qemu jobs by unique job name (removing duplicates)
+    const qemuJobsByName = new Map<string, JobWithLocation>(
+      [...locations.values()]
+        .flatMap((jobLocation) => jobLocation.jobs.filter((job) => job.jobType === 'qemu'))
+        .map((job) => [job.raw.name, job] as const),
+    );
 
-  // for (const job of jobs) {
-  //   for (const location of job.locations) {
-  //     if (job.jobType === 'hardware') {
-  //       if (!hardwareLocations.has(location.name)) {
-  //         hardwareLocations.set(location.name, location);
-  //       }
-  //     } else if (job.jobType === 'qemu' && !qemuLocations.has(location.name)) {
-  //       // Check if the location is already added
-  //       qemuLocations.set(location.name, location);
-  //     }
-  //   }
-  // }
+    // Group unique qemu jobs by joined location names
+    const qemuJobsByLocation = Map.groupBy(
+      qemuJobsByName.values(),
+      (job) =>
+        `Qemu (${job.locations
+          .map((location) => location.name)
+          .toSorted()
+          .join(', ')})`,
+    );
+
+    // Group hardware jobs by location
+    const hardwareJobsByLocation = Map.groupBy(
+      [...locations.values()].flatMap((jobLocation) => jobLocation.jobs.filter((job) => job.jobType === 'hardware')),
+      (job) => job.location.name,
+    );
+
+    return new Map<string, JobWithLocation[]>([...hardwareJobsByLocation, ...qemuJobsByLocation]);
+  }, [locations]);
 
   return (
     <div className="uno-grid uno-grid-cols-1 sm:uno-grid-cols-2 uno-gap-4">
-      {[...locations.entries()].map(([location, jobs]) => {
-        const jobsByPlatform = Object.groupBy(jobs.jobs, (job) => job.platform);
+      {[...jobsByLocation.entries()].map(([location, jobs]) => {
+        const jobsByPlatform = Object.groupBy(jobs, (job) => job.platform);
+        const status = getJobGroupStatus(jobs);
         return (
           <div
             key={location}
@@ -37,7 +43,7 @@ export function LocationJobs({locations}: {readonly locations: Map<string, JobLo
           >
             <div className="uno-text-4xl uno-font-semibold uno-p-b-4">🌐 {location}</div>
             <div className="uno-p-b-4">
-              <StatusPill status={jobs.status} label={jobs.status.toLowerCase()} />
+              <StatusPill status={status} label={status.toLowerCase()} />
             </div>
             {Object.entries(jobsByPlatform).map(([platform, platformJobs]) => {
               if (!platformJobs) {

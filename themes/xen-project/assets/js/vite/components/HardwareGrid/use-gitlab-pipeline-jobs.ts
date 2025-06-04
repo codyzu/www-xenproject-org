@@ -157,3 +157,21 @@ export function useGitlabPipelineJobs(count = 1): PipelineResult {
 
   return {pipelines: state, loading: false, error: undefined};
 }
+
+export function getJobGroupStatus(jobs: Job[]): string {
+  const statuses = new Set(jobs.map((j) => j.raw.status).filter((j) => j !== 'SKIPPED' && j !== 'CANCELED'));
+
+  const status =
+    // If only success, then set as success
+    statuses.size === 1 && statuses.has('SUCCESS')
+      ? 'SUCCESS'
+      : // In order of priority, choose the best status
+        statuses.has('FAILED')
+        ? 'FAILED'
+        : statuses.has('PENDING')
+          ? 'PENDING'
+          : statuses.has('RUNNING')
+            ? 'RUNNING'
+            : 'UNKNOWN';
+  return status;
+}
