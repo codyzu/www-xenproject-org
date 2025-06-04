@@ -1,9 +1,10 @@
-import {lazy, Suspense} from 'preact/compat';
-import {type Job, useGitlabPipelineJobs} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
+import {lazy, Suspense, useMemo, useState} from 'preact/compat';
+import {type Job, type JobWithLocation, useGitlabPipelineJobs} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
 import LoadingGitlab from './LoadingGitlab.tsx';
 import {JobHeatmap} from './JobHeatmap.tsx';
 import {LocationJobs} from './LocationJobs.tsx';
 import {PipelineStatus} from './PipelineStatus.tsx';
+import TestLegend from './TestLegend.tsx';
 
 // We know the components will be used, so we can preload them to improve performance.
 void import('./TestGlobe.tsx');
@@ -21,8 +22,63 @@ const TestGlobe = lazy(async () => {
 });
 const PipelineTrends = lazy(async () => import('./PipelineTrends.tsx'));
 
+export type JobLocation = {
+  jobs: JobWithLocation[];
+  status: string;
+};
+
 export default function CiStatus() {
+  const [{isHwTestsVisible, isQemuTestsVisible}, setVisibleTests] = useState<{
+    isHwTestsVisible: boolean;
+    isQemuTestsVisible: boolean;
+  }>({isHwTestsVisible: true, isQemuTestsVisible: true});
   const {loading, error, pipelines} = useGitlabPipelineJobs(10);
+
+  const jobsByLocation: Map<string, JobWithLocation[]> = useMemo(() => {
+    if (loading || error !== undefined || pipelines === undefined || pipelines.length === 0) {
+      return new Map<string, JobWithLocation[]>();
+    }
+
+    const jobsWithLocations: JobWithLocation[] = pipelines[0].jobs.flatMap((job) =>
+      job.locations.map((location) => ({
+        ...job,
+        location,
+      })),
+    );
+
+    const locationGroupedJobs: Map<string, JobWithLocation[]> = Map.groupBy(
+      jobsWithLocations,
+      (job) => job.location.name,
+    );
+
+    return locationGroupedJobs;
+  }, [pipelines, loading, error]);
+
+  const locations: Map<string, JobLocation> = useMemo(() => {
+    return new Map<string, JobLocation>(
+      [...jobsByLocation.entries()].map(([location, jobs]) => {
+        const visibleJobs = jobs.filter((job) => {
+          if (job.jobType === 'hardware') {
+            return isHwTestsVisible;
+          }
+
+          if (job.jobType === 'qemu') {
+            return isQemuTestsVisible;
+          }
+
+          return false; // Include all other jobs
+        });
+        const status = getJobGroupStatus(visibleJobs);
+        return [
+          location,
+          {
+            jobs: visibleJobs,
+            status,
+          },
+        ];
+      }),
+    );
+  }, [jobsByLocation, isHwTestsVisible, isQemuTestsVisible]);
 
   if (loading) {
     return (
@@ -50,17 +106,29 @@ export default function CiStatus() {
 
   const {jobs: lastJobs} = pipelines[0];
 
-  const jobsByLocation = new Map<string, Job[]>();
-  for (const job of lastJobs.toSorted((a, b) => a.location.localeCompare(b.location))) {
-    const {location: city} = job;
-    jobsByLocation.set(city, [...(jobsByLocation.get(city) ?? []), job]);
-  }
+  // Const jobsByLocation = new Map<string, Job[]>();
+  // for (const job of lastJobs.toSorted((a, b) => a.location.localeCompare(b.location))) {
+  //   const {location: city} = job;
+  //   jobsByLocation.set(city, [...(jobsByLocation.get(city) ?? []), job]);
+  // }
 
   return (
     <div className="uno-section-nested uno-animate-fade-in uno-m-t-8">
       <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8" id="last-pipeline">
         <h3>Last pipeline</h3>
         <PipelineStatus pipeline={pipelines[0]} />
+      </section>
+      <section>
+        <TestLegend
+          isHwTestsVisible={isHwTestsVisible}
+          isQemuTestsVisible={isQemuTestsVisible}
+          onToggleHwTests={() => {
+            setVisibleTests((previous) => ({...previous, isHwTestsVisible: !previous.isHwTestsVisible}));
+          }}
+          onToggleQemuTests={() => {
+            setVisibleTests((previous) => ({...previous, isQemuTestsVisible: !previous.isQemuTestsVisible}));
+          }}
+        />
       </section>
       <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8" id="global-test-status">
         <h3>Global test status</h3>
@@ -71,9 +139,9 @@ export default function CiStatus() {
             </div>
           }
         >
-          <TestGlobe jobs={jobsByLocation} />
+          <TestGlobe jobs={lastJobs} isHwTestsVisible={isHwTestsVisible} isQemuTestsVisible={isQemuTestsVisible} />
         </Suspense>
-        <LocationJobs jobsByLocation={jobsByLocation} />
+        <LocationJobs locations={locations} />
       </section>
       <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8 id" id="pipeline-trends">
         <h3>Pipeline trends</h3>
@@ -95,4 +163,22 @@ export default function CiStatus() {
       </section>
     </div>
   );
+}
+
+function getJobGroupStatus(jobs: JobWithLocation[]): string {
+  const statuses = new Set(jobs.map((j) => j.raw.status).filter((j) => j !== 'SKIPPED' && j !== 'CANCELED'));
+
+  const status =
+    // If only success, then set as success
+    statuses.size === 1 && statuses.has('SUCCESS')
+      ? 'SUCCESS'
+      : // In order of priority, choose the best status
+        statuses.has('FAILED')
+        ? 'FAILED'
+        : statuses.has('PENDING')
+          ? 'PENDING'
+          : statuses.has('RUNNING')
+            ? 'RUNNING'
+            : 'UNKNOWN';
+  return status;
 }

@@ -5,80 +5,145 @@ import zen2 from '../../assets/zen-2.png';
 import zen3 from '../../assets/zen-3.svg';
 import zen4 from '../../assets/zen-4.png';
 import intelI5 from '../../assets/core-i5.png';
+import qemu from '../../assets/qemu.png';
+
+export type Location = {
+  name: string;
+  lat: number;
+  lng: number;
+};
 
 type PlatformLocation = {
   jobName: RegExp;
-  platform?: string;
-  location?: string;
-  lat?: number;
-  lng?: number;
-  icons?: string[];
-  image?: string;
+  platform: string;
+  jobType?: 'hardware' | 'qemu' | undefined;
+  locations: Location[];
+  icons: string[];
+  image: string;
 };
 
 const platformLocations: PlatformLocation[] = [
   {
     jobName: /^adl/i,
     platform: 'Intel Alder Lake (i5-12600K)',
-    location: 'Berlin',
-    lat: 52.52,
-    lng: 13.405,
+    jobType: 'hardware',
+    locations: [
+      {
+        name: 'Berlin',
+        lat: 52.52,
+        lng: 13.405,
+      },
+    ],
     icons: ['i-lineicons-intel'],
     image: intelI5,
   },
   {
     jobName: /^kbl/i,
     platform: 'Intel Kaby Lake (i7-7567U)',
-    location: 'Berlin',
-    lat: 52.52,
-    lng: 13.405,
+    jobType: 'hardware',
+    locations: [
+      {
+        name: 'Berlin',
+        lat: 52.52,
+        lng: 13.405,
+      },
+    ],
     icons: ['i-lineicons-intel'],
     image: intelI7,
   },
   {
     jobName: /^zen2/i,
     platform: 'AMD Zen 2 (Ryzen 5 4500U)',
-    location: 'Berlin',
-    lat: 52.52,
-    lng: 13.405,
+    jobType: 'hardware',
+    locations: [
+      {
+        name: 'Berlin',
+        lat: 52.52,
+        lng: 13.405,
+      },
+    ],
     icons: ['i-lineicons-amd'],
     image: zen2,
   },
   {
     jobName: /^zen3p/i,
     platform: 'AMD Zen 3+ (Ryzen 7 7735HS)',
-    location: 'Berlin',
-    lat: 52.52,
-    lng: 13.405,
+    jobType: 'hardware',
+    locations: [
+      {
+        name: 'Berlin',
+        lat: 52.52,
+        lng: 13.405,
+      },
+    ],
     icons: ['i-lineicons-amd'],
     image: zen3,
   },
   {
     jobName: /^zen4/i,
     platform: 'AMD Zen 4 (Ryzen 5 7640U)',
-    location: 'Berlin',
-    lat: 52.52,
-    lng: 13.405,
+    jobType: 'hardware',
+    locations: [
+      {
+        name: 'Berlin',
+        lat: 52.52,
+        lng: 13.405,
+      },
+    ],
     icons: ['i-lineicons-amd'],
     image: zen4,
   },
   {
     jobName: /^xilinx.*arm64/i,
     platform: 'Xilinx Ultrascale+ MPSoC (ARM64)',
+    jobType: 'hardware',
+    locations: [
+      {
+        name: 'San Jose',
+        lat: 37.3382,
+        lng: -121.8863,
+      },
+    ],
     icons: ['i-file-icons-arm'],
-    location: 'San Jose',
-    lat: 37.3382,
-    lng: -121.8863,
     image: ultrascale,
   },
   {
     jobName: /^xilinx(?!.*arm64)/i,
     platform: 'AMD Ryzen Embedded v2000',
+    jobType: 'hardware',
+    locations: [
+      {
+        name: 'San Jose',
+        lat: 37.3382,
+        lng: -121.8863,
+      },
+    ],
     icons: ['i-lineicons-amd'],
-    location: 'San Jose',
-    lat: 37.3382,
-    lng: -121.8863,
     image: ryzenEmbedded,
+  },
+  {
+    jobName: /^qemu/i,
+    platform: 'QEMU emulated',
+    jobType: 'qemu',
+    locations: [
+      {
+        name: 'San Jose',
+        lat: 37.3382,
+        lng: -121.8863,
+      },
+      {
+        name: 'Berlin',
+        lat: 52.52,
+        lng: 13.405,
+      },
+      {
+        name: 'Boston',
+        lat: 42.3601,
+        lng: -71.0589,
+      },
+    ],
+    icons: ['i-carbon-virtual-machine'],
+    image: qemu,
   },
 
   // Add other locations here 👆
@@ -86,29 +151,30 @@ const platformLocations: PlatformLocation[] = [
   // Icons are added in the order matched, so keep the 64bit icon for last
   {
     jobName: /64/,
+    platform: '',
     icons: ['i-mdi-cpu-64-bit'],
+    locations: [],
+    image: '',
   },
 ];
 
-export type JobData = Required<Pick<PlatformLocation, 'platform' | 'location' | 'lat' | 'lng' | 'icons'>> &
-  Omit<PlatformLocation, 'jobName'>;
+export type JobData = Omit<PlatformLocation, 'jobName'>;
 
 export function parseJobData(jobName: string): JobData {
   let platform = '';
-  let location = '';
-  let lat = 0;
-  let lng = 0;
+  let locations: Array<{name: string; lat: number; lng: number}> = [];
   let icons: string[] = [];
-  let image;
+  let image = '';
+  let jobType: 'hardware' | 'qemu' | undefined;
 
   for (const platformLocation of platformLocations) {
     if (platformLocation.jobName.test(jobName)) {
       platform = `${platform} ${platformLocation.platform ?? ''}`;
-      location = !location && platformLocation.location ? platformLocation.location : location;
-      lat = !lat && platformLocation.lat ? platformLocation.lat : lat;
-      lng = !lng && platformLocation.lng ? platformLocation.lng : lng;
+
+      locations = [...locations, ...(platformLocation.locations ?? [])];
       icons = [...icons, ...(platformLocation.icons ?? [])];
       image = platformLocation.image ?? image;
+      jobType = platformLocation.jobType ?? jobType;
     }
   }
 
@@ -116,10 +182,9 @@ export function parseJobData(jobName: string): JobData {
 
   return {
     platform: platform.trim(),
-    location,
-    lat,
-    lng,
+    locations,
     icons,
     image,
+    jobType,
   };
 }

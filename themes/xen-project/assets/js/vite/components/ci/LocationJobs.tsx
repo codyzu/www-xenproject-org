@@ -1,18 +1,35 @@
 import {Fragment} from 'preact/compat';
 import {type Status, StatusPill} from '../HardwareGrid/StatusPill.tsx';
 import {type Job} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
+import {type Location} from '../HardwareGrid/gitlab-jobs.ts';
+import {type JobLocation} from './CiStatus.tsx';
 
-export function LocationJobs({jobsByLocation}: {readonly jobsByLocation: Map<string, Job[]>}) {
+type JobWithLocation = Job & {
+  location: Location;
+};
+
+export function LocationJobs({locations}: {readonly locations: Map<string, JobLocation>}) {
+  // Const jobsByLocation = new Map<string, Job[]>();
+  // const hardwareLocations = new Map<string, Location>();
+  // const qemuLocations = new Map<string, Location>();
+
+  // for (const job of jobs) {
+  //   for (const location of job.locations) {
+  //     if (job.jobType === 'hardware') {
+  //       if (!hardwareLocations.has(location.name)) {
+  //         hardwareLocations.set(location.name, location);
+  //       }
+  //     } else if (job.jobType === 'qemu' && !qemuLocations.has(location.name)) {
+  //       // Check if the location is already added
+  //       qemuLocations.set(location.name, location);
+  //     }
+  //   }
+  // }
+
   return (
     <div className="uno-grid uno-grid-cols-1 sm:uno-grid-cols-2 uno-gap-4">
-      {[...jobsByLocation.entries()].map(([location, locationJobs]) => {
-        const status: Status = locationJobs.every((j) => j.raw.status === 'SUCCESS')
-          ? 'SUCCESS'
-          : locationJobs.some((j) => j.raw.status === 'FAILED')
-            ? 'FAILED'
-            : 'PENDING';
-
-        const jobsByPlatform = Object.groupBy(locationJobs, (job) => job.platform);
+      {[...locations.entries()].map(([location, jobs]) => {
+        const jobsByPlatform = Object.groupBy(jobs.jobs, (job) => job.platform);
         return (
           <div
             key={location}
@@ -20,7 +37,7 @@ export function LocationJobs({jobsByLocation}: {readonly jobsByLocation: Map<str
           >
             <div className="uno-text-4xl uno-font-semibold uno-p-b-4">🌐 {location}</div>
             <div className="uno-p-b-4">
-              <StatusPill status={status} label={status.toLowerCase()} />
+              <StatusPill status={jobs.status} label={jobs.status.toLowerCase()} />
             </div>
             {Object.entries(jobsByPlatform).map(([platform, platformJobs]) => {
               if (!platformJobs) {

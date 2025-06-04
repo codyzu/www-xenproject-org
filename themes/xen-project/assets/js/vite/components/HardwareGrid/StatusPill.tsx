@@ -26,7 +26,7 @@ const statusStyles = {
   },
   DEFAULT: {
     icon: 'i-fa6-solid-circle-question',
-    color: 'uno-text-gray-500',
+    color: 'uno-text-blue-500',
   },
   /* eslint-enable @typescript-eslint/naming-convention */
 };
