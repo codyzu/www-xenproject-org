@@ -49,9 +49,9 @@ function LegendControl({
 }) {
   return (
     <div className={clsx('uno-flex uno-flex-col uno-text-sm uno-gap-1', className)}>
-      <div className="uno-flex uno-flex-row uno-justify-between uno-items-end">
-        <div className="uno-text-base uno-font-semibold">{label}</div>
-        <div className="uno-flex uno-flex-row uno-gap-2 uno-items-center">
+      <div className="uno-flex uno-flex-row uno-justify-between uno-items-center">
+        <div className="uno-text-lg uno-font-semibold">{label}</div>
+        <div className="uno-flex uno-flex-row uno-gap-2 uno-items-center has-[input:focus]:(uno-border-action-active) uno-border-b-3 uno-border-x-0 uno-border-t-0 uno-border-transparent uno-border-solid uno-p-b-0.5">
           <div className="uno-font-mono">{isEnabled ? 'hide' : 'show'} </div>
           <Toggle isEnabled={isEnabled} onToggle={onToggle} />
         </div>

@@ -1,5 +1,6 @@
 import {lazy, Suspense, useMemo, useState} from 'preact/compat';
-import {type Job, type JobWithLocation, useGitlabPipelineJobs} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
+import {type JobWithLocation, useGitlabPipelineJobs} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
+import {type Location} from '../HardwareGrid/gitlab-jobs.ts';
 import LoadingGitlab from './LoadingGitlab.tsx';
 import {JobHeatmap} from './JobHeatmap.tsx';
 import {LocationJobs} from './LocationJobs.tsx';
@@ -25,6 +26,7 @@ const PipelineTrends = lazy(async () => import('./PipelineTrends.tsx'));
 export type JobLocation = {
   jobs: JobWithLocation[];
   status: string;
+  location: Location;
 };
 
 export default function CiStatus() {
@@ -56,27 +58,38 @@ export default function CiStatus() {
 
   const locations: Map<string, JobLocation> = useMemo(() => {
     return new Map<string, JobLocation>(
-      [...jobsByLocation.entries()].map(([location, jobs]) => {
-        const visibleJobs = jobs.filter((job) => {
-          if (job.jobType === 'hardware') {
-            return isHwTestsVisible;
+      [...jobsByLocation.entries()]
+        .toSorted(([locationA], [locationB]) => locationA.localeCompare(locationB))
+        .map(([location, jobs]) => {
+          const visibleJobs = jobs.filter((job) => {
+            if (job.jobType === 'hardware') {
+              return isHwTestsVisible;
+            }
+
+            if (job.jobType === 'qemu') {
+              return isQemuTestsVisible;
+            }
+
+            return false; // Include all other jobs
+          });
+
+          // No jobs, return undefined to filter out later
+          if (visibleJobs.length === 0) {
+            return undefined;
           }
 
-          if (job.jobType === 'qemu') {
-            return isQemuTestsVisible;
-          }
-
-          return false; // Include all other jobs
-        });
-        const status = getJobGroupStatus(visibleJobs);
-        return [
-          location,
-          {
-            jobs: visibleJobs,
-            status,
-          },
-        ];
-      }),
+          const status = getJobGroupStatus(visibleJobs);
+          return [
+            location,
+            {
+              jobs: visibleJobs,
+              status,
+              location: visibleJobs[0].location,
+            },
+          ];
+        })
+        // Filter out undefined entries
+        .filter((entry): entry is [string, JobLocation] => entry !== undefined),
     );
   }, [jobsByLocation, isHwTestsVisible, isQemuTestsVisible]);
 
@@ -104,14 +117,6 @@ export default function CiStatus() {
     return <div>No pipelines found</div>;
   }
 
-  const {jobs: lastJobs} = pipelines[0];
-
-  // Const jobsByLocation = new Map<string, Job[]>();
-  // for (const job of lastJobs.toSorted((a, b) => a.location.localeCompare(b.location))) {
-  //   const {location: city} = job;
-  //   jobsByLocation.set(city, [...(jobsByLocation.get(city) ?? []), job]);
-  // }
-
   return (
     <div className="uno-section-nested uno-animate-fade-in uno-m-t-8">
       <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8" id="last-pipeline">
@@ -119,6 +124,7 @@ export default function CiStatus() {
         <PipelineStatus pipeline={pipelines[0]} />
       </section>
       <section>
+        <h3>Test filters</h3>
         <TestLegend
           isHwTestsVisible={isHwTestsVisible}
           isQemuTestsVisible={isQemuTestsVisible}
@@ -139,7 +145,7 @@ export default function CiStatus() {
             </div>
           }
         >
-          <TestGlobe jobs={lastJobs} isHwTestsVisible={isHwTestsVisible} isQemuTestsVisible={isQemuTestsVisible} />
+          <TestGlobe locations={locations} />
         </Suspense>
         <LocationJobs locations={locations} />
       </section>
