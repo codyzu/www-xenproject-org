@@ -4,7 +4,7 @@ import {
   type JobWithLocation,
   type JobLocation,
   useGitlabPipelineJobs,
-} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
+} from './use-gitlab-pipeline-jobs.ts';
 import LoadingGitlab from './LoadingGitlab.tsx';
 import {JobHeatmap} from './JobHeatmap.tsx';
 import {LocationJobs} from './LocationJobs.tsx';

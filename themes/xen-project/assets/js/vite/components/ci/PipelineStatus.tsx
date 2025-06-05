@@ -1,5 +1,5 @@
-import {StatusPill} from '../HardwareGrid/StatusPill.tsx';
-import {type PipelineJobsResult} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
+import {StatusPill} from './StatusPill.tsx';
+import {type PipelineJobsResult} from './use-gitlab-pipeline-jobs.ts';
 
 export function PipelineStatus({pipeline}: {readonly pipeline: PipelineJobsResult}) {
   const {pipeline: lastPipeline, pipelineDate: lastPipelineDate} = pipeline;

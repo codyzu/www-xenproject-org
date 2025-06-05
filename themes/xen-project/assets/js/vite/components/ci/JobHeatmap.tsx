@@ -1,6 +1,6 @@
 import {Fragment} from 'preact/jsx-runtime';
 import clsx from 'clsx';
-import {type PipelineJobsResult} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
+import {type PipelineJobsResult} from './use-gitlab-pipeline-jobs.ts';
 
 const statusClassMap = new Map<string, string>([
   ['SUCCESS', 'uno-bg-green-500'],

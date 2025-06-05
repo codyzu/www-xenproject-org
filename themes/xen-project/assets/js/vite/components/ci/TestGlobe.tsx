@@ -5,9 +5,9 @@ import clsx from 'clsx';
 import earthTopology from '../../assets/earth-topology.png';
 import nightSky from '../../assets/night-sky.png';
 import earthDay from '../../assets/earth-day.jpg';
-import {StatusPill} from '../HardwareGrid/StatusPill.tsx';
-import {type Location} from '../HardwareGrid/gitlab-jobs.ts';
-import {type JobLocation} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
+import {StatusPill} from './StatusPill.tsx';
+import {type Location} from './gitlab-jobs.ts';
+import {type JobLocation} from './use-gitlab-pipeline-jobs.ts';
 import useSize from './use-size.ts';
 
 type StatusValue = 'SUCCESS' | 'FAILED' | 'SKIPPED' | 'CANCELED' | 'missing' | 'unknown';

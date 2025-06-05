@@ -1,6 +1,6 @@
 // eslint-disable-line unicorn/filename-case
 import {h, render} from 'preact';
-import {HardwareGrid} from './components/HardwareGrid/HardwareGrid.tsx';
+import {HardwareGrid} from './components/ci/HardwareGrid.tsx';
 
 const element = document.querySelector('#hardware-grid');
 if (element) {

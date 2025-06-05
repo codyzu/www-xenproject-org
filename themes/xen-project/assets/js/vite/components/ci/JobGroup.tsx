@@ -1,6 +1,6 @@
 import {h, Fragment} from 'preact';
 import clsx from 'clsx';
-import {type Job} from './use-gitlab-pipeline-jobs.ts';
+import {type Job} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
 import {StatusPill} from './StatusPill.tsx';
 
 export default function JobGroup({platform, jobs}: {readonly platform: string; readonly jobs: Job[]}) {
