@@ -173,7 +173,7 @@ export function parseJobData(jobName: string): JobData {
 
       locations = [...locations, ...(platformLocation.locations ?? [])];
       icons = [...icons, ...(platformLocation.icons ?? [])];
-      image = platformLocation.image ?? image;
+      image = platformLocation.image || image;
       jobType = platformLocation.jobType ?? jobType;
     }
   }
