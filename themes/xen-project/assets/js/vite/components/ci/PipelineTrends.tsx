@@ -14,22 +14,34 @@ import type {TickItem} from 'recharts/types/util/types';
 import {type PipelineJobsResult} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
 import {StatusPill} from '../HardwareGrid/StatusPill.tsx';
 
-export default function PipelineTrends2({pipelines}: {readonly pipelines: PipelineJobsResult[]}) {
+export default function PipelineTrends2({
+  pipelines,
+  isHwTestsVisible,
+  isQemuTestsVisible,
+}: {
+  readonly pipelines: PipelineJobsResult[];
+  readonly isHwTestsVisible: boolean;
+  readonly isQemuTestsVisible: boolean;
+}) {
   const pipelinesOldestFirst = pipelines.toReversed();
   const data = pipelinesOldestFirst.map((p) => {
-    const testJobs = p.jobs.filter((j) => j.raw.stage?.name === 'test');
+    const testJobs = p.jobs.filter(
+      (j) =>
+        ((j.jobType === 'hardware' && isHwTestsVisible) || (j.jobType === 'qemu' && isQemuTestsVisible)) &&
+        j.raw.stage?.name === 'test',
+    );
     const success = testJobs.filter((j) => j.raw.status === 'SUCCESS').length;
     const failed = testJobs.filter((j) => j.raw.status === 'FAILED').length;
-    const unknown = testJobs.filter((j) => !['FAILED', 'SUCCESS'].includes(j.raw.status)).length;
+    const other = testJobs.filter((j) => !['FAILED', 'SUCCESS'].includes(j.raw.status)).length;
     return {
       name: `#${p.pipeline.id.split('/').at(-1)}`,
-      Success: success,
-      Failed: failed,
-      Other: unknown,
+      success,
+      failed,
+      other,
     };
   });
 
-  const hasOther = data.some((d) => d.Other > 0);
+  const hasOther = data.some((d) => d.other > 0);
 
   return (
     <div className="uno-surface">
@@ -75,7 +87,7 @@ export default function PipelineTrends2({pipelines}: {readonly pipelines: Pipeli
           <Area
             dot
             type="monotone"
-            dataKey="Success"
+            dataKey="success"
             stackId="1"
             stroke="#22c55e"
             fill="url(#successGradient)"
@@ -85,7 +97,7 @@ export default function PipelineTrends2({pipelines}: {readonly pipelines: Pipeli
           <Area
             dot
             type="monotone"
-            dataKey="Failed"
+            dataKey="failed"
             stackId="1"
             stroke="#ef4444"
             fill="url(#failedGradient)"
@@ -96,7 +108,7 @@ export default function PipelineTrends2({pipelines}: {readonly pipelines: Pipeli
             <Area
               dot
               type="monotone"
-              dataKey="Other"
+              dataKey="other"
               stackId="1"
               stroke="#94A3B8"
               fill="url(#otherGradient)"
@@ -119,8 +131,8 @@ function CustomTooltip({active, payload, label}: TooltipProps<number, string>) {
         <Fragment key={entry.dataKey}>
           <span className="uno-font-mono">{entry.value}</span>
           <StatusPill
-            status={String(entry.dataKey ?? 'Other').toUpperCase()}
-            label={String(entry.dataKey ?? 'Other')}
+            status={String(entry.dataKey ?? 'other').toUpperCase()}
+            label={String(entry.dataKey ?? 'other')}
           />
         </Fragment>
       ))}

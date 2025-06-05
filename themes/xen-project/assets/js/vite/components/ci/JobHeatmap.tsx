@@ -16,12 +16,24 @@ function getStatusClass(status: string | undefined) {
   return statusClassMap.get(status) ?? statusClassMap.get('unknown')!;
 }
 
-export function JobHeatmap({pipelines: pipelinesNewestFirst}: {readonly pipelines: PipelineJobsResult[]}) {
+export function JobHeatmap({
+  pipelines: pipelinesNewestFirst,
+  isHwTestsVisible,
+  isQemuTestsVisible,
+}: {
+  readonly pipelines: PipelineJobsResult[];
+  readonly isHwTestsVisible: boolean;
+  readonly isQemuTestsVisible: boolean;
+}) {
   const pipelines = pipelinesNewestFirst.toReversed();
   // Collect all unique job names from all pipelines
   const jobNameSet = new Set<string>();
   for (const p of pipelines) {
-    for (const j of p.jobs) jobNameSet.add(j.raw.name);
+    for (const j of p.jobs) {
+      if (j.jobType === 'hardware' && !isHwTestsVisible) continue;
+      if (j.jobType === 'qemu' && !isQemuTestsVisible) continue;
+      jobNameSet.add(j.raw.name);
+    }
   }
 
   const jobNames = [...jobNameSet].sort();

@@ -163,13 +163,21 @@ export default function CiStatus() {
             </div>
           }
         >
-          <PipelineTrends pipelines={pipelines} />
+          <PipelineTrends
+            pipelines={pipelines}
+            isHwTestsVisible={isHwTestsVisible}
+            isQemuTestsVisible={isQemuTestsVisible}
+          />
         </Suspense>
       </section>
       <section className="uno-flex uno-flex-col uno-gap-2 uno-m-b-8" id="job-heatmap">
         <h3>Job heatmap</h3>
         <div className="">
-          <JobHeatmap pipelines={pipelines} />
+          <JobHeatmap
+            pipelines={pipelines}
+            isHwTestsVisible={isHwTestsVisible}
+            isQemuTestsVisible={isQemuTestsVisible}
+          />
         </div>
       </section>
     </div>
