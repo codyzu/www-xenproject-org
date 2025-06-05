@@ -146,6 +146,11 @@ const platformLocations: PlatformLocation[] = [
         lat: 42.3601,
         lng: -71.0589,
       },
+      {
+        name: 'Ashburn',
+        lat: 39.0437,
+        lng: -77.4875,
+      },
     ],
     // Icon: {className: 'i-carbon-virtual-machine', weight: 40},
     image: qemu,
