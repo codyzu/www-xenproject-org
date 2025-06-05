@@ -1,18 +1,9 @@
 import {h, Fragment} from 'preact';
 import clsx from 'clsx';
-import {type ParsedJob} from './schema.ts';
 import {type Job} from './use-gitlab-pipeline-jobs.ts';
 import {StatusPill} from './StatusPill.tsx';
 
-export default function JobGroup({
-  platform,
-  jobs,
-  index,
-}: {
-  readonly platform: string;
-  readonly jobs: Job[];
-  readonly index: number;
-}) {
+export default function JobGroup({platform, jobs}: {readonly platform: string; readonly jobs: Job[]}) {
   return (
     <div className="embla__slide uno-flex-[0_0_100%] sm:uno-flex-[0_0_30rem] uno-min-w-0 uno-p-l-4 uno-flex">
       <div className="uno-card uno-shadow-gray-300 uno-grid uno-grid-cols-[1fr_auto] uno-content-start uno-auto-rows-auto uno-items-center uno-gap-1 uno-w-full uno-text-secondary uno-max-h-[60dvh] uno-overflow-y-auto">

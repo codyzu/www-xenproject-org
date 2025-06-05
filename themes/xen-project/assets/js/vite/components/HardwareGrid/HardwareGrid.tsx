@@ -1,4 +1,4 @@
-import {h, render, type RefObject} from 'preact';
+import {h} from 'preact';
 import useEmblaCarousel from 'embla-carousel-react';
 import clsx from 'clsx';
 import ButtonBase from '../ButtonBase.tsx';
@@ -40,7 +40,7 @@ export function HardwareGrid() {
         <div className="embla__container uno-flex uno-p-b-8 uno-m-l--4">
           {!loading && !error
             ? [...jobsByPlatform.entries()].map(([platform, jobs], index) => (
-                <JobGroup key={platform} platform={platform} jobs={jobs} index={index} />
+                <JobGroup key={platform} platform={platform} jobs={jobs} />
               ))
             : Array.from({length: 6}).map((_, index) => (
                 <div
