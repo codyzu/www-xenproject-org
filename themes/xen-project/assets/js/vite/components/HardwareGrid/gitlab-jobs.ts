@@ -13,12 +13,17 @@ export type Location = {
   lng: number;
 };
 
+type Icon = {
+  className: string;
+  weight: number;
+};
+
 type PlatformLocation = {
   jobName: RegExp;
   platform: string;
   jobType?: 'hardware' | 'qemu' | undefined;
   locations: Location[];
-  icons: string[];
+  icon?: Icon;
   image: string;
 };
 
@@ -34,7 +39,7 @@ const platformLocations: PlatformLocation[] = [
         lng: 13.405,
       },
     ],
-    icons: ['i-lineicons-intel'],
+    icon: {className: 'i-lineicons-intel', weight: 50},
     image: intelI5,
   },
   {
@@ -48,7 +53,7 @@ const platformLocations: PlatformLocation[] = [
         lng: 13.405,
       },
     ],
-    icons: ['i-lineicons-intel'],
+    icon: {className: 'i-lineicons-intel', weight: 50},
     image: intelI7,
   },
   {
@@ -62,7 +67,7 @@ const platformLocations: PlatformLocation[] = [
         lng: 13.405,
       },
     ],
-    icons: ['i-lineicons-amd'],
+    icon: {className: 'i-lineicons-amd', weight: 50},
     image: zen2,
   },
   {
@@ -76,7 +81,7 @@ const platformLocations: PlatformLocation[] = [
         lng: 13.405,
       },
     ],
-    icons: ['i-lineicons-amd'],
+    icon: {className: 'i-lineicons-amd', weight: 50},
     image: zen3,
   },
   {
@@ -90,7 +95,7 @@ const platformLocations: PlatformLocation[] = [
         lng: 13.405,
       },
     ],
-    icons: ['i-lineicons-amd'],
+    icon: {className: 'i-lineicons-amd', weight: 50},
     image: zen4,
   },
   {
@@ -104,7 +109,7 @@ const platformLocations: PlatformLocation[] = [
         lng: -121.8863,
       },
     ],
-    icons: ['i-file-icons-arm'],
+    icon: {className: 'i-file-icons-arm', weight: 50},
     image: ultrascale,
   },
   {
@@ -118,7 +123,7 @@ const platformLocations: PlatformLocation[] = [
         lng: -121.8863,
       },
     ],
-    icons: ['i-lineicons-amd'],
+    icon: {className: 'i-lineicons-amd', weight: 50},
     image: ryzenEmbedded,
   },
   {
@@ -142,7 +147,7 @@ const platformLocations: PlatformLocation[] = [
         lng: -71.0589,
       },
     ],
-    icons: ['i-carbon-virtual-machine'],
+    // Icon: {className: 'i-carbon-virtual-machine', weight: 40},
     image: qemu,
   },
 
@@ -152,18 +157,32 @@ const platformLocations: PlatformLocation[] = [
   {
     jobName: /64/,
     platform: '',
-    icons: ['i-mdi-cpu-64-bit'],
+    icon: {className: 'i-mdi-cpu-64-bit', weight: 10},
+    locations: [],
+    image: '',
+  },
+  {
+    jobName: /32/,
+    platform: '',
+    icon: {className: 'i-mdi-cpu-32-bit', weight: 11},
+    locations: [],
+    image: '',
+  },
+  {
+    jobName: /arm/i,
+    platform: '',
+    icon: {className: 'i-file-icons-arm', weight: 20},
     locations: [],
     image: '',
   },
 ];
 
-export type JobData = Omit<PlatformLocation, 'jobName'>;
+export type JobData = Omit<PlatformLocation, 'jobName' | 'icon'> & {icons: Icon[]};
 
 export function parseJobData(jobName: string): JobData {
   let platform = '';
   let locations: Array<{name: string; lat: number; lng: number}> = [];
-  let icons: string[] = [];
+  let icons: Icon[] = [];
   let image = '';
   let jobType: 'hardware' | 'qemu' | undefined;
 
@@ -172,18 +191,28 @@ export function parseJobData(jobName: string): JobData {
       platform = `${platform} ${platformLocation.platform ?? ''}`;
 
       locations = [...locations, ...(platformLocation.locations ?? [])];
-      icons = [...icons, ...(platformLocation.icons ?? [])];
+      icons = platformLocation.icon ? [...icons, platformLocation.icon] : icons;
       image = platformLocation.image || image;
       jobType = platformLocation.jobType ?? jobType;
     }
   }
 
-  // Console.log(jobName, 'name', platform, 'city', city, 'lat', lat, 'lng', lng, 'icons', icons);
+  const sortedIcons = [
+    ...new Map(
+      icons
+        // Sort by lowest to highest weight
+        .toSorted((a, b) => a.weight - b.weight)
+        // Remove duplicates by className (using Map), keeping the highest weight
+        .map((icon) => [icon.className, icon]),
+    ).values(),
+  ]
+    // Finally, reverse the order from highest to lowest weight
+    .toReversed();
 
   return {
     platform: platform.trim(),
     locations,
-    icons,
+    icons: sortedIcons,
     image,
     jobType,
   };

@@ -132,7 +132,6 @@ export default function TestGlobe({locations}: {readonly locations: Map<string, 
               backgroundImageUrl={nightSky}
               width={globeContainerSize?.width ?? 0}
               height={globeContainerSize?.height ?? 0}
-              // Data must be an array of objects (not an array of arrays), so we map the nested array to an array of objects
               htmlElementsData={[...locations.values()]}
               htmlElement={renderLocationHtmlElement}
               htmlLat={(data) => (data as JobLocation).location.lat}
@@ -157,18 +156,28 @@ export default function TestGlobe({locations}: {readonly locations: Map<string, 
 
 function LocationCard({jobs}: {readonly jobs: JobLocation}) {
   const hardwareJobs = jobs.jobs.filter((j) => j.jobType === 'hardware');
-  const hardwareIcons = [...new Set(hardwareJobs.flatMap((j) => j.icons))];
-  if (hardwareIcons.includes('i-mdi-cpu-64-bit')) {
-    hardwareIcons.splice(hardwareIcons.indexOf('i-mdi-cpu-64-bit'), 1);
-    hardwareIcons.push('i-mdi-cpu-64-bit');
-  }
+
+  // Combine all hardware icons into a single set, sorted by weight
+  const hardwareIcons = [
+    ...new Set(
+      hardwareJobs
+        .flatMap((j) => j.icons)
+        .toSorted((a, b) => a.weight - b.weight)
+        .map((i) => i.className),
+    ),
+  ].toReversed();
 
   const qemuJobs = jobs.jobs.filter((j) => j.jobType === 'qemu');
-  const qemuIcons = [...new Set(qemuJobs.flatMap((j) => j.icons))];
-  if (qemuIcons.includes('i-mdi-cpu-64-bit')) {
-    qemuIcons.splice(qemuIcons.indexOf('i-mdi-cpu-64-bit'), 1);
-    qemuIcons.push('i-mdi-cpu-64-bit');
-  }
+
+  // Combine all qemu icons into a single set, sorted by weight
+  const qemuIcons = [
+    ...new Set(
+      qemuJobs
+        .flatMap((j) => j.icons)
+        .toSorted((a, b) => a.weight - b.weight)
+        .map((i) => i.className),
+    ),
+  ].toReversed();
 
   return (
     <div
