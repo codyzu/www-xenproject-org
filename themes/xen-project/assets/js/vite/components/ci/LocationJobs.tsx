@@ -16,7 +16,7 @@ export function LocationJobs({locations}: {readonly locations: Map<string, JobLo
     const qemuJobsByLocation = Map.groupBy(
       qemuJobsByName.values(),
       (job) =>
-        `Qemu (${job.locations
+        `Qemu Cloud (${job.locations
           .map((location) => location.name)
           .toSorted()
           .join(', ')})`,
