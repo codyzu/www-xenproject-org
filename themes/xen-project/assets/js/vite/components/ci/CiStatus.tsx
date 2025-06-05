@@ -1,11 +1,10 @@
 import {lazy, Suspense, useMemo, useState} from 'preact/compat';
 import {
   getJobGroupStatus,
-  Job,
   type JobWithLocation,
+  type JobLocation,
   useGitlabPipelineJobs,
 } from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
-import {type Location} from '../HardwareGrid/gitlab-jobs.ts';
 import LoadingGitlab from './LoadingGitlab.tsx';
 import {JobHeatmap} from './JobHeatmap.tsx';
 import {LocationJobs} from './LocationJobs.tsx';
@@ -27,12 +26,6 @@ const TestGlobe = lazy(async () => {
   return module;
 });
 const PipelineTrends = lazy(async () => import('./PipelineTrends.tsx'));
-
-export type JobLocation = {
-  jobs: JobWithLocation[];
-  status: string;
-  location: Location;
-};
 
 export default function CiStatus() {
   const [{isHwTestsVisible, isQemuTestsVisible}, setVisibleTests] = useState<{

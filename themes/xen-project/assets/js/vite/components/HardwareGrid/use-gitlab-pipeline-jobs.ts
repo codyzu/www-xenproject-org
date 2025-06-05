@@ -16,6 +16,12 @@ export type JobWithLocation = Job & {
   location: Location;
 };
 
+export type JobLocation = {
+  jobs: JobWithLocation[];
+  status: string;
+  location: Location;
+};
+
 type PipelineResult =
   | {
       readonly loading: true;

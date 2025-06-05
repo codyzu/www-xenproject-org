@@ -1,7 +1,6 @@
 import {Fragment, useMemo} from 'preact/compat';
 import {StatusPill} from '../HardwareGrid/StatusPill.tsx';
-import {getJobGroupStatus, type JobWithLocation} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
-import {type JobLocation} from './CiStatus.tsx';
+import {getJobGroupStatus, type JobWithLocation, type JobLocation} from '../HardwareGrid/use-gitlab-pipeline-jobs.ts';
 
 export function LocationJobs({locations}: {readonly locations: Map<string, JobLocation>}) {
   const jobsByLocation = useMemo(() => {
