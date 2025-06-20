@@ -30,6 +30,7 @@ export default defineConfig({
         'bundle-main': './themes/xen-project/assets/js/vite/bundle-main.tsx',
         'hardware-status': './themes/xen-project/assets/js/vite/hardware-status.tsx',
         'ci-status': './themes/xen-project/assets/js/vite/ci-status.tsx',
+        'xen-story': './themes/xen-project/assets/js/vite/xen-story.tsx',
       },
       output: {
         manualChunks: {
