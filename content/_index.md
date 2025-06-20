@@ -12,6 +12,8 @@ keywords:
   - community
   - innovation
   - technology
+scripts:
+  - xen-story.tsx
 ---
 
 {{<section class="home-section-hero home-hero-animated" >}} 
