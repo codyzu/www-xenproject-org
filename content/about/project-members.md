@@ -10,6 +10,8 @@ keywords:
   - Vates
   - XenServer
   - Honda
+  - Renesas
+  - Ford
   - governance
   - leadership
   - collaboration
@@ -134,6 +136,20 @@ Honda is a global leader in automotive manufacturing and technology innovation. 
 Renesas is a premier supplier of advanced semiconductor solutions that empowers a safer, smarter and more sustainable future where technology helps make our lives easier. A leading global provider of microcontrollers, Renesas combines our expertise in embedded processing, analog and power to deliver complete semiconductor solutions for automotive, industrial, infrastructure and IoT applications.
 
 <p class="mt-2"><a href="https://www.renesas.com/" class="btn btn-tertiary">Discover Renesas <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+{{</media-block>}}
+{{</section>}}
+
+{{<section>}}
+{{<media-block
+   title="Ford Motor Company"
+   media="/img/logos/ford-logo.svg"
+   alt="Logo of Ford"
+   class="image-small"
+   animate="true"
+>}}
+A global leader in automotive innovation, Ford is leveraging virtualization to accelerate software-defined vehicle development. By supporting the Xen Project, Ford contributes to advancing safety-critical and real-time applications in embedded systems, helping shape the future of automotive computing.
+
+<p class="mt-2"><a href="https://ford.com/" class="btn btn-tertiary">Discover Ford <i class="fas fa-arrow-up-right-from-square"></i></a></p>
 {{</media-block>}}
 {{</section>}}
 

@@ -64,14 +64,14 @@
       background-color: var(--bg-color);
     }
 
-    @for $i from 2 through 8 {
+    @for $i from 2 through 10 {
       &:first-child:nth-last-child(#{$i}),
       &:first-child:nth-last-child(#{$i}) ~ li {
         --total: #{$i};
       }
     }
 
-    @for $i from 2 through 8 {
+    @for $i from 2 through 10 {
       &:nth-of-type(#{$i}) {
         --index: #{$i - 1};
       }
