@@ -249,7 +249,7 @@ function PlanetForeground({
         <div className="uno-text-4xl uno-font-semibold">{name}</div>
         <div className="text-2xl">{children}</div>
       </div>
-      <div className="uno-flex uno-flex-row uno-items-end">
+      <div className="uno-flex uno-flex-row uno-items-end uno-justify-end">
         <img className="uno-object-contain" src={image} />
       </div>
     </div>
