@@ -86,6 +86,9 @@ export default defineConfig({
     },
     boxShadow: {
       'fade-in': 'inset 0 0 12px 12px var(--un-shadow-color)',
+      glow: 'var(--un-shadow-inset) 0 0 14px 3px rgb(0 0 0 / 0.05)',
+      'glow-lg': 'var(--un-shadow-inset) 0 0 14px 4px rgb(0 0 0 / 0.05)',
+      'glow-xl': 'var(--un-shadow-inset) 0 0 14px 5px rgb(0 0 0 / 0.05)',
     },
   },
   shortcuts: {

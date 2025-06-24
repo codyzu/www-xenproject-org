@@ -13,7 +13,12 @@ type Star = {
   width: number;
   height: number;
   duration: number;
+  shadowColor: string;
+  shadowSize: string;
 };
+
+const shadowColors = ['uno-shadow-pink', 'uno-shadow-amber', 'uno-shadow-green'];
+const shadowSizes = ['uno-shadow-glow', 'uno-shadow-glow-lg', 'uno-shadow-glow-xl'];
 
 export function Story() {
   const storyRef = useRef<IParallax>(null);
@@ -28,6 +33,8 @@ export function Story() {
       width: Math.random() * 3 + 1, // Width between 1 and 3
       height: Math.random() * 3 + 1, // Height between 1 and 3
       duration: (Math.round(Math.random() * 10) + 6) * 200, // Duration between 1 and 3 seconds
+      shadowColor: shadowColors[Math.floor(Math.random() * shadowColors.length)],
+      shadowSize: shadowSizes[Math.floor(Math.random() * shadowSizes.length)],
     }));
 
     setStars(nextStars);
@@ -67,7 +74,11 @@ export function Story() {
               <div
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
-                className={`uno-bg-white uno-rounded-full uno-animate-pulse uno-animate-duration-${star.duration} uno-absolute`}
+                className={clsx(
+                  `uno-bg-white uno-rounded-full uno-animate-pulse uno-animate-duration-${star.duration} uno-absolute`,
+                  star.shadowColor,
+                  star.shadowSize,
+                )}
                 style={{
                   top: `${star.y}%`,
                   left: `${star.x}%`,
@@ -84,7 +95,11 @@ export function Story() {
               <div
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
-                className={`uno-bg-white uno-rounded-full uno-animate-pulse uno-animate-duration-${star.duration} uno-absolute`}
+                className={clsx(
+                  `uno-bg-white uno-rounded-full uno-animate-pulse uno-animate-duration-${star.duration} uno-absolute`,
+                  star.shadowColor,
+                  star.shadowSize,
+                )}
                 style={{
                   top: `${star.y}%`,
                   left: `${star.x}%`,
