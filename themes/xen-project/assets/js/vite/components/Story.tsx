@@ -17,7 +17,13 @@ type Star = {
   shadowSize: string;
 };
 
-const shadowColors = ['uno-shadow-pink', 'uno-shadow-amber', 'uno-shadow-green'];
+const shadowColors = [
+  'uno-shadow-pink',
+  'uno-shadow-amber',
+  'uno-shadow-green',
+  'uno-shadow-white',
+  'uno-shadow-white',
+];
 const shadowSizes = ['uno-shadow-glow', 'uno-shadow-glow-lg', 'uno-shadow-glow-xl'];
 
 export function Story() {
@@ -126,7 +132,7 @@ export function Story() {
         {/* Content layers */}
         <ParallaxLayer
           offset={0}
-          className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-p-2"
+          className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-p-20"
           speed={1.3}
         >
           <div
@@ -152,8 +158,18 @@ export function Story() {
           <div className="uno-w-20 uno-h-20  i-memory-arrow-down uno-animate-bounce uno-m-b-10" />
         </ParallaxLayer>
         <ParallaxLayer
+          offset={1}
+          sticky={{start: 1, end: endIndex - 1}}
+          className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-p-t-50"
+        >
+          <img
+            className="uno-w-20% uno-max-w-100 sm:uno-w-100-bak sm:uno-max-w-50%-bak uno-animate-bounce uno-animate-duration-2300"
+            src={panda}
+          />
+        </ParallaxLayer>
+        <ParallaxLayer
           sticky={{start: 0.8, end: 2}}
-          className="uno-flex uno-flex-col uno-items-center uno-justify-between uno-p-t-50 uno-p-x-10 uno-text-white uno-text-4xl uno-font-semibold-bak"
+          className="uno-flex uno-flex-col uno-items-center uno-justify-between uno-p-t-50 uno-p-x-20 uno-text-white uno-text-4xl uno-font-semibold-bak"
         >
           <div
             className={clsx(
@@ -168,48 +184,25 @@ export function Story() {
           </div>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 2, end: 3}} className="uno-flex uno-h-full">
-          <PlanetForeground
-            // Start={2}
-            name="Panet Data Center"
-            image={dataCenter}
-            isTextVisible={page >= 2 && page <= 4}
-          >
+          <PlanetForeground name="Planet Data Center" image={dataCenter} isTextVisible={page >= 2 && page <= 3.2}>
             Xen brings the power of virtualization to data centers around the world, enabling efficient resource
             utilization and scalability. With Xen, data centers can run multiple virtual machines on a single physical
             server, reducing hardware costs and energy consumption.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 5, end: 6}} className="uno-flex uno-h-full">
-          <PlanetForeground
-            // Start={2}
-            name="Planet Automotive"
-            image={car}
-            isTextVisible={page >= 5 && page <= 7}
-          >
+          <PlanetForeground name="Planet Automotive" image={car} isTextVisible={page >= 5 && page <= 6.2}>
             Xen powers the future of automotive technology by enabling secure and efficient virtualization in vehicles.
             With Xen, automotive systems can isolate critical functions, enhance safety, and support advanced features
             like autonomous driving and in-car entertainment.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 8, end: 9}} className="uno-flex uno-h-full">
-          <PlanetForeground
-            // Start={2}
-            name="Planet Industrial"
-            image={industrial}
-            isTextVisible={page >= 8 && page <= 10}
-          >
+          <PlanetForeground name="Planet Industrial" image={industrial} isTextVisible={page >= 8 && page <= 9.2}>
             Xen revolutionizes industrial automation by providing a secure and efficient virtualization platform for
             industrial systems. With Xen, manufacturers can optimize resource utilization, enhance system reliability,
             and support advanced features like predictive maintenance and real-time monitoring.
           </PlanetForeground>
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          offset={1}
-          sticky={{start: 1, end: endIndex - 1}}
-          className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-p-t-50"
-        >
-          <img className="uno-w-100 uno-max-w-50% uno-animate-bounce uno-animate-duration-2300" src={panda} />
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 0, end: 0}}>
           <Header />
@@ -242,22 +235,20 @@ function PlanetForeground({
   return (
     <div
       className={clsx(
-        'uno-flex uno-flex-row-reverse uno-items-stretch uno-justify-between uno-p-20',
+        'uno-grid uno-grid-cols-1 uno-grid-rows-2 sm:uno-grid-cols-2 sm:uno-grid-rows-1',
+        'uno-p-20',
+        'uno-text-white',
         isTextVisible ? 'uno-opacity-100' : 'uno-opacity-0',
         'uno-transition-opacity',
-        'uno-duration-300',
+        'uno-duration-400',
         'uno-ease-in-out',
       )}
     >
-      <div
-        className={clsx(
-          'uno-text-white uno-w-30% uno-bg-pink-bak uno-h-50%-bak uno-p-t-10-bak uno-flex uno-flex-col uno-gap-2',
-        )}
-      >
+      <div className={clsx('uno-flex uno-flex-col uno-gap-2')}>
         <div className="uno-text-4xl uno-font-semibold">{name}</div>
         <div className="text-2xl">{children}</div>
       </div>
-      <div className="uno-flex uno-flex-row uno-justify-stretch uno-items-end uno-w-30%">
+      <div className="uno-flex uno-flex-row uno-items-end">
         <img className="uno-object-contain" src={image} />
       </div>
     </div>
