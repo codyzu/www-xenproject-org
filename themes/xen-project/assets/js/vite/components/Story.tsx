@@ -1,12 +1,37 @@
 import {type IParallax, Parallax, ParallaxLayer} from '@react-spring/parallax';
 import clsx from 'clsx';
 import {useEffect, useRef, useState} from 'preact/hooks';
+import {type ComponentChildren} from 'preact';
 import panda from '../assets/panda-space-suite.png';
+import dataCenter from '../assets/data-center.png';
+import car from '../assets/car.png';
+import industrial from '../assets/industrial.png';
+
+type Star = {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  duration: number;
+};
 
 export function Story() {
   const storyRef = useRef<IParallax>(null);
 
   const [page, setPage] = useState(0);
+  const [stars, setStars] = useState<Star[]>([]);
+
+  useEffect(() => {
+    const nextStars: Star[] = Array.from({length: 2000}, () => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      width: Math.random() * 3 + 1, // Width between 1 and 3
+      height: Math.random() * 3 + 1, // Height between 1 and 3
+      duration: (Math.round(Math.random() * 10) + 6) * 200, // Duration between 1 and 3 seconds
+    }));
+
+    setStars(nextStars);
+  }, []);
 
   useEffect(() => {
     function handleScroll() {
@@ -15,7 +40,6 @@ export function Story() {
 
         if (nextPage !== page) {
           console.log('p', page, 'next', nextPage);
-          // SetScrollDown(nextPage > page);
         }
 
         setPage(nextPage);
@@ -31,99 +55,252 @@ export function Story() {
     };
   }, [page]);
 
-  // UseEffect(() => {
-  //   console.log('current', storyRef.current?.current, 'offset', storyRef.current?.offset);
-  // }, [storyRef.current?.current, storyRef.current?.offset]);
-
-  console.log(storyRef.current);
+  const pages = 12;
+  const endIndex = pages - 1;
   return (
-    <div className="uno-relative uno-w-full uno-h-screen uno-overflow-hidden">
-      <Parallax
-        ref={storyRef}
-        className="uno-top-0 uno-left-0 uno-h-full uno-w-full"
-        pages={6}
-        // Style={{height: '100%', width: '100%'}}
-      >
+    <div className="uno-relative uno-w-full uno-h-[calc(100dvh-108px)]-bak uno-h-100dvh uno-overflow-hidden uno-m-t--80px uno-bg-black">
+      <Parallax ref={storyRef} className="uno-top-0_bak uno-left-0_bak uno-h-full uno-w-full" pages={pages}>
         {/* Background layers */}
-        <ParallaxLayer offset={0} factor={2} speed={0} className="uno-bg-black" />
-        <ParallaxLayer
-          offset={2}
-          speed={0}
-          className={clsx(
-            // 'uno-bg-gradient-from-blue-500 uno-bg-gradient-via-gray-400 uno-bg-gradient-to-red',
-            // 'uno-bg-gradient-from-op-100-10',
-            'uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgba(44,168,96,1)_55%,rgba(46,46,46,1)_60%,rgba(100,100,100,1)_110%]',
-            'uno-bg-gradient-shape-[circle_at_50%_220%]',
-            'uno-bg-gradient-radial',
-          )}
+        <ParallaxLayer speed={1.3} offset={0} factor={12 * 2.2} className="uno-flex uno-relative uno-w-full">
+          <div className="uno-flex uno-relative uno-w-full">
+            {stars.slice(0, 999).map((star, index) => (
+              <div
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+                className={`uno-bg-white uno-rounded-full uno-animate-pulse uno-animate-duration-${star.duration} uno-absolute`}
+                style={{
+                  top: `${star.y}%`,
+                  left: `${star.x}%`,
+                  width: `${star.width}px`,
+                  height: `${star.height}px`,
+                }}
+              />
+            ))}
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer speed={1.8} offset={0} factor={12 * 2.65} className="uno-flex uno-relative uno-w-full">
+          <div className="uno-flex uno-relative uno-w-full">
+            {stars.slice(1000, 1999).map((star, index) => (
+              <div
+                // eslint-disable-next-line react/no-array-index-key
+                key={index}
+                className={`uno-bg-white uno-rounded-full uno-animate-pulse uno-animate-duration-${star.duration} uno-absolute`}
+                style={{
+                  top: `${star.y}%`,
+                  left: `${star.x}%`,
+                  width: `${star.width}px`,
+                  height: `${star.height}px`,
+                }}
+              />
+            ))}
+          </div>
+        </ParallaxLayer>
+        <PlanetBackground
+          start={2}
+          gradient="uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgba(44,168,96,1)_35%,rgba(100,100,100,0.3)_40%,rgba(0,0,0,0)_45%]"
         />
-        <ParallaxLayer
-          offset={3}
-          speed={0}
-          className={clsx(
-            // 'uno-bg-gradient-from-blue-500 uno-bg-gradient-via-gray-400 uno-bg-gradient-to-red',
-            // 'uno-bg-gradient-from-op-100-10',
-            'uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgba(168,44,44,1)_55%,rgba(46,46,46,1)_60%,rgba(100,100,100,1)_110%]',
-            'uno-bg-gradient-shape-[circle_at_50%_220%]',
-            'uno-bg-gradient-radial',
-          )}
+        <PlanetBackground
+          start={5}
+          gradient="uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgba(168,44,44,1)_35%,rgba(100,100,100,0.3)_40%,rgba(0,0,0,0)_45%]"
         />
-        <ParallaxLayer offset={4} factor={2} speed={0} className="uno-bg-black" />
+        <PlanetBackground
+          start={8}
+          gradient="uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgb(204,175,47)_35%,rgba(100,100,100,0.3)_40%,rgba(0,0,0,0)_45%]"
+        />
 
         {/* Content layers */}
         <ParallaxLayer
-          sticky={{start: 0.8, end: 2}}
-          className="uno-flex uno-flex-col uno-items-center uno-justify-start uno-p-t-20 uno-text-white uno-text-3xl uno-font-semibold"
+          offset={0}
+          className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-p-2"
+          speed={1.3}
         >
           <div
             className={clsx(
-              page >= 0.8 && page <= 2 ? 'uno-opacity-100' : 'uno-opacity-0',
+              'uno-flex uno-flex-col uno-text-white uno-text-4xl uno-gap-2 uno-animate-fade-in',
+              page === 0 ? 'uno-opacity-100' : 'uno-opacity-0',
               'uno-transition-opacity',
               'uno-duration-300',
               'uno-ease-in-out',
             )}
           >
-            Meet the Xen Panda
-          </div>
-        </ParallaxLayer>
-
-        <ParallaxLayer
-          // Horizontal
-          offset={1}
-          sticky={{start: 2, end: 3}}
-          // Speed={-1}
-          className="uno-flex uno-flex-col uno-items-end uno-justify-start"
-        >
-          <div
-            className={clsx(
-              'uno-text-white uno-w-30% uno-bg-pink-bak uno-h-50% uno-p-t-10 uno-flex uno-flex-col',
-              page > 1.8 && page < 3.2 ? 'uno-opacity-100' : 'uno-opacity-0',
-              'uno-transition-opacity',
-              'uno-duration-300',
-              'uno-ease-in-out',
-            )}
-          >
-            <div className="uno-text-3xl uno-font-semibold">Data Centers</div>{' '}
             <div>
-              Xen brings the power of virtualization to data centers around the world, enabling efficient resource
-              utilization and scalability. With Xen, data centers can run multiple virtual machines on a single physical
-              server, reducing hardware costs and energy consumption.
+              Meet <strong>Xen</strong>.
             </div>
+            <div>The world&apos;s most secure, stable, and performant open source hypervisor.</div>
+            <div className="uno-m-t-10 uno-text-2xl">Scroll down to meet you guide...</div>
           </div>
+        </ParallaxLayer>
+        <ParallaxLayer
+          sticky={{start: 0, end: endIndex - 1}}
+          className="uno-flex uno-flex-col uno-items-center uno-justify-end uno-text-white"
+        >
+          <div className="uno-w-20 uno-h-20  i-memory-arrow-down uno-animate-bounce uno-m-b-10" />
+        </ParallaxLayer>
+        <ParallaxLayer
+          sticky={{start: 0.8, end: 2}}
+          className="uno-flex uno-flex-col uno-items-center uno-justify-between uno-p-t-50 uno-p-x-10 uno-text-white uno-text-4xl uno-font-semibold-bak"
+        >
+          <div
+            className={clsx(
+              page >= 0.6 && page <= 1.6 ? 'uno-opacity-100' : 'uno-opacity-0',
+              'uno-transition-opacity',
+              'uno-duration-300',
+              'uno-ease-in-out',
+              'uno-text-center',
+            )}
+          >
+            ...the Xen Panda travels through the universe, guiding users through the wonders of Xen virtualization.
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer sticky={{start: 2, end: 3}} className="uno-flex uno-h-full">
+          <PlanetForeground
+            // Start={2}
+            name="Panet Data Center"
+            image={dataCenter}
+            isTextVisible={page >= 2 && page <= 4}
+          >
+            Xen brings the power of virtualization to data centers around the world, enabling efficient resource
+            utilization and scalability. With Xen, data centers can run multiple virtual machines on a single physical
+            server, reducing hardware costs and energy consumption.
+          </PlanetForeground>
+        </ParallaxLayer>
+        <ParallaxLayer sticky={{start: 5, end: 6}} className="uno-flex uno-h-full">
+          <PlanetForeground
+            // Start={2}
+            name="Planet Automotive"
+            image={car}
+            isTextVisible={page >= 5 && page <= 7}
+          >
+            Xen powers the future of automotive technology by enabling secure and efficient virtualization in vehicles.
+            With Xen, automotive systems can isolate critical functions, enhance safety, and support advanced features
+            like autonomous driving and in-car entertainment.
+          </PlanetForeground>
+        </ParallaxLayer>
+        <ParallaxLayer sticky={{start: 8, end: 9}} className="uno-flex uno-h-full">
+          <PlanetForeground
+            // Start={2}
+            name="Planet Industrial"
+            image={industrial}
+            isTextVisible={page >= 8 && page <= 10}
+          >
+            Xen revolutionizes industrial automation by providing a secure and efficient virtualization platform for
+            industrial systems. With Xen, manufacturers can optimize resource utilization, enhance system reliability,
+            and support advanced features like predictive maintenance and real-time monitoring.
+          </PlanetForeground>
         </ParallaxLayer>
 
         <ParallaxLayer
           offset={1}
-          sticky={{start: 1, end: 4}}
-          className="uno-flex uno-flex-col uno-items-center uno-justify-center"
+          sticky={{start: 1, end: endIndex - 1}}
+          className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-p-t-50"
         >
           <img className="uno-w-100 uno-max-w-50% uno-animate-bounce uno-animate-duration-2300" src={panda} />
         </ParallaxLayer>
-        {/* <ParallaxLayer offset={2} speed={1} style={{backgroundColor: '#87BCDE'}} /> */}
-        {/* <ParallaxLayer offset={0} speed={2.5}>
-          <p>Parallax</p>
-        </ParallaxLayer> */}
+        <ParallaxLayer sticky={{start: 0, end: 0}}>
+          <Header />
+        </ParallaxLayer>
+        <ParallaxLayer sticky={{start: endIndex, end: endIndex}} className="uno-bg-surface-secondary">
+          <div className="uno-bg-surface-secondary">
+            <Article />
+            <Footer />
+          </div>
+        </ParallaxLayer>
+        <ParallaxLayer offset={endIndex - 1} className="uno-h-full uno-flex uno-flex-col uno-justify-end">
+          <div className="uno-bg-pink-bak uno-h-20 uno-bg-gradient-from-surface-secondary uno-bg-gradient-to-black uno-bg-gradient-to-t uno-bg-gradient-to-opacity-50" />
+        </ParallaxLayer>
       </Parallax>
     </div>
   );
+}
+
+function PlanetForeground({
+  name,
+  image,
+  children,
+  isTextVisible,
+}: {
+  readonly name: string;
+  readonly image: string;
+  readonly children: ComponentChildren;
+  readonly isTextVisible: boolean;
+}) {
+  return (
+    <div
+      className={clsx(
+        'uno-flex uno-flex-row-reverse uno-items-stretch uno-justify-between uno-p-20',
+        isTextVisible ? 'uno-opacity-100' : 'uno-opacity-0',
+        'uno-transition-opacity',
+        'uno-duration-300',
+        'uno-ease-in-out',
+      )}
+    >
+      <div
+        className={clsx(
+          'uno-text-white uno-w-30% uno-bg-pink-bak uno-h-50%-bak uno-p-t-10-bak uno-flex uno-flex-col uno-gap-2',
+        )}
+      >
+        <div className="uno-text-4xl uno-font-semibold">{name}</div>
+        <div className="text-2xl">{children}</div>
+      </div>
+      <div className="uno-flex uno-flex-row uno-justify-stretch uno-items-end uno-w-30%">
+        <img className="uno-object-contain" src={image} />
+      </div>
+    </div>
+  );
+}
+
+function PlanetBackground({start, gradient}: {readonly start: number; readonly gradient: string}) {
+  return (
+    <ParallaxLayer
+      offset={start}
+      speed={0}
+      factor={3}
+      className={clsx('uno-relative', gradient, 'uno-bg-gradient-shape-[circle_at_50%_50%]', 'uno-bg-gradient-radial')}
+    />
+  );
+}
+
+function Footer() {
+  const footerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const footer = footerRef.current;
+    const existingFooter = document.querySelector('footer');
+    console.log('footerRef', footer, 'existingFooter', existingFooter);
+    if (footer && existingFooter) {
+      console.log('moving footer', footer, 'existing', existingFooter);
+      footer.append(existingFooter);
+    }
+  }, []);
+
+  return <div ref={footerRef} />;
+}
+
+function Header() {
+  const headerRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const header = headerRef.current;
+    const existingHeader = document.querySelector('header');
+    console.log('headerRef', header, 'existingHeader', existingHeader);
+    if (header && existingHeader) {
+      console.log('moving header', header, 'existing', existingHeader);
+      header.append(existingHeader);
+    }
+  }, []);
+
+  return <div ref={headerRef} />;
+}
+
+function Article() {
+  const articleRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const article = articleRef.current;
+    const existingArticle = document.querySelector('article');
+    console.log('headerRef', article, 'existingHeader', existingArticle);
+    if (article && existingArticle) {
+      console.log('moving header', article, 'existing', existingArticle);
+      article.append(existingArticle);
+    }
+  }, []);
+
+  return <div ref={articleRef} className="uno-bg-surface-secondary" />;
 }

@@ -101,4 +101,6 @@ export default defineConfig({
     ),
     'uno-surface': 'uno-bg-surface uno-p-x-6 uno-p-y-8 uno-rounded-lg uno-shadow-lg',
   },
+  // Animation durations for stars on the homepage
+  safelist: Array.from({length: 10}, (_, i) => `uno-animate-duration-${(i + 7) * 200}`),
 });
