@@ -144,8 +144,8 @@ export function Story() {
               'uno-ease-in-out',
             )}
           >
-            <div>
-              Meet <strong>Xen</strong>.
+            <div className="">
+              Meet <strong className="uno-xen-shadow">Xen</strong>.
             </div>
             <div>The world&apos;s most secure, stable, and performant open source hypervisor.</div>
             <div className="uno-m-t-10 uno-text-2xl">Scroll down to meet you guide...</div>
@@ -180,7 +180,8 @@ export function Story() {
               'uno-text-center',
             )}
           >
-            ...the Xen Panda travels through the universe, guiding users through the wonders of Xen virtualization.
+            ...the <strong className="uno-xen-shadow">Xen</strong> Panda travels through the universe, guiding users
+            through the wonders of <strong className="uno-xen-shadow">Xen</strong> virtualization.
           </div>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 2, end: 3}} className="uno-flex uno-h-full">

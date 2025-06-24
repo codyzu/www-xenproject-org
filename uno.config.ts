@@ -104,6 +104,15 @@ export default defineConfig({
     ),
     'uno-surface': 'uno-bg-surface uno-p-x-6 uno-p-y-8 uno-rounded-lg uno-shadow-lg',
   },
+  rules: [
+    [
+      'uno-xen-shadow',
+      {
+        'text-shadow':
+          '1px 1px 2px black, 0 0 1em rgb(133, 194, 65), 0 0 0.4em rgb(133, 194, 65), 0 0 0.2em rgb(133, 194, 65)',
+      },
+    ],
+  ],
   // Animation durations for stars on the homepage
   safelist: Array.from({length: 10}, (_, i) => `uno-animate-duration-${(i + 7) * 200}`),
 });
