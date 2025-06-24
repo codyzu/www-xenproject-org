@@ -71,7 +71,7 @@ export function Story() {
   const pages = 12;
   const endIndex = pages - 1;
   return (
-    <div className="uno-relative uno-w-full uno-h-[calc(100dvh-108px)]-bak uno-h-100dvh uno-overflow-hidden uno-m-t--80px uno-bg-black">
+    <div className="uno-relative uno-w-full uno-h-100dvh uno-overflow-hidden uno-bg-black">
       <Parallax ref={storyRef} className="uno-top-0_bak uno-left-0_bak uno-h-full uno-w-full" pages={pages}>
         {/* Background layers */}
         <ParallaxLayer speed={1.3} offset={0} factor={12 * 2.2} className="uno-flex uno-relative uno-w-full">
@@ -169,7 +169,7 @@ export function Story() {
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{start: 0.8, end: 2}}
-          className="uno-flex uno-flex-col uno-items-center uno-justify-between uno-p-t-50 uno-p-x-20 uno-text-white uno-text-4xl uno-font-semibold-bak"
+          className="uno-flex uno-flex-col uno-items-center uno-justify-between uno-p-t-50 uno-p-x-20 uno-text-white uno-text-4xl"
         >
           <div
             className={clsx(
@@ -233,6 +233,7 @@ function PlanetForeground({
   readonly children: ComponentChildren;
   readonly isTextVisible: boolean;
 }) {
+  // Ideally this would return the ParallaxLayer, but sticky layers don't work if they are wrapped in a Fragment or Component (unlike non sticky layers)
   return (
     <div
       className={clsx(
