@@ -2,10 +2,11 @@ import {type IParallax, Parallax, ParallaxLayer} from '@react-spring/parallax';
 import clsx from 'clsx';
 import {useEffect, useRef, useState} from 'preact/hooks';
 import {type ComponentChildren} from 'preact';
-import panda from '../assets/panda-space-suite.png';
-import dataCenter from '../assets/data-center.png';
-import car from '../assets/car.png';
-import industrial from '../assets/industrial.png';
+import panda from '../assets/panda-space-suite.webp';
+import dataCenter from '../assets/data-center.webp';
+import consumer from '../assets/consumer.webp';
+import car from '../assets/car.webp';
+import industrial from '../assets/industrial.webp';
 
 type Star = {
   x: number;
@@ -68,13 +69,13 @@ export function Story() {
     };
   }, [page]);
 
-  const pages = 12;
+  const pages = 16;
   const endIndex = pages - 1;
   return (
     <div className="uno-relative uno-w-full uno-h-100dvh uno-overflow-hidden uno-bg-black">
       <Parallax ref={storyRef} className="uno-top-0_bak uno-left-0_bak uno-h-full uno-w-full" pages={pages}>
         {/* Background layers */}
-        <ParallaxLayer speed={1.3} offset={0} factor={12 * 2.2} className="uno-flex uno-relative uno-w-full">
+        <ParallaxLayer speed={1.3} offset={0} factor={12 * 2.9} className="uno-flex uno-relative uno-w-full">
           <div className="uno-flex uno-relative uno-w-full">
             {stars.slice(0, 999).map((star, index) => (
               <div
@@ -95,7 +96,7 @@ export function Story() {
             ))}
           </div>
         </ParallaxLayer>
-        <ParallaxLayer speed={1.8} offset={0} factor={12 * 2.65} className="uno-flex uno-relative uno-w-full">
+        <ParallaxLayer speed={1.8} offset={0} factor={12 * 3.5} className="uno-flex uno-relative uno-w-full">
           <div className="uno-flex uno-relative uno-w-full">
             {stars.slice(1000, 1999).map((star, index) => (
               <div
@@ -128,48 +129,48 @@ export function Story() {
           start={8}
           gradient="uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgb(204,175,47)_35%,rgba(100,100,100,0.3)_40%,rgba(0,0,0,0)_45%]"
         />
+        <PlanetBackground
+          start={11}
+          gradient="uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgba(114,63,204,1)_35%,rgba(100,100,100,0.3)_40%,rgba(0,0,0,0)_45%]"
+        />
 
         {/* Content layers */}
         <ParallaxLayer
           offset={0}
-          className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-p-20"
+          className={clsx(
+            'uno-flex uno-flex-col uno-items-center uno-justify-center uno-gap-4 uno-p-8 sm:uno-p-20',
+            'uno-animate-fade-in',
+            page === 0 ? 'uno-opacity-100' : 'uno-opacity-0',
+            'uno-transition-opacity uno-duration-300  uno-ease-in-out',
+            'uno-text-white uno-text-2xl sm:uno-text-4xl uno-text-center',
+          )}
           speed={1.3}
         >
-          <div
-            className={clsx(
-              'uno-flex uno-flex-col uno-text-white uno-text-4xl uno-gap-2 uno-animate-fade-in',
-              page === 0 ? 'uno-opacity-100' : 'uno-opacity-0',
-              'uno-transition-opacity',
-              'uno-duration-300',
-              'uno-ease-in-out',
-            )}
-          >
-            <div className="">
-              Meet <strong className="uno-xen-shadow">Xen</strong>.
-            </div>
-            <div>The world&apos;s most secure, stable, and performant open source hypervisor.</div>
-            <div className="uno-m-t-10 uno-text-2xl">Scroll down to meet you guide...</div>
+          <div className="">
+            Meet <strong className="uno-xen-shadow">Xen</strong>.
           </div>
+          <div>The world&apos;s most secure, stable, and performant open source hypervisor.</div>
+          <div className="uno-m-t-10 uno-text-base sm:uno-text-2xl">Scroll down to meet you guide...</div>
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{start: 0, end: endIndex - 1}}
           className="uno-flex uno-flex-col uno-items-center uno-justify-end uno-text-white"
         >
-          <div className="uno-w-20 uno-h-20  i-memory-arrow-down uno-animate-bounce uno-m-b-10" />
+          <div className="uno-w-20 uno-h-20  i-fa6-solid-arrow-down uno-animate-bounce uno-m-b-10" />
         </ParallaxLayer>
         <ParallaxLayer
           offset={1}
-          sticky={{start: 1, end: endIndex - 1}}
+          sticky={{start: 1, end: endIndex - 2}}
           className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-p-t-50"
         >
-          <img
-            className="uno-w-20% uno-max-w-100 sm:uno-w-100-bak sm:uno-max-w-50%-bak uno-animate-bounce uno-animate-duration-2300"
-            src={panda}
-          />
+          <img className="uno-w-20% uno-max-w-100 uno-animate-bounce uno-animate-duration-2300" src={panda} />
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{start: 0.8, end: 2}}
-          className="uno-flex uno-flex-col uno-items-center uno-justify-between uno-p-t-50 uno-p-x-20 uno-text-white uno-text-4xl"
+          className={clsx(
+            'uno-flex uno-flex-col uno-items-center uno-justify-start uno-p-t-20 sm:uno-p-t-50 uno-p-x-4 sm:uno-p-x-20',
+            'uno-text-white uno-text-2xl sm:uno-text-4xl',
+          )}
         >
           <div
             className={clsx(
@@ -184,7 +185,7 @@ export function Story() {
             through the wonders of <strong className="uno-xen-shadow">Xen</strong> virtualization.
           </div>
         </ParallaxLayer>
-        <ParallaxLayer sticky={{start: 2, end: 3}} className="uno-flex uno-h-full">
+        <ParallaxLayer sticky={{start: 2, end: 3}} className="uno-flex uno-h-full-bak">
           <PlanetForeground name="Planet Data Center" image={dataCenter} isTextVisible={page >= 2 && page <= 3.2}>
             Xen brings the power of virtualization to data centers around the world, enabling efficient resource
             utilization and scalability. With Xen, data centers can run multiple virtual machines on a single physical
@@ -204,6 +205,29 @@ export function Story() {
             industrial systems. With Xen, manufacturers can optimize resource utilization, enhance system reliability,
             and support advanced features like predictive maintenance and real-time monitoring.
           </PlanetForeground>
+        </ParallaxLayer>
+        <ParallaxLayer sticky={{start: 11, end: 12}} className="uno-flex uno-h-full">
+          <PlanetForeground name="Planet End User" image={consumer} isTextVisible={page >= 11 && page <= 12.2}>
+            Xen is not just for servers and cars... it&apos;s also powering a growing number of end-user systems.
+            Projects like Qubes OS use Xen to bring secure, open-source virtualization to laptops and desktops,
+            protecting users through hardware-enforced isolation of applications and data.
+          </PlanetForeground>
+        </ParallaxLayer>
+        <ParallaxLayer
+          sticky={{start: endIndex - 1.5, end: endIndex}}
+          // Offset={endIndex - 1.5}
+          className={clsx(
+            'uno-flex uno-flex-col uno-items-center uno-justify-center uno-gap-4 uno-p-8 sm:uno-p-20',
+            'uno-animate-fade-in',
+            page >= endIndex - 1.5 && page <= endIndex - 0.8 ? 'uno-opacity-100' : 'uno-opacity-0',
+            'uno-transition-opacity uno-duration-300  uno-ease-in-out',
+            'uno-text-white uno-text-2xl sm:uno-text-4xl uno-text-center',
+          )}
+          // Speed={1.3}
+        >
+          <div className="">
+            Where will <strong className="uno-xen-shadow">Xen</strong> take you?
+          </div>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 0, end: 0}}>
           <Header />
@@ -237,21 +261,22 @@ function PlanetForeground({
   return (
     <div
       className={clsx(
-        'uno-grid uno-grid-cols-1 uno-grid-rows-2 sm:uno-grid-cols-2 sm:uno-grid-rows-1',
-        'uno-p-20',
+        'uno-flex uno-flex-col uno-justify-between sm:uno-grid sm:uno-grid-cols-2 sm:uno-grid-rows-1',
+        'uno-p-4 sm:uno-p-20',
         'uno-text-white',
         isTextVisible ? 'uno-opacity-100' : 'uno-opacity-0',
         'uno-transition-opacity',
         'uno-duration-400',
         'uno-ease-in-out',
+        'uno-h-auto',
       )}
     >
       <div className={clsx('uno-flex uno-flex-col uno-gap-2')}>
-        <div className="uno-text-4xl uno-font-semibold">{name}</div>
-        <div className="text-2xl">{children}</div>
+        <div className="uno-text-2xl sm:uno-text-4xl uno-font-semibold">{name}</div>
+        <div className="uno-text-base sm:uno-text-2xl">{children}</div>
       </div>
-      <div className="uno-flex uno-flex-row uno-items-end uno-justify-end">
-        <img className="uno-object-contain" src={image} />
+      <div className="uno-flex uno-flex-row uno-items-end uno-justify-end uno-max-h-30% sm:uno-max-h-none">
+        <img className="uno-object-contain uno-max-h-full sm:uno-max-w-full uno-max-w-50%" src={image} />
       </div>
     </div>
   );
