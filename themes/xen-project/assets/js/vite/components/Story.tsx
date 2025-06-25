@@ -152,7 +152,7 @@ export function Story() {
             Meet <strong className="uno-xen-shadow">Xen</strong>.
           </div>
           <div>The world&apos;s most secure, stable, and performant open source hypervisor.</div>
-          <div className="uno-m-t-10 uno-text-base sm:uno-text-2xl">Scroll down to meet you guide...</div>
+          <div className="uno-m-t-10 uno-text-base sm:uno-text-2xl">Scroll down to meet your guide...</div>
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{start: 0, end: endIndex - 1}}
