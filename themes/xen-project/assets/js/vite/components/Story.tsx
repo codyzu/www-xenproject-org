@@ -39,7 +39,9 @@ export function Story() {
       y: Math.random() * 100,
       width: Math.random() * 3 + 1, // Width between 1 and 3
       height: Math.random() * 3 + 1, // Height between 1 and 3
-      duration: (Math.round(Math.random() * 10) + 6) * 200, // Duration between 1 and 3 seconds
+      // Duration between 600 and 2600ms in steps of 200ms
+      // Note, this should match the safelist in uno.config.ts
+      duration: (Math.round(Math.random() * 10) + 6) * 200,
       shadowColor: shadowColors[Math.floor(Math.random() * shadowColors.length)],
       shadowSize: shadowSizes[Math.floor(Math.random() * shadowSizes.length)],
     }));
