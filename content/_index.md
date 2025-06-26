@@ -16,9 +16,6 @@ scripts:
   - logo-wheel.tsx
 ---
 
-{{<div logo-wheel>}}
-{{</div>}}
-
 {{<section class="home-section-hero home-hero-animated" >}} 
   {{<media-block
     class="hero-block"
@@ -108,7 +105,7 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
 {{<section class="section-square-primary">}}
   {{<media-block
     title="Governed by Xen project **members**"
-    media=`{{<partial "blocks/logos-circle">}}`
+    media=`{{<div logo-wheel uno-w-full />}}`
     mediaMobilePosition="top"
     animate="true"
   >}}
