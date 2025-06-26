@@ -13,6 +13,7 @@ keywords:
   - innovation
   - technology
 scripts:
+  - logo-wheel.tsx
   - xen-story.tsx
 ---
 
@@ -105,7 +106,7 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
 {{<section class="section-square-primary">}}
   {{<media-block
     title="Governed by Xen project **members**"
-    media=`{{<partial "blocks/logos-circle">}}`
+    media=`{{<div logo-wheel uno-w-full />}}`
     mediaMobilePosition="top"
     animate="true"
   >}}

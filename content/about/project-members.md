@@ -10,6 +10,8 @@ keywords:
   - Vates
   - XenServer
   - Honda
+  - Renesas
+  - Ford
   - governance
   - leadership
   - collaboration
@@ -83,29 +85,15 @@ EPAM Systems is a global provider of digital platform engineering and software d
 
 {{<section>}}
 {{<media-block
-   title="Vates"
-   media="/img/logos/vates-logo.svg"
-   alt="Logo of Vates"
+   title="Ford Motor Company"
+   media="/img/logos/ford-logo.svg"
+   alt="Logo of Ford"
    class="image-small"
    animate="true"
 >}}
-Vates is a company specializing in open source virtualization solutions. Their flagship products include Xen Orchestra and XCP-ng, which offer powerful and scalable virtualization platforms for managing and deploying virtualized environments. Vates focuses on providing reliable and flexible virtualization solutions tailored to meet the needs of various organizations.
+A global leader in automotive innovation, Ford is leveraging virtualization to accelerate software-defined vehicle development. By supporting the Xen Project, Ford contributes to advancing safety-critical and real-time applications in embedded systems, helping shape the future of automotive computing.
 
-<p class="mt-2"><a href="https://vates.fr/" class="btn btn-tertiary">Discover Vates <i class="fas fa-arrow-up-right-from-square"></i></a></p>
-{{</media-block>}}
-{{</section>}}
-
-{{<section>}}
-{{<media-block
-   title="Xenserver"
-   media="/img/logos/xenserver-logo.svg"
-   alt="Logo of XenServer"
-   class="image-small"
-   animate="true"
->}}
-XenServer is a high-performance virtualization platform designed for enterprise environments. It provides robust virtualization capabilities, allowing organizations to efficiently manage and scale their virtual infrastructure. XenServer supports a wide range of use cases, including server consolidation, virtual desktop infrastructure (VDI), and cloud computing, offering advanced features such as live migration, resource pooling, and comprehensive security.
-
-<p class="mt-2"><a href="https://www.xenserver.com/" class="btn btn-tertiary">Discover Xenserver <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+<p class="mt-2"><a href="https://ford.com/" class="btn btn-tertiary">Discover Ford <i class="fas fa-arrow-up-right-from-square"></i></a></p>
 {{</media-block>}}
 {{</section>}}
 
@@ -134,6 +122,34 @@ Honda is a global leader in automotive manufacturing and technology innovation. 
 Renesas is a premier supplier of advanced semiconductor solutions that empowers a safer, smarter and more sustainable future where technology helps make our lives easier. A leading global provider of microcontrollers, Renesas combines our expertise in embedded processing, analog and power to deliver complete semiconductor solutions for automotive, industrial, infrastructure and IoT applications.
 
 <p class="mt-2"><a href="https://www.renesas.com/" class="btn btn-tertiary">Discover Renesas <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+{{</media-block>}}
+{{</section>}}
+
+{{<section>}}
+{{<media-block
+   title="Vates"
+   media="/img/logos/vates-logo.svg"
+   alt="Logo of Vates"
+   class="image-small"
+   animate="true"
+>}}
+Vates is a company specializing in open source virtualization solutions. Their flagship products include Xen Orchestra and XCP-ng, which offer powerful and scalable virtualization platforms for managing and deploying virtualized environments. Vates focuses on providing reliable and flexible virtualization solutions tailored to meet the needs of various organizations.
+
+<p class="mt-2"><a href="https://vates.fr/" class="btn btn-tertiary">Discover Vates <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+{{</media-block>}}
+{{</section>}}
+
+{{<section>}}
+{{<media-block
+   title="Xenserver"
+   media="/img/logos/xenserver-logo.svg"
+   alt="Logo of XenServer"
+   class="image-small"
+   animate="true"
+>}}
+XenServer is a high-performance virtualization platform designed for enterprise environments. It provides robust virtualization capabilities, allowing organizations to efficiently manage and scale their virtual infrastructure. XenServer supports a wide range of use cases, including server consolidation, virtual desktop infrastructure (VDI), and cloud computing, offering advanced features such as live migration, resource pooling, and comprehensive security.
+
+<p class="mt-2"><a href="https://www.xenserver.com/" class="btn btn-tertiary">Discover Xenserver <i class="fas fa-arrow-up-right-from-square"></i></a></p>
 {{</media-block>}}
 {{</section>}}
 

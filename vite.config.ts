@@ -30,6 +30,7 @@ export default defineConfig({
         'bundle-main': './themes/xen-project/assets/js/vite/bundle-main.tsx',
         'hardware-status': './themes/xen-project/assets/js/vite/hardware-status.tsx',
         'ci-status': './themes/xen-project/assets/js/vite/ci-status.tsx',
+        'logo-wheel': './themes/xen-project/assets/js/vite/logo-wheel.tsx',
         'xen-story': './themes/xen-project/assets/js/vite/xen-story.tsx',
       },
       output: {
@@ -47,15 +48,17 @@ export default defineConfig({
     port: 5173,
     strictPort: true,
     proxy: {
-      // Complicated regex to proxy anything that shouldn't be served by vite to hugo
+      // Complicated regex that determines what should be served by vite.
+      // Everything else should be served by Hugo.
       // This includes:
       // - themes/xen-project/assets/js/vite (the vite assets sources)
       // - node_modules
       // - __uno (the uno.css generated styles in dev mode)
       // - @vite (the vite internal assets)
       // - anything that ends with import&raw (used for raw imports in vite)
-      '^/(?!themes/xen-project/assets/js/vite|node_modules|__uno|@vite)(?!.*import&raw$).*': {
-        target: 'http://localhost:1313', // Your Hugo server
+      // - anything that ends with import&url (used for url imports in vite)
+      '^/(?!themes/xen-project/assets/js/vite|node_modules|__uno|@vite)(?!.*(import&raw|import&url)$).*': {
+        target: 'http://localhost:1313', // The Hugo server
         changeOrigin: true,
         rewrite: (path) => path,
       },
