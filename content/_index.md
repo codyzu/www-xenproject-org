@@ -12,7 +12,12 @@ keywords:
   - community
   - innovation
   - technology
+scripts:
+  - logo-wheel.tsx
 ---
+
+{{<div logo-wheel>}}
+{{</div>}}
 
 {{<section class="home-section-hero home-hero-animated" >}} 
   {{<media-block
