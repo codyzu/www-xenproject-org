@@ -149,7 +149,7 @@ export function Story() {
           speed={1.3}
         >
           <div className="">
-            Meet <strong className="uno-xen-shadow">Xen</strong>.
+            Meet <Xen />.
           </div>
           <div>The world&apos;s most secure, stable, and performant open source hypervisor.</div>
           <div className="uno-m-t-10 uno-text-base sm:uno-text-2xl">Scroll down to meet your guide...</div>
@@ -183,36 +183,52 @@ export function Story() {
               'uno-text-center',
             )}
           >
-            ...the <strong className="uno-xen-shadow">Xen</strong> Panda travels through the universe, guiding users
-            through the wonders of <strong className="uno-xen-shadow">Xen</strong> virtualization.
+            ...the <Xen /> Panda travels through the universe, guiding users through the wonders of <Xen />{' '}
+            virtualization.
           </div>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 2, end: 3}} className="uno-flex uno-h-full-bak">
           <PlanetForeground name="Planet Data Center" image={dataCenter} isTextVisible={page >= 2 && page <= 3.2}>
-            Xen brings the power of virtualization to data centers around the world, enabling efficient resource
-            utilization and scalability. With Xen, data centers can run multiple virtual machines on a single physical
-            server, reducing hardware costs and energy consumption.
+            <Xen /> brings virtualization to a wide range of server environments, from data centers to enterprise IT,
+            edge deployments, and labs. Sub-projects like <strong>XCP-ng</strong> build on the <Xen /> hypervisor to
+            provide a powerful, open-source platform supported by both community and commercial contributors.{' '}
+            <strong>XCP-ng</strong> offers a drop-in solution for organizations seeking a stable, secure, and fully open
+            virtualization stack. Whether you&apos;re managing thousands of virtual machines or a single node
+            on-premises, <Xen /> and <strong>XCP-ng</strong> deliver flexibility and transparency.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 5, end: 6}} className="uno-flex uno-h-full">
           <PlanetForeground name="Planet Automotive" image={car} isTextVisible={page >= 5 && page <= 6.2}>
-            Xen powers the future of automotive technology by enabling secure and efficient virtualization in vehicles.
-            With Xen, automotive systems can isolate critical functions, enhance safety, and support advanced features
-            like autonomous driving and in-car entertainment.
+            <Xen /> is paving the way for innovation in automotive computing by delivering secure, efficient
+            virtualization across vehicle subsystems. From digital dashboards and infotainment to critical safety
+            functions, <Xen /> makes it possible to consolidate multiple operating systems onto a single SoC while
+            preserving strong isolation and performance. Automotive companies rely on Xen&apos;s stability and long-term
+            support for use cases that demand reliability. Backed by a rigorous open CI platform and aligned with safety
+            certification efforts, <Xen /> provides a trusted foundation for next-generation vehicles. Members of the{' '}
+            <Xen /> Advisory Board include top automotive and component manufacturers, all working together to drive the
+            future of software-defined mobility.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 8, end: 9}} className="uno-flex uno-h-full">
           <PlanetForeground name="Planet Industrial" image={industrial} isTextVisible={page >= 8 && page <= 9.2}>
-            Xen revolutionizes industrial automation by providing a secure and efficient virtualization platform for
-            industrial systems. With Xen, manufacturers can optimize resource utilization, enhance system reliability,
-            and support advanced features like predictive maintenance and real-time monitoring.
+            <Xen /> is transforming industrial computing by enabling secure, efficient virtualization across embedded
+            controllers, robotics, and factory automation systems. With real-time performance, strong isolation, and low
+            overhead, <Xen /> allows manufacturers to consolidate workloads and extend the lifecycle of devices. The
+            open CI network ensures compatibility with real-world hardware, while supporting predictive maintenance and
+            continuous validation in mission-critical environments. Industrial partners can contribute and test directly
+            within the <Xen /> ecosystem, helping shape a resilient and flexible virtualization platform for modern
+            factories.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 11, end: 12}} className="uno-flex uno-h-full">
-          <PlanetForeground name="Planet End User" image={consumer} isTextVisible={page >= 11 && page <= 12.2}>
-            Xen is not just for servers and cars... it&apos;s also powering a growing number of end-user systems.
-            Projects like Qubes OS use Xen to bring secure, open-source virtualization to laptops and desktops,
-            protecting users through hardware-enforced isolation of applications and data.
+          <PlanetForeground name="Planet Consumer" image={consumer} isTextVisible={page >= 11 && page <= 12.2}>
+            <Xen /> isn&apos;t just for servers and vehicles, it&apos;s empowering end-user systems too. Projects like
+            Qubes OS rely on <Xen /> to bring hardware-enforced isolation to desktops and laptops, ensuring privacy and
+            security for advanced users and developers. Qubes contributors even provide test hardware to the <Xen /> CI
+            network, reinforcing the platform&apos;s real-world reliability. Meanwhile, <strong>XCP-ng</strong> powers a
+            growing niche of home labs and small businesses, offering an open, stable virtualization stack built on{' '}
+            <Xen />. Whether you&apos;re coding, researching, or experimenting at home, <Xen /> brings secure
+            virtualization to your fingertips.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer
@@ -228,7 +244,7 @@ export function Story() {
           // Speed={1.3}
         >
           <div className="">
-            Where will <strong className="uno-xen-shadow">Xen</strong> take you?
+            Where will <Xen /> take you?
           </div>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 0, end: 0}}>
@@ -248,6 +264,10 @@ export function Story() {
   );
 }
 
+function Xen() {
+  return <span className="uno-xen-shadow uno-font-bold uno-font-italic">Xen</span>;
+}
+
 function PlanetForeground({
   name,
   image,
@@ -264,7 +284,7 @@ function PlanetForeground({
     <div
       className={clsx(
         'uno-flex uno-flex-col uno-justify-between sm:uno-grid sm:uno-grid-cols-2 sm:uno-grid-rows-1',
-        'uno-p-4 sm:uno-p-20',
+        'uno-p-2 sm:uno-p-20',
         'uno-text-white',
         isTextVisible ? 'uno-opacity-100' : 'uno-opacity-0',
         'uno-transition-opacity',
@@ -273,7 +293,11 @@ function PlanetForeground({
         'uno-h-auto',
       )}
     >
-      <div className={clsx('uno-flex uno-flex-col uno-gap-2')}>
+      <div
+        className={clsx(
+          'uno-flex uno-flex-col uno-gap-2 uno-bg-gray-8 uno-bg-opacity-40 uno-p-2 uno-rounded-lg uno-self-start uno-backdrop-blur-sm',
+        )}
+      >
         <div className="uno-text-2xl sm:uno-text-4xl uno-font-semibold">{name}</div>
         <div className="uno-text-base sm:uno-text-2xl">{children}</div>
       </div>
