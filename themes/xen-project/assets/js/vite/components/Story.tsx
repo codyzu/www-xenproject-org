@@ -246,6 +246,38 @@ export function Story() {
           <div className="">
             Where will <Xen /> take you?
           </div>
+          <div className="uno-relative uno-w-full uno-h-90 sm:uno-h-130 uno-flex uno-items-center uno-justify-center">
+            {/* Glowing Xen Logo */}
+            <div className="uno-absolute uno-z-10 uno-text-white uno-font-bold uno-text-4xl sm:uno-text-6xl uno-xen-shadow">
+              <Xen />
+            </div>
+
+            {/* Orbiting rings */}
+            <div className="uno-absolute uno-animate-spin uno-animate-duration-14000 uno-w-40 uno-h-40 sm:uno-w-74 sm:uno-h-74 uno-border-2 uno-border-white uno-border-dashed uno-rounded-full uno-opacity-30" />
+            <div className="uno-absolute uno-animate-spin uno-animate-duration-16000 uno-w-74 uno-h-74 sm:uno-w-120 sm:uno-h-120 uno-border-2 uno-border-white uno-border-dashed uno-rounded-full uno-opacity-20" />
+
+            {/* Orbiting planets */}
+            <div className="uno-absolute uno-w-full uno-h-full uno-flex uno-items-center uno-justify-center">
+              <div className="uno-orbit-0">
+                <div className="uno-w-24 uno-h-24 uno-bg-gradient-shape-[circle_at_50%_50%] uno-bg-gradient-radial uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgba(114,63,204,1)_40%,rgba(100,100,100,0.3)_45%,rgba(0,0,0,0)_45%]" />
+              </div>
+            </div>
+            <div className="uno-absolute uno-w-full uno-h-full uno-flex uno-items-center uno-justify-center">
+              <div className="uno-orbit-1">
+                <div className="uno-w-24 uno-h-24 uno-bg-gradient-shape-[circle_at_50%_50%] uno-bg-gradient-radial uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgb(204,175,47)_40%,rgba(100,100,100,0.3)_45%,rgba(0,0,0,0)_45%]" />
+              </div>
+            </div>
+            <div className="uno-absolute uno-w-full uno-h-full uno-flex uno-items-center uno-justify-center">
+              <div className="uno-orbit-2">
+                <div className="uno-w-24 uno-h-24 uno-bg-gradient-shape-[circle_at_50%_50%] uno-bg-gradient-radial uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgba(168,44,44,1)_40%,rgba(100,100,100,0.3)_45%,rgba(0,0,0,0)_45%]" />
+              </div>
+            </div>
+            <div className="uno-absolute uno-w-full uno-h-full uno-flex uno-items-center uno-justify-center">
+              <div className="uno-orbit-3">
+                <div className="uno-w-24 uno-h-24 uno-bg-gradient-shape-[circle_at_50%_50%] uno-bg-gradient-radial uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgba(44,168,96,1)_40%,rgba(100,100,100,0.3)_45%,rgba(0,0,0,0)_45%]" />
+              </div>
+            </div>
+          </div>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 0, end: 0}}>
           <Header />
