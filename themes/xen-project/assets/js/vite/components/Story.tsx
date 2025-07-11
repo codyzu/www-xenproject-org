@@ -158,7 +158,7 @@ export function Story() {
           sticky={{start: 0, end: endIndex - 1}}
           className="uno-flex uno-flex-col uno-items-center uno-justify-end uno-text-white"
         >
-          <div className="uno-w-20 uno-h-20  i-fa6-solid-arrow-down uno-animate-bounce uno-m-b-10" />
+          <div className="uno-w-10 uno-h-10 sm:(uno-w-16 uno-h-16)  i-fa6-solid-arrow-down uno-animate-bounce uno-m-b-10" />
         </ParallaxLayer>
         <ParallaxLayer
           offset={1}
@@ -200,13 +200,13 @@ export function Story() {
         <ParallaxLayer sticky={{start: 5, end: 6}} className="uno-flex uno-h-full">
           <PlanetForeground name="Planet Automotive" image={car} isTextVisible={page >= 5 && page <= 6.2}>
             <Xen /> is paving the way for innovation in automotive computing by delivering secure, efficient
-            virtualization across vehicle subsystems. From digital dashboards and infotainment to critical safety
-            functions, <Xen /> makes it possible to consolidate multiple operating systems onto a single SoC while
-            preserving strong isolation and performance. Automotive companies rely on Xen&apos;s stability and long-term
-            support for use cases that demand reliability. Backed by a rigorous open CI platform and aligned with safety
-            certification efforts, <Xen /> provides a trusted foundation for next-generation vehicles. Members of the{' '}
-            <Xen /> Advisory Board include top automotive and component manufacturers, all working together to drive the
-            future of software-defined mobility.
+            virtualization across vehicle subsystems. From dashboards and infotainment to critical safety systems,{' '}
+            <Xen /> makes it possible to consolidate multiple operating systems onto a single SoC while preserving
+            isolation and performance. Automotive companies rely on <Xen />
+            &apos;s stability and long-term support for reliability. Backed by a rigorous open CI platform and aligned
+            with safety certification efforts, <Xen /> provides a trusted foundation for next-generation vehicles.
+            Members of the <Xen /> Advisory Board include top automotive and component manufacturers working together to
+            drive software-defined mobility.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 8, end: 9}} className="uno-flex uno-h-full">
@@ -284,7 +284,7 @@ function PlanetForeground({
     <div
       className={clsx(
         'uno-flex uno-flex-col uno-justify-between sm:uno-grid sm:uno-grid-cols-2 sm:uno-grid-rows-1',
-        'uno-p-2 sm:uno-p-20',
+        'uno-p-2 sm:uno-p-18',
         'uno-text-white',
         isTextVisible ? 'uno-opacity-100' : 'uno-opacity-0',
         'uno-transition-opacity',
@@ -295,7 +295,7 @@ function PlanetForeground({
     >
       <div
         className={clsx(
-          'uno-flex uno-flex-col uno-gap-2 uno-bg-gray-8 uno-bg-opacity-40 uno-p-2 uno-rounded-lg uno-self-start uno-backdrop-blur-sm',
+          'uno-flex uno-flex-col uno-gap-2 uno-bg-gray-7 uno-bg-opacity-40 uno-p-2 sm:uno-p-4 uno-rounded-lg uno-self-start uno-backdrop-blur-sm',
         )}
       >
         <div className="uno-text-2xl sm:uno-text-4xl uno-font-semibold">{name}</div>
