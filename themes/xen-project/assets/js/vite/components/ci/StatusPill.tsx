@@ -1,4 +1,3 @@
-import {h} from 'preact';
 import clsx from 'clsx';
 
 const statusStyles = {

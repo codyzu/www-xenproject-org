@@ -1,4 +1,4 @@
-import {lazy, Suspense, useMemo, useState} from 'preact/compat';
+import {lazy, Suspense, useMemo, useState} from 'react';
 import {
   getJobGroupStatus,
   type JobWithLocation,

@@ -1,7 +1,6 @@
 import {type IParallax, Parallax, ParallaxLayer} from '@react-spring/parallax';
 import clsx from 'clsx';
-import {useEffect, useRef, useState} from 'preact/hooks';
-import {type ComponentChildren} from 'preact';
+import {useEffect, useRef, useState} from 'react';
 import panda from '../assets/panda-space-suite.webp';
 import dataCenter from '../assets/data-center.webp';
 import consumer from '../assets/consumer.webp';
@@ -27,7 +26,7 @@ const shadowColors = [
 ];
 const shadowSizes = ['uno-shadow-glow', 'uno-shadow-glow-lg', 'uno-shadow-glow-xl'];
 
-export function Story() {
+export default function Story() {
   const storyRef = useRef<IParallax>(null);
 
   const [page, setPage] = useState(0);

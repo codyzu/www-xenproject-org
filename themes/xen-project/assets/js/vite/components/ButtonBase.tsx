@@ -1,20 +1,21 @@
 import clsx from 'clsx';
-import {type ComponentChildren} from 'preact';
+import {type PropsWithChildren} from 'react';
 
-type ButtonBaseProps = {
-  readonly class?: string;
-  readonly icon: string;
-  readonly iconPosition?: 'left' | 'right';
-  readonly children: ComponentChildren;
-} & (
-  | {
-      onClick: () => void;
-    }
-  | {
-      href: string;
-      target?: string;
-    }
-);
+type ButtonBaseProps = PropsWithChildren<
+  {
+    readonly class?: string;
+    readonly icon: string;
+    readonly iconPosition?: 'left' | 'right';
+  } & (
+    | {
+        onClick: () => void;
+      }
+    | {
+        href: string;
+        target?: string;
+      }
+  )
+>;
 
 export default function ButtonBase(props: ButtonBaseProps) {
   const isLink = 'href' in props;

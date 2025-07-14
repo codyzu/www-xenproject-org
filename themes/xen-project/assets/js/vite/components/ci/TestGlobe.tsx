@@ -1,7 +1,7 @@
-import {Fragment, h, render} from 'preact';
-import {useEffect, useState, useRef, useMemo} from 'preact/hooks';
+import {useEffect, useState, useRef, useMemo} from 'react';
 import Globe, {type GlobeMethods} from 'react-globe.gl';
 import clsx from 'clsx';
+import {createRoot} from 'react-dom/client';
 import earthTopology from '../../assets/earth-topology.png';
 import nightSky from '../../assets/night-sky.png';
 import earthDay from '../../assets/earth-day.jpg';
@@ -45,7 +45,7 @@ const northPole = {lat: 90, lng: 0};
 export default function TestGlobe({locations}: {readonly locations: Map<string, JobLocation>}) {
   const globeContainerRef = useRef<HTMLDivElement>(null);
   const globeContainerSize = useSize(globeContainerRef);
-  const globeRef = useRef<GlobeMethods>();
+  const globeRef = useRef<GlobeMethods>(undefined);
 
   useEffect(
     () => {
@@ -194,7 +194,7 @@ function LocationCard({jobs}: {readonly jobs: JobLocation}) {
         </div>
 
         {hardwareJobs.length > 0 && (
-          <Fragment>
+          <>
             <div className="uno-p-l-2 uno-m-t-2">Hardware Tests</div>
             <div className="uno-h-2 uno-w-full uno-bg-gradient-to-r uno-bg-gradient-from-teal-400 uno-bg-gradient-via-amber-400 uno-bg-gradient-to-red-400" />
             <div className="uno-self-center uno-m-t-1 uno-grid uno-grid-cols-3 uno-gap-1 uno-text-secondary">
@@ -209,10 +209,10 @@ function LocationCard({jobs}: {readonly jobs: JobLocation}) {
                 </div>
               ))}
             </div>
-          </Fragment>
+          </>
         )}
         {qemuJobs.length > 0 && (
-          <Fragment>
+          <>
             <div className="uno-p-l-2 uno-m-t-2">Qemu Tests</div>
             <div className="uno-h-2 uno-w-full uno-bg-gradient-to-r uno-bg-gradient-from-sky-400 uno-bg-gradient-via-violet-400 uno-bg-gradient-to-fuchsia-400" />
             <div className="uno-self-center uno-m-t-1 uno-grid uno-grid-cols-3 uno-gap-1 uno-text-secondary">
@@ -227,7 +227,7 @@ function LocationCard({jobs}: {readonly jobs: JobLocation}) {
                 </div>
               ))}
             </div>
-          </Fragment>
+          </>
         )}
       </div>
     </div>
@@ -237,6 +237,6 @@ function LocationCard({jobs}: {readonly jobs: JobLocation}) {
 function renderLocationHtmlElement(data: unknown) {
   const locationJobs = data as JobLocation;
   const element = document.createElement('div');
-  render(<LocationCard jobs={locationJobs} />, element);
+  createRoot(element).render(<LocationCard jobs={locationJobs} />);
   return element;
 }

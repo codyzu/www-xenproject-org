@@ -9,7 +9,7 @@ import {
   ResponsiveContainer,
   type TooltipProps,
 } from 'recharts';
-import {Fragment} from 'preact/jsx-runtime';
+import {Fragment} from 'react/jsx-runtime';
 import type {TickItem} from 'recharts/types/util/types';
 import {type PipelineJobsResult} from './use-gitlab-pipeline-jobs.ts';
 import {StatusPill} from './StatusPill.tsx';

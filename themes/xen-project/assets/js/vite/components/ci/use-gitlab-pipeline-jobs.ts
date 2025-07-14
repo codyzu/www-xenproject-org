@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'preact/hooks';
+import {useEffect, useState} from 'react';
 import {graphQlResponseSchema, type Pipeline, type Job as RawJob} from './schema.ts';
 import {type JobData, type Location, parseJobData} from './gitlab-jobs.ts';
 

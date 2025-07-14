@@ -1,5 +1,5 @@
-import {h, Fragment} from 'preact';
 import clsx from 'clsx';
+import {Fragment} from 'react/jsx-runtime';
 import {type Job} from './use-gitlab-pipeline-jobs.ts';
 import {StatusPill} from './StatusPill.tsx';
 

@@ -1,8 +1,8 @@
-import {useState, useLayoutEffect} from 'preact/hooks';
+import {useState, useLayoutEffect, type RefObject} from 'react';
 import useResizeObserver from '@react-hook/resize-observer';
-import {type RefObject} from 'preact';
 
-export default function useSize(target: RefObject<HTMLElement>) {
+// eslint-disable-next-line @typescript-eslint/no-restricted-types
+export default function useSize(target: RefObject<HTMLElement | null>) {
   const [size, setSize] = useState<DOMRect>();
 
   useLayoutEffect(() => {

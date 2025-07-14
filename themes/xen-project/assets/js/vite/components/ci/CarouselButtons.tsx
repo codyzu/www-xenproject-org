@@ -1,7 +1,6 @@
-import {useCallback, useEffect, useState} from 'preact/hooks';
 import {type EmblaCarouselType} from 'embla-carousel';
-import {h} from 'preact';
 import clsx from 'clsx';
+import {useCallback, useEffect, useState} from 'react';
 
 type UseDotButtonType = {
   selectedIndex: number;

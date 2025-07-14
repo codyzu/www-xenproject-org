@@ -45,17 +45,25 @@
   <link rel="canonical" href="{{ .Permalink }}" />
   {{ partialCached "head/css.html" . }}
 
+  {{/*
+    Load React Refresh script for development server.
+    This is used to enable hot module replacement (HMR) for React components.
+    It should only be included in the development environment.
+    In a classic vite setup, this is typically be handled by the vite react plugin.
+  */}}
+  {{ if hugo.IsServer }}
+    <script type="module" src="/@react-refresh"></script>
+    <script type="module">
+      import RefreshRuntime from '/@react-refresh';
+      RefreshRuntime.injectIntoGlobalHook(window);
+      window.$RefreshReg$ = () => {};
+      window.$RefreshSig$ = () => (type) => type;
+      window.__vite_plugin_react_preamble_installed__ = true;
+    </script>
+  {{ end }}
 
   <!-- Load main bundle -->
   {{ partial "vite-asset.html" "bundle-main.tsx" }}
-
-
-  <!-- Load additional scripts from front matter -->
-  {{ with .Params.scripts }}
-    {{ range . }}
-      {{ partial "vite-asset.html" . }}
-    {{ end }}
-  {{ end }}
 
   <script>
     var siteParams = window.siteParams = {{ .Site.Params }};

@@ -24,8 +24,6 @@ menus:
   main:
     parent: About
     weight: 10
-scripts:
-  - logo-wheel.tsx
 ---
 
 {{<section>}}
