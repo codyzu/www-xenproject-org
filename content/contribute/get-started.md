@@ -21,6 +21,8 @@ menu:
   main:
     parent: Contribute
     weight: 10
+scripts:
+  - logo-wheel.tsx
 ---
 
 {{<section>}}
@@ -76,7 +78,7 @@ We've collated some information to help you get started, click here for resource
 {{<section >}}
 {{<media-block
     title="Advised by Xen project **members**"
-    media=`{{<partial "blocks/logos-circle">}}`
+    media=`{{<div logo-wheel uno-w-full />}}`
     animate="true"
 >}}
   The Xen Project Advisory Board is composed of experienced members who provide guidance and support to the project. Their expertise helps shape the direction and ensures the success of the Xen Project. By collaborating with the advisory board, we can address challenges and seize opportunities in the virtualization technology landscape.
