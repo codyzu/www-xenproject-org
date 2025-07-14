@@ -24,6 +24,8 @@ menus:
   main:
     parent: About
     weight: 10
+scripts:
+  - logo-wheel.tsx
 ---
 
 {{<section>}}
@@ -117,7 +119,7 @@ Projects under The Linux Foundation are independently funded software projects t
 {{<section>}}
 {{<media-block
    title="Governed by Xen project members"
-   media=`{{<partial "blocks/logos-circle">}}`
+   media=`{{<div logo-wheel uno-w-full />}}`
    alt="Xen Project members logos"
    mediaPosition="right"
    animate="true"
