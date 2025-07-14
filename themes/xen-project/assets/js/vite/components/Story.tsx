@@ -225,9 +225,9 @@ export default function Story() {
             Qubes OS rely on <Xen /> to bring hardware-enforced isolation to desktops and laptops, ensuring privacy and
             security for advanced users and developers. Qubes contributors even provide test hardware to the <Xen /> CI
             network, reinforcing the platform&apos;s real-world reliability. Meanwhile, <strong>XCP-ng</strong> is
-            powering home labs and small businesses, offering an open, stable virtualization stack built on <Xen />.
-            Whether you&apos;re coding, researching, or experimenting at home, <Xen /> brings secure virtualization to
-            your fingertips.
+            powering home labs, small businesses, and university research environments, offering an open, stable
+            virtualization stack built on <Xen />. Whether you&apos;re coding, researching, or experimenting at home or
+            in the lab, <Xen /> brings secure virtualization to your fingertips.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer
