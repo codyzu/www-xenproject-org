@@ -147,7 +147,7 @@ Renesas is a premier supplier of advanced semiconductor solutions that empowers 
    class="image-small"
    animate="true"
 >}}
-A global leader in automotive innovation, Ford is leveraging virtualization to accelerate software-defined vehicle development. By supporting the Xen Project, Ford contributes to advancing safety-critical and real-time applications in embedded systems, helping shape the future of automotive computing.
+Ford is the originator of modern automotive manufacturing and a global leader in vehicle production and automotive technology innovation. Ford contributes to the Xen Project to accelerate development of next-generation software-defined vehicles and enhance the user experience across its distinctive product lineup.
 
 <p class="mt-2"><a href="https://ford.com/" class="btn btn-tertiary">Discover Ford <i class="fas fa-arrow-up-right-from-square"></i></a></p>
 {{</media-block>}}
