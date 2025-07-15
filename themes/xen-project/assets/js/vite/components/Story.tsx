@@ -50,21 +50,6 @@ export function Story() {
   }, []);
 
   useEffect(() => {
-    function handleIosStatusBarTap() {
-      // On iOS Safari, tapping the status bar scrolls the window to top
-      if (window.scrollY === 0 && storyRef.current) {
-        storyRef.current.scrollTo(0); // Scroll to the first page
-      }
-    }
-
-    window.addEventListener('scroll', handleIosStatusBarTap);
-
-    return () => {
-      window.removeEventListener('scroll', handleIosStatusBarTap);
-    };
-  }, []);
-
-  useEffect(() => {
     function handleScroll() {
       if (storyRef.current) {
         const nextPage = Math.round((storyRef.current.current * 10) / storyRef.current.space) / 10;
