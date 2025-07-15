@@ -49,6 +49,21 @@ export default function Story() {
   }, []);
 
   useEffect(() => {
+    function handleIosStatusBarTap() {
+      // On iOS Safari, tapping the status bar scrolls the window to top
+      if (window.scrollY === 0 && storyRef.current) {
+        storyRef.current.scrollTo(0); // Scroll to the first page
+      }
+    }
+
+    window.addEventListener('scroll', handleIosStatusBarTap);
+
+    return () => {
+      window.removeEventListener('scroll', handleIosStatusBarTap);
+    };
+  }, []);
+
+  useEffect(() => {
     function handleScroll() {
       if (storyRef.current) {
         const nextPage = Math.round((storyRef.current.current * 10) / storyRef.current.space) / 10;
@@ -189,45 +204,46 @@ export default function Story() {
         <ParallaxLayer sticky={{start: 2, end: 3}} className="uno-flex uno-h-full-bak">
           <PlanetForeground name="Planet Data Center" image={dataCenter} isTextVisible={page >= 2 && page <= 3.2}>
             <Xen /> brings virtualization to a wide range of server environments, from data centers to enterprise IT,
-            edge deployments, and labs. Sub-projects like <strong>XCP-ng</strong> build on the <Xen /> hypervisor to
-            provide a powerful, open-source platform supported by both community and commercial contributors.{' '}
-            <strong>XCP-ng</strong> offers a drop-in solution for organizations seeking a stable, secure, and fully open
-            virtualization stack. Whether you&apos;re managing thousands of virtual machines or a single node
-            on-premises, <Xen /> and <strong>XCP-ng</strong> deliver flexibility and transparency.
+            edge deployments, and labs. As an Open Source hypervisor, <Xen /> powers a variety of platforms supported by
+            both community and commercial contributors. Sub-projects like <strong>XCP-ng</strong> offer a drop-in
+            solution built on <Xen /> for those seeking a fully open and stable virtualization stack. Commercial
+            offerings from <Xen /> partners provide additional features, support, and long-term stability, all built on
+            the same trusted core. Whether you&apos;re managing thousands of virtual machines or a single node
+            on-premises, <Xen /> provides the flexibility and stability to meet your needs.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 5, end: 6}} className="uno-flex uno-h-full">
           <PlanetForeground name="Planet Automotive" image={car} isTextVisible={page >= 5 && page <= 6.2}>
-            <Xen /> is paving the way for innovation in automotive computing by delivering secure, efficient
-            virtualization across vehicle subsystems. From dashboards and infotainment to critical safety systems,{' '}
-            <Xen /> makes it possible to consolidate multiple operating systems onto a single SoC while preserving
-            isolation and performance. Automotive companies rely on <Xen />
-            &apos;s stability and long-term support for reliability. Backed by a rigorous open CI platform and aligned
-            with safety certification efforts, <Xen /> provides a trusted foundation for next-generation vehicles.
-            Members of the <Xen /> Advisory Board include top automotive and component manufacturers working together to
-            drive software-defined mobility.
+            <Xen /> is powering innovation in automotive computing by enabling secure, efficient virtualization across
+            in-vehicle systems. From dashboards and infotainment to safety-critical functions, <Xen /> consolidates
+            multiple operating systems onto a single SoC while preserving isolation and performance. It plays a key role
+            in the Automotive Grade Linux (AGL) Software-Defined Vehicle reference platform, supporting
+            mixed-criticality workloads with VirtIO and real-time OSes like Zephyr. With long-term security support and
+            a rigorous open CI system, <Xen /> provides a trusted foundation for next-generation vehicles. Automotive
+            partners across manufacturing and component sectors collaborate within the <Xen /> ecosystem to advance
+            software-defined mobility.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 8, end: 9}} className="uno-flex uno-h-full">
           <PlanetForeground name="Planet Industrial" image={industrial} isTextVisible={page >= 8 && page <= 9.2}>
             <Xen /> is transforming industrial computing by enabling secure, efficient virtualization across embedded
-            controllers, robotics, and factory automation systems. With real-time performance, strong isolation, and low
-            overhead, <Xen /> allows manufacturers to consolidate workloads and extend the lifecycle of devices. The
-            open CI network ensures compatibility with real-world hardware, while supporting predictive maintenance and
-            continuous validation in mission-critical environments. Industrial partners can contribute and test directly
-            within the <Xen /> ecosystem, helping shape a resilient and flexible virtualization platform for modern
-            factories.
+            controllers, robotics, factory automation systems, and energy infrastructure. With real-time performance,
+            low and deterministic interrupt latency, strong isolation, and minimal overhead, <Xen /> allows
+            manufacturers and operators to consolidate workloads and extend device lifecycles. The open CI network
+            ensures compatibility with real-world hardware while supporting robust validation workflows essential in
+            mission-critical environments, enabling predictive maintenance strategies. Industrial and energy sector
+            partners can contribute and test directly within the <Xen /> ecosystem, helping shape a resilient and
+            flexible virtualization platform for modern operations.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer sticky={{start: 11, end: 12}} className="uno-flex uno-h-full">
           <PlanetForeground name="Planet Consumer" image={consumer} isTextVisible={page >= 11 && page <= 12.2}>
-            <Xen /> isn&apos;t just for servers and vehicles, it&apos;s empowering end-user systems too. Projects like
-            Qubes OS rely on <Xen /> to bring hardware-enforced isolation to desktops and laptops, ensuring privacy and
-            security for advanced users and developers. Qubes contributors even provide test hardware to the <Xen /> CI
-            network, reinforcing the platform&apos;s real-world reliability. Meanwhile, <strong>XCP-ng</strong> is
-            powering home labs, small businesses, and university research environments, offering an open, stable
-            virtualization stack built on <Xen />. Whether you&apos;re coding, researching, or experimenting at home or
-            in the lab, <Xen /> brings secure virtualization to your fingertips.
+            <Xen /> isn&apos;t just for servers and vehicles, it&apos;s empowering end-user systems too. Renowned
+            security-focused projects like Qubes OS and OpenXT rely on <Xen /> to provide hardware-enforced isolation on
+            desktops and laptops, ensuring privacy and protection for advanced users and developers. Contributors from
+            these communities even provide test hardware to the <Xen /> CI network, reinforcing the platform&apos;s
+            real-world reliability. <Xen /> also powers home labs, small businesses, and university research
+            environments, offering a secure, flexible virtualization stack for experimentation and innovation.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer
