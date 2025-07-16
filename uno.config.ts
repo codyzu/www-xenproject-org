@@ -126,6 +126,12 @@ export default defineConfig({
           '1px 1px 2px black, 0 0 1em rgb(133, 194, 65), 0 0 0.4em rgb(133, 194, 65), 0 0 0.2em rgb(133, 194, 65)',
       },
     ],
+    [
+      'uno-align-xen',
+      {
+        'vertical-align': '0.14em',
+      },
+    ],
     ...Array.from(
       {length: 4},
       (_, i) =>
