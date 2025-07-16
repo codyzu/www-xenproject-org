@@ -49,21 +49,6 @@ export default function Story() {
   }, []);
 
   useEffect(() => {
-    function handleIosStatusBarTap() {
-      // On iOS Safari, tapping the status bar scrolls the window to top
-      if (window.scrollY === 0 && storyRef.current) {
-        storyRef.current.scrollTo(0); // Scroll to the first page
-      }
-    }
-
-    window.addEventListener('scroll', handleIosStatusBarTap);
-
-    return () => {
-      window.removeEventListener('scroll', handleIosStatusBarTap);
-    };
-  }, []);
-
-  useEffect(() => {
     function handleScroll() {
       if (storyRef.current) {
         const nextPage = Math.round((storyRef.current.current * 10) / storyRef.current.space) / 10;
@@ -87,11 +72,18 @@ export default function Story() {
 
   const pages = 16;
   const endIndex = pages - 1;
+  const planets = [
+    {start: 2, end: 3},
+    {start: 5, end: 6},
+    {start: 8, end: 9},
+    {start: 11, end: 12},
+  ];
+
   return (
     <div className="uno-relative uno-w-full uno-h-100dvh uno-overflow-hidden uno-bg-black">
       <Parallax ref={storyRef} className="uno-top-0_bak uno-left-0_bak uno-h-full uno-w-full" pages={pages}>
         {/* Background layers */}
-        <ParallaxLayer speed={1.3} offset={0} factor={12 * 2.9} className="uno-flex uno-relative uno-w-full">
+        <ParallaxLayer speed={1.3} offset={0} factor={pages * 2.2} className="uno-flex uno-relative uno-w-full">
           <div className="uno-flex uno-relative uno-w-full">
             {stars.slice(0, 999).map((star, index) => (
               <div
@@ -112,7 +104,7 @@ export default function Story() {
             ))}
           </div>
         </ParallaxLayer>
-        <ParallaxLayer speed={1.8} offset={0} factor={12 * 3.5} className="uno-flex uno-relative uno-w-full">
+        <ParallaxLayer speed={1.8} offset={0} factor={pages * 2.7} className="uno-flex uno-relative uno-w-full">
           <div className="uno-flex uno-relative uno-w-full">
             {stars.slice(1000, 1999).map((star, index) => (
               <div
@@ -179,7 +171,14 @@ export default function Story() {
           sticky={{start: 1, end: endIndex - 2}}
           className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-p-t-50"
         >
-          <img className="uno-w-20% uno-max-w-100 uno-animate-bounce uno-animate-duration-2300" src={panda} />
+          <img
+            className={clsx(
+              'uno-w-20% uno-max-w-100 uno-animate-duration-3200 uno-animate-bounce',
+              // Pause animations when on a planet
+              planets.some((planet) => page >= planet.start && page <= planet.end) && 'uno-animate-paused',
+            )}
+            src={panda}
+          />
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{start: 0.8, end: 2}}
@@ -201,7 +200,7 @@ export default function Story() {
             virtualization.
           </div>
         </ParallaxLayer>
-        <ParallaxLayer sticky={{start: 2, end: 3}} className="uno-flex uno-h-full-bak">
+        <ParallaxLayer sticky={planets[0]} className="uno-flex uno-h-full-bak">
           <PlanetForeground name="Planet Data Center" image={dataCenter} isTextVisible={page >= 2 && page <= 3.2}>
             <Xen /> brings virtualization to a wide range of server environments, from data centers to enterprise IT,
             edge deployments, and labs. As an Open Source hypervisor, <Xen /> powers a variety of platforms supported by
@@ -212,19 +211,19 @@ export default function Story() {
             on-premises, <Xen /> provides the flexibility and stability to meet your needs.
           </PlanetForeground>
         </ParallaxLayer>
-        <ParallaxLayer sticky={{start: 5, end: 6}} className="uno-flex uno-h-full">
+        <ParallaxLayer sticky={planets[1]} className="uno-flex uno-h-full">
           <PlanetForeground name="Planet Automotive" image={car} isTextVisible={page >= 5 && page <= 6.2}>
             <Xen /> is powering innovation in automotive computing by enabling secure, efficient virtualization across
             in-vehicle systems. From dashboards and infotainment to safety-critical functions, <Xen /> consolidates
             multiple operating systems onto a single SoC while preserving isolation and performance. It plays a key role
-            in the Automotive Grade Linux (AGL) Software-Defined Vehicle reference platform, supporting
-            mixed-criticality workloads with VirtIO and real-time OSes like Zephyr. With long-term security support and
-            a rigorous open CI system, <Xen /> provides a trusted foundation for next-generation vehicles. Automotive
-            partners across manufacturing and component sectors collaborate within the <Xen /> ecosystem to advance
-            software-defined mobility.
+            in the <strong>Automotive Grade Linux</strong> Software-Defined Vehicle reference platform, supporting
+            mixed-criticality workloads with VirtIO and real-time OSes like <strong>Zephyr</strong>. With long-term
+            security support and a rigorous open CI system, <Xen /> provides a trusted foundation for next-generation
+            vehicles. Automotive partners across manufacturing and component sectors collaborate within the <Xen />{' '}
+            ecosystem to advance software-defined mobility.
           </PlanetForeground>
         </ParallaxLayer>
-        <ParallaxLayer sticky={{start: 8, end: 9}} className="uno-flex uno-h-full">
+        <ParallaxLayer sticky={planets[2]} className="uno-flex uno-h-full">
           <PlanetForeground name="Planet Industrial" image={industrial} isTextVisible={page >= 8 && page <= 9.2}>
             <Xen /> is transforming industrial computing by enabling secure, efficient virtualization across embedded
             controllers, robotics, factory automation systems, and energy infrastructure. With real-time performance,
@@ -236,19 +235,19 @@ export default function Story() {
             flexible virtualization platform for modern operations.
           </PlanetForeground>
         </ParallaxLayer>
-        <ParallaxLayer sticky={{start: 11, end: 12}} className="uno-flex uno-h-full">
+        <ParallaxLayer sticky={planets[3]} className="uno-flex uno-h-full">
           <PlanetForeground name="Planet Consumer" image={consumer} isTextVisible={page >= 11 && page <= 12.2}>
             <Xen /> isn&apos;t just for servers and vehicles, it&apos;s empowering end-user systems too. Renowned
-            security-focused projects like Qubes OS and OpenXT rely on <Xen /> to provide hardware-enforced isolation on
-            desktops and laptops, ensuring privacy and protection for advanced users and developers. Contributors from
-            these communities even provide test hardware to the <Xen /> CI network, reinforcing the platform&apos;s
-            real-world reliability. <Xen /> also powers home labs, small businesses, and university research
-            environments, offering a secure, flexible virtualization stack for experimentation and innovation.
+            security-focused projects like <strong>Qubes OS</strong> and <strong>OpenXT</strong> rely on <Xen /> to
+            provide hardware-enforced isolation on desktops and laptops, ensuring privacy and protection for advanced
+            users and developers. Contributors from these communities even provide test hardware to the <Xen /> CI
+            network, reinforcing the platform&apos;s real-world reliability. <Xen /> also powers home labs, small
+            businesses, and university research environments, offering a secure, flexible virtualization stack for
+            experimentation and innovation.
           </PlanetForeground>
         </ParallaxLayer>
         <ParallaxLayer
           sticky={{start: endIndex - 1.5, end: endIndex}}
-          // Offset={endIndex - 1.5}
           className={clsx(
             'uno-flex uno-flex-col uno-items-center uno-justify-center uno-gap-4 uno-p-8 sm:uno-p-20',
             'uno-animate-fade-in',
@@ -256,14 +255,13 @@ export default function Story() {
             'uno-transition-opacity uno-duration-300  uno-ease-in-out',
             'uno-text-white uno-text-2xl sm:uno-text-4xl uno-text-center',
           )}
-          // Speed={1.3}
         >
           <div className="">
             Where will <Xen /> take you?
           </div>
           <div className="uno-relative uno-w-full uno-h-90 sm:uno-h-130 uno-flex uno-items-center uno-justify-center">
             {/* Glowing Xen Logo */}
-            <div className="uno-absolute uno-z-10 uno-text-white uno-font-bold uno-text-4xl sm:uno-text-6xl uno-xen-shadow">
+            <div className="uno-absolute uno-z-10 uno-text-white uno-font-bold uno-text-4xl sm:uno-text-6xl">
               <Xen />
             </div>
 
@@ -312,7 +310,11 @@ export default function Story() {
 }
 
 function Xen() {
-  return <span className="uno-xen-shadow uno-font-bold uno-font-italic">Xen</span>;
+  return (
+    <span className="uno-font-bold uno-font-italic uno-leading-none">
+      X<span className="uno-text-0.8em uno-align-xen uno-m-l-[-0.16em]">en</span>
+    </span>
+  );
 }
 
 function PlanetForeground({
