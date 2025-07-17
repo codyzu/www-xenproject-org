@@ -93,6 +93,15 @@ section {
   align-items: stretch;
   flex-wrap: wrap;
 
+  &.tight {
+    flex-wrap: nowrap;
+    --min-col-width: 100px;
+
+    >.col {
+      flex: 1 1 0;
+    }
+  }
+
   > *,
   > .col {
     flex: 1 1 auto;
