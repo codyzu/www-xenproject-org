@@ -44,13 +44,13 @@ Whether you're a seasoned Xen developer or new to the community, the Xen Summit 
 {{<md class="mg-v-lg content-markdown">}}
 ### 📅 Date & Location
 
-- **Xen Summit 2025** will take place from **September 15 to 17** at the **AMD office in San Jose, California**.  
+- **Xen Summit 2025** will take place from **September 15 to 17** at the **AMD office in San Jose, California**.
 - 🗺️ [Campus Map & Directions (PDF)](https://www.xilinx.com/publications/about/Xilinx_Campus_Map_Directions.pdf)
 {{</md>}}
 
 {{<md class="mg-v-lg content-markdown">}}
 ### 🚕 Getting Around
-- **Uber and Lyft** are reliable and affordable in the San Jose area.  
+- **Uber and Lyft** are reliable and affordable in the San Jose area.
 - Most restaurants and hotels are nearby, so there’s no need to rent a car.
 {{</md>}}
 
@@ -64,16 +64,16 @@ Here are hotels recommended by our hosts at AMD:
   [View on Google Maps](https://maps.app.goo.gl/ZRikfrmGA6i5AqWHA)
 
 - **Doubletree by Hilton Campbell – Pruneyard Plaza**
-  1995 South Bascom Avenue, Campbell, CA 95008  
-  [View on Google Maps](https://maps.app.goo.gl/Hgqp7AUcbdmoTFpD6)  
+  1995 South Bascom Avenue, Campbell, CA 95008
+  [View on Google Maps](https://maps.app.goo.gl/Hgqp7AUcbdmoTFpD6)
   _Preferred for its proximity to restaurants and pubs._
 
 - **Residence Inn by Marriott San Jose-Campbell**
-  2761 South Bascom Avenue, Campbell, CA 95008  
+  2761 South Bascom Avenue, Campbell, CA 95008
   [View on Google Maps](https://maps.app.goo.gl/svs44LzPqNjftUS16)
 
 - **Toll House Hotel**
-  140 South Santa Cruz Ave, Los Gatos, CA 95030  
+  140 South Santa Cruz Ave, Los Gatos, CA 95030
   [View on Google Maps](https://maps.app.goo.gl/QDXJ78oQuJPapW5e7)
 {{</md>}}
 
@@ -83,9 +83,9 @@ Here are hotels recommended by our hosts at AMD:
 {{<md>}}
 ## Tickets 🎫
 
-Secure your ticket for the Xen Summit now!  
+Secure your ticket for the Xen Summit now!
 
-Act fast before the prices change. **Space is limited.**  
+Act fast before the prices change. **Space is limited.**
 
 {{</md>}}
 {{<pricing>}}
@@ -105,7 +105,7 @@ Support the Xen Project community and gain visibility at the premier virtualizat
 {{<md>}}
 ## Xen Summit 2025: Call for Papers 📣
 
-The **Call for Papers is now closed.**  
+The **Call for Papers is now closed.**
 Thank you to everyone who submitted proposals! We're reviewing all submissions and will be announcing the agenda soon.
 {{</md>}}
 {{</section>}}
@@ -119,10 +119,10 @@ Thank you to everyone who submitted proposals! We're reviewing all submissions a
   animate="true"
 >}}
 {{<md>}}
-🎥 **Watch the 2024 Xen Summit Talks**  
-The highly anticipated talks from this year’s Xen Summit are now live on YouTube!  
+🎥 **Watch the 2024 Xen Summit Talks**
+The highly anticipated talks from this year’s Xen Summit are now live on YouTube!
 
-Whether you attended in person or couldn’t make it, you can now access all the insightful presentations and discussions online.  
+Whether you attended in person or couldn’t make it, you can now access all the insightful presentations and discussions online.
 [📺 Watch the Talks on YouTube](https://youtube.com/playlist?list=PLQMQQsKgvLntZiKoELFs22Mtk-tBNNOMJ&si=qCSK3o1g2u_yq-JK)
 {{</md>}}
 {{</media-block>}}
@@ -140,7 +140,7 @@ Whether you attended in person or couldn’t make it, you can now access all the
 {{<md>}}
 The Xen Summit gathers experts, developers, and enthusiasts from around the world to discuss the latest advancements and future directions of our Project. Last year’s summit featured a fantastic lineup of speakers who shared their knowledge on a wide range of topics.
 
-[📺 Watch the Talks on YouTube](https://youtube.com/playlist?list=PLQMQQsKgvLntZiKoELFs22Mtk-tBNNOMJ&si=qCSK3o1g2u_yq-JK)  
+[📺 Watch the Talks on YouTube](https://youtube.com/playlist?list=PLQMQQsKgvLntZiKoELFs22Mtk-tBNNOMJ&si=qCSK3o1g2u_yq-JK)
 Don’t forget to **subscribe** to our channel for more updates!
 {{</md>}}
 {{</media-block>}}

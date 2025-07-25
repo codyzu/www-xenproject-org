@@ -1,6 +1,6 @@
 tickets:
   inPerson:
-    - title: "Early Bird $150"
+    - title: "<s>Early Bird $150</s> Expired!"
       price: "$150"
       description: |
         - Available **_until_ June 1, 2025**
@@ -10,6 +10,7 @@ tickets:
         - Networking opportunities
       link: "https://register.linuxfoundation.org/xen-summit-2025"
       linkText: "Buy Ticket"
+      enabled: false
 
     - title: "Standard $300"
       price: "$300"
