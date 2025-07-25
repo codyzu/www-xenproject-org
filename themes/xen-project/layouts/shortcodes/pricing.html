@@ -12,28 +12,42 @@
       <!-- In-Person Tickets -->
       <div id="inPersonTickets" class="ticket-group">
         {{ range .Site.Data.tickets.tickets.inPerson }}
-          {{ partial "card.html" (dict
-            "title" .title
-            "description" .description
-            "link" .link
-            "linkText" .linkText
-            "class" "ticket-card"
-            )
-          }}
+          {{ if (and (isset . "enabled") (not .enabled)) }}
+            {{ partial "card.html" (dict
+              "title" .title
+              "description" .description
+              "class" "ticket-card"
+            ) }}
+          {{ else }}
+            {{ partial "card.html" (dict
+              "title" .title
+              "description" .description
+              "link" .link
+              "linkText" .linkText
+              "class" "ticket-card"
+            ) }}
+          {{ end }}
         {{ end }}
       </div>
 
       <!-- Virtual Tickets -->
       <div id="virtualTickets" class="ticket-group">
         {{ range .Site.Data.tickets.tickets.virtual }}
-          {{ partial "card.html" (dict
-            "title" .title
-            "description" .description
-            "link" .link
-            "linkText" .linkText
-            "class" "ticket-card"
-            )
-          }}
+          {{ if (and (isset . "enabled") (not .enabled)) }}
+            {{ partial "card.html" (dict
+              "title" .title
+              "description" .description
+              "class" "ticket-card"
+            ) }}
+          {{ else }}
+            {{ partial "card.html" (dict
+              "title" .title
+              "description" .description
+              "link" .link
+              "linkText" .linkText
+              "class" "ticket-card"
+            ) }}
+          {{ end }}
         {{ end }}
       </div>
     </div>
