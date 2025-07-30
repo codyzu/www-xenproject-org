@@ -1,6 +1,6 @@
 ---
 title: XCP-ng
-description: XCP-ng (Xen Cloud Platform-next generation) is the turnkey distribution of the Xen Project Hypervisor relying mostly on the Xen Hypervisor and then Xen API (XAPI).
+description: XCP-ng (Xen Cloud Platform – new generation) is a turnkey virtualization platform built on the Xen Project Hypervisor and using the Xen API (XAPI). It is typically managed with Xen Orchestra, an agentless, multi-cluster web interface that provides management, monitoring, and backup capabilities.
 keywords:
   - Xen Project
   - XCP-ng
@@ -52,7 +52,7 @@ menus:
     animate="true"
   >}}
   {{<md>}}
-XCP-ng enables an easy way to deploy a VM based infrastructure using Xen as the hypervisor and XAPI to deliver an out of the box, turnkey, solution. XCP-ng satisfies the needs of any sized organization from their thriving community of homelabbers to massive data centers. **XCP-ng is built to run in numerous configurations for any type of production environment.**
+XCP-ng enables an easy way to deploy a VM based infrastructure using Xen as the hypervisor and XAPI to deliver an out of the box, turnkey, solution. XCP-ng satisfies the needs of any sized organization from their thriving community of homelabbers to massive data centers. **XCP-ng is built to run in numerous configurations for any type of production environment.** See [real-world examples](https://vates.tech/user-stories/) of XCP-ng in action.
 {{</md>}}
 {{</media-block>}}
 {{</section>}}
@@ -103,7 +103,7 @@ In 2018 XCP-ng was born, following Citrix System’s announcement to remove feat
   {{</md>}}
 
 <p class="mg-t-md">
-  <a href="https://www.youtube.com/watch?v=VpGC5zuLjSs" class="btn btn-tertiary">
+  <a href="https://www.youtube.com/watch?v=xJyJdUB7z-A&list=PLH8MZTWmpNThavT5xh8f11DgawmmEJsgJ" class="btn btn-tertiary">
     Watch training <i class="fas fa-arrow-up-right-from-square"></i>
   </a>
 </p>
@@ -128,8 +128,7 @@ In 2018 XCP-ng was born, following Citrix System’s announcement to remove feat
   animate="true"
 >}}
   {{<md>}}
-  The XCP-ng platform benefits from **15 dedicated employees** and the assistance of contributors like yourself. Within our documentation, you can find more detailed information about our development process, **how you can be involved in future** updates and testing of the platform.
-  Just recently, XCP-ng 8.3 Beta 2 was just released for community testing and feedback.
+  XCP-ng is actively developed by a dedicated team of over 20 engineers, alongside a growing community of contributors. Our documentation details the development process and how you can get involved—through testing, feedback, or code contributions. The current LTS version is XCP-ng 8.3.
   {{</md>}}
 
   <p class="mg-t-md">
