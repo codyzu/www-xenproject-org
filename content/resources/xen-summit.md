@@ -39,7 +39,13 @@ Whether you're a seasoned Xen developer or new to the community, the Xen Summit 
 
 {{<md class="">}}
 ## 📍 Venue & Travel Info
+
+Xen Summit 2025 is proudly hosted by AMD in the heart of Silicon Valley!
 {{</md>}}
+
+{{<container class="uno-flex uno-justify-center uno-mt-8">}}
+<a href="https://www.amd.com"><img class="uno-h-50" src="/img/logos/amd-logo.svg" /></a>
+{{</container>}}
 
 {{<md class="mg-v-lg content-markdown">}}
 ### 📅 Date & Location
@@ -164,7 +170,7 @@ Xen Summit wouldn’t be possible without the support of our incredible sponsors
 {{</col>}}
 {{</row>}}
 
-{{<md class="txt-c">}}## Silver Sponsors{{</md>}}
+{{<md class="txt-c mg-t-xxl">}}## Silver Sponsors{{</md>}}
 {{<row cols="3" class="tight">}}
 {{<col>}}
 
@@ -177,16 +183,16 @@ Xen Summit wouldn’t be possible without the support of our incredible sponsors
 {{</col>}}
 {{</row>}}
 
-{{<md class="txt-c">}}## Bronze Sponsors{{</md>}}
+{{<md class="txt-c mg-t-xxl">}}## Bronze Sponsors{{</md>}}
 {{<row cols="3" class="tight">}}
+{{<col class="uno-self-center">}}
+<a href="https://www.renesas.com/"><img src= "/img/logos/renesas-logo.svg" alt="Renesas logo" /></a>
+{{</col>}}
 {{<col>}}
 
 {{</col>}}
 {{<col class="uno-self-center">}}
-<a href="https://www.renesas.com/"><img src= "/img/logos/renesas-logo.png" alt="Renesas logo" /></a>
-{{</col>}}
-{{<col>}}
-
+<a href="https://edera.dev/"><img src= "/img/summit-sponsors/2025/edera-logo.svg" alt="Edera logo" /></a>
 {{</col>}}
 {{</row>}}
 
