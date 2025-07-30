@@ -114,7 +114,7 @@ Honda is a global leader in automotive manufacturing and technology innovation. 
 {{<section>}}
 {{<media-block
    title="Renesas"
-   media="/img/logos/renesas-logo.png"
+   media="/img/logos/renesas-logo.svg"
    alt="Logo of Renesas"
    class="image-small"
    animate="true"
