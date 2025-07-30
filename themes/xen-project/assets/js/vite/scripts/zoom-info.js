@@ -1,3 +1,4 @@
+// eslint-disable-next-line unicorn/no-abusive-eslint-disable
 /* eslint-disable */
 export default function injectZoomInfo() {
   // Copy and pasted from the ZoomInfo email that was sent to us
