@@ -1,26 +1,23 @@
-import {useEffect, useState} from 'preact/hooks';
+import {useEffect, useState} from 'react';
+import injectZoomInfo from '../scripts/zoom-info.js';
 
-type CookieBannerProps = {
-  readonly onAccept: () => void;
-};
-
-export default function CookieBanner({onAccept}: CookieBannerProps) {
+export default function CookieBanner() {
   const consentKey = 'cookieConsent';
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const consent = localStorage.getItem(consentKey);
     if (consent === 'true') {
-      onAccept();
+      injectZoomInfo();
     } else {
       setVisible(true);
     }
-  }, [onAccept]);
+  }, []);
 
   const handleAccept = () => {
     localStorage.setItem(consentKey, 'true');
     setVisible(false);
-    onAccept();
+    injectZoomInfo();
   };
 
   if (!visible) return null;

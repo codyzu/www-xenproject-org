@@ -1,4 +1,3 @@
-import {h} from 'preact';
 import useEmblaCarousel from 'embla-carousel-react';
 import clsx from 'clsx';
 import ButtonBase from '../ButtonBase.tsx';
@@ -7,7 +6,7 @@ import {type Job, useGitlabPipelineJobs} from './use-gitlab-pipeline-jobs.ts';
 import JobGroup from './JobGroup.tsx';
 import {DotButton, useDotButton} from './CarouselButtons.tsx';
 
-export function HardwareGrid() {
+export default function HardwareGrid() {
   const {pipelines, loading, error} = useGitlabPipelineJobs(1);
 
   const [emblaRef, emblaApi] = useEmblaCarousel({loop: true});

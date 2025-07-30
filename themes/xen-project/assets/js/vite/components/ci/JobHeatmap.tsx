@@ -1,5 +1,5 @@
-import {Fragment} from 'preact/jsx-runtime';
 import clsx from 'clsx';
+import {Fragment} from 'react/jsx-runtime';
 import {type PipelineJobsResult} from './use-gitlab-pipeline-jobs.ts';
 
 const statusClassMap = new Map<string, string>([

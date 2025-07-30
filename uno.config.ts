@@ -1,5 +1,5 @@
 // Uno.config.js
-import {defineConfig, presetWind3, presetIcons, transformerVariantGroup} from 'unocss';
+import {defineConfig, presetWind3, presetIcons, transformerVariantGroup, type Rule} from 'unocss';
 import {clsx} from 'clsx';
 
 export default defineConfig({
@@ -57,6 +57,10 @@ export default defineConfig({
           from { opacity:0;transform:translate3d(150px,0,0) }
           to { opacity:1;transform:translate3d(0,0,0) }
         }`,
+        orbit: `{
+          0% { transform:rotate(0deg) }
+          100% { transform:rotate(360deg) }
+        }`,
         grain: `{
           0%, 100% { transform:translate(0, 0) }
           10% { transform:translate(-5%, -10%) }
@@ -74,6 +78,7 @@ export default defineConfig({
         'fade-in-left-short': '0.8s',
         'fade-in-right-short': '0.8s',
         grain: '1s',
+        orbit: `${360 / 25}s`,
       },
       timingFns: {
         'fade-in-left-short': 'ease-out',
@@ -82,10 +87,14 @@ export default defineConfig({
       },
       counts: {
         grain: 'infinite',
+        orbit: 'infinite',
       },
     },
     boxShadow: {
       'fade-in': 'inset 0 0 12px 12px var(--un-shadow-color)',
+      glow: 'var(--un-shadow-inset) 0 0 14px 3px rgb(0 0 0 / 0.05)',
+      'glow-lg': 'var(--un-shadow-inset) 0 0 14px 4px rgb(0 0 0 / 0.05)',
+      'glow-xl': 'var(--un-shadow-inset) 0 0 14px 5px rgb(0 0 0 / 0.05)',
     },
   },
   shortcuts: {
@@ -100,5 +109,38 @@ export default defineConfig({
       'uno-shadow-xl uno-bg-white uno-text-primary',
     ),
     'uno-surface': 'uno-bg-surface uno-p-x-6 uno-p-y-8 uno-rounded-lg uno-shadow-lg',
+    'uno-orbit-0':
+      'uno-translate-y--80% sm:uno-translate-y--250% children:(uno-animate-orbit uno-orbit-offset-0 uno-transform-origin-[center_130%]) children:sm:(uno-transform-origin-[center_300%])',
+    'uno-orbit-1':
+      'uno-translate-y--150% children:(uno-animate-orbit uno-orbit-offset-1 uno-transform-origin-[center_200%])',
+    'uno-orbit-2':
+      'uno-translate-y--80% sm:uno-translate-y--250% children:(uno-animate-orbit uno-orbit-offset-2 uno-transform-origin-[center_130%]) children:sm:(uno-transform-origin-[center_300%])',
+    'uno-orbit-3':
+      'uno-translate-y--150% children:(uno-animate-orbit uno-orbit-offset-3 uno-transform-origin-[center_200%])',
   },
+  rules: [
+    [
+      'uno-xen-shadow',
+      {
+        'text-shadow':
+          '1px 1px 2px black, 0 0 1em rgb(133, 194, 65), 0 0 0.4em rgb(133, 194, 65), 0 0 0.2em rgb(133, 194, 65)',
+      },
+    ],
+    [
+      'uno-align-xen',
+      {
+        'vertical-align': '0.14em',
+      },
+    ],
+    ...Array.from(
+      {length: 4},
+      (_, i) =>
+        [
+          `uno-orbit-offset-${i}`,
+          {'animation-delay': `${(360 / 25) * (i * 0.25)}s`, 'animation-duration': `${(360 / 25) * (1 + i * 0.05)}s`},
+        ] as Rule,
+    ),
+  ],
+  // Animation durations for stars on the homepage
+  safelist: Array.from({length: 10}, (_, i) => `uno-animate-duration-${(i + 7) * 200}`),
 });

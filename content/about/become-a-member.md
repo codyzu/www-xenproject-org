@@ -19,9 +19,6 @@ menus:
   main:
     parent: About
     weight: 30
-scripts:
-  - logo-wheel.tsx
-  - zoom-info.tsx
 ---
 
 {{<section>}}

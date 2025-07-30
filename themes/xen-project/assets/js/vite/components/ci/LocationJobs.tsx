@@ -1,4 +1,4 @@
-import {Fragment, useMemo} from 'preact/compat';
+import {Fragment, useMemo} from 'react';
 import {StatusPill} from './StatusPill.tsx';
 import {getJobGroupStatus, type JobWithLocation, type JobLocation} from './use-gitlab-pipeline-jobs.ts';
 

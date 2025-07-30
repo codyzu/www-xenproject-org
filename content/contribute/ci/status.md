@@ -11,13 +11,12 @@ keywords:
   - continuous integration
   - status
   - dashboard
-scripts:
-  - ci-status.tsx
 menus:
   main:
     parent: Contribute
     identifier: "ci-status"
     weight: 61
+summary: A global live CI status dashboard.
 ---
 
 {{<div "ci-status">}}{{</div>}}
