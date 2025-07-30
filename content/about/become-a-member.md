@@ -21,6 +21,7 @@ menus:
     weight: 30
 scripts:
   - logo-wheel.tsx
+  - zoom-info.tsx
 ---
 
 {{<section>}}
@@ -216,3 +217,5 @@ Learn about Xen Project
 </p>
 {{</media-block>}}
 {{</section>}}
+
+{{<div cookie-banner />}}

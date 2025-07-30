@@ -31,6 +31,7 @@ export default defineConfig({
         'hardware-status': './themes/xen-project/assets/js/vite/hardware-status.tsx',
         'ci-status': './themes/xen-project/assets/js/vite/ci-status.tsx',
         'logo-wheel': './themes/xen-project/assets/js/vite/logo-wheel.tsx',
+        'zoom-info': './themes/xen-project/assets/js/vite/zoom-info.tsx',
       },
       output: {
         manualChunks: {
