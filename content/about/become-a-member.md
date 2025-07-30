@@ -214,3 +214,5 @@ Learn about Xen Project
 </p>
 {{</media-block>}}
 {{</section>}}
+
+{{<div cookie-banner />}}
