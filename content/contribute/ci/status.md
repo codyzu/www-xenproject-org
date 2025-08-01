@@ -19,4 +19,4 @@ menus:
 summary: A global live CI status dashboard.
 ---
 
-{{<div "ci-status">}}{{</div>}}
+{{<div id="ci-status">}}{{</div>}}

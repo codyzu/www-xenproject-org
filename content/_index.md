@@ -103,7 +103,7 @@ The Xen Project focuses on revolutionizing virtualization by providing a versati
 {{<section class="section-square-primary">}}
   {{<media-block
     title="Governed by Xen project **members**"
-    media=`{{<div logo-wheel uno-w-full />}}`
+    media=`{{<div id="logo-wheel" class="uno-w-full" />}}`
     mediaMobilePosition="top"
     animate="true"
   >}}

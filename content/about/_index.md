@@ -117,7 +117,7 @@ Projects under The Linux Foundation are independently funded software projects t
 {{<section>}}
 {{<media-block
    title="Governed by Xen project members"
-   media=`{{<div logo-wheel uno-w-full />}}`
+   media=`{{<div id="logo-wheel" class="uno-w-full" />}}`
    alt="Xen Project members logos"
    mediaPosition="right"
    animate="true"
