@@ -198,6 +198,65 @@ Xen Summit wouldn’t be possible without the support of our incredible sponsors
 
 {{</section>}}
 
+{{<section>}}
+{{<div id="design-sessions">}}
+{{<md>}}
+## Design Sessions 🛠️
+
+Design sessions area crucial part of community engagement at Xen Project events.
+Xen Summit 2025 will hold design sessions on **Tuesday September 16** and **Wednesday September 17**.
+
+{{</md>}}
+
+{{<div class="uno-m-y-14 uno-flex uno-justify-center">}}
+  {{<icon-button href="https://design-sessions.xenproject.org/">}}Submit a session{{</icon-button>}}
+{{</div>}}
+
+{{<md class="content-markdown">}}
+### Suggested Topics for Design and Problem Solving Sessions
+
+The aim of the Design and Problem Solving sessions are to give developers the opportunity to meet face-to-face to:
+
+- Coordinate and plan upcoming features
+- Discuss and agree on best practices and changes to how the community works
+- Discuss and agree on the design and architecture of future functionality
+- Interactive lessons learned sessions covering experiences of contributors, users and vendors
+
+Examples of Design and Problem Solving Sessions from past Hackathons were:
+
+- Cadence of Xen Project and maintenance releases
+- Changes to the COLO architecture and interdependencies with migration v2
+- Developing the architecture and design for Xen Project live patching of new Xen Project security policy
+- Evolution of virtual machine introspection (including HW assistance) in the Xen Hypervisor
+- How to de-privileging QEMU and the x86 emulator to reduce the impact of security vulnerabilities in those components
+- Implementing KConfig support which allows to remove parts of Xen at compile time and run-time disablement of Xen features to reduce Xen’s trusted computing base.
+- Planning the next stage of PVH (which led to a re-think and PVH v2)
+- Planning sessions for Xen Hardware support, including how to implement PCI passthrough on ARM, how we can improve testing for the increasing range of ARM HW with support for virtualization, and how to implement alt2pm on Intel architectures
+- Release planning
+- Restartable Dom0 and driver domains
+- Testing and testing frameworks
+
+### Design Session Submission Tips
+
+If you are proposing a design and planning session, please clearly state:
+
+- The problem that you are trying to solve
+- How attendees of the session can contribute to solving your problem
+- Whether any preparation work is desirable (including links to existing material)
+
+The proposer of design and planning sessions is expected to moderate sessions, which are held in smaller breakout rooms that are equipped with whiteboards. Some rooms will also contain projectors. Moderators can give a short presentation to introduce the problem, but design and planning sessions are not presentations. As a guide, presentations should not exceed more than 25% of the overall session time. Sessions will not be recorded, but we expect that the moderator either takes minutes or nominates an attendee to do so. Minutes will be posted on the relevant mailing list. (Note that design and planning sessions only scale well to a maximum of 30 people.)
+
+### First Time Submitting? Don’t Feel Intimidated.
+
+We know that the open source community can be very intimidating for anybody who is interested in participating.
+
+Xen Project events are an excellent way to get to know the community and share your ideas and the work that you are doing. You do not need to be a maintainer or a chief architect to submit a proposal. In fact, we strongly encourage first-time speakers to submit talks for all of our events. In the instance that you aren’t sure about your abstract, reach out to us and we will be more than happy to work with you on your proposal.
+
+Our events are working conferences intended for professional networking and collaboration in the Xen community and we work closely with our attendees, sponsors and speakers to help keep Xen Project events professional, welcoming and friendly. If you have any questions about participating please don’t hesitate to contact us.
+{{</md>}}
+{{</div>}}
+{{</section>}}
+
 {{<section class="section-square-primary txt-c">}}
 {{<md>}}
 ## Join the **conversation**

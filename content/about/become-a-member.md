@@ -177,7 +177,7 @@ The Board process will help ensure non-technical decisions are collectively dete
 {{<section>}}
 {{<media-block
     title="Governed by Xen project members"
-    media=`{{<div logo-wheel uno-w-full />}}`
+    media=`{{<div id="logo-wheel" class="uno-w-full" />}}`
     mediaPosition="right"
     animate="true"
 >}}
@@ -215,4 +215,4 @@ Learn about Xen Project
 {{</media-block>}}
 {{</section>}}
 
-{{<div cookie-banner />}}
+{{<div id="cookie-banner" />}}

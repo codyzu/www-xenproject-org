@@ -1,3 +1,5 @@
-<div id="{{ .Get 0 }}" class="{{ .Get 1 | default "" }}">
+{{ $class := .Get "class" | default "" }}
+{{ $id := .Get "id" | default "" }}
+<div id="{{ $id }}" class="{{ $class }}">
   {{ .Inner }}
 </div>
