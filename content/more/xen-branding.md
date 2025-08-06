@@ -14,6 +14,8 @@ keywords:
 date: 2024-01-14T07:07:07+01:00
 draft: false
 header: false
+aliases:
+  - xen-server-branding
 menus:
   main:
     parent: More
@@ -32,10 +34,16 @@ menus:
     alt="Xen Project Logo"
     animate="true"
   >}}
-  You can download vector graphics, images and logos.
+  You can download vector graphics, images, logos, and a Xen branded slide template.
   <p class="mg-t-md">
     <a href="https://downloads.xenproject.org/Branding/" class="btn btn-primary">
       Download branding
+      <i class="fas fa-arrow-up-right-from-square"></i>
+    </a>
+  </p>
+  <p class="mg-t-md">
+    <a href="https://docs.google.com/presentation/d/1NwO7aFYpRCj9gfzUr_eGBc426tJYCFzmpPyCQBKc5GE/edit?usp=sharing" class="btn btn-primary">
+      Slide Template
       <i class="fas fa-arrow-up-right-from-square"></i>
     </a>
   </p>
