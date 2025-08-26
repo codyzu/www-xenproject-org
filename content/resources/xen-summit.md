@@ -24,6 +24,9 @@ menus:
 {{<section md="true" >}}
 ## 2025 Edition 🎉
 
+### [📆 2025 Xen Summit Schedule](https://xensummit2025.sched.com/) is online now!
+
+\
 The Xen Summit is the premier event for virtualization enthusiasts, developers, and industry leaders. Here's why you should attend:
 
 - **🌟 Connect with Experts**: Meet and network with the brightest minds in the Xen Project community, including developers, maintainers, and industry professionals.
@@ -97,26 +100,6 @@ Act fast before the prices change. **Space is limited.**
 {{<pricing>}}
 {{</section>}}
 
-{{<section md="true">}}
-## Sponsorship Opportunities 🤝
-
-Interested in sponsoring Xen Summit 2025? Showcase your brand to a global audience of virtualization experts, developers, and industry leaders.
-
-📄 [Download the Sponsorship Prospectus](/pdf/xen-summit-2025-sponsorship-prospectus.pdf) to explore the benefits and opportunities available for sponsors.
-
-Support the Xen Project community and gain visibility at the premier virtualization event of the year!
-{{</section>}}
-
-{{<section>}}
-{{<md>}}
-## Xen Summit 2025: Call for Papers 📣
-
-The **Call for Papers is now closed.**
-Thank you to everyone who submitted proposals! We're reviewing all submissions and will be announcing the agenda soon.
-{{</md>}}
-{{</section>}}
-
-
 {{<section>}}
 {{<media-block
   title="2024 edition"
@@ -169,6 +152,13 @@ Xen Summit wouldn’t be possible without the support of our incredible sponsors
 <a href="https://www.honda.com/"><img src= "/img/logos/honda-logo.svg" alt="Honda logo" /></a>
 {{</col>}}
 {{</row>}}
+
+{{<row cols="2" class="tight">}}
+{{<col class="uno-self-center uno-max-w-[calc(50%_-_2.5rem)] uno-m-x-auto">}}
+<a href="https://www.amd.com"><img src="/img/logos/amd-logo.svg" alt="AMD" /></a>
+{{</col>}}
+{{</row>}}
+
 
 {{<md class="txt-c mg-t-xxl">}}## Silver Sponsors{{</md>}}
 {{<row cols="3" class="tight">}}
