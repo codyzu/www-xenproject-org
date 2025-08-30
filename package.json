@@ -5,7 +5,6 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "hugo": "npx hugo",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "storybook-tasks": "node scripts/storybook-tasks.js",
@@ -49,6 +48,7 @@
     "clsx": "^2.1.1",
     "concurrently": "^9.1.2",
     "embla-carousel": "^8.6.0",
+    "hugo-extended": "^0.147.0",
     "prettier": "^3.3.3",
     "prettier-plugin-go-template": "^0.0.15",
     "serve": "^14.2.4",

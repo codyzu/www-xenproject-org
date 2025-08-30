@@ -81,7 +81,7 @@ export default function Story() {
 
   return (
     <div className="uno-relative uno-w-full uno-h-100dvh uno-overflow-hidden uno-bg-black">
-      <Parallax ref={storyRef} className="uno-top-0_bak uno-left-0_bak uno-h-full uno-w-full" pages={pages}>
+      <Parallax ref={storyRef} className="uno-h-full uno-w-full" pages={pages}>
         {/* Background layers */}
         <ParallaxLayer speed={1.3} offset={0} factor={pages * 2.2} className="uno-flex uno-relative uno-w-full">
           <div className="uno-flex uno-relative uno-w-full">
@@ -200,7 +200,7 @@ export default function Story() {
             virtualization.
           </div>
         </ParallaxLayer>
-        <ParallaxLayer sticky={planets[0]} className="uno-flex uno-h-full-bak">
+        <ParallaxLayer sticky={planets[0]} className="uno-flex">
           <PlanetForeground name="Planet Data Center" image={dataCenter} isTextVisible={page >= 2 && page <= 3.2}>
             <Xen /> brings virtualization to a wide range of server environments, from data centers to enterprise IT,
             edge deployments, and labs. As an Open Source hypervisor, <Xen /> powers a variety of platforms supported by
@@ -302,7 +302,7 @@ export default function Story() {
           </div>
         </ParallaxLayer>
         <ParallaxLayer offset={endIndex - 1} className="uno-h-full uno-flex uno-flex-col uno-justify-end">
-          <div className="uno-bg-pink-bak uno-h-20 uno-bg-gradient-from-surface-secondary uno-bg-gradient-to-black uno-bg-gradient-to-t uno-bg-gradient-to-opacity-50" />
+          <div className="uno-h-20 uno-bg-gradient-from-surface-secondary uno-bg-gradient-to-black uno-bg-gradient-to-t uno-bg-gradient-to-opacity-50" />
         </ParallaxLayer>
       </Parallax>
     </div>
