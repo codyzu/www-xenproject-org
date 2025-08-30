@@ -8,8 +8,8 @@
 
 ### Install
 
-- git clone to your local system
-- `npm install`
+1. git clone to your local system
+1. `npm install`
 
 ### Development
 
