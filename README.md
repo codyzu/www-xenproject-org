@@ -14,7 +14,7 @@
 ### Development
 
 1. `npm run dev`
-2. navigate to [http://localhost:1313/](http://localhost:1313/)
+2. navigate to [http://localhost:5173/](http://localhost:5173/)
 
 ### Production Build
 

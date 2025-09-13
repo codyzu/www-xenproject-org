@@ -149,13 +149,16 @@ Xen Summit wouldn’t be possible without the support of our incredible sponsors
 <a href="https://www.arm.com/"><img src= "/img/logos/arm-logo.svg" alt="Arm logo" /></a>
 {{</col>}}
 {{<col class="uno-self-center">}}
-<a href="https://www.honda.com/"><img src= "/img/logos/honda-logo.svg" alt="Honda logo" /></a>
+<a href="https://www.amd.com"><img src="/img/logos/amd-logo.svg" alt="AMD" /></a>
 {{</col>}}
 {{</row>}}
 
-{{<row cols="2" class="tight">}}
-{{<col class="uno-self-center uno-max-w-[calc(50%_-_2.5rem)] uno-m-x-auto">}}
-<a href="https://www.amd.com"><img src="/img/logos/amd-logo.svg" alt="AMD" /></a>
+{{<row cols="2" class="tight uno-m-t-10">}}
+{{<col class="uno-self-center">}}
+<a href="https://www.honda.com/"><img src= "/img/logos/honda-logo.svg" alt="Honda logo" /></a>
+{{</col>}}
+{{<col class="uno-self-center">}}
+<a href="https://www.xenserver.com/"><img src="/img/logos/xenserver-logo.svg" alt="XenServer" /></a>
 {{</col>}}
 {{</row>}}
 
