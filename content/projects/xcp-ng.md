@@ -52,7 +52,7 @@ menus:
     animate="true"
   >}}
   {{<md>}}
-XCP-ng enables an easy way to deploy a VM based infrastructure using Xen as the hypervisor and XAPI to deliver an out of the box, turnkey, solution. XCP-ng satisfies the needs of any sized organization from their thriving community of homelabbers to massive data centers. **XCP-ng is built to run in numerous configurations for any type of production environment.** See [real-world examples](https://vates.tech/user-stories/) of XCP-ng in action.
+XCP-ng enables an easy way to deploy a VM based infrastructure using Xen as the hypervisor and XAPI to deliver an out of the box, turnkey, solution. XCP-ng satisfies the needs of any sized organization from their thriving community of homelabbers to massive data centers. **XCP-ng is built to run in numerous configurations for any type of production environment.** See [real-world examples](https://vates.tech/user-stories/?utm_source=xenproject.org&utm_medium=backlink) of XCP-ng in action.
 {{</md>}}
 {{</media-block>}}
 {{</section>}}
