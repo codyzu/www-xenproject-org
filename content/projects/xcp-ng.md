@@ -83,7 +83,7 @@ In 2018 XCP-ng was born, following Citrix System’s announcement to remove feat
       description: "XCP-ng is based on the Xen hypervisor technology and is one of the most secure virtualization platforms on the market. Monthly security updates improve security and prevent loopholes. In addition only the domain zero is able to communicate directly to your hardware, greatly reducing the risk of attacks through unprivileged VMs."
     - title: Innovative
       icon: fas fa-lightbulb
-      description: "Benefiting from more than € 15 million euros in investments, 15 dedicated developers and monthly updates, XCP-ng continues to improve the performance, security and the interoperability of the platform."
+      description: "Benefiting from more than € 15 million euros in investments, 20 dedicated developers and monthly updates, XCP-ng continues to improve the performance, security and the interoperability of the platform."
     - title: Easy to administrate
       icon: fas fa-window-restore
       description: "Step-by-step guides covering installation to management of VMS and active community forums, make it easier than ever to use XCP-ng."
