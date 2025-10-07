@@ -128,7 +128,7 @@ In 2018 XCP-ng was born, following Citrix System’s announcement to remove feat
   animate="true"
 >}}
   {{<md>}}
-  XCP-ng is actively developed by a dedicated team of over 20 engineers, alongside a growing community of contributors. Our documentation details the development process and how you can get involved—through testing, feedback, or code contributions. The current LTS version is XCP-ng 8.3.
+  XCP-ng is actively developed by a dedicated team of engineers, alongside a growing community of contributors. Our documentation details the development process and how you can get involved—through testing, feedback, or code contributions. The current LTS version is XCP-ng 8.3.
   {{</md>}}
 
   <p class="mg-t-md">
