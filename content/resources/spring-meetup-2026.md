@@ -92,12 +92,31 @@ Grenoble has a long tradition of excellence in research, open collaboration, and
 By hosting the Spring Meetup with Université Grenoble Alpes, the Xen Project strengthens ties between industry, academia, and the open-source community. The university setting provides an ideal environment for technical exchange while keeping the event accessible to students, researchers, and practitioners alike.
 {{</section>}}
 
-{{<section md="true" class="section-square-rounded">}}
-## 🤝 Sponsorship
+{{<section class="section-square-rounded">}}
+{{<md>}}
+## 🙏 Thank You to Our Sponsors
 
+Xen Spring Meetup wouldn’t be possible without the support of our incredible sponsors.
+{{</md>}}  
+
+{{<div class="uno-flex uno-flex-wrap uno-justify-center uno-items-center uno-mt-8 uno-mb-8">}}
+  <div class="uno-w-50% uno-p-r-4 uno-flex uno-justify-center">
+    <a href="https://vates.tech" class="uno-block uno-max-w-[300px]">
+      <img src="/img/logos/vates-logo.svg" alt="Vates logo" class="uno-w-full">
+    </a>
+  </div>
+  <div class="uno-w-50% uno-p-l-4 uno-flex uno-justify-center">
+    <a href="https://www.univ-grenoble-alpes.fr/" class="uno-block uno-max-w-[300px]">
+      <img src="/img/others/spring-meetup-2026/uga.svg" alt="Université Grenoble Alpes logo" class="uno-w-full">
+    </a>
+  </div>
+{{</div>}}
+
+{{<md>}}
 Sponsorship opportunities will be announced shortly.
 
 If your organization is interested in supporting the Xen Project Spring Meetup 2026, please check back soon or reach out to community.manager@xenproject.org.
+{{</md>}}
 {{</section>}}
 
 
