@@ -1,0 +1,5 @@
+{{- $prefix := .Get "prefix" | default "Last updated:" -}}
+{{- $format := .Get "format" | default "January 2, 2006" -}}
+{{- with .Page.Lastmod -}}
+{{ $prefix }} {{ .Format $format }}
+{{- end -}}
