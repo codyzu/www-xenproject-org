@@ -84,35 +84,25 @@ Grenoble is well connected by train via Lyon and easily reachable from major Eur
 {{</div>}}
 {{</section>}}
 
-{{<section>}}
-{{<div class="uno-surface">}}
-{{<md class="content-markdown">}}
-### 🎓 Why Grenoble?
+{{<section md="true" >}}
+## 🎓 Why Grenoble?
 
 Grenoble has a long tradition of excellence in research, open collaboration, and systems engineering.
 
 By hosting the Spring Meetup with Université Grenoble Alpes, the Xen Project strengthens ties between industry, academia, and the open-source community. The university setting provides an ideal environment for technical exchange while keeping the event accessible to students, researchers, and practitioners alike.
-{{</md>}}
-{{</div>}}
 {{</section>}}
 
-{{<section>}}
-{{<div class="uno-surface">}}
-{{<md class="content-markdown">}}
-### 🤝 Sponsorship
+{{<section md="true" class="section-square-rounded">}}
+## 🤝 Sponsorship
 
 Sponsorship opportunities will be announced shortly.
 
 If your organization is interested in supporting the Xen Project Spring Meetup 2026, please check back soon or reach out to community.manager@xenproject.org.
-{{</md>}}
-{{</div>}}
 {{</section>}}
 
 
-{{<section>}}
-{{<div class="uno-surface">}}
-{{<md class="content-markdown">}}
-### 📢 Stay Informed
+{{<section md="true" >}}
+## 📢 Stay Informed
 
 This page will be updated with:
 
@@ -122,8 +112,6 @@ This page will be updated with:
 - Speaker and sponsor information
 
 Follow Xen Project channels and revisit this page for the latest news. We look forward to welcoming you to Grenoble in April 2026.
-{{</md>}}
-{{</div>}}
 {{</section>}}
 
 {{<section class="txt-c">}}
