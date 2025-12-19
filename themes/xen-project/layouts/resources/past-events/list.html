@@ -1,0 +1,45 @@
+{{ define "main" }}
+  <article class="article">
+    <div class="container section-space">
+      {{ .Content }}
+      {{ $pages := .Pages }}
+      {{ if gt (len $pages) 0 }}
+        {{ $sorted := sort $pages "Params.eventEnd" "desc" }}
+        <div class="past-events-grid uno-grid uno-gap-6 md:uno-grid-cols-2">
+          {{ range $sorted }}
+          <article class="past-event-card section-square-rounded uno-h-full uno-flex uno-flex-col uno-gap-3">
+            <div>
+              <h3 class="uno-text-xl uno-font-semibold">
+                <a href="{{ .RelPermalink }}" class="link-underlined">{{ .LinkTitle }}</a>
+              </h3>
+              {{ with .Params.eventDates }}
+              <p class="uno-text-sm uno-text-slate-500">{{ . }}</p>
+              {{ end }}
+              {{ with .Params.eventLocation }}
+              <p class="uno-text-sm">{{ . }}</p>
+              {{ end }}
+            </div>
+            <p class="uno-text-base uno-text-slate-700">
+              {{ with .Description }}
+                {{ . }}
+              {{ else }}
+                {{ .Summary }}
+              {{ end }}
+            </p>
+            <p>
+              <a class="btn btn-secondary" href="{{ .RelPermalink }}">View recap</a>
+            </p>
+          </article>
+          {{ end }}
+        </div>
+      {{ else }}
+        <p>No past events are available yet. Check back soon.</p>
+      {{ end }}
+      {{ with .Lastmod }}
+      <section class="txt-c uno-mt-10">
+        <p class="content-markdown"><em>Last updated: {{ .Format "January 2, 2006" }}</em></p>
+      </section>
+      {{ end }}
+    </div>
+  </article>
+{{ end }}

@@ -1,6 +1,6 @@
 ---
-title: "Xen Summit"
-description: "Xen Summit is our annual event where the community connects with experts, discovers innovations, and shapes the future of virtualization."
+title: "Xen Summit 2025"
+description: "Recap the 2025 Xen Summit, including recordings, agenda links, and design session notes from San Jose."
 keywords:
   - Xen Project
   - Xen Summit
@@ -9,11 +9,12 @@ keywords:
   - hypervisor technology
   - community event
 date: 2024-01-14T07:07:07+01:00
+eventDates: "September 15–17, 2025"
+eventEnd: 2025-09-17
+eventLocation: "San Jose, California, USA"
+aliases:
+  - /resources/xen-summit/
 draft: false
-menus:
-  main:
-    parent: Resources
-    weight: 12
 ---
 
 {{<section >}}
@@ -22,28 +23,30 @@ menus:
 
 
 {{<section md="true" >}}
-## 2025 Edition 🎉
+## Thank You for Joining Xen Summit 2025 🎉
 
-### [📆 2025 Xen Summit Schedule](https://xensummit2025.sched.com/) is online now!
+Xen Summit 2025 brought the global Xen community together for two packed days of engineering deep dives, hallway chats, and design sessions in San Jose. Thank you to everyone who spoke, volunteered, and participated on-site and online.
 
-\
-The Xen Summit is the premier event for virtualization enthusiasts, developers, and industry leaders. Here's why you should attend:
+### Watch & Download
 
-- **🌟 Connect with Experts**: Meet and network with the brightest minds in the Xen Project community, including developers, maintainers, and industry professionals.
-- **🚀 Discover Innovations**: Learn about the latest advancements in virtualization technology and how Xen is shaping the future of cloud computing, security, and performance.
-- **🤝 Collaborate and Share Ideas**: Participate in discussions, workshops, and sessions designed to foster collaboration and innovation.
-- **📅 Biggest Xen Meetup**: This is the largest single gathering of Xen experts, offering unparalleled opportunities to exchange knowledge and experiences.
-- **🌍 Shape the Future**: Be part of the conversations that will define the next generation of virtualization technology.
+- [📆 Explore the 2025 Sched agenda](https://xensummit2025.sched.com/) to revisit sessions and download slide decks.
+- [📺 Catch up on Xen Summit talks on YouTube](https://youtube.com/playlist?list=PLQMQQsKgvLntZiKoELFs22Mtk-tBNNOMJ&si=qCSK3o1g2u_yq-JK).
 
-Whether you're a seasoned Xen developer or new to the community, the Xen Summit 2025 is the place to be. Don't miss this opportunity to be part of the future of virtualization!  
+Planning your next meetup fix? [Join us at the Spring Meetup 2026](/resources/spring-meetup-2026/).
 {{</section>}}
 
 {{<section class="section-square-rounded">}}
 
 {{<md class="">}}
-## 📍 Venue & Travel Info
+## 2025 Event Details (Archive)
 
-Xen Summit 2025 is proudly hosted by AMD in the heart of Silicon Valley!
+Looking back for venue, travel, or lodging information from last year’s summit? We’ve left the details here for reference.
+{{</md>}}
+
+{{<md class="">}}
+### 📍 Venue & Travel Info
+
+Xen Summit 2025 was proudly hosted by AMD in the heart of Silicon Valley.
 {{</md>}}
 
 {{<container class="uno-flex uno-justify-center uno-mt-8">}}
@@ -53,7 +56,7 @@ Xen Summit 2025 is proudly hosted by AMD in the heart of Silicon Valley!
 {{<md class="mg-v-lg content-markdown">}}
 ### 📅 Date & Location
 
-- **Xen Summit 2025** will take place from **September 15 to 17** at the **AMD office in San Jose, California**.
+- **Xen Summit 2025** took place from **September 15 to 17** at the **AMD office in San Jose, California**.
 - 🗺️ [Campus Map & Directions (PDF)](https://www.xilinx.com/publications/about/Xilinx_Campus_Map_Directions.pdf)
 {{</md>}}
 
@@ -92,12 +95,8 @@ Here are hotels recommended by our hosts at AMD:
 {{<md>}}
 ## Tickets 🎫
 
-Secure your ticket for the Xen Summit now!
-
-Act fast before the prices change. **Space is limited.**
-
+Ticket sales for the 2025 summit are closed. Keep an eye on the [Spring Meetup 2026](/resources/spring-meetup-2026/) for the next chance to connect in person.
 {{</md>}}
-{{<pricing>}}
 {{</section>}}
 
 {{<section>}}
@@ -193,14 +192,12 @@ Xen Summit wouldn’t be possible without the support of our incredible sponsors
 {{<md>}}
 ## Design Sessions 🛠️
 
-Design sessions area crucial part of community engagement at Xen Project events.
-Xen Summit 2025 will hold design sessions on **Tuesday September 16** and **Wednesday September 17**.
+Design sessions are a crucial part of community engagement at Xen Project events.
+Xen Summit 2025 hosted design sessions on **Tuesday September 16** and **Wednesday September 17**.
+
+[Browse the design session portal for notes and updates.](https://design-sessions.xenproject.org/)
 
 {{</md>}}
-
-{{<div class="uno-m-y-14 uno-flex uno-justify-center">}}
-  {{<icon-button href="https://design-sessions.xenproject.org/">}}Submit a session{{</icon-button>}}
-{{</div>}}
 
 {{<md class="content-markdown">}}
 ### Suggested Topics for Design and Problem Solving Sessions
@@ -259,4 +256,8 @@ Subscribe to our channel and hit the notification bell to stay updated with the 
     Join Matrix <i class="fas fa-arrow-right"></i>
   </a>
 </p>
+{{</section>}}
+
+{{<section class="txt-c">}}
+<p class="content-markdown"><em>{{< last-updated >}}</em></p>
 {{</section>}}

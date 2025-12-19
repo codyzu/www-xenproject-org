@@ -6,6 +6,8 @@ languageCode: "en-us"
 title: "Xen Project"
 theme: "xen-project"
 
+enableGitInfo: true
+
 
 params:
   blogApiKey: "b047d7f627a90f40798d11dcba"
