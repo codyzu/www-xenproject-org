@@ -250,7 +250,6 @@ This is a list of organisations on the pre-disclosure list (not email addresses 
 -   Huawei Technologies Co. Ltd
 -   Inception Hosting Ltd
 -   Invisible Things Lab
--   iWeb Technologies Inc.
 -   Jump Networks Ltd
 -   LFCHosting.com
 -   LiquidWeb.com
@@ -298,6 +297,7 @@ This is a list of organisations on the pre-disclosure list (not email addresses 
 
 ## Change History
 
+-   **v3.25 Dec 23rd 2025:** Removed iWeb Technologies Inc.
 -   **v3.24 Dec 5th 2024:** Added NixOS
 -   **v3.23 Aug 8th 2019:** Added DornerWorks Ltd
 -   **v3.22 Aug 6th 2019:** Remove Linode
