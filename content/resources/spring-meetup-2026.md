@@ -19,12 +19,30 @@ menus:
 {{<full-width-image src="/img/others/spring-meetup-2026/spring-meetup-2026-banner.png" alt="Xen Spring Meetup 2026" title="Xen Spring Meetup 2026" class="rounded-corners">}}
 {{</section>}}
 
+{{<section>}}
+  <div class="uno-card-side uno-mt-6">
+{{<md class="content-markdown">}}
+### 🎤 Call for Proposals is open
+
+We’re now accepting talk proposals for **Xen Spring Meetup 2026**. If you have Xen experience to share, we’d love to hear from you.
+
+- **CFP deadline:** end of January 2026
+{{</md>}}
+
+{{<icon-button href="https://sessionize.com/xen-spring-meetup-2026/">}}Submit a proposal on Sessionize{{</icon-button>}}
+  </div>
+{{</section>}}
+
 {{<section md="true">}}
 ## Xen Spring Meetup 2026 🐼
 
 A two-day, in-person gathering for Xen developers, users, researchers, and ecosystem partners.
 
 Talks, discussions, and hallway-track collaboration, in Grenoble, France.
+{{</section>}}
+
+{{<section md="true">}}
+## Event details
 {{</section>}}
 
 {{<section>}}
@@ -45,9 +63,7 @@ Talks, discussions, and hallway-track collaboration, in Grenoble, France.
 {{<md class="content-markdown">}}
 ### 📍 Venue
 
-**Université Grenoble Alpes**
-
-The meetup is hosted in partnership with Université Grenoble Alpes, in the heart of one of Europe’s leading research and engineering hubs.
+Hosted at **Université Grenoble Alpes**, in the **IMAG building**, a well-known home for computer science and systems research (including **LIG**).
 
 **Address and room details:** coming soon.
 {{</md>}}
@@ -55,19 +71,11 @@ The meetup is hosted in partnership with Université Grenoble Alpes, in the hear
 
 {{<div class="uno-card">}}
 {{<md class="content-markdown">}}
-### 🎟️ Registration and CFP
+### 🎟️ Registration
 
 - **Registration:** coming soon
-- **Call for Proposals (CFP):** coming soon
-- **Planned CFP deadline:** end of January 2026
 
-We welcome proposals across the Xen ecosystem, including (but not limited to):
-
-- Xen development and internals
-- Safety-critical and embedded use cases
-- Cloud, edge, and virtualization at scale
-- Research, tooling, and testing
-- Community, governance, and real-world deployments
+Registration details, ticket types, and pricing will be announced soon.
 {{</md>}}
 {{</div>}}
 
@@ -88,6 +96,8 @@ Grenoble is well connected by train via Lyon and easily reachable from major Eur
 ## 🎓 Why Grenoble?
 
 Grenoble has a long tradition of excellence in research, open collaboration, and systems engineering.
+
+The meetup will take place at **Université Grenoble Alpes**, in the **IMAG building**, a long-standing hub for computer science and systems research. The building hosts several major research teams, including the **Laboratoire d’Informatique de Grenoble (LIG)**, and plays an important role in fostering collaboration between academic research and real-world systems development.
 
 By hosting the Spring Meetup with Université Grenoble Alpes, the Xen Project strengthens ties between industry, academia, and the open-source community. The university setting provides an ideal environment for technical exchange while keeping the event accessible to students, researchers, and practitioners alike.
 {{</section>}}
