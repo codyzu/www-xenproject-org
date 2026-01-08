@@ -123,10 +123,13 @@ Xen Spring Meetup wouldn’t be possible without the support of our incredible s
   </a>
 {{</div>}}
 
-{{<md>}}
-Sponsorship opportunities will be announced shortly.
+{{<md class="content-markdown">}}
+Sponsorship opportunities are now available.
 
-If your organization is interested in supporting the Xen Project Spring Meetup 2026, please check back soon or reach out to community.manager@xenproject.org.
+📄 **[Download the Xen Spring Meetup 2026 Sponsorship Prospectus](/pdf/xen-spring-meetup-2026-sponsorship-prospectus.pdf)**
+
+If your organization is interested in supporting the Xen Project Spring Meetup 2026, please review the prospectus or reach out to community.manager@xenproject.org.
+
 {{</md>}}
 {{</section>}}
 
