@@ -108,6 +108,11 @@ export default defineConfig({
       'uno-border-0 uno-border-t-12 uno-border-brand-fill uno-border-solid',
       'uno-shadow-xl uno-bg-white uno-text-primary',
     ),
+    'uno-card-side': clsx(
+      'uno-px-6 uno-py-4 uno-rounded-lg',
+      'uno-border-0 uno-border-l-12 uno-border-brand-fill uno-border-solid',
+      'uno-shadow-xl uno-bg-white uno-text-primary',
+    ),
     'uno-surface': 'uno-bg-surface uno-p-x-6 uno-p-y-8 uno-rounded-lg uno-shadow-lg',
     'uno-orbit-0':
       'uno-translate-y--80% sm:uno-translate-y--250% children:(uno-animate-orbit uno-orbit-offset-0 uno-transform-origin-[center_130%]) children:sm:(uno-transform-origin-[center_300%])',

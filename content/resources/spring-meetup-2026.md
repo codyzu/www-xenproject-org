@@ -29,7 +29,9 @@ We’re now accepting talk proposals for **Xen Spring Meetup 2026**. If you have
 - **CFP deadline:** end of January 2026
 {{</md>}}
 
-{{<icon-button href="https://sessionize.com/xen-spring-meetup-2026/">}}Submit a proposal on Sessionize{{</icon-button>}}
+    <div class="uno-my-6">
+      {{<icon-button href="https://sessionize.com/xen-spring-meetup-2026/">}}Submit a proposal on Sessionize{{</icon-button>}}
+    </div>
   </div>
 {{</section>}}
 
