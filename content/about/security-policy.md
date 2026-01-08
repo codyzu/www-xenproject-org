@@ -103,6 +103,8 @@ Vulnerabilities reported against other Xen Project teams will be handled on a be
 
     At this stage the advisory will be clearly marked with the embargo date.
 
+    Unless requested otherwise, the discoverer will be credited already with the pre-release.
+
 5.  **Advisory public release:**At the embargo date we will publish the advisory, and push bugfix changesets to public revision control trees.Public advisories will be posted to xen-devel, xen-users and xen-annnounce and will be added to the [Security Announcements Page](http://xenbits.xen.org/xsa/) (note that Advisories before XSA-26 were published [here](http://wiki.xenproject.org/wiki/Security_Announcements_%28Historical%29)) . Copies will also be sent to the pre-disclosure list.
 6.  **Updates**If new information or better patches become available, or we discover mistakes, we may issue an amended (revision 2 or later) public advisory. This will also be sent to the pre-disclosure list.
 7.  **Post embargo transparency:**During an embargo period the Security Response Team may be required to make potentially controverial decisions in private, since they cannot confer with the community without breaking the embargo. The Security Response Team will attempt to make such decisions following the guidance of this document and where necessary their own best judgement. Following the embargo period any such decisions will be disclosed to the community in the interests of transparency and to help provide guidance should a similar decision be required in the future.
@@ -117,6 +119,8 @@ As discussed, we will negotiate with discoverers about disclosure schedule. Our 
 2.  Two working weeks between issue of our advisory to our predisclosure list and publication.
 
 When a discoverer reports a problem to us and requests longer delays than we would consider ideal, we will honour such a request if reasonable. If a discoverer wants an accelerated disclosure compared to what we would prefer, we naturally do not have the power to insist that a discoverer waits for us to be ready and will honour the date specified by the discoverer.
+
+In any event at the time of pre-disclosure, control over a possible late change of the public disclosure date moves from the discoverer to the Security Response Team. This is to avoid pre-disclosure list members putting pressure on the individual to extend or shorten the embargo.
 
 Naturally, if a vulnerability is being exploited in the wild we will make immediately public release of the advisory and patch(es) and expect others to do likewise.
 
@@ -297,6 +301,7 @@ This is a list of organisations on the pre-disclosure list (not email addresses 
 
 ## Change History
 
+-   **v3.26 Jan  8th 2026:** Changed embargo control
 -   **v3.25 Dec 23rd 2025:** Removed iWeb Technologies Inc.
 -   **v3.24 Dec 5th 2024:** Added NixOS
 -   **v3.23 Aug 8th 2019:** Added DornerWorks Ltd
