@@ -20,7 +20,7 @@ menus:
 {{</section>}}
 
 {{<section>}}
-  <div class="uno-card-side uno-mt-6">
+  <div id="cfp" class="uno-card-side uno-mt-6">
 {{<md class="content-markdown">}}
 ### 🎤 Call for Proposals is open
 
