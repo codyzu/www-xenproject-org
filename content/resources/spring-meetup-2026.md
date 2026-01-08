@@ -43,11 +43,11 @@ A two-day, in-person gathering for Xen developers, users, researchers, and ecosy
 Talks, discussions, and hallway-track collaboration, in Grenoble, France.
 {{</section>}}
 
-{{<section md="true">}}
-## Event details
-{{</section>}}
-
 {{<section>}}
+{{<md class="content-markdown">}}
+## Event details
+{{</md>}}
+
 {{<div class="uno-grid uno-grid-cols-1 md:uno-grid-cols-2 uno-gap-6">}}
 
 {{<div class="uno-card">}}
