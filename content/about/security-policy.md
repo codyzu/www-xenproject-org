@@ -39,10 +39,6 @@ asidePosition: before
 #       - icon: fa-star
 #         name: Andrew Cooper
 #       - icon: fa-star
-#         name: George Dunlap
-#       - icon: fa-star
-#         name: Ian Jackson
-#       - icon: fa-star
 #         name: Jan Beulich
 #       - icon: fa-star
 #         name: Julien Grall
@@ -51,18 +47,22 @@ asidePosition: before
 #       - icon: fa-star
 #         name: Stefano Stabellini
 #       - icon: fa-star
-#         name: Wei Liu
-#       - icon: fa-star
 #         name: Roger Pau Monné
 #   - type: members-list
 #     name: Emeritus Team Members
 #     items:
 #       - icon: fa-star
+#         name: George Dunlap
+#       - icon: fa-star
 #         name: Ian Campbell
+#       - icon: fa-star
+#         name: Ian Jackson
 #       - icon: fa-star
 #         name: Konrad R Wilk
 #       - icon: fa-star
 #         name: Tim Deegan
+#       - icon: fa-star
+#         name: Wei Liu
 ---
 
 {{<section md="true" class="content-markdown mg-neg-2rem">}}
@@ -301,6 +301,7 @@ This is a list of organisations on the pre-disclosure list (not email addresses 
 
 ## Change History
 
+-   **v3.27 Jan  9th 2026:** Move three people to Emeritus Team Members
 -   **v3.26 Jan  8th 2026:** Changed embargo control
 -   **v3.25 Dec 23rd 2025:** Removed iWeb Technologies Inc.
 -   **v3.24 Dec 5th 2024:** Added NixOS
