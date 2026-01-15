@@ -33,7 +33,9 @@ default:
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
   HUGO_ENV: production
-  GIT_DEPTH: 1
+  # Use shallow clones by default to keep CI fast; overridden in deploy/publish jobs
+  GIT_DEPTH: 1  # keep shallow clones for faster lint/build in non-publish jobs
+  GIT_SUBMODULE_DEPTH: 1
 
 test:
   script:
@@ -52,6 +54,10 @@ test:
 
 # Artifact will be deployed to https://beta.xenproject.org/
 deploy:
+  variables:
+    # Full git history required so Hugo can compute per-page lastmod correctly
+    GIT_DEPTH: 0
+    GIT_SUBMODULE_DEPTH: 0
   script:
     - npm ci --cache .npm --prefer-offline
     - npm run lint
@@ -73,6 +79,10 @@ deploy:
 
 # Artifact will be published to https://xenproject.org/
 publish:
+  variables:
+    # Full git history required so Hugo can compute per-page lastmod correctly
+    GIT_DEPTH: 0
+    GIT_SUBMODULE_DEPTH: 0
   script:
     - npm ci --cache .npm --prefer-offline
     - npm run lint
