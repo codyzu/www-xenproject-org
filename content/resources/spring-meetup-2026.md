@@ -105,13 +105,18 @@ By hosting the Spring Meetup with Université Grenoble Alpes, the Xen Project st
 {{</section>}}
 
 {{<section class="section-square-rounded">}}
-{{<md>}}
+<div id="sponsors">
+{{<md class="content-markdown">}}
 ## 🙏 Thank You to Our Sponsors
 
 Xen Spring Meetup wouldn’t be possible without the support of our incredible sponsors.
-{{</md>}}  
 
-{{<div class="uno-grid uno-gap-10 uno-grid-cols-1 md:uno-grid-cols-2 uno-items-center uno-justify-items-center uno-my-8 md:odd:last:children:uno-col-span-2 md:odd:last:children:uno-justify-self-center">}}
+Special thanks to our local co-organizers in Grenoble, **Fabienne Boyer** and **Alain Tchana**, from **KrakOS (Inria / LIG / CNRS)**, for their on-site support and collaboration.
+
+{{</md>}}
+
+{{<div class="uno-grid uno-gap-10 uno-grid-cols-1 md:uno-grid-cols-2 uno-items-center uno-justify-items-center uno-my-20 md:even:last:children:uno-col-span-2 md:odd:last:children:uno-justify-self-center">}}
+  <span class="uno-col-span-1 md:uno-col-span-2 uno-text-3xl uno-font-semibold-bak">Hosting Sponsors</span>
   <a href="https://www.univ-grenoble-alpes.fr/" class="uno-block uno-max-w-[260px]">
     <img src="/img/others/spring-meetup-2026/uga.svg" alt="Université Grenoble Alpes logo" class="uno-w-full">
   </a>
@@ -124,13 +129,12 @@ Xen Spring Meetup wouldn’t be possible without the support of our incredible s
 {{</div>}}
 
 {{<md class="content-markdown">}}
-Sponsorship opportunities are now available.
-
-📄 **[Download the Xen Spring Meetup 2026 Sponsorship Prospectus](/pdf/xen-spring-meetup-2026-sponsorship-prospectus.pdf)**
+Sponsorship opportunities are now available: **[📄 Download the Xen Spring Meetup 2026 Sponsorship Prospectus](/pdf/xen-spring-meetup-2026-sponsorship-prospectus.pdf)**
 
 If your organization is interested in supporting the Xen Project Spring Meetup 2026, please review the prospectus or reach out to community.manager@xenproject.org.
 
 {{</md>}}
+</div>
 {{</section>}}
 
 
