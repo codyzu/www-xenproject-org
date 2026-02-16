@@ -20,27 +20,40 @@ menus:
 {{</section>}}
 
 {{<section>}}
-  <div id="cfp" class="uno-card-side uno-mt-6">
+  <div id="register" class="uno-card-side uno-mt-6 uno-bg-green-50 dark:uno-bg-green-900/20">
 {{<md class="content-markdown">}}
-### 🎤 Call for Proposals is open
+### 🎟️ Registration is open
 
-We’re now accepting talk proposals for **Xen Spring Meetup 2026**. If you have Xen experience to share, we’d love to hear from you.
+Join us in Grenoble on **April 2–3, 2026** for two days of Xen collaboration, research exchange, and community connection.
 
-- **CFP deadline:** end of January 2026
+**Tickets:** $80 USD in-person · $20 USD virtual · $20 USD student
+
+Seats are limited.
 {{</md>}}
 
-    <div class="uno-my-6">
-      {{<icon-button href="https://sessionize.com/xen-spring-meetup-2026/">}}Submit a proposal on Sessionize{{</icon-button>}}
+    <div class="uno-my-4">
+      {{<icon-button href="https://linuxfoundation.regfox.com/xen-spring-meetup-2026">}}Register now{{</icon-button>}}
     </div>
+
   </div>
 {{</section>}}
 
-{{<section md="true">}}
+
+{{<section>}}
+{{<md class="content-markdown">}}
 ## Xen Spring Meetup 2026 🐼
 
 A two-day, in-person gathering for Xen developers, users, researchers, and ecosystem partners.
 
 Talks, discussions, and hallway-track collaboration, in Grenoble, France.
+{{</md>}}
+
+<div class="uno-text-sm uno-mt-4 uno-text-gray-600 dark:uno-text-gray-400">
+  Jump to:
+  <a href="#event-details" class="uno-underline">Event details</a> ·
+  <a href="#accommodation" class="uno-underline">Accommodation</a> ·
+  <a href="#sponsors" class="uno-underline">Sponsors</a>
+</div>
 {{</section>}}
 
 {{<section>}}
@@ -75,10 +88,21 @@ Hosted at **Université Grenoble Alpes**, in the **IMAG building**, a well-known
 {{<md class="content-markdown">}}
 ### 🎟️ Registration
 
-- **Registration:** coming soon
+Registration is now open.
 
-Registration details, ticket types, and pricing will be announced soon.
+**Ticket types:**
+
+- $80 USD – In-person
+- $20 USD – Virtual
+- $20 USD – Student
+
+Ticket types and full details are available on the registration page.
 {{</md>}}
+
+<div class="uno-my-4">
+  {{<icon-button href="https://linuxfoundation.regfox.com/xen-spring-meetup-2026">}}Register now{{</icon-button>}}
+</div>
+
 {{</div>}}
 
 {{<div class="uno-card">}}
@@ -87,12 +111,44 @@ Registration details, ticket types, and pricing will be announced soon.
 
 Grenoble is well connected by train via Lyon and easily reachable from major European cities.
 
-**Hotel recommendations:** coming soon.
+#### 🏨 Official hotel
+
+We’ve secured a discounted room block at **Hôtel d’Angleterre Grenoble.
+
+See details below.
 {{</md>}}
 {{</div>}}
 
 {{</div>}}
 {{</section>}}
+
+{{<div id="accommodation">}}
+{{<section md="true">}}
+## 🏨 Accommodation
+
+We’ve secured a discounted room block at **Hôtel d’Angleterre Grenoble, located in the heart of Grenoble city center.
+
+**Booking code:** `VATES`  
+Book directly by email or phone and mention the code.
+
+**Room block dates:** April 1–4, 2026  
+**Book by:** **March 1, 2026** (limited availability)
+
+**Rates (per night):**
+
+- 99€ standard (single)
+- 109€ standard (double)
+- 129€ superior (single)
+- 139€ superior (double)
+
+ - Breakfast buffet included
+ - City tax: 1.40€ per person per night (not included)
+ - Free cancellation until noon on the day of arrival
+ - Payment on site
+
+Hotel website: https://www.hotel-angleterre-grenoble.com
+{{</section>}}
+{{</div>}}
 
 {{<section md="true" >}}
 ## 🎓 Why Grenoble?
@@ -143,10 +199,10 @@ If your organization is interested in supporting the Xen Project Spring Meetup 2
 
 This page will be updated with:
 
-- Registration details
-- CFP announcements
-- Agenda highlights
-- Speaker and sponsor information
+- Schedule publication
+- Speaker announcements
+- Travel and venue updates
+- Sponsor information
 
 Follow Xen Project channels and revisit this page for the latest news. We look forward to welcoming you to Grenoble in April 2026.
 {{</section>}}
