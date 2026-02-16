@@ -113,7 +113,7 @@ Grenoble is well connected by train via Lyon and easily reachable from major Eur
 
 #### 🏨 Official hotel
 
-We’ve secured a discounted room block at **Hôtel d’Angleterre Grenoble.
+We’ve secured a discounted room block at **Hôtel d’Angleterre Grenoble**.
 
 See details below.
 {{</md>}}
@@ -126,7 +126,7 @@ See details below.
 {{<section md="true">}}
 ## 🏨 Accommodation
 
-We’ve secured a discounted room block at **Hôtel d’Angleterre Grenoble, located in the heart of Grenoble city center.
+We’ve secured a discounted room block at **Hôtel d’Angleterre Grenoble**, located in the heart of Grenoble city center.
 
 **Booking code:** `VATES`  
 Book directly by email or phone and mention the code.
