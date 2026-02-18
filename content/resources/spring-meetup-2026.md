@@ -80,8 +80,16 @@ Talks, discussions, and hallway-track collaboration, in Grenoble, France.
 
 Hosted at **Université Grenoble Alpes**, in the **IMAG building**, a well-known home for computer science and systems research (including **LIG**).
 
-**Address and room details:** coming soon.
+**Address:**  
+150 Pl. du Torrent
+\
+38400 Saint-Martin-d'Hères
+\
+France
 {{</md>}}
+
+<a href="https://maps.app.goo.gl/1ZnR8GwXrapRrcud8" target="_blank" rel="noopener" class="uno-underline">View on Google Maps</a>
+
 {{</div>}}
 
 {{<div class="uno-card">}}
