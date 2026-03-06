@@ -180,7 +180,7 @@ Special thanks to our local co-organizers in Grenoble, **Fabienne Boyer** and **
 {{</md>}}
 
 {{<div class="uno-grid uno-gap-10 uno-grid-cols-1 md:uno-grid-cols-2 uno-items-center uno-justify-items-center uno-my-20 md:even:last:children:uno-col-span-2 md:odd:last:children:uno-justify-self-center">}}
-  <span class="uno-col-span-1 md:uno-col-span-2 uno-text-3xl uno-font-semibold-bak">Hosting Sponsors</span>
+  <span class="uno-col-span-1 md:uno-col-span-2 uno-text-3xl">Hosting Sponsors</span>
   <a href="https://www.univ-grenoble-alpes.fr/" class="uno-block uno-max-w-[260px]">
     <img src="/img/others/spring-meetup-2026/uga.svg" alt="Université Grenoble Alpes logo" class="uno-w-full">
   </a>
@@ -191,6 +191,11 @@ Special thanks to our local co-organizers in Grenoble, **Fabienne Boyer** and **
     <img src="/img/logos/vates-logo.svg" alt="Vates logo" class="uno-w-full">
   </a>
 {{</div>}}
+{{<div class="uno-grid uno-gap-10 uno-grid-cols-1 md:uno-grid-cols-2 uno-items-center uno-justify-items-center uno-my-20 md:even:last:children:uno-col-span-2 md:odd:last:children:uno-justify-self-center">}}
+  <span class="uno-col-span-1 md:uno-col-span-2 uno-text-3xl">Supporting Sponsors</span>
+  <a href="https://www.renesas.com/" class="uno-block uno-max-w-[280px]"><img src= "/img/logos/renesas-logo-cropped.svg" alt="Renesas logo" class="uno-w-full" /></a>
+{{</div>}}
+
 
 {{<md class="content-markdown">}}
 Sponsorship opportunities are now available: **[📄 Download the Xen Spring Meetup 2026 Sponsorship Prospectus](/pdf/xen-spring-meetup-2026-sponsorship-prospectus.pdf)**
