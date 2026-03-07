@@ -179,21 +179,21 @@ Special thanks to our local co-organizers in Grenoble, **Fabienne Boyer** and **
 
 {{</md>}}
 
-{{<div class="uno-grid uno-gap-10 uno-grid-cols-1 md:uno-grid-cols-2 uno-items-center uno-justify-items-center uno-my-20 md:even:last:children:uno-col-span-2 md:odd:last:children:uno-justify-self-center">}}
+{{<div class="uno-grid uno-gap-10 uno-grid-cols-1 md:uno-grid-cols-2 uno-items-center uno-justify-items-center uno-my-20 md:even:last:children:uno-col-span-2">}}
   <span class="uno-col-span-1 md:uno-col-span-2 uno-text-3xl">Hosting Sponsors</span>
-  <a href="https://www.univ-grenoble-alpes.fr/" class="uno-block uno-max-w-[260px]">
+  <a href="https://www.univ-grenoble-alpes.fr/" class="uno-block uno-w-full uno-max-w-[260px]">
     <img src="/img/others/spring-meetup-2026/uga.svg" alt="Université Grenoble Alpes logo" class="uno-w-full">
   </a>
-  <a href="https://www.liglab.fr/" class="uno-block uno-max-w-[220px]">
+  <a href="https://www.liglab.fr/" class="uno-block uno-w-full uno-max-w-[220px]">
     <img src="/img/others/spring-meetup-2026/lig.png" alt="Laboratoire d'Informatique de Grenoble logo" class="uno-w-full">
   </a>
-  <a href="https://vates.tech" class="uno-block uno-max-w-[280px]">
+  <a href="https://vates.tech" class="uno-block uno-w-full uno-max-w-[280px]">
     <img src="/img/logos/vates-logo.svg" alt="Vates logo" class="uno-w-full">
   </a>
 {{</div>}}
-{{<div class="uno-grid uno-gap-10 uno-grid-cols-1 md:uno-grid-cols-2 uno-items-center uno-justify-items-center uno-my-20 md:even:last:children:uno-col-span-2 md:odd:last:children:uno-justify-self-center">}}
+{{<div class="uno-grid uno-gap-10 uno-grid-cols-1 md:uno-grid-cols-2 uno-items-center uno-justify-items-center uno-my-20 md:even:last:children:uno-col-span-2">}}
   <span class="uno-col-span-1 md:uno-col-span-2 uno-text-3xl">Supporting Sponsors</span>
-  <a href="https://www.renesas.com/" class="uno-block uno-max-w-[280px]"><img src= "/img/logos/renesas-logo-cropped.svg" alt="Renesas logo" class="uno-w-full" /></a>
+  <a href="https://www.renesas.com/" class="uno-block uno-w-full uno-max-w-[320px]"><img src= "/img/logos/renesas-logo-cropped.svg" alt="Renesas logo" class="uno-w-full" /></a>
 {{</div>}}
 
 
