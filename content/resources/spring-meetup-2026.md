@@ -31,8 +31,9 @@ Join us in Grenoble on **April 2–3, 2026** for two days of Xen collaboration, 
 Seats are limited.
 {{</md>}}
 
-    <div class="uno-my-4">
+    <div class="uno-my-4 uno-flex uno-flex-wrap uno-gap-3">
       {{<icon-button href="https://linuxfoundation.regfox.com/xen-spring-meetup-2026">}}Register now{{</icon-button>}}
+      {{<icon-button href="https://xenspringmeetup2026.sched.com">}}View schedule{{</icon-button>}}
     </div>
 
   </div>
@@ -50,6 +51,7 @@ Talks, discussions, and hallway-track collaboration, in Grenoble, France.
 
 <div class="uno-text-sm uno-mt-4 uno-text-gray-600 dark:uno-text-gray-400">
   Jump to:
+  <a href="#schedule" class="uno-underline">Schedule</a> ·
   <a href="#event-details" class="uno-underline">Event details</a> ·
   <a href="#accommodation" class="uno-underline">Accommodation</a> ·
   <a href="#sponsors" class="uno-underline">Sponsors</a>
@@ -57,7 +59,23 @@ Talks, discussions, and hallway-track collaboration, in Grenoble, France.
 {{</section>}}
 
 {{<section>}}
+<div id="schedule"></div>
 {{<md class="content-markdown">}}
+## 📅 Schedule
+
+The full schedule is available on Sched.
+
+Browse talks, speakers, and build your personal agenda before the meetup.
+{{</md>}}
+
+<div class="uno-my-4">
+  {{<icon-button href="https://xenspringmeetup2026.sched.com">}}View the full schedule{{</icon-button>}}
+</div>
+{{</section>}}
+
+{{<section>}}
+{{<md class="content-markdown">}}
+<div id="event-details"></div>
 ## Event details
 {{</md>}}
 
