@@ -212,15 +212,9 @@ Special thanks to our local co-organizers in Grenoble, **Fabienne Boyer** and **
 {{<div class="uno-grid uno-gap-10 uno-grid-cols-1 md:uno-grid-cols-2 uno-items-center uno-justify-items-center uno-my-20 md:even:last:children:uno-col-span-2">}}
   <span class="uno-col-span-1 md:uno-col-span-2 uno-text-3xl">Supporting Sponsors</span>
   <a href="https://www.renesas.com/" class="uno-block uno-w-full uno-max-w-[320px]"><img src= "/img/logos/renesas-logo-cropped.svg" alt="Renesas logo" class="uno-w-full" /></a>
+  <a href="https://www.honda.com/" class="uno-block uno-w-full uno-max-w-[280px]"><img src="/img/logos/honda-logo.svg" alt="Honda logo" class="uno-w-full" /></a>
 {{</div>}}
 
-
-{{<md class="content-markdown">}}
-Sponsorship opportunities are now available: **[📄 Download the Xen Spring Meetup 2026 Sponsorship Prospectus](/pdf/xen-spring-meetup-2026-sponsorship-prospectus.pdf)**
-
-If your organization is interested in supporting the Xen Project Spring Meetup 2026, please review the prospectus or reach out to community.manager@xenproject.org.
-
-{{</md>}}
 </div>
 {{</section>}}
 
