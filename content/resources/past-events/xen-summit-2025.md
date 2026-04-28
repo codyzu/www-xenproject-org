@@ -175,7 +175,7 @@ Xen Summit wouldn’t be possible without the support of our incredible sponsors
 {{<md class="txt-c mg-t-xxl">}}## Bronze Sponsors{{</md>}}
 {{<row cols="3" class="tight">}}
 {{<col class="uno-self-center">}}
-<a href="https://www.renesas.com/"><img src= "/img/logos/renesas-logo.svg" alt="Renesas logo" /></a>
+<a href="https://www.renesas.com/"><img src= "/img/logos/renesas-logo-cropped.svg" alt="Renesas logo" /></a>
 {{</col>}}
 {{<col>}}
 
