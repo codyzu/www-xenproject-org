@@ -6,6 +6,7 @@ keywords:
   - AMD
   - ARM
   - AWS
+  - Boeing
   - Epam
   - Vates
   - XenServer
@@ -66,6 +67,20 @@ ARM is a global leader in semiconductor IP and processor design, providing techn
 AWS, a subsidiary of Amazon, is a leading provider of cloud computing services. It offers a comprehensive suite of products and services, including computing power, storage, and databases, enabling organizations to scale efficiently and innovate rapidly. AWS's cloud solutions support various use cases, from web hosting and application development to big data analytics and machine learning.
 
 <p class="mt-2"><a href="https://aws.amazon.com/" class="btn btn-tertiary">Discover AWS <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+{{</media-block>}}
+{{</section>}}
+
+{{<section>}}
+{{<media-block
+   title="Boeing"
+   media="/img/logos/boeing-logo.svg"
+   alt="Logo of Boeing"
+   class="image-small"
+   animate="true"
+>}}
+Boeing is one of the world's leading aerospace companies and a major manufacturer of commercial airplanes, defense systems, and space technologies. With a strong focus on innovation, safety, and reliability, Boeing develops advanced platforms that support global transportation, national security, and space exploration. Through its involvement in the Xen Project, Boeing contributes to the advancement of secure and robust virtualization technologies, supporting use cases in aerospace, embedded systems, and safety-critical environments.
+
+<p class="mt-2"><a href="https://www.boeing.com/" class="btn btn-tertiary">Discover Boeing <i class="fas fa-arrow-up-right-from-square"></i></a></p>
 {{</media-block>}}
 {{</section>}}
 
