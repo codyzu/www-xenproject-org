@@ -1,9 +1,4 @@
-<a
-  href="{{.Destination | safeURL}}"
-  {{with .Title}}
-    title="{{.}}"
-  {{end}}{{if strings.HasPrefix .Destination "http"}}
-    target="_blank" rel="noopener noreferrer"
-  {{end}}
-  >{{.Text | safeHTML}}</a
->
+{{- $destination := .Destination | safeURL -}}
+{{- $title := .Title -}}
+{{- $isExternal := strings.HasPrefix .Destination "http" -}}
+<a href="{{ $destination }}"{{ with $title }} title="{{ . }}"{{ end }}{{ if $isExternal }} target="_blank" rel="noopener noreferrer"{{ end }}>{{ .Text | safeHTML }}</a>{{- "" -}}
