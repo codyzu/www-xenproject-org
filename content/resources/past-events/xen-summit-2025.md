@@ -13,7 +13,7 @@ eventDates: "September 15–17, 2025"
 eventEnd: 2025-09-17
 eventLocation: "San Jose, California, USA"
 aliases:
-  - /resources/xen-summit/
+  - /resources/xen-summit-2025/
 draft: false
 ---
 

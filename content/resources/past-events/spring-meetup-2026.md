@@ -9,10 +9,10 @@ keywords:
   - virtualization
 date: 2025-12-18T00:00:00+01:00
 draft: false
-menus:
-  main:
-    parent: Resources
-    weight: 13
+aliases:
+  - /resources/spring-meetup-2026/
+  - /resources/spring-meetup/
+
 ---
 
 {{<section>}}
