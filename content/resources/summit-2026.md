@@ -32,7 +32,7 @@ The call for proposals will open soon. Registration, venue, sponsorship, and sch
 {{</md>}}
   </div>
 
-{{<full-width-image src="/img/others/xen-summit-2026/xen-summit-2026-1024px.png" alt="Xen Summit 2026 banner featuring Munich, the Xen panda, and automotive technology themes" title="Xen Summit 2026" class="rounded-corners uno-mt-6 uno-overflow-hidden uno-max-h-[560px]" width="1536" height="1024">}}
+{{<full-width-image src="/img/others/xen-summit-2026/xen-summit-2026-1024px.png" alt="Xen Summit 2026 banner featuring Munich, the Xen panda, and automotive technology themes" title="Xen Summit 2026" class="rounded-corners uno-mt-6" imgClass="uno-block uno-w-full uno-h-auto uno-max-w-full !uno-object-contain" width="1536" height="1024">}}
 {{</section>}}
 
 {{<section>}}
