@@ -26,7 +26,7 @@ aliases:
   eyebrow="Xen Project Community Event"
   title="Xen Summit 2026"
   locationDate="HEADS office, Munich, Germany · September 15–17, 2026"
-  format="Hybrid event · Two days of technical talks plus one day of design sessions"
+  format="Hybrid event · 2 days of talks + 1 day of design sessions"
   badges="CFP Open Until June 30, 2026|Venue Confirmed|Registration Opening Soon"
   backgroundSrc="/resources/summit-2026/hero.webp"
   backgroundMobileSrc="/resources/summit-2026/hero-mobile.webp"
@@ -39,7 +39,7 @@ aliases:
   accentHeight="1170"
   primaryLabel="Submit a Proposal"
   primaryHref="https://sessionize.com/XenSummit2026/"
-  secondaryLabel="Download sponsor prospectus"
+  secondaryLabel="Become a Sponsor"
   secondaryHref="/resources/summit-2026/xen-summit-2026-sponsor-prospectus.pdf"
   tertiaryLabel="Stay Informed"
   tertiaryHref="#stay-informed"
@@ -128,9 +128,17 @@ Early Bird pricing runs until June 30, 2026.
 {{<md class="content-markdown">}}
 ### Travel
 
-Munich is well connected by air, rail, and public transit, with direct links across Europe and international connections through Munich Airport.
+Munich is well connected by air, rail, and public transit. The HEADS office is in Aschheim, east of central Munich, at Einsteinring 30, 85609 Aschheim, Germany.
 
-The HEADS office is located in Aschheim, just outside Munich. Additional arrival guidance will be added before the event.
+- **Venue map:** [HEADS office on Google Maps](https://maps.app.goo.gl/4h4E7zzcBjJuiecK9)
+- **Airport:** [Munich Airport (MUC)](https://www.munich-airport.com/) is the closest major international airport.
+- **Rail:** Munich Hauptbahnhof is the main long-distance rail station for arrivals from Germany and across Europe.
+- **Public transit:** Use [MVV Munich public transit](https://www.mvv-muenchen.de/en/) to plan S-Bahn, U-Bahn, tram, and bus connections toward Aschheim.
+- **Taxi and rideshare:** Taxis are available at the airport, major rail stations, and throughout Munich. Rideshare availability may vary by provider and pickup location.
+
+#### Lodging
+
+There is no official hotel block yet. Attendees may want to stay either near the venue in Aschheim for a shorter local commute, or in central Munich with convenient transit access to the eastern side of the city.
 {{</md>}}
 {{</div>}}
 
