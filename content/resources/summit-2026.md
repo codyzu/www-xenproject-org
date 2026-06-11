@@ -193,7 +193,18 @@ Design sessions are working sessions, not standard presentations. Moderators may
 {{<md class="content-markdown">}}
 ## Sponsors
 
-Sponsorship details for Xen Summit 2026 will be announced in the coming weeks. Organizations interested in sponsoring can contact [community.manager@xenproject.org](mailto:community.manager@xenproject.org).
+Xen Summit wouldn’t be possible without the support of our sponsors.
+{{</md>}}
+
+{{<md class="txt-c">}}## Platinum Sponsors{{</md>}}
+{{<div class="uno-grid uno-grid-cols-1 uno-items-center uno-justify-items-center uno-gap-10 uno-my-16">}}
+  <a href="https://www.renesas.com/" class="uno-block uno-w-full uno-max-w-[340px]">
+    <img src="/img/logos/renesas-logo-cropped.svg" alt="Renesas" class="uno-w-full uno-h-auto">
+  </a>
+{{</div>}}
+
+{{<md class="content-markdown">}}
+Organizations interested in sponsoring can contact [community.manager@xenproject.org](mailto:community.manager@xenproject.org).
 {{</md>}}
 {{</section>}}
 
