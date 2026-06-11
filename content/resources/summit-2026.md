@@ -105,8 +105,18 @@ Xen Summit is the best place to connect directly with the people building, using
 {{<md class="content-markdown">}}
 ### Venue
 
-Xen Summit 2026 will take place at the beautiful HEADS office in the Munich area, right across the street from the Renesas Munich office. Renesas is hosting the summit and helping welcome the Xen Project community to Munich for three days of technical talks, design sessions, and collaboration.
+#### Hosted by Renesas
 
+Xen Summit 2026 is proudly hosted by Renesas in Munich, Germany. The event will take place at the HEADS office in Aschheim, located directly across from the Renesas Munich office.
+{{</md>}}
+
+{{<div class="uno-flex uno-justify-center uno-my-6">}}
+  <a href="https://www.renesas.com/" class="uno-block uno-w-full uno-max-w-[240px]">
+    <img src="/img/logos/renesas-logo-cropped.svg" alt="Renesas logo" class="uno-w-full uno-h-auto">
+  </a>
+{{</div>}}
+
+{{<md class="content-markdown">}}
 **Address:** Einsteinring 30, 85609 Aschheim, Germany  
 **Map:** [Google Maps](https://maps.app.goo.gl/4h4E7zzcBjJuiecK9)
 {{</md>}}
@@ -241,8 +251,9 @@ Xen Summit wouldn’t be possible without the support of our sponsors.
 
 {{<md class="txt-c">}}## Platinum Sponsors{{</md>}}
 {{<div class="uno-grid uno-grid-cols-1 uno-items-center uno-justify-items-center uno-gap-10 uno-my-16">}}
-  <a href="https://www.renesas.com/" class="uno-block uno-w-full uno-max-w-[340px]">
-    <img src="/img/logos/renesas-logo-cropped.svg" alt="Renesas" class="uno-w-full uno-h-auto">
+  <a href="https://www.renesas.com/" class="uno-block uno-w-full uno-max-w-[340px] uno-text-center">
+    <img src="/img/logos/renesas-logo-cropped.svg" alt="Renesas logo" class="uno-w-full uno-h-auto">
+    <span class="uno-mt-4 uno-block uno-text-base uno-font-semibold uno-text-gray-700 dark:uno-text-gray-200">Platinum Sponsor and Local Host</span>
   </a>
 {{</div>}}
 
