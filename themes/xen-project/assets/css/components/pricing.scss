@@ -31,7 +31,12 @@
   }
 
   .toggle-input {
-    display: none; // Hide the radio inputs
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
   }
 
   .toggle-input:not(:checked) + .toggle-label {
@@ -40,13 +45,13 @@
     border-color: var(--color-action-fill);
   }
 
-  // Show the in-person tickets when the "inPerson" radio is checked
-  div:has(#inPerson:checked) ~ .ticket-groups #inPersonTickets {
+  // Show the in-person tickets when the in-person radio is checked
+  div:has(.ticket-toggle-in-person:checked) ~ .ticket-groups .ticket-group-in-person {
     display: grid;
   }
 
-  // Show the virtual tickets when the "virtual" radio is checked
-  div:has(#virtual:checked) ~ .ticket-groups #virtualTickets {
+  // Show the virtual tickets when the virtual radio is checked
+  div:has(.ticket-toggle-virtual:checked) ~ .ticket-groups .ticket-group-virtual {
     display: grid;
   }
 }

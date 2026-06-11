@@ -1,0 +1,42 @@
+tickets:
+  inPerson:
+    - title: "In-Person Early Bird $150"
+      price: "$150"
+      description: |
+        - Available until **June 30, 2026**
+        - Registration opening soon
+        - Access to the in-person talks and design sessions
+      enabled: false
+
+    - title: "In-Person Standard $300"
+      price: "$300"
+      description: |
+        - Standard in-person rate after Early Bird pricing ends
+        - Registration opening soon
+        - Access to the in-person talks and design sessions
+      enabled: false
+
+    - title: "Academic $50"
+      price: "$50"
+      description: |
+        - Discounted in-person rate for academic attendees
+        - Registration opening soon
+        - Access to the in-person talks and design sessions
+      enabled: false
+
+    - title: "Student $20"
+      price: "$20"
+      description: |
+        - Discounted in-person student rate
+        - Registration opening soon
+        - Access to the in-person talks and design sessions
+      enabled: false
+
+  virtual:
+    - title: "Virtual $20"
+      price: "$20"
+      description: |
+        - Online attendance option
+        - Registration opening soon
+        - Access details will be shared when registration opens
+      enabled: false

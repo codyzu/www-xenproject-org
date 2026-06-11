@@ -59,6 +59,7 @@ Jump to:
 [Why attend?](#why-attend) ·
 [Event details](#event-details) ·
 [Venue](#venue) ·
+[Registration](#registration) ·
 [Schedule](#schedule) ·
 [Design sessions](#design-sessions) ·
 [Sponsors](#sponsors) ·
@@ -112,11 +113,13 @@ Xen Summit 2026 will take place at the beautiful HEADS office in the Munich area
 
 {{<div class="uno-card">}}
 {{<md class="content-markdown">}}
-### Registration
+### Registration status
 
 Registration is not open yet.
 
-Ticket types, pricing, and registration links will be added here as soon as they are available.
+Pricing is available now so attendees, organizations, and sponsors can plan ahead before registration opens.
+
+Early Bird pricing runs until June 30, 2026.
 {{</md>}}
 {{</div>}}
 
@@ -151,6 +154,21 @@ Use the proposal CTA above for now. This page will include the final public CFP 
 {{</md>}}
 {{</div>}}
 
+{{</div>}}
+{{</section>}}
+
+{{<section>}}
+{{<div>}}
+{{<md class="content-markdown">}}
+## Registration
+
+Registration is opening soon. Pricing is now available so attendees, organizations, and sponsors can plan ahead for Xen Summit 2026.
+
+Early Bird pricing runs until **June 30, 2026**. Registration links are not yet available.
+{{</md>}}
+
+<!-- TODO: Add the public registration URL when registration opens. -->
+{{<pricing data="tickets-2026" id="registration-pricing">}}
 {{</div>}}
 {{</section>}}
 

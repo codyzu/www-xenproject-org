@@ -1,17 +1,27 @@
-<section id="pricing" class="ticket-pricing">
+{{- $dataKey := .Get "data" -}}
+{{- if not $dataKey -}}
+  {{- errorf "The pricing shortcode requires a data parameter, for example {{< pricing data=\"tickets-2026\" >}}." -}}
+{{- end -}}
+{{- $ticketData := index .Site.Data $dataKey -}}
+{{- if not $ticketData -}}
+  {{- errorf "The pricing shortcode could not find data/%s.yaml." $dataKey -}}
+{{- end -}}
+{{- $idSuffix := $dataKey | anchorize -}}
+
+<section id="{{ .Get "id" | default "pricing" }}" class="ticket-pricing">
   <div class="container">
     <div>
-      <input type="radio" id="inPerson" name="ticketType" class="toggle-input" checked />
-      <label for="inPerson" class="toggle-label btn">In-Person</label>
+      <input type="radio" id="inPerson-{{ $idSuffix }}" name="ticketType-{{ $idSuffix }}" class="toggle-input ticket-toggle-in-person" checked />
+      <label for="inPerson-{{ $idSuffix }}" class="toggle-label btn">In-Person</label>
 
-      <input type="radio" id="virtual" name="ticketType" class="toggle-input" />
-      <label for="virtual" class="toggle-label btn">Virtual</label>
+      <input type="radio" id="virtual-{{ $idSuffix }}" name="ticketType-{{ $idSuffix }}" class="toggle-input ticket-toggle-virtual" />
+      <label for="virtual-{{ $idSuffix }}" class="toggle-label btn">Virtual</label>
     </div>
 
     <div class="ticket-groups">
       <!-- In-Person Tickets -->
-      <div id="inPersonTickets" class="ticket-group">
-        {{ range .Site.Data.tickets.tickets.inPerson }}
+      <div class="ticket-group ticket-group-in-person">
+        {{ range $ticketData.tickets.inPerson }}
           {{ if (and (isset . "enabled") (not .enabled)) }}
             {{ partial "card.html" (dict
               "title" .title
@@ -31,8 +41,8 @@
       </div>
 
       <!-- Virtual Tickets -->
-      <div id="virtualTickets" class="ticket-group">
-        {{ range .Site.Data.tickets.tickets.virtual }}
+      <div class="ticket-group ticket-group-virtual">
+        {{ range $ticketData.tickets.virtual }}
           {{ if (and (isset . "enabled") (not .enabled)) }}
             {{ partial "card.html" (dict
               "title" .title
