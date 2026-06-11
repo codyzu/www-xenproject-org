@@ -156,7 +156,7 @@ There is no official hotel block yet. Attendees may want to stay either near the
 {{<md class="content-markdown">}}
 ### Call for Proposals
 
-The Call for Proposals is open. Submit your talk by **June 30, 2026** at 11:59 PM W. Europe Daylight Time to share your work with the Xen Project community in Munich or online.
+The Call for Proposals is open. [Submit your talk](https://sessionize.com/XenSummit2026/) by **June 30, 2026** at 11:59 PM W. Europe Daylight Time to share your work with the Xen Project community in Munich or online.
 
 New speakers are welcome.
 
