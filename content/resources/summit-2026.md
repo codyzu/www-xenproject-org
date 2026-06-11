@@ -39,8 +39,8 @@ aliases:
   accentHeight="1170"
   primaryLabel="Submit a Proposal"
   primaryHref="#call-for-proposals"
-  secondaryLabel="Become a Sponsor"
-  secondaryHref="mailto:community.manager@xenproject.org?subject=Xen%20Summit%202026%20sponsorship"
+  secondaryLabel="Download sponsor prospectus"
+  secondaryHref="/resources/summit-2026/xen-summit-2026-sponsor-prospectus.pdf"
   tertiaryLabel="Stay Informed"
   tertiaryHref="#stay-informed"
 >}}
@@ -204,8 +204,17 @@ Xen Summit wouldn’t be possible without the support of our sponsors.
 {{</div>}}
 
 {{<md class="content-markdown">}}
-Organizations interested in sponsoring can contact [community.manager@xenproject.org](mailto:community.manager@xenproject.org).
+Organizations interested in sponsoring can review the Xen Summit 2026 sponsor prospectus or contact [community.manager@xenproject.org](mailto:community.manager@xenproject.org).
 {{</md>}}
+
+<p class="uno-mt-6 uno-flex uno-flex-wrap uno-gap-3">
+  <a href="/resources/summit-2026/xen-summit-2026-sponsor-prospectus.pdf" class="btn btn-primary">
+    Download sponsor prospectus <i class="fas fa-arrow-up-right-from-square"></i>
+  </a>
+  <a href="mailto:community.manager@xenproject.org?subject=Xen%20Summit%202026%20sponsorship" class="btn btn-secondary">
+    Become a sponsor <i class="fas fa-arrow-right"></i>
+  </a>
+</p>
 {{</section>}}
 
 {{<section md="true">}}
