@@ -43,7 +43,7 @@ export default defineConfig({
         // eslint-disable-next-line @typescript-eslint/naming-convention
         DEFAULT: '#f3f9ec',
         fill: '#85c241',
-        'on-fill': '#1e2b0e',
+        onfill: '#1e2b0e',
         text: '#567c2a',
       },
     },

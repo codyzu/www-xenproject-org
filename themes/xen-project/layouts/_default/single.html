@@ -9,12 +9,14 @@
     {{ partial "aside.html" . }}
   {{ end }}
   <article class="article">
-    <div class="container page-top">
-      <h1>{{ .Title }}</h1>
-      <div class="description">
-        {{ .Description }}
+    {{ if not .Page.Params.hidePageHeader }}
+      <div class="container page-top">
+        <h1>{{ .Title }}</h1>
+        <div class="description">
+          {{ .Description }}
+        </div>
       </div>
-    </div>
+    {{ end }}
 
     <div class="single-content">
       {{ .Content }}

@@ -1,0 +1,33 @@
+{{- $badges := slice -}}
+{{- with .Get "badges" -}}
+  {{- $badges = split . "|" -}}
+{{- end -}}
+{{- $ctas := slice -}}
+{{- with .Get "primaryLabel" -}}
+  {{- $ctas = $ctas | append (dict "variant" "primary" "label" . "href" ($.Get "primaryHref")) -}}
+{{- end -}}
+{{- with .Get "secondaryLabel" -}}
+  {{- $ctas = $ctas | append (dict "variant" "secondary" "label" . "href" ($.Get "secondaryHref")) -}}
+{{- end -}}
+{{- with .Get "tertiaryLabel" -}}
+  {{- $ctas = $ctas | append (dict "variant" "tertiary" "label" . "href" ($.Get "tertiaryHref")) -}}
+{{- end -}}
+
+{{- partial "event-hero.html" (dict
+  "eyebrow" (.Get "eyebrow")
+  "title" (.Get "title")
+  "locationDate" (.Get "locationDate")
+  "format" (.Get "format")
+  "badges" $badges
+  "backgroundSrc" (.Get "backgroundSrc")
+  "backgroundMobileSrc" (.Get "backgroundMobileSrc")
+  "backgroundAlt" (.Get "backgroundAlt")
+  "backgroundWidth" (.Get "backgroundWidth")
+  "backgroundHeight" (.Get "backgroundHeight")
+  "accentSrc" (.Get "accentSrc")
+  "accentAlt" (.Get "accentAlt")
+  "accentWidth" (.Get "accentWidth")
+  "accentHeight" (.Get "accentHeight")
+  "ctas" $ctas
+  )
+-}}

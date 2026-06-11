@@ -12,6 +12,7 @@ date: 2026-05-18T00:00:00+02:00
 eventDates: "September 15–17, 2026"
 eventEnd: 2026-09-17
 eventLocation: "Munich, Germany"
+hidePageHeader: true
 draft: false
 menus:
   main:
@@ -21,19 +22,28 @@ aliases:
   - /resources/xen-summit-2026/
 ---
 
-{{<section>}}
-  <div class="uno-card-side uno-mt-6 uno-bg-green-50 dark:uno-bg-green-900/20">
-{{<md class="content-markdown">}}
-### Xen Summit 2026 is heading to Munich
-
-Join the Xen Project community in **Munich, Germany**, from **September 15–17, 2026** for a hybrid summit featuring two days of technical talks followed by one day of design sessions, project planning, and in-person collaboration.
-
-The call for proposals will open soon. Registration, venue, sponsorship, and schedule details will be announced in the coming weeks.
-{{</md>}}
-  </div>
-
-{{<full-width-image src="/img/others/xen-summit-2026/xen-summit-2026-1024px.png" alt="Xen Summit 2026 banner featuring Munich, the Xen panda, and automotive technology themes" title="Xen Summit 2026" class="rounded-corners uno-mt-6" imgClass="uno-block uno-w-full uno-h-auto uno-max-w-full !uno-object-contain" width="1536" height="1024">}}
-{{</section>}}
+{{<event-hero
+  eyebrow="Xen Project Community Event"
+  title="Xen Summit 2026"
+  locationDate="Munich, Germany · September 15–17, 2026"
+  format="Hybrid event · Two days of technical talks plus one day of design sessions"
+  badges="CFP Open Until June 30|Venue Confirmed|Registration Opening Soon"
+  backgroundSrc="/resources/summit-2026/hero.webp"
+  backgroundMobileSrc="/resources/summit-2026/hero-mobile.webp"
+  backgroundAlt="Munich cityscape hero artwork for Xen Summit 2026"
+  backgroundWidth="2048"
+  backgroundHeight="768"
+  accentSrc="/resources/summit-2026/panda-munich.webp"
+  accentAlt="Xen Project panda in Bavarian festival clothing"
+  accentWidth="780"
+  accentHeight="1170"
+  primaryLabel="Submit a Proposal"
+  primaryHref="#call-for-proposals"
+  secondaryLabel="Become a Sponsor"
+  secondaryHref="mailto:community.manager@xenproject.org?subject=Xen%20Summit%202026%20sponsorship"
+  tertiaryLabel="Stay Informed"
+  tertiaryHref="#stay-informed"
+>}}
 
 {{<section>}}
 {{<md class="content-markdown">}}
@@ -79,7 +89,7 @@ Xen Summit is the best place to connect directly with the people building, using
 
 - **Dates:** September 15–17, 2026
 - **City:** Munich, Germany
-- **Venue:** To be announced
+- **Venue:** Confirmed, details coming soon
 - **Format:** Hybrid
 - **Program:** Two days of talks, followed by one day of design sessions
 - **Audience:** Developers, users, researchers, vendors, and ecosystem partners
@@ -90,9 +100,9 @@ Xen Summit is the best place to connect directly with the people building, using
 {{<md class="content-markdown">}}
 ### Venue
 
-The summit venue in Munich will be announced soon.
+The summit venue in Munich is confirmed.
 
-Once confirmed, this page will include the venue address, directions, accessibility notes, and local travel guidance.
+This page will include the venue address, directions, accessibility notes, and local travel guidance when those details are ready to publish.
 {{</md>}}
 {{</div>}}
 
@@ -120,7 +130,7 @@ Hotel and local transportation recommendations will be added after the venue is 
 {{<md class="content-markdown">}}
 ### Call for Proposals
 
-The CFP for Xen Summit 2026 will open soon.
+The CFP for Xen Summit 2026 is open until June 30.
 
 We welcome proposals from across the Xen ecosystem, including:
 
@@ -133,7 +143,7 @@ We welcome proposals from across the Xen ecosystem, including:
 - Xen on Arm and other platform work
 - Real-world deployments, case studies, and lessons learned
 
-We will share submission dates and the proposal link here once the CFP is live.
+Use the proposal CTA above for now. This page will include the final public CFP link when it is ready to publish.
 {{</md>}}
 {{</div>}}
 
