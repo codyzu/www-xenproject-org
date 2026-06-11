@@ -1,6 +1,6 @@
 ---
 title: "Xen Summit 2026"
-description: "Xen Summit 2026 will bring the Xen Project community together in Munich, Germany from September 15–17, 2026."
+description: "Xen Summit 2026 will bring the Xen Project community together at the HEADS office in Munich, Germany from September 15–17, 2026."
 keywords:
   - Xen Project
   - Xen Summit
@@ -11,7 +11,7 @@ keywords:
 date: 2026-05-18T00:00:00+02:00
 eventDates: "September 15–17, 2026"
 eventEnd: 2026-09-17
-eventLocation: "Munich, Germany"
+eventLocation: "HEADS office, Einsteinring 30, 85609 Aschheim, Germany"
 hidePageHeader: true
 draft: false
 menus:
@@ -25,7 +25,7 @@ aliases:
 {{<event-hero
   eyebrow="Xen Project Community Event"
   title="Xen Summit 2026"
-  locationDate="Munich, Germany · September 15–17, 2026"
+  locationDate="HEADS office, Munich, Germany · September 15–17, 2026"
   format="Hybrid event · Two days of technical talks plus one day of design sessions"
   badges="CFP Open Until June 30|Venue Confirmed|Registration Opening Soon"
   backgroundSrc="/resources/summit-2026/hero.webp"
@@ -58,6 +58,7 @@ The 2026 summit will bring the community together in Munich for engineering upda
 Jump to:
 [Why attend?](#why-attend) ·
 [Event details](#event-details) ·
+[Venue](#venue) ·
 [Schedule](#schedule) ·
 [Design sessions](#design-sessions) ·
 [Sponsors](#sponsors) ·
@@ -89,7 +90,9 @@ Xen Summit is the best place to connect directly with the people building, using
 
 - **Dates:** September 15–17, 2026
 - **City:** Munich, Germany
-- **Venue:** Confirmed, details coming soon
+- **Venue:** HEADS office
+- **Address:** Einsteinring 30, 85609 Aschheim, Germany
+- **Map:** [Google Maps](https://maps.app.goo.gl/4h4E7zzcBjJuiecK9)
 - **Format:** Hybrid
 - **Program:** Two days of talks, followed by one day of design sessions
 - **Audience:** Developers, users, researchers, vendors, and ecosystem partners
@@ -100,9 +103,10 @@ Xen Summit is the best place to connect directly with the people building, using
 {{<md class="content-markdown">}}
 ### Venue
 
-The summit venue in Munich is confirmed.
+Xen Summit 2026 will take place at the beautiful HEADS office in the Munich area, right across the street from the Renesas Munich office. Renesas is hosting the summit and helping welcome the Xen Project community to Munich for three days of technical talks, design sessions, and collaboration.
 
-This page will include the venue address, directions, accessibility notes, and local travel guidance when those details are ready to publish.
+**Address:** Einsteinring 30, 85609 Aschheim, Germany  
+**Map:** [Google Maps](https://maps.app.goo.gl/4h4E7zzcBjJuiecK9)
 {{</md>}}
 {{</div>}}
 
@@ -122,7 +126,7 @@ Ticket types, pricing, and registration links will be added here as soon as they
 
 Munich is well connected by air, rail, and public transit, with direct links across Europe and international connections through Munich Airport.
 
-Hotel and local transportation recommendations will be added after the venue is confirmed.
+The HEADS office is located in Aschheim, just outside Munich. Additional arrival guidance will be added before the event.
 {{</md>}}
 {{</div>}}
 
