@@ -27,7 +27,7 @@ aliases:
   title="Xen Summit 2026"
   locationDate="HEADS office, Munich, Germany · September 15–17, 2026"
   format="Hybrid event · Two days of technical talks plus one day of design sessions"
-  badges="CFP Open Until June 30|Venue Confirmed|Registration Opening Soon"
+  badges="CFP Open Until June 30, 2026|Venue Confirmed|Registration Opening Soon"
   backgroundSrc="/resources/summit-2026/hero.webp"
   backgroundMobileSrc="/resources/summit-2026/hero-mobile.webp"
   backgroundAlt="Munich cityscape hero artwork for Xen Summit 2026"
@@ -38,7 +38,7 @@ aliases:
   accentWidth="780"
   accentHeight="1170"
   primaryLabel="Submit a Proposal"
-  primaryHref="#call-for-proposals"
+  primaryHref="https://sessionize.com/XenSummit2026/"
   secondaryLabel="Download sponsor prospectus"
   secondaryHref="/resources/summit-2026/xen-summit-2026-sponsor-prospectus.pdf"
   tertiaryLabel="Stay Informed"
@@ -58,6 +58,7 @@ The 2026 summit will bring the community together in Munich for engineering upda
 Jump to:
 [Why attend?](#why-attend) ·
 [Event details](#event-details) ·
+[Call for Proposals](#call-for-proposals) ·
 [Venue](#venue) ·
 [Registration](#registration) ·
 [Schedule](#schedule) ·
@@ -137,20 +138,28 @@ The HEADS office is located in Aschheim, just outside Munich. Additional arrival
 {{<md class="content-markdown">}}
 ### Call for Proposals
 
-The CFP for Xen Summit 2026 is open until June 30.
+The Call for Proposals is open. Submit your talk by **June 30, 2026** at 11:59 PM W. Europe Daylight Time to share your work with the Xen Project community in Munich or online.
+
+New speakers are welcome.
 
 We welcome proposals from across the Xen ecosystem, including:
 
 - Xen development and architecture
 - Embedded and automotive virtualization
 - Security, isolation, and safety-related use cases
+- Safety and certification-related work
 - Performance, scalability, and reliability
 - Cloud, datacenter, and infrastructure deployments
 - Tooling, testing, CI, and developer experience
+- Open source collaboration and community process
 - Xen on Arm and other platform work
 - Real-world deployments, case studies, and lessons learned
 
-Use the proposal CTA above for now. This page will include the final public CFP link when it is ready to publish.
+<p class="uno-mt-6">
+  <a href="https://sessionize.com/XenSummit2026/" class="btn btn-primary">
+    Submit a Proposal <i class="fas fa-arrow-up-right-from-square"></i>
+  </a>
+</p>
 {{</md>}}
 {{</div>}}
 
@@ -176,9 +185,13 @@ Early Bird pricing runs until **June 30, 2026**. Registration links are not yet 
 {{<md class="content-markdown">}}
 ## Schedule
 
-The Xen Summit 2026 schedule is not published yet.
+The detailed Xen Summit 2026 schedule is not published yet and will be announced after the CFP and review process are complete.
 
-The preliminary format is two days of talks followed by one day of design sessions. The full schedule will be published after the CFP and review process are complete.
+The high-level event timeline is:
+
+- **September 15:** Technical talks
+- **September 16:** Technical talks
+- **September 17:** Design sessions, project planning, and collaboration
 {{</md>}}
 {{</section>}}
 
@@ -248,7 +261,9 @@ Xen Summit 2026 follows the [Xen Project Code of Conduct](/contribute/code-of-co
 {{<section md="true">}}
 ## Stay Informed
 
-Follow Xen Project channels, join the community on [Matrix](/resources/matrix/), subscribe to the [mailing lists](/resources/mailing-lists/), or follow Xen Project on [LinkedIn](https://www.linkedin.com/company/the-xen-project/). Revisit this page for updates on registration, CFP dates, the schedule, travel guidance, and sponsorship opportunities.
+Follow Xen Project channels, join the community on [Matrix](/resources/matrix/), subscribe to the [mailing lists](/resources/mailing-lists/), or follow Xen Project on [LinkedIn](https://www.linkedin.com/company/the-xen-project/). Revisit this page for updates on registration, the CFP, the schedule, travel guidance, and sponsorship opportunities.
+
+The Call for Proposals is open until **June 30, 2026**. [Submit a Proposal](https://sessionize.com/XenSummit2026/) to share your Xen Project work in Munich or online.
 {{</section>}}
 
 {{<section class="section-square-primary txt-c">}}
