@@ -2,7 +2,7 @@
 title: "Xen Summit 2026"
 description: "Join the Xen Project community in Munich, Germany, September 15–17, 2026, for technical talks, design sessions, and collaboration."
 canonicalUrl: "https://xenproject.org/resources/summit-2026/"
-socialImage: "https://xenproject.org/assets/summit-2026/social-card.png"
+socialImage: "https://xenproject.org/assets/summit-2026/social-card.jpg"
 keywords:
   - Xen Project
   - Xen Summit
