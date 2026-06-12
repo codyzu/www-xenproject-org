@@ -28,19 +28,19 @@ aliases:
   locationDate="HEADS office, Munich, Germany · September 15–17, 2026"
   format="Hybrid event · 2 days of talks + 1 day of design sessions"
   badges="CFP Open Until June 30, 2026|Venue Confirmed|Registration Opening Soon"
-  backgroundSrc="/resources/summit-2026/hero.webp"
-  backgroundMobileSrc="/resources/summit-2026/hero-mobile.webp"
+  backgroundSrc="/assets/summit-2026/hero.webp"
+  backgroundMobileSrc="/assets/summit-2026/hero-mobile.webp"
   backgroundAlt="Munich cityscape hero artwork for Xen Summit 2026"
   backgroundWidth="2048"
   backgroundHeight="768"
-  accentSrc="/resources/summit-2026/panda-munich.webp"
+  accentSrc="/assets/summit-2026/panda-munich.webp"
   accentAlt="Xen Project panda in Bavarian festival clothing"
   accentWidth="780"
   accentHeight="1170"
   primaryLabel="Submit a Proposal"
   primaryHref="https://sessionize.com/XenSummit2026/"
   secondaryLabel="Become a Sponsor"
-  secondaryHref="/resources/summit-2026/xen-summit-2026-sponsor-prospectus.pdf"
+  secondaryHref="/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf"
   tertiaryLabel="Stay Informed"
   tertiaryHref="#stay-informed"
 >}}
@@ -262,7 +262,7 @@ Organizations interested in sponsoring can review the Xen Summit 2026 sponsor pr
 {{</md>}}
 
 <p class="uno-mt-6 uno-flex uno-flex-wrap uno-gap-3">
-  <a href="/resources/summit-2026/xen-summit-2026-sponsor-prospectus.pdf" class="btn btn-primary">
+  <a href="/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf" class="btn btn-primary">
     Download sponsor prospectus <i class="fas fa-arrow-up-right-from-square"></i>
   </a>
   <a href="mailto:community.manager@xenproject.org?subject=Xen%20Summit%202026%20sponsorship" class="btn btn-secondary">
