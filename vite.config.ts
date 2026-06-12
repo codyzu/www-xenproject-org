@@ -37,6 +37,7 @@ export default defineConfig({
   publicDir: false,
   // Enforce a strict port so that hugo will know where to find the vite dev server assets
   server: {
+    host: '0.0.0.0',
     port: 5173,
     strictPort: true,
     proxy: {

@@ -14,7 +14,9 @@
 ### Development
 
 1. `npm run dev`
-2. navigate to [http://localhost:1313/](http://localhost:1313/)
+2. navigate to the Vite proxy at [http://localhost:5173/](http://localhost:5173/)
+
+Hugo's livereload is disabled in development because the browser-facing server is Vite on port `5173`. Vite handles page reloads, while Hugo stays bound to `localhost:1313` behind the proxy.
 
 ### Production Build
 

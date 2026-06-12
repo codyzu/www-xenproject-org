@@ -15,7 +15,7 @@
     "build": "npm run clean && npm run research && npm run vite:build && npm run hugo:build",
     "vite:dev": "vite",
     "vite:build": "vite build",
-    "hugo:dev": "hugo server -D --logLevel debug --config hugo.yaml,hugo.dev.yaml --disableFastRender",
+    "hugo:dev": "hugo server -D --logLevel debug --config hugo.yaml,hugo.dev.yaml --disableFastRender --disableLiveReload",
     "hugo:build": "hugo --minify",
     "research": "node scripts/research/parse-research-papers.js",
     "lint": "xo",

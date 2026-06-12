@@ -4,8 +4,8 @@
 {{ partial "vite-asset.html" "hardware-status.js" }}
 
 */}}
-{{ $devServer := "http://localhost:5173/themes/xen-project/assets/js/vite/" }}
 {{ $isDev := not hugo.IsProduction }}
+{{ $devAssetPath := "/themes/xen-project/assets/js/vite/" }}
 
 {{/* Load and parse the manifest from /static/.vite/manifest.json */}}
 {{ $manifestPath := "themes/xen-project/static/.vite/manifest.json" }}
@@ -49,7 +49,7 @@
 
 {{ else if $isDev }}
   {{ if or (strings.HasSuffix $assetName ".js") (strings.HasSuffix $assetName ".tsx") }}
-    <script type="module" src="{{ printf "%s%s" $devServer $assetName }}" defer></script>
+    <script type="module" src="{{ printf "%s%s" $devAssetPath $assetName }}" defer></script>
   {{ else if strings.HasSuffix $assetName ".css" }}
     {{/* Skip CSS inclusion in development mode */}}
   {{ else }}
