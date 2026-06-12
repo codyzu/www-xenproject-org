@@ -50,7 +50,11 @@ outputFormats:
     isPlainText: true
     rel: "headerfooter"
     notAlternative: true
-  
+
+# markup:
+#   goldmark:
+#     renderer:
+#       unsafe: true  
 
 menus:
   main:
