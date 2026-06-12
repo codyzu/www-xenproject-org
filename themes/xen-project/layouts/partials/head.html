@@ -28,21 +28,26 @@
   {{ end }}
 
 
+  {{ $description := .Description | default (.Summary | default .Site.Params.description) }}
+  {{ $socialImage := .Params.socialImage | default (.Params.image | default .Site.Params.og_image) | default "/img/logo-xen.svg" }}
+  {{ $canonicalUrl := .Params.canonicalUrl | default .Permalink }}
+
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="{{ .Permalink }}" />
+  <meta property="og:url" content="{{ $canonicalUrl }}" />
   <meta property="og:title" content="{{ .Title }}" />
-  <meta property="og:description" content="{{ .Description }}" />
-  <meta property="og:image" content="{{ .Site.Params.og_image | default "/img/logo-xen.svg" | absURL }}" />
+  <meta property="og:description" content="{{ $description }}" />
+  <meta property="og:image" content="{{ $socialImage | absURL }}" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{{ .Title }}" />
-  <meta name="twitter:description" content="{{ .Description }}" />
+  <meta name="twitter:description" content="{{ $description }}" />
+  <meta name="twitter:image" content="{{ $socialImage | absURL }}" />
 
   <!-- Other important meta tags -->
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="{{ .Permalink }}" />
+  <link rel="canonical" href="{{ $canonicalUrl }}" />
   {{ partialCached "head/css.html" . }}
 
   {{/*

@@ -1,6 +1,8 @@
 ---
 title: "Xen Summit 2026"
-description: "Xen Summit 2026 will bring the Xen Project community together at the HEADS office in Munich, Germany from September 15–17, 2026."
+description: "Join the Xen Project community in Munich, Germany, September 15–17, 2026, for technical talks, design sessions, and collaboration."
+canonicalUrl: "https://xenproject.org/resources/summit-2026/"
+socialImage: "https://xenproject.org/img/others/xen-summit-2026/xen-summit-2026-1024px.png"
 keywords:
   - Xen Project
   - Xen Summit
