@@ -4,6 +4,8 @@ node_modules
 *storybook.log
 mockups
 storybook-static
+playwright-report
+tests/astro-results
 
 .DS_Store
 .env
