@@ -11,11 +11,3 @@
     <script src="{{ $js.RelPermalink }}"></script>
   {{- end }}
 {{- end }}
-
-{{- with resources.Get "js/mockup/mockup.js" }}
-  {{- if eq hugo.Environment "development" }}
-    {{- with . | js.Build }}
-      <script src="{{ .RelPermalink }}"></script>
-    {{- end }}
-  {{- end }}
-{{- end }}
