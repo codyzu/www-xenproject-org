@@ -1,0 +1,15 @@
+---
+type Props = {
+  title: string;
+  class?: string;
+};
+
+const {title, class: className = ''} = Astro.props;
+---
+
+<div class:list={['card', className]}>
+  <h3 class="card__label">{title}</h3>
+  <div class="card__content">
+    <slot />
+  </div>
+</div>

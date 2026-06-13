@@ -1,0 +1,59 @@
+---
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import 'uno.css';
+import '../../themes/xen-project/assets/css/main.scss';
+
+type Props = {
+  title: string;
+  description?: string;
+  keywords?: string[];
+};
+
+const {title, description = '', keywords = []} = Astro.props;
+const siteTitle = 'Xen Project';
+const pageTitle = title === siteTitle ? `${siteTitle} - Open Source Virtualization` : `${title} | ${siteTitle}`;
+const currentPath = Astro.url.pathname;
+const canonicalUrl = new URL(currentPath, Astro.site ?? 'https://beta.xenproject.org').toString();
+const socialImage = new URL('/img/logo-xen.svg', Astro.site ?? 'https://beta.xenproject.org').toString();
+---
+
+<!doctype html>
+<html lang="en-us" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <title>{pageTitle}</title>
+    {description && <meta name="description" content={description} />}
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(',  ')} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    {description && <meta property="og:description" content={description} />}
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    {description && <meta name="twitter:description" content={description} />}
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="stylesheet" href="/font-awesomepro/fontawesome.css" />
+    <link rel="stylesheet" href="/font-awesomepro/regular.css" />
+    <link rel="stylesheet" href="/font-awesomepro/solid.css" />
+    <link rel="stylesheet" href="/font-awesomepro/brands.css" />
+    <script is:inline>
+      window.siteParams = {blogapikey: 'aca0295269765205d553f5c953'};
+    </script>
+  </head>
+  <body>
+    <Header currentPath={currentPath} />
+    <main class="main">
+      <slot />
+    </main>
+    <Footer currentPath={currentPath} />
+  </body>
+</html>

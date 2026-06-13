@@ -1,0 +1,47 @@
+---
+import type {NavigationItem} from '../data/navigation';
+
+type Props = {
+  items: NavigationItem[];
+  currentPath: string;
+  isFooter?: boolean;
+};
+
+const {items, currentPath, isFooter = false} = Astro.props;
+
+const shouldDisplay = (item: NavigationItem) => (isFooter ? item.footer !== false : item.header !== false);
+const normalize = (href: string) => {
+  if (href.startsWith('http')) {
+    return href;
+  }
+
+  if (href === '/') {
+    return href;
+  }
+
+  return href.endsWith('/') ? href : `${href}/`;
+};
+
+const isActive = (item: NavigationItem) => normalize(item.href) === normalize(currentPath);
+const hasActiveChild = (item: NavigationItem): boolean => item.children?.some((child) => isActive(child) || hasActiveChild(child)) ?? false;
+---
+
+{
+  items.filter(shouldDisplay).map((item) => (
+    <li>
+      <a
+        href={item.href}
+        target={item.target}
+        class:list={[isActive(item) && 'active', !isActive(item) && hasActiveChild(item) && 'ancestor']}
+        aria-current={isActive(item) ? 'page' : hasActiveChild(item) ? 'true' : undefined}
+      >
+        {item.name}
+      </a>
+      {item.children && item.children.length > 0 && (
+        <ul>
+          <Astro.self items={item.children} currentPath={currentPath} isFooter={isFooter} />
+        </ul>
+      )}
+    </li>
+  ))
+}

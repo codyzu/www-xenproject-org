@@ -1,0 +1,72 @@
+---
+import {navigationItems} from '../data/navigation';
+import Menu from './Menu.astro';
+import Socials from './Socials.astro';
+
+type Props = {
+  currentPath: string;
+};
+
+const {currentPath} = Astro.props;
+---
+
+<footer class="footer" id="footer">
+  <div class="footer-content container">
+    <div class="footer__text">
+      <div class="footer__col">
+        <h3>About Xen Project</h3>
+        <p class="p1-book">
+          The mission of the Xen Project is to advance virtualization technology across a wide range of commercial and
+          open-source domains.
+        </p>
+        <Socials class="socials-footer" />
+      </div>
+
+      <div class="footer__col">
+        <h3>A Linux Foundation Project</h3>
+        <p class="p1-book">
+          The Linux Foundation provides a neutral, trusted hub for developers to code, manage, and scale open technology
+          projects.
+        </p>
+        <div>
+          <p>
+            <a href="https://www.linuxfoundation.org/">
+              Visit the Linux Foundation <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </p>
+          <p>
+            <a href="https://www.linuxfoundation.org/legal/privacy-policy">
+              Privacy Policy <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </p>
+          <p>
+            <a href="https://www.linuxfoundation.org/legal/trademark-usage">
+              Terms of Use <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__menu">
+      <ul>
+        <Menu items={navigationItems} currentPath={currentPath} isFooter />
+      </ul>
+    </div>
+
+    <div class="uno-text-center uno-text-xs mg-t-lg">
+      xenproject.org © 2025 by
+      <a href="https://xenproject.org">Xen Project</a>
+      is licensed under
+      <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+      <img
+        src="https://mirrors.creativecommons.org/presskit/icons/cc.svg"
+        style="max-width: 1em;max-height:1em;margin-left: .2em;"
+      />
+      <img
+        src="https://mirrors.creativecommons.org/presskit/icons/by.svg"
+        style="max-width: 1em;max-height:1em;margin-left: .2em;"
+      />
+    </div>
+  </div>
+</footer>

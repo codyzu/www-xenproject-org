@@ -15,7 +15,7 @@ export default defineConfig({
   transformers: [transformerVariantGroup()],
   content: {
     pipeline: {
-      include: [/\.(js|jsx|ts|tsx|html|md)($|\?)/, './themes/xen-project/layouts/**/*.html'],
+      include: [/\.(astro|js|jsx|ts|tsx|html|md)($|\?)/, './themes/xen-project/layouts/**/*.html'],
     },
   },
   theme: {

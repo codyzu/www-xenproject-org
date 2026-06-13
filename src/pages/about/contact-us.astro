@@ -1,0 +1,48 @@
+---
+import Card from '../../components/Card.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Contact us';
+const description = 'Contact Xen Project for inquiries, support, and collaboration opportunities. Reach out to our team and join the conversation in our community forums.';
+const keywords = [
+  'Xen Project',
+  'contact',
+  'inquiries',
+  'support',
+  'collaboration',
+  'forums',
+  'communication',
+  'help',
+  'community engagement',
+];
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <article class="article">
+    <div class="container page-top">
+      <h1>{title}</h1>
+      <div class="description">{description}</div>
+    </div>
+
+    <div class="single-content">
+      <section class="section-space">
+        <div class="container">
+          <div class="row row-from-list" style="--cols:3">
+            <Card title="Development" class="card--bg">
+              For development questions, please begin by asking on the <a href="/resources/mailing-lists">mailing lists</a> or
+              <a href="/resources/matrix">Matrix</a>. These are generally the fastest ways to get an answer.
+            </Card>
+            <Card title="GDPR" class="card--bg">
+              For GDPR requests, please contact <a href="mailto:gdpr@xenproject.org">gdpr@xenproject.org</a>
+            </Card>
+            <Card title="Other" class="card--bg">
+              For all other questions, please contact <a href="mailto:community.manager@xenproject.org">
+                community.manager@xenproject.org
+              </a>
+            </Card>
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

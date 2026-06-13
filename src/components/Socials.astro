@@ -1,0 +1,26 @@
+---
+type Props = {
+  class?: string;
+};
+
+const {class: className = ''} = Astro.props;
+
+const socials = [
+  {href: 'https://www.twitter.com/xen_org', icon: 'fab fa-twitter'},
+  {href: 'https://www.linkedin.com/company/the-xen-project/', icon: 'fab fa-linkedin-in'},
+  {href: 'https://www.youtube.com/@Xen_Project', icon: 'fab fa-youtube'},
+  {href: 'https://matrix.to/#/#XenProject:matrix.org', icon: 'fas fa-comments'},
+];
+---
+
+<ul class:list={['socials', className]}>
+  {
+    socials.map((item) => (
+      <li>
+        <a href={item.href} target="_blank" rel="noopener noreferrer">
+          <i class={item.icon} />
+        </a>
+      </li>
+    ))
+  }
+</ul>

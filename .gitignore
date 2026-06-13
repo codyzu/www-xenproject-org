@@ -4,6 +4,8 @@ node_modules
 *storybook.log
 mockups
 storybook-static
+.astro
+dist-astro
 playwright-report
 tests/astro-results
 

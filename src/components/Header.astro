@@ -1,0 +1,30 @@
+---
+import {navigationItems} from '../data/navigation';
+import Menu from './Menu.astro';
+import Socials from './Socials.astro';
+
+type Props = {
+  currentPath: string;
+};
+
+const {currentPath} = Astro.props;
+---
+
+<header class="header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <a href="/">
+        <img src="/img/logo-xen-reverse.svg" alt="Xen-Project" />
+      </a>
+    </div>
+    <button class="menu-toggle" title="Toggle menu"></button>
+    <div class="header-content" data-menu-title="Menu">
+      <nav class="header-nav">
+        <ul class="menu">
+          <Menu items={navigationItems} currentPath={currentPath} />
+        </ul>
+      </nav>
+      <Socials />
+    </div>
+  </div>
+</header>
