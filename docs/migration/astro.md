@@ -38,6 +38,52 @@ Add an `astro/` or `src/` Astro app that can build selected routes into the same
 
 The key rule: **every phase should produce a deployable site**.
 
+## Current Progress
+
+Completed on the `astro-spike` branch:
+
+- Added Astro as an additive sibling build.
+- Added Astro scripts for dev, build, preview, and type checking.
+- Added Playwright visual smoke coverage for `/about/contact-us/`.
+- Captured the Hugo/Vite screenshot baseline and removed the old debug toolbar
+  before stabilizing the baseline.
+- Ported the shared page shell to Astro:
+  - base layout
+  - head metadata
+  - header
+  - footer
+  - recursive menu rendering
+  - socials
+  - card component
+- Migrated `/about/contact-us/` as the first Astro route.
+- Added neutral YAML navigation data at `data/navigation.yaml`.
+- Added schema validation for navigation data in `src/data/navigation.ts`.
+- Added an allowlisted overlay script so `npm run build:astro-spike` builds the
+  Hugo/Vite site first, builds Astro second, then copies only migrated Astro
+  routes into `public/`.
+- Added `npm run test:astro:smoke:public`, which starts `serve public` through
+  Playwright and runs the screenshot smoke test against the integrated artifact.
+- Documented the spike workflow in `README.md` and agent guardrails in
+  `AGENTS.md`.
+
+Partially complete:
+
+- Phase 0 guardrails are started with a screenshot baseline and a repeatable
+  smoke test, but there is not yet a broad link checker or visual smoke list for
+  the highest-value pages.
+- Phase 3 is started with the shared shell and metadata, but aside rendering,
+  RSS, and full Hugo metadata parity still need work.
+- Phase 5 is started with `/about/contact-us/`, but the next low-risk pages have
+  not been migrated yet.
+
+Not started:
+
+- React island migration.
+- Common shortcode/component library beyond `Card.astro`.
+- Data-driven Astro sections.
+- Astro ownership flip.
+- Hugo removal.
+
 ## Phase 0: Baseline And Guardrails
 
 Goal: make sure migration work can be compared safely.
@@ -266,17 +312,18 @@ Acceptance criteria:
 - **UnoCSS scanning:** the current Vite entry imports Markdown and layout files as raw strings so UnoCSS sees classes. Astro needs an explicit content scan configuration for `.astro`, `.mdx`, `.md`, `.tsx`, and any legacy content during transition.
 - **Generated assets:** Vite currently writes built assets into the Hugo theme. Astro should own asset hashing directly once pages move.
 
-## Suggested First Implementation Spike
+## Completed First Implementation Spike
 
 Build a tiny Astro sibling app that migrates exactly one route: `/about/contact-us/`.
 
 Scope:
 
-- Add Astro config and scripts.
-- Add shared layout, head, header, footer, and CSS import.
-- Add `ContactUs` page using Astro components for `Section`, `RowFromList`, and `Card`.
-- Build Astro into a temporary output directory such as `dist-astro/` to avoid changing the current production artifact.
-- Compare output visually and with a link check.
+- Add Astro config and scripts. **Done.**
+- Add shared layout, head, header, footer, and CSS import. **Done.**
+- Add `ContactUs` page using Astro components for `Section`, `RowFromList`, and `Card`. **Done.**
+- Build Astro into a temporary output directory such as `dist-astro/` to avoid changing the current production artifact. **Done.**
+- Compare output visually and with a link check. **Partially done:** screenshot
+  smoke testing is in place, but a broader link check has not been added.
 
 This spike should answer the important practical questions without committing the whole repo to the migration.
 
@@ -289,7 +336,10 @@ Verified on 2026-06-15:
 - `npm run build` passes for the existing Hugo/Vite production path.
 - `npm run astro:build` passes and outputs the Astro spike route to `dist-astro/`.
 - `npm run astro:check` passes with no diagnostics.
-- `PLAYWRIGHT_BASE_URL=http://127.0.0.1:4321 npx playwright test --config playwright.astro.config.ts` passes against `npm run astro:preview`.
+- `npm run build:astro-spike` passes and overlays the migrated Astro route into
+  `public/`.
+- `npm run test:astro:smoke:public` passes against the integrated `public/`
+  artifact.
 
 Current result:
 
@@ -297,6 +347,8 @@ Current result:
 - `/about/contact-us/` is a real migrated route with a screenshot smoke test.
 - The screenshot comparison is stable after removing the old debug toolbar from the Hugo baseline.
 - The remaining build noise is Sass deprecation output from the existing theme styles, not a spike blocker.
+- Hugo source pages remain in place during the spike so Hugo can continue to
+  construct complete menus from `hugo.yaml` and content frontmatter.
 
 ## Navigation Data Status
 
