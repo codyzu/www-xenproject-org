@@ -26,7 +26,7 @@ type Frontmatter = {
   aside?: AsideResource[];
   hidePageHeader?: boolean;
   asidePosition?: 'before' | 'after';
-  contentMode?: 'wrapped' | 'raw';
+  wrapContent?: boolean;
 };
 
 const {
@@ -36,7 +36,7 @@ const {
   aside = [],
   hidePageHeader = false,
   asidePosition = 'before',
-  contentMode = 'wrapped',
+  wrapContent = true,
 } = Astro.props.frontmatter as Frontmatter;
 
 const hasAside = aside.length > 0;
@@ -56,14 +56,14 @@ const hasAside = aside.length > 0;
 
     <div class="single-content">
       {
-        contentMode === 'raw' ? (
-          <slot />
-        ) : (
+        wrapContent ? (
           <section class="section-space content-markdown">
             <div class="container">
               <slot />
             </div>
           </section>
+        ) : (
+          <slot />
         )
       }
     </div>
