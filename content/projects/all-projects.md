@@ -74,7 +74,7 @@ With diverse backgrounds and expertise, members actively contribute to Xen's evo
 Get started
 arrow-right
   <p class="mg-t-md">
-    <a href="contribute/get-started)" class="btn btn-secondary">
+    <a href="/contribute/get-started/" class="btn btn-secondary">
      Get started <i class="fas fa-arrow-right"></i>
     </a>
   </p>

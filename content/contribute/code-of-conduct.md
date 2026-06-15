@@ -37,7 +37,7 @@ We pledge to act and interact in ways that contribute to an open, welcoming, div
 
 ## Our Standards
 
-We believe that a Code of Conduct can help create a harassment-free environment, but is not sufficient to create a welcoming environment on its own: guidance on creating a welcoming environment, how to communicate in an effective and friendly way, etc. can be found [here](communication-guide.html).
+We believe that a Code of Conduct can help create a harassment-free environment, but is not sufficient to create a welcoming environment on its own: guidance on creating a welcoming environment, how to communicate in an effective and friendly way, etc. can be found [here](https://xenbits.xenproject.org/governance/communication-guide.html).
 
 Examples of behavior that contributes to a positive environment include:
 

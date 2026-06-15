@@ -26,6 +26,7 @@
     "research": "node scripts/research/parse-research-papers.js",
     "test:astro:smoke": "playwright test --config playwright.astro.config.ts",
     "test:astro:smoke:public": "PLAYWRIGHT_START_SERVER=1 playwright test --config playwright.astro.config.ts",
+    "test:astro:links": "node scripts/astro/check-public-artifact.js",
     "test:astro:smoke:hugo-baseline": "PLAYWRIGHT_BASE_URL=http://127.0.0.1:5173 playwright test --config playwright.astro.config.ts --update-snapshots",
     "test:astro:smoke:update": "playwright test --config playwright.astro.config.ts --update-snapshots",
     "lint": "xo",
