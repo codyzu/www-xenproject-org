@@ -59,6 +59,7 @@ Completed on the `astro-spike` branch:
 - Migrated `/about/contact-us/` as the first Astro route.
 - Migrated `/contribute/code-of-conduct/` and
   `/contribute/contribution-guidelines/` as MDX content routes.
+- Migrated `/resources/matrix/` as an MDX content route.
 - Added neutral YAML navigation data at `data/navigation.yaml`.
 - Added schema validation for navigation data in `src/data/navigation.ts`.
 - Removed the draft template page from neutral navigation so Astro output
@@ -79,9 +80,9 @@ Partially complete:
 - Phase 3 is started with the shared shell, metadata, and resource aside
   rendering, but RSS and full Hugo metadata parity still need work.
 - Phase 5 is started with `/about/contact-us/`,
-  `/contribute/code-of-conduct/`, and
-  `/contribute/contribution-guidelines/`, but more low-risk pages still need to
-  move before this is a repeatable migration lane.
+  `/contribute/code-of-conduct/`, `/contribute/contribution-guidelines/`, and
+  `/resources/matrix/`, but more low-risk pages still need to move before this
+  is a repeatable migration lane.
 
 Not started:
 
@@ -232,7 +233,7 @@ Good first candidates:
 
 - `/about/contact-us/` **Done as `.astro`.**
 - `/more/xen-branding/`
-- `/resources/matrix/`
+- `/resources/matrix/` **Done as `.mdx`.**
 - `/contribute/code-of-conduct/` **Done as `.mdx`.**
 - `/contribute/contribution-guidelines/` **Done as `.mdx`.**
 - `/projects/hvmi/`
@@ -352,8 +353,9 @@ Verified on 2026-06-15:
 Current result:
 
 - Astro can coexist with the existing Hugo/Vite pipeline without replacing production output.
-- `/about/contact-us/`, `/contribute/code-of-conduct/`, and
-  `/contribute/contribution-guidelines/` are real migrated routes with
+- `/about/contact-us/`, `/contribute/code-of-conduct/`,
+  `/contribute/contribution-guidelines/`, and `/resources/matrix/` are real
+  migrated routes with
   screenshot smoke tests.
 - The screenshot comparison is stable after removing the old debug toolbar from the Hugo baseline.
 - The remaining build noise is Sass deprecation output from the existing theme styles, not a spike blocker.

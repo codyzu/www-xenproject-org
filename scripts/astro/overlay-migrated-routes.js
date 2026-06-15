@@ -10,6 +10,7 @@ const migratedRoutes = [
   '/about/contact-us/',
   '/contribute/code-of-conduct/',
   '/contribute/contribution-guidelines/',
+  '/resources/matrix/',
 ];
 
 const generatedAssetDirectories = [
