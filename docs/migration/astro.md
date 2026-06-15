@@ -232,7 +232,7 @@ Goal: migrate pages that do not depend heavily on Hugo data APIs.
 Good first candidates:
 
 - `/about/contact-us/` **Done as `.astro`.**
-- `/more/xen-branding/`
+- `/more/xen-branding/` **Done as `.mdx`.**
 - `/resources/matrix/` **Done as `.mdx`.**
 - `/contribute/code-of-conduct/` **Done as `.mdx`.**
 - `/contribute/contribution-guidelines/` **Done as `.mdx`.**
