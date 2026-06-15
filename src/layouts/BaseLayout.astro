@@ -56,5 +56,8 @@ const socialImage = new URL('/img/logo-xen.svg', Astro.site ?? 'https://beta.xen
       <slot />
     </main>
     <Footer currentPath={currentPath} />
+    <script>
+      import '../../themes/xen-project/assets/js/menu.js';
+    </script>
   </body>
 </html>

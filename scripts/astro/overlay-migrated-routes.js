@@ -1,18 +1,11 @@
 import {cp, rm} from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import {migratedRoutes} from './migrated-routes.ts';
 
 const projectRoot = process.cwd();
 const astroOutputDirectory = path.join(projectRoot, 'dist-astro');
 const publicDirectory = path.join(projectRoot, 'public');
-
-const migratedRoutes = [
-  '/about/contact-us/',
-  '/contribute/code-of-conduct/',
-  '/contribute/contribution-guidelines/',
-  '/more/xen-branding/',
-  '/resources/matrix/',
-];
 
 const generatedAssetDirectories = [
   '_astro',
