@@ -300,10 +300,10 @@ Current result:
 
 ## Navigation Data Status
 
-Astro migrated pages now read navigation from `data/navigation.json` through the
-typed adapter in `src/data/navigation.ts`. This keeps the route shell from
-depending on Astro-specific menu data while avoiding a new YAML parser dependency
-in the spike.
+Astro migrated pages now read navigation from `data/navigation.yaml` through the
+typed adapter in `src/data/navigation.ts`. The adapter parses YAML with
+`js-yaml` and validates the recursive menu structure with Zod, so malformed
+navigation data fails during Astro checks/builds instead of rendering silently.
 
 Hugo still uses `hugo.yaml` and page frontmatter for production menus. Keep that
 in place until there is a concrete need to make Hugo consume the neutral

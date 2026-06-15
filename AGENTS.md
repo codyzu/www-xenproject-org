@@ -13,8 +13,8 @@ incrementally.
   spike work unless explicitly requested.
 - Migrate pages route-by-route and preserve existing URLs.
 - Prefer shared data sources over duplicating Hugo and Astro configuration.
-- Navigation data for migrated Astro pages lives in `data/navigation.json`, with
-  `src/data/navigation.ts` acting as the typed Astro adapter.
+- Navigation data for migrated Astro pages lives in `data/navigation.yaml`, with
+  `src/data/navigation.ts` acting as the typed and schema-validated Astro adapter.
 
 ## Astro Page Choices
 
