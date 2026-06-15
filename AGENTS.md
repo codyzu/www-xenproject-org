@@ -49,11 +49,8 @@ npm run test:astro:smoke:public
 ```
 
 `test:astro:smoke:public` starts `serve public` through Playwright's `webServer`
-configuration. It defaults to `http://127.0.0.1:4321`; set
-`PLAYWRIGHT_BASE_URL` to use another port. It does not reuse an existing local
-server by default because that could test an Astro dev server instead of
-`public/`; set `PLAYWRIGHT_REUSE_SERVER=1` only when you know the existing server
-is serving the integrated artifact.
+configuration on `http://127.0.0.1:4321`. Stop any other local server on that
+port before running the public smoke test.
 
 Known acceptable noise:
 

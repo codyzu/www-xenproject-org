@@ -328,8 +328,5 @@ artifact.
 
 Use `npm run test:astro:smoke:public` to run the screenshot smoke test against
 the integrated `public/` artifact. The Playwright config starts `serve public`
-automatically. It defaults to `http://127.0.0.1:4321`; set
-`PLAYWRIGHT_BASE_URL` when that port is already in use. Existing local servers
-are not reused by default, to avoid accidentally testing an Astro dev server
-instead of `public/`; set `PLAYWRIGHT_REUSE_SERVER=1` only when the existing
-server is known to be serving the integrated artifact.
+automatically on `http://127.0.0.1:4321`. Stop any other local server on that
+port before running the public smoke test.
