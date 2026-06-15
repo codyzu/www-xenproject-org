@@ -44,9 +44,16 @@ npm run lint
 For visual smoke testing:
 
 ```sh
-npm run astro:preview
-PLAYWRIGHT_BASE_URL=http://127.0.0.1:4321 npx playwright test --config playwright.astro.config.ts
+npm run build:astro-spike
+npm run test:astro:smoke:public
 ```
+
+`test:astro:smoke:public` starts `serve public` through Playwright's `webServer`
+configuration. It defaults to `http://127.0.0.1:4321`; set
+`PLAYWRIGHT_BASE_URL` to use another port. It does not reuse an existing local
+server by default because that could test an Astro dev server instead of
+`public/`; set `PLAYWRIGHT_REUSE_SERVER=1` only when you know the existing server
+is serving the integrated artifact.
 
 Known acceptable noise:
 

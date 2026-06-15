@@ -325,3 +325,11 @@ Use `npm run build:astro-spike` to build the integrated artifact:
 This deliberately avoids a broad `dist-astro/*` copy. The overlay allowlist is
 the temporary source of truth for which routes Astro replaces in the final spike
 artifact.
+
+Use `npm run test:astro:smoke:public` to run the screenshot smoke test against
+the integrated `public/` artifact. The Playwright config starts `serve public`
+automatically. It defaults to `http://127.0.0.1:4321`; set
+`PLAYWRIGHT_BASE_URL` when that port is already in use. Existing local servers
+are not reused by default, to avoid accidentally testing an Astro dev server
+instead of `public/`; set `PLAYWRIGHT_REUSE_SERVER=1` only when the existing
+server is known to be serving the integrated artifact.
