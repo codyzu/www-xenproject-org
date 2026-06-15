@@ -57,9 +57,12 @@ Completed on the `astro-spike` branch:
   - card component
 - Added a reusable MDX content layout with resource aside support.
 - Migrated `/about/contact-us/` as the first Astro route.
-- Migrated `/contribute/code-of-conduct/` as the first MDX content route.
+- Migrated `/contribute/code-of-conduct/` and
+  `/contribute/contribution-guidelines/` as MDX content routes.
 - Added neutral YAML navigation data at `data/navigation.yaml`.
 - Added schema validation for navigation data in `src/data/navigation.ts`.
+- Removed the draft template page from neutral navigation so Astro output
+  matches Hugo production menus.
 - Added an allowlisted overlay script so `npm run build:astro-spike` builds the
   Hugo/Vite site first, builds Astro second, then copies only migrated Astro
   routes into `public/`.
@@ -75,9 +78,10 @@ Partially complete:
   the highest-value pages.
 - Phase 3 is started with the shared shell, metadata, and resource aside
   rendering, but RSS and full Hugo metadata parity still need work.
-- Phase 5 is started with `/about/contact-us/` and
-  `/contribute/code-of-conduct/`, but more low-risk pages still need to move
-  before this is a repeatable migration lane.
+- Phase 5 is started with `/about/contact-us/`,
+  `/contribute/code-of-conduct/`, and
+  `/contribute/contribution-guidelines/`, but more low-risk pages still need to
+  move before this is a repeatable migration lane.
 
 Not started:
 
@@ -230,7 +234,7 @@ Good first candidates:
 - `/more/xen-branding/`
 - `/resources/matrix/`
 - `/contribute/code-of-conduct/` **Done as `.mdx`.**
-- `/contribute/contribution-guidelines/`
+- `/contribute/contribution-guidelines/` **Done as `.mdx`.**
 - `/projects/hvmi/`
 
 Tasks:
@@ -338,7 +342,7 @@ Estimated effort: **1 to 2 focused days** for the spike, assuming no package ins
 Verified on 2026-06-15:
 
 - `npm run build` passes for the existing Hugo/Vite production path.
-- `npm run astro:build` passes and outputs the Astro spike route to `dist-astro/`.
+- `npm run astro:build` passes and outputs Astro spike routes to `dist-astro/`.
 - `npm run astro:check` passes with no diagnostics.
 - `npm run build:astro-spike` passes and overlays the migrated Astro route into
   `public/`.
@@ -348,7 +352,9 @@ Verified on 2026-06-15:
 Current result:
 
 - Astro can coexist with the existing Hugo/Vite pipeline without replacing production output.
-- `/about/contact-us/` is a real migrated route with a screenshot smoke test.
+- `/about/contact-us/`, `/contribute/code-of-conduct/`, and
+  `/contribute/contribution-guidelines/` are real migrated routes with
+  screenshot smoke tests.
 - The screenshot comparison is stable after removing the old debug toolbar from the Hugo baseline.
 - The remaining build noise is Sass deprecation output from the existing theme styles, not a spike blocker.
 - Hugo source pages remain in place during the spike so Hugo can continue to
