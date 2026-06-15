@@ -1,0 +1,58 @@
+---
+import AsideLink from './AsideLink.astro';
+
+type AsideLink = {
+  name: string;
+  link?: string;
+  icon?: string;
+};
+
+type AsideResourceGroup = {
+  title?: string;
+  items: AsideLink[];
+};
+
+type AsideResource = {
+  type: 'resource';
+  name?: string;
+  items: Array<AsideLink | AsideResourceGroup>;
+};
+
+type Props = {
+  items?: AsideResource[];
+};
+
+const {items = []} = Astro.props;
+
+const isResourceGroup = (item: AsideLink | AsideResourceGroup): item is AsideResourceGroup => 'items' in item;
+---
+
+{
+  items.length > 0 && (
+    <aside class="page-aside">
+      {items.map((aside) => (
+        aside.type === 'resource' && (
+          <div class="box-resources">
+            <h3 class="box-resources__title">{aside.name ?? 'Resources'}</h3>
+            <ul>
+              {aside.items.map((item) => (
+                isResourceGroup(item) ? (
+                  <li>
+                    {item.title && <h4>{item.title}</h4>}
+                    <ul>
+                      {item.items.map((linkItem) => (
+                        <AsideLink {...linkItem} />
+                      ))}
+                    </ul>
+                  </li>
+                ) : (
+                  <AsideLink {...item} />
+                )
+              ))}
+            </ul>
+          </div>
+        )
+      ))}
+    </aside>
+  )
+}

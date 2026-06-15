@@ -1,0 +1,26 @@
+---
+type Props = {
+  name: string;
+  link?: string;
+  icon?: string;
+};
+
+const {name, link, icon} = Astro.props;
+const isExternalLink = (href: string) => !href.startsWith('/') && !href.startsWith('./');
+---
+
+<li>
+  {
+    link ? (
+      <a href={link} target={isExternalLink(link) ? '_blank' : undefined} class="btn btn-tertiary">
+        {name}
+        <i class={icon ?? 'fas fa-arrow-up-right-from-square'} />
+      </a>
+    ) : (
+      <span>
+        {name}
+        {icon && <i class={icon} />}
+      </span>
+    )
+  }
+</li>

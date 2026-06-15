@@ -8,6 +8,7 @@ const publicDirectory = path.join(projectRoot, 'public');
 
 const migratedRoutes = [
   '/about/contact-us/',
+  '/contribute/code-of-conduct/',
 ];
 
 const generatedAssetDirectories = [

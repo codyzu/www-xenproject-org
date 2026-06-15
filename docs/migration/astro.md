@@ -55,7 +55,9 @@ Completed on the `astro-spike` branch:
   - recursive menu rendering
   - socials
   - card component
+- Added a reusable MDX content layout with resource aside support.
 - Migrated `/about/contact-us/` as the first Astro route.
+- Migrated `/contribute/code-of-conduct/` as the first MDX content route.
 - Added neutral YAML navigation data at `data/navigation.yaml`.
 - Added schema validation for navigation data in `src/data/navigation.ts`.
 - Added an allowlisted overlay script so `npm run build:astro-spike` builds the
@@ -71,15 +73,17 @@ Partially complete:
 - Phase 0 guardrails are started with a screenshot baseline and a repeatable
   smoke test, but there is not yet a broad link checker or visual smoke list for
   the highest-value pages.
-- Phase 3 is started with the shared shell and metadata, but aside rendering,
-  RSS, and full Hugo metadata parity still need work.
-- Phase 5 is started with `/about/contact-us/`, but the next low-risk pages have
-  not been migrated yet.
+- Phase 3 is started with the shared shell, metadata, and resource aside
+  rendering, but RSS and full Hugo metadata parity still need work.
+- Phase 5 is started with `/about/contact-us/` and
+  `/contribute/code-of-conduct/`, but more low-risk pages still need to move
+  before this is a repeatable migration lane.
 
 Not started:
 
 - React island migration.
-- Common shortcode/component library beyond `Card.astro`.
+- Common shortcode/component library beyond `Card.astro` and the prose-content
+  MDX layout.
 - Data-driven Astro sections.
 - Astro ownership flip.
 - Hugo removal.
@@ -222,10 +226,10 @@ Goal: migrate pages that do not depend heavily on Hugo data APIs.
 
 Good first candidates:
 
-- `/about/contact-us/`
+- `/about/contact-us/` **Done as `.astro`.**
 - `/more/xen-branding/`
 - `/resources/matrix/`
-- `/contribute/code-of-conduct/`
+- `/contribute/code-of-conduct/` **Done as `.mdx`.**
 - `/contribute/contribution-guidelines/`
 - `/projects/hvmi/`
 

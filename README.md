@@ -34,7 +34,7 @@ To run the visual smoke test against the integrated artifact:
 1. make sure nothing else is running on `127.0.0.1:4321`
 1. `npm run test:astro:smoke:public`
 
-Playwright starts `serve public` on `http://127.0.0.1:4321`, snapshots `/about/contact-us/`, and compares it to the checked-in baseline.
+Playwright starts `serve public` on `http://127.0.0.1:4321`, snapshots migrated routes such as `/about/contact-us/` and `/contribute/code-of-conduct/`, and compares them to the checked-in Hugo baselines.
 
 To regenerate the Hugo/Vite baseline screenshot, run the dev server first:
 

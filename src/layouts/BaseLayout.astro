@@ -8,9 +8,10 @@ type Props = {
   title: string;
   description?: string;
   keywords?: string[];
+  hasAside?: boolean;
 };
 
-const {title, description = '', keywords = []} = Astro.props;
+const {title, description = '', keywords = [], hasAside = false} = Astro.props;
 const siteTitle = 'Xen Project';
 const pageTitle = title === siteTitle ? `${siteTitle} - Open Source Virtualization` : `${title} | ${siteTitle}`;
 const currentPath = Astro.url.pathname;
@@ -51,7 +52,7 @@ const socialImage = new URL('/img/logo-xen.svg', Astro.site ?? 'https://beta.xen
   </head>
   <body>
     <Header currentPath={currentPath} />
-    <main class="main">
+    <main class:list={['main', hasAside && 'has-aside']}>
       <slot />
     </main>
     <Footer currentPath={currentPath} />
