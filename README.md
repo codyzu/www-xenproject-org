@@ -18,14 +18,30 @@
 
 Hugo's livereload is disabled in development because the browser-facing server is Vite on port `5173`. Vite handles page reloads, while Hugo stays bound to `localhost:1313` behind the proxy.
 
-### Astro spike visual baseline
+### Astro migration spike
 
-The Astro migration spike uses Playwright to snapshot `/about/contact-us/`. To generate the current Hugo/Vite baseline, run the dev server first:
+The Astro migration spike keeps Hugo/Vite as the main production build, then overlays allowlisted Astro routes into `public/`.
+
+To build the integrated spike artifact:
+
+1. `npm run build:astro-spike`
+1. output is written to `/public`
+
+That command runs the existing Hugo/Vite production build, builds Astro into `dist-astro/`, then copies only migrated Astro routes and generated Astro assets into `public/`.
+
+To run the visual smoke test against the integrated artifact:
+
+1. make sure nothing else is running on `127.0.0.1:4321`
+1. `npm run test:astro:smoke:public`
+
+Playwright starts `serve public` on `http://127.0.0.1:4321`, snapshots `/about/contact-us/`, and compares it to the checked-in baseline.
+
+To regenerate the Hugo/Vite baseline screenshot, run the dev server first:
 
 1. `npm run dev`
 1. In another terminal, `npm run test:astro:smoke:hugo-baseline`
 
-The baseline command points Playwright at Vite's dev proxy on `http://127.0.0.1:5173` and updates the screenshot snapshot. Later Astro spike work can run `npm run test:astro:smoke` against the Astro dev or preview server.
+The baseline command points Playwright at Vite's dev proxy on `http://127.0.0.1:5173` and updates the screenshot snapshot.
 
 ### Production Build
 
