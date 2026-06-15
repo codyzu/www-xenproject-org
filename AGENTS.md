@@ -15,6 +15,9 @@ incrementally.
 - Prefer shared data sources over duplicating Hugo and Astro configuration.
 - Navigation data for migrated Astro pages lives in `data/navigation.yaml`, with
   `src/data/navigation.ts` acting as the typed and schema-validated Astro adapter.
+- During the spike, integrated output is built with `npm run build:astro-spike`.
+  It runs the existing Hugo/Vite production build, runs Astro, then overlays only
+  allowlisted migrated routes from `dist-astro/` into `public/`.
 
 ## Astro Page Choices
 
@@ -32,6 +35,7 @@ Before committing Astro spike work, run the relevant checks:
 
 ```sh
 npm run build
+npm run build:astro-spike
 npm run astro:build
 npm run astro:check
 npm run lint

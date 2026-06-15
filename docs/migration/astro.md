@@ -308,3 +308,20 @@ navigation data fails during Astro checks/builds instead of rendering silently.
 Hugo still uses `hugo.yaml` and page frontmatter for production menus. Keep that
 in place until there is a concrete need to make Hugo consume the neutral
 navigation file too.
+
+## Integrated Output Strategy
+
+During the spike, migrated pages keep their Hugo source files in place so Hugo
+continues to construct complete menus from `hugo.yaml` and content frontmatter.
+Astro owns the replacement page output only after Hugo has built the full site.
+
+Use `npm run build:astro-spike` to build the integrated artifact:
+
+1. `npm run build` generates the normal Hugo/Vite site in `public/`.
+2. `npm run astro:build` generates migrated Astro routes in `dist-astro/`.
+3. `scripts/astro/overlay-migrated-routes.js` copies only allowlisted migrated
+   route directories, plus generated Astro assets, into `public/`.
+
+This deliberately avoids a broad `dist-astro/*` copy. The overlay allowlist is
+the temporary source of truth for which routes Astro replaces in the final spike
+artifact.
