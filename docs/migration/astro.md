@@ -281,3 +281,19 @@ Scope:
 This spike should answer the important practical questions without committing the whole repo to the migration.
 
 Estimated effort: **1 to 2 focused days** for the spike, assuming no package installation or CI constraints. Full migration is likely **1 to 3 weeks** depending on how exact the visual parity needs to be and whether old shortcode-heavy pages are converted manually or redesigned as components.
+
+## Spike Verification Status
+
+Verified on 2026-06-15:
+
+- `npm run build` passes for the existing Hugo/Vite production path.
+- `npm run astro:build` passes and outputs the Astro spike route to `dist-astro/`.
+- `npm run astro:check` passes with no diagnostics.
+- `PLAYWRIGHT_BASE_URL=http://127.0.0.1:4321 npx playwright test --config playwright.astro.config.ts` passes against `npm run astro:preview`.
+
+Current result:
+
+- Astro can coexist with the existing Hugo/Vite pipeline without replacing production output.
+- `/about/contact-us/` is a real migrated route with a screenshot smoke test.
+- The screenshot comparison is stable after removing the old debug toolbar from the Hugo baseline.
+- The remaining build noise is Sass deprecation output from the existing theme styles, not a spike blocker.
