@@ -1,3 +1,5 @@
+import navigationData from '../../data/navigation.json';
+
 export type NavigationItem = {
   name: string;
   href: string;
@@ -7,73 +9,4 @@ export type NavigationItem = {
   children?: NavigationItem[];
 };
 
-export const navigationItems: NavigationItem[] = [
-  {
-    name: 'Projects',
-    href: '/projects/',
-    children: [
-      {name: 'All projects', href: '/projects/all-projects/'},
-      {name: 'Hypervisor', href: '/projects/hypervisor/'},
-      {name: 'Embedded & Automotive', href: '/projects/embedded-and-automotive/'},
-      {name: 'HVMI', href: '/projects/hvmi/'},
-      {name: 'Mirage OS', href: '/projects/mirage-os/'},
-      {name: 'Unikraft', href: '/projects/unikraft/'},
-      {name: 'Windows PV Drivers', href: '/projects/windows-pv-drivers/'},
-      {name: 'XAPI', href: '/projects/xapi/'},
-      {name: 'XCP-ng', href: '/projects/xcp-ng/'},
-    ],
-  },
-  {
-    name: 'Contribute',
-    href: '/contribute/',
-    children: [
-      {name: 'Get started', href: '/contribute/get-started/'},
-      {name: 'Contribution guidelines', href: '/contribute/contribution-guidelines/'},
-      {name: 'Continuous Integration', href: '/contribute/ci/'},
-      {name: 'CI status dashboard', href: '/contribute/ci/status/'},
-      {name: 'Xen Project Code of Conduct', href: '/contribute/code-of-conduct/'},
-    ],
-  },
-  {
-    name: 'Documentation',
-    href: 'https://wiki.xenproject.org/',
-    target: '_blank',
-    children: [],
-  },
-  {
-    name: 'Resources',
-    href: '/resources/',
-    children: [
-      {name: 'Use cases', href: '/resources/use-cases/'},
-      {name: 'Xen Summit 2026', href: '/resources/summit-2026/'},
-      {name: 'Academic Research', href: '/research/'},
-      {name: 'Downloads', href: '/resources/downloads/'},
-      {name: 'Blog', href: '/blog'},
-      {name: 'Matrix', href: '/resources/matrix/'},
-      {name: 'Past Events', href: '/resources/past-events/'},
-      {name: 'Join mailing lists', href: '/resources/mailing-lists/'},
-      {name: 'Title', href: '/template/'},
-    ],
-  },
-  {
-    name: 'About',
-    href: '/about',
-    children: [
-      {name: 'About Xen Project', href: '/about/'},
-      {name: 'Xen Project members', href: '/about/project-members/'},
-      {name: 'Become a member', href: '/about/become-a-member/'},
-      {name: 'Governance', href: '/about/governance/'},
-      {name: 'Security policy', href: '/about/security-policy/'},
-      {name: 'Contact us', href: '/about/contact-us/'},
-    ],
-  },
-  {
-    name: 'More',
-    href: '/more/',
-    header: false,
-    children: [
-      {name: 'Releases', href: '/blog/tag/releases/'},
-      {name: 'Xen Project branding', href: '/more/xen-branding/'},
-    ],
-  },
-];
+export const navigationItems = navigationData as NavigationItem[];

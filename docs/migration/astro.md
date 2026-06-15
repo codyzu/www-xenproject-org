@@ -297,3 +297,14 @@ Current result:
 - `/about/contact-us/` is a real migrated route with a screenshot smoke test.
 - The screenshot comparison is stable after removing the old debug toolbar from the Hugo baseline.
 - The remaining build noise is Sass deprecation output from the existing theme styles, not a spike blocker.
+
+## Navigation Data Status
+
+Astro migrated pages now read navigation from `data/navigation.json` through the
+typed adapter in `src/data/navigation.ts`. This keeps the route shell from
+depending on Astro-specific menu data while avoiding a new YAML parser dependency
+in the spike.
+
+Hugo still uses `hugo.yaml` and page frontmatter for production menus. Keep that
+in place until there is a concrete need to make Hugo consume the neutral
+navigation file too.
