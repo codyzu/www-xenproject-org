@@ -69,14 +69,24 @@ Completed on the `astro-spike` branch:
   routes into `public/`.
 - Added `npm run test:astro:smoke:public`, which starts `serve public` through
   Playwright and runs the screenshot smoke test against the integrated artifact.
+- Added shared navigation smoke coverage for desktop menu links, mobile menu
+  drilldown, keyboard submenu open/close, active navigation state, and migrated
+  route shell rendering.
+- Added `scripts/astro/migrated-routes.ts` as the shared source of truth for
+  Astro-owned routes during the spike.
+- Loaded the existing theme menu runtime from the Astro base layout so migrated
+  pages exercise the same header menu behavior as Hugo pages.
+- Updated local and GitLab CI runtime metadata to Node 24 LTS. GitLab CI now
+  runs on `node:24.16.0-bookworm`; Hugo is provided by the repo's
+  `hugo-extended` npm dependency instead of a Hugo-specific Docker image.
 - Documented the spike workflow in `README.md` and agent guardrails in
   `AGENTS.md`.
 
 Partially complete:
 
-- Phase 0 guardrails are started with a screenshot baseline and a repeatable
-  smoke test, but there is not yet a broad link checker or visual smoke list for
-  the highest-value pages.
+- Phase 0 guardrails are started with screenshot baselines, shared navigation
+  smoke coverage, and a repeatable smoke test, but there is not yet a broad
+  link checker or visual smoke list for the highest-value pages.
 - Phase 3 is started with the shared shell, metadata, and resource aside
   rendering, but RSS and full Hugo metadata parity still need work.
 - Phase 5 is started with `/about/contact-us/`,
@@ -101,6 +111,7 @@ Tasks:
 
 - Capture a production build snapshot from the current Hugo/Vite pipeline.
 - Add a link checker or crawler against `public/` for internal links, assets, canonical URLs, redirects, and 404 behavior.
+- Keep the shared header navigation smoke test passing for desktop, mobile, and keyboard submenu behavior. **Done for first-level menus.**
 - Add a visual smoke-test list for the highest-value pages:
   - `/`
   - `/about/`
@@ -332,7 +343,8 @@ Scope:
 - Add `ContactUs` page using Astro components for `Section`, `RowFromList`, and `Card`. **Done.**
 - Build Astro into a temporary output directory such as `dist-astro/` to avoid changing the current production artifact. **Done.**
 - Compare output visually and with a link check. **Partially done:** screenshot
-  smoke testing is in place, but a broader link check has not been added.
+  smoke testing and shared navigation smoke testing are in place, but a broader
+  link check has not been added.
 
 This spike should answer the important practical questions without committing the whole repo to the migration.
 
@@ -349,14 +361,18 @@ Verified on 2026-06-15:
   `public/`.
 - `npm run test:astro:smoke:public` passes against the integrated `public/`
   artifact.
+- GitLab CI is configured to run on Node 24 LTS with Hugo supplied by the
+  `hugo-extended` npm dependency.
 
 Current result:
 
 - Astro can coexist with the existing Hugo/Vite pipeline without replacing production output.
 - `/about/contact-us/`, `/contribute/code-of-conduct/`,
-  `/contribute/contribution-guidelines/`, and `/resources/matrix/` are real
-  migrated routes with
-  screenshot smoke tests.
+  `/contribute/contribution-guidelines/`, `/more/xen-branding/`, and
+  `/resources/matrix/` are real migrated routes with screenshot smoke tests.
+- Shared navigation tests now verify first-level menu links, mobile drilldown,
+  keyboard submenu behavior, active navigation state, and shell rendering for
+  every route listed in `scripts/astro/migrated-routes.ts`.
 - The screenshot comparison is stable after removing the old debug toolbar from the Hugo baseline.
 - The remaining build noise is Sass deprecation output from the existing theme styles, not a spike blocker.
 - Hugo source pages remain in place during the spike so Hugo can continue to
@@ -368,6 +384,10 @@ Astro migrated pages now read navigation from `data/navigation.yaml` through the
 typed adapter in `src/data/navigation.ts`. The adapter parses YAML with
 `js-yaml` and validates the recursive menu structure with Zod, so malformed
 navigation data fails during Astro checks/builds instead of rendering silently.
+
+The current menu is one submenu level deep. Playwright smoke coverage opens
+each first-level desktop and mobile menu section and verifies the expected link
+targets so navigation regressions are caught during route migrations.
 
 Hugo still uses `hugo.yaml` and page frontmatter for production menus. Keep that
 in place until there is a concrete need to make Hugo consume the neutral
@@ -388,9 +408,10 @@ Use `npm run build:astro-spike` to build the integrated artifact:
 
 This deliberately avoids a broad `dist-astro/*` copy. The overlay allowlist is
 the temporary source of truth for which routes Astro replaces in the final spike
-artifact.
+artifact, and it lives in `scripts/astro/migrated-routes.ts` so the overlay
+script and smoke tests read the same route list.
 
-Use `npm run test:astro:smoke:public` to run the screenshot smoke test against
-the integrated `public/` artifact. The Playwright config starts `serve public`
-automatically on `http://127.0.0.1:4321`. Stop any other local server on that
-port before running the public smoke test.
+Use `npm run test:astro:smoke:public` to run the screenshot and navigation
+smoke tests against the integrated `public/` artifact. The Playwright config
+starts `serve public` automatically on `http://127.0.0.1:4321`. Stop any other
+local server on that port before running the public smoke test.

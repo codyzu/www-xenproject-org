@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- Node.js (includes npm), see [.nvmrc](/.nvmrc) for version
+- Node.js 24 LTS (includes npm), see [.nvmrc](/.nvmrc) for the exact version
 
 ### Install
 
@@ -21,6 +21,7 @@ Hugo's livereload is disabled in development because the browser-facing server i
 ### Astro migration spike
 
 The Astro migration spike keeps Hugo/Vite as the main production build, then overlays allowlisted Astro routes into `public/`.
+The current migrated route allowlist lives in [`scripts/astro/migrated-routes.ts`](scripts/astro/migrated-routes.ts).
 
 To build the integrated spike artifact:
 
@@ -35,6 +36,12 @@ To run the visual smoke test against the integrated artifact:
 1. `npm run test:astro:smoke:public`
 
 Playwright starts `serve public` on `http://127.0.0.1:4321`, snapshots migrated routes such as `/about/contact-us/`, `/contribute/code-of-conduct/`, `/contribute/contribution-guidelines/`, `/more/xen-branding/`, and `/resources/matrix/`, and compares them to the checked-in Hugo baselines.
+The same suite also runs navigation smoke tests that open desktop and mobile menus and verify first-level menu links.
+
+### CI Runtime
+
+GitLab CI uses `node:24.16.0-bookworm` so Node matches the local runtime contract.
+Hugo is provided by the repo's `hugo-extended` npm dependency and invoked through npm scripts.
 
 To regenerate the Hugo/Vite baseline screenshot, run the dev server first:
 
