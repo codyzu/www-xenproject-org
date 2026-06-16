@@ -46,7 +46,7 @@ Want proof? Here's a real-time view of Xen running on real boards across our glo
 {{</md>}}
 {{</section>}}
 
-{{< div "hardware-grid" >}}{{</div>}}
+{{< div id="hardware-grid" >}}{{</div>}}
 
 {{<section md="true" class="content-markdown">}}
 ## Why This Matters for You ✅
