@@ -168,13 +168,17 @@ Tasks:
 - Configure Astro to use the same public assets from `static/`.
 - Bring over global CSS entry points from `themes/xen-project/assets/css/main.scss`.
 - Configure UnoCSS for Astro using the existing `uno.config.ts`.
-- Add a throwaway internal route such as `/astro-healthcheck/`.
+- ~~Add a throwaway internal route such as `/astro-healthcheck/`.~~
+  Superseded by real migrated Astro routes; `/about/contact-us/`,
+  `/contribute/code-of-conduct/`, `/contribute/contribution-guidelines/`,
+  `/more/xen-branding/`, and `/resources/matrix/` now provide stronger
+  coexistence proof than a disposable healthcheck page.
 
 Acceptance criteria:
 
 - Astro builds a static page.
 - Hugo/Vite build still works unchanged.
-- No production route is replaced yet.
+- Astro route replacement remains allowlisted and additive during the spike.
 
 ## Phase 2: Move The React Islands To Astro
 
@@ -227,11 +231,21 @@ Tasks:
   - Open Graph image fallback
   - Twitter card tags
   - robots tags
+- Recreate alias and redirect behavior:
+  - add `data/redirects.yaml` or `src/data/redirects.ts` as the explicit redirect manifest
+  - generate static Astro redirect pages for each source route
+  - match Hugo's current redirect page shape with canonical URL, `noindex`,
+    `meta refresh`, fallback link, and optional JavaScript `location`
+  - extend the Astro overlay allowlist so Astro-owned alias routes replace Hugo
+    alias pages only when their canonical target route has migrated
+  - keep external redirect targets valid for entries such as `/spring26/`
 - Recreate RSS only once Astro owns content sections that need feeds.
 
 Acceptance criteria:
 
 - A static Astro page has the same header, footer, social links, metadata, and global styles as Hugo.
+- Astro can generate Hugo-equivalent static alias and redirect pages for
+  migrated routes without relying on Hugo's alias generator.
 
 ## Phase 4: Create Astro Components For Common Shortcodes
 
