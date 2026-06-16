@@ -133,6 +133,26 @@ Acceptance criteria:
 - Existing `npm run build` still passes. **Done.**
 - There is a repeatable way to compare current output against migrated output. **Done.**
 
+### Alias And Redirect Inventory
+
+Hugo currently handles two redirect-like behaviors:
+
+- `aliases:` frontmatter generates Hugo alias pages.
+- `layout: redirect` plus `redirect:` renders through
+  `themes/xen-project/layouts/_default/redirect.html`.
+
+Astro needs explicit parity for both when it owns the affected routes.
+
+| Type | Source route | Target |
+| --- | --- | --- |
+| Hugo alias | `/more/xen-server-branding/` | `/more/xen-branding/` |
+| Hugo alias | `/resources/xen-summit-2026/` | `/resources/summit-2026/` |
+| Hugo alias | `/resources/spring-meetup-2026/` | `/resources/past-events/spring-meetup-2026/` |
+| Hugo alias | `/resources/spring-meetup/` | `/resources/past-events/spring-meetup-2026/` |
+| Hugo alias | `/resources/xen-summit-2025/` | `/resources/past-events/xen-summit-2025/` |
+| Custom redirect | `/projects/` | `/projects/all-projects` |
+| Custom redirect | `/spring26/` | `https://docs.google.com/document/d/1ddsfCTaDHvBOCtFLMTgoGEzaQSdJdogfIGooHWFnLJQ/edit?usp=sharing` |
+
 ## Phase 1: Introduce Astro Without Changing Production Pages
 
 Goal: prove Astro can live in the repo without disturbing the current site.
