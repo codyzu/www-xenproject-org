@@ -37,6 +37,12 @@ To run the visual smoke test against the integrated artifact:
 
 Playwright starts `serve public` on `http://127.0.0.1:4321`, snapshots migrated routes such as `/about/contact-us/`, `/contribute/code-of-conduct/`, `/contribute/contribution-guidelines/`, `/more/xen-branding/`, and `/resources/matrix/`, and compares them to the checked-in Hugo baselines.
 The same suite also runs navigation smoke tests that open desktop and mobile menus and verify first-level menu links.
+It also snapshots high-value Hugo-owned pages so the Astro overlay can be checked against the wider production shell.
+
+To check generated internal links, local assets, canonical URLs, redirect targets, and 404 output:
+
+1. `npm run build:astro-spike`
+1. `npm run test:astro:links`
 
 ### CI Runtime
 

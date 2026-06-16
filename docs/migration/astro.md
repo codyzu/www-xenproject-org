@@ -69,9 +69,16 @@ Completed on the `astro-spike` branch:
   routes into `public/`.
 - Added `npm run test:astro:smoke:public`, which starts `serve public` through
   Playwright and runs the screenshot smoke test against the integrated artifact.
+- Added `npm run test:astro:links`, which checks the integrated `public/`
+  artifact for local internal links, local assets, canonical URLs, redirect
+  targets, and the generated 404 page.
 - Added shared navigation smoke coverage for desktop menu links, mobile menu
   drilldown, keyboard submenu open/close, active navigation state, and migrated
   route shell rendering.
+- Added high-value visual smoke coverage for `/`, `/about/`,
+  `/projects/all-projects/`, `/projects/hypervisor/`,
+  `/resources/downloads/`, `/resources/summit-2026/`,
+  `/resources/past-events/`, `/research/`, and `/contribute/ci/`.
 - Added `scripts/astro/migrated-routes.ts` as the shared source of truth for
   Astro-owned routes during the spike.
 - Loaded the existing theme menu runtime from the Astro base layout so migrated
@@ -84,9 +91,6 @@ Completed on the `astro-spike` branch:
 
 Partially complete:
 
-- Phase 0 guardrails are started with screenshot baselines, shared navigation
-  smoke coverage, and a repeatable smoke test, but there is not yet a broad
-  link checker or visual smoke list for the highest-value pages.
 - Phase 3 is started with the shared shell, metadata, and resource aside
   rendering, but RSS and full Hugo metadata parity still need work.
 - Phase 5 is started with `/about/contact-us/`,
@@ -109,25 +113,25 @@ Goal: make sure migration work can be compared safely.
 
 Tasks:
 
-- Capture a production build snapshot from the current Hugo/Vite pipeline.
-- Add a link checker or crawler against `public/` for internal links, assets, canonical URLs, redirects, and 404 behavior.
+- Capture a production build snapshot from the current Hugo/Vite pipeline. **Done.**
+- Add a link checker or crawler against `public/` for internal links, assets, canonical URLs, redirects, and 404 behavior. **Done.**
 - Keep the shared header navigation smoke test passing for desktop, mobile, and keyboard submenu behavior. **Done for first-level menus.**
 - Add a visual smoke-test list for the highest-value pages:
-  - `/`
-  - `/about/`
-  - `/projects/all-projects/`
-  - `/projects/hypervisor/`
-  - `/resources/downloads/`
-  - `/resources/summit-2026/`
-  - `/resources/past-events/`
-  - `/research/`
-  - `/contribute/ci/`
-- Document the expected output paths for aliases and redirects.
+  - `/` **Done.**
+  - `/about/` **Done.**
+  - `/projects/all-projects/` **Done.**
+  - `/projects/hypervisor/` **Done.**
+  - `/resources/downloads/` **Done.**
+  - `/resources/summit-2026/` **Done.**
+  - `/resources/past-events/` **Done.**
+  - `/research/` **Done.**
+  - `/contribute/ci/` **Done.**
+- Document the expected output paths for aliases and redirects. **Done.**
 
 Acceptance criteria:
 
-- Existing `npm run build` still passes.
-- There is a repeatable way to compare current output against migrated output.
+- Existing `npm run build` still passes. **Done.**
+- There is a repeatable way to compare current output against migrated output. **Done.**
 
 ## Phase 1: Introduce Astro Without Changing Production Pages
 
@@ -352,13 +356,14 @@ Estimated effort: **1 to 2 focused days** for the spike, assuming no package ins
 
 ## Spike Verification Status
 
-Verified on 2026-06-15:
+Verified on 2026-06-16:
 
 - `npm run build` passes for the existing Hugo/Vite production path.
 - `npm run astro:build` passes and outputs Astro spike routes to `dist-astro/`.
 - `npm run astro:check` passes with no diagnostics.
 - `npm run build:astro-spike` passes and overlays the migrated Astro route into
   `public/`.
+- `npm run test:astro:links` passes against the integrated `public/` artifact.
 - `npm run test:astro:smoke:public` passes against the integrated `public/`
   artifact.
 - GitLab CI is configured to run on Node 24 LTS with Hugo supplied by the
@@ -373,6 +378,14 @@ Current result:
 - Shared navigation tests now verify first-level menu links, mobile drilldown,
   keyboard submenu behavior, active navigation state, and shell rendering for
   every route listed in `scripts/astro/migrated-routes.ts`.
+- High-value page screenshots now cover `/`, `/about/`,
+  `/projects/all-projects/`, `/projects/hypervisor/`,
+  `/resources/downloads/`, `/resources/summit-2026/`,
+  `/resources/past-events/`, `/research/`, and `/contribute/ci/`.
+- The static artifact checker verifies generated local links, local assets,
+  canonical URLs, redirect targets, and `404.html`. Root-relative `/blog` paths
+  are intentionally treated as delegated because the blog is deployed outside
+  this static-site artifact.
 - The screenshot comparison is stable after removing the old debug toolbar from the Hugo baseline.
 - The remaining build noise is Sass deprecation output from the existing theme styles, not a spike blocker.
 - Hugo source pages remain in place during the spike so Hugo can continue to
@@ -415,3 +428,9 @@ Use `npm run test:astro:smoke:public` to run the screenshot and navigation
 smoke tests against the integrated `public/` artifact. The Playwright config
 starts `serve public` automatically on `http://127.0.0.1:4321`. Stop any other
 local server on that port before running the public smoke test.
+
+Use `npm run test:astro:links` after `npm run build:astro-spike` to check the
+integrated artifact without starting a server. The checker treats root-relative
+`/blog` URLs as delegated to the separately deployed blog, skips the special
+`headerfooter.html` output when enforcing canonical tags, and validates Hugo
+redirect pages by checking their refresh/link targets.
