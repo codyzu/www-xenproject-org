@@ -1,12 +1,12 @@
 import clsx from 'clsx';
 
-const logoAssets = import.meta.glob('../../../../../../static/img/logos/*.(svg|png)', {
+const logoAssets = import.meta.glob('../../../static/img/logos/*.(svg|png)', {
   query: '?url',
   import: 'default',
   eager: true,
   // TODO: vite 7 will support base paths
   // This might remove the need to drop the `/static` prefix in the URLs
-  // Base: '../../../../../../static',
+  // Base: '../../../static',
 });
 
 export default function LogoWheel() {

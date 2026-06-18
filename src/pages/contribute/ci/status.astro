@@ -1,0 +1,35 @@
+---
+import CiStatus from '../../../components/react/ci/CiStatus';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = 'CI status dashboard';
+const description = 'Xen Project real-time continuous integration tests dashboard.';
+const keywords = [
+  'Xen Project',
+  'GitLab CI',
+  'CI',
+  'CI test runners',
+  'continuous integration',
+  'status',
+  'dashboard',
+];
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <article class="article">
+    <div class="container page-top">
+      <h1>{title}</h1>
+      <div class="description">{description}</div>
+    </div>
+
+    <div class="single-content">
+      <section class="section-space">
+        <div class="container">
+          <div id="ci-status">
+            <CiStatus client:only="react" />
+          </div>
+        </div>
+      </section>
+    </div>
+  </article>
+</BaseLayout>

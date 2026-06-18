@@ -77,7 +77,7 @@ async function mockGitlabGraphQl(page: Page) {
 }
 
 test.describe('React island migration guardrails', () => {
-  test('hydrates the CI status dashboard island', async ({page}) => {
+  test('hydrates the Astro-owned CI status dashboard island', async ({page}) => {
     await mockGitlabGraphQl(page);
     await page.goto('/contribute/ci/status/');
 

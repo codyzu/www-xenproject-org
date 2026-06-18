@@ -2,13 +2,13 @@
 import {createRoot} from 'react-dom/client';
 import 'uno.css';
 import React, {Suspense} from 'react';
-import ButtonExternalLink from './components/ButtonExternalLink.tsx';
+import ButtonExternalLink from '../../../../../src/components/react/ButtonExternalLink.tsx';
 
-const CiStatus = React.lazy(async () => import('./components/ci/CiStatus.tsx'));
-const HardwareGrid = React.lazy(async () => import('./components/ci/HardwareGrid.tsx'));
-const LogoWheel = React.lazy(async () => import('./components/LogoWheel.tsx'));
-const Story = React.lazy(async () => import('./components/Story.tsx'));
-const CookieBanner = React.lazy(async () => import('./components/CookieBanner.tsx'));
+const CiStatus = React.lazy(async () => import('../../../../../src/components/react/ci/CiStatus.tsx'));
+const HardwareGrid = React.lazy(async () => import('../../../../../src/components/react/ci/HardwareGrid.tsx'));
+const LogoWheel = React.lazy(async () => import('../../../../../src/components/react/LogoWheel.tsx'));
+const Story = React.lazy(async () => import('../../../../../src/components/react/Story.tsx'));
+const CookieBanner = React.lazy(async () => import('../../../../../src/components/react/CookieBanner.tsx'));
 
 // Eagerly import the markdown content files so that they are processed by UnoCSS
 const markdownFiles = import.meta.glob('../../../../../content/**/*.md', {query: '?raw', eager: true});

@@ -1,11 +1,11 @@
-import intelI7 from '../../assets/core-i7.png';
-import ryzenEmbedded from '../../assets/ryzen-embedded.png';
-import ultrascale from '../../assets/ultrascale.webp';
-import zen2 from '../../assets/zen-2.png';
-import zen3 from '../../assets/zen-3.svg';
-import zen4 from '../../assets/zen-4.png';
-import intelI5 from '../../assets/core-i5.png';
-import qemu from '../../assets/qemu.png';
+import intelI7 from '../../../assets/ci/core-i7.png?url';
+import ryzenEmbedded from '../../../assets/ci/ryzen-embedded.png?url';
+import ultrascale from '../../../assets/ci/ultrascale.webp?url';
+import zen2 from '../../../assets/ci/zen-2.png?url';
+import zen3 from '../../../assets/ci/zen-3.svg?url';
+import zen4 from '../../../assets/ci/zen-4.png?url';
+import intelI5 from '../../../assets/ci/core-i5.png?url';
+import qemu from '../../../assets/ci/qemu.png?url';
 
 export type Location = {
   name: string;

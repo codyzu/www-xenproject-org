@@ -38,7 +38,7 @@ export default function HardwareGrid() {
       <div ref={emblaRef} className="embla uno-w-full uno-overflow-hidden uno-relative">
         <div className="embla__container uno-flex uno-p-b-8 uno-m-l--4">
           {!loading && !error
-            ? [...jobsByPlatform.entries()].map(([platform, jobs], index) => (
+            ? [...jobsByPlatform.entries()].map(([platform, jobs]) => (
                 <JobGroup key={platform} platform={platform} jobs={jobs} />
               ))
             : Array.from({length: 6}).map((_, index) => (

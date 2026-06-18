@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import injectZoomInfo from '../scripts/zoom-info.js';
+import injectZoomInfo from '../../scripts/cookie-consent/zoom-info.js';
 
 export default function CookieBanner() {
   const consentKey = 'cookieConsent';

@@ -1,11 +1,11 @@
 import {type IParallax, Parallax, ParallaxLayer} from '@react-spring/parallax';
 import clsx from 'clsx';
-import {useEffect, useRef, useState} from 'react';
-import panda from '../assets/panda-space-suite.webp';
-import dataCenter from '../assets/data-center.webp';
-import consumer from '../assets/consumer.webp';
-import car from '../assets/car.webp';
-import industrial from '../assets/industrial.webp';
+import {type ReactNode, useEffect, useRef, useState} from 'react';
+import panda from '../../assets/story/panda-space-suite.webp?url';
+import dataCenter from '../../assets/story/data-center.webp?url';
+import consumer from '../../assets/story/consumer.webp?url';
+import car from '../../assets/story/car.webp?url';
+import industrial from '../../assets/story/industrial.webp?url';
 
 type Star = {
   x: number;
@@ -325,7 +325,7 @@ function PlanetForeground({
 }: {
   readonly name: string;
   readonly image: string;
-  readonly children: ComponentChildren;
+  readonly children: ReactNode;
   readonly isTextVisible: boolean;
 }) {
   // Ideally this would return the ParallaxLayer, but sticky layers don't work if they are wrapped in a Fragment or Component (unlike non sticky layers)
