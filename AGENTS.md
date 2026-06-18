@@ -15,6 +15,10 @@ incrementally.
 - Prefer shared data sources over duplicating Hugo and Astro configuration.
 - Navigation data for migrated Astro pages lives in `data/navigation.yaml`, with
   `src/data/navigation.ts` acting as the typed and schema-validated Astro adapter.
+- Alias and redirect data lives in `data/redirects.yaml`, with
+  `src/data/redirects.ts` providing validation and deriving redirect ownership
+  from the migrated content routes. Do not duplicate redirect sources in the
+  content route allowlist.
 - During the spike, integrated output is built with `npm run build:astro-spike`.
   It runs the existing Hugo/Vite production build, runs Astro, then overlays only
   allowlisted migrated routes from `dist-astro/` into `public/`.

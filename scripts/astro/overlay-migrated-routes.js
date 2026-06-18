@@ -1,7 +1,7 @@
 import {copyFile, cp, mkdir, rm} from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import {migratedRoutes} from './migrated-routes.ts';
+import {overlayRoutes} from './migrated-routes.ts';
 
 const projectRoot = process.cwd();
 const astroOutputDirectory = path.join(projectRoot, 'dist-astro');
@@ -27,7 +27,7 @@ for (const directory of generatedAssetDirectories) {
   });
 }
 
-for (const route of migratedRoutes) {
+for (const route of overlayRoutes) {
   const routePath = stripSlashes(route);
   const sourceFile = path.join(astroOutputDirectory, routePath, 'index.html');
   const destinationDirectory = path.join(publicDirectory, routePath);

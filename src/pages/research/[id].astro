@@ -13,7 +13,7 @@ const {paper} = Astro.props as {paper: Paper};
 const aside = [{type: 'resource' as const, items: [{name: 'Academic Research', link: '/research/', icon: 'fas fa-arrow-right'}]}];
 ---
 
-<BaseLayout title={paper.title} description={paper.abstract} keywords={paper.tags} hasAside>
+<BaseLayout title={paper.title} summary={paper.abstract} keywords={paper.tags} hasAside>
   <Aside items={aside} />
   <div class="uno-section">
     <article class="uno-flex uno-flex-col uno-gap-6">

@@ -22,6 +22,7 @@ Hugo's livereload is disabled in development because the browser-facing server i
 
 The Astro migration spike keeps Hugo/Vite as the main production build, then overlays allowlisted Astro routes into `public/`.
 The current migrated route allowlist lives in [`scripts/astro/migrated-routes.ts`](scripts/astro/migrated-routes.ts).
+The complete alias and redirect inventory lives in [`data/redirects.yaml`](data/redirects.yaml). Astro generates every manifest entry, while the integrated overlay takes ownership of external redirects and aliases whose local target is already an Astro-owned content route.
 
 To build the integrated spike artifact:
 
@@ -38,6 +39,7 @@ To run the visual smoke test against the integrated artifact:
 Playwright starts `serve public` on `http://127.0.0.1:4321`, snapshots representative migrated routes, and compares them to the checked-in Hugo baselines. The complete Astro route allowlist lives in `scripts/astro/migrated-routes.ts`.
 The same suite also runs navigation smoke tests that open desktop and mobile menus and verify first-level menu links.
 It also exercises the direct React islands on the migrated homepage, About, membership, Get Started, and CI routes. Research and event routes verify the Astro-native replacement for the legacy `IconButton` mount, while high-value Hugo-owned pages remain covered to check the wider production shell.
+Redirect smoke coverage verifies both sides of the ownership boundary: Astro-owned redirects must render the Astro redirect contract, while remaining routes must continue to render their expected Hugo canonical, refresh, and `noindex` metadata.
 
 To check generated internal links, local assets, canonical URLs, redirect targets, and 404 output:
 

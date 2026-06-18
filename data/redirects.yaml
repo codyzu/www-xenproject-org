@@ -1,0 +1,27 @@
+- source: /more/xen-server-branding/
+  target: /more/xen-branding/
+  type: alias
+
+- source: /resources/xen-summit-2026/
+  target: /resources/summit-2026/
+  type: alias
+
+- source: /resources/spring-meetup-2026/
+  target: /resources/past-events/spring-meetup-2026/
+  type: alias
+
+- source: /resources/spring-meetup/
+  target: /resources/past-events/spring-meetup-2026/
+  type: alias
+
+- source: /resources/xen-summit-2025/
+  target: /resources/past-events/xen-summit-2025/
+  type: alias
+
+- source: /projects/
+  target: /projects/all-projects
+  type: redirect
+
+- source: /spring26/
+  target: https://docs.google.com/document/d/1ddsfCTaDHvBOCtFLMTgoGEzaQSdJdogfIGooHWFnLJQ/edit?usp=sharing
+  type: redirect

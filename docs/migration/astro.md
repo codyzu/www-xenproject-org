@@ -103,11 +103,13 @@ Completed on the `astro-spike` branch:
   `hugo-extended` npm dependency instead of a Hugo-specific Docker image.
 - Documented the spike workflow in `README.md` and agent guardrails in
   `AGENTS.md`.
+- Completed Phase 3 for the additive spike: the shared shell, navigation,
+  metadata fallbacks and overrides, resource aside rendering, and manifest-driven
+  redirect pages are implemented. RSS remains intentionally Hugo-owned until
+  Astro owns feed-bearing content sections.
 
 Partially complete:
 
-- Phase 3 is started with the shared shell, metadata, and resource aside
-  rendering, but RSS and full Hugo metadata parity still need work.
 - Phase 5 now includes the homepage, About, membership, Get Started, CI,
   research, Spring Meetup, contact, conduct, guidelines, branding, and Matrix
   routes. More static and event routes still need to move.
@@ -157,6 +159,16 @@ Hugo currently handles two redirect-like behaviors:
   `themes/xen-project/layouts/_default/redirect.html`.
 
 Astro needs explicit parity for both when it owns the affected routes.
+
+`data/redirects.yaml` is now the complete neutral inventory. Its validated
+adapter preserves whether an entry originated as a Hugo frontmatter alias or a
+standalone redirect page. Astro generates every entry in `dist-astro/`, while
+the integrated overlay selects external redirects and local aliases whose
+target content route has migrated. Redirect smoke tests import the manifest to
+ensure every entry has coverage, but intentionally keep expected ownership and
+destinations hardcoded so changes to production derivation cannot make the
+acceptance test pass itself. Both Astro-owned and Hugo-owned routes are checked
+for their expected redirect metadata.
 
 | Type | Source route | Target |
 | --- | --- | --- |
@@ -260,36 +272,36 @@ Goal: recreate the shared page shell in Astro.
 Tasks:
 
 - Create Astro equivalents for:
-  - `baseof.html`
-  - `partials/head.html`
-  - `partials/header.html`
-  - `partials/footer.html`
-  - `partials/menu.html`
-  - `partials/socials.html`
-  - `partials/aside.html`
-- Move `hugo.yaml` menu data into a neutral data file, likely `src/data/navigation.ts` or `src/data/navigation.yaml`.
+  - `baseof.html` **Done.**
+  - `partials/head.html` **Done.**
+  - `partials/header.html` **Done.**
+  - `partials/footer.html` **Done.**
+  - `partials/menu.html` **Done.**
+  - `partials/socials.html` **Done.**
+  - `partials/aside.html` **Done.**
+- Move `hugo.yaml` menu data into a neutral data file, likely `src/data/navigation.ts` or `src/data/navigation.yaml`. **Done with `data/navigation.yaml` and a schema-validated Astro adapter.**
 - Recreate metadata behavior:
-  - title format
-  - description fallback
-  - canonical URL
-  - Open Graph image fallback
-  - Twitter card tags
-  - robots tags
+  - title format **Done.**
+  - description fallback **Done.**
+  - canonical URL **Done.**
+  - Open Graph image fallback **Done.**
+  - Twitter card tags **Done.**
+  - robots tags **Done.**
 - Recreate alias and redirect behavior:
-  - add `data/redirects.yaml` or `src/data/redirects.ts` as the explicit redirect manifest
-  - generate static Astro redirect pages for each source route
+  - add `data/redirects.yaml` or `src/data/redirects.ts` as the explicit redirect manifest **Done.**
+  - generate static Astro redirect pages for each source route **Done.**
   - match Hugo's current redirect page shape with canonical URL, `noindex`,
-    `meta refresh`, fallback link, and optional JavaScript `location`
+    `meta refresh`, fallback link, and optional JavaScript `location` **Done.**
   - extend the Astro overlay allowlist so Astro-owned alias routes replace Hugo
-    alias pages only when their canonical target route has migrated
-  - keep external redirect targets valid for entries such as `/spring26/`
-- Recreate RSS only once Astro owns content sections that need feeds.
+    alias pages only when their canonical target route has migrated **Done; ownership is derived from the migrated route list.**
+  - keep external redirect targets valid for entries such as `/spring26/` **Done.**
+- Recreate RSS only once Astro owns content sections that need feeds. **Deferred by design; Hugo continues to generate all RSS output during the additive spike.**
 
 Acceptance criteria:
 
-- A static Astro page has the same header, footer, social links, metadata, and global styles as Hugo.
+- A static Astro page has the same header, footer, social links, metadata, and global styles as Hugo. **Done.**
 - Astro can generate Hugo-equivalent static alias and redirect pages for
-  migrated routes without relying on Hugo's alias generator.
+  migrated routes without relying on Hugo's alias generator. **Done.**
 
 ## Phase 4: Create Astro Components For Common Shortcodes
 

@@ -22,7 +22,11 @@ type AsideResource = {
 type Frontmatter = {
   title: string;
   description?: string;
+  summary?: string;
   keywords?: string[];
+  canonicalUrl?: string;
+  socialImage?: string;
+  image?: string;
   aside?: AsideResource[];
   hidePageHeader?: boolean;
   asidePosition?: 'before' | 'after';
@@ -31,8 +35,12 @@ type Frontmatter = {
 
 const {
   title,
-  description = '',
+  description,
+  summary,
   keywords = [],
+  canonicalUrl,
+  socialImage,
+  image,
   aside = [],
   hidePageHeader = false,
   asidePosition = 'before',
@@ -42,7 +50,16 @@ const {
 const hasAside = aside.length > 0;
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords} hasAside={hasAside}>
+<BaseLayout
+  title={title}
+  description={description}
+  summary={summary}
+  keywords={keywords}
+  canonicalUrl={canonicalUrl}
+  socialImage={socialImage}
+  image={image}
+  hasAside={hasAside}
+>
   {hasAside && asidePosition === 'before' && <Aside items={aside} />}
   <article class="article page-single">
     {

@@ -1,0 +1,28 @@
+---
+import type {GetStaticPaths} from 'astro';
+import {redirects, type Redirect} from '../data/redirects';
+
+export const getStaticPaths = (() => redirects.map(redirect => ({
+  params: {redirect: redirect.source.replace(/^\/+|\/+$/g, '')},
+  props: redirect,
+}))) satisfies GetStaticPaths;
+
+const {target} = Astro.props as Redirect;
+const redirectUrl = new URL(target, Astro.site ?? 'https://beta.xenproject.org').toString();
+---
+
+<!doctype html>
+<html lang="en-US" data-astro-redirect>
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting&hellip;</title>
+    <link rel="canonical" href={redirectUrl} />
+    <script is:inline define:vars={{redirectUrl}}>location = redirectUrl;</script>
+    <meta http-equiv="refresh" content={`0; url=${redirectUrl}`} />
+    <meta name="robots" content="noindex" />
+  </head>
+  <body>
+    <h1>Redirecting&hellip;</h1>
+    <a href={redirectUrl}>Click here if you are not redirected.</a>
+  </body>
+</html>

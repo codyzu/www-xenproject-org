@@ -1,3 +1,5 @@
+import {getOwnedRedirects} from '../../src/data/redirects.ts';
+
 // Routes Astro owns in the integrated spike artifact.
 export const migratedRoutes = [
   '/',
@@ -17,3 +19,7 @@ export const migratedRoutes = [
   '/resources/matrix/',
   '/resources/past-events/spring-meetup-2026/',
 ] as const satisfies readonly string[];
+
+export const migratedRedirectRoutes = getOwnedRedirects(migratedRoutes).map((redirect) => redirect.source);
+
+export const overlayRoutes = [...migratedRoutes, ...migratedRedirectRoutes];
