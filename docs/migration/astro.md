@@ -81,6 +81,15 @@ Completed on the `astro-spike` branch:
   `/resources/past-events/`, `/research/`, and `/contribute/ci/`.
 - Added `scripts/astro/migrated-routes.ts` as the shared source of truth for
   Astro-owned routes during the spike.
+- Added focused React island smoke coverage for the current island mount
+  surfaces: `#ci-status`, `#hardware-grid`, `#logo-wheel`, `#xen-story`,
+  `#cookie-banner`, and `div[data-component="IconButton"]`.
+- Moved shared React components to `src/components/react`, moved supporting
+  assets into domain folders under `src/assets/ci` and `src/assets/story`, and
+  moved the cookie helper script to `src/scripts/cookie-consent`.
+- Migrated `/contribute/ci/status/` as the first Astro-owned route that renders
+  a React island directly while keeping the Hugo `bundle-main.tsx` mounting path
+  working for remaining Hugo pages.
 - Loaded the existing theme menu runtime from the Astro base layout so migrated
   pages exercise the same header menu behavior as Hugo pages.
 - Updated local and GitLab CI runtime metadata to Node 24 LTS. GitLab CI now
@@ -100,7 +109,6 @@ Partially complete:
 
 Not started:
 
-- React island migration.
 - Common shortcode/component library beyond `Card.astro` and the prose-content
   MDX layout.
 - Data-driven Astro sections.
@@ -182,7 +190,9 @@ Acceptance criteria:
 
 ## Phase 2: Move The React Islands To Astro
 
-Goal: remove the custom Vite/Hugo asset handshake.
+Goal: move the React island source into the Astro tree, prove the legacy
+Hugo/Vite mounting path still works from that shared source, then migrate island
+routes one at a time to direct Astro ownership.
 
 Current React island mount points:
 
@@ -195,19 +205,41 @@ Current React island mount points:
 
 Tasks:
 
-- Move `themes/xen-project/assets/js/vite/components` to an Astro-owned source folder, for example `src/components/react`.
-- Convert manual `createRoot(...)` hydration to Astro islands:
-  - `<CiStatus client:load />`
+- Move `themes/xen-project/assets/js/vite/components` to
+  `src/components/react`. **Done.**
+- Move supporting assets and scripts into domain-oriented shared locations:
+  - CI assets: `src/assets/ci`. **Done.**
+  - Homepage story assets: `src/assets/story`. **Done.**
+  - Cookie consent helper: `src/scripts/cookie-consent`. **Done.**
+- Keep `themes/xen-project/assets/js/vite/bundle-main.tsx` as the legacy Hugo
+  mounting layer during the spike, but import components from
+  `src/components/react`. **Done.**
+- Add shallow Playwright smoke coverage for every current island mount surface
+  before and after moving the source. **Done.**
+- Migrate `/contribute/ci/status/` as the first direct Astro React island route.
+  **Done.**
+  - The page renders `<CiStatus client:only="react" />` inside `#ci-status`
+    because the current CI dashboard dependency graph includes browser-only
+    globe/Three code that is not safe to server render.
+- Convert remaining manual `createRoot(...)` hydration to Astro islands as their
+  owning routes move:
   - `<HardwareGrid client:visible />`
   - `<LogoWheel client:visible />`
   - `<CookieBanner client:idle />`
-- Replace shortcode-generated `div[data-component="IconButton"]` with an Astro component.
-- Keep the old Vite bundle only for Hugo-rendered pages until those pages are migrated.
+- Replace shortcode-generated `div[data-component="IconButton"]` with an Astro
+  component when `/research/` or another route using it moves to Astro.
+- Remove `bundle-main.tsx` only after no Hugo-rendered page needs it.
 
 Acceptance criteria:
 
-- One Astro route renders the same React components without `bundle-main.tsx`.
-- Hugo pages still use the old bundle during the transition.
+- One Astro route renders a React island directly without relying on
+  `bundle-main.tsx`. **Done with `/contribute/ci/status/`.**
+- Hugo pages still use the old bundle during the transition. **Done and covered
+  by `tests/astro/react-islands.spec.ts`.**
+- The React source, assets, and helper scripts no longer live under the Hugo
+  theme Vite source tree. **Done.**
+- Remaining island-bearing routes can be migrated one at a time without moving
+  source again.
 
 ## Phase 3: Port Layout, Header, Footer, And Metadata
 
@@ -380,9 +412,9 @@ Scope:
 - Add shared layout, head, header, footer, and CSS import. **Done.**
 - Add `ContactUs` page using Astro components for `Section`, `RowFromList`, and `Card`. **Done.**
 - Build Astro into a temporary output directory such as `dist-astro/` to avoid changing the current production artifact. **Done.**
-- Compare output visually and with a link check. **Partially done:** screenshot
-  smoke testing and shared navigation smoke testing are in place, but a broader
-  link check has not been added.
+- Compare output visually and with a link check. **Done:** screenshot smoke
+  testing, shared navigation smoke testing, and integrated artifact link/asset
+  checks are in place.
 
 This spike should answer the important practical questions without committing the whole repo to the migration.
 
@@ -403,12 +435,23 @@ Verified on 2026-06-16:
 - GitLab CI is configured to run on Node 24 LTS with Hugo supplied by the
   `hugo-extended` npm dependency.
 
+Verified on 2026-06-18:
+
+- `npm run astro:check` passes with no diagnostics.
+- `npm run build:astro-spike` passes and overlays `/contribute/ci/status/` from
+  Astro into `public/`.
+- `tests/astro/react-islands.spec.ts` passes against the integrated artifact,
+  covering the Astro-owned CI status island and the remaining Hugo-mounted
+  islands.
+- `npm run lint` passes with only the known LogoWheel TODO and
+  `zoom-info.js` eslint-disable warnings.
+
 Current result:
 
 - Astro can coexist with the existing Hugo/Vite pipeline without replacing production output.
 - `/about/contact-us/`, `/contribute/code-of-conduct/`,
-  `/contribute/contribution-guidelines/`, `/more/xen-branding/`, and
-  `/resources/matrix/` are real migrated routes with screenshot smoke tests.
+  `/contribute/contribution-guidelines/`, `/contribute/ci/status/`,
+  `/more/xen-branding/`, and `/resources/matrix/` are real migrated routes.
 - Shared navigation tests now verify first-level menu links, mobile drilldown,
   keyboard submenu behavior, active navigation state, and shell rendering for
   every route listed in `scripts/astro/migrated-routes.ts`.
