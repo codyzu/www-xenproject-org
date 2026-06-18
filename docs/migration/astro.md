@@ -87,9 +87,15 @@ Completed on the `astro-spike` branch:
 - Moved shared React components to `src/components/react`, moved supporting
   assets into domain folders under `src/assets/ci` and `src/assets/story`, and
   moved the cookie helper script to `src/scripts/cookie-consent`.
-- Migrated `/contribute/ci/status/` as the first Astro-owned route that renders
-  a React island directly while keeping the Hugo `bundle-main.tsx` mounting path
-  working for remaining Hugo pages.
+- Migrated all current island-bearing overlay routes to direct Astro ownership:
+  `/`, `/about/`, `/about/become-a-member/`, `/contribute/get-started/`,
+  `/contribute/ci/`, and `/contribute/ci/status/`.
+- Replaced legacy `IconButton` mounts with Astro-native links on the research,
+  CI overview, and Spring Meetup routes.
+- Kept the Hugo `bundle-main.tsx` mounting path working as a fallback while the
+  Hugo production path remains supported.
+- Hardened parent-route overlays so copying an Astro `index.html` does not
+  remove Hugo-owned child routes.
 - Loaded the existing theme menu runtime from the Astro base layout so migrated
   pages exercise the same header menu behavior as Hugo pages.
 - Updated local and GitLab CI runtime metadata to Node 24 LTS. GitLab CI now
@@ -102,16 +108,17 @@ Partially complete:
 
 - Phase 3 is started with the shared shell, metadata, and resource aside
   rendering, but RSS and full Hugo metadata parity still need work.
-- Phase 5 is started with `/about/contact-us/`,
-  `/contribute/code-of-conduct/`, `/contribute/contribution-guidelines/`, and
-  `/resources/matrix/`, but more low-risk pages still need to move before this
-  is a repeatable migration lane.
+- Phase 5 now includes the homepage, About, membership, Get Started, CI,
+  research, Spring Meetup, contact, conduct, guidelines, branding, and Matrix
+  routes. More static and event routes still need to move.
+- The shared component library now includes structured sections, media blocks,
+  external-link actions, CI diagrams, and the latest-news shell in addition to
+  cards and prose layouts.
+- Phase 6 is started: the research index and paper detail routes render from
+  shared generated data, while downloads, event archives, and pricing remain.
 
 Not started:
 
-- Common shortcode/component library beyond `Card.astro` and the prose-content
-  MDX layout.
-- Data-driven Astro sections.
 - Astro ownership flip.
 - Hugo removal.
 
@@ -223,19 +230,24 @@ Tasks:
     globe/Three code that is not safe to server render.
 - Convert remaining manual `createRoot(...)` hydration to Astro islands as their
   owning routes move:
-  - `<HardwareGrid client:visible />`
-  - `<LogoWheel client:visible />`
-  - `<CookieBanner client:idle />`
+  - `<HardwareGrid client:visible />` on `/contribute/ci/`. **Done.**
+  - `<LogoWheel client:visible />` on `/`, `/about/`,
+    `/about/become-a-member/`, and `/contribute/get-started/`. **Done.**
+  - `<Story client:only="react" />` on `/`. **Done.**
+  - `<CookieBanner client:idle />` on `/about/become-a-member/`. **Done.**
 - Replace shortcode-generated `div[data-component="IconButton"]` with an Astro
-  component when `/research/` or another route using it moves to Astro.
-- Remove `bundle-main.tsx` only after no Hugo-rendered page needs it.
+  component when `/research/` or another route using it moves to Astro. **Done
+  for all currently migrated routes that used it.**
+- Remove `bundle-main.tsx` only after the Hugo production fallback is retired.
+  No allowlisted Astro route relies on it, but Hugo builds still do.
 
 Acceptance criteria:
 
-- One Astro route renders a React island directly without relying on
-  `bundle-main.tsx`. **Done with `/contribute/ci/status/`.**
-- Hugo pages still use the old bundle during the transition. **Done and covered
-  by `tests/astro/react-islands.spec.ts`.**
+- Every currently allowlisted island-bearing route renders its islands directly
+  without relying on `bundle-main.tsx`. **Done.**
+- Hugo fallback pages still use the old bundle during the transition. **Done.**
+- `tests/astro/react-islands.spec.ts` covers the migrated islands and native
+  replacements in the integrated Hugo/Astro artifact. **Done.**
 - The React source, assets, and helper scripts no longer live under the Hugo
   theme Vite source tree. **Done.**
 - Remaining island-bearing routes can be migrated one at a time without moving
@@ -304,7 +316,8 @@ Recommendation: do not try to emulate Hugo shortcode syntax inside Astro. Conver
 
 Acceptance criteria:
 
-- The homepage can be rebuilt in Astro using real components instead of Hugo shortcode strings.
+- The homepage is rebuilt in Astro using real components instead of Hugo
+  shortcode strings. **Done.**
 
 ## Phase 5: Migrate Low-Risk Static Pages
 
@@ -354,7 +367,10 @@ Sections to handle:
 
 Acceptance criteria:
 
-- `/research/`, individual research paper routes, `/resources/downloads/`, `/resources/past-events/`, and pricing blocks render from Astro data.
+- `/research/` and individual research paper routes render from Astro data.
+  **Done.**
+- `/resources/downloads/`, `/resources/past-events/`, and pricing blocks render
+  from Astro data. **Pending.**
 - Existing scripts are either reused or replaced with simpler Astro-native imports.
 
 ## Phase 7: Flip Ownership To Astro
@@ -385,7 +401,8 @@ Tasks:
 - Move any reusable static assets out of `themes/xen-project/static`.
 - Move CSS from `themes/xen-project/assets/css` into Astro source structure.
 - Remove `hugo-extended`, Hugo scripts, Hugo docs, and Hugo-specific CI settings.
-- Delete `bundle-main.tsx` after all islands are Astro components.
+- Delete `bundle-main.tsx` after the Hugo production path is retired. The
+  allowlisted Astro routes already own their islands directly.
 
 Acceptance criteria:
 
@@ -438,20 +455,26 @@ Verified on 2026-06-16:
 Verified on 2026-06-18:
 
 - `npm run astro:check` passes with no diagnostics.
-- `npm run build:astro-spike` passes and overlays `/contribute/ci/status/` from
-  Astro into `public/`.
+- `npm run build:astro-spike` passes and overlays all 16 routes listed in
+  `scripts/astro/migrated-routes.ts` into `public/`.
+- Parent-route overlays copy only their Astro `index.html`, preserving
+  Hugo-owned child routes in the integrated artifact.
 - `tests/astro/react-islands.spec.ts` passes against the integrated artifact,
-  covering the Astro-owned CI status island and the remaining Hugo-mounted
-  islands.
+  covering direct Astro islands and the Astro-native action replacements.
+- The full Playwright Astro suite passes with 45 tests.
 - `npm run lint` passes with only the known LogoWheel TODO and
   `zoom-info.js` eslint-disable warnings.
 
 Current result:
 
 - Astro can coexist with the existing Hugo/Vite pipeline without replacing production output.
-- `/about/contact-us/`, `/contribute/code-of-conduct/`,
-  `/contribute/contribution-guidelines/`, `/contribute/ci/status/`,
-  `/more/xen-branding/`, and `/resources/matrix/` are real migrated routes.
+- The 16 real migrated routes are `/`, `/about/`,
+  `/about/become-a-member/`, `/about/contact-us/`,
+  `/contribute/code-of-conduct/`, `/contribute/contribution-guidelines/`,
+  `/contribute/get-started/`, `/contribute/ci/`,
+  `/contribute/ci/status/`, `/more/xen-branding/`, `/research/`, the three
+  migrated research paper routes, `/resources/matrix/`, and
+  `/resources/past-events/spring-meetup-2026/`.
 - Shared navigation tests now verify first-level menu links, mobile drilldown,
   keyboard submenu behavior, active navigation state, and shell rendering for
   every route listed in `scripts/astro/migrated-routes.ts`.
@@ -459,6 +482,8 @@ Current result:
   `/projects/all-projects/`, `/projects/hypervisor/`,
   `/resources/downloads/`, `/resources/summit-2026/`,
   `/resources/past-events/`, `/research/`, and `/contribute/ci/`.
+- Homepage visual snapshots hide only the randomized star field; the dedicated
+  island smoke test still verifies the Story and LogoWheel behavior.
 - The static artifact checker verifies generated local links, local assets,
   canonical URLs, redirect targets, and `404.html`. Root-relative `/blog` paths
   are intentionally treated as delegated because the blog is deployed outside

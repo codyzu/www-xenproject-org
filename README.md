@@ -35,9 +35,9 @@ To run the visual smoke test against the integrated artifact:
 1. make sure nothing else is running on `127.0.0.1:4321`
 1. `npm run test:astro:smoke:public`
 
-Playwright starts `serve public` on `http://127.0.0.1:4321`, snapshots migrated routes such as `/about/contact-us/`, `/contribute/code-of-conduct/`, `/contribute/contribution-guidelines/`, `/more/xen-branding/`, and `/resources/matrix/`, and compares them to the checked-in Hugo baselines.
+Playwright starts `serve public` on `http://127.0.0.1:4321`, snapshots representative migrated routes, and compares them to the checked-in Hugo baselines. The complete Astro route allowlist lives in `scripts/astro/migrated-routes.ts`.
 The same suite also runs navigation smoke tests that open desktop and mobile menus and verify first-level menu links.
-It also tests the `/contribute/ci/status/` React island route and snapshots high-value Hugo-owned pages so the Astro overlay can be checked against the wider production shell.
+It also exercises the direct React islands on the migrated homepage, About, membership, Get Started, and CI routes. Research and event routes verify the Astro-native replacement for the legacy `IconButton` mount, while high-value Hugo-owned pages remain covered to check the wider production shell.
 
 To check generated internal links, local assets, canonical URLs, redirect targets, and 404 output:
 
