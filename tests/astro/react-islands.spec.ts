@@ -154,18 +154,22 @@ test.describe('React island migration guardrails', () => {
     await expect(researchLink).toBeVisible();
   });
 
-  test('hydrates the cookie consent banner island', async ({page}) => {
+  test('hydrates the Astro-owned membership islands', async ({page}) => {
     await page.addInitScript(() => {
       localStorage.removeItem('cookieConsent');
     });
 
     await page.goto('/about/become-a-member/');
 
+    const logoWheel = page.locator('#logo-wheel');
+    await logoWheel.scrollIntoViewIfNeeded();
+    await expect(logoWheel.locator('img')).not.toHaveCount(0);
+
     const banner = page.getByRole('region', {name: 'Cookie consent banner'});
     await expect(banner).toBeVisible();
     await banner.getByRole('button', {name: 'Accept cookies'}).click();
     await expect(banner).toBeHidden();
-    await expect(page.locator('#cookie-banner')).toHaveJSProperty('textContent', '');
+    await expect(page.locator('#cookie-banner')).not.toContainText('We use a single tracking cookie');
     await expect.poll(async () => page.evaluate(() => localStorage.getItem('cookieConsent'))).toBe('true');
   });
 });

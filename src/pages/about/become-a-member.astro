@@ -1,0 +1,85 @@
+---
+import Card from '../../components/Card.astro';
+import MediaBlock from '../../components/MediaBlock.astro';
+import CookieBanner from '../../components/react/CookieBanner';
+import LogoWheel from '../../components/react/LogoWheel';
+import Section from '../../components/Section.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Become a member';
+const description = 'Join the Xen community and become a member to actively contribute to the advancement of open-source virtualization.';
+const keywords = ['Xen Project', 'membership', 'open source', 'community involvement', 'contributors', 'benefits', 'participation', 'collaboration', 'virtualization', 'governance'];
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <article class="article page-single">
+    <div class="container page-top"><h1>{title}</h1><div class="description">{description}</div></div>
+    <div class="single-content">
+      <Section>
+        <MediaBlock title="The Xen Project members are companies committed to the project's market and technical success" media="/img/flatline/brainstorming-session.svg" alt="Illustration of people discussing ideas." animate>
+          <p>Members complement the role of committers and maintainers, with both groups working together to align the project's priorities.</p>
+          <p>Committers and maintainers remain responsible for technical development and are the final decision makers on code contributions.</p>
+          <p class="mg-t-lg"><a href="https://enrollment.lfx.linuxfoundation.org/?project=xen" class="btn btn-primary">Join now <i class="fas fa-arrow-right"></i></a></p>
+        </MediaBlock>
+      </Section>
+
+      <Section class="section-square-rounded">
+        <h2 class="txt-c">Main responsibilities</h2>
+        <div class="row row-from-list" style="--cols: 2">
+          <Card title="Financial oversight" class="card--bg-white">Budget management and investment decisions on infrastructure and project operations.</Card>
+          <Card title="Annual pricing" class="card--bg-white"><strong>Premier Member:</strong> $40,000<br /><strong>Advisory Board Governing Member:</strong> $30,000<br /><strong>Startup Member:</strong> $10,000<br /><strong>Associate Member:</strong> Free</Card>
+          <Card title="Steer the project" class="card--bg-white">Advance its market and technical success by raising awareness.</Card>
+          <Card title="Global policy decisions" class="card--bg-white">Guide trademarks, compliance requirements, test cases, and infrastructure.</Card>
+        </div>
+      </Section>
+
+      <Section>
+        <MediaBlock title="Improve engineering ROI" media="/img/flatline/data-analysis.svg" alt="Illustration of a person analyzing data." mediaPosition="right" animate>
+          <p>The Advisory Board helps define test cases and prioritize release requirements with project maintainers, increasing engineering ROI and release quality.</p>
+        </MediaBlock>
+      </Section>
+      <Section>
+        <MediaBlock title="Xen Project Insights" media="/img/flatline/data-analyst.svg" alt="Illustration of a person reviewing charts." animate>
+          <p>Members can propose and vote on changes to test infrastructure and financial resource allocation, while gaining strategic insight into project plans.</p>
+        </MediaBlock>
+      </Section>
+      <Section>
+        <MediaBlock title="Increase visibility" media="/img/flatline/handshake.svg" alt="Illustration of a handshake." mediaPosition="right" animate>
+          <p>Board members can influence marketing strategy and participate in press releases, brand visibility, events, and community activities.</p>
+        </MediaBlock>
+      </Section>
+      <Section>
+        <MediaBlock title="Define policies" media="/img/flatline/brainstorming.svg" alt="Illustration representing ideas and policy discussion." animate>
+          <p>Members help define trademark, compliance, and certification policies. Membership dues fund essential project infrastructure such as hosting and test environments.</p>
+        </MediaBlock>
+      </Section>
+
+      <Section class="section-square-primary">
+        <h2 class="txt-c">How to <strong>join?</strong></h2>
+        <div class="row row-from-list" style="--cols: 3">
+          <Card title="Step 1" class="card--bg-white">Review membership benefits and requirements.</Card>
+          <Card title="Step 2" class="card--bg-white">Contact the Xen Project team to discuss membership options and fees.</Card>
+          <Card title="Step 3" class="card--bg-white">Complete the membership application and submit payment.</Card>
+        </div>
+        <p class="txt-c mg-t-lg"><a href="https://enrollment.lfx.linuxfoundation.org/?project=xen" class="btn btn-primary">Join now <i class="fas fa-arrow-right"></i></a></p>
+        <p class="txt-c"><a href="mailto:community.manager@xenproject.org"><strong>Email us for help</strong></a></p>
+      </Section>
+
+      <Section>
+        <MediaBlock title="Governed by Xen project members" mediaPosition="right" animate>
+          <p>Board members can propose and vote upon changes to the Xen Project and gain valuable strategic insight.</p>
+          <p class="mg-t-md"><a href="/about/project-members/" class="btn btn-secondary">Meet the advisory board <i class="fas fa-arrow-right"></i></a></p>
+          <div id="logo-wheel" class="uno-w-full" slot="media"><LogoWheel client:visible /></div>
+        </MediaBlock>
+      </Section>
+
+      <Section>
+        <MediaBlock title="About Xen Project" media="/img/flatline/data-process.svg" alt="Illustration representing data integration." animate>
+          <p>The mission of the Xen Project is to advance virtualization technology across commercial and open-source domains.</p>
+          <p><a href="/about/" class="btn btn-secondary">Learn about Xen Project <i class="fas fa-arrow-right"></i></a></p>
+        </MediaBlock>
+      </Section>
+    </div>
+  </article>
+  <div id="cookie-banner"><CookieBanner client:idle /></div>
+</BaseLayout>
