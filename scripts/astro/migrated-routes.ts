@@ -6,5 +6,6 @@ export const migratedRoutes = [
   '/contribute/ci/',
   '/contribute/ci/status/',
   '/more/xen-branding/',
+  '/research/',
   '/resources/matrix/',
 ] as const satisfies readonly string[];

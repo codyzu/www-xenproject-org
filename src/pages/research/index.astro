@@ -1,0 +1,89 @@
+---
+import researchPapers from '../../../data/research.json';
+import ExternalLinkButton from '../../components/ExternalLinkButton.astro';
+import Section from '../../components/Section.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Academic Research';
+const description = 'Explore academic research papers related to the Xen Project';
+const keywords = ['Xen Project research', 'academic papers', 'Xen hypervisor studies', 'virtualization research', 'Xen security research', 'cloud computing studies', 'Xen performance analysis'];
+const papers = researchPapers.toSorted((a, b) => Number(b.year) - Number(a.year) || a.title.localeCompare(b.title));
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <article class="article page-single">
+    <div class="container page-top">
+      <h1>{title}</h1>
+      <div class="description">{description}</div>
+    </div>
+    <div class="single-content">
+      <Section class="section-intro bg-blue-500 content-markdown">
+        <h2>Introduction to Xen Research</h2>
+        <p>The Xen Project has been instrumental in advancing virtualization technology. This page highlights key academic research papers that delve into the architecture, performance, and security of the Xen hypervisor, showcasing its impact on both industry and academia.</p>
+      </Section>
+
+      <section class="uno-section-nested">
+        <div class="uno-flex uno-flex-row uno-gap-3 uno-items-center uno-w-full md:uno-w-2/3">
+          <label for="papers-search">Search Papers:</label>
+          <input id="papers-search" class="uno-p4 uno-rounded uno-flex-grow uno-flex-shrink uno-text-xl" type="search" placeholder="Title, description, date, tag, author..." />
+        </div>
+        <table id="papers-table" class="uno-grid uno-grid-cols-1 md:uno-grid-cols-[2fr_1fr] uno-gap-y-2 md:uno-gap-y-16 uno-gap-x-6">
+          <tbody class="uno-contents">
+            {papers.map((paper) => (
+              <tr class="uno-contents uno-parent" data-paper-row>
+                <td class="uno-flex uno-flex-col uno-gap-4 parent-not-first:uno-m-t-14 md:parent-not-first:uno-m-t-0">
+                  <div class="uno-text-4xl uno-font-medium"><a href={`/research/${paper.id}/`}>{paper.title}</a></div>
+                  <div class="uno-text-xl uno-leading-8 uno-line-clamp-3">{paper.abstract}</div>
+                </td>
+                <td class="uno-text-base uno-flex uno-flex-col uno-gap-2">
+                  <div class="uno-flex uno-flex-row uno-gap-2"><strong>Published:</strong><span>{paper.year}</span></div>
+                  <div class="uno-flex uno-flex-row uno-gap-2 uno-flex-wrap uno-items-center">
+                    <strong>Tags:</strong>{paper.tags.map((tag) => <span class="uno-p-2 uno-rounded-lg uno-bg-brand">{tag}</span>)}
+                  </div>
+                  <div><strong>Authors:</strong> {paper.authors.toSorted().join(' and ')}</div>
+                  <ExternalLinkButton href={paper.url}>Read the Full Paper</ExternalLinkButton>
+                </td>
+              </tr>
+            ))}
+            <tr id="no-papers-results" class="uno-grid-cols-2 uno-flex-row uno-hidden"><td class="uno-w-full">No papers found matching your search.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <Section class="section-square-primary content-markdown">
+        <h2>Why Research Xen?</h2>
+        <p>The Xen Project has been a cornerstone of virtualization research for years. Its open-source nature and robust architecture make it a popular choice for academic studies in:</p>
+        <ul><li><strong>Security:</strong> Isolation and minimal attack surface.</li><li><strong>Performance:</strong> Efficient resource utilization.</li><li><strong>Scalability:</strong> Proven success in large-scale environments like AWS.</li></ul>
+        <p>Explore the cutting-edge research that continues to shape the future of virtualization.</p>
+      </Section>
+
+      <Section class="section-contribute content-markdown">
+        <h2>Contribute Your Research</h2>
+        <p>Do you have research related to the Xen Project? We welcome contributions to our archive:</p>
+        <ul>
+          <li>Submit a merge request with your BibTeX file. See the <a href="https://gitlab.com/xen-project/www-xenproject-org/-/blob/main/papers/README.md">guide on GitLab</a>.</li>
+          <li>Email paper details to <a href="mailto:community.manager@xenproject.org">community.manager@xenproject.org</a>.</li>
+        </ul>
+        <p>Help us grow the Xen research community!</p>
+      </Section>
+    </div>
+  </article>
+
+  <script>
+    const searchInput = document.querySelector<HTMLInputElement>('#papers-search');
+    const rows = [...document.querySelectorAll<HTMLElement>('[data-paper-row]')];
+    const noResults = document.querySelector<HTMLElement>('#no-papers-results');
+
+    searchInput?.addEventListener('input', () => {
+      const tokens = searchInput.value.toLowerCase().split(/\s+/).filter(Boolean);
+      let matches = 0;
+      for (const row of rows) {
+        const isMatch = tokens.every((token) => row.innerText.toLowerCase().includes(token));
+        row.style.display = isMatch ? '' : 'none';
+        if (isMatch) matches += 1;
+      }
+      noResults?.classList.toggle('uno-hidden', matches > 0);
+      noResults?.classList.toggle('uno-flex', matches === 0);
+    });
+  </script>
+</BaseLayout>

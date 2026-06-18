@@ -1,0 +1,23 @@
+---
+type Props = {
+  href: string;
+  class?: string;
+};
+
+const {href, class: className = ''} = Astro.props;
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={[
+    'uno-inline-flex uno-flex-wrap uno-items-center uno-flex-row uno-gap-x-4 uno-py-3 uno-rounded-lg uno-bg-action',
+    'uno-text-white uno-text-xl uno-px-7 uno-font-light uno-cursor-pointer uno-border-none uno-decoration-none',
+    'hover:uno-bg-action-hover active:uno-bg-action-active hover:uno-decoration-none uno-transition-all uno-duration-300 uno-parent',
+    className,
+  ]}
+>
+  <slot />
+  <span class="i-fa6-solid-arrow-up-right-from-square uno-transition-transform uno-duration-300 parent-hover:uno-translate-x-[0.3em]" aria-hidden="true"></span>
+</a>

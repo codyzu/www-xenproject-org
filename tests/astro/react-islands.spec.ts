@@ -129,13 +129,19 @@ test.describe('React island migration guardrails', () => {
     await expect(island.getByText('Scroll down to meet your guide...')).toBeVisible();
   });
 
-  test('hydrates shortcode icon buttons into links', async ({page}) => {
+  test('renders Astro-owned research links without legacy React mounts', async ({page}) => {
     await page.goto('/research/');
 
     const researchLink = page.getByRole('link', {name: 'Read the Full Paper'}).first();
     await expect(researchLink).toBeVisible();
     await expect(researchLink).toHaveAttribute('href', /^https?:\/\//);
-    await expect(page.locator('div[data-component="IconButton"]').first().getByRole('link')).toBeVisible();
+    await expect(page.locator('div[data-component="IconButton"]')).toHaveCount(0);
+
+    const search = page.getByRole('searchbox', {name: 'Search Papers:'});
+    await search.fill('no matching paper');
+    await expect(page.getByText('No papers found matching your search.')).toBeVisible();
+    await search.clear();
+    await expect(researchLink).toBeVisible();
   });
 
   test('hydrates the cookie consent banner island', async ({page}) => {
