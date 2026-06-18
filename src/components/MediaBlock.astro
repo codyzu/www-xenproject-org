@@ -1,0 +1,50 @@
+---
+type Props = {
+  title?: string;
+  media?: string;
+  alt?: string;
+  mediaPosition?: 'left' | 'right';
+  mobileMediaPosition?: 'top' | 'bottom';
+  animate?: boolean;
+  class?: string;
+};
+
+const {
+  title = '',
+  media = '',
+  alt = 'Media image',
+  mediaPosition = 'left',
+  mobileMediaPosition,
+  animate = false,
+  class: className = '',
+} = Astro.props;
+const isYouTube = media.includes('youtube.com');
+---
+
+<div
+  class:list={[
+    'media-block',
+    `media-block--${mediaPosition}`,
+    mobileMediaPosition && `media-block--mobile-${mobileMediaPosition}`,
+    className,
+  ]}
+  data-animate={animate ? 'true' : undefined}
+>
+  <div class="media-block__content">
+    {title && <h2 class="media-block__title" set:html={title} />}
+    <div class="media-block__text"><slot /></div>
+  </div>
+  <div class="media-block__media">
+    {
+      Astro.slots.has('media') ? (
+        <slot name="media" />
+      ) : isYouTube ? (
+        <div class="video-player">
+          <iframe src={media} title={alt} loading="lazy" allowfullscreen />
+        </div>
+      ) : (
+        media && <img src={media} alt={alt} loading="lazy" />
+      )
+    }
+  </div>
+</div>

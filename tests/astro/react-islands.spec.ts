@@ -94,11 +94,12 @@ test.describe('React island migration guardrails', () => {
     await expect(island.getByRole('heading', {name: 'Job heatmap'})).toBeVisible();
   });
 
-  test('hydrates the CI hardware grid island', async ({page}) => {
+  test('hydrates the Astro-owned CI hardware grid island', async ({page}) => {
     await mockGitlabGraphQl(page);
     await page.goto('/contribute/ci/');
 
     const island = page.locator('#hardware-grid');
+    await island.scrollIntoViewIfNeeded();
     await expect(island).toBeVisible();
     await expect(island.getByText('Test pipeline triggered at:')).toBeVisible();
     await expect(island.getByText('Intel Alder Lake (i5-12600K)')).toBeVisible();

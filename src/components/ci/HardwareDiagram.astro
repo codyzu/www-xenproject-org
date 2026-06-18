@@ -1,0 +1,37 @@
+<div class="uno-flex uno-justify-center">
+  <div class="uno-surface-brand uno-gap-y-6">
+    <h2 class="uno-text-xl uno-font-semibold">Hardware Test Job (Baremetal Execution)</h2>
+    <div class="uno-flex uno-flex-col uno-space-y-6 lg:uno-flex-row uno-justify-center uno-gap-12 uno-text-center">
+      <div class="uno-bg-surface-secondary uno-rounded-3xl uno-p-8 uno-shadow-sm uno-border uno-border-border uno-max-w-xs">
+        <p class="uno-text-sm uno-font-semibold uno-text-brand-text uno-mb-2">Test Runner Container<br />(on Controller)</p>
+        <div class="uno-bg-brand-fill uno-rounded-2xl uno-p-6 uno-text-brand-onfill">
+          <p class="uno-text-sm uno-mb-2 uno-font-bold">Test Script Executes</p>
+          <div class="uno-bg-action-fill uno-rounded-xl uno-p-4 uno-text-white uno-text-sm uno-text-left">
+            <p class="uno-font-semibold uno-mb-2">Triggers:</p>
+            <ul class="uno-text-xs uno-list-disc children:uno-ml-0 uno-list-inside">
+              <li>PDU (power on)</li><li>TFTP boot</li><li>Serial monitoring</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="uno-flex uno-flex-col uno-items-end uno-gap-4 uno-justify-center">
+        <p>PDU: power on/off <span class="i-fa6-solid-arrow-right-long uno-text-action" aria-hidden="true"></span></p>
+        <p>TFTP: load binaries <span class="i-fa6-solid-arrow-right-long uno-text-action" aria-hidden="true"></span></p>
+        <p>Serial: monitor output <span class="i-fa6-solid-arrow-right-long uno-text-action" aria-hidden="true"></span></p>
+      </div>
+      <div class="uno-bg-action-surface uno-rounded-2xl uno-p-6 uno-text-action-text uno-shadow-sm uno-max-w-xs">
+        <p class="uno-text-sm uno-font-semibold uno-mb-2">Test Board (e.g. ZCU102, Zen3)</p>
+        <div class="uno-bg-white uno-rounded-xl uno-p-4 uno-text-xs uno-text-left uno-border uno-border-border">
+          <p><strong>Xen boots natively</strong> on board</p>
+          <ul class="uno-list-disc children:uno-m-l-0 uno-list-inside">
+            <li>Dom0 and DomU launched</li><li>Serial logs captured</li><li>Result sent back to pipeline</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="uno-flex uno-flex-col uno-items-center uno-mt-6">
+      <span class="i-mdi-file-document-check-outline uno-text-5xl uno-text-action" aria-hidden="true"></span>
+      <p class="uno-mt-2">Serial logs checked: Pass/Fail</p>
+    </div>
+  </div>
+</div>

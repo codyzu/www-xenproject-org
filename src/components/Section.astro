@@ -1,0 +1,14 @@
+---
+type Props = {
+  class?: string;
+  container?: string;
+};
+
+const {class: className = '', container = ''} = Astro.props;
+---
+
+<section class:list={[className, 'section-space']}>
+  <div class:list={[container ? `container-${container}` : 'container']}>
+    <slot />
+  </div>
+</section>
