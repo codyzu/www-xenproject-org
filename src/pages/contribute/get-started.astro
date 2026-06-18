@@ -1,0 +1,63 @@
+---
+import MediaBlock from '../../components/MediaBlock.astro';
+import LogoWheel from '../../components/react/LogoWheel';
+import Section from '../../components/Section.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Get started';
+const description = 'Begin your journey with Xen Project. Follow our step-by-step installation and setup guide to deploy Xen hypervisor. Access essential resources, tutorials, and support for a smooth start.';
+const keywords = ['Xen Project', 'hypervisor', 'installation guide', 'setup tutorial', 'resources', 'support', 'tutorials', 'beginner guide', 'community', 'contribution', 'development', 'open source', 'documentation'];
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <article class="article page-single">
+    <div class="container page-top"><h1>{title}</h1><div class="description">{description}</div></div>
+    <div class="single-content">
+      <Section>
+        <MediaBlock title="Contributing to Xen: an introduction" media="https://www.youtube.com/embed/F6TDJnYtcY8" alt="Video presentation about contributing to Xen" animate>
+          <p>We've collated information to help you get started.</p>
+          <p class="mg-t-md"><a href="https://wiki.xenproject.org/wiki/Main_Page" class="btn btn-primary">View documentation <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+        </MediaBlock>
+      </Section>
+
+      <Section class="section-square-primary">
+        <div class="row" style="--cols: 2">
+          <div class="col">
+            <h2><strong>Read</strong> documentation</h2>
+            <p><a href="https://wiki.xenproject.org/" class="btn btn-tertiary">Access documentation <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+            <p><a href="https://wiki.xenproject.org/wiki/Index_Guide" class="btn btn-tertiary">How to use documentation <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+          </div>
+          <div class="col">
+            <h2><strong>Communicate</strong> with others</h2>
+            <p><a href="/resources/matrix/" class="btn btn-tertiary">Matrix <i class="fas fa-arrow-right"></i></a></p>
+            <p><a href="/resources/mailing-lists/" class="btn btn-tertiary">Mailing Lists <i class="fas fa-arrow-right"></i></a></p>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <MediaBlock title="Access more resources" media="/img/flatline/java.svg" alt="Illustration of a laptop displaying code." mediaPosition="right" animate>
+          <p><a href="https://www.youtube.com/@Xen_Project" class="btn btn-tertiary">YouTube channel <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+          <p><a href="/contribute/contribution-guidelines/" class="btn btn-tertiary">Contribution guidelines <i class="fas fa-arrow-right"></i></a></p>
+          <p><a href="/about/governance/" class="btn btn-tertiary">Governance <i class="fas fa-arrow-right"></i></a></p>
+          <p><a href="/about/security-policy/" class="btn btn-tertiary">Security policy <i class="fas fa-arrow-right"></i></a></p>
+        </MediaBlock>
+      </Section>
+
+      <Section>
+        <MediaBlock title="Advised by Xen project <strong>members</strong>" animate>
+          <p>The Xen Project Advisory Board is composed of experienced members who provide guidance and support. Their expertise helps shape the project's direction and success.</p>
+          <p class="mg-t-md"><a href="/about/project-members/" class="btn btn-secondary">Meet the advisory board <i class="fas fa-arrow-right"></i></a></p>
+          <div id="logo-wheel" class="uno-w-full" slot="media"><LogoWheel client:visible /></div>
+        </MediaBlock>
+      </Section>
+
+      <Section>
+        <MediaBlock title="Become a member" media="/img/flatline/team-meeting.svg" alt="Illustration of three people meeting around a table." mediaPosition="right" animate>
+          <p>Active Advisory Board participants have regular opportunities to discuss priorities and strategies with technical leaders and gain strategic insight into project plans.</p>
+          <p class="mg-t-md"><a href="/about/become-a-member/" class="btn btn-secondary">Join the advisory board <i class="fas fa-arrow-right"></i></a></p>
+        </MediaBlock>
+      </Section>
+    </div>
+  </article>
+</BaseLayout>

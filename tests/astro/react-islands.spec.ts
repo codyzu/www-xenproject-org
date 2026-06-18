@@ -122,6 +122,15 @@ test.describe('React island migration guardrails', () => {
     await expect(island.locator('img').first()).toHaveAttribute('src', /\S/);
   });
 
+  test('hydrates the Astro-owned Get started logo wheel island', async ({page}) => {
+    await page.goto('/contribute/get-started/');
+
+    const island = page.locator('#logo-wheel');
+    await island.scrollIntoViewIfNeeded();
+    await expect(island.locator('img')).not.toHaveCount(0);
+    await expect(island.locator('img').first()).toHaveAttribute('src', /\S/);
+  });
+
   test('hydrates the homepage parallax story island', async ({page}) => {
     await page.goto('/');
 
