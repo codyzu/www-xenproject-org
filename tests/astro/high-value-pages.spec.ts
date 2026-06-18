@@ -7,6 +7,7 @@ const highValuePages = [
     title: /Xen Project/i,
     heading: /Bring the power of/i,
     screenshot: 'home-page.png',
+    hide: '[data-story-star]',
   },
   {
     name: 'about',
@@ -81,6 +82,9 @@ test.describe('Astro spike high-value page guardrails', () => {
       await expect(page.getByRole('heading', {name: /404/i})).toHaveCount(0);
 
       await page.evaluate(async () => document.fonts.ready);
+      if (pageContract.hide) {
+        await page.addStyleTag({content: `${pageContract.hide} { visibility: hidden !important; }`});
+      }
 
       await expect(page).toHaveScreenshot(pageContract.screenshot, {
         fullPage: true,

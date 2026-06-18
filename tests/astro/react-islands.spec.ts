@@ -131,12 +131,16 @@ test.describe('React island migration guardrails', () => {
     await expect(island.locator('img').first()).toHaveAttribute('src', /\S/);
   });
 
-  test('hydrates the homepage parallax story island', async ({page}) => {
+  test('hydrates the Astro-owned homepage islands', async ({page}) => {
     await page.goto('/');
 
-    const island = page.locator('#xen-story');
-    await expect(island).toBeVisible();
-    await expect(island.getByText('Scroll down to meet your guide...')).toBeVisible();
+    const story = page.locator('#xen-story');
+    await expect(story).toBeVisible();
+    await expect(story.getByText('Scroll down to meet your guide...')).toBeVisible();
+
+    const logoWheel = page.locator('#logo-wheel');
+    await logoWheel.scrollIntoViewIfNeeded();
+    await expect(logoWheel.locator('img')).not.toHaveCount(0);
   });
 
   test('renders Astro-owned research links without legacy React mounts', async ({page}) => {

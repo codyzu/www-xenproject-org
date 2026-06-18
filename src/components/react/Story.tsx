@@ -89,6 +89,7 @@ export default function Story() {
               <div
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
+                data-story-star
                 className={clsx(
                   `uno-bg-white uno-rounded-full uno-animate-pulse uno-animate-duration-${star.duration} uno-absolute`,
                   star.shadowColor,
@@ -110,6 +111,7 @@ export default function Story() {
               <div
                 // eslint-disable-next-line react/no-array-index-key
                 key={index}
+                data-story-star
                 className={clsx(
                   `uno-bg-white uno-rounded-full uno-animate-pulse uno-animate-duration-${star.duration} uno-absolute`,
                   star.shadowColor,
