@@ -10,5 +10,8 @@ export const migratedRoutes = [
   '/contribute/ci/status/',
   '/more/xen-branding/',
   '/research/',
+  '/research/barham2003xen/',
+  '/research/thenot2023fastxenblk/',
+  '/research/vanga2018tableau/',
   '/resources/matrix/',
 ] as const satisfies readonly string[];

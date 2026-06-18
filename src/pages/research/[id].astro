@@ -1,0 +1,33 @@
+---
+import researchPapers from '../../../data/research.json';
+import Aside from '../../components/Aside.astro';
+import ExternalLinkButton from '../../components/ExternalLinkButton.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return researchPapers.map((paper) => ({params: {id: paper.id}, props: {paper}}));
+}
+
+type Paper = (typeof researchPapers)[number];
+const {paper} = Astro.props as {paper: Paper};
+const aside = [{type: 'resource' as const, items: [{name: 'Academic Research', link: '/research/', icon: 'fas fa-arrow-right'}]}];
+---
+
+<BaseLayout title={paper.title} description={paper.abstract} keywords={paper.tags} hasAside>
+  <Aside items={aside} />
+  <div class="uno-section">
+    <article class="uno-flex uno-flex-col uno-gap-6">
+      <div>
+        <h1 class="uno-text-4xl uno-font-bold uno-mb-4 uno-text-action-text uno-mt-0">{paper.title}</h1>
+        <div class="uno-text-lg uno-mb-6"><p><strong>Abstract:</strong> {paper.abstract}</p></div>
+      </div>
+      <div class="uno-text-lg uno-leading-8"><strong>Authors:</strong> {paper.authors.join(', ')}</div>
+      <div class="uno-text-lg uno-leading-8"><strong>Year:</strong> {paper.year}</div>
+      <div class="uno-text-lg uno-flex uno-flex-wrap uno-gap-2 uno-items-center">
+        <strong>Tags:</strong>
+        {paper.tags.map((tag) => <span class="uno-px-2 uno-py-1 uno-rounded-lg uno-bg-brand uno-text-secondary">{tag}</span>)}
+      </div>
+      <ExternalLinkButton href={paper.url}>Read the Full Paper</ExternalLinkButton>
+    </article>
+  </div>
+</BaseLayout>

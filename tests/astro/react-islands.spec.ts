@@ -154,6 +154,17 @@ test.describe('React island migration guardrails', () => {
     await expect(researchLink).toBeVisible();
   });
 
+  for (const paperId of ['barham2003xen', 'thenot2023fastxenblk', 'vanga2018tableau']) {
+    test(`renders Astro-owned ${paperId} link without a legacy React mount`, async ({page}) => {
+      await page.goto(`/research/${paperId}/`);
+
+      const paperLink = page.getByRole('link', {name: 'Read the Full Paper'});
+      await expect(paperLink).toBeVisible();
+      await expect(paperLink).toHaveAttribute('href', /^https?:\/\//);
+      await expect(page.locator('div[data-component="IconButton"]')).toHaveCount(0);
+    });
+  }
+
   test('hydrates the Astro-owned membership islands', async ({page}) => {
     await page.addInitScript(() => {
       localStorage.removeItem('cookieConsent');
