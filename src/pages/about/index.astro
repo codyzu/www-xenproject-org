@@ -1,0 +1,76 @@
+---
+import LatestNewsShell from '../../components/LatestNewsShell.astro';
+import MediaBlock from '../../components/MediaBlock.astro';
+import LogoWheel from '../../components/react/LogoWheel';
+import Section from '../../components/Section.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'About Xen Project';
+const description = 'Learn about Xen Project, its mission, history, and the vibrant community behind the leading open source hypervisor. Find out how you can get involved.';
+const keywords = ['Xen Project', 'virtualization', 'hypervisor', 'open source', 'cloud computing', 'community', 'innovation', 'governance', 'collaboration', 'security', 'embedded systems', 'real-time systems', 'automotive', 'Linux Foundation'];
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <article class="article page-single">
+    <div class="container page-top"><h1>{title}</h1><div class="description">{description}</div></div>
+    <div class="single-content">
+      <Section>
+        <MediaBlock title="A global open source community" media="/img/flatline/java.svg" alt="Illustration of a laptop displaying code, with a cup of coffee and a notebook beside it." animate>
+          <p>Xen (pronounced /'zen/) Project has its origins in the ancient Greek term Xenos, which can refer to guest-friends whose relationship is constructed under the ritual of xenia. The name is also a wordplay on guest operating systems and a community of developers and users.</p>
+          <p>The community follows principles including Openness, Transparency, Meritocracy, and Consensus Decision Making.</p>
+          <p>Find out more about how the community governs itself.</p>
+        </MediaBlock>
+      </Section>
+
+      <img src="/img/others/xen-team-photo-2.png" alt="Group photo of attendees at the Xen Project Developer and Design Summit." class="image-ratio-large" loading="lazy" />
+
+      <Section>
+        <MediaBlock media="/img/flatline/data-process-with-xen-logo.svg" mediaPosition="right" alt="Illustration of a computer monitor displaying charts and Xen Project server racks." animate>
+          <p>The Xen Project is the home for several virtualization-related open source projects. The community advances virtualization across server, cloud, desktop, security, embedded, hardware appliance, automotive, and aviation applications.</p>
+          <p>Software hosted on XenProject.org is, and always will be, open source under the GNU General Public License (GPL2). Our governance process is based on openness, transparency, and meritocracy.</p>
+        </MediaBlock>
+      </Section>
+
+      <Section>
+        <MediaBlock title="History" media="/img/others/xen-project-s-history.svg" alt="Timeline of Xen Project milestones from 2003 to 2024." animate>
+          <p>We recently celebrated 20 years in The Xen Project. The timeline shows key milestones from 2003 to the present day.</p>
+          <p class="mg-t-md"><a href="https://15anniversary.xenproject.org/" class="btn btn-secondary">Discover Xen Project history <i class="fas fa-arrow-up-right-from-square"></i></a></p>
+        </MediaBlock>
+      </Section>
+
+      <Section class="section-square-rounded">
+        <div class="row cols-2">
+          <div class="col">
+            <h2>Open-source technologies</h2>
+            <p>The Xen Project has created a number of open source technologies for specific purposes.</p>
+            <p>If you are unsure which technology is right for you, check our team portals and the Xen Overview document.</p>
+          </div>
+          <div class="col color-txt-base">
+            <ul>
+              <li><strong>The Xen Project Hypervisor</strong> is the open source standard for hardware virtualization and includes an Arm build for embedded and mobile devices.</li>
+              <li><strong>Drivers for the Xen Project Hypervisor</strong> are delivered with Linux and BSD distributions; the project also maintains Windows PV Drivers.</li>
+              <li><strong>XAPI</strong> is an enterprise-ready Xen toolstack used by Citrix Hypervisor, XCP-ng, and Magrana Server.</li>
+              <li><strong>Unikernel technologies</strong> include Unikraft and Mirage OS.</li>
+            </ul>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <MediaBlock title="A Linux Foundation collaborative project" media="/img/logos/logo-linux-foundation.svg" alt="The Linux Foundation logo" animate>
+          <p>Linux Foundation projects harness collaborative development to fuel innovation across industries and ecosystems. The foundation provides the essential organizational framework so projects can focus on innovation and results.</p>
+        </MediaBlock>
+      </Section>
+
+      <Section>
+        <MediaBlock title="Governed by Xen project members" mediaPosition="right" animate>
+          <p>Board members can propose and vote upon changes to the Xen Project. Members also gain valuable strategic insight into project plans and future scope.</p>
+          <p class="mg-t-md"><a href="/about/become-a-member/" class="btn btn-secondary">Join the advisory board <i class="fas fa-arrow-right"></i></a></p>
+          <div id="logo-wheel" class="uno-w-full" slot="media"><LogoWheel client:visible /></div>
+        </MediaBlock>
+      </Section>
+
+      <Section><LatestNewsShell /></Section>
+    </div>
+  </article>
+</BaseLayout>

@@ -1,4 +1,4 @@
-import {cp, rm} from 'node:fs/promises';
+import {copyFile, cp, mkdir, rm} from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import {migratedRoutes} from './migrated-routes.ts';
@@ -29,10 +29,11 @@ for (const directory of generatedAssetDirectories) {
 
 for (const route of migratedRoutes) {
   const routePath = stripSlashes(route);
+  const sourceFile = path.join(astroOutputDirectory, routePath, 'index.html');
+  const destinationDirectory = path.join(publicDirectory, routePath);
+  const destinationFile = path.join(destinationDirectory, 'index.html');
 
-  await copyDirectory({
-    from: path.join(astroOutputDirectory, routePath),
-    to: path.join(publicDirectory, routePath),
-    label: `migrated route ${route}`,
-  });
+  await mkdir(destinationDirectory, {recursive: true});
+  await copyFile(sourceFile, destinationFile);
+  console.log(`Overlayed migrated route ${route}: ${path.relative(projectRoot, sourceFile)} -> ${path.relative(projectRoot, destinationFile)}`);
 }

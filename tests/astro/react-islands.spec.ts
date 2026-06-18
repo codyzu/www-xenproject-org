@@ -111,10 +111,11 @@ test.describe('React island migration guardrails', () => {
     );
   });
 
-  test('hydrates a logo wheel island', async ({page}) => {
+  test('hydrates the Astro-owned About logo wheel island', async ({page}) => {
     await page.goto('/about/');
 
     const island = page.locator('#logo-wheel').first();
+    await island.scrollIntoViewIfNeeded();
     await expect(island).toBeVisible();
     await expect(island.locator('img')).not.toHaveCount(0);
     await expect(island.locator('img').first()).toHaveAttribute('alt', /\S/);
