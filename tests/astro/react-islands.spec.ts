@@ -169,6 +169,14 @@ test.describe('React island migration guardrails', () => {
     });
   }
 
+  test('renders Astro-owned meetup actions without legacy React mounts', async ({page}) => {
+    await page.goto('/resources/past-events/spring-meetup-2026/');
+
+    await expect(page.getByRole('link', {name: 'Register now'}).first()).toHaveAttribute('href', /^https?:\/\//);
+    await expect(page.getByRole('link', {name: 'View schedule'})).toHaveAttribute('href', /^https?:\/\//);
+    await expect(page.locator('div[data-component="IconButton"]')).toHaveCount(0);
+  });
+
   test('hydrates the Astro-owned membership islands', async ({page}) => {
     await page.addInitScript(() => {
       localStorage.removeItem('cookieConsent');

@@ -15,4 +15,5 @@ export const migratedRoutes = [
   '/research/thenot2023fastxenblk/',
   '/research/vanga2018tableau/',
   '/resources/matrix/',
+  '/resources/past-events/spring-meetup-2026/',
 ] as const satisfies readonly string[];
