@@ -1,0 +1,25 @@
+---
+import type {NavigationItem} from '../data/navigation';
+import CardGrid from './CardGrid.astro';
+import Section from './Section.astro';
+
+type Props = {
+  item: NavigationItem;
+  introduction: string;
+};
+
+const {item, introduction} = Astro.props;
+const cards = (item.children ?? []).map((child) => ({
+  title: child.name,
+  description: `Explore ${child.name}.`,
+  link: child.href,
+  linkText: 'Explore',
+  linkIcon: 'fa-arrow-right',
+}));
+---
+
+<Section>
+  <h1>{item.name}</h1>
+  <p>{introduction}</p>
+  <CardGrid items={cards} cols={3} class="align-flex-start mg-t-lg" cardClass="card--bg" titleLevel={2} />
+</Section>

@@ -116,6 +116,11 @@ Completed:
 - Phase 6 now includes every data-driven route. Downloads consume validated
   checked-in JSON, past events render from an Astro content collection, and
   Summit pricing consumes validated shared YAML.
+- Phase 7A makes Astro independently buildable as a complete useful artifact.
+  The remaining user-facing routes, curated section indexes, 404 page, RSS,
+  page inventory, and legacy header/footer fragment are Astro-owned and covered
+  by a standalone artifact contract. Empty Hugo taxonomy shells are
+  intentionally retired.
 
 Partially complete:
 
@@ -404,6 +409,31 @@ and MDX content live in an Astro collection, and the archive sorts entries by
 `eventEnd`. Xen Summit 2026 renders its event hero and pricing from Astro
 components with validated shared ticket YAML.
 
+## Phase 7A: Prove Standalone Astro Output
+
+Goal: remove the remaining output-level blockers without changing build or
+deployment ownership.
+
+Completed:
+
+- Migrated `/projects/all-projects/` from a validated shared project catalog and
+  migrated `/resources/use-cases/` with Astro components.
+- Replaced Hugo's concatenated `/contribute/`, `/resources/`, and `/more/`
+  section pages with curated navigation-driven indexes.
+- Added Astro output for `/404.html`, `/all/`, `/index.xml`, and
+  `/headerfooter.html`.
+- Preserved RSS for dated research and past-event entries and preserved the
+  legacy header/footer fragment IDs.
+- Retired the empty `/categories/` and `/tags/` taxonomy shells.
+- Added `npm run test:astro:standalone` to enforce the exact standalone route
+  inventory, links, assets, canonicals, redirects, RSS, 404, and fragment shape.
+
+Acceptance criteria:
+
+- `dist-astro/` passes the standalone artifact contract without Hugo output.
+- Existing Hugo, integrated spike, default command, and deployment contracts
+  remain unchanged until Phase 7.
+
 ## Phase 7: Flip Ownership To Astro
 
 Goal: make Astro the primary static site generator.
@@ -515,6 +545,17 @@ Phase 6 verification on 2026-06-19:
 - The full Playwright suite passes with 89 tests, including download-search,
   event ordering, event-detail, pricing, and redirect-ownership coverage.
 - `npm run lint` passes with only the existing documented warnings.
+
+Phase 7A verification on 2026-06-19:
+
+- `npm run test:astro:standalone` passes against 48 Astro-generated HTML files
+  with no Hugo output copied into `dist-astro/`.
+- `npm run build`, `npm run build:astro-spike`, `npm run astro:build`,
+  `npm run astro:check`, and `npm run lint` pass.
+- `npm run test:astro:links` passes against the integrated artifact.
+- The full Playwright suite passes with 103 tests, including standalone-route
+  ownership, project catalog ordering, curated indexes, 404 behavior, and the
+  reviewed All Projects and Use Cases visual baselines.
 
 Current result:
 

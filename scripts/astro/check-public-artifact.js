@@ -2,8 +2,11 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import {load} from 'cheerio';
+import {migratedRoutes, migratedRedirectRoutes} from './migrated-routes.ts';
 
-const publicDirectory = path.resolve('public');
+const outputArgument = process.argv.find((argument) => !argument.startsWith('--') && argument !== process.argv[0] && argument !== process.argv[1]);
+const standalone = process.argv.includes('--standalone');
+const publicDirectory = path.resolve(outputArgument ?? 'public');
 const internalHosts = new Set(['beta.xenproject.org']);
 const delegatedInternalPaths = [
   // The project blog is deployed outside this static-site artifact.
@@ -183,7 +186,7 @@ const assertRedirect = (filePath, $) => {
 };
 
 if (!fs.existsSync(publicDirectory)) {
-  throw new Error('public/ does not exist. Run npm run build:astro-spike first.');
+  throw new Error(`${path.relative(process.cwd(), publicDirectory)}/ does not exist. Build the target artifact first.`);
 }
 
 if (!fs.existsSync(path.join(publicDirectory, '404.html'))) {
@@ -191,6 +194,78 @@ if (!fs.existsSync(path.join(publicDirectory, '404.html'))) {
 }
 
 const htmlFiles = walk(publicDirectory).filter(isHtmlFile);
+
+if (standalone) {
+  const routeFile = route => route === '/' ? 'index.html' : `${route.replace(/^\//, '')}index.html`;
+  const expectedHtml = new Set([
+    ...migratedRoutes.map(routeFile),
+    ...migratedRedirectRoutes.map(routeFile),
+    '404.html',
+    'all/index.html',
+    'headerfooter.html',
+  ]);
+  const actualHtml = new Set(htmlFiles.map(filePath => path.relative(publicDirectory, filePath)));
+
+  for (const expected of expectedHtml) {
+    if (!actualHtml.has(expected)) {
+      errors.push(`${expected}: missing expected standalone output`);
+    }
+  }
+
+  for (const actual of actualHtml) {
+    if (!expectedHtml.has(actual)) {
+      errors.push(`${actual}: unexpected standalone HTML output`);
+    }
+  }
+
+  for (const retired of ['categories/index.html', 'tags/index.html']) {
+    if (actualHtml.has(retired)) {
+      errors.push(`${retired}: retired taxonomy output must not be generated`);
+    }
+  }
+
+  const headerFooterPath = path.join(publicDirectory, 'headerfooter.html');
+  if (fs.existsSync(headerFooterPath)) {
+    const fragment = fs.readFileSync(headerFooterPath, 'utf8');
+    const $fragment = load(fragment, null, false);
+    for (const id of ['block-assets', 'block-header', 'block-footer']) {
+      if ($fragment(`#${id}`).length !== 1) {
+        errors.push(`headerfooter.html: expected exactly one #${id}`);
+      }
+    }
+
+    if (/<(?:html|body)(?:\s|>)/i.test(fragment)) {
+      errors.push('headerfooter.html: fragment must not contain html or body wrappers');
+    }
+  }
+
+  const rssPath = path.join(publicDirectory, 'index.xml');
+  if (!fs.existsSync(rssPath)) {
+    errors.push('index.xml: missing RSS output');
+  } else {
+    const rssXml = fs.readFileSync(rssPath, 'utf8');
+    const $rss = load(rssXml, {xmlMode: true});
+    const items = $rss('channel > item').toArray();
+    const links = items.map(item => $rss(item).find('link').text());
+    const dates = items.map(item => Date.parse($rss(item).find('pubDate').text()));
+
+    if ($rss('channel > title').first().text() !== 'Xen Project' || $rss('channel > language').text() !== 'en-us') {
+      errors.push('index.xml: RSS channel metadata does not match the site contract');
+    }
+
+    if (!links.some(link => link.includes('/research/')) || !links.some(link => link.includes('/resources/past-events/'))) {
+      errors.push('index.xml: RSS must contain at least one research item and one event item');
+    }
+
+    if (dates.some(Number.isNaN) || dates.some((date, index) => index > 0 && date > dates[index - 1])) {
+      errors.push('index.xml: RSS items must have valid dates in descending order');
+    }
+
+    if (links.some(link => !link.startsWith('https://'))) {
+      errors.push('index.xml: RSS item links must be absolute HTTPS URLs');
+    }
+  }
+}
 
 for (const filePath of htmlFiles) {
   const html = fs.readFileSync(filePath, 'utf8');
@@ -231,5 +306,5 @@ if (errors.length > 0) {
 
   process.exitCode = 1;
 } else {
-  console.log(`Public artifact check passed for ${htmlFiles.length} HTML file(s).`);
+  console.log(`${path.relative(process.cwd(), publicDirectory)}/ artifact check passed for ${htmlFiles.length} HTML file(s).`);
 }

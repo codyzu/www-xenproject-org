@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404: Page not found" description="The requested Xen Project resource could not be found." canonicalUrl="/404.html" robots="noindex, nofollow" bodyClass="page-404">
+  <div class="page-404-content background-curve-reverse-top">
+    <div class="container">
+      <div class="page-404__text">
+        <h1>Page not found!</h1>
+        <p>It seems the resource you want to access does not exist...</p>
+        <ul class="list-no-style">
+          <li><a href="/" class="btn btn-primary">Back to homepage <i class="fas fa-arrow-right"></i></a></li>
+          <li><a href="/projects/all-projects/" class="btn btn-secondary">Discover projects <i class="fas fa-arrow-right"></i></a></li>
+          <li><a href="https://wiki.xenproject.org/" class="btn btn-secondary">Access documentation <i class="fas fa-arrow-up-right-from-square"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

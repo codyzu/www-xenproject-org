@@ -46,6 +46,14 @@ To check generated internal links, local assets, canonical URLs, redirect target
 1. `npm run build:astro-spike`
 1. `npm run test:astro:links`
 
+To build and validate Astro as a complete standalone artifact without changing
+the production build contract:
+
+1. `npm run test:astro:standalone`
+
+This verifies the exact HTML route inventory in `dist-astro/`, RSS,
+`headerfooter.html`, redirects, assets, canonical URLs, and the Astro 404 page.
+
 ### CI Runtime
 
 GitLab CI uses `node:24.16.0-bookworm` so Node matches the local runtime contract.

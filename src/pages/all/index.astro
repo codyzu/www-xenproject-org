@@ -1,0 +1,20 @@
+---
+import {migratedRoutes} from '../../../scripts/astro/migrated-routes';
+import {redirects} from '../../data/redirects';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const routeLabel = (route: string) => route === '/'
+  ? 'Xen Project'
+  : route.split('/').filter(Boolean).at(-1)?.split('-').map((part) => `${part[0].toUpperCase()}${part.slice(1)}`).join(' ') ?? route;
+const entries = [
+  ...migratedRoutes.map((route) => ({route, label: routeLabel(route), type: 'Page'})),
+  ...redirects.map(({source, target}) => ({route: source, label: `${routeLabel(source)} → ${target}`, type: 'Redirect'})),
+].toSorted((a, b) => a.route.localeCompare(b.route));
+---
+
+<BaseLayout title="All pages" description="A complete inventory of Xen Project website pages and redirects." robots="noindex, follow">
+  <div class="all-pages container section-space">
+    <h1>All pages</h1>
+    <ul>{entries.map((entry) => <li><a href={entry.route}>{entry.label}</a> <small>({entry.type})</small></li>)}</ul>
+  </div>
+</BaseLayout>

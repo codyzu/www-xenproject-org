@@ -10,6 +10,7 @@ const publicDirectory = path.join(projectRoot, 'public');
 const generatedAssetDirectories = [
   '_astro',
 ];
+const standaloneFiles = ['404.html', 'headerfooter.html', 'index.xml'];
 
 const stripSlashes = (value) => value.replace(/^\/+|\/+$/g, '');
 
@@ -25,6 +26,11 @@ for (const directory of generatedAssetDirectories) {
     to: path.join(publicDirectory, directory),
     label: `Astro asset directory /${directory}/`,
   });
+}
+
+for (const file of standaloneFiles) {
+  await copyFile(path.join(astroOutputDirectory, file), path.join(publicDirectory, file));
+  console.log(`Overlayed Astro output /${file}`);
 }
 
 for (const route of overlayRoutes) {

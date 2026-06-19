@@ -1,6 +1,7 @@
+import {readFileSync} from 'node:fs';
+import path from 'node:path';
 import yaml from 'js-yaml';
 import {z} from 'zod';
-import navigationYaml from '../../data/navigation.yaml?raw';
 
 export type NavigationItem = {
   name: string;
@@ -21,5 +22,7 @@ const navigationItemSchema: z.ZodType<NavigationItem> = z.lazy(() =>
     children: z.array(navigationItemSchema).optional(),
   }),
 );
+
+const navigationYaml = readFileSync(path.resolve('data/navigation.yaml'), 'utf8');
 
 export const navigationItems = z.array(navigationItemSchema).parse(yaml.load(navigationYaml));

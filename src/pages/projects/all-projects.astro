@@ -1,0 +1,27 @@
+---
+import CardGrid from '../../components/CardGrid.astro';
+import MediaBlock from '../../components/MediaBlock.astro';
+import Section from '../../components/Section.astro';
+import {projects} from '../../data/projects';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'All projects';
+const description = 'Learn about Xen Project, its mission, history, and the vibrant community behind the leading open source hypervisor. Find out how you can get involved.';
+const keywords = ['Xen Project', 'open source', 'community', 'projects', 'development', 'contributions', 'innovation', 'resources'];
+const cards = projects.map((project) => ({...project, link: project.route, linkText: 'Discover', linkIcon: 'fa-arrow-right'}));
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <article class="article page-single">
+    <div class="container page-top"><h1>{title}</h1><div class="description">{description}</div></div>
+    <div class="single-content">
+      <Section><CardGrid items={cards} cols={4} class="list-pages align-flex-start" titleLevel={2} /></Section>
+      <Section class="section-square-primary txt-c content-markdown">
+        <h2>Join the <strong>conversation</strong></h2>
+        <p class="mg-t-md"><a href="/resources/matrix/" class="btn btn-primary mg-r-md">Join Matrix <i class="fas fa-arrow-right"></i></a> <a href="/resources/mailing-lists/" class="btn btn-secondary">Join our mailing lists <i class="fas fa-arrow-right"></i></a></p>
+      </Section>
+      <Section><MediaBlock title="Led by a **dedicated community**" media="/img/flatline/team-work.svg" alt="Illustration of a team working together on a project, with a shared vision and goal." animate>The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology. With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.<p class="mg-t-md"><a href="/contribute/get-started/" class="btn btn-primary">Get started <i class="fas fa-arrow-right"></i></a></p></MediaBlock></Section>
+      <Section><MediaBlock title="About **Xen Project**" media="/img/flatline/data-process.svg" alt="Illustration of a laptop connected to cloud storage and file management icons." mediaPosition="right" animate>The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology. With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.<p class="mg-t-md"><a href="/contribute/get-started/" class="btn btn-secondary">Get started <i class="fas fa-arrow-right"></i></a></p></MediaBlock></Section>
+    </div>
+  </article>
+</BaseLayout>

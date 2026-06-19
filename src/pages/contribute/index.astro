@@ -1,0 +1,12 @@
+---
+import SectionIndex from '../../components/SectionIndex.astro';
+import {navigationItems} from '../../data/navigation';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const item = navigationItems.find((entry) => entry.name === 'Contribute');
+if (!item) throw new Error('Contribute navigation section is missing');
+---
+
+<BaseLayout title="Contribute" description="Find the resources, community channels, and development workflows for contributing to the Xen Project.">
+  <article class="article page-single"><div class="single-content"><SectionIndex item={item} introduction="Choose a contribution path, review the community guidelines, or explore the Xen Project continuous integration infrastructure." /></div></article>
+</BaseLayout>

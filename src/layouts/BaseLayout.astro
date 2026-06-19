@@ -14,6 +14,8 @@ type Props = {
   socialImage?: string;
   image?: string;
   hasAside?: boolean;
+  robots?: string;
+  bodyClass?: string;
 };
 
 const {
@@ -25,6 +27,8 @@ const {
   socialImage,
   image,
   hasAside = false,
+  robots = 'index, follow',
+  bodyClass = '',
 } = Astro.props;
 const currentPath = Astro.url.pathname;
 const siteUrl = Astro.site ?? new URL('https://beta.xenproject.org');
@@ -57,7 +61,7 @@ const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialI
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={resolvedDescription} />
     <meta name="twitter:image" content={resolvedSocialImage} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
     <link rel="canonical" href={resolvedCanonicalUrl} />
     <link rel="stylesheet" href="/font-awesomepro/fontawesome.css" />
     <link rel="stylesheet" href="/font-awesomepro/regular.css" />
@@ -67,7 +71,7 @@ const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialI
       window.siteParams = {blogapikey: 'aca0295269765205d553f5c953'};
     </script>
   </head>
-  <body>
+  <body class={bodyClass || undefined}>
     <Header currentPath={currentPath} />
     <main class:list={['main', hasAside && 'has-aside']}>
       <slot />

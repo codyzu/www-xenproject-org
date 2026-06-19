@@ -3,6 +3,7 @@ import {getOwnedRedirects} from '../../src/data/redirects.ts';
 // Routes Astro owns in the integrated spike artifact.
 export const migratedRoutes = [
   '/',
+  '/all/',
   '/about/',
   '/about/become-a-member/',
   '/about/contact-us/',
@@ -14,8 +15,11 @@ export const migratedRoutes = [
   '/contribute/get-started/',
   '/contribute/ci/',
   '/contribute/ci/status/',
+  '/contribute/',
+  '/more/',
   '/more/xen-branding/',
   '/projects/embedded-and-automotive/',
+  '/projects/all-projects/',
   '/projects/hvmi/',
   '/projects/hypervisor/',
   '/projects/hypervisor/openpgp-keys/',
@@ -29,12 +33,14 @@ export const migratedRoutes = [
   '/research/thenot2023fastxenblk/',
   '/research/vanga2018tableau/',
   '/resources/downloads/',
+  '/resources/',
   '/resources/matrix/',
   '/resources/mailing-lists/',
   '/resources/past-events/',
   '/resources/past-events/spring-meetup-2026/',
   '/resources/past-events/xen-summit-2025/',
   '/resources/summit-2026/',
+  '/resources/use-cases/',
 ] as const satisfies readonly string[];
 
 export const migratedRedirectRoutes = getOwnedRedirects(migratedRoutes).map((redirect) => redirect.source);

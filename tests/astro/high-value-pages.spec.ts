@@ -38,6 +38,13 @@ const highValuePages = [
     screenshot: 'downloads-page.png',
   },
   {
+    name: 'use cases',
+    path: '/resources/use-cases/',
+    title: /Use cases/i,
+    heading: /Use cases/i,
+    screenshot: 'use-cases-page.png',
+  },
+  {
     name: 'summit 2026',
     path: '/resources/summit-2026/',
     title: /Xen Summit 2026/i,

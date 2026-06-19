@@ -12,11 +12,10 @@ const expectedAstroOwnedRedirects = [
   ['/resources/xen-summit-2025/', 'https://beta.xenproject.org/resources/past-events/xen-summit-2025/'],
   ['/resources/xen-summit-2026/', 'https://beta.xenproject.org/resources/summit-2026/'],
   ['/spring26/', 'https://docs.google.com/document/d/1ddsfCTaDHvBOCtFLMTgoGEzaQSdJdogfIGooHWFnLJQ/edit?usp=sharing'],
-] as const;
-
-const expectedHugoOwnedRedirects = [
   ['/projects/', 'https://beta.xenproject.org/projects/all-projects'],
 ] as const;
+
+const expectedHugoOwnedRedirects = [] as const;
 
 test.describe('Astro redirect ownership', () => {
   test('has an explicit ownership expectation for every manifest entry', () => {
