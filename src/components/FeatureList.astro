@@ -1,0 +1,27 @@
+---
+export type Feature = {
+  title: string;
+  icon: string;
+  description: string;
+};
+
+type Props = {
+  items: Feature[];
+  cols?: 2 | 3;
+};
+
+const {items, cols} = Astro.props;
+---
+
+<ul class:list={['features-list', cols && `features-list--cols-${cols}`]}>
+  {
+    items.map((item) => (
+      <li class="feature-item">
+        <div class="feature-content">
+          <h2 class="feature-item__title"><i class:list={['feature-item__icon', item.icon]}></i> {item.title}</h2>
+          <p set:html={item.description} />
+        </div>
+      </li>
+    ))
+  }
+</ul>

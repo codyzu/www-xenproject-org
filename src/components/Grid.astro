@@ -1,0 +1,13 @@
+---
+type Props = {
+  cols?: number;
+  class?: string;
+  wrapper?: 'row' | 'cols';
+};
+
+const {cols, class: className = '', wrapper = 'row'} = Astro.props;
+---
+
+<div class:list={[wrapper, className]} style={cols ? `--cols:${cols}` : undefined}>
+  <slot />
+</div>

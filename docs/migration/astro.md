@@ -108,14 +108,17 @@ Completed on the `astro-spike` branch:
   redirect pages are implemented. RSS remains intentionally Hugo-owned until
   Astro owns feed-bearing content sections.
 
+Completed:
+
+- Phase 5 now includes all low-risk static routes. The remaining About pages,
+  individual project pages, nested Hypervisor OpenPGP keys page, and mailing
+  lists page render directly from Astro components or MDX.
+
 Partially complete:
 
-- Phase 5 now includes the homepage, About, membership, Get Started, CI,
-  research, Spring Meetup, contact, conduct, guidelines, branding, and Matrix
-  routes. More static and event routes still need to move.
 - The shared component library now includes structured sections, media blocks,
-  external-link actions, CI diagrams, and the latest-news shell in addition to
-  cards and prose layouts.
+  feature lists, grids, cards, external-link actions, CI diagrams, media embeds,
+  and the latest-news shell in addition to prose layouts.
 - Phase 6 is started: the research index and paper detail routes render from
   shared generated data, while downloads, event archives, and pricing remain.
 
@@ -342,11 +345,12 @@ Good first candidates:
 - `/resources/matrix/` **Done as `.mdx`.**
 - `/contribute/code-of-conduct/` **Done as `.mdx`.**
 - `/contribute/contribution-guidelines/` **Done as `.mdx`.**
-- `/projects/hvmi/`
+- `/projects/hvmi/` **Done as component-driven Astro content.**
 
 Tasks:
 
-- Convert each Markdown file with shortcodes into `.mdx` or `.astro`.
+- Convert each Markdown file with shortcodes into `.mdx` or `.astro`. **Done for
+  all Phase 5 routes.**
 - Preserve route paths exactly.
 - Preserve frontmatter fields needed for title, description, aliases, aside, page header visibility, and social images.
 - Add redirects for aliases.
@@ -356,6 +360,11 @@ Acceptance criteria:
 - Migrated routes match existing URLs.
 - Existing Hugo routes continue to build for pages not migrated.
 - Visual smoke tests pass for migrated pages.
+
+Phase 5 migrated the remaining static About routes, every individual project
+detail route, `/projects/hypervisor/openpgp-keys/`, and
+`/resources/mailing-lists/`. Data-derived indexes and event pages remain owned
+by Phase 6.
 
 ## Phase 6: Migrate Data-Driven Sections
 
@@ -477,16 +486,27 @@ Verified on 2026-06-18:
 - `npm run lint` passes with only the known LogoWheel TODO and
   `zoom-info.js` eslint-disable warnings.
 
+Verified on 2026-06-19:
+
+- Phase 5 adds 13 static routes, bringing the Astro content allowlist to 29.
+- `npm run astro:check`, `npm run astro:build`, and
+  `npm run build:astro-spike` pass.
+- `npm run test:astro:links` passes against 50 generated HTML files.
+- The full Playwright Astro suite passes with 81 tests, including route-level
+  Phase 5 coverage and the existing high-value visual baselines.
+- `npm run lint` passes with only the existing documented warnings.
+
 Current result:
 
 - Astro can coexist with the existing Hugo/Vite pipeline without replacing production output.
-- The 16 real migrated routes are `/`, `/about/`,
+- The 29 real migrated routes include `/`, `/about/`,
   `/about/become-a-member/`, `/about/contact-us/`,
   `/contribute/code-of-conduct/`, `/contribute/contribution-guidelines/`,
   `/contribute/get-started/`, `/contribute/ci/`,
   `/contribute/ci/status/`, `/more/xen-branding/`, `/research/`, the three
   migrated research paper routes, `/resources/matrix/`, and
-  `/resources/past-events/spring-meetup-2026/`.
+  `/resources/past-events/spring-meetup-2026/`, plus the remaining static About
+  pages, individual project routes, Hypervisor OpenPGP keys, and mailing lists.
 - Shared navigation tests now verify first-level menu links, mobile drilldown,
   keyboard submenu behavior, active navigation state, and shell rendering for
   every route listed in `scripts/astro/migrated-routes.ts`.

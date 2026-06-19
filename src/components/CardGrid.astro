@@ -1,0 +1,35 @@
+---
+export type CardItem = {
+  title: string;
+  description?: string;
+  link?: string;
+  linkText?: string;
+  tags?: string[];
+  secondaryLink?: string;
+  secondaryLinkText?: string;
+  linkIcon?: string;
+  secondaryLinkIcon?: string;
+};
+
+type Props = {items: CardItem[]; cols?: number; class?: string; cardClass?: string; titleLevel?: 2 | 3};
+const {items, cols, class: className = '', cardClass = '', titleLevel = 3} = Astro.props;
+const renderInline = (value = '') => value
+  .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+---
+
+<div class:list={['row', 'row-from-list', className]} style={cols ? `--cols:${cols}` : undefined}>
+  {items.map((item) => {
+    const TitleTag = `h${titleLevel}` as 'h2' | 'h3';
+    return <div class:list={['card', cardClass]}>
+      {item.link && !item.secondaryLink && <a href={item.link} class="card__link" aria-hidden="true" tabindex="-1"></a>}
+      <TitleTag class="card__label">{item.title}</TitleTag>
+      {item.tags && <div class="card__tags">{item.tags.map((tag) => <span class="card__tag tag">{tag}</span>)}</div>}
+      <div class="card__content" set:html={renderInline(item.description)} />
+      {item.link && <div class="card__actions">
+        <a href={item.link} class="join-button btn btn-tertiary">{item.linkText || 'Join'} <i class:list={['fas', item.linkIcon || 'fa-arrow-up-right-from-square']}></i></a>
+        {item.secondaryLink && <a href={item.secondaryLink} class="join-button btn btn-tertiary" aria-label={`${item.secondaryLinkText || 'Join'} about ${item.title}`}>{item.secondaryLinkText || 'Join'} <i class:list={['fas', item.secondaryLinkIcon || 'fa-arrow-up-right-from-square']}></i></a>}
+      </div>}
+    </div>;
+  })}
+</div>

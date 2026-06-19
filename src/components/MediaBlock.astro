@@ -5,8 +5,13 @@ type Props = {
   alt?: string;
   mediaPosition?: 'left' | 'right';
   mobileMediaPosition?: 'top' | 'bottom';
-  animate?: boolean;
+  animate?: boolean | string;
   class?: string;
+  label?: string;
+  titleLevel?: 2 | 3;
+  titleClass?: string;
+  imageSize?: string;
+  plainContent?: boolean;
 };
 
 const {
@@ -17,8 +22,21 @@ const {
   mobileMediaPosition,
   animate = false,
   class: className = '',
+  label = '',
+  titleLevel = 2,
+  titleClass = '',
+  imageSize,
+  plainContent = false,
 } = Astro.props;
-const isYouTube = media.includes('youtube.com');
+const normalizedMedia = media.trim();
+const lowerMedia = normalizedMedia.toLowerCase();
+const isVideo = lowerMedia.endsWith('.mp4');
+const isYouTube = lowerMedia.includes('youtube.com');
+const isSlideShare = lowerMedia.includes('slideshare.net');
+const TitleTag = `h${titleLevel}` as 'h2' | 'h3';
+const formattedTitle = title
+  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  .replace(/\*([^*]+)\*/g, '<em>$1</em>');
 ---
 
 <div
@@ -27,24 +45,37 @@ const isYouTube = media.includes('youtube.com');
     `media-block--${mediaPosition}`,
     mobileMediaPosition && `media-block--mobile-${mobileMediaPosition}`,
     className,
+    plainContent && 'media-block--plain-content',
   ]}
-  data-animate={animate ? 'true' : undefined}
+  data-animate={animate === true || animate === 'true' ? 'true' : undefined}
 >
   <div class="media-block__content">
-    {title && <h2 class="media-block__title" set:html={title} />}
+    {label && <div class="media-block__label">{label}</div>}
+    {title && <TitleTag class:list={['media-block__title', titleClass]} set:html={formattedTitle} />}
     <div class="media-block__text"><slot /></div>
   </div>
   <div class="media-block__media">
     {
       Astro.slots.has('media') ? (
         <slot name="media" />
-      ) : isYouTube ? (
+      ) : isVideo ? (
+        <video width="640" height="360" controls>
+          <source src={normalizedMedia} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      ) : isYouTube || isSlideShare ? (
         <div class="video-player">
-          <iframe src={media} title={alt} loading="lazy" allowfullscreen />
+          <iframe src={normalizedMedia} title={alt} loading="lazy" allowfullscreen />
         </div>
       ) : (
-        media && <img src={media} alt={alt} loading="lazy" />
+        media && <img src={normalizedMedia} alt={alt} loading="lazy" style={imageSize ? `width:${imageSize}` : undefined} />
       )
     }
   </div>
 </div>
+
+<style is:global>
+  .media-block--plain-content .media-block__text > p:not([class]) {
+    margin-bottom: 0;
+  }
+</style>

@@ -1,0 +1,25 @@
+---
+import MediaBlock from '../../components/MediaBlock.astro';
+import Section from '../../components/Section.astro';
+import ContentLayout from '../../layouts/ContentLayout.astro';
+
+const frontmatter = {
+  title: 'XAPI',
+  description: 'The XAPI project is an enterprise-ready toolstack for use with the Xen Project hypervisor.',
+  keywords: ['Xen Project', 'XAPI', 'virtualization management', 'toolstack', 'VM lifecycle', 'cloud orchestration', 'resource management', 'infrastructure', 'development'],
+  aside: [{type: 'resource' as const, items: [{name: 'Github project', link: 'https://github.com/xapi-project/xen-api'}, {name: 'Documentation', link: 'http://xapi-project.github.io/'}, {name: 'Contribute', link: 'https://github.com/xapi-project/xen-api/blob/master/README.markdown'}, {name: 'Report a Bug', link: 'https://github.com/xapi-project/xen-api/issues'}]}],
+  wrapContent: false,
+};
+---
+
+<ContentLayout {frontmatter}>
+  <Section><MediaBlock title="Enterprise-ready tools" media="/img/flatline/data_and_settings.svg" alt="Illustration of a database icon with gears and a wrench, representing data management and configuration tools." animate>The XAPI project is an enterprise ready toolstack for use with the Xen Project hypervisor. When used with Xen, the XAPI toolstack consolidates server workloads, enables savings in power, cooling, and management costs (contributing to environmentally sustainable computing), increases the ability to adapt to ever-changing IT environments, optimizes the use of existing hardware, and improves the level of IT reliability. The XAPI team also develops tooling, agents and libraries that are needed to operate a XAPI-based system.</MediaBlock></Section>
+  <Section class="content-markdown">
+    <h2>What is XAPI?</h2><p>The Xen Project Management API (or XAPI) is:</p>
+    <ul><li>A Xen Project Toolstack that exposes the XAPI interface. When we refer to XAPI as a toolstack, we typically include all dependencies and components that are needed for XAPI to operate (e.g. xenopsd).</li><li>An interface for remotely configuring and controlling virtualized guests running on a Xen-enabled host. XAPI is the core component of XenServer (previously Citrix) and XCP-ng.</li></ul>
+    <p>XAPI adds additional functionality compared to other Xen Project toolstacks, including:</p>
+    <ul><li>Extending the software to cover multiple hosts</li><li>Enhancing the VM lifecycle, including live snapshots, VM checkpointing, and VM migration</li><li>Enabling resource pools to include live migration, auto configuration, and disaster recovery</li><li>Allowing flexible storage and networking including integrated Open vSwitch support and storage XenMotion® live Migration (cross-pool migration, VDI migration)</li><li>Enabling event tracking, with progress and notification</li><li>Creating upgrade and patching capabilities</li><li>Facilitating real-time performance monitoring and alerting</li><li>Integrations with cloud orchestration stacks</li><li>Built-in support and templates for Windows and Linux guests</li></ul>
+    <p>Management tools are available with XAPI based products and from Xen Orchestra.</p>
+  </Section>
+  <Section><MediaBlock title="License" media="/img/flatline/coding2.svg" mediaPosition="right" alt="Illustration of hands typing code on a laptop with documents and a cup of coffee, symbolizing software development and workflow." animate>XAPI is licensed under the <a href="https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html">Lesser GNU General Public License (LGPL2)</a>.</MediaBlock></Section>
+</ContentLayout>

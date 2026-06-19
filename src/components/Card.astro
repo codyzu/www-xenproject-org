@@ -2,13 +2,15 @@
 type Props = {
   title: string;
   class?: string;
+  titleLevel?: 2 | 3;
 };
 
-const {title, class: className = ''} = Astro.props;
+const {title, class: className = '', titleLevel = 3} = Astro.props;
+const TitleTag = `h${titleLevel}` as 'h2' | 'h3';
 ---
 
 <div class:list={['card', className]}>
-  <h3 class="card__label">{title}</h3>
+  <TitleTag class="card__label">{title}</TitleTag>
   <div class="card__content">
     <slot />
   </div>
