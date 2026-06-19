@@ -113,14 +113,16 @@ Completed:
 - Phase 5 now includes all low-risk static routes. The remaining About pages,
   individual project pages, nested Hypervisor OpenPGP keys page, and mailing
   lists page render directly from Astro components or MDX.
+- Phase 6 now includes every data-driven route. Downloads consume validated
+  checked-in JSON, past events render from an Astro content collection, and
+  Summit pricing consumes validated shared YAML.
 
 Partially complete:
 
 - The shared component library now includes structured sections, media blocks,
   feature lists, grids, cards, external-link actions, CI diagrams, media embeds,
-  and the latest-news shell in addition to prose layouts.
-- Phase 6 is started: the research index and paper detail routes render from
-  shared generated data, while downloads, event archives, and pricing remain.
+  the latest-news shell, recursive download lists, download search, event heroes,
+  and ticket pricing in addition to prose layouts.
 
 Not started:
 
@@ -391,8 +393,16 @@ Acceptance criteria:
 - `/research/` and individual research paper routes render from Astro data.
   **Done.**
 - `/resources/downloads/`, `/resources/past-events/`, and pricing blocks render
-  from Astro data. **Pending.**
+  from Astro data. **Done.**
 - Existing scripts are either reused or replaced with simpler Astro-native imports.
+  **Done; checked-in download generation and research parsing remain reusable.**
+
+Phase 6 adds four routes, bringing the Astro content allowlist to 33. The
+Downloads page validates and renders `downloads-latest.json` while retaining
+client-side search over the complete checked-in archive. Past-event metadata
+and MDX content live in an Astro collection, and the archive sorts entries by
+`eventEnd`. Xen Summit 2026 renders its event hero and pricing from Astro
+components with validated shared ticket YAML.
 
 ## Phase 7: Flip Ownership To Astro
 
@@ -496,17 +506,28 @@ Verified on 2026-06-19:
   Phase 5 coverage and the existing high-value visual baselines.
 - `npm run lint` passes with only the existing documented warnings.
 
+Phase 6 verification on 2026-06-19:
+
+- Phase 6 adds four data-driven routes, bringing the Astro content allowlist to 33.
+- `npm run astro:check`, `npm run astro:build`, and
+  `npm run build:astro-spike` pass.
+- `npm run test:astro:links` passes against 50 generated HTML files.
+- The full Playwright suite passes with 89 tests, including download-search,
+  event ordering, event-detail, pricing, and redirect-ownership coverage.
+- `npm run lint` passes with only the existing documented warnings.
+
 Current result:
 
 - Astro can coexist with the existing Hugo/Vite pipeline without replacing production output.
-- The 29 real migrated routes include `/`, `/about/`,
+- The 33 real migrated routes include `/`, `/about/`,
   `/about/become-a-member/`, `/about/contact-us/`,
   `/contribute/code-of-conduct/`, `/contribute/contribution-guidelines/`,
   `/contribute/get-started/`, `/contribute/ci/`,
   `/contribute/ci/status/`, `/more/xen-branding/`, `/research/`, the three
-  migrated research paper routes, `/resources/matrix/`, and
-  `/resources/past-events/spring-meetup-2026/`, plus the remaining static About
-  pages, individual project routes, Hypervisor OpenPGP keys, and mailing lists.
+  migrated research paper routes, `/resources/downloads/`, `/resources/matrix/`,
+  `/resources/past-events/`, both migrated event detail routes, and
+  `/resources/summit-2026/`, plus the remaining static About pages, individual
+  project routes, Hypervisor OpenPGP keys, and mailing lists.
 - Shared navigation tests now verify first-level menu links, mobile drilldown,
   keyboard submenu behavior, active navigation state, and shell rendering for
   every route listed in `scripts/astro/migrated-routes.ts`.

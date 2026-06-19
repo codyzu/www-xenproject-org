@@ -28,9 +28,13 @@ export const migratedRoutes = [
   '/research/barham2003xen/',
   '/research/thenot2023fastxenblk/',
   '/research/vanga2018tableau/',
+  '/resources/downloads/',
   '/resources/matrix/',
   '/resources/mailing-lists/',
+  '/resources/past-events/',
   '/resources/past-events/spring-meetup-2026/',
+  '/resources/past-events/xen-summit-2025/',
+  '/resources/summit-2026/',
 ] as const satisfies readonly string[];
 
 export const migratedRedirectRoutes = getOwnedRedirects(migratedRoutes).map((redirect) => redirect.source);

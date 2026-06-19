@@ -1,7 +1,8 @@
 import process from 'node:process';
 import {defineConfig, devices} from '@playwright/test';
 
-const baseUrl = process.env.PLAYWRIGHT_BASE_URL ?? 'http://127.0.0.1:4321';
+const serverPort = process.env.PLAYWRIGHT_PORT ?? '4321';
+const baseUrl = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${serverPort}`;
 const shouldStartServer = process.env.PLAYWRIGHT_START_SERVER === '1';
 
 export default defineConfig({
@@ -26,10 +27,10 @@ export default defineConfig({
   },
   ...(shouldStartServer && {
     webServer: {
-      command: 'npm run serve -- -l 4321',
+      command: `npm run serve -- -l ${serverPort}`,
       reuseExistingServer: false,
       timeout: 120_000,
-      url: 'http://127.0.0.1:4321',
+      url: `http://127.0.0.1:${serverPort}`,
     },
   }),
   projects: [

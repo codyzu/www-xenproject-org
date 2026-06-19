@@ -70,6 +70,7 @@
     "embla-carousel": "^8.6.0",
     "hugo-extended": "^0.147.0",
     "js-yaml": "^4.2.0",
+    "marked": "^18.0.5",
     "prettier": "^3.3.3",
     "prettier-plugin-go-template": "^0.0.15",
     "serve": "^14.2.4",

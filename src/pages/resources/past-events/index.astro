@@ -1,0 +1,32 @@
+---
+import {getCollection} from 'astro:content';
+import Section from '../../../components/Section.astro';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+
+const title = 'Past Events';
+const description = 'Browse past Xen Project events, watch recordings, and revisit agendas in one place.';
+const keywords = ['Xen Project', 'past events', 'Xen Summit archive'];
+const events = (await getCollection('pastEvents')).toSorted((a, b) => b.data.eventEnd.getTime() - a.data.eventEnd.getTime());
+---
+
+<BaseLayout title={title} description={description} keywords={keywords}>
+  <article class="article">
+    <div class="container section-space">
+      <Section><h1 class="past-events-title">Past Events Archive</h1><p>Catch up on previous Xen Project gatherings, watch recordings, and find agendas or slide decks from earlier conferences. Each listing links to the event recap page for full details.</p></Section>
+      <div class="past-events-grid uno-grid uno-gap-6 md:uno-grid-cols-2">
+        {events.map((event) => <article class="past-event-card section-square-rounded uno-h-full uno-flex uno-flex-col uno-gap-3" data-event-id={event.id}><div><h3 class="uno-text-xl uno-font-semibold"><a href={`/resources/past-events/${event.id}/`} class="link-underlined">{event.data.title}</a></h3>{event.data.showEventDetails && <p class="uno-text-sm uno-text-slate-500">{event.data.eventDates}</p>}{event.data.showEventDetails && <p class="uno-text-sm">{event.data.eventLocation}</p>}</div><p class="uno-text-base uno-text-slate-700">{event.data.description}</p><p><a class="btn btn-secondary" href={`/resources/past-events/${event.id}/`}>View recap</a></p></article>)}
+      </div>
+      <section class="txt-c uno-mt-10"><p class="content-markdown"><em>Last updated: December 19, 2025</em></p></section>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .past-events-title {
+    font-size: var(--font-size-h2);
+    margin-top: 0.66em;
+    margin-bottom: 0.66em;
+    line-height: var(--line-height-body);
+    letter-spacing: -0.0194em;
+  }
+</style>

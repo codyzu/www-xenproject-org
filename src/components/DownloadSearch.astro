@@ -1,0 +1,108 @@
+<div class="search-container download-search" data-download-search>
+  <form action="/search" method="get" class="search-form">
+    <input type="search" class="search-input" name="q" placeholder="Search downloads..." aria-label="Search downloads" />
+    <button type="submit" aria-label="Submit search"><i class="fas fa-search"></i></button>
+  </form>
+  <div class="search-results" aria-live="polite"></div>
+</div>
+
+<script>
+  type DownloadVersion = {name: string; link: string};
+  type DownloadGroup = {name: string; versions: DownloadVersion[]};
+  type SearchVersion = DownloadVersion & {groupName: string; versionName: string; searchTerms: string};
+
+  const debounce = <Arguments extends unknown[]>(callback: (...arguments_: Arguments) => void, delay: number) => {
+    let timeout: ReturnType<typeof setTimeout>;
+    return (...arguments_: Arguments) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => callback(...arguments_), delay);
+    };
+  };
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-download-search]')) {
+    const form = root.querySelector<HTMLFormElement>('form');
+    const input = root.querySelector<HTMLInputElement>('.search-input');
+    const output = root.querySelector<HTMLElement>('.search-results');
+    let downloads: SearchVersion[] | undefined;
+
+    const load = async () => {
+      if (downloads) return downloads;
+      const response = await fetch('/data/downloads.json');
+      if (!response.ok) throw new Error(`Unable to load downloads: ${response.status}`);
+      const groups = await response.json() as DownloadGroup[];
+      downloads = groups.flatMap((group) => group.versions.map((version) => ({
+        ...version,
+        groupName: group.name,
+        versionName: version.name,
+        searchTerms: `${group.name} ${version.name}`.toLowerCase(),
+      })));
+      return downloads;
+    };
+
+    const render = (groups: DownloadGroup[]) => {
+      if (!output) return;
+      output.replaceChildren();
+      if (groups.length === 0) {
+        const empty = document.createElement('div');
+        empty.className = 'mg-t-sm';
+        empty.textContent = 'No downloads found.';
+        output.append(empty);
+        return;
+      }
+
+      const lists = document.createElement('div');
+      lists.className = 'vertical-lists';
+      lists.style.setProperty('--cols', String(Math.min(groups.length, 3)));
+      for (const group of groups) {
+        const column = document.createElement('div');
+        column.className = 'list-column list-column--sublists';
+        const heading = document.createElement('h2');
+        heading.textContent = group.name;
+        const list = document.createElement('ul');
+        for (const version of group.versions) {
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = version.link;
+          const label = document.createElement('span');
+          label.textContent = version.name === 'default' ? 'Download' : `${group.name} ${version.name}`;
+          const icon = document.createElement('i');
+          icon.className = 'fas fa-arrow-right';
+          link.append(label, icon);
+          item.append(link);
+          list.append(item);
+        }
+        column.append(heading, list);
+        lists.append(column);
+      }
+      output.append(lists);
+    };
+
+    const search = debounce(async () => {
+      if (!input || !output) return;
+      const value = input.value.trim().toLowerCase();
+      if (value.length < 2) {
+        output.replaceChildren();
+        return;
+      }
+
+      try {
+        const terms = value.split(/\s+/).filter(Boolean);
+        const matches = (await load()).filter((version) => terms.every((term) => version.searchTerms.includes(term)));
+        const grouped = new Map<string, SearchVersion[]>();
+        for (const version of matches) {
+          const versions = grouped.get(version.groupName) ?? [];
+          versions.push(version);
+          grouped.set(version.groupName, versions);
+        }
+        render([...grouped].map(([name, versions]) => ({name, versions})));
+      } catch (error) {
+        console.error(error);
+        render([]);
+      }
+    }, 300);
+
+    form?.addEventListener('submit', (event) => event.preventDefault());
+    input?.addEventListener('input', search);
+    void load();
+  }
+</script>

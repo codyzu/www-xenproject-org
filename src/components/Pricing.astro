@@ -1,0 +1,32 @@
+---
+import {marked} from 'marked';
+import type {TicketSet} from '../data/tickets';
+
+type Props = {ticketSet: TicketSet; id?: string};
+const {ticketSet, id = 'pricing'} = Astro.props;
+const suffix = id.replaceAll(/[^a-z0-9]+/gi, '-').toLowerCase();
+---
+
+<section id={id} class="ticket-pricing">
+  <div class="container">
+    <div>
+      <input type="radio" id={`inPerson-${suffix}`} name={`ticketType-${suffix}`} class="toggle-input ticket-toggle-in-person" checked />
+      <label for={`inPerson-${suffix}`} class="toggle-label btn">In-Person</label>
+      <input type="radio" id={`virtual-${suffix}`} name={`ticketType-${suffix}`} class="toggle-input ticket-toggle-virtual" />
+      <label for={`virtual-${suffix}`} class="toggle-label btn">Virtual</label>
+    </div>
+    <div class="ticket-groups">
+      {(['inPerson', 'virtual'] as const).map((group) => (
+        <div class:list={['ticket-group', `ticket-group-${group === 'inPerson' ? 'in-person' : 'virtual'}`]} data-ticket-group={group}>
+          {ticketSet.tickets[group].map((ticket) => (
+            <div class="card ticket-card">
+              <h3 class="card__label">{ticket.title}</h3>
+              <div class="card__content" set:html={marked.parse(ticket.description)} />
+              {ticket.enabled && ticket.link && <div class="card__actions"><a href={ticket.link} class="join-button btn btn-tertiary">{ticket.linkText ?? 'Register'} <i class="fas fa-arrow-up-right-from-square"></i></a></div>}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

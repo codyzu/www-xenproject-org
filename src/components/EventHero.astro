@@ -1,0 +1,43 @@
+---
+type Cta = {label: string; href: string; variant?: 'primary' | 'secondary' | 'tertiary'};
+type Props = {
+  eyebrow?: string;
+  title: string;
+  locationDate?: string;
+  format?: string;
+  badges?: string[];
+  backgroundSrc: string;
+  backgroundMobileSrc?: string;
+  backgroundAlt: string;
+  accentSrc?: string;
+  accentAlt?: string;
+  ctas?: Cta[];
+};
+
+const {title, eyebrow, locationDate, format, badges = [], backgroundSrc, backgroundMobileSrc, backgroundAlt, accentSrc, accentAlt = '', ctas = []} = Astro.props;
+const titleId = `event-hero-${title.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-')}-title`;
+const ctaClasses = {
+  primary: 'uno-border-brand-fill uno-bg-brand-fill uno-text-brand-onfill hover:uno-opacity-90',
+  secondary: 'uno-border-white uno-bg-white uno-text-primary hover:uno-bg-gray-100',
+  tertiary: 'uno-border-white/35 uno-bg-transparent uno-text-white hover:uno-border-white hover:uno-bg-white/10',
+};
+---
+
+<section class="uno-relative uno-isolate uno-overflow-hidden uno-bg-primary uno-text-white" aria-labelledby={titleId}>
+  <picture>{backgroundMobileSrc && <source media="(max-width: 767px)" srcset={backgroundMobileSrc} />}<img src={backgroundSrc} alt={backgroundAlt} class="uno-absolute uno-inset-0 uno-h-full uno-w-full uno-object-cover uno-opacity-55" width="2048" height="768" /></picture>
+  <div class="uno-absolute uno-inset-0 uno-bg-[linear-gradient(90deg,rgba(10,16,24,0.95)_0%,rgba(10,16,24,0.84)_42%,rgba(10,16,24,0.35)_100%)]"></div>
+  <div class="uno-section uno-relative uno-min-h-[520px] uno-py-12 md:uno-min-h-[560px] lg:uno-min-h-[500px] lg:uno-py-16">
+    <div class="uno-grid uno-grid-cols-1 uno-items-center uno-gap-8 lg:uno-grid-cols-[minmax(0,1fr)_360px] xl:uno-grid-cols-[minmax(0,1fr)_420px]">
+      <div class="uno-max-w-3xl">
+        {eyebrow && <p class="uno-m-0 uno-text-sm uno-font-semibold uno-uppercase uno-tracking-[0.14em] uno-text-brand-fill">{eyebrow}</p>}
+        <h1 id={titleId} class="uno-mb-0 uno-mt-4 uno-text-[clamp(3rem,8vw,6.5rem)] uno-font-bold uno-leading-[0.95] uno-text-white">{title}</h1>
+        {locationDate && <p class="uno-mb-0 uno-mt-5 uno-text-xl uno-font-semibold uno-leading-snug uno-text-white md:uno-text-2xl">{locationDate}</p>}
+        {format && <p class="uno-mb-0 uno-mt-3 uno-max-w-2xl uno-text-base uno-leading-relaxed uno-text-gray-100 md:uno-text-lg">{format}</p>}
+        {badges.length > 0 && <ul class="uno-m-0 uno-mt-7 uno-flex uno-list-none uno-flex-wrap uno-gap-3 uno-p-0" aria-label="Event status">{badges.map((badge) => <li class="uno-ml-0 uno-rounded-full uno-border uno-border-white/28 uno-bg-white/12 uno-px-4 uno-py-2 uno-text-sm uno-font-semibold uno-text-white uno-backdrop-blur">{badge}</li>)}</ul>}
+        <div class="uno-mt-8 uno-flex uno-flex-wrap uno-gap-3">{ctas.map((cta) => <a href={cta.href} target={cta.href.startsWith('http') ? '_blank' : undefined} rel={cta.href.startsWith('http') ? 'noopener noreferrer' : undefined} class:list={['uno-inline-flex uno-min-h-12 uno-items-center uno-justify-center uno-rounded-lg uno-border uno-border-solid uno-px-5 uno-py-3 uno-text-base uno-font-semibold uno-no-underline uno-outline-offset-4 uno-transition-colors', ctaClasses[cta.variant ?? 'tertiary']]}>{cta.label}</a>)}</div>
+      </div>
+      {accentSrc && <div class="uno-hidden uno-self-end lg:uno-block"><img src={accentSrc} alt={accentAlt} class="uno-ml-auto uno-block uno-h-auto uno-max-h-[430px] uno-w-full uno-max-w-[390px] uno-object-contain" width="780" height="1170" /></div>}
+    </div>
+  </div>
+</section>
+
