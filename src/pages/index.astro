@@ -27,7 +27,11 @@ const projects = [
 
 <BaseLayout title={title} description={description} keywords={keywords} flushMain overlayHeader>
   <div id="xen-story" class="uno-w-full uno-bg-black"><Story client:load /></div>
-  <article class="article">
+  <article
+    data-story-followup
+    class="article"
+    style="position: relative; z-index: 1; background: var(--color-surface-secondary); box-shadow: 0 -2px 0 var(--color-surface-secondary);"
+  >
     <Section class="home-section-hero home-hero-animated">
       <MediaBlock class="hero-block" mediaPosition="right">
         <div class="media-block__label">A Linux Foundation Project</div>

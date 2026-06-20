@@ -8,6 +8,50 @@ import industrial from '../../assets/story/industrial.webp?url';
 
 const pages = 16;
 const endIndex = pages - 1;
+const starColors = [
+  'rgba(255,255,255,0.95)',
+  'rgba(255,255,255,0.9)',
+  'rgba(255,255,255,0.85)',
+  'rgba(147,197,253,0.85)',
+  'rgba(244,114,182,0.82)',
+  'rgba(74,222,128,0.8)',
+  'rgba(251,191,36,0.78)',
+];
+
+type StarDot = {
+  x: number;
+  y: number;
+  size: number;
+  opacity: number;
+  color: string;
+  glow: number;
+};
+
+function createRandom(seed: number) {
+  let value = seed;
+  return () => {
+    value = (value * 16_807) % 2_147_483_647;
+    return (value - 1) / 2_147_483_646;
+  };
+}
+
+function createStars(count: number, seed: number, sizeScale: number): StarDot[] {
+  const random = createRandom(seed);
+  return Array.from({length: count}, () => {
+    const sizeBias = random() ** 2;
+    return {
+      x: random() * 100,
+      y: random() * 100,
+      size: (0.7 + sizeBias * 2.4) * sizeScale,
+      opacity: 0.45 + random() * 0.55,
+      color: starColors[Math.floor(random() * starColors.length)],
+      glow: (2 + random() * 5) * sizeScale,
+    };
+  });
+}
+
+const farStars = createStars(125, 20_260_620, 0.75);
+const nearStars = createStars(85, 8_675_309, 1);
 
 export default function Story() {
   const storyRef = useRef<HTMLDivElement>(null);
@@ -55,7 +99,7 @@ export default function Story() {
         data-story-viewport
         className="uno-sticky uno-top-0 uno-h-100dvh uno-w-full uno-overflow-hidden uno-bg-black"
       >
-        {/* Repeating painted backgrounds avoid thousands of animated DOM nodes. */}
+        {/* Two moving layers avoid animating each individual star. */}
         <StarField page={page} depth="far" />
         <StarField page={page} depth="near" />
         <PlanetBackground
@@ -240,7 +284,8 @@ export default function Story() {
           aria-hidden="true"
           className="uno-pointer-events-none uno-absolute uno-inset-x-0 uno-bottom-0 uno-h-32"
           style={{
-            background: 'linear-gradient(to bottom, transparent, var(--color-surface-secondary))',
+            background:
+              'linear-gradient(to bottom, transparent 0%, var(--color-surface-secondary) 92%, var(--color-surface-secondary) 100%)',
             opacity: Math.max(0, Math.min(1, page - (endIndex - 1))),
           }}
         />
@@ -252,25 +297,7 @@ export default function Story() {
 function StarField({page, depth}: {readonly page: number; readonly depth: 'far' | 'near'}) {
   const isNear = depth === 'near';
   const movement = page * (isNear ? -7 : -3);
-  const style = {
-    backgroundImage: isNear
-      ? [
-          'radial-gradient(circle, rgba(255,255,255,0.95) 0 1px, transparent 1.8px)',
-          'radial-gradient(circle, rgba(244,114,182,0.8) 0 1.4px, transparent 2.6px)',
-          'radial-gradient(circle, rgba(74,222,128,0.75) 0 1.2px, transparent 2.4px)',
-          'radial-gradient(circle, rgba(251,191,36,0.72) 0 1.1px, transparent 2.3px)',
-        ].join(',')
-      : [
-          'radial-gradient(circle, rgba(255,255,255,0.75) 0 0.8px, transparent 1.5px)',
-          'radial-gradient(circle, rgba(147,197,253,0.55) 0 0.9px, transparent 1.7px)',
-          'radial-gradient(circle, rgba(255,255,255,0.5) 0 0.7px, transparent 1.4px)',
-        ].join(','),
-    backgroundPosition: isNear
-      ? `0 ${movement}px, 31px ${movement * 0.7}px, 67px ${movement * 1.2}px, 109px ${movement * 0.5}px`
-      : `11px ${movement}px, 53px ${movement * 0.6}px, 97px ${movement * 1.3}px`,
-    backgroundSize: isNear ? '61px 67px, 97px 89px, 131px 127px, 173px 149px' : '43px 47px, 79px 83px, 113px 109px',
-    filter: isNear ? 'drop-shadow(0 0 4px rgba(255,255,255,0.55))' : 'drop-shadow(0 0 2px rgba(255,255,255,0.35))',
-  } satisfies CSSProperties;
+  const stars = isNear ? nearStars : farStars;
 
   return (
     <div
@@ -278,8 +305,27 @@ function StarField({page, depth}: {readonly page: number; readonly depth: 'far' 
       data-star-depth={depth}
       aria-hidden="true"
       className="uno-absolute uno-inset-[-15%]"
-      style={style}
-    />
+      style={{transform: `translate3d(0, ${movement}px, 0)`}}
+    >
+      {stars.map((star, index) => (
+        <i
+          // Stable seeded arrays make the index a deterministic identity.
+          // eslint-disable-next-line react/no-array-index-key
+          key={index}
+          data-star-dot
+          className="uno-absolute uno-rounded-full"
+          style={{
+            left: `${star.x}%`,
+            top: `${star.y}%`,
+            width: `${star.size}px`,
+            height: `${star.size}px`,
+            opacity: star.opacity,
+            backgroundColor: star.color,
+            boxShadow: `0 0 ${star.glow}px ${star.color}`,
+          }}
+        />
+      ))}
+    </div>
   );
 }
 

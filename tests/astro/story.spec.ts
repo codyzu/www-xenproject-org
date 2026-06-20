@@ -57,6 +57,8 @@ test.describe('homepage Story regression guardrails', () => {
       const story = document.querySelector<HTMLElement>('[data-story-root]');
       const viewport = document.querySelector<HTMLElement>('[data-story-viewport]');
       const main = document.querySelector('main');
+      const article = main?.querySelector<HTMLElement>('[data-story-followup]');
+      const articleStyle = article ? getComputedStyle(article) : undefined;
       return {
         headerCount: document.querySelectorAll('body > header').length,
         articleCount: document.querySelectorAll('main > article').length,
@@ -67,6 +69,11 @@ test.describe('homepage Story regression guardrails', () => {
         articleGap: story && main?.querySelector<HTMLElement>('article')
           ? main.querySelector<HTMLElement>('article')!.offsetTop - (story.offsetTop + story.offsetHeight)
           : -1,
+        articleBridge: Boolean(
+          articleStyle
+          && articleStyle.backgroundColor !== 'rgba(0, 0, 0, 0)'
+          && articleStyle.boxShadow !== 'none'
+        ),
       };
     });
 
@@ -78,6 +85,7 @@ test.describe('homepage Story regression guardrails', () => {
       viewportPosition: 'sticky',
       storyBeforeArticle: true,
       articleGap: 0,
+      articleBridge: true,
     });
 
     await scrollStoryTo(page, 15);
@@ -87,16 +95,21 @@ test.describe('homepage Story regression guardrails', () => {
     await expect(page.getByRole('heading', {level: 1, name: /Bring the power of/})).toBeVisible();
   });
 
-  test('paints a persistent star field without per-star animation', async ({page}) => {
+  test('paints a persistent non-repeating star field without per-star animation', async ({page}) => {
     await prepareStory(page);
     const fields = page.locator('[data-story-star]');
     await expect(fields).toHaveCount(2);
     const styles = await fields.evaluateAll(elements => elements.map(element => ({
       animationName: getComputedStyle(element).animationName,
-      backgroundImage: getComputedStyle(element).backgroundImage,
     })));
     expect(styles.every(style => style.animationName === 'none')).toBeTruthy();
-    expect(styles.every(style => style.backgroundImage.includes('radial-gradient'))).toBeTruthy();
+    const dots = page.locator('[data-star-dot]');
+    await expect(dots).toHaveCount(210);
+    const positions = await dots.evaluateAll(elements => elements.map(element => {
+      const style = getComputedStyle(element);
+      return `${style.left}:${style.top}`;
+    }));
+    expect(new Set(positions).size).toBe(210);
   });
 
   test('applies the desktop planet layout constraints', async ({page}) => {
