@@ -1,14 +1,136 @@
-<div class="latest-news" data-max-cards="10">
+<div class="latest-news" data-latest-news data-max-cards="10" aria-busy="true">
   <div class="container">
     <h2>Latest <strong>news</strong> <a href="/blog" class="title-external-link">Read all news <i class="fas fa-arrow-right"></i></a></h2>
   </div>
-  <div class="carousel-container carousel-container-width">
+  <div class="carousel-container carousel-container-width" data-latest-news-carousel role="region" aria-label="Latest Xen Project news">
     <div class="carousel-content">
       <div class="carousel-content-inner"><div class="carousel latest-news_container"></div></div>
       <div class="carousel-buttons">
-        <button class="carousel-button prev" type="button" aria-label="Previous news"><i class="fas fa-arrow-left"></i></button>
-        <button class="carousel-button next" type="button" aria-label="Next news"><i class="fas fa-arrow-right"></i></button>
+        <button class="carousel-button prev" type="button" aria-label="Previous news" disabled><i class="fas fa-arrow-left"></i></button>
+        <button class="carousel-button next" type="button" aria-label="Next news" disabled><i class="fas fa-arrow-right"></i></button>
       </div>
     </div>
   </div>
+  <p class="container" data-latest-news-error hidden>Latest news is temporarily unavailable.</p>
 </div>
+
+<script>
+  import {initializeCarousel} from '../scripts/carousel';
+
+  type GhostTag = {name: string; url: string};
+  type GhostAuthor = {name: string; url: string};
+  type GhostPost = {
+    title: string;
+    url: string;
+    published_at: string;
+    excerpt: string;
+    tags?: GhostTag[];
+    authors?: GhostAuthor[];
+  };
+
+  const siteWindow = window as Window & {siteParams?: {blogapikey?: string}};
+
+  function appendLink(parent: HTMLElement, text: string, url: string) {
+    const link = document.createElement('a');
+    link.href = url;
+    link.textContent = text;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    parent.append(link);
+  }
+
+  function createNewsCard(post: GhostPost) {
+    const card = document.createElement('article');
+    card.className = 'carousel-item card card--news';
+
+    const overlayLink = document.createElement('a');
+    overlayLink.className = 'card__link';
+    overlayLink.href = post.url;
+    overlayLink.ariaHidden = 'true';
+    overlayLink.tabIndex = -1;
+    card.append(overlayLink);
+
+    const title = document.createElement('h3');
+    title.className = 'card__label';
+    title.textContent = post.title;
+    card.append(title);
+
+    const date = document.createElement('div');
+    date.className = 'card__date';
+    date.textContent = post.published_at.slice(0, 10);
+    card.append(date);
+
+    if (post.tags?.length) {
+      const tags = document.createElement('div');
+      tags.className = 'card__tags';
+      for (const tag of post.tags) {
+        const wrapper = document.createElement('span');
+        wrapper.className = 'card__tag';
+        appendLink(wrapper, tag.name, tag.url);
+        tags.append(wrapper);
+      }
+      card.append(tags);
+    }
+
+    const excerpt = document.createElement('p');
+    excerpt.className = 'card__content';
+    excerpt.textContent = post.excerpt;
+    card.append(excerpt);
+
+    if (post.authors?.length) {
+      const authors = document.createElement('div');
+      authors.className = 'card__author';
+      authors.append('by ');
+      post.authors.forEach((author, index) => {
+        if (index > 0) authors.append(', ');
+        appendLink(authors, author.name, author.url);
+      });
+      card.append(authors);
+    }
+
+    const actions = document.createElement('div');
+    actions.className = 'card__actions';
+    const readMore = document.createElement('a');
+    readMore.className = 'join-button btn btn-tertiary';
+    readMore.href = post.url;
+    readMore.ariaLabel = `Read more about ${post.title}`;
+    readMore.append('Read more ');
+    const icon = document.createElement('i');
+    icon.className = 'fas fa-arrow-up-right-from-square';
+    readMore.append(icon);
+    actions.append(readMore);
+    card.append(actions);
+
+    return card;
+  }
+
+  async function loadLatestNews(root: HTMLElement) {
+    const container = root.querySelector<HTMLElement>('.latest-news_container');
+    const carousel = root.querySelector<HTMLElement>('[data-latest-news-carousel]');
+    const error = root.querySelector<HTMLElement>('[data-latest-news-error]');
+    if (!container || !carousel || !error) return;
+
+    try {
+      const key = siteWindow.siteParams?.blogapikey;
+      const limit = Number(root.dataset.maxCards) || 10;
+      const response = await fetch(`/blog/ghost/api/content/posts/?key=${key}&limit=${limit}&include=tags,authors`);
+      if (!response.ok) throw new Error(`Ghost API returned ${response.status}`);
+      const payload = await response.json() as {posts?: GhostPost[]};
+      const posts = payload.posts ?? [];
+      if (posts.length === 0) throw new Error('Ghost API returned no posts');
+
+      container.replaceChildren(...posts.map(createNewsCard));
+      document.documentElement.classList.add('has-js');
+      initializeCarousel(carousel);
+      root.dataset.latestNewsState = 'ready';
+    } catch (fetchError) {
+      console.error('Unable to load latest Xen Project news', fetchError);
+      error.hidden = false;
+      root.dataset.latestNewsState = 'error';
+    } finally {
+      root.ariaBusy = 'false';
+    }
+  }
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-latest-news]')) void loadLatestNews(root);
+</script>

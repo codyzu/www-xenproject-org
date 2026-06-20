@@ -480,6 +480,25 @@ Acceptance criteria:
 - No content files contain Hugo shortcode syntax.
 - Route, metadata, and asset checks pass.
 
+## Post-Migration Technical Debt
+
+These follow-ups are intentionally deferred until after production cutover and
+Phase 8 cleanup. They are improvements to migrated behavior, not cutover
+blockers.
+
+- Replace the initial Astro Latest News client script with a declarative React
+  island. Preserve the Ghost Content API contract, loading and failure states,
+  card metadata, keyboard-accessible carousel controls, and responsive layout.
+- Move the blog API origin into explicit environment configuration. Production
+  and staging should exercise their real `/blog/ghost/api/content/posts/`
+  integration; localhost may use a documented proxy or fixture mode for manual
+  development.
+- Keep Playwright tests deterministic by intercepting the Ghost API and serving
+  fixed post fixtures. Retain a separate unmocked staging check so fixture-based
+  tests cannot hide a broken blog proxy or API configuration.
+- Remove the temporary imperative DOM card construction and consolidate the
+  project and news carousel behavior once the React island owns Latest News.
+
 ## Main Risks
 
 - **Shortcodes embedded in Markdown:** this is the largest migration cost. Avoid building a full Hugo-shortcode compatibility layer unless the migration stalls.

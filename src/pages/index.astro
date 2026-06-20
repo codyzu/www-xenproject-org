@@ -1,11 +1,12 @@
 ---
-import Card from '../components/Card.astro';
 import LatestNewsShell from '../components/LatestNewsShell.astro';
 import MediaBlock from '../components/MediaBlock.astro';
+import ProjectCarousel from '../components/ProjectCarousel.astro';
 import LogoWheel from '../components/react/LogoWheel';
 import Story from '../components/react/Story';
 import Section from '../components/Section.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import {projects} from '../data/projects';
 
 const title = 'Xen Project';
 const description = 'The Xen Project develops enterprise-grade open source virtualization solutions trusted by millions of users. Secure, flexible, and powerful hypervisor technology.';
@@ -18,11 +19,7 @@ const features = [
   ['Secure', 'fas fa-shield-alt', 'A minimal attack surface with features such as KCONFIG and Virtual Machine Introspection.'],
   ['Modular', 'fas fa-puzzle-piece', 'Scalable, robust architecture suitable for large, critical, and highly secure environments.'],
 ];
-const projects = [
-  ['Hypervisor', '/projects/hypervisor/'], ['Embedded & Automotive', '/projects/embedded-and-automotive/'],
-  ['HVMI', '/projects/hvmi/'], ['Mirage OS', '/projects/mirage-os/'], ['Unikraft', '/projects/unikraft/'],
-  ['Windows PV Drivers', '/projects/windows-pv-drivers/'], ['XAPI', '/projects/xapi/'], ['XCP-ng', '/projects/xcp-ng/'],
-];
+const homepageProjects = projects.filter((project) => project.route !== '/projects/hypervisor/openpgp-keys/');
 ---
 
 <BaseLayout title={title} description={description} keywords={keywords} flushMain overlayHeader>
@@ -62,10 +59,8 @@ const projects = [
     </Section>
 
     <Section container="full">
-      <div class="row row-from-list" style="--cols: 4">
-        {projects.map(([projectTitle, link]) => <Card title={projectTitle} class="card--bg"><a href={link} class="btn btn-tertiary">Explore <i class="fas fa-arrow-right"></i></a></Card>)}
-      </div>
-      <p class="mob-mg-v-xl mg-v-xxl txt-c"><a class="btn btn-primary" href="/projects/">Discover all projects <i class="fas fa-arrow-right"></i></a></p>
+      <ProjectCarousel projects={homepageProjects} />
+      <p class="mob-mg-v-xl mg-v-xxl txt-c"><a class="btn btn-primary" href="/projects/all-projects/">Discover all projects <i class="fas fa-arrow-right"></i></a></p>
     </Section>
 
     <Section container="full"><LatestNewsShell /></Section>
