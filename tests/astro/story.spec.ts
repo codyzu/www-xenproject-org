@@ -64,6 +64,9 @@ test.describe('homepage Story regression guardrails', () => {
         storyScrollable: story ? story.scrollHeight > story.clientHeight && ['auto', 'scroll'].includes(getComputedStyle(story).overflowY) : true,
         viewportPosition: viewport ? getComputedStyle(viewport).position : '',
         storyBeforeArticle: Boolean(story && main?.querySelector('article') && story.compareDocumentPosition(main.querySelector('article')!) & Node.DOCUMENT_POSITION_FOLLOWING),
+        articleGap: story && main?.querySelector<HTMLElement>('article')
+          ? main.querySelector<HTMLElement>('article')!.offsetTop - (story.offsetTop + story.offsetHeight)
+          : -1,
       };
     });
 
@@ -74,12 +77,26 @@ test.describe('homepage Story regression guardrails', () => {
       storyScrollable: false,
       viewportPosition: 'sticky',
       storyBeforeArticle: true,
+      articleGap: 0,
     });
 
     await scrollStoryTo(page, 15);
     await expect(page.getByText('Where will', {exact: false})).toBeVisible();
+    await expect(page.locator('[data-story-transition]')).toHaveCSS('opacity', '1');
     await page.evaluate(() => window.scrollTo(0, document.querySelector<HTMLElement>('main > article')!.offsetTop));
     await expect(page.getByRole('heading', {level: 1, name: /Bring the power of/})).toBeVisible();
+  });
+
+  test('paints a persistent star field without per-star animation', async ({page}) => {
+    await prepareStory(page);
+    const fields = page.locator('[data-story-star]');
+    await expect(fields).toHaveCount(2);
+    const styles = await fields.evaluateAll(elements => elements.map(element => ({
+      animationName: getComputedStyle(element).animationName,
+      backgroundImage: getComputedStyle(element).backgroundImage,
+    })));
+    expect(styles.every(style => style.animationName === 'none')).toBeTruthy();
+    expect(styles.every(style => style.backgroundImage.includes('radial-gradient'))).toBeTruthy();
   });
 
   test('applies the desktop planet layout constraints', async ({page}) => {

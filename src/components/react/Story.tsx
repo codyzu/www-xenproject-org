@@ -6,24 +6,6 @@ import consumer from '../../assets/story/consumer.webp?url';
 import car from '../../assets/story/car.webp?url';
 import industrial from '../../assets/story/industrial.webp?url';
 
-type Star = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  duration: number;
-  shadowColor: string;
-  shadowSize: string;
-};
-
-const shadowColors = [
-  'uno-shadow-pink',
-  'uno-shadow-amber',
-  'uno-shadow-green',
-  'uno-shadow-white',
-  'uno-shadow-white',
-];
-const shadowSizes = ['uno-shadow-glow', 'uno-shadow-glow-lg', 'uno-shadow-glow-xl'];
 const pages = 16;
 const endIndex = pages - 1;
 
@@ -31,23 +13,6 @@ export default function Story() {
   const storyRef = useRef<HTMLDivElement>(null);
 
   const [page, setPage] = useState(0);
-  const [stars, setStars] = useState<Star[]>([]);
-
-  useEffect(() => {
-    const nextStars: Star[] = Array.from({length: 2000}, () => ({
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      width: Math.random() * 3 + 1, // Width between 1 and 3
-      height: Math.random() * 3 + 1, // Height between 1 and 3
-      // Duration between 600 and 2600ms in steps of 200ms
-      // Note, this should match the safelist in uno.config.ts
-      duration: (Math.round(Math.random() * 10) + 6) * 200,
-      shadowColor: shadowColors[Math.floor(Math.random() * shadowColors.length)],
-      shadowSize: shadowSizes[Math.floor(Math.random() * shadowSizes.length)],
-    }));
-
-    setStars(nextStars);
-  }, []);
 
   useEffect(() => {
     let frame = 0;
@@ -90,51 +55,9 @@ export default function Story() {
         data-story-viewport
         className="uno-sticky uno-top-0 uno-h-100dvh uno-w-full uno-overflow-hidden uno-bg-black"
       >
-        {/* Background layers */}
-        <StoryLayer page={page} speed={1.3} offset={0} className="uno-flex uno-w-full">
-          <div className="uno-flex uno-relative uno-w-full">
-            {stars.slice(0, 999).map((star, index) => (
-              <div
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-                data-story-star
-                className={clsx(
-                  `uno-bg-white uno-rounded-full uno-animate-pulse uno-animate-duration-${star.duration} uno-absolute`,
-                  star.shadowColor,
-                  star.shadowSize,
-                )}
-                style={{
-                  top: `${star.y}%`,
-                  left: `${star.x}%`,
-                  width: `${star.width}px`,
-                  height: `${star.height}px`,
-                }}
-              />
-            ))}
-          </div>
-        </StoryLayer>
-        <StoryLayer page={page} speed={1.8} offset={0} className="uno-flex uno-w-full">
-          <div className="uno-flex uno-relative uno-w-full">
-            {stars.slice(1000, 1999).map((star, index) => (
-              <div
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
-                data-story-star
-                className={clsx(
-                  `uno-bg-white uno-rounded-full uno-animate-pulse uno-animate-duration-${star.duration} uno-absolute`,
-                  star.shadowColor,
-                  star.shadowSize,
-                )}
-                style={{
-                  top: `${star.y}%`,
-                  left: `${star.x}%`,
-                  width: `${star.width}px`,
-                  height: `${star.height}px`,
-                }}
-              />
-            ))}
-          </div>
-        </StoryLayer>
+        {/* Repeating painted backgrounds avoid thousands of animated DOM nodes. */}
+        <StarField page={page} depth="far" />
+        <StarField page={page} depth="near" />
         <PlanetBackground
           page={page}
           start={2}
@@ -271,7 +194,7 @@ export default function Story() {
           className={clsx(
             'uno-flex uno-flex-col uno-items-center uno-justify-center uno-gap-4 uno-p-8 sm:uno-p-20',
             'uno-animate-fade-in',
-            page >= endIndex - 1.5 && page <= endIndex - 0.8 ? 'uno-opacity-100' : 'uno-opacity-0',
+            page >= endIndex - 1.5 ? 'uno-opacity-100' : 'uno-opacity-0',
             'uno-transition-opacity uno-duration-300  uno-ease-in-out',
             'uno-text-white uno-text-2xl sm:uno-text-4xl uno-text-center',
           )}
@@ -312,11 +235,51 @@ export default function Story() {
             </div>
           </div>
         </StoryLayer>
-        <StoryLayer page={page} offset={endIndex - 1} className="uno-h-full uno-flex uno-flex-col uno-justify-end">
-          <div className="uno-h-20 uno-bg-gradient-from-surface-secondary uno-bg-gradient-to-black uno-bg-gradient-to-t uno-bg-gradient-to-opacity-50" />
-        </StoryLayer>
+        <div
+          data-story-transition
+          aria-hidden="true"
+          className="uno-pointer-events-none uno-absolute uno-inset-x-0 uno-bottom-0 uno-h-32"
+          style={{
+            background: 'linear-gradient(to bottom, transparent, var(--color-surface-secondary))',
+            opacity: Math.max(0, Math.min(1, page - (endIndex - 1))),
+          }}
+        />
       </div>
     </div>
+  );
+}
+
+function StarField({page, depth}: {readonly page: number; readonly depth: 'far' | 'near'}) {
+  const isNear = depth === 'near';
+  const movement = page * (isNear ? -7 : -3);
+  const style = {
+    backgroundImage: isNear
+      ? [
+          'radial-gradient(circle, rgba(255,255,255,0.95) 0 1px, transparent 1.8px)',
+          'radial-gradient(circle, rgba(244,114,182,0.8) 0 1.4px, transparent 2.6px)',
+          'radial-gradient(circle, rgba(74,222,128,0.75) 0 1.2px, transparent 2.4px)',
+          'radial-gradient(circle, rgba(251,191,36,0.72) 0 1.1px, transparent 2.3px)',
+        ].join(',')
+      : [
+          'radial-gradient(circle, rgba(255,255,255,0.75) 0 0.8px, transparent 1.5px)',
+          'radial-gradient(circle, rgba(147,197,253,0.55) 0 0.9px, transparent 1.7px)',
+          'radial-gradient(circle, rgba(255,255,255,0.5) 0 0.7px, transparent 1.4px)',
+        ].join(','),
+    backgroundPosition: isNear
+      ? `0 ${movement}px, 31px ${movement * 0.7}px, 67px ${movement * 1.2}px, 109px ${movement * 0.5}px`
+      : `11px ${movement}px, 53px ${movement * 0.6}px, 97px ${movement * 1.3}px`,
+    backgroundSize: isNear ? '61px 67px, 97px 89px, 131px 127px, 173px 149px' : '43px 47px, 79px 83px, 113px 109px',
+    filter: isNear ? 'drop-shadow(0 0 4px rgba(255,255,255,0.55))' : 'drop-shadow(0 0 2px rgba(255,255,255,0.35))',
+  } satisfies CSSProperties;
+
+  return (
+    <div
+      data-story-star
+      data-star-depth={depth}
+      aria-hidden="true"
+      className="uno-absolute uno-inset-[-15%]"
+      style={style}
+    />
   );
 }
 
