@@ -8,6 +8,7 @@ const highValuePages = [
     heading: /Bring the power of/i,
     screenshot: 'home-page.png',
     hide: '[data-story-star]',
+    fullPage: false,
   },
   {
     name: 'about',
@@ -94,7 +95,7 @@ test.describe('Astro spike high-value page guardrails', () => {
       }
 
       await expect(page).toHaveScreenshot(pageContract.screenshot, {
-        fullPage: true,
+        fullPage: pageContract.fullPage ?? true,
         maxDiffPixelRatio: 0.01,
       });
     });

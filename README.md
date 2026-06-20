@@ -47,6 +47,10 @@ replacement for the legacy `IconButton` mount.
 Redirect smoke coverage verifies the generated canonical, refresh, and
 `noindex` metadata.
 
+To validate the deployed beta artifact manually, run `npm run test:astro:staging`.
+For a faster homepage Story check, run `npm run test:astro:staging:story`.
+These commands do not start a local server; deploy the commit under test first.
+
 ### Legacy rollback
 
 Hugo/Vite remains available temporarily through `npm run dev:legacy` and
@@ -59,7 +63,8 @@ GitLab CI uses `node:24.16.0-bookworm` so Node matches the local runtime contrac
 Beta artifacts use the Astro production build. Production remains on the
 explicit legacy build until the beta acceptance gate passes.
 
-To regenerate the Hugo/Vite baseline screenshot, run the dev server first:
+To regenerate the Hugo/Vite Story reference screenshots without overwriting
+the active Astro snapshots, run the dev server first:
 
 1. `npm run dev:legacy`
 1. In another terminal, `npm run test:astro:smoke:hugo-baseline`

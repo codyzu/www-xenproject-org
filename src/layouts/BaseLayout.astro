@@ -16,6 +16,8 @@ type Props = {
   hasAside?: boolean;
   robots?: string;
   bodyClass?: string;
+  flushMain?: boolean;
+  overlayHeader?: boolean;
 };
 
 const {
@@ -29,6 +31,8 @@ const {
   hasAside = false,
   robots = 'index, follow',
   bodyClass = '',
+  flushMain = false,
+  overlayHeader = false,
 } = Astro.props;
 const currentPath = Astro.url.pathname;
 const siteUrl = Astro.site ?? new URL('https://beta.xenproject.org');
@@ -71,7 +75,7 @@ const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialI
       window.siteParams = {blogapikey: 'aca0295269765205d553f5c953'};
     </script>
   </head>
-  <body class={bodyClass || undefined}>
+  <body class:list={[bodyClass, flushMain && 'layout-main-flush', overlayHeader && 'layout-header-overlay']}>
     <Header currentPath={currentPath} />
     <main class:list={['main', hasAside && 'has-aside']}>
       <slot />
@@ -81,5 +85,9 @@ const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialI
       import '../../themes/xen-project/assets/js/menu.js';
       import '../../themes/xen-project/assets/js/animate.js';
     </script>
+    <style is:global>
+      body.layout-main-flush > main.main { padding-top: 0; }
+      body.layout-header-overlay > header.header { position: absolute; inset: 0 0 auto; z-index: 20; }
+    </style>
   </body>
 </html>

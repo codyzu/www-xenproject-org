@@ -25,8 +25,8 @@ const projects = [
 ];
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
-  <div id="xen-story" class="uno-w-full uno-h-100dvh uno-bg-black"><Story client:only="react" /></div>
+<BaseLayout title={title} description={description} keywords={keywords} flushMain overlayHeader>
+  <div id="xen-story" class="uno-w-full uno-bg-black"><Story client:load /></div>
   <article class="article">
     <Section class="home-section-hero home-hero-animated">
       <MediaBlock class="hero-block" mediaPosition="right">
@@ -85,5 +85,12 @@ const projects = [
       </MediaBlock>
     </Section>
   </article>
-  <style is:global>main.main { padding-top: 0; }</style>
+  <style is:global>
+    @media (prefers-reduced-motion: reduce) {
+      #xen-story *, #xen-story *::before, #xen-story *::after {
+        animation-duration: 1ms !important;
+        transition-duration: 1ms !important;
+      }
+    }
+  </style>
 </BaseLayout>

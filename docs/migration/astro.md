@@ -468,6 +468,8 @@ Tasks:
 - Remove `hugo.yaml`, `hugo.dev.yaml`, `layouts/`, and `themes/xen-project/layouts`.
 - Move any reusable static assets out of `themes/xen-project/static`.
 - Move CSS from `themes/xen-project/assets/css` into Astro source structure.
+- Remove legacy theme paths from UnoCSS `content.filesystem` and
+  `content.pipeline` after the Hugo layouts are deleted.
 - Remove `hugo-extended`, Hugo scripts, Hugo docs, and Hugo-specific CI settings.
 - Delete `bundle-main.tsx` after the Hugo production path is retired. The
   allowlisted Astro routes already own their islands directly.
@@ -605,6 +607,11 @@ Current result:
 - The remaining build noise is Sass deprecation output from the existing theme styles, not a spike blocker.
 - Hugo source pages remain in place only for the explicit rollback path and are
   scheduled for removal in Phase 8.
+- The homepage Story now uses document scrolling and a sticky viewport instead
+  of reparenting the Astro header, article, and footer into a nested
+  react-spring scroller. Dedicated desktop and mobile scene snapshots retain
+  both the Hugo reference and the approved Astro result, and manual staging
+  commands can run the full suite or the focused Story checks against beta.
 
 ## Navigation Data Status
 

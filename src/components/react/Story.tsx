@@ -1,6 +1,5 @@
-import {type IParallax, Parallax, ParallaxLayer} from '@react-spring/parallax';
 import clsx from 'clsx';
-import {type ReactNode, useEffect, useRef, useState} from 'react';
+import {type CSSProperties, type ReactNode, useEffect, useRef, useState} from 'react';
 import panda from '../../assets/story/panda-space-suite.webp?url';
 import dataCenter from '../../assets/story/data-center.webp?url';
 import consumer from '../../assets/story/consumer.webp?url';
@@ -25,9 +24,11 @@ const shadowColors = [
   'uno-shadow-white',
 ];
 const shadowSizes = ['uno-shadow-glow', 'uno-shadow-glow-lg', 'uno-shadow-glow-xl'];
+const pages = 16;
+const endIndex = pages - 1;
 
 export default function Story() {
-  const storyRef = useRef<IParallax>(null);
+  const storyRef = useRef<HTMLDivElement>(null);
 
   const [page, setPage] = useState(0);
   const [stars, setStars] = useState<Star[]>([]);
@@ -49,29 +50,28 @@ export default function Story() {
   }, []);
 
   useEffect(() => {
-    function handleScroll() {
-      if (storyRef.current) {
-        const nextPage = Math.round((storyRef.current.current * 10) / storyRef.current.space) / 10;
+    let frame = 0;
+    const updatePage = () => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        const story = storyRef.current;
+        if (!story) return;
+        const nextPage = Math.max(0, Math.min(endIndex, -story.getBoundingClientRect().top / window.innerHeight));
+        setPage(Math.round(nextPage * 10) / 10);
+      });
+    };
 
-        if (nextPage !== page) {
-          console.log('p', page, 'next', nextPage);
-        }
-
-        setPage(nextPage);
-      }
-    }
-
-    const current = storyRef.current?.container?.current as HTMLDivElement | undefined;
-
-    current?.addEventListener('scroll', handleScroll);
+    updatePage();
+    window.addEventListener('scroll', updatePage, {passive: true});
+    window.addEventListener('resize', updatePage);
 
     return () => {
-      current?.removeEventListener('scroll', handleScroll);
+      cancelAnimationFrame(frame);
+      window.removeEventListener('scroll', updatePage);
+      window.removeEventListener('resize', updatePage);
     };
-  }, [page]);
+  }, []);
 
-  const pages = 16;
-  const endIndex = pages - 1;
   const planets = [
     {start: 2, end: 3},
     {start: 5, end: 6},
@@ -80,10 +80,18 @@ export default function Story() {
   ];
 
   return (
-    <div className="uno-relative uno-w-full uno-h-100dvh uno-overflow-hidden uno-bg-black">
-      <Parallax ref={storyRef} className="uno-h-full uno-w-full" pages={pages}>
+    <div
+      ref={storyRef}
+      data-story-root
+      className="uno-relative uno-w-full uno-bg-black"
+      style={{height: `${pages * 100}dvh`}}
+    >
+      <div
+        data-story-viewport
+        className="uno-sticky uno-top-0 uno-h-100dvh uno-w-full uno-overflow-hidden uno-bg-black"
+      >
         {/* Background layers */}
-        <ParallaxLayer speed={1.3} offset={0} factor={pages * 2.2} className="uno-flex uno-relative uno-w-full">
+        <StoryLayer page={page} speed={1.3} offset={0} className="uno-flex uno-w-full">
           <div className="uno-flex uno-relative uno-w-full">
             {stars.slice(0, 999).map((star, index) => (
               <div
@@ -104,8 +112,8 @@ export default function Story() {
               />
             ))}
           </div>
-        </ParallaxLayer>
-        <ParallaxLayer speed={1.8} offset={0} factor={pages * 2.7} className="uno-flex uno-relative uno-w-full">
+        </StoryLayer>
+        <StoryLayer page={page} speed={1.8} offset={0} className="uno-flex uno-w-full">
           <div className="uno-flex uno-relative uno-w-full">
             {stars.slice(1000, 1999).map((star, index) => (
               <div
@@ -126,26 +134,31 @@ export default function Story() {
               />
             ))}
           </div>
-        </ParallaxLayer>
+        </StoryLayer>
         <PlanetBackground
+          page={page}
           start={2}
           gradient="uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgba(44,168,96,1)_35%,rgba(100,100,100,0.3)_40%,rgba(0,0,0,0)_45%]"
         />
         <PlanetBackground
+          page={page}
           start={5}
           gradient="uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgba(168,44,44,1)_35%,rgba(100,100,100,0.3)_40%,rgba(0,0,0,0)_45%]"
         />
         <PlanetBackground
+          page={page}
           start={8}
           gradient="uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgb(204,175,47)_35%,rgba(100,100,100,0.3)_40%,rgba(0,0,0,0)_45%]"
         />
         <PlanetBackground
+          page={page}
           start={11}
           gradient="uno-bg-gradient-stops-[rgba(42,123,155,1)_0%,rgba(114,63,204,1)_35%,rgba(100,100,100,0.3)_40%,rgba(0,0,0,0)_45%]"
         />
 
         {/* Content layers */}
-        <ParallaxLayer
+        <StoryLayer
+          page={page}
           offset={0}
           className={clsx(
             'uno-flex uno-flex-col uno-items-center uno-justify-center uno-gap-4 uno-p-8 sm:uno-p-20',
@@ -161,19 +174,21 @@ export default function Story() {
           </div>
           <div>The world&apos;s most secure, stable, and performant open source hypervisor.</div>
           <div className="uno-m-t-10 uno-text-base sm:uno-text-2xl">Scroll down to meet your guide...</div>
-        </ParallaxLayer>
-        <ParallaxLayer
+        </StoryLayer>
+        <StoryLayer
+          page={page}
           sticky={{start: 0, end: endIndex - 1}}
           className="uno-flex uno-flex-col uno-items-center uno-justify-end uno-text-white"
         >
           <div className="uno-w-10 uno-h-10 sm:(uno-w-16 uno-h-16)  i-fa6-solid-arrow-down uno-animate-bounce uno-m-b-10" />
-        </ParallaxLayer>
-        <ParallaxLayer
-          offset={1}
+        </StoryLayer>
+        <StoryLayer
+          page={page}
           sticky={{start: 1, end: endIndex - 2}}
           className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-p-t-50"
         >
           <img
+            data-story-guide
             className={clsx(
               'uno-w-20% uno-max-w-100 uno-animate-duration-3200 uno-animate-bounce',
               // Pause animations when on a planet
@@ -181,8 +196,9 @@ export default function Story() {
             )}
             src={panda}
           />
-        </ParallaxLayer>
-        <ParallaxLayer
+        </StoryLayer>
+        <StoryLayer
+          page={page}
           sticky={{start: 0.8, end: 2}}
           className={clsx(
             'uno-flex uno-flex-col uno-items-center uno-justify-start uno-p-t-20 sm:uno-p-t-50 uno-p-x-4 sm:uno-p-x-20',
@@ -201,8 +217,8 @@ export default function Story() {
             ...the <Xen /> Panda travels through the universe, guiding users through the wonders of <Xen />{' '}
             virtualization.
           </div>
-        </ParallaxLayer>
-        <ParallaxLayer sticky={planets[0]} className="uno-flex">
+        </StoryLayer>
+        <StoryLayer page={page} sticky={planets[0]} className="uno-flex" dataScene="data-center">
           <PlanetForeground name="Planet Data Center" image={dataCenter} isTextVisible={page >= 2 && page <= 3.2}>
             <Xen /> brings virtualization to a wide range of server environments, from data centers to enterprise IT,
             edge deployments, and labs. As an Open Source hypervisor, <Xen /> powers a variety of platforms supported by
@@ -212,8 +228,8 @@ export default function Story() {
             the same trusted core. Whether you&apos;re managing thousands of virtual machines or a single node
             on-premises, <Xen /> provides the flexibility and stability to meet your needs.
           </PlanetForeground>
-        </ParallaxLayer>
-        <ParallaxLayer sticky={planets[1]} className="uno-flex uno-h-full">
+        </StoryLayer>
+        <StoryLayer page={page} sticky={planets[1]} className="uno-flex uno-h-full" dataScene="automotive">
           <PlanetForeground name="Planet Automotive" image={car} isTextVisible={page >= 5 && page <= 6.2}>
             <Xen /> is powering innovation in automotive computing by enabling secure, efficient virtualization across
             in-vehicle systems. From dashboards and infotainment to safety-critical functions, <Xen /> consolidates
@@ -224,8 +240,8 @@ export default function Story() {
             vehicles. Automotive partners across manufacturing and component sectors collaborate within the <Xen />{' '}
             ecosystem to advance software-defined mobility.
           </PlanetForeground>
-        </ParallaxLayer>
-        <ParallaxLayer sticky={planets[2]} className="uno-flex uno-h-full">
+        </StoryLayer>
+        <StoryLayer page={page} sticky={planets[2]} className="uno-flex uno-h-full" dataScene="industrial">
           <PlanetForeground name="Planet Industrial" image={industrial} isTextVisible={page >= 8 && page <= 9.2}>
             <Xen /> is transforming industrial computing by enabling secure, efficient virtualization across embedded
             controllers, robotics, factory automation systems, and energy infrastructure. With real-time performance,
@@ -236,8 +252,8 @@ export default function Story() {
             partners can contribute and test directly within the <Xen /> ecosystem, helping shape a resilient and
             flexible virtualization platform for modern operations.
           </PlanetForeground>
-        </ParallaxLayer>
-        <ParallaxLayer sticky={planets[3]} className="uno-flex uno-h-full">
+        </StoryLayer>
+        <StoryLayer page={page} sticky={planets[3]} className="uno-flex uno-h-full" dataScene="consumer">
           <PlanetForeground name="Planet Consumer" image={consumer} isTextVisible={page >= 11 && page <= 12.2}>
             <Xen /> isn&apos;t just for servers and vehicles, it&apos;s empowering end-user systems too. Renowned
             security-focused projects like <strong>Qubes OS</strong> and <strong>OpenXT</strong> rely on <Xen /> to
@@ -247,9 +263,11 @@ export default function Story() {
             businesses, and university research environments, offering a secure, flexible virtualization stack for
             experimentation and innovation.
           </PlanetForeground>
-        </ParallaxLayer>
-        <ParallaxLayer
+        </StoryLayer>
+        <StoryLayer
+          page={page}
           sticky={{start: endIndex - 1.5, end: endIndex}}
+          dataScene="finale"
           className={clsx(
             'uno-flex uno-flex-col uno-items-center uno-justify-center uno-gap-4 uno-p-8 sm:uno-p-20',
             'uno-animate-fade-in',
@@ -293,20 +311,11 @@ export default function Story() {
               </div>
             </div>
           </div>
-        </ParallaxLayer>
-        <ParallaxLayer sticky={{start: 0, end: 0}}>
-          <Header />
-        </ParallaxLayer>
-        <ParallaxLayer sticky={{start: endIndex, end: endIndex}} className="uno-bg-surface-secondary">
-          <div className="uno-bg-surface-secondary">
-            <Article />
-            <Footer />
-          </div>
-        </ParallaxLayer>
-        <ParallaxLayer offset={endIndex - 1} className="uno-h-full uno-flex uno-flex-col uno-justify-end">
+        </StoryLayer>
+        <StoryLayer page={page} offset={endIndex - 1} className="uno-h-full uno-flex uno-flex-col uno-justify-end">
           <div className="uno-h-20 uno-bg-gradient-from-surface-secondary uno-bg-gradient-to-black uno-bg-gradient-to-t uno-bg-gradient-to-opacity-50" />
-        </ParallaxLayer>
-      </Parallax>
+        </StoryLayer>
+      </div>
     </div>
   );
 }
@@ -330,7 +339,6 @@ function PlanetForeground({
   readonly children: ReactNode;
   readonly isTextVisible: boolean;
 }) {
-  // Ideally this would return the ParallaxLayer, but sticky layers don't work if they are wrapped in a Fragment or Component (unlike non sticky layers)
   return (
     <div
       className={clsx(
@@ -359,58 +367,62 @@ function PlanetForeground({
   );
 }
 
-function PlanetBackground({start, gradient}: {readonly start: number; readonly gradient: string}) {
+function PlanetBackground({
+  page,
+  start,
+  gradient,
+}: {
+  readonly page: number;
+  readonly start: number;
+  readonly gradient: string;
+}) {
   return (
-    <ParallaxLayer
+    <StoryLayer
+      page={page}
       offset={start}
-      speed={0}
-      factor={3}
-      className={clsx('uno-relative', gradient, 'uno-bg-gradient-shape-[circle_at_50%_50%]', 'uno-bg-gradient-radial')}
+      heightPages={3}
+      className={clsx(gradient, 'uno-bg-gradient-shape-[circle_at_50%_50%]', 'uno-bg-gradient-radial')}
     />
   );
 }
 
-function Footer() {
-  const footerRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const footer = footerRef.current;
-    const existingFooter = document.querySelector('footer');
-    console.log('footerRef', footer, 'existingFooter', existingFooter);
-    if (footer && existingFooter) {
-      console.log('moving footer', footer, 'existing', existingFooter);
-      footer.append(existingFooter);
-    }
-  }, []);
+function StoryLayer({
+  page,
+  offset = 0,
+  speed = 1,
+  heightPages = 1,
+  sticky,
+  className,
+  dataScene,
+  children,
+}: {
+  readonly page: number;
+  readonly offset?: number;
+  readonly speed?: number;
+  readonly heightPages?: number;
+  readonly sticky?: {readonly start: number; readonly end: number};
+  readonly className?: string;
+  readonly dataScene?: string;
+  readonly children?: ReactNode;
+}) {
+  let translatePages = (offset - page) * speed;
+  if (sticky) {
+    translatePages = page < sticky.start ? sticky.start - page : page > sticky.end ? sticky.end - page : 0;
+  }
 
-  return <div ref={footerRef} />;
-}
+  const style = {
+    transform: `translate3d(0, ${translatePages * 100}dvh, 0)`,
+    height: `${heightPages * 100}dvh`,
+  } satisfies CSSProperties;
 
-function Header() {
-  const headerRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const header = headerRef.current;
-    const existingHeader = document.querySelector('header');
-    console.log('headerRef', header, 'existingHeader', existingHeader);
-    if (header && existingHeader) {
-      console.log('moving header', header, 'existing', existingHeader);
-      header.append(existingHeader);
-    }
-  }, []);
-
-  return <div ref={headerRef} />;
-}
-
-function Article() {
-  const articleRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    const article = articleRef.current;
-    const existingArticle = document.querySelector('article');
-    console.log('headerRef', article, 'existingHeader', existingArticle);
-    if (article && existingArticle) {
-      console.log('moving header', article, 'existing', existingArticle);
-      article.append(existingArticle);
-    }
-  }, []);
-
-  return <div ref={articleRef} className="uno-bg-surface-secondary" />;
+  return (
+    <div
+      data-story-layer
+      data-story-scene={dataScene}
+      className={clsx('uno-absolute uno-inset-0 uno-h-100dvh uno-w-full', className)}
+      style={style}
+    >
+      {children}
+    </div>
+  );
 }
