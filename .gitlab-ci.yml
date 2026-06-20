@@ -1,22 +1,4 @@
-# This file is a template, and might need editing before it works on your project.
-# To contribute improvements to CI/CD templates, please follow the Development guide at:
-# https://docs.gitlab.com/ee/development/cicd/templates.html
-# This specific template is located at:
-# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Pages/Hugo.gitlab-ci.yml
-
 ---
-#
-# Before using this .gitlab-ci.yml:
-#
-# - This example uses the latest Docker image, but you might want to use the
-#   exact version to avoid any broken pipelines.
-#   All available Hugo versions are listed under https://gitlab.com/pages/hugo/container_registry.
-# - Read about the difference between hugo and hugo_extended
-#   https://gitlab.com/pages/hugo/-/blob/main/README.md#hugo-vs-hugo_extended.
-#   If you don't know what to use, better use the extended version.
-# - To change the theme, see
-#   https://gitlab.com/pages/hugo/-/blob/main/README.md#use-a-custom-theme.
-#
 
 workflow:
   # Avoid duplicate pipelines for merge requests (for pushes and merge requests)
@@ -28,26 +10,25 @@ workflow:
     - if: $CI_COMMIT_BRANCH
 
 default:
-  # Pin Node explicitly because the Astro spike build relies on Node 24's
+  # Pin Node explicitly because the Astro build relies on Node 24's
   # built-in TypeScript stripping for scripts that import .ts modules directly.
-  # Hugo itself is provided by the repo's npm devDependency, `hugo-extended`.
   image: node:24.16.0-bookworm
 
 variables:
   GIT_SUBMODULE_STRATEGY: recursive
   HUGO_ENV: production
-  # Use shallow clones by default to keep CI fast; overridden in deploy/publish jobs
-  GIT_DEPTH: 1  # keep shallow clones for faster lint/build in non-publish jobs
+  SITE_URL: https://beta.xenproject.org
+  # Use shallow clones by default; only the legacy publish job needs history.
+  GIT_DEPTH: 1
   GIT_SUBMODULE_DEPTH: 1
 
 test:
   script:
     - node --version
     - npm ci --cache .npm --prefer-offline
-    - npm exec hugo -- version
     - npm run lint
-    - npm run build:astro-spike
-    - npm run test:astro:links
+    - npm run build
+    - node scripts/astro/check-public-artifact.js public --standalone
   rules:
     - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE != "merge_request_event"
   cache:
@@ -60,17 +41,12 @@ test:
 
 # Artifact will be deployed to https://beta.xenproject.org/
 deploy:
-  variables:
-    # Full git history required so Hugo can compute per-page lastmod correctly
-    GIT_DEPTH: 0
-    GIT_SUBMODULE_DEPTH: 0
   script:
     - node --version
     - npm ci --cache .npm --prefer-offline
-    - npm exec hugo -- version
     - npm run lint
-    - npm run build:astro-spike
-    - npm run test:astro:links
+    - npm run build
+    - node scripts/astro/check-public-artifact.js public --standalone
     - tar caf site.tar.gz public
   artifacts:
     paths:
@@ -86,7 +62,8 @@ deploy:
       paths:
         - .npm/
 
-# Artifact will be published to https://xenproject.org/
+# Artifact will be published to https://xenproject.org/. Keep this job on the
+# explicit legacy path until the Astro beta acceptance gate has passed.
 publish:
   variables:
     # Full git history required so Hugo can compute per-page lastmod correctly
@@ -98,7 +75,7 @@ publish:
     - npm exec hugo -- version
     - npm run lint
     - node scripts/downloads/getLinks.js
-    - npm run build -- -- --baseURL "https://xenproject.org/"
+    - npm run build:legacy -- -- --baseURL "https://xenproject.org/"
     - tar caf site.tar.gz public
   artifacts:
     paths:

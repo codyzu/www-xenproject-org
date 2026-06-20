@@ -1,8 +1,8 @@
 # Astro Migration Plan
 
-## Current State
+## Original State
 
-The site is currently a Hugo static site with Vite bolted on for React islands and UnoCSS:
+The migration started from a Hugo static site with Vite bolted on for React islands and UnoCSS:
 
 - Hugo owns routing, content rendering, menus, layouts, shortcodes, data files, RSS, aliases, and production output in `public/`.
 - Vite owns the React/TypeScript bundle at `themes/xen-project/assets/js/vite/bundle-main.tsx`.
@@ -128,10 +128,12 @@ Partially complete:
   feature lists, grids, cards, external-link actions, CI diagrams, media embeds,
   the latest-news shell, recursive download lists, download search, event heroes,
   and ticket pricing in addition to prose layouts.
+- Phase 7 has flipped the default local build and beta deployment to Astro.
+  Production remains on the explicit legacy build until beta acceptance is
+  confirmed.
 
 Not started:
 
-- Astro ownership flip.
 - Hugo removal.
 
 ## Phase 0: Baseline And Guardrails
@@ -430,7 +432,7 @@ Completed:
 
 Acceptance criteria:
 
-- `dist-astro/` passes the standalone artifact contract without Hugo output.
+- The standalone Astro artifact passes its contract without Hugo output.
 - Existing Hugo, integrated spike, default command, and deployment contracts
   remain unchanged until Phase 7.
 
@@ -440,12 +442,17 @@ Goal: make Astro the primary static site generator.
 
 Tasks:
 
-- Change `npm run dev` to Astro dev.
-- Change `npm run build` to Astro build plus any remaining legacy compatibility step.
-- Remove the Vite proxy setup once Hugo is no longer serving primary pages.
-- Stop writing Vite output into `themes/xen-project/static`.
-- Update GitLab CI image if Hugo is no longer required.
-- Keep `scripts/downloads/getLinks.js` and `scripts/research/parse-research-papers.js` if still useful.
+- Change `npm run dev` to Astro dev. **Done.**
+- Change `npm run build` to generate the complete Astro `public/` artifact.
+  **Done.**
+- Remove the overlay build and keep Hugo/Vite behind explicit `dev:legacy` and
+  `build:legacy` rollback commands. **Done.**
+- Stop the default and beta CI paths from writing Vite output into
+  `themes/xen-project/static`. **Done.**
+- Configure beta and production origins through `SITE_URL`. **Done.**
+- Cut production publishing over after the beta acceptance gate. **Pending.**
+- Keep `scripts/downloads/getLinks.js` and
+  `scripts/research/parse-research-papers.js`. **Done.**
 
 Acceptance criteria:
 
@@ -557,10 +564,22 @@ Phase 7A verification on 2026-06-19:
   ownership, project catalog ordering, curated indexes, 404 behavior, and the
   reviewed All Projects and Use Cases visual baselines.
 
+Phase 7 beta-cutover verification on 2026-06-20:
+
+- The default `npm run build` generates 48 Astro HTML pages directly in
+  `public/`.
+- Standalone artifact validation passes for both beta and production
+  `SITE_URL` values, including canonical and RSS origins.
+- `npm run astro:check`, `npm run lint`, and the explicit `build:legacy`
+  rollback path pass.
+- The full Playwright suite passes with 103 tests against the beta-origin Astro
+  artifact.
+
 Current result:
 
-- Astro can coexist with the existing Hugo/Vite pipeline without replacing production output.
-- The 33 real migrated routes include `/`, `/about/`,
+- Astro is the default local build and owns the beta deployment artifact.
+  Production remains on `build:legacy` until beta acceptance is confirmed.
+- The 39 Astro routes include `/`, `/about/`,
   `/about/become-a-member/`, `/about/contact-us/`,
   `/contribute/code-of-conduct/`, `/contribute/contribution-guidelines/`,
   `/contribute/get-started/`, `/contribute/ci/`,
@@ -579,13 +598,13 @@ Current result:
 - Homepage visual snapshots hide only the randomized star field; the dedicated
   island smoke test still verifies the Story and LogoWheel behavior.
 - The static artifact checker verifies generated local links, local assets,
-  canonical URLs, redirect targets, and `404.html`. Root-relative `/blog` paths
-  are intentionally treated as delegated because the blog is deployed outside
-  this static-site artifact.
+  canonical URLs, redirect targets, and `404.html`.
+  `/blog` and historical `/wp-content/uploads` media are delegated because they
+  are hosted outside this static-site artifact.
 - The screenshot comparison is stable after removing the old debug toolbar from the Hugo baseline.
 - The remaining build noise is Sass deprecation output from the existing theme styles, not a spike blocker.
-- Hugo source pages remain in place during the spike so Hugo can continue to
-  construct complete menus from `hugo.yaml` and content frontmatter.
+- Hugo source pages remain in place only for the explicit rollback path and are
+  scheduled for removal in Phase 8.
 
 ## Navigation Data Status
 
@@ -598,35 +617,32 @@ The current menu is one submenu level deep. Playwright smoke coverage opens
 each first-level desktop and mobile menu section and verifies the expected link
 targets so navigation regressions are caught during route migrations.
 
-Hugo still uses `hugo.yaml` and page frontmatter for production menus. Keep that
-in place until there is a concrete need to make Hugo consume the neutral
-navigation file too.
+Hugo still uses `hugo.yaml` and page frontmatter in the rollback build. Keep
+those sources unchanged until Phase 8.
 
-## Integrated Output Strategy
+## Phase 7 Output Strategy
 
-During the spike, migrated pages keep their Hugo source files in place so Hugo
-continues to construct complete menus from `hugo.yaml` and content frontmatter.
-Astro owns the replacement page output only after Hugo has built the full site.
+`npm run build` regenerates research data and builds Astro directly into
+`public/`. `SITE_URL` selects the origin used for canonical, redirect, social,
+and RSS URLs and defaults to `https://beta.xenproject.org`.
 
-Use `npm run build:astro-spike` to build the integrated artifact:
+Use the following checks for the complete artifact:
 
-1. `npm run build` generates the normal Hugo/Vite site in `public/`.
-2. `npm run astro:build` generates migrated Astro routes in `dist-astro/`.
-3. `scripts/astro/overlay-migrated-routes.js` copies only allowlisted migrated
-   route directories, plus generated Astro assets, into `public/`.
+1. `npm run build`
+2. `npm run test:astro:links`
+3. `npm run test:astro:smoke:public`
 
-This deliberately avoids a broad `dist-astro/*` copy. The overlay allowlist is
-the temporary source of truth for which routes Astro replaces in the final spike
-artifact, and it lives in `scripts/astro/migrated-routes.ts` so the overlay
-script and smoke tests read the same route list.
+`npm run test:astro:standalone` performs a fresh build and enforces the exact
+route inventory, canonical origin, redirects, RSS, 404, and
+header/footer fragment contract.
 
 Use `npm run test:astro:smoke:public` to run the screenshot and navigation
-smoke tests against the integrated `public/` artifact. The Playwright config
+smoke tests against the `public/` artifact. The Playwright config
 starts `serve public` automatically on `http://127.0.0.1:4321`. Stop any other
 local server on that port before running the public smoke test.
 
-Use `npm run test:astro:links` after `npm run build:astro-spike` to check the
-integrated artifact without starting a server. The checker treats root-relative
-`/blog` URLs as delegated to the separately deployed blog, skips the special
-`headerfooter.html` output when enforcing canonical tags, and validates Hugo
-redirect pages by checking their refresh/link targets.
+Use `npm run test:astro:links` after `npm run build` to check the artifact
+without starting a server. The checker treats root-relative
+`/blog` URLs and historical `/wp-content/uploads` media as delegated, skips the special
+`headerfooter.html` output when enforcing canonical tags, and validates redirect
+pages by checking their refresh/link targets.

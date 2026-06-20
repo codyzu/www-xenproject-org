@@ -1,4 +1,7 @@
+import process from 'node:process';
 import {expect, test} from '@playwright/test';
+
+const siteUrl = process.env.SITE_URL ?? 'https://beta.xenproject.org';
 
 test.describe('Phase 6 data-driven routes', () => {
   test('renders latest downloads and searches the full archive', async ({page}) => {
@@ -47,6 +50,6 @@ test.describe('Phase 6 data-driven routes', () => {
     await expect(page.locator('#registration-pricing .card__actions')).toHaveCount(0);
     await page.locator('label[for^="virtual-"]').click();
     await expect(page.locator('.ticket-group-virtual')).toBeVisible();
-    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', 'https://xenproject.org/resources/summit-2026/');
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${siteUrl}/resources/summit-2026/`);
   });
 });

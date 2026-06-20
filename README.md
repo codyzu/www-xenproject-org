@@ -14,54 +14,54 @@
 ### Development
 
 1. `npm run dev`
-2. navigate to the Vite proxy at [http://localhost:5173/](http://localhost:5173/)
+2. navigate to Astro at [http://localhost:4321/](http://localhost:4321/)
 
-Hugo's livereload is disabled in development because the browser-facing server is Vite on port `5173`. Vite handles page reloads, while Hugo stays bound to `localhost:1313` behind the proxy.
+Set `SITE_URL` when generated absolute URLs should use an origin other than
+`https://beta.xenproject.org`.
 
-### Astro migration spike
+### Astro production build
 
-The Astro migration spike keeps Hugo/Vite as the main production build, then overlays allowlisted Astro routes into `public/`.
-The current migrated route allowlist lives in [`scripts/astro/migrated-routes.ts`](scripts/astro/migrated-routes.ts).
-The complete alias and redirect inventory lives in [`data/redirects.yaml`](data/redirects.yaml). Astro generates every manifest entry, while the integrated overlay takes ownership of external redirects and aliases whose local target is already an Astro-owned content route.
+Astro is the primary site generator and writes the complete artifact to `public/`.
+The route inventory lives in [`scripts/astro/migrated-routes.ts`](scripts/astro/migrated-routes.ts),
+and aliases and redirects live in [`data/redirects.yaml`](data/redirects.yaml).
 
-To build the integrated spike artifact:
+To build and validate the complete artifact:
 
-1. `npm run build:astro-spike`
-1. output is written to `/public`
+1. `npm run build`
+1. `npm run test:astro:links`
 
-That command runs the existing Hugo/Vite production build, builds Astro into `dist-astro/`, then copies only migrated Astro routes and generated Astro assets into `public/`.
+`npm run test:astro:standalone` performs a fresh build and enforces the exact
+route inventory, RSS, `headerfooter.html`, redirects, assets, canonicals, and
+Astro 404 contract.
 
-To run the visual smoke test against the integrated artifact:
+To run the visual smoke test against the production artifact:
 
 1. make sure nothing else is running on `127.0.0.1:4321`
 1. `npm run test:astro:smoke:public`
 
-Playwright starts `serve public` on `http://127.0.0.1:4321`, snapshots representative migrated routes, and compares them to the checked-in Hugo baselines. The complete Astro route allowlist lives in `scripts/astro/migrated-routes.ts`.
+Playwright starts `serve public` on `http://127.0.0.1:4321`, snapshots representative routes, and compares them to the checked-in Hugo baselines. The complete Astro route inventory lives in `scripts/astro/migrated-routes.ts`.
 The same suite also runs navigation smoke tests that open desktop and mobile menus and verify first-level menu links.
-It also exercises the direct React islands on the migrated homepage, About, membership, Get Started, and CI routes. Research and event routes verify the Astro-native replacement for the legacy `IconButton` mount, while high-value Hugo-owned pages remain covered to check the wider production shell.
-Redirect smoke coverage verifies both sides of the ownership boundary: Astro-owned redirects must render the Astro redirect contract, while remaining routes must continue to render their expected Hugo canonical, refresh, and `noindex` metadata.
+It also exercises the direct React islands on the homepage, About, membership,
+Get Started, and CI routes. Research and event routes verify the Astro-native
+replacement for the legacy `IconButton` mount.
+Redirect smoke coverage verifies the generated canonical, refresh, and
+`noindex` metadata.
 
-To check generated internal links, local assets, canonical URLs, redirect targets, and 404 output:
+### Legacy rollback
 
-1. `npm run build:astro-spike`
-1. `npm run test:astro:links`
-
-To build and validate Astro as a complete standalone artifact without changing
-the production build contract:
-
-1. `npm run test:astro:standalone`
-
-This verifies the exact HTML route inventory in `dist-astro/`, RSS,
-`headerfooter.html`, redirects, assets, canonical URLs, and the Astro 404 page.
+Hugo/Vite remains available temporarily through `npm run dev:legacy` and
+`npm run build:legacy`. These commands are rollback paths only and will be
+removed with the Hugo source during Phase 8.
 
 ### CI Runtime
 
 GitLab CI uses `node:24.16.0-bookworm` so Node matches the local runtime contract.
-Hugo is provided by the repo's `hugo-extended` npm dependency and invoked through npm scripts.
+Beta artifacts use the Astro production build. Production remains on the
+explicit legacy build until the beta acceptance gate passes.
 
 To regenerate the Hugo/Vite baseline screenshot, run the dev server first:
 
-1. `npm run dev`
+1. `npm run dev:legacy`
 1. In another terminal, `npm run test:astro:smoke:hugo-baseline`
 
 The baseline command points Playwright at Vite's dev proxy on `http://127.0.0.1:5173` and updates the screenshot snapshot.
@@ -94,7 +94,7 @@ _💡 Note: a new layer of JS tooling was added as part of a 2025 modernization.
 - [vite](https://vite.dev/) is used to package the react javascript resources and build the tailwind style CSS.
 - [uno-css](https://unocss.dev/) is used to add tailwind style CSS classes. Uno is configured to only recognize classnames prefixed with `uno-`. As configured in [uno.config.ts](/uno.config.ts), uno is configured with the [tailwind 3 preset](https://unocss.dev/presets/wind3) and the [icons preset](https://unocss.dev/presets/icons). CSS icons are prefixed with `i-`.
 
-Running in dev mode, `npm run dev`, uses the vite dev server and proxies all requests not served by vite to hugo.
+The legacy development command uses Vite as a browser-facing proxy to Hugo.
 
 ## Important urls
 

@@ -44,5 +44,3 @@ export const migratedRoutes = [
 ] as const satisfies readonly string[];
 
 export const migratedRedirectRoutes = getOwnedRedirects(migratedRoutes).map((redirect) => redirect.source);
-
-export const overlayRoutes = [...migratedRoutes, ...migratedRedirectRoutes];

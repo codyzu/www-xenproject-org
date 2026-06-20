@@ -1,10 +1,18 @@
 import {rename, rm} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
+import process from 'node:process';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import {defineConfig} from 'astro/config';
 import unoCSS from 'unocss/vite';
 
+// Parsing here fails early when CI or a local build provides an invalid origin.
+const site = new URL(process.env.SITE_URL ?? 'https://beta.xenproject.org').toString();
+
+// The Ghost blog served under /blog consumes /headerfooter.html to reuse the
+// main site's header, footer, and assets. Astro renders the source page as
+// /headerfooter/index.html, so this build hook preserves the legacy flat-file
+// URL expected by Ghost and removes the intermediate route directory.
 const headerFooterOutput = {
   name: 'header-footer-output',
   hooks: {
@@ -19,9 +27,9 @@ const headerFooterOutput = {
 
 export default defineConfig({
   integrations: [mdx(), react(), headerFooterOutput],
-  outDir: 'dist-astro',
+  outDir: 'public',
   publicDir: 'static',
-  site: 'https://beta.xenproject.org',
+  site,
   vite: {
     plugins: [unoCSS()],
   },

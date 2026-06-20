@@ -7,10 +7,13 @@ import {migratedRoutes, migratedRedirectRoutes} from './migrated-routes.ts';
 const outputArgument = process.argv.find((argument) => !argument.startsWith('--') && argument !== process.argv[0] && argument !== process.argv[1]);
 const standalone = process.argv.includes('--standalone');
 const publicDirectory = path.resolve(outputArgument ?? 'public');
-const internalHosts = new Set(['beta.xenproject.org']);
+const expectedSite = new URL(process.env.SITE_URL ?? 'https://beta.xenproject.org');
+const internalHosts = new Set([expectedSite.host]);
 const delegatedInternalPaths = [
   // The project blog is deployed outside this static-site artifact.
   /^\/blog(?:\/|$)/,
+  // Historical WordPress uploads are hosted independently from this artifact.
+  /^\/wp-content\/uploads(?:\/|$)/,
 ];
 const ignoredProtocols = new Set(['mailto:', 'tel:', 'javascript:', 'data:']);
 const htmlAttributes = [
@@ -63,8 +66,8 @@ const normalizeUrl = (rawValue, filePath) => {
 
   try {
     url = value.startsWith('/')
-      ? new URL(value, 'https://beta.xenproject.org')
-      : new URL(value, `https://beta.xenproject.org${routePathForFile(filePath)}`);
+      ? new URL(value, expectedSite)
+      : new URL(value, new URL(routePathForFile(filePath), expectedSite));
   } catch {
     addError(filePath, `invalid URL "${value}"`);
     return;
@@ -157,6 +160,10 @@ const assertCanonical = (filePath, $) => {
     if (canonicalUrl.protocol !== 'https:') {
       addError(filePath, `canonical URL must use https: "${canonical}"`);
     }
+
+    if (canonicalUrl.origin !== expectedSite.origin) {
+      addError(filePath, `canonical URL must use configured site origin "${expectedSite.origin}": "${canonical}"`);
+    }
   } catch {
     addError(filePath, `invalid canonical URL "${canonical}"`);
   }
@@ -190,7 +197,7 @@ if (!fs.existsSync(publicDirectory)) {
 }
 
 if (!fs.existsSync(path.join(publicDirectory, '404.html'))) {
-  errors.push('public/404.html: missing generated 404 page');
+  errors.push(`${path.relative(process.cwd(), path.join(publicDirectory, '404.html'))}: missing generated 404 page`);
 }
 
 const htmlFiles = walk(publicDirectory).filter(isHtmlFile);
@@ -264,7 +271,12 @@ if (standalone) {
     if (links.some(link => !link.startsWith('https://'))) {
       errors.push('index.xml: RSS item links must be absolute HTTPS URLs');
     }
+
+    if (links.some(link => new URL(link).origin !== expectedSite.origin)) {
+      errors.push(`index.xml: RSS item links must use configured site origin "${expectedSite.origin}"`);
+    }
   }
+
 }
 
 for (const filePath of htmlFiles) {
