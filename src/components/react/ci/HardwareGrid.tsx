@@ -22,11 +22,27 @@ export default function HardwareGrid() {
     jobsByPlatform.set(platform, [...(jobsByPlatform.get(platform) ?? []), job]);
   }
 
+  if (error) {
+    return (
+      <div role="alert" className="uno-card uno-text-center uno-m-x-auto uno-max-w-2xl">
+        Hardware test results are temporarily unavailable.
+      </div>
+    );
+  }
+
+  if (!loading && jobsByPlatform.size === 0) {
+    return (
+      <div role="status" className="uno-card uno-text-center uno-m-x-auto uno-max-w-2xl">
+        No hardware test results were found.
+      </div>
+    );
+  }
+
   return (
     <div
       className={clsx(
         'uno-flex uno-flex-col uno-max-w-[1472px] uno-w-full uno-relative uno-m-x-auto',
-        (loading || error) && ' uno-blur-sm uno-animate-pulse uno-pointer-events-none uno-touch-none',
+        loading && ' uno-blur-sm uno-animate-pulse uno-pointer-events-none uno-touch-none',
       )}
     >
       <div className="uno-flex uno-flex-wrap uno-items-center uno-gap-x-2 uno-justify-center uno-text-center uno-text-sm uno-font-semibold uno-m-b-4">

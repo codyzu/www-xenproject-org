@@ -1,4 +1,34 @@
-<div class="latest-news" data-latest-news data-max-cards="10" aria-busy="true">
+---
+const ghostMode = import.meta.env.PUBLIC_GHOST_MODE;
+const ghostApiUrl = import.meta.env.PUBLIC_GHOST_API_URL;
+const ghostContentApiKey = import.meta.env.PUBLIC_GHOST_CONTENT_API_KEY;
+
+if (ghostMode !== 'mock' && ghostMode !== 'live') {
+  throw new Error('PUBLIC_GHOST_MODE must be either "mock" or "live".');
+}
+
+if (!ghostApiUrl || (ghostMode === 'live' && !URL.canParse(ghostApiUrl))) {
+  throw new Error('PUBLIC_GHOST_API_URL must be a valid URL in live mode.');
+}
+
+if (ghostMode === 'live' && new URL(ghostApiUrl).protocol !== 'https:') {
+  throw new Error('PUBLIC_GHOST_API_URL must use HTTPS in live mode.');
+}
+
+if (!ghostContentApiKey) {
+  throw new Error('PUBLIC_GHOST_CONTENT_API_KEY must not be empty.');
+}
+---
+
+<div
+  class="latest-news"
+  data-latest-news
+  data-max-cards="10"
+  data-ghost-mode={ghostMode}
+  data-ghost-api-url={ghostApiUrl}
+  data-ghost-content-api-key={ghostContentApiKey}
+  aria-busy="true"
+>
   <div class="container">
     <h2>Latest <strong>news</strong> <a href="/blog" class="title-external-link">Read all news <i class="fas fa-arrow-right"></i></a></h2>
   </div>
@@ -27,8 +57,6 @@
     tags?: GhostTag[];
     authors?: GhostAuthor[];
   };
-
-  const siteWindow = window as Window & {siteParams?: {blogapikey?: string}};
 
   function appendLink(parent: HTMLElement, text: string, url: string) {
     const link = document.createElement('a');
@@ -111,9 +139,12 @@
     if (!container || !carousel || !error) return;
 
     try {
-      const key = siteWindow.siteParams?.blogapikey;
       const limit = Number(root.dataset.maxCards) || 10;
-      const response = await fetch(`/blog/ghost/api/content/posts/?key=${key}&limit=${limit}&include=tags,authors`);
+      const apiUrl = new URL(root.dataset.ghostApiUrl ?? '', window.location.href);
+      apiUrl.searchParams.set('key', root.dataset.ghostContentApiKey ?? '');
+      apiUrl.searchParams.set('limit', String(limit));
+      apiUrl.searchParams.set('include', 'tags,authors');
+      const response = await fetch(apiUrl);
       if (!response.ok) throw new Error(`Ghost API returned ${response.status}`);
       const payload = await response.json() as {posts?: GhostPost[]};
       const posts = payload.posts ?? [];

@@ -49,7 +49,18 @@ Redirect smoke coverage verifies the generated canonical, refresh, and
 
 To validate the deployed beta artifact manually, run `npm run test:astro:staging`.
 For a faster homepage Story check, run `npm run test:astro:staging:story`.
+Run `npm run test:astro:staging:ghost` for the focused, unmocked production
+Ghost integration check. Ordinary local and Playwright development uses the
+checked-in Ghost fixture; `npm run dev` does not depend on the production blog.
 These commands do not start a local server; deploy the commit under test first.
+
+Ghost configuration is selected by the checked-in mode files. Development uses
+`.env.development` and the local mock endpoint. Production-mode builds use
+`.env.production` and the public production Ghost Content API. Ignored
+mode-local files such as `.env.development.local`, or shell environment
+variables, can override these values when live Ghost behavior is needed during
+local debugging. `npm run test:astro:dev:ghost` starts an isolated development
+server and verifies the checked-in mock configuration.
 
 ### Legacy rollback
 

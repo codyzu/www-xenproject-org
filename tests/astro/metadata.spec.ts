@@ -1,10 +1,13 @@
 import {expect, test} from '@playwright/test';
+import {mockGhostApi} from './fixtures/ghost-posts';
 
 const siteDescription = 'The Xen Project develops enterprise-grade open source virtualization solutions trusted by millions of users. Secure, flexible, and powerful hypervisor technology.';
 const fallbackSocialImage = 'https://beta.xenproject.org/img/logo-xen.svg';
 const researchSummary = 'This foundational paper introduces Xen, detailing its architecture and performance benefits compared to other virtualization techniques.';
 
 test.describe('Astro metadata parity', () => {
+  test.beforeEach(async ({page}) => mockGhostApi(page));
+
   test('renders the homepage metadata contract', async ({page}) => {
     await page.goto('/');
 

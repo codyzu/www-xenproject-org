@@ -1,4 +1,4 @@
-import {rename, rm} from 'node:fs/promises';
+import {readFile, rename, rm} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import process from 'node:process';
 import mdx from '@astrojs/mdx';
@@ -25,12 +25,31 @@ const headerFooterOutput = {
   },
 };
 
+const ghostMockApi = {
+  name: 'ghost-mock-api',
+  apply: 'serve',
+  configureServer(server) {
+    server.middlewares.use(async (request, response, next) => {
+      const requestUrl = new URL(request.url ?? '/', 'http://localhost');
+      if (requestUrl.pathname !== '/blog/ghost/api/content/posts/') {
+        next();
+        return;
+      }
+
+      const fixture = await readFile(new URL('data/ghost-posts.fixture.json', import.meta.url), 'utf8');
+      response.statusCode = 200;
+      response.setHeader('Content-Type', 'application/json; charset=utf-8');
+      response.end(fixture);
+    });
+  },
+};
+
 export default defineConfig({
   integrations: [mdx(), react(), headerFooterOutput],
   outDir: 'public',
   publicDir: 'static',
   site,
   vite: {
-    plugins: [unoCSS()],
+    plugins: [unoCSS(), ghostMockApi],
   },
 });

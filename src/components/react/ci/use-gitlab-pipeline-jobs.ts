@@ -95,6 +95,10 @@ export function useGitlabPipelineJobs(count = 1): PipelineResult {
         body: JSON.stringify({query, variables: {projectPath, branch: 'staging', count}}),
       });
 
+      if (!response.ok) {
+        throw new Error(`GitLab API returned ${response.status}`);
+      }
+
       const json: unknown = await response.json();
       console.log('GraphQL response:', json);
       const parsed = graphQlResponseSchema.safeParse(json);
@@ -105,12 +109,7 @@ export function useGitlabPipelineJobs(count = 1): PipelineResult {
       }
 
       const nodes = parsed.data.data.project?.pipelines?.nodes;
-      if (!nodes || nodes.length === 0) {
-        console.error('No pipelines found in the response');
-        throw new Error('No pipelines found');
-      }
-
-      return nodes;
+      return nodes ?? [];
     }
 
     setLoading(true);

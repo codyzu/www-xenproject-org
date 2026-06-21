@@ -1,80 +1,6 @@
-import {expect, type Page, test} from '@playwright/test';
-
-const gitlabGraphQlResponse = {
-  data: {
-    project: {
-      pipelines: {
-        nodes: [
-          {
-            id: 'gid://gitlab/Ci::Pipeline/123456',
-            iid: '123456',
-            source: 'push',
-            duration: 372,
-            status: 'SUCCESS',
-            createdAt: '2026-01-15T12:34:00Z',
-            detailedStatus: {
-              label: 'passed',
-            },
-            stages: {
-              nodes: [
-                {
-                  name: 'test',
-                  groups: {
-                    nodes: [
-                      {
-                        name: 'hardware',
-                        jobs: {
-                          nodes: [
-                            {
-                              id: 'gid://gitlab/Ci::Build/111',
-                              name: 'adl-gcc-debug-64',
-                              status: 'SUCCESS',
-                              stage: {name: 'test'},
-                              detailedStatus: {
-                                label: 'passed',
-                                favicon: '',
-                              },
-                            },
-                          ],
-                        },
-                      },
-                      {
-                        name: 'qemu',
-                        jobs: {
-                          nodes: [
-                            {
-                              id: 'gid://gitlab/Ci::Build/222',
-                              name: 'qemu-smoke-x86-64',
-                              status: 'SUCCESS',
-                              stage: {name: 'test'},
-                              detailedStatus: {
-                                label: 'passed',
-                                favicon: '',
-                              },
-                            },
-                          ],
-                        },
-                      },
-                    ],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  },
-};
-
-async function mockGitlabGraphQl(page: Page) {
-  await page.route('https://gitlab.com/api/graphql', async (route) => {
-    await route.fulfill({
-      contentType: 'application/json',
-      json: gitlabGraphQlResponse,
-    });
-  });
-}
+import {expect, test} from '@playwright/test';
+import {mockGitlabGraphQl} from './fixtures/gitlab-pipelines';
+import {mockGhostApi} from './fixtures/ghost-posts';
 
 test.describe('React island migration guardrails', () => {
   test('hydrates the Astro-owned CI status dashboard island', async ({page}) => {
@@ -132,6 +58,7 @@ test.describe('React island migration guardrails', () => {
   });
 
   test('hydrates the Astro-owned homepage islands', async ({page}) => {
+    await mockGhostApi(page);
     await page.goto('/');
 
     const story = page.locator('#xen-story');

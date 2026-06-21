@@ -11,6 +11,8 @@ tests/astro-results
 
 .DS_Store
 .env
+.env.local
+.env.*.local
 thumbs.db
 
 hugo_stats.json

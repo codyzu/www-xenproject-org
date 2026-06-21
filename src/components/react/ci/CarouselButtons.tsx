@@ -49,7 +49,15 @@ export function DotButton(props: {
   readonly onDotButtonClick: (index: number) => void;
 }) {
   return (
-    <button type="button" className={clsx('uno-border-none')}>
+    <button
+      type="button"
+      className={clsx('uno-border-none')}
+      aria-label={`Go to hardware slide ${props.index + 1}`}
+      aria-current={props.index === props.selectedIndex ? 'true' : undefined}
+      onClick={() => {
+        props.onDotButtonClick(props.index);
+      }}
+    >
       <div
         className={clsx(
           props.index === props.selectedIndex ? 'i-fa6-solid-circle' : 'i-fa6-solid-circle-dot',
@@ -63,9 +71,6 @@ export function DotButton(props: {
           'uno-ease-in-out',
           'uno-cursor-pointer',
         )}
-        onClick={() => {
-          props.onDotButtonClick(props.index);
-        }}
       />
     </button>
   );

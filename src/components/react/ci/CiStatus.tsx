@@ -101,7 +101,7 @@ export default function CiStatus() {
 
   if (error) {
     return (
-      <div className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-min-h-100 uno-gap-4">
+      <div role="alert" className="uno-flex uno-flex-col uno-items-center uno-justify-center uno-min-h-100 uno-gap-4">
         <div className="i-fa6-solid-fire-extinguisher uno-w-24 uno-h-24 uno-text-red-500" />
         <div>Something went wrong.</div>
         <div className="uno-text-sm">Please check the console for more details.</div>
@@ -112,7 +112,7 @@ export default function CiStatus() {
   // This will never happen because the hook will throw an error if there are no pipelines.
   // However, we need the guard statement to satisfy TypeScript.
   if (!pipelines || pipelines.length === 0) {
-    return <div>No pipelines found</div>;
+    return <div role="status">No pipelines found.</div>;
   }
 
   return (

@@ -1,5 +1,6 @@
 import process from 'node:process';
 import {expect, type Page, test} from '@playwright/test';
+import {mockGhostApi} from './fixtures/ghost-posts';
 
 const scenes = [
   ['intro', 0],
@@ -17,6 +18,7 @@ const snapshotKind = process.env.STORY_SNAPSHOT_KIND === 'hugo' ? 'hugo' : 'curr
 // snapshots protect the intentional document-scroll implementation.
 
 async function prepareStory(page: Page) {
+  await mockGhostApi(page);
   await page.goto('/');
   await expect(page.locator('#xen-story')).toBeVisible();
   await page.evaluate(async () => document.fonts.ready);

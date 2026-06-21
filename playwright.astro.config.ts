@@ -4,6 +4,7 @@ import {defineConfig, devices} from '@playwright/test';
 const serverPort = process.env.PLAYWRIGHT_PORT ?? '4321';
 const baseUrl = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${serverPort}`;
 const shouldStartServer = process.env.PLAYWRIGHT_START_SERVER === '1';
+const shouldStartDevServer = process.env.PLAYWRIGHT_DEV_SERVER === '1';
 
 export default defineConfig({
   testDir: './tests/astro',
@@ -27,7 +28,7 @@ export default defineConfig({
   },
   ...(shouldStartServer && {
     webServer: {
-      command: `npm run serve -- -l ${serverPort}`,
+      command: shouldStartDevServer ? `npm run dev -- --port ${serverPort}` : `npm run serve -- -l ${serverPort}`,
       reuseExistingServer: false,
       timeout: 120_000,
       url: `http://127.0.0.1:${serverPort}`,

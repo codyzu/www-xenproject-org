@@ -1,4 +1,4 @@
-<div class="search-container download-search" data-download-search>
+<div class="search-container download-search" data-download-search data-download-search-state="loading" aria-busy="true">
   <form action="/search" method="get" class="search-form">
     <input type="search" class="search-input" name="q" placeholder="Search downloads..." aria-label="Search downloads" />
     <button type="submit" aria-label="Submit search"><i class="fas fa-search"></i></button>
@@ -10,6 +10,17 @@
   type DownloadVersion = {name: string; link: string};
   type DownloadGroup = {name: string; versions: DownloadVersion[]};
   type SearchVersion = DownloadVersion & {groupName: string; versionName: string; searchTerms: string};
+
+  const isDownloadGroup = (value: unknown): value is DownloadGroup => {
+    if (typeof value !== 'object' || value === null) return false;
+    const group = value as Partial<DownloadGroup>;
+    return typeof group.name === 'string' && Array.isArray(group.versions) && group.versions.every(version => (
+      typeof version === 'object'
+      && version !== null
+      && typeof version.name === 'string'
+      && typeof version.link === 'string'
+    ));
+  };
 
   const debounce = <Arguments extends unknown[]>(callback: (...arguments_: Arguments) => void, delay: number) => {
     let timeout: ReturnType<typeof setTimeout>;
@@ -24,18 +35,36 @@
     const input = root.querySelector<HTMLInputElement>('.search-input');
     const output = root.querySelector<HTMLElement>('.search-results');
     let downloads: SearchVersion[] | undefined;
+    let loadError: Error | undefined;
+
+    const renderFailure = () => {
+      if (!output) return;
+      output.replaceChildren();
+      const failure = document.createElement('div');
+      failure.className = 'mg-t-sm';
+      failure.setAttribute('role', 'alert');
+      failure.textContent = 'Downloads are temporarily unavailable.';
+      output.append(failure);
+      root.dataset.downloadSearchState = 'error';
+    };
 
     const load = async () => {
       if (downloads) return downloads;
       const response = await fetch('/data/downloads.json');
       if (!response.ok) throw new Error(`Unable to load downloads: ${response.status}`);
-      const groups = await response.json() as DownloadGroup[];
+      const payload = await response.json() as unknown;
+      if (!Array.isArray(payload) || !payload.every(isDownloadGroup)) {
+        throw new TypeError('Downloads response is invalid');
+      }
+      const groups = payload;
       downloads = groups.flatMap((group) => group.versions.map((version) => ({
         ...version,
         groupName: group.name,
         versionName: version.name,
         searchTerms: `${group.name} ${version.name}`.toLowerCase(),
       })));
+      loadError = undefined;
+      root.dataset.downloadSearchState = 'ready';
       return downloads;
     };
 
@@ -86,6 +115,10 @@
       }
 
       try {
+        if (loadError) {
+          renderFailure();
+          return;
+        }
         const terms = value.split(/\s+/).filter(Boolean);
         const matches = (await load()).filter((version) => terms.every((term) => version.searchTerms.includes(term)));
         const grouped = new Map<string, SearchVersion[]>();
@@ -97,12 +130,21 @@
         render([...grouped].map(([name, versions]) => ({name, versions})));
       } catch (error) {
         console.error(error);
-        render([]);
+        loadError = error as Error;
+        renderFailure();
       }
     }, 300);
 
     form?.addEventListener('submit', (event) => event.preventDefault());
     input?.addEventListener('input', search);
-    void load();
+    void load()
+      .catch((error: Error) => {
+        console.error(error);
+        loadError = error;
+        renderFailure();
+      })
+      .finally(() => {
+        root.ariaBusy = 'false';
+      });
   }
 </script>

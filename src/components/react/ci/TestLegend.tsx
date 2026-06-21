@@ -53,7 +53,7 @@ function LegendControl({
         <div className="uno-text-lg uno-font-semibold">{label}</div>
         <div className="uno-flex uno-flex-row uno-gap-2 uno-items-center has-[input:focus]:(uno-border-action-active) uno-border-b-3 uno-border-x-0 uno-border-t-0 uno-border-transparent uno-border-solid uno-p-b-0.5">
           <div className="uno-font-mono">{isEnabled ? 'hide' : 'show'} </div>
-          <Toggle isEnabled={isEnabled} onToggle={onToggle} />
+          <Toggle isEnabled={isEnabled} label={`${isEnabled ? 'Hide' : 'Show'} ${label}`} onToggle={onToggle} />
         </div>
       </div>
       <div

@@ -28,6 +28,8 @@
     "test:astro:smoke:public": "PLAYWRIGHT_START_SERVER=1 playwright test --config playwright.astro.config.ts",
     "test:astro:staging": "PLAYWRIGHT_BASE_URL=https://beta.xenproject.org SITE_URL=https://beta.xenproject.org playwright test --config playwright.astro.config.ts",
     "test:astro:staging:story": "PLAYWRIGHT_BASE_URL=https://beta.xenproject.org SITE_URL=https://beta.xenproject.org playwright test tests/astro/story.spec.ts --config playwright.astro.config.ts",
+    "test:astro:staging:ghost": "GHOST_LIVE_TEST=1 PLAYWRIGHT_BASE_URL=https://beta.xenproject.org playwright test tests/astro/ghost-live.spec.ts --config playwright.astro.config.ts",
+    "test:astro:dev:ghost": "GHOST_DEV_TEST=1 PLAYWRIGHT_START_SERVER=1 PLAYWRIGHT_DEV_SERVER=1 PLAYWRIGHT_PORT=4322 playwright test tests/astro/ghost-development.spec.ts --config playwright.astro.config.ts",
     "test:astro:links": "node scripts/astro/check-public-artifact.js",
     "test:astro:standalone": "npm run build && node scripts/astro/check-public-artifact.js public --standalone",
     "test:astro:smoke:hugo-baseline": "STORY_SNAPSHOT_KIND=hugo PLAYWRIGHT_BASE_URL=http://127.0.0.1:5173 playwright test tests/astro/story.spec.ts --config playwright.astro.config.ts --grep 'approved' --update-snapshots",

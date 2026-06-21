@@ -38,6 +38,9 @@ test.describe('homepage below the Story', () => {
     await previousButton.click();
     await expect.poll(() => rail.evaluate((element) => element.scrollLeft)).toBeLessThan(advancedScroll);
     await expect(previousButton).toBeDisabled();
+
+    await rail.evaluate(element => element.scrollTo({left: element.scrollWidth, behavior: 'instant'}));
+    await expect(nextButton).toBeDisabled();
   });
 
   test('renders mocked Ghost posts and moves the news carousel', async ({page}) => {
@@ -55,6 +58,7 @@ test.describe('homepage below the Story', () => {
     await expect(cards.locator('.card__label')).toHaveText(ghostPosts.map(post => post.title));
     await expect(cards.locator('.card__date')).toHaveText(ghostPosts.map(post => post.published_at.slice(0, 10)));
     await expect(cards.locator('.card__author')).toHaveText(ghostPosts.map(() => 'by Xen Project'));
+    await expect(cards.first().getByRole('link', {name: /Read more/})).toHaveAttribute('href', ghostPosts[0].url);
     await expect(previousButton).toBeDisabled();
     await expect(nextButton).toBeEnabled();
 
@@ -66,6 +70,81 @@ test.describe('homepage below the Story', () => {
     await previousButton.click();
     await expect.poll(() => rail.evaluate((element) => element.scrollLeft)).toBeLessThan(advancedScroll);
     await expect(previousButton).toBeDisabled();
+  });
+
+  test('uses production Ghost configuration in the production artifact', async ({page}) => {
+    let requestedUrl = '';
+    await page.route('https://xenproject.org/blog/ghost/api/content/posts/**', async route => {
+      requestedUrl = route.request().url();
+      await route.fulfill({json: {posts: ghostPosts}});
+    });
+
+    await page.goto('/');
+    await expect(page.locator('[data-latest-news]')).toHaveAttribute('data-latest-news-state', 'ready');
+
+    const url = new URL(requestedUrl);
+    expect(url.origin).toBe('https://xenproject.org');
+    expect(url.pathname).toBe('/blog/ghost/api/content/posts/');
+    expect(url.searchParams.get('key')).toBe('b047d7f627a90f40798d11dcba');
+    expect(url.searchParams.get('limit')).toBe('10');
+    expect(url.searchParams.get('include')).toBe('tags,authors');
+  });
+
+  test('keeps news busy until Ghost responds', async ({page}) => {
+    let releaseResponse: (() => void) | undefined;
+    const responseGate = new Promise<void>((resolve) => {
+      releaseResponse = resolve;
+    });
+    await page.route('**/blog/ghost/api/content/posts/**', async route => {
+      await responseGate;
+      await route.fulfill({json: {posts: ghostPosts}});
+    });
+
+    await page.goto('/');
+    const latestNews = page.locator('[data-latest-news]');
+    await expect(latestNews).toHaveAttribute('aria-busy', 'true');
+    await expect(latestNews.getByRole('button', {name: 'Previous news'})).toBeDisabled();
+    await expect(latestNews.getByRole('button', {name: 'Next news'})).toBeDisabled();
+
+    releaseResponse?.();
+    await expect(latestNews).toHaveAttribute('data-latest-news-state', 'ready');
+    await expect(latestNews).toHaveAttribute('aria-busy', 'false');
+  });
+
+  for (const [name, response] of [
+    ['an empty response', {status: 200, json: {posts: []}}],
+    ['an invalid payload', {status: 200, json: {unexpected: true}}],
+    ['an HTTP failure', {status: 503, json: {errors: [{message: 'Unavailable'}]}}],
+  ] as const) {
+    test(`shows the unavailable state for ${name}`, async ({page}) => {
+      await page.route('**/blog/ghost/api/content/posts/**', async route => route.fulfill(response));
+      await page.goto('/');
+
+      const latestNews = page.locator('[data-latest-news]');
+      await expect(latestNews).toHaveAttribute('data-latest-news-state', 'error');
+      await expect(latestNews).toHaveAttribute('aria-busy', 'false');
+      await expect(latestNews.getByText('Latest news is temporarily unavailable.')).toBeVisible();
+      await expect(latestNews.getByRole('button', {name: 'Previous news'})).toBeDisabled();
+      await expect(latestNews.getByRole('button', {name: 'Next news'})).toBeDisabled();
+    });
+  }
+
+  test('recalculates carousel visibility and focus after a mobile resize', async ({page}) => {
+    await prepareHomepage(page);
+    const carousel = page.locator('[data-project-carousel]');
+    const cards = carousel.locator('.project-carousel-card');
+
+    await page.setViewportSize({width: 390, height: 844});
+    await expect.poll(() => cards.evaluateAll((items) => items.filter(item => !item.classList.contains('carousel-item--hidden')).length)).toBe(1);
+    await expect.poll(() => cards.evaluateAll((items) => items.every(item => {
+      const hidden = item.classList.contains('carousel-item--hidden');
+      return [...item.querySelectorAll('a')].every(link => link.tabIndex === (hidden ? -1 : 0));
+    }))).toBeTruthy();
+
+    const nextButton = carousel.getByRole('button', {name: 'Next projects'});
+    await nextButton.focus();
+    await page.keyboard.press('Enter');
+    await expect(carousel.getByRole('button', {name: 'Previous projects'})).toBeEnabled();
   });
 
   test('matches the complete post-Story content', async ({page}) => {
@@ -93,7 +172,7 @@ test.describe('homepage below the Story', () => {
   });
 
   test('matches the Story-to-content transition', async ({page}) => {
-    await prepareHomepage(page, {mockNews: false});
+    await prepareHomepage(page);
     await page.evaluate(() => {
       const article = document.querySelector<HTMLElement>('[data-story-followup]');
       if (!article) throw new Error('Homepage article is missing');
