@@ -1,0 +1,35 @@
+- main:
+  - article:
+    - heading "Matrix" [level=1]
+    - text: Engage in real-time discussions and collaboration with the Xen community on Matrix.
+    - heading "Xen Project Matrix" [level=2]
+    - heading "XenProject" [level=2]
+    - text: Matrix For general queries and updates about the software. This channel is mainly for users and community members.For developer-specific questions use XenDevel instead.
+    - link "Join ":
+      - /url: https://matrix.to/#/#XenProject:matrix.org
+      - paragraph: Join 
+    - heading "XenDevel" [level=2]
+    - text: Matrix For developers - if you have submitted patches to the developer mailing lists or are otherwise active on them, this channel is for you.It’s also the best place to ask development-related questions to the Xen Project.
+    - link "Join ":
+      - /url: https://matrix.to/#/#XenDevel:matrix.org
+      - paragraph: Join 
+    - heading "XenSocial" [level=2]
+    - text: Matrix For community introductions, tech news, and your watercooler chats.
+    - link "Join ":
+      - /url: https://matrix.to/#/#XenSocial:matrix.org
+      - paragraph: Join 
+    - heading "Other Channels" [level=2]
+    - heading "XCP-ng" [level=2]
+    - text: Discord For general queries and updates about XCP-ng, hosted on Discord.
+    - link "Join ":
+      - /url: https://discord.gg/Hr98F6wRvx
+      - paragraph: Join 
+    - heading "Mirage" [level=2]
+    - text: Discord For Mirage OS.
+    - link "Join ":
+      - /url: https://libera.chat/
+      - paragraph: Join 
+    - heading "Netiquette" [level=3]
+    - paragraph: Netiquette encourages individuals to be considerate, kind, and mindful of the impact their words and actions can have on others in the online community.
+    - paragraph: It encompasses aspects like using proper language, avoiding offensive content, respecting privacy, and engaging in constructive discussions while maintaining a positive online environment for everyone.
+    - paragraph: If you are new and also post on the mailing list, we highly recommend you introduce yourself to the community!

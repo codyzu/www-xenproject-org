@@ -1,0 +1,36 @@
+- main:
+  - article:
+    - heading "Resources" [level=1]
+    - paragraph: Browse technical resources, community channels, events, downloads, and examples of Xen Project technology in practice.
+    - heading "Use cases" [level=2]
+    - text: Explore Use cases.
+    - link "Explore ":
+      - /url: /resources/use-cases
+    - heading "Xen Summit 2026" [level=2]
+    - text: Explore Xen Summit 2026.
+    - link "Explore ":
+      - /url: /resources/summit-2026
+    - heading "Academic Research" [level=2]
+    - text: Explore Academic Research.
+    - link "Explore ":
+      - /url: /research
+    - heading "Downloads" [level=2]
+    - text: Explore Downloads.
+    - link "Explore ":
+      - /url: /resources/downloads
+    - heading "Blog" [level=2]
+    - text: Explore Blog.
+    - link "Explore ":
+      - /url: /blog
+    - heading "Matrix" [level=2]
+    - text: Explore Matrix.
+    - link "Explore ":
+      - /url: /resources/matrix
+    - heading "Past Events" [level=2]
+    - text: Explore Past Events.
+    - link "Explore ":
+      - /url: /resources/past-events
+    - heading "Join mailing lists" [level=2]
+    - text: Explore Join mailing lists.
+    - link "Explore ":
+      - /url: /resources/mailing-lists

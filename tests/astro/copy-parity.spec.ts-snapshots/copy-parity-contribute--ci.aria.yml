@@ -1,0 +1,192 @@
+- main:
+  - article:
+    - heading "Continuous Integration" [level=1]
+    - 'heading "GitLab CI: The Primary Test Infrastructure for Xen" [level=2]'
+    - paragraph: The Xen Project relies on GitLab CI as its primary test infrastructure, enabling continuous integration and validation across a wide range of hardware and software configurations. This system ensures that every change to Xen is thoroughly tested, helping maintain quality and stability. Explore how it works, what tests are run, and how you can contribute or integrate your own hardware into the testing grid.
+    - heading "Unlike anything else..." [level=3]
+    - paragraph: "🚀 Unlike most open source projects, Xen CI lets you:"
+    - list:
+      - listitem:
+        - text: 🛠️
+        - link "Run tests on your own hardware":
+          - /url: /#bring-your-own-hardware-byoh-
+        - text: from your own lab
+      - listitem:
+        - text: 📡 See
+        - link "live public results":
+          - /url: /#live-test-grid
+        - text: from the global test grid
+    - paragraph: This level of transparency and extensibility is practically unheard of in other hypervisor projects.
+    - 'heading "🌐 Live Test Grid: See Xen CI in Action" [level=2]'
+    - paragraph: "Want proof? Here's a real-time view of Xen running on real boards across our global test grid:"
+    - heading "Why This Matters for You ✅" [level=2]
+    - paragraph:
+      - text: Whether you're building cloud infrastructure or deploying Xen in
+      - strong: industrial
+      - text: ","
+      - strong: automotive
+      - text: ", or"
+      - strong: embedded systems
+      - text: ", validation on real hardware is critical."
+    - paragraph: "With Xen's CI system:"
+    - list:
+      - listitem:
+        - text: You can
+        - strong: connect your own devices
+        - text: (development boards, embedded targets, automotive platforms) directly to the test grid
+      - listitem:
+        - text: Every commit to Xen can be
+        - strong: automatically tested against your hardware
+        - text: ", with full traceability and access to logs"
+      - listitem:
+        - text: There's
+        - strong: no need to pay for cloud lab time
+        - text: . You can run and debug tests directly in your own environment
+    - paragraph:
+      - text: This is a
+      - strong: key differentiator
+      - text: that sets Xen apart from both open source and proprietary hypervisors.
+      - strong: You stay in control, and testing fits into your workflow, not the other way around.
+    - heading "What is GitLab CI?" [level=2]
+    - paragraph: Xen Project's upstream development is backed by a powerful, public GitLab CI system. It runs over 100 automated tests across multiple architectures and hardware platforms, every time new code is pushed.
+    - paragraph: But this isn't your typical cloud CI setup...
+    - img "Xen Project GitLab CI"
+    - heading "Xen Project GitLab CI" [level=2]
+    - 'heading "Watch: GitLab CI in Action at Xen Summit" [level=3]'
+    - paragraph: Want a deeper dive into how Xen's CI works? Check out this talk from the 2023 Xen Developer & Design Summit
+    - iframe
+    - heading "CI Workflow Overview" [level=2]
+    - paragraph: Xen's GitLab CI system orchestrates build and test jobs across various environments to ensure code quality and hardware compatibility.
+    - paragraph:
+      - link "View on GitLab ":
+        - /url: https://gitlab.com/xen-project/hardware/xen/-/pipelines
+    - paragraph: Every CI pipeline starts by building Xen across a wide range of Linux distributions. Here's how that works.
+    - heading "Build Jobs" [level=2]
+    - paragraph: Xen's GitLab CI includes build jobs across multiple Linux distributions such as Debian, Fedora, and Alpine, ensuring compatibility and successful builds in diverse environments.
+    - heading "Test Jobs" [level=2]
+    - paragraph: "To validate the builds, Xen's GitLab CI includes test jobs that fall into 2 categories: QEMU and Hardware."
+    - heading "QEMU" [level=3]
+    - paragraph: Most tests are performed using QEMU emulation, allowing rapid validation of Xen features in an emulated environment.
+    - heading "Hardware" [level=3]
+    - paragraph: Real hardware tests cover booting Dom0, DomU, and Dom0less setups, PCI passthrough, and suspend/resume functionality.
+    - heading "Xen CI Pipeline" [level=2]
+    - paragraph: Developer pushes code
+    - paragraph: GitLab Pipeline Triggered
+    - paragraph: Build Job (x86, ARM64)
+    - paragraph: QEMU Test Job
+    - paragraph: Hardware Test Job
+    - paragraph: "Serial Output Checked Result: Pass/Fail"
+    - paragraph: Wondering how the virtual and hardware tests compare? Here's a side-by-side look.
+    - 'heading "QEMU vs Hardware: How They Differ 🔍" [level=2]'
+    - paragraph: "Xen CI supports both emulated test environments and real hardware validation. Here's a quick side-by-side look at how QEMU-based and hardware-based test jobs differ:"
+    - heading "QEMU Test Job (Emulated)" [level=2]
+    - paragraph: Test Runner Container
+    - paragraph: Xen + Tools Installed
+    - paragraph: QEMU Launched
+    - list:
+      - listitem: Xen boots inside QEMU
+      - listitem: Dom0 and optional DomU launched
+      - listitem: Serial output monitored for success
+    - paragraph: "Serial logs checked: Pass/Fail"
+    - heading "Hardware Test Job (Baremetal Execution)" [level=2]
+    - paragraph: Test Runner Container (on Controller)
+    - paragraph: Test Script Executes
+    - paragraph: "Triggers:"
+    - list:
+      - listitem: PDU (power on)
+      - listitem: TFTP boot
+      - listitem: Serial monitoring
+    - paragraph: "PDU: power on/off"
+    - paragraph: "TFTP: load binaries"
+    - paragraph: "Serial: monitor output"
+    - paragraph: Test Board (e.g. ZCU102, Zen3)
+    - paragraph:
+      - strong: Xen boots natively
+      - text: on board
+    - list:
+      - listitem: Dom0 and DomU launched
+      - listitem: Serial logs captured
+      - listitem: Result sent back to pipeline
+    - paragraph: "Serial logs checked: Pass/Fail"
+    - heading "Test Coverage Highlights" [level=2]
+    - paragraph: "Xen CI covers a wide range of scenarios to ensure high-quality releases across diverse environments:"
+    - list:
+      - listitem:
+        - text: "✅ Architectures:"
+        - strong: x86, ARM32, ARM64, RISC-V, PowerPC
+      - listitem: "🔁 Features: Dom0 boot, DomU launch, Dom0less, suspend/resume, PCI passthrough"
+      - listitem:
+        - text: "🧪 Tools: Static analysis with"
+        - strong: cppcheck
+        - text: ","
+        - strong: MISRA C
+        - text: ", and more"
+      - listitem: "🧩 Environments: QEMU emulated tests and real baremetal boards"
+      - listitem: "🧷 OS coverage: Debian, Fedora, Alpine, and FreeBSD (via Cirrus-CI)"
+    - blockquote:
+      - paragraph:
+        - text: Additional testing is also performed on
+        - link "Cirrus-CI":
+          - /url: https://cirrus-ci.com/github/xen-project/xen
+        - text: for
+        - link "FreeBSD":
+          - /url: http://freebsd.org/
+        - text: builds using a full
+        - link "LLVM":
+          - /url: http://llvm.org/
+        - text: based toolchain.
+    - heading "Bring Your Own Hardware (BYOH) 🛠️" [level=2]
+    - paragraph:
+      - text: One of Xen's most powerful features is the ability to
+      - strong: connect your own hardware to the public CI grid
+      - text: ":"
+    - list:
+      - listitem: Run GitLab Runner on a nearby host
+      - listitem:
+        - text: Connect your boards via
+        - strong: serial
+        - text: ","
+        - strong: TFTP
+        - text: ", and"
+        - strong: PDU (power switch)
+      - listitem: Add a few YAML snippets, and you're in!
+    - paragraph: "This is ideal for:"
+    - list:
+      - listitem:
+        - text: 🚗
+        - strong: Automotive teams
+        - text: testing ECUs or infotainment platforms
+      - listitem:
+        - text: 🏭
+        - strong: Industrial users
+        - text: with specialized hardware or I/O
+      - listitem:
+        - text: 📦
+        - strong: Edge/IoT deployments
+        - text: using Raspberry Pi, Rockchip, or custom boards
+    - heading "Get Involved 🤝" [level=2]
+    - paragraph: Want to test Xen on your own hardware? Want to learn more?
+    - list:
+      - listitem:
+        - text: 💬
+        - strong: Join the discussion
+        - text: "on"
+        - link "matrix":
+          - /url: /resources/matrix
+      - listitem:
+        - text: 📬
+        - strong:
+          - text: Subscribe to the
+          - link "mailing lists":
+            - /url: /resources/mailing-lists
+      - listitem:
+        - text: ✉️
+        - strong: Email our Community Manager
+        - text: ":"
+        - link "community.manager@xenproject.org":
+          - /url: mailto:community.manager@xenproject.org
+    - paragraph: We're always happy to help you get started or connect with others using Xen in production.
+    - heading "CI status dashboard" [level=2]:
+      - link "CI status dashboard":
+        - /url: /contribute/ci/status
+    - paragraph: A global live CI status dashboard.

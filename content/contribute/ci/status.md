@@ -19,4 +19,4 @@ menus:
 summary: A global live CI status dashboard.
 ---
 
-{{<div id="ci-status">}}{{</div>}}
+{{<div id="ci-status" data-copy-parity-external="ci-status">}}{{</div>}}

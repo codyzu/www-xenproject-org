@@ -1,0 +1,31 @@
+- main:
+  - article:
+    - heading "Mirage OS" [level=1]
+    - text: MirageOS is a library operating system that constructs unikernels for secure, high-performance, low-energy footprint applications.
+    - heading "About us" [level=2]
+    - paragraph: MirageOS is a library operating system that constructs unikernels for secure, high-performance, low-energy footprint applications across various hypervisor and embedded platforms. It is available as an open-source project created and maintained by the MirageOS Core Team. A unikernel can be customised based on the target architecture by picking the relevant MirageOS libraries and compiling them into a standalone operating system, strictly containing the functionality necessary for the target. This minimises the unikernel’s footprint, increasing the security of the deployed operating system.
+    - img "Illustration of a database icon with gears and a wrench, representing data management and configuration tools."
+    - heading "Our architecture" [level=2]
+    - paragraph: The MirageOS architecture can be divided into operating system libraries, typed signatures, and a metaprogramming compiler. The operating system libraries implement various functionalities, ranging from low-level network card drivers to full reimplementations of the TLS protocol, as well as the Git protocol to store versioned data. A set of typed signatures ensures that the OS libraries are consistent and work well in conjunction with each other. Most importantly, MirageOS is also a metaprogramming compiler that can input OCaml source code along with its dependencies, and a deployment target description to generate an executable unikernel, i.e., a specialised binary artefact containing only the code needed to run on the target platform. Overall, MirageOS focuses on providing a small, well-defined, typed interface with the system components of the target architecture.
+    - list:
+      - listitem:
+        - heading " Fast Start" [level=2]
+        - paragraph: MirageOS applications take a few milliseconds to start-up instead of the few minutes that traditional OS takes.
+      - listitem:
+        - heading " Small Binaries" [level=2]
+        - paragraph: "MirageOS binaries are self-contained: they do not need an additional OS to execute. Despite this, the size of MirageOS binary is usually a few megabytes."
+      - listitem:
+        - heading " Small Footprint" [level=2]
+        - paragraph: MirageOS applications use a few megabytes of memory, while traditional applications and their associated OS waste gigabytes for simple applications.
+      - listitem:
+        - heading " Safe Logic" [level=2]
+        - paragraph: MirageOS applications are written in OCaml, an industrial strength programming language supporting functional, imperative, and object-oriented styles.
+    - heading "Development process" [level=2]:
+      - strong: Development
+      - text: process
+    - paragraph: Mirage OS follows a standard Github workflow and has its own Developer Portal. All developer-related information such as documentation, development team members, and other information related to the development of Mirage OS can be found there as well.
+    - img "Illustration of a person typing code on a computer, symbolizing software development and programming."
+    - heading "License" [level=2]
+    - paragraph: The Mirage codebase is released under the ISC license, with some portions of code released under LGPLv2.
+    - paragraph: Sub-Projects hosted by the Xen Project team typically use GPLv2. In the case of Mirage, it is necessary to use a permissive open source license such as “ISC” because Mirage based microkernels need to be statically linked with applications to form a stand-alone appliance.
+    - img "Illustration of hands typing code on a laptop with documents and a cup of coffee, symbolizing software development and workflow."

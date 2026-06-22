@@ -1,0 +1,79 @@
+- main:
+  - article:
+    - heading "Academic Research" [level=1]
+    - text: Explore academic research papers related to the Xen Project
+    - heading "Introduction to Xen Research" [level=2]
+    - paragraph: The Xen Project has been instrumental in advancing virtualization technology. This page highlights key academic research papers that delve into the architecture, performance, and security of the Xen hypervisor, showcasing its impact on both industry and academia.
+    - text: "Search Papers:"
+    - searchbox "Search Papers:"
+    - table:
+      - rowgroup:
+        - row:
+          - cell:
+            - 'link "FastXenBlk: high-performance virtualized disk IOs without compromising isolation (industry track)"':
+              - /url: /research/thenot2023fastxenblk
+            - text: Optimizing IO in a type I hypervisor such as Xen is difficult because of the cost of exchanging data between a VM and the driver. We address this challenge by proposing FastXenBlk, a new IO driver for Xen. FastXenBlk uses three mechanisms to improve IO performance. First, it uses several threads that poll multiple virtual IO queues that are exposed to a guest in order to execute IOs in parallel. Second, it batches requests in order to minimize the number of hypercalls to Xen. And third, it uses kernel bypass in order to avoid system calls during IOs. We evaluate FastXenBlk using the FIO benchmark with different access patterns and IO sizes. Our evaluation shows that FastXenBlk consistently improves the latency and the throughput for all workloads as compared to tapdisk, the driver currently used in production, by a factor of up to 3×.
+          - 'cell "Published: 2023 Tags: spdk blkif performance Authors: Lozi, Jean-Pierre and Thenot, Damien and Thomas, Gaël Read the Full Paper"':
+            - strong: "Published:"
+            - text: "2023"
+            - strong: "Tags:"
+            - text: spdk blkif performance
+            - strong: "Authors:"
+            - text: Lozi, Jean-Pierre and Thenot, Damien and Thomas, Gaël
+            - link "Read the Full Paper":
+              - /url: https://hal.science/hal-04354563/file/middleware23industrial-final9.pdf
+        - 'row "Tableau: A high-throughput and predictable vm scheduler for high-density workloads A VM scheduler that guarantees a minimum processor share and a maximum bound on scheduling delay for every VM in the system. Published: 2018 Tags: xen scheduler Authors: Brandenburg, Björn B and Gujarati, Arpan and Vanga, Manohar Read the Full Paper"':
+          - 'cell "Tableau: A high-throughput and predictable vm scheduler for high-density workloads A VM scheduler that guarantees a minimum processor share and a maximum bound on scheduling delay for every VM in the system."':
+            - 'link "Tableau: A high-throughput and predictable vm scheduler for high-density workloads"':
+              - /url: /research/vanga2018tableau
+            - text: A VM scheduler that guarantees a minimum processor share and a maximum bound on scheduling delay for every VM in the system.
+          - 'cell "Published: 2018 Tags: xen scheduler Authors: Brandenburg, Björn B and Gujarati, Arpan and Vanga, Manohar Read the Full Paper"':
+            - strong: "Published:"
+            - text: "2018"
+            - strong: "Tags:"
+            - text: xen scheduler
+            - strong: "Authors:"
+            - text: Brandenburg, Björn B and Gujarati, Arpan and Vanga, Manohar
+            - link "Read the Full Paper":
+              - /url: https://dl.acm.org/doi/abs/10.1145/3190508.3190557
+        - 'row "Xen and the Art of Virtualization This foundational paper introduces Xen, detailing its architecture and performance benefits compared to other virtualization techniques. Published: 2003 Tags: xen virtualization architecture Authors: Alex Ho and Andrew Warfield and Boris Dragovic and Ian Pratt and Keir Fraser and Paul Barham and Rolf Neugebauer and Steven Hand and Tim Harris Read the Full Paper"':
+          - cell "Xen and the Art of Virtualization This foundational paper introduces Xen, detailing its architecture and performance benefits compared to other virtualization techniques.":
+            - link "Xen and the Art of Virtualization":
+              - /url: /research/barham2003xen
+            - text: This foundational paper introduces Xen, detailing its architecture and performance benefits compared to other virtualization techniques.
+          - 'cell "Published: 2003 Tags: xen virtualization architecture Authors: Alex Ho and Andrew Warfield and Boris Dragovic and Ian Pratt and Keir Fraser and Paul Barham and Rolf Neugebauer and Steven Hand and Tim Harris Read the Full Paper"':
+            - strong: "Published:"
+            - text: "2003"
+            - strong: "Tags:"
+            - text: xen virtualization architecture
+            - strong: "Authors:"
+            - text: Alex Ho and Andrew Warfield and Boris Dragovic and Ian Pratt and Keir Fraser and Paul Barham and Rolf Neugebauer and Steven Hand and Tim Harris
+            - link "Read the Full Paper":
+              - /url: https://dl.acm.org/doi/10.1145/945445.945462
+    - heading "Why Research Xen?" [level=2]
+    - paragraph: "The Xen Project has been a cornerstone of virtualization research for years. Its open-source nature and robust architecture make it a popular choice for academic studies in areas like:"
+    - list:
+      - listitem:
+        - strong: "Security:"
+        - text: Isolation and minimal attack surface.
+      - listitem:
+        - strong: "Performance:"
+        - text: Efficient resource utilization.
+      - listitem:
+        - strong: "Scalability:"
+        - text: Proven success in large-scale environments like AWS.
+    - paragraph: Explore the cutting-edge research that continues to shape the future of virtualization.
+    - heading "Contribute Your Research" [level=2]
+    - paragraph: "Do you have research related to the Xen Project? We welcome contributions to our archive! You can:"
+    - list:
+      - listitem:
+        - text: Submit a merge request directly with your added bibtex file. See the
+        - link "guide on GitLab":
+          - /url: https://gitlab.com/xen-project/www-xenproject-org/-/blob/main/papers/README.md
+        - text: .
+      - listitem:
+        - text: Email your paper details to
+        - link "community.manager@xenproject.org":
+          - /url: mailto:community.manager@xenproject.org
+        - text: .
+    - paragraph: Help us grow the Xen research community!

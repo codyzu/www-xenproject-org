@@ -1,0 +1,21 @@
+- main:
+  - complementary:
+    - heading "Resources" [level=3]
+    - list:
+      - listitem:
+        - link "Github repository ":
+          - /url: https://github.com/bitdefender/hvmi
+      - listitem:
+        - link "Documentation ":
+          - /url: https://hvmi.readthedocs.io/
+  - article:
+    - heading "HVMI" [level=1]
+    - text: Explore Xen Project's Hypervisor Memory Introspection (HVMI). Learn how HVMI enhances security by providing real-time monitoring and protection for virtualized environments.
+    - heading "What is HVMI?" [level=2]
+    - text: HVMI stands for Hypervisor-based Memory Introspection. The technology leverages Virtual Machine Introspection (VMI) APIs in the Xen and KVM hypervisors. By gaining introspection of the raw memory of running guest virtual machines, HVMI can apply security logic to detect and prevent the use of common attack techniques, such as buffer overflows, heap spray, code injection, and so-on. Your browser does not support the video tag.
+    - heading "About us" [level=2]
+    - text: A research and development team at Bitdefender extended the VMI APIs by working with the Xen Project and KVM Project communities. Bitdefender initially released a commercial solution known as GravityZone Hypervisor Introspection (HVI). The core components of HVI were open-sourced in mid-2020, forming the basis of the HVMI project. The primary goal of the HVMI project is to build a community to foster development of new features and use-cases.
+    - img "Illustration of a laptop with a shield and check mark icon, representing cybersecurity and data protection."
+    - heading "License" [level=2]
+    - text: HVMI is licensed under Apache 2.0.
+    - img "Illustration of hands typing code on a laptop with documents and a cup of coffee, symbolizing software development and workflow."

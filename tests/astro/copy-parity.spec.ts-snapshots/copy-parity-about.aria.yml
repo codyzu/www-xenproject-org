@@ -1,0 +1,75 @@
+- main:
+  - article:
+    - heading "About Xen Project" [level=1]
+    - text: Learn about Xen Project, its mission, history, and the vibrant community behind the leading open source hypervisor. Find out how you can get involved.
+    - heading "A global open source community" [level=2]
+    - paragraph: Xen (pronounced /’zɛn/) Project has its origins in the ancient Greek term Xenos (ξένος), which can be used to refer to guest-friends whose relationship is constructed under the ritual of xenia (“guest-friendship”), which in term is a wordplay on the idea of guest operating systems as well as a community of developers and users. Learn about the project’s interesting history here.
+    - paragraph: The community follows a number of principles, including Openness, Transparency, Meritocracy, and Consensus Decision Making.
+    - paragraph: Find out more about how the community governs itself.
+    - img "Illustration of a laptop displaying code, with a cup of coffee and a notebook beside it, symbolizing a coding or development environment."
+    - img "Group photo of attendees at the Xen Project Developer and Design Summit, standing in front of a presentation screen with the Xen Project logo."
+    - paragraph: The Xen Project is the home for several virtualization-related open source projects. The community is focused on advancing virtualization in a number of different commercial and open source applications, including server virtualization, Infrastructure as a Services (IaaS), desktop virtualization, security applications, embedded and hardware appliances, and automotive/aviation.
+    - paragraph: Software hosted on XenProject.org is, and always will be, open source. The code is licensed under the GNU General Public License (GPL2). Our community follows a governance process based on openness, transparency, and meritocracy.
+    - img "Illustration of a computer monitor displaying bar charts and server racks labeled with Xen Project logos, representing data management and analysis."
+    - heading "History" [level=2]
+    - paragraph: We recently celebrated 20 years in The Xen Project. The timeline shows key milestones over the years, starting from 2003 to the present day in 2024.
+    - paragraph:
+      - link "Discover Xen Project history ":
+        - /url: https://15anniversary.xenproject.org/
+    - img "Illustration of a timeline with milestones for the years 2003, 2013, 2018 and 2024, representing project progress and development."
+    - heading "Open-source technologies" [level=2]
+    - paragraph: "The Xen Project has created a number of open source technologies for specific purposes:"
+    - paragraph: If you are unsure which technology is right for you, check out our team portals. In addition, read the Xen Overview document to learn about Xen's architecture, components and some of the key choices you will have to make.
+    - list:
+      - listitem:
+        - strong: The Xen Project Hypervisor
+        - text: is the open source standard for hardware virtualization and the foundation for all solutions hosted on the Xen Project website. It includes a build configuration for Arm that targets embedded and mobile devices on the Arm architecture.
+      - listitem:
+        - strong: Drivers for the Xen Project Hypervisor
+        - text: are delivered with host operating systems such as Linux and BSD distributions. The project maintains Windows drivers, which are developed as part of the Windows PV Drivers project.
+      - listitem:
+        - strong: XAPI
+        - text: is a Xen Project toolstack for an enterprise-ready virtualization platforms based on the Xen Hypervisor. XAPI adds further management functionality to Xen and adds many integrations for cloud, storage, and networking solutions. XAPI is used by the Citrix Hypervisor, XCP-ng and Magrana Server.
+      - listitem:
+        - strong: "The project also hosts a number of Unikernel technologies:"
+        - text: Unikraft, which is an SDK to build Unikernel bases; Mirage OS which is a Ocaml based Unikernel.
+    - heading "A Linux Foundation collaborative project" [level=2]
+    - paragraph: Projects under The Linux Foundation are independently funded software projects that harness the power of collaborative development to fuel innovation across industries and ecosystems. By spreading the collaborative DNA of the largest collaborative software development project in history, The Linux Foundation provides the essential collaborative and organizational framework so project hosts can focus on innovation and results. Linux Foundation Collaborative Projects span the enterprise, mobile, and embedded markets and are backed by many of the largest names in computing.
+    - img "The Linux Foundation logo"
+    - heading "Governed by Xen project members" [level=2]
+    - paragraph: Board members can propose and vote upon changes to the Xen Project. Members also gain valuable strategic insight into project plans and future scope.
+    - paragraph:
+      - link "Join the advisory board ":
+        - /url: /about/become-a-member
+    - list:
+      - listitem:
+        - img "amd logo"
+      - listitem:
+        - img "arm logo"
+      - listitem:
+        - img "aws logo"
+      - listitem:
+        - img "boeing logo"
+      - listitem:
+        - img "epam logo"
+      - listitem:
+        - img "ford logo"
+      - listitem:
+        - img "honda logo"
+      - listitem:
+        - img "logo linux foundation"
+      - listitem:
+        - img "renesas logo cropped"
+      - listitem:
+        - img "vates logo"
+      - listitem:
+        - img "xenserver logo"
+    - heading "Latest news Read all news " [level=2]:
+      - text: Latest
+      - strong: news
+      - link "Read all news ":
+        - /url: /blog
+    - region "Latest Xen Project news":
+      - button "Previous news" [disabled]: 
+      - button "Next news" [disabled]: 
+    - paragraph: Latest news is temporarily unavailable.

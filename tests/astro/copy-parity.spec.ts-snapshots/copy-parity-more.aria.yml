@@ -1,0 +1,12 @@
+- main:
+  - article:
+    - heading "More" [level=1]
+    - paragraph: Find Xen Project release news and official branding resources.
+    - heading "Releases" [level=2]
+    - text: Explore Releases.
+    - link "Explore ":
+      - /url: /blog/tag/releases
+    - heading "Xen Project branding" [level=2]
+    - text: Explore Xen Project branding.
+    - link "Explore ":
+      - /url: /more/xen-branding

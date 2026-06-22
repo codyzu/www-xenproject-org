@@ -1,0 +1,74 @@
+- main:
+  - article:
+    - heading "Use cases" [level=1]
+    - text: See how the Xen Project operates in real life.
+    - heading "Qubes OS & Xen Project" [level=2]
+    - text: Qubes OS is a security-focused operating system based on Xen. The goal of Qubes OS is to create a reasonably secure environment that is also practical and usable, capable of playing the role of a daily driver rather than a highly situational solution - and Xen is a major reason why we can confidently say that Qubes OS succeeds.
+    - paragraph:
+      - link "Read the Complete Case Study ":
+        - /url: /pdf/Qubes-OS-and-Xen-Project.pdf
+    - img "Illustration of a data storage concept with various elements representing data protection, cloud storage, and secure data management."
+    - heading "Xen Server case study" [level=2]
+    - text: Xen Server, powered by the Xen Project hypervisor, offers a robust virtualization platform for enterprise environments. It enables efficient resource utilization, simplified management, and enhanced security for organizations of all sizes. With features like live migration and dynamic memory allocation, Xen Server optimizes datacenter operations and reduces downtime.
+    - img "Illustration of a laptop displaying 3D bar charts, connected to cloud and file management icons, representing data integration and synchronization."
+    - heading "Amazon case study" [level=2]
+    - text: Amazon Web Services (AWS) leverages the Xen Project hypervisor to power its Elastic Compute Cloud (EC2) service. This implementation demonstrates the scalability and reliability of Xen in large-scale cloud environments. AWS's success with Xen has revolutionized cloud computing, offering flexible and cost-effective solutions for businesses worldwide.
+    - img "Illustration of servers surrounded by cloud icons with upload and download arrows, representing cloud computing and data storage."
+    - heading "Security" [level=2]
+    - text: The Xen Project hypervisor prioritizes security through its unique architecture and ongoing development efforts. Its small codebase and isolation features minimize the attack surface, while regular security updates address emerging threats. Xen's security-first approach makes it an ideal choice for organizations with stringent data protection requirements.
+    - paragraph:
+      - link "Read Xen Project Releases Version 4.18 ":
+        - /url: https://wiki.xenproject.org/wiki/Xen_Project_4.18_Release_Notes
+    - img "Illustration of a laptop displaying 3D bar charts, connected to cloud and file management icons, representing data integration and synchronization."
+    - heading "Embedded & Automotive" [level=2]
+    - text: Xen Project's virtualization technology is increasingly adopted in embedded systems and automotive applications. It enables the consolidation of multiple systems onto a single hardware platform, reducing costs and complexity. In automotive, Xen supports the development of advanced infotainment systems and autonomous driving technologies while ensuring critical safety features remain isolated.
+    - paragraph:
+      - link "Read Automotive Virtualization by Xen ":
+        - /url: /projects/embedded-and-automotive
+    - img "Illustration of a database icon with gears and a wrench, representing data management and configuration tools."
+    - heading "Did you know?" [level=2]
+    - paragraph: There are several virtualization technologies available in the world today. Our Xen Project virtualization and cloud software includes many powerful features that make it an excellent choice for many organizations.
+    - 'heading "Supports multiple guest operating systems: Linux, Windows, NetBSD, FreeBSD" [level=3]'
+    - paragraph: A virtualization technology that only supports a few guest operating systems essentially locks the organization into those choices for years to come. With our hypervisor, you have the flexibility to use what you need and add other operating system platforms as your needs dictate. You are in control.
+    - 'heading "Supports multiple Cloud platforms: CloudStack, OpenStack" [level=3]'
+    - paragraph: "Supports multiple Cloud platforms: CloudStack, OpenStack A virtualization technology that only supports one Cloud technology locks you into that technology. With the world of the Cloud moving so quickly, it could be a mistake to commit to one Cloud platform too soon. Our software keeps your choices open as Cloud solutions continue to improve and mature."
+    - heading "Reliable technology with a solid track record" [level=3]
+    - paragraph: Conservative estimates show that Xen has an active user base of 10+ million; these are users, not merely hypervisor installations which are an order of magnitude higher. Amazon Web Services alone runs many virtualized Xen Project instances according to a recent study and other cloud providers such as Rackspace and hosting companies use the hypervisor at an extremely large scale. Our software is the basis of successful commercial virtualization products from Citrix, Huawei, Inspur, and Oracle. It is clear that many major industry players regard our software as a safe virtualization platform for even the largest clouds.
+    - region "Xen Project technologies":
+      - heading "Embedded & Automotive" [level=3]
+      - paragraph: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automotive systems.
+      - link "Discover ":
+        - /url: /projects/embedded-and-automotive
+      - heading "HVMI" [level=3]
+      - paragraph: Explore Xen Project's Hypervisor Memory Introspection (HVMI). Learn how HVMI enhances security by providing real-time monitoring and protection for virtualized environments.
+      - link "Discover ":
+        - /url: /projects/hvmi
+      - heading "Hypervisor" [level=3]
+      - paragraph: Discover Xen Hypervisor, the open-source virtualization platform.
+      - link "Discover ":
+        - /url: /projects/hypervisor
+      - heading "Mirage OS" [level=3]
+      - paragraph: MirageOS is a library operating system that constructs unikernels for secure, high-performance, low-energy footprint applications.
+      - link "Discover ":
+        - /url: /projects/mirage-os
+      - heading "Unikraft" [level=3]
+      - paragraph: Unikraft is an open-source project for building efficient, secure unikernels. It provides customizable libraries and tools to create lightweight, single-purpose operating systems.
+      - link "Discover ":
+        - /url: /projects/unikraft
+      - heading "Windows PV Drivers" [level=3]
+      - paragraph: Windows PV Drivers enhance the performance and efficiency of Windows virtual machines. Access documentation and support for seamless integration.
+      - link "Discover ":
+        - /url: /projects/windows-pv-drivers
+      - heading "XAPI" [level=3]
+      - paragraph: The XAPI project is an enterprise-ready toolstack for use with the Xen Project hypervisor.
+      - link "Discover ":
+        - /url: /projects/xapi
+      - heading "XCP-ng" [level=3]
+      - paragraph: XCP-ng (Xen Cloud Platform – new generation) is a turnkey virtualization platform built on the Xen Project Hypervisor and using the Xen API (XAPI). It is typically managed with Xen Orchestra, an agentless, multi-cluster web interface that provides management, monitoring, and backup capabilities.
+      - link "Discover ":
+        - /url: /projects/xcp-ng
+      - button "Previous projects" [disabled]: 
+      - button "Next projects": 
+    - paragraph:
+      - link "Discover all projects ":
+        - /url: /projects/all-projects

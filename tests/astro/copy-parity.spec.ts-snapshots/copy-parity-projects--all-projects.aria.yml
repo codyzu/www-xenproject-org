@@ -1,0 +1,64 @@
+- main:
+  - article:
+    - heading "All projects" [level=1]
+    - text: Learn about Xen Project, its mission, history, and the vibrant community behind the leading open source hypervisor. Find out how you can get involved.
+    - heading "OpenPGP Keys" [level=2]
+    - text: OpenPGP Keys for the Xen Project.
+    - link "Discover ":
+      - /url: /projects/hypervisor/openpgp-keys
+    - heading "Embedded & Automotive" [level=2]
+    - text: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automotive systems.
+    - link "Discover ":
+      - /url: /projects/embedded-and-automotive
+    - heading "HVMI" [level=2]
+    - text: Explore Xen Project's Hypervisor Memory Introspection (HVMI). Learn how HVMI enhances security by providing real-time monitoring and protection for virtualized environments.
+    - link "Discover ":
+      - /url: /projects/hvmi
+    - heading "Hypervisor" [level=2]
+    - text: Discover Xen Hypervisor, the open-source virtualization platform.
+    - link "Discover ":
+      - /url: /projects/hypervisor
+    - heading "Mirage OS" [level=2]
+    - text: MirageOS is a library operating system that constructs unikernels for secure, high-performance, low-energy footprint applications.
+    - link "Discover ":
+      - /url: /projects/mirage-os
+    - heading "Unikraft" [level=2]
+    - text: Unikraft is an open-source project for building efficient, secure unikernels. It provides customizable libraries and tools to create lightweight, single-purpose operating systems.
+    - link "Discover ":
+      - /url: /projects/unikraft
+    - heading "Windows PV Drivers" [level=2]
+    - text: Windows PV Drivers enhance the performance and efficiency of Windows virtual machines. Access documentation and support for seamless integration.
+    - link "Discover ":
+      - /url: /projects/windows-pv-drivers
+    - heading "XAPI" [level=2]
+    - text: The XAPI project is an enterprise-ready toolstack for use with the Xen Project hypervisor.
+    - link "Discover ":
+      - /url: /projects/xapi
+    - heading "XCP-ng" [level=2]
+    - text: XCP-ng (Xen Cloud Platform – new generation) is a turnkey virtualization platform built on the Xen Project Hypervisor and using the Xen API (XAPI). It is typically managed with Xen Orchestra, an agentless, multi-cluster web interface that provides management, monitoring, and backup capabilities.
+    - link "Discover ":
+      - /url: /projects/xcp-ng
+    - heading "Join the conversation" [level=2]:
+      - text: Join the
+      - strong: conversation
+    - paragraph:
+      - link "Join Matrix ":
+        - /url: /resources/matrix
+      - link "Join our mailing lists ":
+        - /url: /resources/mailing-lists
+    - heading "Led by a dedicated community" [level=2]:
+      - text: Led by a
+      - strong: dedicated community
+    - text: The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology. With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.
+    - paragraph:
+      - link "Get started ":
+        - /url: /contribute/get-started
+    - img "Illustration of a team working together on a project, with a shared vision and goal."
+    - heading "About Xen Project" [level=2]:
+      - text: About
+      - strong: Xen Project
+    - text: The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology. With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.
+    - paragraph:
+      - link "Get started ":
+        - /url: /contribute/get-started
+    - img "Illustration of a laptop connected to cloud storage and file management icons."

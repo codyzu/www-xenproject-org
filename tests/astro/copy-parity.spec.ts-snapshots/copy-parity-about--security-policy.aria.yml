@@ -1,0 +1,394 @@
+- main:
+  - article:
+    - heading "Security policy" [level=1]
+    - text: Xen Security Problem Response Process
+    - heading "Introduction" [level=2]
+    - paragraph: Computer systems have bugs. Currently recognised best practice for bugs with security implications is to notify significant downstream users in private; leave a reasonable interval for downstreams to respond and prepare updated software packages; then make public disclosure.
+    - paragraph: We want to encourage people to report bugs they find to us. Therefore we will treat with respect the requests of discoverers, or other vendors, who report problems to us.
+    - heading "Scope of this process" [level=2]
+    - paragraph:
+      - text: This process primarily covers the
+      - link "Xen Hypervisor Project":
+        - /url: /projects/hypervisor
+      - text: . Specific information about features with security support can be found in
+    - list:
+      - listitem:
+        - link "SUPPORT.md":
+          - /url: http://xenbits.xen.org/gitweb/?p=xen.git;a=blob;f=SUPPORT.md
+        - text: in the releases’ tar ball and its xen.git tree and on
+        - link "web pages generated from the SUPPORT.md file":
+          - /url: https://xenbits.xen.org/docs/unstable/support-matrix.html
+      - listitem:
+        - text: For releases that do not contain SUPPORT.md, this information can be found on the
+        - link "Release Feature wiki page":
+          - /url: https://wiki.xenproject.org/wiki/Xen_Project_Release_Features
+    - paragraph: Vulnerabilities reported against other Xen Project teams will be handled on a best effort basis by the relevant Project Lead together with the Security Response Team.
+    - heading "Specific process" [level=2]
+    - list:
+      - listitem:
+        - paragraph: We request that anyone who discovers a vulnerability in Xen Project software reports this by email to security (at) xenproject (dot) org. (This also covers the situation where an existing published changeset is retrospectively found to be a security fix)
+      - listitem:
+        - paragraph: "Immediately, and in parallel:"
+        - list:
+          - listitem: Those of us on the Hypervisor team who are aware of the problem will notify security@xenproject if disclosure wasn’t made there already.
+          - listitem: If the vulnerability is not already public, security@xenproject will negotiate with discoverer regarding embargo date and disclosure schedule. See below for detailed discussion.
+      - listitem:
+        - paragraph: "Furthermore, also in parallel:"
+        - list:
+          - listitem: security@xenproject will check whether the discoverer, or other people already aware of the problem, have allocated a CVE number. If not, we will acquire a CVE candidate number ourselves, and make sure that everyone who is aware of the problem is also aware of the CVE number.
+          - listitem: If we think other software systems (for example, competing hypervisor systems) are likely to be affected by the same vulnerability, we will try to make those other projects aware of the problem and include them in the advisory preparation process.
+        - paragraph: (This may rely on the other project(s) having documented and responsive security contact points)
+        - list:
+          - listitem: We will prepare or check patch(es) which fix the vulnerability. This would ideally include all relevant backports. Patches will be tightly targeted on fixing the specific security vulnerability in the smallest, simplest and most reliable way. Where necessary domain specific experts within the community will be brought in to help with patch preparation.
+          - listitem: We will determine which systems/configurations/versions are vulnerable, and what the impact of the vulnerability is. Depending on the nature of the vulnerability this may involve sharing information about the vulnerability (in confidence, if the issue is embargoed) with hardware vendors and/or other software projects.
+          - listitem: We will write a Xen advisory including information from (b)-(f)
+      - listitem:
+        - paragraph: "**Advisory pre-release:**This occurs only if the advisory is embargoed (ie, the problem is not already public):As soon as our advisory is available, we will send it, including patches, to members of the Xen security pre-disclosure list. For more information about this list, see below.In the event that we do not have a patch available two working weeks before the disclosure date, we aim to send an advisory that reflects the current state of knowledge to the Xen security pre-disclosure list. An updated advisory will be published as soon as available."
+        - paragraph: At this stage the advisory will be clearly marked with the embargo date.
+        - paragraph: Unless requested otherwise, the discoverer will be credited already with the pre-release.
+      - listitem:
+        - paragraph:
+          - text: "**Advisory public release:**At the embargo date we will publish the advisory, and push bugfix changesets to public revision control trees.Public advisories will be posted to xen-devel, xen-users and xen-annnounce and will be added to the"
+          - link "Security Announcements Page":
+            - /url: http://xenbits.xen.org/xsa/
+          - text: (note that Advisories before XSA-26 were published
+          - link "here":
+            - /url: http://wiki.xenproject.org/wiki/Security_Announcements_%28Historical%29
+          - text: ) . Copies will also be sent to the pre-disclosure list.
+      - listitem:
+        - paragraph:
+          - strong: Updates
+          - text: If new information or better patches become available, or we discover mistakes, we may issue an amended (revision 2 or later) public advisory. This will also be sent to the pre-disclosure list.
+      - listitem:
+        - paragraph: "**Post embargo transparency:**During an embargo period the Security Response Team may be required to make potentially controverial decisions in private, since they cannot confer with the community without breaking the embargo. The Security Response Team will attempt to make such decisions following the guidance of this document and where necessary their own best judgement. Following the embargo period any such decisions will be disclosed to the community in the interests of transparency and to help provide guidance should a similar decision be required in the future."
+    - heading "Embargo and disclosure schedule" [level=2]
+    - paragraph: If a vulnerability is not already public, we would like to notify significant distributors and operators of Xen so that they can prepare patched software in advance. This will help minimise the degree to which there are Xen users who are vulnerable but can’t get patches.
+    - paragraph: "As discussed, we will negotiate with discoverers about disclosure schedule. Our usual starting point for that negotiation, unless there are reasons to diverge from this, would be:"
+    - list:
+      - listitem: One working week between notification arriving at security@xenproject and the issue of our own advisory to our predisclosure list. We will use this time to gather information and prepare our advisory, including required patches.
+      - listitem: Two working weeks between issue of our advisory to our predisclosure list and publication.
+    - paragraph: When a discoverer reports a problem to us and requests longer delays than we would consider ideal, we will honour such a request if reasonable. If a discoverer wants an accelerated disclosure compared to what we would prefer, we naturally do not have the power to insist that a discoverer waits for us to be ready and will honour the date specified by the discoverer.
+    - paragraph: In any event at the time of pre-disclosure, control over a possible late change of the public disclosure date moves from the discoverer to the Security Response Team. This is to avoid pre-disclosure list members putting pressure on the individual to extend or shorten the embargo.
+    - paragraph: Naturally, if a vulnerability is being exploited in the wild we will make immediately public release of the advisory and patch(es) and expect others to do likewise.
+    - heading "Pre-disclosure list" [level=2]
+    - paragraph: The Xen Project operates a pre-disclosure list. This list contains the email addresses (ideally, role addresses) of the security response teams for significant Xen operators and distributors.
+    - paragraph: "This includes:"
+    - list:
+      - listitem: Public hosting providers;
+      - listitem: Large-scale organisational users of Xen;
+      - listitem: Vendors of Xen-based systems;
+      - listitem: Distributors of operating systems with Xen support.
+    - paragraph: This includes both corporations and community institutions.
+    - paragraph: Here “provider”, “vendor”, and “distributor” is meant to include anyone who is making a genuine service, available to the public, whether for a fee or gratis. For projects providing a service for a fee, the rule of thumb of “genuine” is that you are offering services which people are purchasing. For gratis projects, the rule of thumb for “genuine” is measured in terms of the amount of time committed to providing the service. For instance, a software project which has 2-3 active developers, each of whom spend 3-4 hours per week doing development, is very likely to be accepted; whereas a project with a single developer who spends a few hours a month will most likey be rejected.
+    - paragraph: For organizational users, a rule of thumb is that “large scale” means an installed base of 300,000 or more Xen guests.
+    - paragraph: The list of entities on the pre-disclosure list is public. (Just the list of projects and organisations, not the actual email addresses.)
+    - paragraph: If there is an embargo, the pre-disclosure list will receive copies of the advisory and patches, with a clearly marked embargo date, as soon as they are available. The pre-disclosure list will also receive copies of public advisories when they are first issued or updated
+    - heading "Handling of embargoed information" [level=3]
+    - paragraph: Organizations on the pre-disclosure list are expected to maintain the confidentiality of the vulnerability up to the embargo date which security@xenproject have agreed with the discoverer, and are committing to ensuring that any members/employees of that organisation who come into contact with confidential information will do so as well..
+    - paragraph: "Specifically, prior to the embargo date, pre-disclosure list members should not make available, even to their own customers and partners:"
+    - list:
+      - listitem: the Xen Project advisory
+      - listitem: their own advisory
+      - listitem: the impact, scope, set of vulnerable systems or the nature of the vulnerability
+      - listitem: revision control commits which are a fix for the problem
+      - listitem: patched software (even in binary form)
+    - paragraph: without prior consultation with security@xenproject.
+    - paragraph: "List members are allowed to make available to their users only the following:"
+    - list:
+      - listitem: The existance of an issue
+      - listitem: The assigned XSA number
+      - listitem: The planned disclosure date
+    - paragraph: List members may, if (and only if) the Security Team grants permission, deploy fixed versions during the embargo. Permission for deployment, and any restrictions, will be stated in the embargoed advisory text.
+    - paragraph: The Security Team will normally permit such deployment, even for systems where VMs are managed or used by non-members of the predisclosure list. The Security Team will impose deployment restrictions only insofar as it is necessary to prevent the exposure of technicalities (for example, differences in behaviour) which present a significant risk of rediscovery of the vulnerability. Such situations are expected to be rare.
+    - paragraph: "Where the list member is a service provider who intends to take disruptive action such as rebooting as part of deploying a fix: the list member’s communications to its users about the service disruption may mention that the disruption is to correct a security issue, and relate it to the public information about the issue (as listed above). This applies whether the deployment occurs during the embargo (with permission – see above) or is planned for after the end of the embargo."
+    - paragraph:
+      - emphasis: "NOTE:"
+      - text: Prior v2.2 of this policy (25 June 2014) it was permitted to also make available the allocated CVE number. This is no longer permitted in accordance with MITRE policy.
+    - heading "Information-sharing amongst predisclosure list members" [level=3]
+    - paragraph: Predisclosure list members are allowed to share fixes to embargoed issues, analysis, etc., with the security teams of other list members. Technical measures must be taken to prevents non-list-member organisations, or unauthorised staff in list-member organisations, from obtaining the embargoed materials.
+    - paragraph:
+      - text: The Xen Project provides the mailing list
+      - code: xen-security-issues-discuss@lists.xenproject<dot>org
+      - text: for this purpose. List members are encouraged to use it but may share with other list members’ security teams via other channels.
+    - paragraph:
+      - text: The
+      - code: "-discuss"
+      - text: list’s distribution is identical to that of the primary predisclosure list
+      - code: xen-security-issues
+      - text: . Recipient organisations who do not wish to receive all of the traffic on -discuss should use recipient-side email filtering based on the provided
+      - code: List-Id
+      - text: .
+    - paragraph:
+      - text: The
+      - code: "-discuss"
+      - text: list is moderated by the Xen Project Security Team. Announcements of private availability of fixed versions, and technical messages about embargoed advisories, will be approved. Messages dealing with policy matters will be rejected with a reference to the Security Team contact address and/or public Xen mailing lists.
+    - heading "Predisclosure list membership application process" [level=3]
+    - paragraph:
+      - text: Organisations who meet the criteria should contact
+      - code: predisclosure-applications@lists.xenproject<dot>org
+      - text: (which is a public
+      - link "mailing list":
+        - /url: /resources/mailing-lists
+      - text: ) if they wish to receive pre-disclosure of advisories.
+    - paragraph: "You must include in the e-mail:"
+    - list:
+      - listitem: The name of your organization
+      - listitem: Domain name(s) which you use to provide Xen software/services
+      - listitem: A brief description of why you fit the criteria
+      - listitem: If not all of your products/services use Xen, a list of (some of) your products/services (or categories thereof) which do.
+      - listitem:
+        - text: "Link(s) to current public web pages, belonging to your organisation, for each of following pieces of information:"
+        - list:
+          - listitem: "Evidence of your status as a service/software provider:"
+          - listitem: If you are a public hosting provider, your public rates or how to get a quote
+          - listitem: If you are a software provider, how your software can be downloaded or purchased
+      - listitem: If you are an open-source project, a mailing list archive and/or version control repository, with active development
+      - listitem:
+        - text: "Evidence of your status as a user/distributor of Xen:"
+        - list:
+          - listitem: Statements about, or descriptions of, your eligible production services or released software, from which it is immediately evident that they use Xen.
+      - listitem:
+        - text: "Information about your handling of security problems:"
+        - list:
+          - listitem: Your invitation to members of the public, who discover security problems with your products/services, to report them in confidence to you;
+          - listitem: Specifically, the contact information (email addresses or other contact instructions) which such a member of the public should use.
+    - paragraph: Blog postings, conference presentations, social media pages, Flash presentations, videos, sites which require registration, anything password-protected, etc., are not acceptable. PDFs of reasonable size are acceptable so long as the URL you provide is of a ordinary HTML page providing a link to the PDF.
+    - paragraph: If the pages are long and/or PDFs are involved, your email should say which part of the pages and documents are relevant.
+    - list:
+      - listitem: A statement to the effect that you have read this policy and agree to abide by the terms for inclusion in the list, specifically the requirements to regarding confidentiality during an embargo period
+      - listitem: The single (non-personal) email alias you wish added to the predisclosure list.
+    - paragraph: Your application will be determined by the Xen Project Security Team, and their decision posted to the list. The Security Team has no discretion to accept applications which do not provide all of the information required above.
+    - paragraph: If you are dissatisfied with the Security Team’s decision you may appeal it via the Xen Project’s governance processes.
+    - paragraph: Organisations should not request subscription via the mailing list web interface. Any such subscription requests will be rejected and ignored.
+    - paragraph:
+      - text: A role address (such as
+      - link "security@example.com":
+        - /url: mailto:security@example.com
+      - text: ) should be used for each organisation, rather than one or more individual’s direct email address. This helps to ensure that changes of personnel do not end up effectively dropping an organisation from the list.
+    - heading "Organizations on the pre-disclosure list:" [level=3]
+    - paragraph: This is a list of organisations on the pre-disclosure list (not email addresses or internal business groups).
+    - list:
+      - listitem: 1 & 1 Internet AG
+      - listitem: AIS, Inc
+      - listitem: Alibaba Inc.
+      - listitem: All Simple Internet Services
+      - listitem: Amazon
+      - listitem: BetaForce Networks / LLC DBA vNucleus
+      - listitem: BitDefender SRL
+      - listitem: BitFolk Ltd
+      - listitem: Bromium Inc.
+      - listitem: CentOS
+      - listitem: ChunkHost
+      - listitem: CloudLinux Inc.
+      - listitem: CloudVPS
+      - listitem: Citrix
+      - listitem: Debian
+      - listitem: DornerWorks Ltd
+      - listitem: drServer.net
+      - listitem: eApps Hosting
+      - listitem: File Sanctuary
+      - listitem: FXVM.net
+      - listitem: Gandi.net
+      - listitem: Gaiacom, LC
+      - listitem: Gentoo Linux
+      - listitem: GoGrid.com
+      - listitem: Gossamer Threads Inc
+      - listitem: HostPapa
+      - listitem: Host Europe Group (HEG.com)
+      - listitem: Host Virtual Inc.
+      - listitem: Huawei Technologies Co. Ltd
+      - listitem: Inception Hosting Ltd
+      - listitem: Invisible Things Lab
+      - listitem: Jump Networks Ltd
+      - listitem: LFCHosting.com
+      - listitem: LiquidWeb.com
+      - listitem: Locaweb
+      - listitem: Mageia
+      - listitem: mammoth.net.au
+      - listitem: M.D.G. IT PTY LTD
+      - listitem: Memset
+      - listitem: Namecheap Inc
+      - listitem: NFOServers.com
+      - listitem: NixOS
+      - listitem: Novell
+      - listitem: OnApp.com / SolusVM.com
+      - listitem: OnePoundWebHosting Ltd
+      - listitem: Openminds BVBA
+      - listitem: Oracle
+      - listitem: OrionVM.com
+      - listitem: Public Access Networks Corp. (Panix.com)
+      - listitem: prgmr.com
+      - listitem: Qihoo 360 Technology Co. Ltd.
+      - listitem: Rackspace
+      - listitem: RailsMachine.com
+      - listitem: Rimuhosting Ltd
+      - listitem: Redhat
+      - listitem: SecureAX Pte Ltd
+      - listitem: Serversaurus
+      - listitem: SiteHost
+      - listitem: SoftLayer
+      - listitem: Star Lab
+      - listitem: Steadfast.net
+      - listitem: SSDNodes.com
+      - listitem: SuSE
+      - listitem: The Cloud Simplified (Xperience Group)
+      - listitem: The NetBSD Foundation, LLC
+      - listitem: Tranquil Hosting, Inc.
+      - listitem: Ubuntu
+      - listitem: Wavecon GmbH
+      - listitem: Xen Made Easy
+      - listitem: Xen Security Response Team
+      - listitem: XCP-ng.org
+      - listitem: Vollmar.net GmbH
+      - listitem: Zynga
+      - listitem: Zynstra
+      - listitem: ZZ Servers
+    - heading "Change History" [level=2]
+    - list:
+      - listitem:
+        - strong: "v3.27 Jan 9th 2026:"
+        - text: Move three people to Emeritus Team Members
+      - listitem:
+        - strong: "v3.26 Jan 8th 2026:"
+        - text: Changed embargo control
+      - listitem:
+        - strong: "v3.25 Dec 23rd 2025:"
+        - text: Removed iWeb Technologies Inc.
+      - listitem:
+        - strong: "v3.24 Dec 5th 2024:"
+        - text: Added NixOS
+      - listitem:
+        - strong: "v3.23 Aug 8th 2019:"
+        - text: Added DornerWorks Ltd
+      - listitem:
+        - strong: "v3.22 Aug 6th 2019:"
+        - text: Remove Linode
+      - listitem:
+        - strong: "v3.21 Nov 19th 2018:"
+        - text: Added XCP-ng.org
+      - listitem:
+        - strong: "v3.20 June 14th 2018:"
+        - text: Added Star Lab
+      - listitem:
+        - strong: "v3.19 May 9th 2018:"
+        - text: Remove Google and Xen 3.4 stable tree maintainer from the predisclosure list
+      - listitem:
+        - strong: "v3.18 April 27th 2018:"
+        - text: Added reference to SUPPORT.md
+      - listitem:
+        - strong: "v3.17 July 20th 2017:"
+        - text: Added Zynstra
+      - listitem:
+        - strong: "v3.16 April 21st 2017:"
+        - text: Added HostPapa
+      - listitem:
+        - strong: "v3.15 March 21st 2017:"
+        - text: Added CloudVPS (Feb 13) and BitDefender SRL (March 21) to the predisclosure list
+      - listitem:
+        - strong: "v3.14 Nov 30th 2016:"
+        - text: Added FXVM.net to the predisclosure list
+      - listitem:
+        - strong: "v3.13 May 12th 2016:"
+        - text: Added Serversaurus (Nov 17), The NetBSD Foundation (Dec 11), LLC and CloudLinux Inc. (May 12) to the predisclosure list
+      - listitem:
+        - strong: "v3.12 Oct 21st 2015:"
+        - text: "Added missing years to release history. Added the following orgs to the predisclosure list: Qihoo 360 Technology Co. Ltd. (Aug 3rd), AIS Inc (Oct 20) and M.D.G. IT PTY LTD (Oct 21)"
+      - listitem:
+        - strong: "v3.11 July 2nd 2015:"
+        - text: Added Huawei Technologies Co. Ltd to the predisclosure list
+      - listitem:
+        - strong: "v3.10 June 9th 2015:"
+        - text: Added 3rd paragraph to section “4. Advisory pre-release” as per the following
+        - link "vote":
+          - /url: http://lists.xenproject.org/archives/html/xen-devel/2015-06/msg01202.html
+        - text: to amend the process. Added Sitehost to the predisclosure list
+      - listitem:
+        - strong: "v3.9 June 2nd 2015:"
+        - text: Added Jump Networks Ltd to predisclosure list and fixed rendering/numbering issue in html leading to duplicate numbering
+      - listitem:
+        - strong: "v3.8 May 13th 2015:"
+        - text: Removed Intel after list membership review on the basis of 3.d) of this process
+      - listitem:
+        - strong: "v3.7 May 12th 2015:"
+        - text: “Information-sharing amongst predisclosure list members” is now live; removed statements that this is not so
+      - listitem:
+        - strong: "v3.6 Apr 15th 2015:"
+        - text: Added Vollmar.net GmbH to the predisclosure list
+      - listitem:
+        - strong: "v3.5 Mar 19th 2015:"
+        - text: Added Bromium Inc to the predisclosure list
+      - listitem:
+        - strong: "v3.4 Mar 13th 2015:"
+        - text: Added Wavecon GmbH to the predisclosure list
+      - listitem:
+        - strong: "v3.3 Mar 10th 2015:"
+        - text: Added Openminds BVBA, Public Access Networks Corp. (Panix.com), BetaForce Networks / LLC DBA vNucleus and Gentoo Linux to the predisclosure list
+      - listitem:
+        - strong: "v3.2 Mar 4th 2015:"
+        - text: Added Google, Gossamer Threads Inc. and Locaweb to the predisclosure list
+      - listitem:
+        - strong: "v3.1 Mar 3rd 2015:"
+        - text: Added ChunkHost and Rimuhosting Ltd to the predisclosure list
+      - listitem:
+        - strong: v3.0 Feb
+        - text: 11th
+        - strong: 2015 (published March
+        - text: 2nd
+        - strong: "2015):"
+        - text: New predisclosure list application process and information-sharing and -handling rules; and, minor clarifications.
+      - listitem:
+        - strong: "v2.9 Dec 12th 2014:"
+        - text: Added The Cloud Simplified (Xperience Group)
+      - listitem:
+        - strong: "v2.8 Nov 3rd 2014:"
+        - text: Added Host Europe Group (HEG.com)
+      - listitem:
+        - strong: "v2.7 Oct 21st 2014:"
+        - text: "Added the following vendors to the pre-disclosure list: OnePoundWebHosting Ltd, File Sanctuary, iWeb Technologies Inc., Memset"
+      - listitem:
+        - strong: "v2.6 Oct 1st 2014:"
+        - text: "Added the following vendors to the pre-disclosure list: eApps Hosting, Namecheap Inc, Gaiacom, LC"
+      - listitem:
+        - strong: "v2.5 Sept 30th 2014:"
+        - text: "Added the following vendors to the pre-disclosure list: 1 & 1 Internet AG, Alibaba Inc., All Simple Internet Services, BitFolk Ltd, drServer.net, Inception Hosting Ltd, LiquidWeb.com, RailsMachine.com, SecureAX Pte Ltd, Steadfast.net, Tranquil Hosting, Inc, Zynga and ZZ Servers"
+      - listitem:
+        - strong: "v2.4 Sept 29th 2014:"
+        - text: "Added the following vendors to the pre-disclosure list: mammoth.net.au, NFOServers.com, LFCHosting.com, OrionVM.com, SoftLayer and SSDnodes.com"
+      - listitem:
+        - strong: "v2.3 Sept 26th 2014:"
+        - text: "Added the following vendors to the pre-disclosure list: Host Virtual Inc., Gandi.net, GoGrid.com, OnApp.com / SolusVM.com and prgmr.com"
+      - listitem:
+        - strong: "v2.2 Jun 2014:"
+        - text: In accordance with MITRE’s guidelines it is no longer permissible to share CVE numbers of embargoed issues
+      - listitem:
+        - strong: "v2.1 Jun 2013:"
+        - text: Added Xen Made Easy
+      - listitem:
+        - strong: "v2.0 May 2013:"
+        - text: Significant changes to the document
+        - list:
+          - listitem: Expand eligibility of who can join the predisclosure list
+          - listitem: Clarify definitions of who can join the predisclosure list
+          - listitem: Clarify information that needs to be supplied when joining the predisclosure list
+          - listitem: Change e-mail alias to security@xenproject
+      - listitem:
+        - strong: "v1.6 Apr 2013:"
+        - text: Added Mageia to predisclosure list
+      - listitem:
+        - strong: "v1.5 Nov 2012:"
+        - text: Added Invisible Things Lab to pre-disclosure list
+      - listitem:
+        - strong: "v1.4 Oct 2012:"
+        - text: Various minor updates
+      - listitem:
+        - strong: "v1.3 Sept 2012:"
+        - text: Added CentOS to pre-disclosure list
+      - listitem:
+        - strong: "v1.2 Apr 2012:"
+        - text: Added pre-disclosure list
+      - listitem:
+        - strong: "v1.1 Feb 2012:"
+        - text: Added link to Security Announcements wiki page
+      - listitem:
+        - strong: "v1.0 Dec 2011:"
+        - text: Intial document published after review

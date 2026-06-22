@@ -1,27 +1,49 @@
 import process from 'node:process';
 import {expect, test} from '@playwright/test';
+import {allDownloads, latestDownloads} from '../../src/data/downloads';
 
 const siteUrl = process.env.SITE_URL ?? 'https://beta.xenproject.org';
+const latestXenGroup = latestDownloads.find(group => group.key === 'xen');
+const allXenGroup = allDownloads.find(group => group.key === 'xen');
+const latestXenSeries = latestXenGroup?.versions[0];
+const searchableXenRelease = allXenGroup?.versions.findLast(version => !version.name.includes('-rc'));
+
+if (!latestXenSeries || !searchableXenRelease) {
+  throw new Error('Expected Xen download data to include a latest series and stable release');
+}
 
 test.describe('Phase 6 data-driven routes', () => {
   test('renders latest downloads and searches the full archive', async ({page}) => {
     await page.goto('/resources/downloads/');
     await expect(page.getByRole('heading', {level: 1, name: 'Downloads'})).toBeVisible();
     await expect(page.getByRole('heading', {name: 'Xen'}).first()).toBeVisible();
-    await expect(page.getByText('Xen 4.19 Series')).toBeVisible();
+    await expect(page.getByText(`Xen ${latestXenSeries.name} Series`)).toBeVisible();
 
     const search = page.getByRole('searchbox', {name: 'Search downloads'});
     const results = page.locator('.search-results');
     await search.fill('4');
     await page.waitForTimeout(350);
     await expect(results).toBeEmpty();
-    await search.fill('xen 4.19');
-    await expect(results.getByText('Xen 4.19.1')).toBeVisible();
+    await search.fill(`xen ${searchableXenRelease.name}`);
+    await expect(results.getByText(`Xen ${searchableXenRelease.name}`)).toBeVisible();
     await search.fill('not-a-real-release');
     await expect(results.getByText('No downloads found.')).toBeVisible();
     await search.fill('');
     await page.waitForTimeout(350);
     await expect(results).toBeEmpty();
+  });
+
+  test('keeps download groups readable without mobile overflow', async ({page}) => {
+    await page.setViewportSize({width: 390, height: 844});
+    await page.goto('/resources/downloads/');
+
+    const groupHeadings = page.locator('.vertical-lists > .list-column > h2');
+    await expect(groupHeadings).toHaveCount(latestDownloads.length);
+    const headingPositions = await groupHeadings.evaluateAll(headings => headings.map(heading => heading.getBoundingClientRect().top));
+    expect(headingPositions).toEqual([...headingPositions].sort((a, b) => a - b));
+
+    const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+    expect(hasHorizontalOverflow).toBe(false);
   });
 
   test('sorts the past-event archive by event end date', async ({page}) => {

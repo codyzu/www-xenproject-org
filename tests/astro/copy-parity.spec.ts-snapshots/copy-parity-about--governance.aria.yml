@@ -1,0 +1,805 @@
+- main:
+  - complementary:
+    - heading "Resources" [level=3]
+    - list:
+      - listitem:
+        - link "Governance ":
+          - /url: https://xenbits.xenproject.org/governance/core-governance.html
+  - article:
+    - heading "Governance" [level=1]
+    - text: Learn about the governance structure of the Xen Project, including its goals, principles, decision-making processes, and roles. Discover how the project ensures transparency, openness, and meritocracy in its operations.
+    - heading "Goals" [level=2]
+    - paragraph: "The goals of Xen Project Governance are to:"
+    - list:
+      - listitem: Create a set of minimum requirements for a sub-project hosted on Xenproject.org
+      - listitem:
+        - text: Create a lightweight project life cycle that
+        - list:
+          - listitem: leads the project to articulate its goals and how to achieve them
+          - listitem: encourages desired behaviours (e.g. open development)
+          - listitem: provides motivation for the project to succeed
+          - listitem: leads to non-viable projects failing quickly
+          - listitem: provides opportunities for other community members
+      - listitem: Avoid bureaucracy, i.e. the life cycle should be as informal as possible
+      - listitem: Encourage Xen related projects to be hosted on Xenproject.org rather than going elsewhere
+      - listitem: Set clear expectations to vendors, upstream and downstream projects and community members
+    - heading "Principles" [level=2]
+    - heading "Openness" [level=3]
+    - paragraph: The Xen Project is open to all and provides the same opportunity to all. Everyone participates with the same rules. There are no rules to exclude any potential contributors which include, of course, direct competitors in the marketplace.
+    - heading "Transparency" [level=3]
+    - paragraph: Project discussions, minutes, deliberations, project plans, plans for new features, and other artefacts are open, public, and easily accessible.
+    - heading "Meritocracy" [level=3]
+    - paragraph: The Xen Project is a meritocracy. The more you contribute the more responsibility you will earn. Leadership roles in Xen are also merit-based and earned by peer acclaim.
+    - heading "Local Decision Making" [level=3]
+    - paragraph: "The Xen Project consists of a number of sub-projects: each sub-project makes technical and other decisions that solely affect it locally."
+    - heading "Xen Project Wide Roles" [level=2]
+    - heading "Sub-projects and Teams" [level=3]
+    - paragraph:
+      - text: The Xen Project organizes itself into a number of sub-projects, which follow the
+      - link "Project Governance":
+        - /url: /#project-governance
+      - text: (or Project Lifecycle) as outlined in this document. Sub-projects (sometimes simply referred to as projects) are run by individuals and are often referred to as teams to highlight the collaborative nature of development. For example, each sub-project has a
+      - link "team portal":
+        - /url: /projects/all-projects
+      - text: ) on Xenproject.org. Sub-projects own and are responsible for a collection of source repositories and other resources (e.g. test infrastructure, CI infrastructure, …), which we call
+      - strong: sub-project assets
+      - text: (or team assets) in this document.
+    - paragraph:
+      - text: Sub-projects can either be
+      - strong: incubation projects
+      - text: or
+      - strong: mature projects
+      - text: as outlined in
+      - link "Basic Project Life Cycle":
+        - /url: /#basic-project-life-cycle
+      - text: . In line with the meritocratic principle, mature projects have more influence than incubation projects, on
+      - link "project wide decisions":
+        - /url: /#project-wide-decision-making
+      - text: .
+    - heading "Community Manager" [level=3]
+    - paragraph: The Xen Project has a community manager, whose primary role it is to support the entire Xen Project Community.
+    - heading "Xen Project Advisory Board" [level=3]
+    - paragraph:
+      - text: The
+      - link "Xen Project Advisory Board":
+        - /url: /about/become-a-member
+      - text: consists of members who are committed to steering the project to advance its market and technical success, and who serve as positive ambassadors for the project. The Xen Project Advisory Board manages non-technical aspects of the Xen Project including funding for shared project infrastructure, marketing and events, and managing the Xen Project trademark. The Advisory Board leaves all technical decisions to the open source meritocracy.
+    - heading "The Linux Foundation" [level=3]
+    - paragraph:
+      - text: The Xen Project is a
+      - link "Linux Foundation":
+        - /url: https://www.linuxfoundation.org/
+      - text: Collaborative Project. Collaborative Projects are independently funded software projects that harness the power of collaborative development to fuel innovation across industries and ecosystems. By spreading the collaborative DNA of the largest collaborative software development project in history, The Linux Foundation provides the essential collaborative and organizational framework so projects can focus on innovation and results.
+    - heading "Mentor" [level=3]
+    - paragraph: Younger projects may have a need for a mentor to help ensure that the project will be successful. Mentors can be maintainers, project leads, advisory board members or other distinguished community members.
+    - heading "Sponsor" [level=3]
+    - paragraph: To form a new sub-project or team on Xenproject.org, we require a sponsor to support the creation of the new project. A sponsor can be a member of the project leadership team of a mature project, a member of the advisory board or the community manager. This ensures that a distinguished community member supports the idea behind the project.
+    - heading "Project Team Roles" [level=2]
+    - paragraph:
+      - text: Sub-projects or teams are driven by the people who volunteer for the job. This functions well for most cases. This section lists the main roles which projects use. This section lists the default roles, which are based on how the Hypervisor project operates. Sub-projects can deviate from the default, but are required to document deviations from the default and link to it from this
+      - link "document":
+        - /url: /#per-sub-project-governance-specialisation
+      - text: . The only exception is that each project is required to have a project leadership team, as without it, the project will not be able to function.
+    - paragraph:
+      - text: The following table lists how each project uses these roles. Note that
+      - strong: incubation projects
+      - text: have more flexibility in experimenting with roles that work for them, but need to define specializations before they can
+      - strong: mature
+      - text: .
+    - table:
+      - rowgroup:
+        - row "Project Mature Maintainers Committers Security Team Leadership Team":
+          - columnheader "Project"
+          - columnheader "Mature"
+          - columnheader "Maintainers"
+          - columnheader "Committers"
+          - columnheader "Security Team"
+          - columnheader "Leadership Team"
+      - rowgroup:
+        - row "Hypervisor YES YES YES YES Committers and Release Manager, without a Project Lead":
+          - cell "Hypervisor":
+            - strong: Hypervisor
+          - cell "YES"
+          - cell "YES"
+          - cell "YES"
+          - cell "YES"
+          - cell "Committers and Release Manager, without a Project Lead"
+        - row "Windows Drivers NO YES YES NO Committers, with a Project Lead":
+          - cell "Windows Drivers":
+            - strong: Windows Drivers
+          - cell "NO"
+          - cell "YES"
+          - cell "YES"
+          - cell "NO"
+          - cell "Committers, with a Project Lead"
+        - row "XAPI YES YES YES NO Committers, with a Project Lead":
+          - cell "XAPI":
+            - strong: XAPI
+          - cell "YES"
+          - cell "YES"
+          - cell "YES"
+          - cell "NO"
+          - cell "Committers, with a Project Lead"
+    - heading "Maintainers" [level=3]
+    - paragraph: Maintainers own one or several components in the sub-projects source tree(s). A maintainer reviews and approves changes that affect their components. It is a maintainer’s prime responsibility to review, comment on, co-ordinate and accept patches from other community member’s and to maintain the design cohesion of their components. Maintainers are listed in a MAINTAINERS file in the root of each code repository that the project owns.
+    - paragraph: Larger sub-projects such as the Hypervisor may have special maintainer roles such as a release manager and stable branch maintainers. In addition, larger projects may award different maintainers different levels of influence. Any specialisations and implications are documented in the respective MAINTAINERS file.
+    - heading "Committers" [level=3]
+    - paragraph:
+      - text: Committers are Maintainers that are allowed to commit changes into the source code repository. The committer acts on the wishes of the maintainers and applies changes that have been approved by the respective maintainer(s) to the source tree. Due to their status in the community, committers can also act as referees should disagreements amongst maintainers arise. Committers are listed on the sub-project’s team portal (e.g.
+      - link "Hypervisor team portal":
+        - /url: /projects/hypervisor
+      - text: ) and/or in the projects MAINTAINERS files.
+    - 'heading "Security Response Team (short: Security Team)" [level=3]'
+    - paragraph:
+      - text: Each sub-project may have a security response team, that is responsible for receiving, reviewing, and responding to security incident reports for the sub-projects assets according to its security response process (e.g.
+      - link "Hypervisor Security Problem Response Process":
+        - /url: /about/security-policy
+      - text: ).
+    - heading "Project Leadership Team and Project Lead" [level=3]
+    - paragraph:
+      - text: Sub-projects and teams hosted on Xenproject.org are managed by a Project Leadership Team. The leadership team is made up of distinguished community members, but the exact composition may depend on the sub-project. For example, in the case of the Hypervisor sub-project, all committers and the release manager, are part of the leadership team. The leadership team owns the sub-projects processes, the overall architecture and all assets within the project and makes
+      - link "sub-project wide decisions":
+        - /url: /#leadership-team-decisions
+      - text: on behalf of its community.
+    - paragraph:
+      - text: A sub-projects leadership team members are listed on the sub-project’s team portal (e.g.
+      - link "Hypervisor team portal":
+        - /url: /projects/hypervisor
+      - text: ).
+    - paragraph:
+      - text: The Leadership Team may elect a Project Lead who is also a member of the Leadership Team. Project Leads are the public figurehead of the project and are responsible for the health of the project. Project Leads can also act as
+      - link "referees":
+        - /url: /#conflict-resolution
+      - text: should the Project Leadership Team become paralysed.
+    - heading "Making Contributions" [level=2]
+    - paragraph:
+      - text: Making contributions in Xen follows the conventions as they are known in the Linux Kernel community. In summary contributions are made through patches that are reviewed by the community. Xen does not require community members to sign contribution or committer agreements. We do require contributors to sign contributions using the sign-off feature of the code repository, following the same approach as the Linux Kernel does (see
+      - link "Developer Certificate Of Origin":
+        - /url: http://elinux.org/Developer_Certificate_Of_Origin
+      - text: ).
+    - paragraph: "More information on making contributions can be found in the following documents:"
+    - list:
+      - listitem:
+        - link "Contribution Guidelines":
+          - /url: /contribute/contribution-guidelines
+      - listitem:
+        - link "Review Then Commit Policy":
+          - /url: /#review-then-commit
+    - heading "Decision Making, Conflict Resolution, Role Nominations and Elections" [level=2]
+    - paragraph:
+      - text: Sub-projects or teams hosted on Xenproject.org are normally auto-governing and driven by the people who volunteer for the job. This functions well for most cases. This section lists the main mechanisms by which projects make decisions. This section lists the default mode of operation, which is based on how the Hypervisor project operates. Sub-projects can deviate from the default, but are required to document deviations from the default and link to it from this
+      - link "document":
+        - /url: /#per-sub-project-governance-specialisation
+      - text: . The only exception is that each project is required to adhere to the
+      - strong: Review Then Commit Policy
+      - text: ","
+      - strong: Leadership Team Decisions
+      - text: and
+      - strong: Conflict Resolution
+      - text: .
+    - heading "Review Then Commit" [level=3]
+    - paragraph: "The vast majority of technical decisions within the Xen Project are code related decisions (e.g. patches and design documents), which determine whether a specific change can be accepted into the code base. The default decision making process is a review and commit process, which requires that all changes receive explicit approval from respective code owners (maintainers) before they are committed. The exact workflow and details of this policy between sub-projects may differ and are documented in one or several of the following places: MAINTAINERS/README/CONTRIBUTING files in repositories and/or the sub-project team portal."
+    - heading "Expressing Agreement and Disagreement" [level=3]
+    - paragraph: Within the community, we follow the following number notation to explicitly express opinions on proposals, formal or informal votes.
+    - list:
+      - listitem:
+        - strong: "+2"
+        - text: ": I am happy with this proposal, and I will argue for it"
+      - listitem:
+        - strong: "+1"
+        - text: ": I am happy with this proposal, but will not argue for it"
+      - listitem:
+        - strong: "0"
+        - text: ": I have no opinion"
+      - listitem:
+        - strong: "-1"
+        - text: ": I am not happy with this proposal, but will not argue against it"
+      - listitem:
+        - strong: "-2"
+        - text: ": I am not happy with this proposal, and I will argue against it"
+    - paragraph:
+      - text: A
+      - strong: "-2"
+      - text: should include an alternative proposal or a detailed explanation of the reasons for the negative opinion. A
+      - strong: "+2"
+      - text: should include reasons for the positive opinion.
+    - paragraph: "How we tally results and their implications depend on the context in which is is used and are marked with Passed/Failed: in one of the following sections:"
+    - list:
+      - listitem:
+        - link "Lazy Consensus / Lazy Voting":
+          - /url: /#lazy-consensus--lazy-voting
+      - listitem:
+        - link "Leadership Team Decisions":
+          - /url: /#leadership-team-decisions
+      - listitem:
+        - link "Project Wide Decision Making":
+          - /url: /#project-wide-decision-making
+    - heading "Lazy Consensus / Lazy Voting" [level=3]
+    - paragraph: Lazy Consensus is a useful technique to make decisions for specific proposals which are not covered by the Review Then Commit Policy or do not require a more formal decision (see below). Lazy Consensus is extremely useful, when you don’t anticipate any objections, or to gauge whether there are objections to a proposal. The concrete process in this section is a mixture between Lazy Consensus and Lazy Voting and is designed to avoid unnecessary multiple stages in decision making.
+    - paragraph: "To make use of it, post something like the following on the project’s mailing list (or some other communication channel):"
+    - code: "I am assuming we are agreed on X and am going to assume lazy consensus: if there are no objections within the next seven days."
+    - paragraph:
+      - text: You should however ensure that all relevant stake-holders which may object are explicitly CC’ed, such as relevant maintainers or committers, ensure that
+      - strong: lazy consensus
+      - text: is in the body of your message (this helps set up mail filters) and choose a reasonable time-frame. If it is unclear who the relevant stake-holders are, the project leadership can nominate a group of stake-holders to decide, or may choose to own the decision collectively and resolve it.
+    - paragraph:
+      - text: Objections by stake-holders should be expressed using the
+      - link "conventions above":
+        - /url: /#expressing-agreement-and-disagreement
+      - text: to make disagreements easily identifiable.
+    - paragraph:
+      - strong: "Passed/Failed:"
+      - text: The proposer of Lazy Consensus decision is assumed to implicitly have an opinion of
+      - strong: "+1"
+      - text: ", unless otherwise stated."
+    - list:
+      - listitem:
+        - text: "Failed: A single"
+        - strong: "-2"
+        - text: by a stake-holder whose approval is necessary
+      - listitem:
+        - text: "Failed: A total sum of opinions"
+        - strong: <=0
+      - listitem:
+        - text: "Passed: A total sum of opinions"
+        - strong: ">0"
+    - paragraph:
+      - text: It can only be overturned if the project leadership agrees collectively, that the decision is too important to be settled by lazy consensus / lazy voting. In situations where a proposal is failed, an alternative solution needs to be found, or if a decision is formally challenged,
+      - link "conflict resolution mechanisms":
+        - /url: /#conflict-resolution
+      - text: may need to be used to resolve the situation.
+    - paragraph:
+      - strong: "Further Examples:"
+      - text: A Lazy Consensus decision starts out with the implicit
+      - strong: "+1"
+      - text: opinion of the proposer. If there is no explicit response, the proposal passes as the sum is
+      - strong: ">0"
+      - text: .
+    - paragraph:
+      - text: If there is a single
+      - strong: "-1"
+      - text: without any
+      - strong: +
+      - text: votes, the proposal fails.
+    - paragraph:
+      - text: If there are multiple
+      - strong: "+1"
+      - text: ’s or
+      - strong: "+2"
+      - text: ’s, more
+      - strong: "-1"
+      - text: ’s than positive votes are needed for the proposal to fail. This mechanism, is often also called
+    - paragraph:
+      - strong: Lazy Voting
+      - text: .
+    - paragraph:
+      - text: The process does allow for a proposer to state a starting opinion of
+      - strong: "0"
+      - text: or
+      - strong: "-1"
+      - text: . In this case, the Lazy Consensus label does not work for the process, as positive opinions are needed for the proposal to pass. To make use of this mechanism, post something like the following on the project’s mailing list (or some other communication channel)
+    - code: "I want to solicit opinions on X and am going to assume lazy voting: My starting position is 0, as I feel that at least one other stake-holder should agree with the proposal.If there is a majority in favour, without a -2 objection within the next seven days, I assume that the proposal holds and does not need require further discussion."
+    - paragraph:
+      - text: Unlike in the lazy consensus case, a single
+      - strong: "+1"
+      - text: vote is needed. Otherwise the proposal fails. Otherwise, the counting rules follow the general case.
+    - paragraph:
+      - text: This can be useful in situations, where the proposer is not quite sure about his/her position, or where the invoker acts on behalf of the community to resolve a discussion which has become stuck. A starting position of
+      - strong: "-1"
+      - text: "can be used to verify that a specific approach may be a bad idea: whether this is really useful, has to be verified as we start using this process."
+    - heading "Informal Votes or Surveys" [level=3]
+    - paragraph:
+      - text: Generally the Xen Project community tries to achieve consensus on most issues. In situations where several concrete options are possible, community members may organize an informal vote on the different proposals and use the
+      - link "conventions above":
+        - /url: /#expressingopinion
+      - text: to identify the strongest proposal. Once the strongest candidate has been identified,
+      - link "lazy consensus":
+        - /url: /#lazyconsensus
+      - text: "could be used to close the discussion. In some situation, a specific survey may need to be created, to help identify gauging consensus on specific issues. For informal votes and surveys, we do not prescribe specific rules, as they are non-binding: it is up to the organizer of an informal vote or survey to interpret the result and explain it to the community. If the vote/survey relates to an area that is owned by the project leadership, the project leadership has to formally confirm the decision."
+    - paragraph:
+      - text: Note that informal votes amongst a small set of stake-holders that disagree on a position during technical disagreements in code, design reviews and other discussions can be useful. In technical discussions it is not always clear how strong agreement or disagreement on a specific issue is. Using the
+      - link "conventions above":
+        - /url: /#expressingopinion
+      - text: ", can help differentiate between minor and major disagreements and reduce the time a discussions continues unnecessarily. This is true in particular for cases, where several maintainers may need to agree to a proposal."
+    - paragraph: When having an informal vote or survey, they creator should consider whether conducting a vote or survey in public, may be divisive and damaging for the community. In such cases, the vote/survey should be conducted anonymously.
+    - heading "Leadership Team Decisions" [level=3]
+    - paragraph: "Each sub-project has a leadership team, which is typically made up of the most senior and influential developers within the sub-project (e.g. the project’s committers). The project leadership team owns decisions, such as:"
+    - list:
+      - listitem: Sub-project wide policy decisions (e.g. policies, procedures and processes whose scope is specific to the sub-projects). This includes deviations from project global governance, where permissible.
+      - listitem: Decisions related to sub-project assets that are not clearly owned (e.g. unowned code, project wide assets such as test infrastructure, etc.).
+      - listitem:
+        - text: Decisions related to nominating and confirming leadership roles within the sub-project. This includes
+        - link "decisions to creating and filling specialised new roles":
+          - /url: /#elections
+        - text: ", such as release managers or similar, including their scope and set of responsibilities."
+      - listitem:
+        - text: Resolving
+        - link "conflicts":
+          - /url: /#conflict
+        - text: within the sub-project that cannot otherwise be resolved.
+    - paragraph:
+      - text: Leadership team decisions can be made in private (e.g. a private IRC meeting, on a private mailing list, through a private vote) or on a public mailing list using
+      - link "decision making conventions":
+        - /url: /#expressingopinion
+      - text: . If a decision is made in private, the outcome must be summarized in terms of number of votes in favour or against on a public mailing list. Decisions should
+      - strong: not
+      - text: generally be made in an anonymous vote, unless there is a good reason to do so. For example, if the decision may be divisive and damage the cohesion of the leadership team, an anonymous vote is preferred. In such cases, the leadership team, can ask the community manager, to arrange an anonymous vote on behalf of the leadership team.
+    - paragraph:
+      - text: Decisions (also called Resolutions) require a
+      - strong: 2/3rd
+      - text: majority amongst active leadership team members in favour of a proposal. The tallying of votes follows the rules outlined below. Note that a minimum of 3 leadership team members is needed for a
+      - link "leadership team to function":
+        - /url: /#exceptional-circumstances
+      - text: .
+    - paragraph:
+      - text: "Leadership team decisions normally have to be made actively: in other words each team member has to cast a vote"
+      - strong: explicitly
+      - text: expressing their opinion. The only exception are face-2-face or on-line meetings with a quorum of
+      - strong: 2/3rd
+      - text: "of active leadership team members present at the meeting: in such cases a meeting chair is required who calls for decision on a resolution and asks for objections. This allows to conduct meetings more quickly."
+    - paragraph:
+      - strong: "Passed/Failed Resolutions:"
+    - paragraph: "Voting is conducted in line with the following rules:"
+    - list:
+      - listitem:
+        - text: Project leadership team members vote for (
+        - strong: "+1"
+        - text: ) or against (
+        - strong: "-1"
+        - text: ) a resolution. There is no differentiation between
+        - strong: "+1"
+        - text: /
+        - strong: "+2"
+        - text: and
+        - strong: "-1"
+        - text: /
+        - strong: "-2"
+        - text: ": in other words a"
+        - strong: "+2"
+        - text: is counted as a vote for, a
+        - strong: "-2"
+        - text: as a vote against the resolution. The number of votes for and against a resolution is called
+        - strong: active vote
+        - text: .
+        - strong: "0"
+        - text: votes
+        - strong: are not counted
+        - text: as an active vote.
+      - listitem:
+        - text: A
+        - strong: quorum of at least 1/3 of positive votes for a proposal
+        - text: is required for a resolution to pass. In other words, if the leadership team has 7 members, at least 3 members need to vote for the resolution.
+      - listitem: The resolution passes, if a 2/3 majority of active votes is in favour of it.
+    - paragraph: "The table below maps the number of leadership team members against the required quorum:"
+    - table:
+      - rowgroup:
+        - row:
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+      - rowgroup:
+        - row "Leadership team members 10 9 8 7 6 5 4 3 2":
+          - cell "Leadership team members":
+            - strong: Leadership team members
+          - cell "10"
+          - cell "9"
+          - cell "8"
+          - cell "7"
+          - cell "6"
+          - cell "5"
+          - cell "4"
+          - cell "3"
+          - cell "2"
+        - row "Positive votes needed for quorum 4 3 3 3 2 2 2 1 1":
+          - cell "Positive votes needed for quorum":
+            - strong: Positive votes needed for quorum
+          - cell "4"
+          - cell "3"
+          - cell "3"
+          - cell "3"
+          - cell "2"
+          - cell "2"
+          - cell "2"
+          - cell "1"
+          - cell "1"
+    - paragraph: "The table below maps active votes against votes needed to pass:"
+    - table:
+      - rowgroup:
+        - row:
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+          - columnheader
+      - rowgroup:
+        - row "Active Votes (+1 or -1) 10 9 8 7 6 5 4 3 2":
+          - cell "Active Votes (+1 or -1)":
+            - strong: Active Votes (+1 or -1)
+          - cell "10"
+          - cell "9"
+          - cell "8"
+          - cell "7"
+          - cell "6"
+          - cell "5"
+          - cell "4"
+          - cell "3"
+          - cell "2"
+        - row "Positive votes needed to pass 7 6 6 5 4 4 3 2 2":
+          - cell "Positive votes needed to pass":
+            - strong: Positive votes needed to pass
+          - cell "7"
+          - cell "6"
+          - cell "6"
+          - cell "5"
+          - cell "4"
+          - cell "4"
+          - cell "3"
+          - cell "2"
+          - cell "2"
+    - heading "Conflict Resolution" [level=3]
+    - paragraph:
+      - text: Sub-projects and teams hosted on Xenproject.org are not democracies but meritocracies. In situations where there is disagreement on issues related to the day-to-day running of the project, the
+      - link "project leadership team":
+        - /url: /#leadership
+      - text: is expected to act as referee and make a decision on behalf of the community. Projects leadership teams can choose to delegate entire classes of conflict resolution issues to community members and/or the project lead (e.g. the project can choose to delegate refereeing on committer disagreements to the project lead; or it could choose a specific committer to always act as referee amongst a group of committers). Any such delegation needs to be approved as normal and has to be documented.
+    - paragraph: Should a project leadership team become dysfunctional or paralysed, the project leadership team or project lead should work with the community manager or advisory board to find a way forward.
+    - paragraph: In situations where the entire Xen Project community becomes paralysed the impacted project leadership teams or project leads should work with the community manager or advisory board to find a way forward.
+    - heading "Elections" [level=3]
+    - heading "Maintainer Elections" [level=4]
+    - paragraph: Developers who have earned the trust of existing maintainers can be promoted to maintainer. A two stage mechanism is used
+    - list:
+      - listitem: "Nomination: A maintainer should nominate himself by proposing a patch to the MAINTAINERS file or mailing a nomination to the project’s mailing list. Alternatively another maintainer may nominate a community member. A nomination should explain the contributions of proposed maintainer to the project as well as a scope (set of owned components). Where the case is not obvious, evidence such as specific patches and other evidence supporting the nomination should be cited."
+      - listitem: "Confirmation: Normally, there is no need for a direct election to confirm a new maintainer. Discussion should happen on the mailing list using the normal decision making process. If there is disagreement or doubt, the decision is handled by the project leadership."
+    - heading "Committer and other Project Leadership Elections" [level=4]
+    - paragraph: Developers who have earned the trust of committers in their project can through election be promoted to Committer or Project Leadership (if not covered otherwise). A two stage mechanism is used
+    - list:
+      - listitem:
+        - text: "Nomination: Community members should nominate candidates by posting a proposal to"
+        - emphasis: appointments at xenproject dot org
+        - text: explaining the candidate’s contributions to the project and thus why they should be elected to become a Committer of the project. The nomination should cite evidence such as patches and other contributions where the case is not obvious. Existing Committers will review all proposals, check whether the nominee would be willing to accept the nomination and publish suitable nominations on the project’s public mailing list for wider community input.
+      - listitem:
+        - text: "Election: A committer will be elected using the decision making process outlined earlier. In other words, the decision is delegated to the"
+        - link "project leadership team":
+          - /url: /#leadership
+        - text: .
+    - heading "Security Response Team Members" [level=4]
+    - paragraph: Developers who have earned the trust of other security team members can be promoted to be on the security team. Due to the specific needs of the security team, promotions are typically made by the security team itself and confirmed by lazy consensus within the team.
+    - heading "Project Lead Elections" [level=4]
+    - paragraph: Projects which have a project lead, should vote for a project lead in an anonymous vote amongst the project leadership.
+    - heading "Project Wide Decision Making" [level=3]
+    - paragraph:
+      - text: Project wide decisions are made through
+      - strong: formal global votes
+      - text: and are conducted in rare circumstances only, following the principle of
+      - link "local decision making":
+        - /url: /#principles
+      - text: ". Global votes are only needed, when all sub-projects hosted on Xenproject.org are affected. This is true, only for:"
+    - list:
+      - listitem:
+        - text: Specific votes on creating, graduating, completing/archiving of sub-projects as outlined in
+        - link "project governance":
+          - /url: /#project-governance
+        - text: .
+      - listitem:
+        - text: "Changes to this document, where sub-projects cannot specialise. In particular the sections:"
+        - link "goals":
+          - /url: /#goals
+        - text: ","
+        - link "principles":
+          - /url: /#principles
+        - text: ","
+        - link "project wide decision making":
+          - /url: /#project-decisions
+        - text: and
+        - link "project governance":
+          - /url: /#project-governance
+        - text: (and small parts of
+        - link "Xen Project wide roles":
+          - /url: /#roles-global
+        - text: ","
+        - link "project team roles":
+          - /url: /#roles-local
+        - text: and
+        - link "decision making":
+          - /url: /#decisions
+        - text: that are needed for project governance or
+        - strong: apply to all sub-projects
+        - text: as stated in those sections).
+      - listitem:
+        - text: Changes to this document where sub-projects can specialise require at least one mature project other than the Hypervisor project to be impacted significantly by the change. The sections in question, are
+        - link "project team roles":
+          - /url: /#roles-local
+        - text: and
+        - link "decision making":
+          - /url: /#decisions
+        - text: . These sections define the
+        - strong: gold standard
+        - text: of how the original Hypervisor Project operates. In other cases, the Hypervisor project leadership team can agree changes to these sections, as they are essentially reference definitions. Other sub-projects have to be consulted, and have to be given time to adapt to changes.
+      - listitem:
+        - text: Changes to existing global namespace policies (e.g.
+        - link "Mailing List Conventions":
+          - /url: /resources/mailing-lists
+        - text: ) and creation of new project wide namespace policies.
+      - listitem: "Changes to the boundary of what policies are project local and global decision: e.g. a decision to introduce a global Security Vulnerability Response Process that affects all sub-projects."
+    - paragraph: "Global votes are arranged by the community manager when needed (e.g. for a project review or a global process change). Who exactly has input on a proposal and can vote on it, depends on the type of change as outlined below:"
+    - table:
+      - rowgroup:
+        - row "Proposal Who reviews? Who votes?":
+          - columnheader "Proposal":
+            - strong: Proposal
+          - columnheader "Who reviews?":
+            - strong: Who reviews?
+          - columnheader "Who votes?":
+            - strong: Who votes?
+      - rowgroup:
+        - row "Creating, graduating, completing/archiving of sub-projects Members of developer mailing lists of qualifying projects Leadership teams of mature sub-projects, with the exception of the project which is being reviewed (e.g. for an archivation review, the leadership team of the project under review, cannot vote).":
+          - cell "Creating, graduating, completing/archiving of sub-projects"
+          - cell "Members of developer mailing lists of qualifying projects"
+          - cell "Leadership teams of mature sub-projects, with the exception of the project which is being reviewed (e.g. for an archivation review, the leadership team of the project under review, cannot vote).":
+            - text: Leadership teams of
+            - strong: mature
+            - text: sub-projects, with the exception of the project which is being reviewed (e.g. for an archivation review, the leadership team of the project under review, cannot vote).
+        - row "Global Process Changes Members of developer mailing lists of qualifying projects Leadership teams of mature sub-projects, within the scope described above.":
+          - cell "Global Process Changes"
+          - cell "Members of developer mailing lists of qualifying projects"
+          - cell "Leadership teams of mature sub-projects, within the scope described above.":
+            - text: Leadership teams of
+            - strong: mature
+            - text: sub-projects, within the scope described above.
+    - paragraph: The community manager first arranges a public review, followed by a timed private vote. Public review and voting should be open for a minimum of a week each. For voting a traceable poll mechanism (e.g. voting form that keeps auditable and tamper proof records) must be used.
+    - paragraph:
+      - text: Voting is conducted
+      - strong: per project
+      - text: "in line with the following rules:"
+    - list:
+      - listitem: Each qualifying project’s vote is counted per project and then aggregated as outlined below.
+      - listitem:
+        - text: Project leadership team members vote for or against a proposal (there is no differentiation between
+        - strong: "-1"
+        - text: /
+        - strong: "-2"
+        - text: and
+        - strong: "+1"
+        - text: /
+        - strong: "+2"
+        - text: ). A
+        - strong: "0"
+        - text: vote is not counted as a valid vote.
+      - listitem:
+        - text: A
+        - strong: quorum of at least least 1/3 of positive votes
+        - text: "of each project’s leadership team members is required. In other words: if a project’s leadership team does not achieve the quorum, the entire sub-project’s vote is not counted. This avoids situations where only a minority of leadership team members vote, which would skew the overall result. If it becomes clear, that a sub-project is not likely to meet the quorum, the voting deadline can be extended by the community manager."
+    - paragraph:
+      - strong: "Passed/Failed Resolutions:"
+    - list:
+      - listitem: If none of the qualifying projects achieve a quorum, the change cannot hold. In that case, we consider that there is not enough momentum behind a change.
+      - listitem: For each qualifying project with a quorum, the percentage of votes in favour and against is calculated (e.g. if 5 people voted in favour, 2 against and 1 abstains, the share is 5/7th and 2/7th respectively).
+      - listitem: Votes in favour are averaged as percentages across all projects (say we have per project figures of 50%, 80%, 70% in favour, then the total vote in favour is 66.67%).
+      - listitem: If the total vote achieves a 2/3rd majority in favour, the proposal passes. Otherwise it fails.
+    - heading "Community Decisions with Funding and Legal Implications" [level=2]
+    - paragraph:
+      - text: In some cases sub-project local and global decisions
+      - strong: may require input
+      - text: from the
+      - link "Advisory Board":
+        - /url: /#roles-ab
+      - text: and/or the
+      - link "Linux Foundation":
+        - /url: /#roles-lf
+      - text: . For example, if a proposal by a project leadership team or a global project decision requires that the project hires a staff member or contractor (e.g. a PR consultant, marketing manager) or requires the funding of new infrastructure (e.g. additional test hardware or services) to implement said proposal, then funding would need to be secured from the Advisory Board or from other sources.
+    - paragraph: If for example, a community proposal required the Linux Foundation to sign a legal agreement with a 3rd party on behalf of the project/sub-project, then of course a review of such an agreement and a signature by the Linux Foundation would be required.
+    - paragraph: In such cases, the impacted project leadership team(s) will contact the Community Manager and/or Advisory Board to resolve possible issues.
+    - heading "Project Governance" [level=2]
+    - heading "Basic Project Life Cycle" [level=3]
+    - paragraph: "The proposal is to follow a simple basic flow:"
+    - paragraph
+    - paragraph: A Xenproject.org hosted project starts with an idea which through the process of project formation will grow into a project proposal. The project proposal will need to satisfy some basic conditions, will be put out for community review and is then put to a vote to all maintainers and project leads of mature sub-projects hosted on Xenproject.org following the usual decision making process.
+    - paragraph: For agreed project proposals, the Xen Project will provide basic infrastructure and the project can get started. Sub-projects in incubation are working towards a set of goals, will get additional support and marketing opportunities from the Xen Project. However there will also be regular checkpoints to see whether the project is progressing. Should it turn out that a project is not viable any more, it will be archived after an archivation review and vote. For a project to graduate, some basic conditions must be satisfied. If a project in incubation has achieved the point where it believes it is mature enough to graduate, it can request a Graduation community review followed by a vote.
+    - paragraph: Mature projects are pretty much expected to run themselves. However at some point a mature project will lose momentum and developers. If this is the case the Xen Project community can request an archivation review, which follows the usual pattern.
+    - paragraph: "Archivation reviews have two purposes:"
+    - list:
+      - listitem: give somebody in the community an opportunity to step up and continue a project,
+      - listitem: archive the project outcomes such that they are still available to people who want to use them, but promotion of such projects will cease.
+    - paragraph: It is also possible to revive archived projects. However these are treated almost like new projects as projects would only be archived if they have become inactive.
+    - heading "Requesting Reviews, Reviews and Voting" [level=3]
+    - paragraph:
+      - strong: "Requesting Reviews:"
+      - text: Project Proposal and Graduation Reviews are requested by the (prospective) project lead of the project by contacting the community manager providing the necessary documentation. An archivation review can be requested by any maintainer of a mature project or by the Xen Project community manager. The community manager will then publish relevant material on the respective mailing lists.
+    - paragraph:
+      - strong: "Reviews:"
+      - text: "These are off-line reviews which are open to all community members by which a proposal is published for review. The purpose of the review is two-fold:"
+    - list:
+      - listitem: gather final feedback and input from the community (it is good practice to informally do this before the review),
+      - listitem: advertise the project with the aim to attract interest, users and contributors.
+    - paragraph: After a review, the requester of the review may decide to withdraw, request a re-review or progress to a vote by arranging with the community manager.
+    - paragraph:
+      - strong: "Voting:"
+      - text: The community manager arranges a timed private vote as outlined in
+      - link "Formal Votes":
+        - /url: /#project-decisions
+      - text: .
+    - heading "Forming a Project" [level=3]
+    - paragraph: "Requirements for forming a sub-project or team on Xenproject.org:"
+    - list:
+      - listitem: A project needs a lead, who is willing to become the project lead of the sub-project
+      - listitem: A project needs a sponsor, which can be a project lead of a mature project, a member of the Xen Project Advisory Board or the community manager
+      - listitem: "There should be no dissent from other community members who would qualify as sponsor (see “Principle: Consensus Decision Making”)"
+      - listitem: A project needs a mentor, which can be the project sponsor or a maintainer of a mature project
+      - listitem: A project needs to have a relationship to other sub-projects or teams, i.e. it aims to develop software that has a dependency on other sub-projects or teams hosted on Xenproject.org. If the project needs components in other sub-projects to work, then this should also be stated.
+      - listitem: A project needs to be large and long-term enough to grant a separate project. For example adding support for a new CPU architecture, adding additional functionality on top of existing projects, etc. Adding a new feature to an existing project should be performed within an existing project.
+      - listitem: A project will deliver code using a license that is compatible with other sub-projects hosted on Xenproject.org (ideally GPLv2).
+    - paragraph: The purpose of the project formation phase is to work out what the project is about, get community buy-in and help the future project gain publicity and momentum. The formation phase is driven by the project lead. The project mentor’s role is to advise and support the project lead in getting the project started.
+    - paragraph:
+      - text: The project proposal is a document that describes and is published on
+      - link "wiki.xenproject.org":
+        - /url: http://wiki.xenproject.org
+      - text: ":"
+    - list:
+      - listitem: What the project is aiming to achieve (i.e. the project charter and project goals)
+      - listitem: What components/code and in which code lines (new or components in other projects) the project aims to deliver
+      - listitem: Key dependencies on other sub-projects or teams hosted on Xenproject.org (if applicable)
+      - listitem: Lists initial maintainers (if applicable)
+      - listitem: Lists any interested parties in the project (if applicable)
+      - listitem: Lists any planned initial code contributions (if applicable)
+      - listitem: A rough plan on how to get through the Incubation phase
+    - heading "Project Proposal Review" [level=3]
+    - paragraph: The review is initiated by the project lead and follows the rules outlined in “Requesting Reviews, Reviews and Voting”.
+    - paragraph: "After a successful review, the following resources will be created for the project:"
+    - list:
+      - listitem: A mailing list
+      - listitem: A codeline
+      - listitem: A sub-project or team portal on Xenproject.org (in an area separate from mature projects)
+      - listitem:
+        - text: A wiki page on
+        - link "wiki.xenproject.org":
+          - /url: http://wiki.xenproject.org
+        - text: (this is expected to be maintained by the project lead)
+    - heading "Incubating a Project" [level=3]
+    - paragraph: The purpose of the incubation phase is for a project to show that it is gathering momentum and adheres to the “Principles & Roles” of sub-projects hosted on Xenproject.org. The project mentor will work closely with the project lead and there are at least quarterly informal review meetings with the mentor on how the project is doing. Should a mentor not be able to fulfil his/her role any more, it is the responsibility of the project lead to find another mentor. We advise that the project lead gives at least quarterly updates on the Xen Project blog on how the project is doing.
+    - paragraph: The Xen Project will provide support to incubating projects. The project lead will work closely with the Xen Project community manager as well as with the project mentor.
+    - heading "Archiving an Incubating project" [level=3]
+    - paragraph: The mentor can request for a project to be archived, if the project is not making sufficient progress. See “archivation review”.
+    - heading "Graduation Review" [level=3]
+    - paragraph: The review is initiated by the project lead and follows the rules outlined in “Requesting Reviews, Reviews and Voting”. In essence the project lead makes a pitch to the community, why the project should graduate.
+    - paragraph: "A project must fulfil the following requirements before it can graduate:"
+    - list:
+      - listitem: It follows the principles of openness, transparency and meritocracy
+      - listitem: It has delivered at least one functioning release of what it is aiming to deliver
+      - listitem: It has a public code line which shows active development and has mechanisms to accept patches (and a history of accepting patches)
+      - listitem: It has a public mailing list that is active (as we get more experience we will add some guidelines)
+      - listitem: It has a mechanism for users to raise bugs and for developers to work on bugs
+      - listitem: It has an active developer community (as we get more experience we will add some guidelines). But things to look for are number of maintainers, different organisations involved, number of users, etc.
+      - listitem: It has a project leadership team that resolves conflicts and participates in cross-project decision making
+      - listitem: It adheres to the Xen Project governance as outlined in this document, or documents areas where the sub-project differs
+    - paragraph: "Other items to look at during the review (depending on project are):"
+    - list:
+      - listitem: It has an up-to-date wiki and a core and group of people maintaining it
+      - listitem: It publishes regular builds and tests
+      - listitem: It promotes itself at events and on the blog
+    - heading "Mature Projects" [level=3]
+    - paragraph: Mature projects are expected to be run and promote themselves. The project leadership team and/or project lead has significant responsibility in ensuring that this happens. The Xen Project and the community manager will help organize events, provide opportunities for the project to get new contributors and build a community, promote new releases on the blog and to the press, work with project members, etc. However the Xen Project and the community manager will not get involved in the day-to-day running of the project.
+    - paragraph: At some point during its life cycle a project may lose momentum. In other words developers and users are not interested in the project any more. If this is the case, it may be time to archive the project. If the project has achieved its goals and is thus completed, it may also be time to archive the project.
+    - heading "Archivation Review" [level=3]
+    - paragraph: "These can happen in a number of situations:"
+    - list:
+      - listitem: An incubation project shows clear signs of failing and not progressing
+      - listitem: A mature project has lost its developer and user base (and there is little or no activity)
+      - listitem: "The project has achieved its goals and/or fulfilled its charter: in other words it has completed"
+    - paragraph: In the first case the review is triggered by the incubation project’s mentor. Failing this the review can be requested by any maintainer of a mature project (including the project’s lead) or by the Xen Project community manager. See “Requesting Reviews, Reviews and Voting”.
+    - paragraph: "The review is essentially a pitch why the project should be archived. The purpose of the review is not necessarily to archive a project, but also to provide a last opportunity for interested parties in the Xen Project community to save the project and step up. The Xen Project community manager will support efforts to save the project, should community members want to step up. There is the special case that a project has been completed: in this case the normal situation would be for the project lead to make the case, why this is so."
+    - heading "Archived Projects" [level=3]
+    - paragraph: "When a project is archived the following happens:"
+    - list:
+      - listitem: The codeline and mailing list will be made read-only and made accessible from an archived projects section on Xenproject.org
+      - listitem:
+        - text: The project’s wiki pages will be tagged as
+        - strong: archived
+        - text: . A project may be completed (i.e. it has achieved its goals and/or fulfilled its charter) in which case it is tagged as
+        - strong: completed
+        - text: and
+        - strong: archived
+        - text: .
+      - listitem:
+        - text: The project or team portal on Xenproject.org will be moved into an
+        - strong: Archive
+        - text: section. We may have a
+        - strong: Completed
+        - text: section within the
+        - strong: Archive
+        - text: section.
+    - paragraph: In cases where the project has delivered code into other sub-projects hosted on Xenproject.org, the code will be
+    - list:
+      - listitem: Deprecated at the point where the project is archived
+      - listitem: The project which now contains the archived code can (but does not have to) remove the code in a subsequent release (it should however give users sufficient time to adapt)
+    - heading "Exceptional Circumstances" [level=3]
+    - heading "Incubation Projects without Project Lead" [level=4]
+    - paragraph:
+      - text: Projects which lose their project lead during the incubation phase, and do not have a working project leadership team, are at risk of failing. Should this occur, the project’s maintainer or committer community should nominate a new project lead and follow the election process as outlined in
+      - link "elections":
+        - /url: /#elections
+      - text: .
+    - paragraph: If a project lead leaves during the formation phase, without finding a successor we assume that the project does not have enough momentum and will consider archiving the project.
+    - heading "Projects without functional Project Leadership Team" [level=4]
+    - paragraph:
+      - text: Projects which lose their project leadership team, or whose project leadership team is too small to function, are at risk of failing. A project leadership team should be of sufficient size to manage the project. Should this occur, the project’s maintainer or committer community should nominate new leadership team members and follow the election process as outlined in
+      - link "elections":
+        - /url: /#elections
+      - text: .
+    - paragraph: If the community cannot create a functional leadership team, we assume that the project does not have enough momentum and will consider archiving the project.
+    - heading "Incubation projects without Mentor" [level=4]
+    - paragraph: Should an incubation project lose its mentor, the Xen Project community manager will support the project lead in finding a new mentor.
+    - heading "Per Sub-Project Governance Specialisation" [level=2]
+    - paragraph: Add specialisations to this section, as they surface.
+    - heading "Change History" [level=2]
+    - list:
+      - listitem:
+        - strong: "v3.0 December 2016:"
+        - text: Refactored document. Otherwise significant changes to decision making, in the following areas
+        - list:
+          - listitem: "Added Goal: Local Decision Making"
+          - listitem: Split roles into project wide and sub-project specific roles
+          - listitem: "Added new roles: Community Manager, Security Response Team, Leadership Team"
+          - listitem: Added RTC Policy
+          - listitem: Added +2 … -2 scheme for expressing opinions more clearly
+          - listitem: Clarified lazy consensus / lazy voting with examples
+          - listitem: Added Informal Votes or Surveys
+          - listitem: Added Project Team Leadership decisions (majority vote, non-monotonicity)
+          - listitem: Clarified and Adapted Conflict Resolution to previous changes
+          - listitem: Updated Elections to cover new roles and terminology
+          - listitem: Changed Project Wide Decision making (per project, non-monotonicity)
+          - listitem: Changed Project Wide Decision making.
+          - listitem: Clarified scope of Decision making
+          - listitem: Added section on Community Decisions with Funding and Legal Implications
+          - listitem: Modified all other sections which have dependencies on changes above
+          - listitem: Added Per Sub-Project Governance Specialisation
+      - listitem:
+        - strong: "v2.1 May 2016:"
+        - text: Clarify Committer Elections as per this
+        - link "discussion":
+          - /url: https://lists.xenproject.org/archives/html/xen-devel/2016-05/msg00801.html
+        - text: and
+        - link "vote":
+          - /url: https://lists.xenproject.org/archives/html/xen-devel/2016-05/msg01614.html
+      - listitem:
+        - strong: "v2.0 May 2012:"
+        - text: Changes to reflect transition from xen.org to xenproject.org
+        - list:
+          - listitem: Added definitions for Sub-projects and Teams, Xen Project Advisory Board and The Linux Foundation.
+          - listitem: Removed Xen.org Chairman as Referee of Last Resort and delegated this role to the Xen Project Advisory Board.
+          - listitem: Allow Xen Project Advisory Board members to be Mentors.
+          - listitem: Clarify scope and eligible votes in Formal Votes; refer to this section from Requesting Reviews, Reviews and Voting rather than duplicating
+          - listitem: Rename xen.org to xenproject.org or Xen Project throughout the document (except in the history)
+          - listitem: Refer to sub-projects and teams instead of projects where appropriate
+      - listitem:
+        - strong: "1.2 May 2012:"
+        - text: Minor changes
+        - list:
+          - listitem: Fixed typo and ambiguity in the role of Project Lead.
+          - listitem: Added section on Conflict Resolution.
+      - listitem:
+        - strong: "v1.1 Oct 2011:"
+        - text: Minor changes
+        - list:
+          - listitem: Clarified the roles of Committer and Maintainer.
+          - listitem: Added Making Contributions which contains links to other documentation and highlights that Xen.org required a DCO for contributions since 2005.
+          - listitem:
+            - strong: "v1.0 Jun 2011:"
+            - text: Initial document approved
+    - heading "Code of Conduct" [level=2]
+    - paragraph:
+      - text: The Xen Project is committed to making participation in our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation. Please review the Code of Conduct
+      - link "here":
+        - /url: http://xenbits.xenproject.org/governance/code-of-conduct.html
+      - text: .

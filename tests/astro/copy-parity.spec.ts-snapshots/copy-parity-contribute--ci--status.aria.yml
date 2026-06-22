@@ -1,0 +1,4 @@
+- main:
+  - article:
+    - heading "CI status dashboard" [level=1]
+    - text: Xen Project real-time continuous integration tests dashboard.

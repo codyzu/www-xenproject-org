@@ -1,0 +1,163 @@
+- main:
+  - article:
+    - heading "Xen Summit 2025" [level=1]
+    - text: Recap the 2025 Xen Summit, including recordings, agenda links, and design session notes from San Jose.
+    - img "Xen Summit 2025"
+    - heading "Thank You for Joining Xen Summit 2025 🎉" [level=2]
+    - paragraph: Xen Summit 2025 brought the global Xen community together for two packed days of engineering deep dives, hallway chats, and design sessions in San Jose. Thank you to everyone who spoke, volunteered, and participated on-site and online.
+    - heading "Watch & Download" [level=3]
+    - list:
+      - listitem:
+        - link "📆 Explore the 2025 Sched agenda":
+          - /url: https://xensummit2025.sched.com/
+        - text: to revisit sessions and download slide decks.
+      - listitem:
+        - link "📺 Catch up on Xen Summit talks on YouTube":
+          - /url: https://youtube.com/playlist?list=PLQMQQsKgvLntZiKoELFs22Mtk-tBNNOMJ&si=qCSK3o1g2u_yq-JK
+        - text: .
+    - paragraph:
+      - text: Planning your next meetup fix?
+      - link "Review the Spring Meetup 2026 recap":
+        - /url: /resources/past-events/spring-meetup-2026
+      - text: .
+    - heading "2025 Event Details (Archive)" [level=2]
+    - paragraph: Looking back for venue, travel, or lodging information from last year’s summit? We’ve left the details here for reference.
+    - heading "Venue & Travel Info" [level=3]
+    - paragraph: Xen Summit 2025 was proudly hosted by AMD in the heart of Silicon Valley.
+    - link "AMD logo":
+      - /url: https://www.amd.com
+      - img "AMD logo"
+    - heading "Date & Location" [level=3]
+    - list:
+      - listitem:
+        - strong: Xen Summit 2025
+        - text: took place from
+        - strong: September 15 to 17
+        - text: at the
+        - strong: AMD office in San Jose, California
+        - text: .
+      - listitem:
+        - link "Campus Map & Directions (PDF)":
+          - /url: https://www.xilinx.com/publications/about/Xilinx_Campus_Map_Directions.pdf
+    - heading "Getting Around" [level=3]
+    - list:
+      - listitem:
+        - strong: Uber and Lyft
+        - text: are reliable and affordable in the San Jose area.
+      - listitem: Most restaurants and hotels are nearby, so there’s no need to rent a car.
+    - heading "Recommended Hotels" [level=3]
+    - paragraph: "Here are hotels recommended by our hosts at AMD:"
+    - list:
+      - listitem:
+        - strong: Courtyard by Marriott San Jose/Campbell
+        - text: 655 Creekside Way, Campbell, CA 95008
+        - link "View on Google Maps":
+          - /url: https://maps.app.goo.gl/ZRikfrmGA6i5AqWHA
+      - listitem:
+        - strong: Doubletree by Hilton Campbell – Pruneyard Plaza
+        - text: 1995 South Bascom Avenue, Campbell, CA 95030
+        - link "View on Google Maps":
+          - /url: https://maps.app.goo.gl/Hgqp7AUcbdmoTFpD6
+        - emphasis: Preferred for its proximity to restaurants and pubs.
+      - listitem:
+        - strong: Residence Inn by Marriott San Jose-Campbell
+        - text: 2761 South Bascom Avenue, Campbell, CA 95008
+        - link "View on Google Maps":
+          - /url: https://maps.app.goo.gl/svs44LzPqNjftUS16
+      - listitem:
+        - strong: Toll House Hotel
+        - text: 140 South Santa Cruz Ave, Los Gatos, CA 95030
+        - link "View on Google Maps":
+          - /url: https://maps.app.goo.gl/QDXJ78oQuJPapW5e7
+    - heading "Tickets 🎫" [level=2]
+    - paragraph: Ticket sales for the 2025 summit are closed. Keep an eye on upcoming Xen Project events for the next chance to connect in person.
+    - heading "2024 edition" [level=2]
+    - paragraph:
+      - text: 🎥
+      - strong: Watch the 2024 Xen Summit Talks
+    - paragraph: The highly anticipated talks from this year’s Xen Summit are now live on YouTube!
+    - paragraph: Whether you attended in person or couldn’t make it, you can now access all the insightful presentations and discussions online.
+    - link "Watch the Talks on YouTube":
+      - /url: https://youtube.com/playlist?list=PLQMQQsKgvLntZiKoELFs22Mtk-tBNNOMJ&si=qCSK3o1g2u_yq-JK
+    - iframe
+    - heading "Why You Should Watch the Xen Summit Talks" [level=2]
+    - paragraph: The Xen Summit gathers experts, developers, and enthusiasts from around the world to discuss the latest advancements and future directions of our Project. Last year’s summit featured a fantastic lineup of speakers who shared their knowledge on a wide range of topics.
+    - link "Watch the Talks on YouTube":
+      - /url: https://youtube.com/playlist?list=PLQMQQsKgvLntZiKoELFs22Mtk-tBNNOMJ&si=qCSK3o1g2u_yq-JK
+    - paragraph:
+      - text: Don’t forget to
+      - strong: subscribe
+      - text: to our channel for more updates!
+    - iframe
+    - heading "Thank You to Our Sponsors" [level=2]
+    - heading "Gold Sponsors" [level=3]
+    - link "Arm logo":
+      - /url: https://www.arm.com/
+      - img "Arm logo"
+    - link "Honda logo":
+      - /url: https://www.honda.com/
+      - img "Honda logo"
+    - link "AMD logo":
+      - /url: https://www.amd.com
+      - img "AMD logo"
+    - heading "Silver Sponsors" [level=3]
+    - link "Vates logo":
+      - /url: https://vates.tech
+      - img "Vates logo"
+    - heading "Bronze Sponsors" [level=3]
+    - link "Renesas logo":
+      - /url: https://www.renesas.com/
+      - img "Renesas logo"
+    - link "Edera logo":
+      - /url: https://edera.dev/
+      - img "Edera logo"
+    - heading "Design Sessions 🛠️" [level=2]
+    - paragraph:
+      - text: Design sessions are a crucial part of community engagement at Xen Project events. Xen Summit 2025 hosted design sessions on
+      - strong: Tuesday September 16
+      - text: and
+      - strong: Wednesday September 17
+      - text: .
+    - paragraph:
+      - link "Browse the design session portal for notes and updates.":
+        - /url: https://design-sessions.xenproject.org/
+    - heading "Suggested Topics for Design and Problem Solving Sessions" [level=3]
+    - paragraph: "The aim of the Design and Problem Solving sessions are to give developers the opportunity to meet face-to-face to:"
+    - list:
+      - listitem: Coordinate and plan upcoming features
+      - listitem: Discuss and agree on best practices and changes to how the community works
+      - listitem: Discuss and agree on the design and architecture of future functionality
+      - listitem: Interactive lessons learned sessions covering experiences of contributors, users and vendors
+    - paragraph: "Examples of Design and Problem Solving Sessions from past Hackathons were:"
+    - list:
+      - listitem: Cadence of Xen Project and maintenance releases
+      - listitem: Changes to the COLO architecture and interdependencies with migration v2
+      - listitem: Developing the architecture and design for Xen Project live patching of new Xen Project security policy
+      - listitem: Evolution of virtual machine introspection (including HW assistance) in the Xen Hypervisor
+      - listitem: How to de-privileging QEMU and the x86 emulator to reduce the impact of security vulnerabilities in those components
+      - listitem: Implementing KConfig support which allows to remove parts of Xen at compile time and run-time disablement of Xen features to reduce Xen’s trusted computing base.
+      - listitem: Planning the next stage of PVH (which led to a re-think and PVH v2)
+      - listitem: Planning sessions for Xen Hardware support, including PCI passthrough on ARM, broader ARM HW testing, and alt2pm on Intel architectures
+      - listitem: Release planning
+      - listitem: Restartable Dom0 and driver domains
+      - listitem: Testing and testing frameworks
+    - heading "Design Session Submission Tips" [level=3]
+    - paragraph: "If you are proposing a design and planning session, please clearly state:"
+    - list:
+      - listitem: The problem that you are trying to solve
+      - listitem: How attendees of the session can contribute to solving your problem
+      - listitem: Whether any preparation work is desirable, including links to existing material
+    - paragraph: The proposer of design and planning sessions is expected to moderate sessions, which are held in smaller breakout rooms equipped with whiteboards. Some rooms will also contain projectors. Moderators can give a short presentation to introduce the problem, but design and planning sessions are not presentations. As a guide, presentations should not exceed more than 25% of the overall session time. Sessions will not be recorded, but we expect that the moderator either takes minutes or nominates an attendee to do so. Minutes will be posted on the relevant mailing list. Design and planning sessions scale well to a maximum of 30 people.
+    - heading "First Time Submitting? Don’t Feel Intimidated." [level=3]
+    - paragraph: We know that the open source community can be very intimidating for anybody who is interested in participating.
+    - paragraph: Xen Project events are an excellent way to get to know the community and share your ideas and the work that you are doing. You do not need to be a maintainer or a chief architect to submit a proposal. In fact, we strongly encourage first-time speakers to submit talks for all of our events. If you aren’t sure about your abstract, reach out to us and we will be more than happy to work with you on your proposal.
+    - paragraph: Our events are working conferences intended for professional networking and collaboration in the Xen community. We work closely with attendees, sponsors, and speakers to keep Xen Project events professional, welcoming, and friendly. If you have any questions about participating, please don’t hesitate to contact us.
+    - heading "Join the conversation" [level=2]:
+      - text: Join the
+      - strong: conversation
+    - paragraph: Subscribe to our channel and hit the notification bell to stay updated with the latest uploads and Xen Project news.
+    - paragraph:
+      - link "Join Matrix ":
+        - /url: https://matrix.to/#/#xenproject:matrix.org
+    - paragraph:
+      - emphasis: "Last updated: May 18, 2026"

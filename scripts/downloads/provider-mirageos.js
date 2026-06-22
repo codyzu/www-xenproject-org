@@ -11,10 +11,9 @@ class MirageOSProvider extends Provider {
   }
 
   async getVersions() {
+    const headers = this.token ? { Authorization: `Bearer ${this.token}` } : {};
     const { data } = await axios.get(this.baseURL, {
-      headers: {
-        Authorization: `token ${this.token}`,
-      },
+      headers,
     });
     return data.map(({ tag_name, html_url }) => ({
       name: tag_name.replace(/^v/, ""),
@@ -28,22 +27,11 @@ class MirageOSProvider extends Provider {
 
   async getFilesAndFolders(version) {
     console.log("MirageOS : retrieve files and folders for version", version);
+    const headers = this.token ? { Authorization: `Bearer ${this.token}` } : {};
     const { data } = await axios.get(`${this.baseURL}/tags/v${version}`, {
-      headers: {
-        Authorization: `token ${this.token}`,
-      },
+      headers,
     });
     const tarballUrl = data.tarball_url;
-    const { data: tarballData } = await axios.get(tarballUrl, {
-      headers: {
-        Authorization: `token ${this.token}`,
-      },
-      responseType: "arraybuffer",
-    });
-
-    // Process the tarball data to extract files and folders
-    // This part depends on how you want to handle the tarball content
-    // For now, we'll return a placeholder object
     return [{ name: `mirage-${version}.tar.gz`, url: tarballUrl }];
   }
 }

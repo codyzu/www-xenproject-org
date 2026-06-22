@@ -20,6 +20,9 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   expect: {
+    toMatchAriaSnapshot: {
+      children: 'deep-equal',
+    },
     toHaveScreenshot: {
       animations: 'disabled',
       caret: 'hide',

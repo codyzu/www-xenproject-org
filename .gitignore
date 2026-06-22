@@ -8,6 +8,7 @@ storybook-static
 dist-astro
 playwright-report
 tests/astro-results
+.copy-parity
 
 .DS_Store
 .env

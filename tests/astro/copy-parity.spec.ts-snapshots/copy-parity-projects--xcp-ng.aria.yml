@@ -1,0 +1,73 @@
+- main:
+  - article:
+    - heading "XCP-ng" [level=1]
+    - text: XCP-ng (Xen Cloud Platform – new generation) is a turnkey virtualization platform built on the Xen Project Hypervisor and using the Xen API (XAPI). It is typically managed with Xen Orchestra, an agentless, multi-cluster web interface that provides management, monitoring, and backup capabilities.
+    - heading "Turnkey open-source hypervisor" [level=2]:
+      - text: Turnkey
+      - strong: open-source hypervisor
+    - paragraph:
+      - text: XCP-ng enables an easy way to deploy a VM based infrastructure using Xen as the hypervisor and XAPI to deliver an out of the box, turnkey, solution. XCP-ng satisfies the needs of any sized organization from their thriving community of homelabbers to massive data centers.
+      - strong: XCP-ng is built to run in numerous configurations for any type of production environment.
+      - text: See
+      - link "real-world examples":
+        - /url: https://vates.tech/user-stories/?utm_source=xenproject.org&utm_medium=backlink
+      - text: of XCP-ng in action.
+    - 'img "Logo of XCP-ng : Illustration of a red rocket ship blasting off into space with a circular background, symbolizing innovation and progress."'
+    - heading "Project’s history" [level=2]:
+      - text: Project’s
+      - strong: history
+    - paragraph:
+      - text: In 2018 XCP-ng was born, following Citrix System’s announcement to remove features from their free version and place them behind paid tiers. XCP-ng was launched with the intentions of revitalizing the original goals of the XCP project, to
+      - strong: provide free and community back version of XenServer.
+    - img "Illustration of a timeline with milestones for the years 2018, 2020, 2022 and 2024, representing project progress and development."
+    - list:
+      - listitem:
+        - heading " Scalable" [level=2]
+        - paragraph: XCP-ng benefits from Long-term support with regular updates. This ensures that the platform will continue to be interoperable and work with your existing and future tools and that stable deployments will continue for many years.
+      - listitem:
+        - heading " Secure Hypervisor" [level=2]
+        - paragraph: XCP-ng is based on the Xen hypervisor technology and is one of the most secure virtualization platforms on the market. Monthly security updates improve security and prevent loopholes. In addition only the domain zero is able to communicate directly to your hardware, greatly reducing the risk of attacks through unprivileged VMs.
+      - listitem:
+        - heading " Innovative" [level=2]
+        - paragraph: Benefiting from more than € 15 million euros in investments, 20 dedicated developers and monthly updates, XCP-ng continues to improve the performance, security and the interoperability of the platform.
+      - listitem:
+        - heading " Easy to administrate" [level=2]
+        - paragraph: Step-by-step guides covering installation to management of VMS and active community forums, make it easier than ever to use XCP-ng.
+    - heading "How to get started?" [level=2]:
+      - text: How to
+      - strong: get started?
+    - paragraph:
+      - text: There are many ways to get started with XCP-ng. There are a number of
+      - strong: video training tutorials
+      - text: on our youtube channel,
+      - strong: step-by-step written instructions
+      - text: in our documentation, and a training course for XCP-ng is coming soon.
+    - paragraph:
+      - link:
+        - /url: https://www.youtube.com/watch?v=xJyJdUB7z-A&list=PLH8MZTWmpNThavT5xh8f11DgawmmEJsgJ
+    - paragraph:
+      - link "Watch training ":
+        - /url: https://www.youtube.com/watch?v=xJyJdUB7z-A&list=PLH8MZTWmpNThavT5xh8f11DgawmmEJsgJ
+    - paragraph
+    - paragraph:
+      - link:
+        - /url: https://docs.xcp-ng.org/
+    - paragraph:
+      - link "Read step-by-step documentation instructions":
+        - /url: https://docs.xcp-ng.org/
+    - link "":
+      - /url: https://docs.xcp-ng.org/
+    - paragraph
+    - img "Illustration of a green rocket launching from a laptop screen, symbolizing a startup or new project launch."
+    - heading "Development process" [level=2]:
+      - strong: Development
+      - text: process
+    - paragraph: XCP-ng is actively developed by a dedicated team of engineers, alongside a growing community of contributors. Our documentation details the development process and how you can get involved—through testing, feedback, or code contributions. The current LTS version is XCP-ng 8.3.
+    - paragraph:
+      - link:
+        - /url: https://xcp-ng.org/docs/develprocess.html
+    - paragraph:
+      - link "Read about XCP-ng development process ":
+        - /url: https://xcp-ng.org/docs/develprocess.html
+    - paragraph
+    - img "Illustration of a person typing code on a computer, symbolizing software development and programming."

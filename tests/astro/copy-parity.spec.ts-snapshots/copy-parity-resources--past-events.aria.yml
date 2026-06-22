@@ -1,0 +1,24 @@
+- main:
+  - article:
+    - heading "Past Events Archive" [level=1]
+    - paragraph: Catch up on previous Xen Project gatherings, watch recordings, and find agendas or slide decks from earlier conferences. Each listing links to the event recap page for full details.
+    - article:
+      - heading "Xen Spring Meetup 2026" [level=3]:
+        - link "Xen Spring Meetup 2026":
+          - /url: /resources/past-events/spring-meetup-2026
+      - paragraph: The Xen Project Spring Meetup is a two-day, in-person community event in Grenoble, France.
+      - paragraph:
+        - link "View recap":
+          - /url: /resources/past-events/spring-meetup-2026
+    - article:
+      - heading "Xen Summit 2025" [level=3]:
+        - link "Xen Summit 2025":
+          - /url: /resources/past-events/xen-summit-2025
+      - paragraph: September 15–17, 2025
+      - paragraph: San Jose, California, USA
+      - paragraph: Recap the 2025 Xen Summit, including recordings, agenda links, and design session notes from San Jose.
+      - paragraph:
+        - link "View recap":
+          - /url: /resources/past-events/xen-summit-2025
+    - paragraph:
+      - emphasis: "Last updated: December 19, 2025"

@@ -1,0 +1,73 @@
+- main:
+  - article:
+    - heading "Xen Project members" [level=1]
+    - text: Meet the board members of Xen Project. Learn about their roles, backgrounds, and contributions to the governance and strategic direction of the leading open source hypervisor project.
+    - heading "AMD" [level=2]
+    - paragraph: AMD is a leading semiconductor company that designs high-performance computing and graphics solutions. Their products include Ryzen™ processors for consumer and commercial use, EPYC™ processors for data centers, and Radeon™ graphics cards for gaming and professional applications. AMD focuses on delivering exceptional performance and innovation in computing technologies.
+    - paragraph:
+      - link "Discover AMD ":
+        - /url: http://www.amd.com/
+    - img "Logo of AMD"
+    - heading "ARM" [level=2]
+    - paragraph: ARM is a global leader in semiconductor IP and processor design, providing technology that powers a vast array of devices, including smartphones, IoT devices, and servers. ARM’s architectures, such as Cortex and Neoverse, are known for their efficiency and performance, supporting a wide range of applications from consumer electronics to industrial automation and edge computing.
+    - paragraph:
+      - link "Discover ARM ":
+        - /url: https://www.arm.com/
+    - img "Logo of ARM"
+    - heading "AWS" [level=2]
+    - paragraph: AWS, a subsidiary of Amazon, is a leading provider of cloud computing services. It offers a comprehensive suite of products and services, including computing power, storage, and databases, enabling organizations to scale efficiently and innovate rapidly. AWS’s cloud solutions support various use cases, from web hosting and application development to big data analytics and machine learning.
+    - paragraph:
+      - link "Discover AWS ":
+        - /url: https://aws.amazon.com/
+    - img "Logo of AWS (Amazon Web Services)"
+    - heading "Boeing" [level=2]
+    - paragraph: Boeing is one of the world’s leading aerospace companies and a major manufacturer of commercial airplanes, defense systems, and space technologies. With a strong focus on innovation, safety, and reliability, Boeing develops advanced platforms that support global transportation, national security, and space exploration. Through its involvement in the Xen Project, Boeing contributes to the advancement of secure and robust virtualization technologies, supporting use cases in aerospace, embedded systems, and safety-critical environments.
+    - paragraph:
+      - link "Discover Boeing ":
+        - /url: https://www.boeing.com/
+    - img "Logo of Boeing"
+    - heading "Epam" [level=2]
+    - paragraph: EPAM Systems is a global provider of digital platform engineering and software development services. EPAM helps clients transform their businesses through innovative technology solutions, including software development, digital platform engineering, and consulting services. With a focus on high-quality engineering and deep industry expertise, EPAM partners with organizations to achieve digital transformation.
+    - paragraph:
+      - link "Discover Epam ":
+        - /url: https://www.epam.com/
+    - img "Logo of Epam"
+    - heading "Ford Motor Company" [level=2]
+    - paragraph: Ford is the originator of modern automotive manufacturing and a global leader in vehicle production and automotive technology innovation. Ford contributes to the Xen Project to accelerate development of next-generation software-defined vehicles and enhance the user experience across its distinctive product lineup.
+    - paragraph:
+      - link "Discover Ford ":
+        - /url: https://ford.com/
+    - img "Logo of Ford"
+    - heading "Honda" [level=2]
+    - paragraph: Honda is a global leader in automotive manufacturing and technology innovation. As a pioneer in mobility solutions, Honda leverages virtualization technology in their advanced automotive systems. Their involvement with the Xen Project focuses on developing secure, reliable virtualization solutions for next-generation vehicles, particularly in areas such as infotainment systems, advanced driver-assistance systems (ADAS), and connected car technologies.
+    - paragraph:
+      - link "Discover Honda ":
+        - /url: https://www.honda.com/
+    - img "Logo of Honda"
+    - heading "Renesas" [level=2]
+    - paragraph: Renesas is a premier supplier of advanced semiconductor solutions that empowers a safer, smarter and more sustainable future where technology helps make our lives easier. A leading global provider of microcontrollers, Renesas combines our expertise in embedded processing, analog and power to deliver complete semiconductor solutions for automotive, industrial, infrastructure and IoT applications.
+    - paragraph:
+      - link "Discover Renesas ":
+        - /url: https://www.renesas.com/
+    - img "Logo of Renesas"
+    - heading "Vates" [level=2]
+    - paragraph: Vates is a company specializing in open source virtualization solutions. Their flagship products include Xen Orchestra and XCP-ng, which offer powerful and scalable virtualization platforms for managing and deploying virtualized environments. Vates focuses on providing reliable and flexible virtualization solutions tailored to meet the needs of various organizations.
+    - paragraph:
+      - link "Discover Vates ":
+        - /url: https://vates.fr/
+    - img "Logo of Vates"
+    - heading "Xenserver" [level=2]
+    - paragraph: XenServer is a high-performance virtualization platform designed for enterprise environments. It provides robust virtualization capabilities, allowing organizations to efficiently manage and scale their virtual infrastructure. XenServer supports a wide range of use cases, including server consolidation, virtual desktop infrastructure (VDI), and cloud computing, offering advanced features such as live migration, resource pooling, and comprehensive security.
+    - paragraph:
+      - link "Discover Xenserver ":
+        - /url: https://www.xenserver.com/
+    - img "Logo of XenServer"
+    - heading "Join as a member" [level=2]
+    - paragraph: Improve engineering ROI, gain project insight and increase visibility among many benefits of joining as a member.
+    - paragraph:
+      - link "Join now ":
+        - /url: https://enrollment.lfx.linuxfoundation.org/?project=xen
+    - paragraph:
+      - link "Become a member ":
+        - /url: /about/become-a-member
+    - img "Illustration of three people having a discussion with speech bubbles, symbolizing teamwork and communication."

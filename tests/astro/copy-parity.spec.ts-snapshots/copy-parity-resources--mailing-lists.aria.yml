@@ -1,0 +1,165 @@
+- main:
+  - article:
+    - heading "Join mailing lists" [level=1]
+    - text: Join the Xen mailing list community to stay updated on the latest developments, discussions, and announcements.
+    - heading "Mailing list usage" [level=2]
+    - paragraph: Xen Project mailing lists have a web as well as an email interface.
+    - list:
+      - listitem:
+        - paragraph:
+          - text: Send an email command to
+          - strong:
+            - link "mylist-request@lists.xenproject.org":
+              - /url: mailto:mylist-request@lists.xenproject.org
+          - text: (mylist may, for example, be xen-announce) with one of the
+          - link "following commands":
+            - /url: https://www.list.org/mailman-member/node41.html
+          - text: in the subject line. Common commands are
+          - code: help
+          - text: ","
+          - code: subscribe
+          - text: ", and"
+          - code: unsubscribe
+          - text: . Alternatively, you can use the SUBSCRIBE buttons below.
+      - listitem:
+        - paragraph:
+          - text: Go to
+          - strong:
+            - link "https://lists.xenproject.org/mailman/listinfo/mylist":
+              - /url: https://lists.xenproject.org/mailman/listinfo/mylist
+          - text: (mylist may, for example, be xen-announce) and use the web interface to subscribe, unsubscribe, or log into the list management interface.
+      - listitem:
+        - paragraph: You can send a note to a Xen Project mailing list without being subscribed to it, but your post will be moderated.
+      - listitem:
+        - paragraph:
+          - text: If you have problems, please email
+          - strong:
+            - link "community.manager@xenproject.org":
+              - /url: mailto:community.manager@xenproject.org
+          - text: .
+    - img "Illustration of a person sending a message, symbolizing communication."
+    - heading "Consider searching in archives, the answer you are looking might already exist!" [level=2]:
+      - text: Consider
+      - strong: searching in archives
+      - text: ", the answer you are looking might already exist!"
+    - paragraph:
+      - link:
+        - /url: https://lore.kernel.org/xen-devel/
+    - paragraph:
+      - link "Check out archives ":
+        - /url: https://lore.kernel.org/xen-devel/
+    - paragraph
+    - heading "General" [level=2]
+    - heading "XEN-ANNOUNCE@" [level=2]
+    - text: Mailing list Announcements related to the project. These may be release announcements, security advisories, announcements related to events. This is a low volume list, with about 1-2 posts per month.
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/xen-announce
+    - link "Archives about XEN-ANNOUNCE@":
+      - /url: https://lists.xenproject.org/archives/html/xen-announce
+      - text: Archives 
+    - heading "XEN-USERS@" [level=2]
+    - text: Mailing list This list is for those using and installing the Xen Project software.
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/xen-users
+    - link "Archives about XEN-USERS@":
+      - /url: https://lists.xenproject.org/archives/html/xen-users
+      - text: Archives 
+    - heading "OSSTEST-OUTPUT@" [level=2]
+    - text: Mailing list This is a receive-only list to which detailed test results and reports from the Xen Project Test Lab are sent. This is a very high volume list with 500+ e-mails a day. Only subscribe to it with filters set up. Principal test results are posted to the xen-devel list.
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/osstest-output
+    - link "Archives about OSSTEST-OUTPUT@":
+      - /url: https://lists.xenproject.org/archives/html/osstest-output
+      - text: Archives 
+    - heading "SECURITY@XENPROJECT.ORG" [level=2]
+    - text: Mailing list This e-mail alias is intended for reporting security vulnerabilities in Xen Project software (this also covers the situation where an existing published codebase is retrospectively found to be a security fix). List membership is restricted to members of the Xen Project Security Response Team and thus invite only and obviously, there is no public archive. For more information on how the Xen Project handles security vulnerabilities, see the Xen Security Problem Response Process.
+    - link "Report Security Issue ":
+      - /url: mailto:security@xenproject.org
+    - heading "PRIVATE@" [level=2]
+    - text: Mailing list This list is for maintainers of all Xen teams, and key developers that have been invited by maintainers. This list is intended to be used only when privacy implications or similar prevent usage of a public list. Example usage may be to let other community members know of absences (due to holidays, maternity/ paternity leave, etc.) and to arrange cover. Another example may be to ask other team members for advice on how to respond to a difficult situation in the community. Any conversations that should have been started on a public list, will be forwarded to an appropriate public list. This list is an invite-only list and is not archived. Community members can subscribe, but approval in line with Mailing List Conventions is required.
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/private
+    - heading "PUBLICITY@" [level=2]
+    - text: Mailing list This is a list to coordinate content for the Xen Project blog, articles in the open source and Linux press, other media, press activities, to coordinate attendance and submissions for open source and industry events and anything else to promote the Xen Project. The list is open for people in the community who care about promoting the Xen Project. The list is also archived. To join, please email the Community Manager.
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/publicity
+    - link "Archives about PUBLICITY@":
+      - /url: https://lists.xenproject.org/archives/html/publicity
+      - text: Archives 
+    - heading "Developers" [level=2]
+    - heading "Xen Project Hypervisor" [level=3]
+    - heading "XEN-DEVEL@" [level=2]
+    - text: Mailing list A discussion list for the Xen Project Hypervisor developer community. Please do not use this list for technical support queries.
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/xen-devel
+    - link "Archives about XEN-DEVEL@":
+      - /url: https://lists.xenproject.org/archives/html/xen-devel
+      - text: Archives 
+    - heading "XEN-CHANGELOG@" [level=2]
+    - text: Mailing list This is a receive-only list to which details of changesets to the Xen Hypervisor Git repositories are sent.
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/xen-changelog
+    - link "Archives about XEN-CHANGELOG@":
+      - /url: https://lists.xenproject.org/archives/html/xen-changelog
+      - text: Archives 
+    - heading "Mirage OS" [level=3]
+    - heading "MIRAGEOS-DEVEL@" [level=2]
+    - text: Mailing list A discussion list for the Mirage OS developer community. Note that most development discussion happens on the respective GitHub (via issues, etc. on the respective repositories).
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/mirageos-devel
+    - link "Archives about MIRAGEOS-DEVEL@":
+      - /url: https://lists.xenproject.org/archives/html/mirageos-devel
+      - text: Archives 
+    - heading "Unikraft" [level=3]
+    - heading "MINIOS-DEVEL@ (INCLUDES UNIKRAFT DEVELOPMENT)" [level=2]
+    - text: Mailing list A discussion list for MiniOS and Unikraft development.
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/minios-devel
+    - link "Archives about MINIOS-DEVEL@ (INCLUDES UNIKRAFT DEVELOPMENT)":
+      - /url: https://lists.xenproject.org/archives/html/minios-devel
+      - text: Archives 
+    - heading "XAPI" [level=3]
+    - heading "XEN-API@" [level=2]
+    - text: Mailing list A discussion list for the XAPI project, developing an open-source management layer for Xen-based systems. The list is both for developers and users.
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/xen-api
+    - link "Archives about XEN-API@":
+      - /url: https://lists.xenproject.org/archives/html/xen-api
+      - text: Archives 
+    - heading "XCP-ng" [level=3]
+    - heading "XCP-NG FORUMS" [level=2]
+    - text: Forum Announcements related to the project. These may be release announcements, security advisories, announcements related to events. This is a low volume list, with about 1-2 posts per month.
+    - link "All forums ":
+      - /url: https://xcp-ng.org/forum/
+    - link "Development about XCP-NG FORUMS":
+      - /url: https://xcp-ng.org/forum/category/7/development
+      - text: Development 
+    - heading "XCP-NG NEWSLETTER" [level=2]
+    - text: Newsletter This list is for those using and installing the Xen Project software.
+    - link "Subscribe ":
+      - /url: http://eepurl.com/gtO5-H
+    - heading "XCP-ng-dev" [level=2]
+    - text: Forum For developer specific questions and those who want to contribute, this channel is for you, based on XCP-ng forum.
+    - link "Info ":
+      - /url: https://xcp-ng.org/forum/category/19/xcp-ng
+    - heading "Windows PV Drivers" [level=3]
+    - heading "WIN-PV-DEVEL@" [level=2]
+    - text: Mailing list A discussion list for the Windows PV Drivers developer community.
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/win-pv-devel
+    - link "Archives about WIN-PV-DEVEL@":
+      - /url: https://lists.xenproject.org/archives/html/win-pv-devel
+      - text: Archives 
+    - heading "Advisory board" [level=2]
+    - heading "ADVISORY-BOARD@" [level=2]
+    - text: Mailing list A discussion list for members of the Xen Project Advisory Board. The list is invite-only.
+    - link "Info ":
+      - /url: http://wiki.xenproject.org/wiki/Category:Advisory_Board
+    - heading "Predisclosure" [level=2]
+    - heading "PREDISCLOSURE-APPLICATIONS@" [level=2]
+    - text: Mailing list Organizations who want to become a member of the Xen Project predisclosure list to receive pre-disclosure of security advisories and who meet the criteria outlined in the Xen Security Problem Response Process should become members of this mailing list and submit their application through this mailing list as outlined in Xen Security Problem Response Process. The list is open to all community members who care about security and although pre-disclosure membership applications are evaluated based on strict criteria, all applications are open for review and comment by community members. The list is also archived.
+    - link "Info ":
+      - /url: https://lists.xenproject.org/cgi-bin/mailman/listinfo/predisclosure-applications
+    - link "Archives about PREDISCLOSURE-APPLICATIONS@":
+      - /url: https://lists.xenproject.org/archives/html/predisclosure-applications
+      - text: Archives 

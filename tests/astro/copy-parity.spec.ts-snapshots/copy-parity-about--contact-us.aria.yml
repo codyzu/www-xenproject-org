@@ -1,0 +1,20 @@
+- main:
+  - article:
+    - heading "Contact us" [level=1]
+    - text: Contact Xen Project for inquiries, support, and collaboration opportunities. Reach out to our team and join the conversation in our community forums.
+    - heading "Development" [level=3]
+    - text: For development questions, please begin by asking on the
+    - link "mailing lists":
+      - /url: /resources/mailing-lists
+    - text: or
+    - link "Matrix":
+      - /url: /resources/matrix
+    - text: . These are generally the fastest ways to get an answer.
+    - heading "GDPR" [level=3]
+    - text: For GDPR requests, please contact
+    - link "gdpr@xenproject.org":
+      - /url: mailto:gdpr@xenproject.org
+    - heading "Other" [level=3]
+    - text: For all other questions, please contact
+    - link "community.manager@xenproject.org":
+      - /url: mailto:community.manager@xenproject.org

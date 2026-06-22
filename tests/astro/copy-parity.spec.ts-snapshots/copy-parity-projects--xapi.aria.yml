@@ -1,0 +1,45 @@
+- main:
+  - complementary:
+    - heading "Resources" [level=3]
+    - list:
+      - listitem:
+        - link "Github project ":
+          - /url: https://github.com/xapi-project/xen-api
+      - listitem:
+        - link "Documentation ":
+          - /url: http://xapi-project.github.io/
+      - listitem:
+        - link "Contribute ":
+          - /url: https://github.com/xapi-project/xen-api/blob/master/README.markdown
+      - listitem:
+        - link "Report a Bug ":
+          - /url: https://github.com/xapi-project/xen-api/issues
+  - article:
+    - heading "XAPI" [level=1]
+    - text: The XAPI project is an enterprise-ready toolstack for use with the Xen Project hypervisor.
+    - heading "Enterprise-ready tools" [level=2]
+    - text: The XAPI project is an enterprise ready toolstack for use with the Xen Project hypervisor. When used with Xen, the XAPI toolstack consolidates server workloads, enables savings in power, cooling, and management costs (contributing to environmentally sustainable computing), increases the ability to adapt to ever-changing IT environments, optimizes the use of existing hardware, and improves the level of IT reliability. The XAPI team also develops tooling, agents and libraries that are needed to operate a XAPI-based system.
+    - img "Illustration of a database icon with gears and a wrench, representing data management and configuration tools."
+    - heading "What is XAPI?" [level=2]
+    - paragraph: "The Xen Project Management API (or XAPI) is:"
+    - list:
+      - listitem: A Xen Project Toolstack that exposes the XAPI interface. When we refer to XAPI as a toolstack, we typically include all dependencies and components that are needed for XAPI to operate (e.g. xenopsd).
+      - listitem: An interface for remotely configuring and controlling virtualized guests running on a Xen-enabled host. XAPI is the core component of XenServer (previously Citrix) and XCP-ng.
+    - paragraph: "XAPI adds additional functionality compared to other Xen Project toolstacks, including:"
+    - list:
+      - listitem: Extending the software to cover multiple hosts
+      - listitem: Enhancing the VM lifecycle, including live snapshots, VM checkpointing, and VM migration
+      - listitem: Enabling resource pools to include live migration, auto configuration, and disaster recovery
+      - listitem: Allowing flexible storage and networking including integrated Open vSwitch support and storage XenMotion® live Migration (cross-pool migration, VDI migration)
+      - listitem: Enabling event tracking, with progress and notification
+      - listitem: Creating upgrade and patching capabilities
+      - listitem: Facilitating real-time performance monitoring and alerting
+      - listitem: Integrations with cloud orchestration stacks
+      - listitem: Built-in support and templates for Windows and Linux guests
+    - paragraph: Management tools are available with XAPI based products and from Xen Orchestra.
+    - heading "License" [level=2]
+    - text: XAPI is licensed under the
+    - link "Lesser GNU General Public License (LGPL2)":
+      - /url: https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+    - text: .
+    - img "Illustration of hands typing code on a laptop with documents and a cup of coffee, symbolizing software development and workflow."

@@ -1,9 +1,12 @@
 import XenProvider from "./provider-xen.js";
 import WindowPVDrivers from "./provider-windowpvdrivers.js";
 import MirageOSProvider from "./provider-mirageos.js";
+import process from "node:process";
+import axios from "axios";
 import fs from "fs/promises";
 import path from "path";
 const params = { logErrors: true };
+axios.defaults.timeout = 15000;
 const providers = [new XenProvider(), new WindowPVDrivers(), new MirageOSProvider()];
 const OUTPUT_FILE = "assets/data/downloads.json";
 const OUTPUT_FILE_STATIC = "static/data/downloads.json";
@@ -15,7 +18,7 @@ async function getVersions(provider, existingVersionMap) {
     return versions || [{ link: "", name: "default" }];
   } catch (e) {
     console.error(`Error getting versions for ${provider.name}. Using existing versions.`);
-    return Array.from(existingVersionMap);
+    return Array.from(existingVersionMap.values());
   }
 }
 
@@ -126,4 +129,7 @@ async function main() {
   await fs.writeFile(LATEST_OUTPUT_FILE, latest_json);
 }
 
-main().catch(console.error);
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});

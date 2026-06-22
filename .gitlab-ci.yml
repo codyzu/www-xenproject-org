@@ -27,6 +27,7 @@ test:
     - node --version
     - npm ci --cache .npm --prefer-offline
     - npm run lint
+    - npm run downloads
     - npm run build
     - node scripts/astro/check-public-artifact.js public --standalone
   rules:
@@ -45,6 +46,7 @@ deploy:
     - node --version
     - npm ci --cache .npm --prefer-offline
     - npm run lint
+    - npm run downloads
     - npm run build
     - node scripts/astro/check-public-artifact.js public --standalone
     - tar caf site.tar.gz public
@@ -53,6 +55,29 @@ deploy:
       - site.tar.gz
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  cache:
+    - key: npm-cache-$CI_COMMIT_REF_SLUG
+      fallback_keys:
+        - npm-cache-$CI_DEFAULT_BRANCH
+        - npm-cache-default
+      paths:
+        - .npm/
+
+copy-parity:
+  script:
+    - node --version
+    - npm ci --cache .npm --prefer-offline
+    - npx playwright install --with-deps chromium
+    - npm run build
+    - npm run test:astro:copy-parity
+  artifacts:
+    when: always
+    paths:
+      - playwright-report/
+      - tests/astro-results/
+  rules:
+    - if: $CI_COMMIT_BRANCH
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   cache:
     - key: npm-cache-$CI_COMMIT_REF_SLUG
@@ -74,7 +99,7 @@ publish:
     - npm ci --cache .npm --prefer-offline
     - npm exec hugo -- version
     - npm run lint
-    - node scripts/downloads/getLinks.js
+    - npm run downloads
     - npm run build:legacy -- -- --baseURL "https://xenproject.org/"
     - tar caf site.tar.gz public
   artifacts:

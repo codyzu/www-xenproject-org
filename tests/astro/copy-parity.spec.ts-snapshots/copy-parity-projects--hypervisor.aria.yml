@@ -1,0 +1,35 @@
+- main:
+  - complementary:
+    - heading "Resources" [level=3]
+    - list:
+      - listitem:
+        - link "Features (unstable) ":
+          - /url: https://xenbits.xen.org/docs/unstable/SUPPORT.html
+      - listitem:
+        - link "Browse Xen.git ":
+          - /url: http://xenbits.xenproject.org/gitweb/?p=xen.git;a=summary
+      - listitem:
+        - link "Submitting Patches ":
+          - /url: http://wiki.xenproject.org/wiki/Submitting_Xen_Patches
+  - article:
+    - heading "Hypervisor" [level=1]
+    - text: Discover Xen Hypervisor, the open-source virtualization platform.
+    - heading "Versatile Open-Source Virtualization" [level=2]
+    - paragraph: "The Xen Project hypervisor is an open-source type-1 or baremetal hypervisor, which makes it possible to run many instances of an operating system or indeed different operating systems in parallel on a single machine (or host). The Xen Project hypervisor is the only type-1 hypervisor that is available as open source. It is used as the basis for a number of different commercial and open source applications, such as: server virtualization, Infrastructure as a Service (IaaS), desktop virtualization, security applications, embedded and hardware appliances. The Xen Project hypervisor is powering the largest clouds in production today."
+    - img "Illustration of a person managing server racks, representing data management and server maintenance."
+    - list:
+      - listitem:
+        - heading " Small footprint and interface" [level=2]
+        - paragraph: Because it uses a microkernel design, with a small memory footprint and a restricted interface to guests, it is more robust and secure than other hypervisors.
+      - listitem:
+        - heading " Operating system agnostic" [level=2]
+        - paragraph: Most installations run with Linux as the main control stack (aka "domain 0”). But a number of other operating systems can be used instead, including NetBSD and FreeBSD.
+      - listitem:
+        - heading " Driver Isolation" [level=2]
+        - paragraph: The Xen Project hypervisor has the capability to allow the main device driver for a system to run inside of a virtual machine. If the driver crashes, or is compromised, the VM containing the driver can be rebooted and the driver restarted without affecting the rest of the system.
+      - listitem:
+        - heading " Paravirtualization" [level=2]
+        - paragraph: Paravirtualization allows guests to avoid extra overhead, by making use of devices and interfaces that have been designed for a virtualized environment. Additionally Xen on x86 also supports fully paravirtualized guests, which can run on hardware that doesn’t support virtualization extensions.
+    - heading "History" [level=2]
+    - paragraph: The Xen Project hypervisor is developed by a worldwide community of individuals, researchers and employees of companies and that follow the Xen Project Governance process. The project is supported by the Xen Project Advisory Board made up of project member companies that fund the Xen Project. You can find a contribution breakdowns under Contribution Acknowledgments.
+    - img "Illustration of a timeline with milestones for the years 2012, 2018, 2020, and 2024, representing project progress and development."

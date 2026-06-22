@@ -1,0 +1,20 @@
+- main:
+  - complementary:
+    - heading "Resources" [level=3]
+    - list:
+      - listitem:
+        - link "Academic Research ":
+          - /url: /research
+  - article:
+    - 'heading "FastXenBlk: high-performance virtualized disk IOs without compromising isolation (industry track)" [level=1]'
+    - paragraph:
+      - strong: "Abstract:"
+      - text: Optimizing IO in a type I hypervisor such as Xen is difficult because of the cost of exchanging data between a VM and the driver. We address this challenge by proposing FastXenBlk, a new IO driver for Xen. FastXenBlk uses three mechanisms to improve IO performance. First, it uses several threads that poll multiple virtual IO queues that are exposed to a guest in order to execute IOs in parallel. Second, it batches requests in order to minimize the number of hypercalls to Xen. And third, it uses kernel bypass in order to avoid system calls during IOs. We evaluate FastXenBlk using the FIO benchmark with different access patterns and IO sizes. Our evaluation shows that FastXenBlk consistently improves the latency and the throughput for all workloads as compared to tapdisk, the driver currently used in production, by a factor of up to 3×.
+    - strong: "Authors:"
+    - text: Thenot, Damien, Lozi, Jean-Pierre, Thomas, Gaël
+    - strong: "Year:"
+    - text: "2023"
+    - strong: "Tags:"
+    - text: spdk blkif performance
+    - link "Read the Full Paper":
+      - /url: https://hal.science/hal-04354563/file/middleware23industrial-final9.pdf

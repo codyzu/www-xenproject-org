@@ -1,0 +1,78 @@
+- main:
+  - article:
+    - heading "Get started" [level=1]
+    - text: Begin your journey with Xen Project. Follow our step-by-step installation and setup guide to deploy Xen hypervisor. Access essential resources, tutorials, and support for a smooth start.
+    - 'heading "Contributing to Xen: an introduction" [level=2]'
+    - paragraph: We've collated some information to help you get started, click here for resources.
+    - paragraph:
+      - link "View documentation ":
+        - /url: https://wiki.xenproject.org/wiki/Main_Page
+    - iframe
+    - heading "Read documentation" [level=2]:
+      - strong: Read
+      - text: documentation
+    - paragraph:
+      - link "Access documentation ":
+        - /url: https://wiki.xenproject.org/
+    - paragraph:
+      - link "How to use documentation ":
+        - /url: https://wiki.xenproject.org/wiki/Index_Guide
+    - heading "Communicate with others" [level=2]:
+      - strong: Communicate
+      - text: with others
+    - paragraph:
+      - link "Matrix ":
+        - /url: /resources/matrix
+    - paragraph:
+      - link "Mailing Lists ":
+        - /url: /resources/mailing-lists
+    - heading "Access more resources" [level=2]
+    - paragraph:
+      - link "Youtube channel ":
+        - /url: https://www.youtube.com/@Xen_Project
+    - paragraph:
+      - link "Contribution guidelines ":
+        - /url: /contribute/contribution-guidelines
+    - paragraph:
+      - link "Governance ":
+        - /url: /about/governance
+    - paragraph:
+      - link "Security policy ":
+        - /url: /about/security-policy
+    - img "Illustration of a laptop displaying code, with a cup of coffee and a notebook beside it, symbolizing a coding or development environment."
+    - heading "Advised by Xen project members" [level=2]:
+      - text: Advised by Xen project
+      - strong: members
+    - paragraph: The Xen Project Advisory Board is composed of experienced members who provide guidance and support to the project. Their expertise helps shape the direction and ensures the success of the Xen Project. By collaborating with the advisory board, we can address challenges and seize opportunities in the virtualization technology landscape.
+    - paragraph:
+      - link "Meet the advisory board ":
+        - /url: /about/project-members
+    - list:
+      - listitem:
+        - img "amd logo"
+      - listitem:
+        - img "arm logo"
+      - listitem:
+        - img "aws logo"
+      - listitem:
+        - img "boeing logo"
+      - listitem:
+        - img "epam logo"
+      - listitem:
+        - img "ford logo"
+      - listitem:
+        - img "honda logo"
+      - listitem:
+        - img "logo linux foundation"
+      - listitem:
+        - img "renesas logo cropped"
+      - listitem:
+        - img "vates logo"
+      - listitem:
+        - img "xenserver logo"
+    - heading "Become a member" [level=2]
+    - paragraph: By being an active Advisory Board participant, regular opportunities for discussions with technical leaders include the chance to share priorities and endorse new strategies. In return, members will gain valuable strategic insight into project plans and future scope.
+    - paragraph:
+      - link "Join the advisory board ":
+        - /url: /about/become-a-member
+    - img "Illustration of three people discussing around a table with documents, representing teamwork and collaboration."

@@ -1,0 +1,74 @@
+- main:
+  - complementary:
+    - heading "Resources" [level=3]
+    - list:
+      - listitem:
+        - link "Code of Conduct ":
+          - /url: https://xenbits.xenproject.org/governance/index.html
+  - article:
+    - heading "Xen Project Code of Conduct" [level=1]
+    - text: Learn about the Code of Conduct for the Xen Project, which outlines the standards for behavior in the community and the steps to report unacceptable behavior.
+    - paragraph:
+      - emphasis: "Last updated: 16th November 2023"
+    - heading "Our Pledge" [level=2]
+    - paragraph: We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, caste, color, religion, or sexual identity and orientation.
+    - paragraph: We pledge to act and interact in ways that contribute to an open, welcoming, diverse, inclusive, and healthy community.
+    - heading "Our Standards" [level=2]
+    - paragraph:
+      - text: "We believe that a Code of Conduct can help create a harassment-free environment, but is not sufficient to create a welcoming environment on its own: guidance on creating a welcoming environment, how to communicate in an effective and friendly way, etc. can be found"
+      - link "here":
+        - /url: https://xenbits.xenproject.org/governance/communication-guide.html
+      - text: .
+    - paragraph: "Examples of behavior that contributes to a positive environment include:"
+    - list:
+      - listitem: Using welcoming and inclusive language
+      - listitem: Demonstrating empathy and kindness towards other people
+      - listitem: Being respectful of differing opinions, viewpoints, and experiences
+      - listitem: Keeping the language clean and professional (no swearing)
+      - listitem: Attempting collaboration before conflict
+      - listitem: Giving and gracefully accepting constructive feedback
+      - listitem: Accepting responsibility and apologizing to those affected by our mistakes, and learning from the experience
+      - listitem: Focusing on what is best not just for us as individuals, but for the overall community
+    - paragraph: "Examples of unacceptable behaviors include:"
+    - list:
+      - listitem: Any discriminatory language or behavior concerning areas described in our pledge, such as race, gender, and ethnicity
+      - listitem: The use of sexualized language or imagery and unwelcome sexual attention or advances
+      - listitem: Trolling, insulting/derogatory comments, and personal or political attacks
+      - listitem: Public or private harassment both online and in person
+      - listitem: Publishing others’ private information, such as a physical or electronic address, without explicit permission
+      - listitem: Other conduct which could reasonably be considered inappropriate in a professional setting
+      - listitem: Advocating for, or encouraging, any of the above behavior
+    - heading "Our Responsibilities" [level=2]
+    - paragraph: Project leadership team members are responsible for clarifying the standards of acceptable behavior and are expected to take appropriate and fair corrective action in response to any instances of unacceptable behavior.
+    - paragraph: Project leadership team members have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, or to ban temporarily or permanently any contributor for other behaviors that they deem inappropriate, threatening, offensive, or harmful.
+    - heading "Scope" [level=2]
+    - paragraph: This Code of Conduct applies within all project spaces of all sub-projects, and it also applies when an individual is representing the project or its community in public spaces. Examples of representing a project or community include using an official project e-mail address, posting via an official social media account, or acting as an appointed representative at an online or offline event. Representation of a project may be further defined and clarified by the project leadership.
+    - heading "What to do if you witness or are subject to unacceptable behavior" [level=2]
+    - paragraph:
+      - text: Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to Conduct Team members at
+      - link "conduct@xenproject.org":
+        - /url: mailto:conduct%40xenproject.org
+      - text: . All complaints will be reviewed and investigated and will result in a response that is deemed necessary and appropriate to the circumstances. Conduct Team members are obligated to maintain confidentiality with regard to the reporter of an incident. Further details of specific enforcement policies may be posted separately.
+    - paragraph: If you have concerns about any of the members of the conduct@ alias, you are welcome to contact precisely the Conduct Team member(s) of your choice.
+    - paragraph: Project leadership team members who do not follow or enforce the Code of Conduct in good faith may face temporary or permanent repercussions as determined by other members of the project’s leadership.
+    - heading "Conduct Team members" [level=2]
+    - paragraph: "Conduct Team members are project leadership team members from any sub-project. The current list of Conduct Team members is:"
+    - list:
+      - listitem: Roger Pau Monne <roger dot pau at cloud dot com>
+      - listitem: Stefano Stabellini <sstabellini at kernel dot org>
+    - paragraph:
+      - text: Conduct Team members are changed by proposing a change to this document, posted on all sub-project lists, followed by a formal global vote as outlined
+      - link "here":
+        - /url: https://xenproject.org/developers/governance/#project-decisions
+      - text: .
+    - heading "Attribution" [level=2]
+    - paragraph:
+      - text: This Code of Conduct is adapted from the Contributor Covenant, version 2.1, available at
+      - link "https://www.contributor-covenant.org/version/2/1/code_of_conduct.html":
+        - /url: https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
+      - text: .
+    - paragraph:
+      - text: For answers to common questions about this code of conduct, see
+      - link "https://www.contributor-covenant.org/faq":
+        - /url: https://www.contributor-covenant.org/faq
+      - text: .

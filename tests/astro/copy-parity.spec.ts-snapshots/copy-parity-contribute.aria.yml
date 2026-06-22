@@ -1,0 +1,24 @@
+- main:
+  - article:
+    - heading "Contribute" [level=1]
+    - paragraph: Choose a contribution path, review the community guidelines, or explore the Xen Project continuous integration infrastructure.
+    - heading "Get started" [level=2]
+    - text: Explore Get started.
+    - link "Explore ":
+      - /url: /contribute/get-started
+    - heading "Contribution guidelines" [level=2]
+    - text: Explore Contribution guidelines.
+    - link "Explore ":
+      - /url: /contribute/contribution-guidelines
+    - heading "Continuous Integration" [level=2]
+    - text: Explore Continuous Integration.
+    - link "Explore ":
+      - /url: /contribute/ci
+    - heading "CI status dashboard" [level=2]
+    - text: Explore CI status dashboard.
+    - link "Explore ":
+      - /url: /contribute/ci/status
+    - heading "Xen Project Code of Conduct" [level=2]
+    - text: Explore Xen Project Code of Conduct.
+    - link "Explore ":
+      - /url: /contribute/code-of-conduct

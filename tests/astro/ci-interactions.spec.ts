@@ -7,6 +7,21 @@ import {
 } from './fixtures/gitlab-pipelines';
 
 test.describe('CI interaction and state coverage', () => {
+  test('keeps accent panels aligned to the standard content width', async ({page}) => {
+    await mockGitlabGraphQl(page);
+    await page.goto('/contribute/ci/');
+
+    const contentBox = await page.locator('article > section.content-markdown > .container').first().boundingBox();
+    expect(contentBox).not.toBeNull();
+
+    for (const panel of await page.locator('article > section.ci-contained-panel').all()) {
+      const panelBox = await panel.boundingBox();
+      expect(panelBox).not.toBeNull();
+      expect(panelBox!.x).toBeCloseTo(contentBox!.x, 0);
+      expect(panelBox!.width).toBeCloseTo(contentBox!.width, 0);
+    }
+  });
+
   test('navigates hardware slides with buttons and accessible dots', async ({page}) => {
     await mockGitlabGraphQl(page);
     await page.goto('/contribute/ci/');

@@ -82,8 +82,8 @@ Project leadership team members who do not follow or enforce the Code of Conduct
 
 Conduct Team members are project leadership team members from any sub-project. The current list of Conduct Team members is:
 
-- Roger Pau Monne <roger dot pau at cloud dot com>
-- Stefano Stabellini <sstabellini at kernel dot org>
+- Roger Pau Monne &lt;roger dot pau at cloud dot com&gt;
+- Stefano Stabellini &lt;sstabellini at kernel dot org&gt;
 
 Conduct Team members are changed by proposing a change to this document, posted on all sub-project lists, followed by a formal global vote as outlined [here](https://xenproject.org/developers/governance/#project-decisions).
 

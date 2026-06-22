@@ -1,0 +1,58 @@
+- main:
+  - complementary:
+    - heading "Resources" [level=3]
+    - list:
+      - listitem:
+        - link "Download ":
+          - /url: /resources/downloads
+      - listitem:
+        - link "Documentation ":
+          - /url: https://wiki.xenproject.org/wiki/Category:Windows_PV_Drivers
+  - article:
+    - heading "Windows PV Drivers" [level=1]
+    - text: Windows PV Drivers enhance the performance and efficiency of Windows virtual machines. Access documentation and support for seamless integration.
+    - heading "About Windows PV Drivers" [level=2]
+    - paragraph: Paravirtualization aware (PV) device drivers are an important part of HVM guests running under the Xen Project Hypervisor.
+    - paragraph: Citrix has provided a set of PV driver for Windows since the inception of XenServer. These drivers have evolved over the years and the full source code has been made available under a BSD license and are available to the community to modify and build upon.
+    - paragraph: The Windows PV Drivers team at the Xen Project is maintaining and developing these drivers under Xen Project governance.
+    - iframe
+    - heading "Downloads" [level=2]
+    - paragraph: The team plans to perform regular builds of the drivers and aims to test them using the Microsoft HCK. The team further plans to provide logo-signed builds of the drivers in future commercial Xen offerings. The team may also provide logo-signed drivers via Microsoft’s Windows Update mechanism, making them widely available to anyone running Windows under Xen (not just XenServer) without the need to build the drivers themselves.
+    - paragraph:
+      - link:
+        - /url: /projects/windows-pv-drivers
+    - paragraph:
+      - link "Download development builds":
+        - /url: /projects/windows-pv-drivers
+    - link "":
+      - /url: /projects/windows-pv-drivers
+    - paragraph
+    - paragraph:
+      - text: Any other organization is also free to do the same by registering a top-level PV device with the Xen Project community (see
+      - emphasis: Xen PCI device ID registry
+      - text: ) and logo-signing their driver builds. Please sign up and follow the
+      - link "win-pv-devel@mailing list":
+        - /url: https://xenproject.org/help/mailing-list/
+      - text: for status and development updates.
+    - paragraph:
+      - link:
+        - /url: https://wiki.xenproject.org/wiki/Windows_PV_Drivers/Installing
+    - paragraph:
+      - link "Read installation driver wiki":
+        - /url: https://wiki.xenproject.org/wiki/Windows_PV_Drivers/Installing
+    - link "":
+      - /url: https://wiki.xenproject.org/wiki/Windows_PV_Drivers/Installing
+    - paragraph
+    - heading "License" [level=2]
+    - paragraph:
+      - text: The drivers are available under a
+      - link "simplified 2-clause BSD license":
+        - /url: https://en.wikipedia.org/wiki/BSD_licenses#2-clause_license_.28.22Simplified_BSD_License.22_or_.22FreeBSD_License.22.29
+      - text: . The code can be found in the following repositories on
+      - link "xenbits.xen.org":
+        - /url: https://xenbits.xen.org/gitweb/
+      - text: in the
+      - link "pvdrivers/win":
+        - /url: https://xenbits.xen.org/gitweb/?a=project_list;pf=pvdrivers/win
+      - text: folder.
+    - img "Illustration of hands typing code on a laptop with documents and a cup of coffee, symbolizing software development and workflow."

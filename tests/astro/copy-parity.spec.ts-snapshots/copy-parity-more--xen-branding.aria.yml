@@ -1,0 +1,36 @@
+- main:
+  - article:
+    - heading "Xen Project branding" [level=1]
+    - text: Access Xen Project's official branding and logo guidelines. Download logos, learn about proper usage, and maintain brand consistency across all platforms.
+    - heading "Download" [level=2]
+    - paragraph: You can download vector graphics, images, logos, and a Xen branded slide template.
+    - paragraph:
+      - link "Download branding ":
+        - /url: https://downloads.xenproject.org/Branding/
+    - paragraph:
+      - link "Slide Template ":
+        - /url: https://docs.google.com/presentation/d/1NwO7aFYpRCj9gfzUr_eGBc426tJYCFzmpPyCQBKc5GE/edit?usp=sharing
+    - img "Xen Project Logo"
+    - heading "Usage" [level=2]
+    - paragraph: Xen mascots, templates and other images available through this page and are made available under CC BY-NC 3.0. Feel free to use images on your blog, as wallpaper, for fun and the like, but you must link to xenproject.org.
+    - paragraph: "Creative Commons CC BY-NC 3.0 allows you to:"
+    - list:
+      - listitem: "Share: copy, distribute, and transmit the material"
+      - listitem: "Remix: create derivative works of the material"
+    - paragraph: "Under these conditions:"
+    - heading "Attribution" [level=3]
+    - paragraph: You can use the images and material without attribution when used in a context that refers to the Xen Project, Xen Project Hypervisor, Xen Project Community, XenProject Sub-Projects, or XenProject.org (e.g. in a blog post or article about the Xen Project, a Xen Project Hackathon, a Xen Project User Group meeting, etc.). Where the context is not clear, attribution must be made to XenProject.org, and images used on merchandise, such as a sticker, must contain the Xen Project logo.
+    - heading "Examples of clear context" [level=2]
+    - list:
+      - listitem: A training course entitled “How to use the Xen Project Hypervisor to build a cloud”
+      - listitem: A website “xen_project_hall_of_fame.com” with pictures of famous Xen Project contributors
+      - listitem: A monthly journal called “Xen Project User journals” describing how you use the Xen Project Hypervisor
+      - listitem: A blog post or article about the Xen Project Hypervisor
+      - listitem: As avatar for a social media account with a reference to Xen Project in the profile name or in the profile description
+      - listitem: Give-away of a Xen Fu Panda button, sticker, mug, etc. at a Xen Project user group meeting or Hackathon
+    - heading "Examples of unclear context" [level=2]
+    - list:
+      - listitem: A freely distributed Xen Project wallpaper or theme
+      - listitem: Give-away of a Xen Fu Panda button, sticker, mug, etc. at a kids event
+    - heading "Trademark policy" [level=2]
+    - paragraph: The usage of the Xen Project mark and logo are governed by the Linux Foundation trademark policy. The policy governs the use of the Xen Project mark and logo.

@@ -1,0 +1,47 @@
+- main:
+  - article:
+    - heading "Embedded & Automotive" [level=1]
+    - text: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automotive systems.
+    - heading "Embedded systems redefined" [level=2]
+    - paragraph: At the core of every modern embedded system is software meticulously crafted and seamlessly integrated with hardware, dedicated to fulfilling a specific, vital function. This is where our journey begins.
+    - paragraph: Since 2011, following the groundbreaking announcement of the Xen port to ARMv7 with Virtualization Extensions, our community has been relentlessly advancing Xen for embedded deployments.
+    - paragraph: Our focus extends beyond ARMv7 to encompass ARMv8, x86-64, and RISC-V, catering to both embedded and automotive applications. We’re not just part of the evolution; we’re leading it.
+    - img "ARM logo"
+    - img "AMD logo"
+    - heading "What does this mean?" [level=2]
+    - list:
+      - listitem: Xen revolutionizes embedded systems, enabling fully-featured operating systems like Linux to coexist with smaller and faster RTOSes such as Zephyr.
+      - listitem: Xen’s ability to allocate hardware resources with precision and support multiple communication paradigms between VMs has made it indispensable in diverse applications, from 5G antennas and industrial robots to medical devices and automobiles.
+      - listitem: A significant amount of work has been completed in this area since the team started in 2014. Most work has occurred in Linux, Xen, and OP-TEE.
+    - img "Illustration of a database icon with gears and a wrench, representing data management and configuration tools."
+    - list:
+      - listitem:
+        - heading " Real-Time and Cache Coloring" [level=2]
+        - paragraph: Xen excels in handling hard real-time workloads. Our innovative cache coloring technique ensures low and predictable interrupt latencies, with real-time benchmarks as impressive as less than 4 microseconds interrupt latencies on AMD/Xilinx Ultrascale+ under heavy interference.
+      - listitem:
+        - heading " Dom0less and parallel booting" [level=2]
+        - paragraph: Embrace the efficiency of parallel VM booting with Dom0less Xen. This feature drastically reduces boot times to under a second for an RTOS like Zephyr, bypassing the need for Dom0 (Linux) boot-up. Dom0less also opens the door to fully static configurations, positioning Dom0 as an optional component, not a necessity.
+      - listitem:
+        - heading " Cortex-R52 and R82 Support" [level=2]
+        - paragraph: An active collaboration between ARM and AMD/Xilinx is expanding Xen’s capabilities to microcontrollers and MMU-less embedded processors. This innovation soon to be upstreamed, marks a significant leap for virtualization in embedded systems.
+    - heading "Why Xen Project?" [level=2]
+    - paragraph: The Xen Project Hypervisor is uniquely placed to support a new range of use cases, building on top of 14 years of usage within the data center. In particular, its isolation and security features, flexible virtualization mode and architecture, driver disaggregation, and ARM support (only 47K lines of code) make it a perfect fit for embedded applications.
+    - iframe
+    - heading "Functional safety" [level=2]
+    - paragraph: With sponsorships from the likes of AMD, we’re on a mission to align Xen with top safety standards, including ISO 26262 ASIL D and IEC 61508 SIL 3.
+    - paragraph: Initiatives like the MISRA C course for community members and striving for MISRA C compliance in the Xen upstream codebase underscore our dedication to ensuring Xen’s role in safety-critical environments.
+    - paragraph: Xen is not just a technology; it’s a vision coming to life, shaping the future of embedded systems, and redefining what’s possible.
+    - img "Slide titled 'Xen Project's Progress Toward Safety Certification' by Stefano Stabellini and team members from AMD and BUGSENG."
+    - heading "Functional safety" [level=2]
+    - paragraph:
+      - text: Licenses Code will be upstreamed to projects under the license of the respective upstream project. For code that is hosted by the subproject, e.g. for a
+      - link "QNX base-ports":
+        - /url: https://wiki.xenproject.org/wiki/Embedded_and_Automotive/Archived/PV_Drivers/Project_Proposal#QNX_and_other_OSes
+      - text: ", an appropriate"
+      - link "OSI approved":
+        - /url: https://opensource.org/licenses
+      - text: license will be used. For PV drivers contributed to the Linux kernel or for Linux user space drivers hosted by the subproject a
+      - link "dual-use license":
+        - /url: https://wiki.xenproject.org/wiki/Embedded_and_Automotive/Archived/PV_Drivers/Project_Proposal#Linux
+      - text: will be used to enable easy sharing of driver code with FreeBSD and other open source operating systems.
+    - img "Illustration of a person typing code on a computer, symbolizing software development and programming."

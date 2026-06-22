@@ -1,0 +1,87 @@
+version: 1
+exceptions:
+  - id: all-pages-astro-inventory
+    route: /all/
+    kind: redesigned-index
+    scope: generated page inventory
+    reason: Astro lists canonical migrated routes and redirects instead of retired Hugo taxonomy and generated section pages.
+  - id: contribute-astro-index
+    route: /contribute/
+    kind: redesigned-index
+    scope: section index cards
+    reason: The Astro section index intentionally links to its child routes instead of embedding the full child-page bodies.
+  - id: ci-page-heading-structure
+    route: /contribute/ci/
+    kind: accessible-rendering
+    scope: page title and GitLab CI introduction heading
+    reason: Astro retains one page-level heading and presents the restored GitLab CI introduction as the following section heading.
+  - id: more-astro-index
+    route: /more/
+    kind: redesigned-index
+    scope: section index cards
+    reason: The Astro section index intentionally links to maintained More routes instead of embedding the branding page.
+  - id: resources-astro-index
+    route: /resources/
+    kind: redesigned-index
+    scope: section index cards
+    reason: The Astro section index intentionally links to resource routes instead of embedding downloads, events, mailing lists, and use cases.
+  - id: projects-astro-index
+    route: /projects/all-projects/
+    kind: redesigned-index
+    scope: project card grid
+    reason: Astro keeps the project-card design while preserving each project's title, description, route, and calls to action.
+  - id: research-paper-actions
+    route: /research/barham2003xen/
+    kind: accessible-rendering
+    scope: paper action and metadata
+    reason: Astro renders the paper destination as a native accessible link instead of the legacy client-mounted button placeholder.
+  - id: research-index-data-table
+    route: /research/
+    kind: deterministic-data
+    scope: research paper search, metadata, and native paper actions
+    reason: Astro renders the checked-in research data as an accessible searchable table with native links instead of legacy client-mounted controls.
+  - id: research-paper-actions-fastxenblk
+    route: /research/thenot2023fastxenblk/
+    kind: accessible-rendering
+    scope: paper action and metadata
+    reason: Astro renders the paper destination as a native accessible link instead of the legacy client-mounted button placeholder.
+  - id: research-paper-actions-tableau
+    route: /research/vanga2018tableau/
+    kind: accessible-rendering
+    scope: paper action and metadata
+    reason: Astro renders the paper destination as a native accessible link instead of the legacy client-mounted button placeholder.
+  - id: openpgp-literal-identities
+    route: /projects/hypervisor/openpgp-keys/
+    kind: accessible-rendering
+    scope: OpenPGP identity lines
+    reason: Astro preserves angle-bracketed identities as literal code where Hugo's unsafe-HTML handling drops them.
+  - id: downloads-component-structure
+    route: /resources/downloads/
+    kind: deterministic-data
+    scope: download groups and links
+    reason: Both pages use the same checked-in download data, while Astro exposes the groups through its accessible download-list component.
+  - id: matrix-heading-hierarchy
+    route: /resources/matrix/
+    kind: accessible-rendering
+    scope: room-card headings
+    reason: Astro uses the reviewed heading hierarchy for Matrix room cards while preserving room names, descriptions, and destinations.
+  - id: past-events-index-design
+    route: /resources/past-events/
+    kind: redesigned-index
+    scope: event archive cards
+    reason: Astro uses the event collection and archive-card design rather than the Hugo section listing.
+  - id: spring-meetup-post-event-update
+    route: /resources/past-events/spring-meetup-2026/
+    kind: event-update
+    scope: registration, schedule, travel, accommodation, and status sections
+    reason: The Astro event page intentionally reflects post-event information updated after the Hugo migration baseline.
+  - id: summit-2025-post-event-update
+    route: /resources/past-events/xen-summit-2025/
+    kind: event-update
+    scope: venue, recordings, sponsors, and event-status sections
+    reason: The Astro event page intentionally reflects post-event information and maintained links added after migration.
+  - id: summit-2026-current-event-info
+    route: /resources/summit-2026/
+    kind: event-update
+    scope: call for proposals, sponsorship, travel, and current status sections
+    reason: The Astro page contains current event information intentionally updated after the Hugo migration baseline.

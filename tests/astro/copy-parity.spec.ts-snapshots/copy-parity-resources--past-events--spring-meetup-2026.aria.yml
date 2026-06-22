@@ -1,0 +1,109 @@
+- main:
+  - article:
+    - heading "Xen Spring Meetup 2026" [level=1]
+    - text: The Xen Project Spring Meetup is a two-day, in-person community event in Grenoble, France.
+    - img "Xen Spring Meetup 2026"
+    - heading "Registration is open" [level=3]
+    - paragraph:
+      - text: Join us in Grenoble on
+      - strong: April 2–3, 2026
+      - text: for two days of Xen collaboration, research exchange, and community connection.
+    - paragraph:
+      - strong: "Tickets:"
+      - text: $80 USD in-person · $20 USD virtual · $20 USD student. Seats are limited.
+    - link "Register now":
+      - /url: https://linuxfoundation.regfox.com/xen-spring-meetup-2026
+    - link "View schedule":
+      - /url: https://xenspringmeetup2026.sched.com
+    - heading "Xen Spring Meetup 2026" [level=2]
+    - paragraph: A two-day, in-person gathering for Xen developers, users, researchers, and ecosystem partners in Grenoble, France.
+    - paragraph:
+      - text: "Jump to:"
+      - link "Schedule":
+        - /url: /#schedule
+      - text: ·
+      - link "Event details":
+        - /url: /#event-details
+      - text: ·
+      - link "Accommodation":
+        - /url: /#accommodation
+      - text: ·
+      - link "Sponsors":
+        - /url: /#sponsors
+    - heading "Schedule" [level=2]
+    - paragraph: The full schedule is available on Sched. Browse talks, speakers, and build your personal agenda before the meetup.
+    - link "View the full schedule":
+      - /url: https://xenspringmeetup2026.sched.com
+    - heading "Event details" [level=2]
+    - heading "Key info" [level=3]
+    - list:
+      - listitem:
+        - strong: "Dates:"
+        - text: April 2–3, 2026
+      - listitem:
+        - strong: "City:"
+        - text: Grenoble, France
+      - listitem:
+        - strong: "Venue:"
+        - text: Université Grenoble Alpes
+      - listitem:
+        - strong: "Audience:"
+        - text: Developers, users, researchers, ecosystem partners
+    - heading "Venue" [level=3]
+    - paragraph:
+      - text: Hosted in the IMAG building at
+      - strong: Université Grenoble Alpes
+      - text: ", home to computer science and systems research including LIG."
+    - paragraph: 150 Pl. du Torrent 38400 Saint-Martin-d’Hères France
+    - link "View on Google Maps":
+      - /url: https://maps.app.goo.gl/1ZnR8GwXrapRrcud8
+    - heading "Registration" [level=3]
+    - paragraph: Registration is open with in-person, virtual, and student ticket options.
+    - link "Register now":
+      - /url: https://linuxfoundation.regfox.com/xen-spring-meetup-2026
+    - heading "Travel" [level=3]
+    - paragraph: Grenoble is well connected by train via Lyon and reachable from major European cities.
+    - heading "Official hotel" [level=4]
+    - paragraph: A discounted room block is available at Hôtel d’Angleterre Grenoble.
+    - heading "Accommodation" [level=2]
+    - paragraph:
+      - text: A discounted room block is available at
+      - strong: Hôtel d’Angleterre Grenoble
+      - text: in the city center.
+    - paragraph:
+      - strong: "Booking code:"
+      - code: VATES
+      - strong: "Room block:"
+      - text: April 1–4, 2026
+      - strong: "Book by:"
+      - text: March 1, 2026
+    - list:
+      - listitem: 99 EUR standard single
+      - listitem: 109 EUR standard double
+      - listitem: 129 EUR superior single
+      - listitem: 139 EUR superior double
+    - paragraph:
+      - text: Breakfast is included.
+      - link "Hotel website":
+        - /url: https://www.hotel-angleterre-grenoble.com
+    - heading "Why Grenoble?" [level=2]
+    - paragraph: Grenoble has a long tradition of excellence in research, open collaboration, and systems engineering. Hosting the meetup at Université Grenoble Alpes strengthens ties between industry, academia, and the open-source community.
+    - heading "Thank You to Our Sponsors" [level=2]
+    - paragraph: Special thanks to local co-organizers Fabienne Boyer and Alain Tchana from KrakOS (Inria / LIG / CNRS).
+    - link "Université Grenoble Alpes logo":
+      - /url: https://www.univ-grenoble-alpes.fr/
+      - img "Université Grenoble Alpes logo"
+    - link "Laboratoire d'Informatique de Grenoble logo":
+      - /url: https://www.liglab.fr/
+      - img "Laboratoire d'Informatique de Grenoble logo"
+    - link "Vates logo":
+      - /url: https://vates.tech
+      - img "Vates logo"
+    - link "Renesas logo":
+      - /url: https://www.renesas.com/
+      - img "Renesas logo"
+    - link "Honda logo":
+      - /url: https://www.honda.com/
+      - img "Honda logo"
+    - heading "Stay Informed" [level=2]
+    - paragraph: This page will be updated with schedule, speaker, travel, venue, and sponsor information.

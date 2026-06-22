@@ -1,0 +1,20 @@
+- main:
+  - complementary:
+    - heading "Resources" [level=3]
+    - list:
+      - listitem:
+        - link "Academic Research ":
+          - /url: /research
+  - article:
+    - heading "Xen and the Art of Virtualization" [level=1]
+    - paragraph:
+      - strong: "Abstract:"
+      - text: This foundational paper introduces Xen, detailing its architecture and performance benefits compared to other virtualization techniques.
+    - strong: "Authors:"
+    - text: Paul Barham, Boris Dragovic, Keir Fraser, Steven Hand, Tim Harris, Alex Ho, Rolf Neugebauer, Ian Pratt, Andrew Warfield
+    - strong: "Year:"
+    - text: "2003"
+    - strong: "Tags:"
+    - text: xen virtualization architecture
+    - link "Read the Full Paper":
+      - /url: https://dl.acm.org/doi/10.1145/945445.945462

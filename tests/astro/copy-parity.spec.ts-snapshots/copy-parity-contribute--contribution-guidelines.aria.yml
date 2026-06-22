@@ -1,0 +1,81 @@
+- main:
+  - article:
+    - heading "Contribution guidelines" [level=1]
+    - text: Please adhere to the following guidelines as you participate in the Xen Project community.
+    - heading "Introduction" [level=3]
+    - paragraph: We want to see people contributing to the Xen Project effort, and there are many ways to do so.
+    - paragraph:
+      - text: Our goal is to maintain an environment of professionalism, respect, and innovation within Xen Project development. Please adhere to our
+      - link "Code of Conduct":
+        - /url: /contribute/code-of-conduct
+      - text: in the Xen Project community.
+    - heading "Contributing code" [level=3]
+    - paragraph:
+      - text: Contributions to the Xen Project are made through patches that are reviewed by the community. We do require contributors to sign contributions using the sign-off feature of the code repository, following the same approach as the Linux Kernel does (see
+      - link "Developer Certificate Of Origin":
+        - /url: http://elinux.org/Developer_Certificate_Of_Origin
+      - text: ).
+    - paragraph: Before submitting a patch please read the CONTRIBUTING, COPYING and CODING_STYLE files (found mostly in our git repositories).
+    - list:
+      - listitem:
+        - paragraph:
+          - text: Each Xen Project subproject may have its own submission guidelines. Please check the
+          - link "team page":
+            - /url: https://xenproject.org/developers/teams/
+          - text: to learn more.
+      - listitem:
+        - paragraph:
+          - text: Read our
+          - link "Guide to submitting patches":
+            - /url: https://wiki.xenproject.org/wiki/Submitting_Xen_Project_Patches
+          - text: via e-mail workflow
+      - listitem:
+        - paragraph:
+          - text: Note that
+          - link "XAPI":
+            - /url: /projects/xapi
+          - text: ","
+          - link "Mirage OS":
+            - /url: /projects/mirage-os
+          - text: and
+          - link "XCP-ng":
+            - /url: /projects/xcp-ng
+          - text: follow a
+          - link "standard Github workflow":
+            - /url: https://gist.github.com/Chaser324/ce0505fbed06b947d962
+          - text: ).
+      - listitem:
+        - paragraph:
+          - text: Read our
+          - link "Guide to asking developer questions":
+            - /url: https://wiki.xenproject.org/wiki/Asking_Developer_Questions
+    - paragraph:
+      - text: You can also ask questions on the
+      - link "xen-devel@lists.xenproject.org":
+        - /url: mailto:xen-devel@lists.xenproject.org
+      - text: mailing list or our
+      - link "Matrix channels":
+        - /url: /resources/matrix
+      - text: .
+    - heading "Submitting patches to the Xen Project codebase" [level=3]
+    - paragraph: Please first check the submission process for the Xen Sub-Project, and send an email to the proper mailing list with [PATCH] as the first word in the subject line. Each patch should perform a single function. Patches sent to the mailing lists should be broken up into several email messages of less than 100KB each, with only one patch per email.
+    - paragraph:
+      - text: Please include a description of why you want the change made (not just the “what”) and why it is important for the team to make this change. Your patch will need to include a
+      - link "signed-off-by tag":
+        - /url: http://wiki.xenproject.org/wiki/SubmittingXenPatches#Signing_off_a_patch
+      - text: ", author’s name, and other information."
+    - paragraph:
+      - text: For details about what to include in your patch, you should start with the
+      - link "patch submission documentation":
+        - /url: https://wiki.xenproject.org/wiki/Submitting_Xen_Project_Patches
+      - text: ).
+    - heading "Escalation" [level=3]
+    - paragraph: "If you submitted a patch to the xen-devel mailing list and did not receive a response within 5 business days, please send an email to xen-devel and in the first line of that email, include this phrase “Patch escalation: no response for x days”."
+    - paragraph: This is one case where you should “top post” to make sure that the escalation text is read.
+    - heading "Code security scanning" [level=3]
+    - paragraph:
+      - text: The Xen Project is registered with the
+      - link "“Coverity Scan” service":
+        - /url: https://scan.coverity.com/faq
+      - text: which applies Coverity’s static analyser to the Open Source projects. The tool can and does find flaws in the source code which can include security issues. Currently only the Xen Project Hypervisor (i.e. xen.git) is covered by these scans. Triaging and proposing solutions for the flaws found by Coverity is a useful way in which Community members can contribute to the Xen Project.
+    - paragraph: Members of the community may request access to the Coverity database. However, Coverity requires that you create an account and apply for Xen Project membership by searching for the Xen Project and then requesting to be added to the project. We typically will approve requests within a few days, but reserve rejecting requests from accounts who never engaged with the project (aka never posted to a mailing list) or which look like spam accounts.

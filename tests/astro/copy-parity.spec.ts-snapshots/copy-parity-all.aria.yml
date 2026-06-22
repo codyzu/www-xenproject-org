@@ -1,0 +1,187 @@
+- main:
+  - heading "All pages" [level=1]
+  - list:
+    - listitem:
+      - link "Xen Project":
+        - /url: /
+      - text: (Page)
+    - listitem:
+      - link "About":
+        - /url: /about
+      - text: (Page)
+    - listitem:
+      - link "Become A Member":
+        - /url: /about/become-a-member
+      - text: (Page)
+    - listitem:
+      - link "Contact Us":
+        - /url: /about/contact-us
+      - text: (Page)
+    - listitem:
+      - link "Governance":
+        - /url: /about/governance
+      - text: (Page)
+    - listitem:
+      - link "Project Members":
+        - /url: /about/project-members
+      - text: (Page)
+    - listitem:
+      - link "Security Policy":
+        - /url: /about/security-policy
+      - text: (Page)
+    - listitem:
+      - link "All":
+        - /url: /all
+      - text: (Page)
+    - listitem:
+      - link "Contribute":
+        - /url: /contribute
+      - text: (Page)
+    - listitem:
+      - link "Ci":
+        - /url: /contribute/ci
+      - text: (Page)
+    - listitem:
+      - link "Status":
+        - /url: /contribute/ci/status
+      - text: (Page)
+    - listitem:
+      - link "Code Of Conduct":
+        - /url: /contribute/code-of-conduct
+      - text: (Page)
+    - listitem:
+      - link "Contribution Guidelines":
+        - /url: /contribute/contribution-guidelines
+      - text: (Page)
+    - listitem:
+      - link "Get Started":
+        - /url: /contribute/get-started
+      - text: (Page)
+    - listitem:
+      - link "More":
+        - /url: /more
+      - text: (Page)
+    - listitem:
+      - link "Xen Branding":
+        - /url: /more/xen-branding
+      - text: (Page)
+    - listitem:
+      - link "Xen Server Branding → /more/xen-branding/":
+        - /url: /more/xen-server-branding
+      - text: (Redirect)
+    - listitem:
+      - link "Projects → /projects/all-projects":
+        - /url: /projects
+      - text: (Redirect)
+    - listitem:
+      - link "All Projects":
+        - /url: /projects/all-projects
+      - text: (Page)
+    - listitem:
+      - link "Embedded And Automotive":
+        - /url: /projects/embedded-and-automotive
+      - text: (Page)
+    - listitem:
+      - link "Hvmi":
+        - /url: /projects/hvmi
+      - text: (Page)
+    - listitem:
+      - link "Hypervisor":
+        - /url: /projects/hypervisor
+      - text: (Page)
+    - listitem:
+      - link "Openpgp Keys":
+        - /url: /projects/hypervisor/openpgp-keys
+      - text: (Page)
+    - listitem:
+      - link "Mirage Os":
+        - /url: /projects/mirage-os
+      - text: (Page)
+    - listitem:
+      - link "Unikraft":
+        - /url: /projects/unikraft
+      - text: (Page)
+    - listitem:
+      - link "Windows Pv Drivers":
+        - /url: /projects/windows-pv-drivers
+      - text: (Page)
+    - listitem:
+      - link "Xapi":
+        - /url: /projects/xapi
+      - text: (Page)
+    - listitem:
+      - link "Xcp Ng":
+        - /url: /projects/xcp-ng
+      - text: (Page)
+    - listitem:
+      - link "Research":
+        - /url: /research
+      - text: (Page)
+    - listitem:
+      - link "Barham2003xen":
+        - /url: /research/barham2003xen
+      - text: (Page)
+    - listitem:
+      - link "Thenot2023fastxenblk":
+        - /url: /research/thenot2023fastxenblk
+      - text: (Page)
+    - listitem:
+      - link "Vanga2018tableau":
+        - /url: /research/vanga2018tableau
+      - text: (Page)
+    - listitem:
+      - link "Resources":
+        - /url: /resources
+      - text: (Page)
+    - listitem:
+      - link "Downloads":
+        - /url: /resources/downloads
+      - text: (Page)
+    - listitem:
+      - link "Mailing Lists":
+        - /url: /resources/mailing-lists
+      - text: (Page)
+    - listitem:
+      - link "Matrix":
+        - /url: /resources/matrix
+      - text: (Page)
+    - listitem:
+      - link "Past Events":
+        - /url: /resources/past-events
+      - text: (Page)
+    - listitem:
+      - link "Spring Meetup 2026":
+        - /url: /resources/past-events/spring-meetup-2026
+      - text: (Page)
+    - listitem:
+      - link "Xen Summit 2025":
+        - /url: /resources/past-events/xen-summit-2025
+      - text: (Page)
+    - listitem:
+      - link "Spring Meetup 2026 → /resources/past-events/spring-meetup-2026/":
+        - /url: /resources/spring-meetup-2026
+      - text: (Redirect)
+    - listitem:
+      - link "Spring Meetup → /resources/past-events/spring-meetup-2026/":
+        - /url: /resources/spring-meetup
+      - text: (Redirect)
+    - listitem:
+      - link "Summit 2026":
+        - /url: /resources/summit-2026
+      - text: (Page)
+    - listitem:
+      - link "Use Cases":
+        - /url: /resources/use-cases
+      - text: (Page)
+    - listitem:
+      - link "Xen Summit 2025 → /resources/past-events/xen-summit-2025/":
+        - /url: /resources/xen-summit-2025
+      - text: (Redirect)
+    - listitem:
+      - link "Xen Summit 2026 → /resources/summit-2026/":
+        - /url: /resources/xen-summit-2026
+      - text: (Redirect)
+    - listitem:
+      - link "Spring26 → https://docs.google.com/document/d/1ddsfCTaDHvBOCtFLMTgoGEzaQSdJdogfIGooHWFnLJQ/edit?usp=sharing":
+        - /url: /spring26
+      - text: (Redirect)
