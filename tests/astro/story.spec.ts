@@ -151,6 +151,18 @@ test.describe('homepage Story regression guardrails', () => {
     expect(box!.height).toBeLessThan(page.viewportSize()!.height * 0.6);
   });
 
+  test('moves continuously between scene visibility updates', async ({page}) => {
+    await prepareStory(page);
+    const movingLayer = page.locator('[data-story-layer]').first();
+
+    await scrollStoryTo(page, 2.51);
+    const firstTransform = await movingLayer.evaluate(element => element.style.transform);
+    await scrollStoryTo(page, 2.54);
+    const secondTransform = await movingLayer.evaluate(element => element.style.transform);
+
+    expect(secondTransform).not.toBe(firstTransform);
+  });
+
   for (const [name, storyPage] of scenes) {
     test(`matches the approved ${name} scene`, async ({page}) => {
       await prepareStory(page);
