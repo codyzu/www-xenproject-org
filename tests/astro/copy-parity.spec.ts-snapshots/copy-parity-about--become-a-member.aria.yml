@@ -11,29 +11,29 @@
         - /url: https://enrollment.lfx.linuxfoundation.org/?project=xen
     - img "Illustration of three people having a discussion with speech bubbles, symbolizing teamwork and communication."
     - heading "Main responsibilities" [level=2]
-    - heading "Financial oversight" [level=2]
-    - text: Budget management and investment decisions on infrastructure and project operations.
-    - heading "Annual pricing" [level=2]
-    - paragraph:
-      - strong: "Premier Member:"
-      - text: $40,000
-    - paragraph:
-      - strong: "Advisory Board Governing Member:"
-      - text: $30,000
-    - paragraph:
-      - strong: "Startup Member*:"
-      - text: $10,000
-    - paragraph:
-      - strong: "Associate Member**:"
-      - text: Free
-    - paragraph:
-      - emphasis: "* Startup members must have less than 100 employees and require approval from Governing Board Members."
-    - paragraph:
-      - emphasis: "** Associate Members are free and available to pre-approved Associate Members of The Linux Foundation e.g. Government or Academic institutions"
-    - heading "Steer the project" [level=2]
-    - text: To advance its market and technical success by raising awareness.
-    - heading "Global policy decisions" [level=2]
-    - text: Trademarks, compliance requirements, test cases, and infrastructure.
+    - list:
+      - listitem:
+        - heading " Financial oversight" [level=2]
+        - paragraph: Budget management and investment decisions on infrastructure and project operations.
+      - listitem:
+        - heading " Annual pricing" [level=2]
+        - paragraph:
+          - strong: "Premier Member:"
+          - text: $40,000
+          - strong: "Advisory Board Governing Member:"
+          - text: $30,000
+          - strong: "Startup Member*:"
+          - text: $10,000
+          - strong: "Associate Member**:"
+          - text: Free
+          - emphasis: "* Startup members must have less than 100 employees and require approval from Governing Board Members."
+          - emphasis: "** Associate Members are free and available to pre-approved Associate Members of The Linux Foundation e.g. Government or Academic institutions"
+      - listitem:
+        - heading " Steer the project" [level=2]
+        - paragraph: To advance its market and technical success by raising awareness.
+      - listitem:
+        - heading " Global policy decisions" [level=2]
+        - paragraph: Trademarks, compliance requirements, test cases, and infrastructure.
     - heading "Improve engineering ROI" [level=2]
     - paragraph: The Xen Project is in the process of creating a new common test infrastructure. New test cases for specific hardware and software combinations will lead to higher quality project releases. In addition, a planned focus on a security and hardening framework will enhance the release readiness of the Xen Project.
     - paragraph: The Advisory Board helps define test cases and prioritize release requirements, in cooperation with project maintainers, ultimately increasing engineering ROI from the impact of these decisions.
