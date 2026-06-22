@@ -85,7 +85,7 @@ Conduct Team members are project leadership team members from any sub-project. T
 - Roger Pau Monne &lt;roger dot pau at cloud dot com&gt;
 - Stefano Stabellini &lt;sstabellini at kernel dot org&gt;
 
-Conduct Team members are changed by proposing a change to this document, posted on all sub-project lists, followed by a formal global vote as outlined [here](https://xenproject.org/developers/governance/#project-decisions).
+Conduct Team members are changed by proposing a change to this document, posted on all sub-project lists, followed by a formal global vote as outlined [here](/about/governance/#project-decisions).
 
 ## Attribution
 

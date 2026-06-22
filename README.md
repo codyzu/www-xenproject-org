@@ -71,8 +71,9 @@ removed with the Hugo source during Phase 8.
 ### CI Runtime
 
 GitLab CI uses `node:24.16.0-bookworm` so Node matches the local runtime contract.
-Beta artifacts use the Astro production build. Production remains on the
-explicit legacy build until the beta acceptance gate passes.
+Beta and production artifacts use the Astro build. The production `publish`
+job runs only on the default branch and builds canonical, social, redirect, and
+RSS URLs for `https://xenproject.org`.
 
 To regenerate the Hugo/Vite Story reference screenshots without overwriting
 the active Astro snapshots, run the dev server first:

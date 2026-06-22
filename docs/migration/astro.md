@@ -450,7 +450,7 @@ Tasks:
 - Stop the default and beta CI paths from writing Vite output into
   `themes/xen-project/static`. **Done.**
 - Configure beta and production origins through `SITE_URL`. **Done.**
-- Cut production publishing over after the beta acceptance gate. **Pending.**
+- Cut production publishing over after the beta acceptance gate. **Done.**
 - Keep `scripts/downloads/getLinks.js` and
   `scripts/research/parse-research-papers.js`. **Done.**
 
@@ -496,6 +496,16 @@ staging command retains an unmocked integration check.
   card metadata, keyboard-accessible carousel controls, and responsive layout.
 - Remove the temporary imperative DOM card construction and consolidate the
   project and news carousel behavior once the React island owns Latest News.
+- Make download updates deterministic. Historically, maintainers committed
+  generated download JSON through reviewed merge requests, while the Hugo
+  production publish job also refreshed that data in its temporary checkout.
+  The current Astro `test` and `deploy` jobs still refresh downloads live, but
+  copy-parity tests use the committed JSON. Replace that split with a scheduled
+  or manually triggered update job that commits regenerated JSON and its
+  reviewed snapshots through a merge request; then make tests and deployments
+  consume only the committed data. See
+  [`copy-parity.md`](./copy-parity.md#deferred-follow-up-deterministic-download-updates)
+  for the proposed workflow.
 
 ## Main Risks
 
@@ -596,8 +606,8 @@ Phase 7 beta-cutover verification on 2026-06-20:
 
 Current result:
 
-- Astro is the default local build and owns the beta deployment artifact.
-  Production remains on `build:legacy` until beta acceptance is confirmed.
+- Astro is the default local build and owns both the beta deployment artifact
+  and the default-branch production publish artifact.
 - The 39 Astro routes include `/`, `/about/`,
   `/about/become-a-member/`, `/about/contact-us/`,
   `/contribute/code-of-conduct/`, `/contribute/contribution-guidelines/`,

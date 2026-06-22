@@ -21,7 +21,7 @@
         - paragraph:
           - text: Each Xen Project subproject may have its own submission guidelines. Please check the
           - link "team page":
-            - /url: https://xenproject.org/developers/teams/
+            - /url: /projects/all-projects/
           - text: to learn more.
       - listitem:
         - paragraph:

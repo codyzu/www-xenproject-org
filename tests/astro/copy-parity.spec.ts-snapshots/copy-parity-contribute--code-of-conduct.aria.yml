@@ -59,7 +59,7 @@
     - paragraph:
       - text: Conduct Team members are changed by proposing a change to this document, posted on all sub-project lists, followed by a formal global vote as outlined
       - link "here":
-        - /url: https://xenproject.org/developers/governance/#project-decisions
+        - /url: /about/governance#project-decisions
       - text: .
     - heading "Attribution" [level=2]
     - paragraph:

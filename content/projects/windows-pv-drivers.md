@@ -62,7 +62,7 @@ The Windows PV Drivers team at the Xen Project is maintaining and developing the
 {{<col>}}
   {{<md>}}
   Any other organization is also free to do the same by registering a top-level PV device with the Xen Project community (see *Xen PCI device ID registry*) and logo-signing their driver builds.
-  Please sign up and follow the [win-pv-devel@mailing list](https://xenproject.org/help/mailing-list/) for status and development updates.
+  Please sign up and follow the [win-pv-devel@mailing list](/resources/mailing-lists/) for status and development updates.
   {{</md>}}
 
     <p class="mg-t-md">
@@ -88,4 +88,3 @@ The drivers are available under a [simplified 2-clause BSD license](https://en.w
 {{</md>}}
 {{</media-block>}}
 {{</section>}}
-

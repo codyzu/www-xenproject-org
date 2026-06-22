@@ -18,7 +18,7 @@ variables:
   GIT_SUBMODULE_STRATEGY: recursive
   HUGO_ENV: production
   SITE_URL: https://beta.xenproject.org
-  # Use shallow clones by default; only the legacy publish job needs history.
+  # Shallow clones are sufficient for the Astro build and validation jobs.
   GIT_DEPTH: 1
   GIT_SUBMODULE_DEPTH: 1
 
@@ -87,20 +87,19 @@ copy-parity:
       paths:
         - .npm/
 
-# Artifact will be published to https://xenproject.org/. Keep this job on the
-# explicit legacy path until the Astro beta acceptance gate has passed.
+# The production host downloads this artifact after a merge to the default
+# branch. Build it with the production origin so canonical, social, redirect,
+# and RSS URLs point to https://xenproject.org/.
 publish:
   variables:
-    # Full git history required so Hugo can compute per-page lastmod correctly
-    GIT_DEPTH: 0
-    GIT_SUBMODULE_DEPTH: 0
+    SITE_URL: https://xenproject.org
   script:
     - node --version
     - npm ci --cache .npm --prefer-offline
-    - npm exec hugo -- version
     - npm run lint
     - npm run downloads
-    - npm run build:legacy -- -- --baseURL "https://xenproject.org/"
+    - npm run build
+    - node scripts/astro/check-public-artifact.js public --standalone
     - tar caf site.tar.gz public
   artifacts:
     paths:

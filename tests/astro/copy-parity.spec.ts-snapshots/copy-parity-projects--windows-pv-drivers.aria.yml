@@ -26,7 +26,7 @@
       - emphasis: Xen PCI device ID registry
       - text: ) and logo-signing their driver builds. Please sign up and follow the
       - link "win-pv-devel@mailing list":
-        - /url: https://xenproject.org/help/mailing-list/
+        - /url: /resources/mailing-lists/
       - text: for status and development updates.
     - paragraph:
       - link "Read installation driver wiki ":
