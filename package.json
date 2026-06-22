@@ -96,7 +96,6 @@
     "@react-hook/resize-observer": "^2.0.2",
     "@storybook/preset-scss": "^1.0.3",
     "@vitejs/plugin-react": "^4.6.0",
-    "axios": "^1.7.7",
     "cheerio": "^1.0.0",
     "dotenv": "^16.4.7",
     "embla-carousel-react": "^8.6.0",

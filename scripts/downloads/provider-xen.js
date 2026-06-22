@@ -1,5 +1,5 @@
 import Provider from "./Provider.class.js";
-import axios from "axios";
+import { fetchText } from "./fetch.js";
 import * as cheerio from "cheerio";
 
 class XenProvider extends Provider {
@@ -9,7 +9,7 @@ class XenProvider extends Provider {
   }
 
   async getVersions() {
-    const { data } = await axios.get(this.baseURL);
+    const data = await fetchText(this.baseURL);
     const $ = cheerio.load(data);
 
     return $("a")
@@ -24,7 +24,7 @@ class XenProvider extends Provider {
   async getFilesAndFolders(version) {
     const url = `${this.baseURL}${version}`;
     console.log("Xen : retrieve files and folders for version", version);
-    const { data } = await axios.get(url);
+    const data = await fetchText(url);
     const $ = cheerio.load(data);
 
     const items = [];

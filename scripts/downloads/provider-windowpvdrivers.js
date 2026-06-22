@@ -1,5 +1,5 @@
 import Provider from "./Provider.class.js";
-import axios from "axios";
+import { fetchText } from "./fetch.js";
 
 class WindowsPVDrivers extends Provider {
   constructor() {
@@ -11,9 +11,9 @@ class WindowsPVDrivers extends Provider {
   }
 
   async getFilesAndFolders() {
-    const response = await axios.get(this.baseURL);
+    const data = await fetchText(this.baseURL);
     const cheerio = await import("cheerio");
-    const $ = cheerio.load(response.data);
+    const $ = cheerio.load(data);
 
     const items = [];
     $("a").each((_, element) => {

@@ -1,5 +1,5 @@
 import Provider from "./Provider.class.js";
-import axios from "axios";
+import { fetchJson } from "./fetch.js";
 import dotenv from "dotenv";
 
 class MirageOSProvider extends Provider {
@@ -12,9 +12,7 @@ class MirageOSProvider extends Provider {
 
   async getVersions() {
     const headers = this.token ? { Authorization: `Bearer ${this.token}` } : {};
-    const { data } = await axios.get(this.baseURL, {
-      headers,
-    });
+    const data = await fetchJson(this.baseURL, headers);
     return data.map(({ tag_name, html_url }) => ({
       name: tag_name.replace(/^v/, ""),
       link: html_url,
@@ -28,9 +26,7 @@ class MirageOSProvider extends Provider {
   async getFilesAndFolders(version) {
     console.log("MirageOS : retrieve files and folders for version", version);
     const headers = this.token ? { Authorization: `Bearer ${this.token}` } : {};
-    const { data } = await axios.get(`${this.baseURL}/tags/v${version}`, {
-      headers,
-    });
+    const data = await fetchJson(`${this.baseURL}/tags/v${version}`, headers);
     const tarballUrl = data.tarball_url;
     return [{ name: `mirage-${version}.tar.gz`, url: tarballUrl }];
   }
