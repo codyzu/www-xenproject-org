@@ -19,6 +19,13 @@ const highValuePages = [
     screenshot: 'about-page.png',
   },
   {
+    name: 'become a member',
+    path: '/about/become-a-member/',
+    title: /Become a member/i,
+    heading: /Become a member/i,
+    screenshot: 'become-a-member-page.png',
+  },
+  {
     name: 'all projects',
     path: '/projects/all-projects/',
     title: /All projects/i,

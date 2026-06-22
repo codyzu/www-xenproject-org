@@ -89,7 +89,9 @@
     - heading "Why Grenoble?" [level=2]
     - paragraph: Grenoble has a long tradition of excellence in research, open collaboration, and systems engineering. Hosting the meetup at Université Grenoble Alpes strengthens ties between industry, academia, and the open-source community.
     - heading "Thank You to Our Sponsors" [level=2]
+    - paragraph: Xen Spring Meetup wouldn’t be possible without the support of our incredible sponsors.
     - paragraph: Special thanks to local co-organizers Fabienne Boyer and Alain Tchana from KrakOS (Inria / LIG / CNRS).
+    - heading "Hosting Sponsors" [level=3]
     - link "Université Grenoble Alpes logo":
       - /url: https://www.univ-grenoble-alpes.fr/
       - img "Université Grenoble Alpes logo"
@@ -99,6 +101,7 @@
     - link "Vates logo":
       - /url: https://vates.tech
       - img "Vates logo"
+    - heading "Supporting Sponsors" [level=3]
     - link "Renesas logo":
       - /url: https://www.renesas.com/
       - img "Renesas logo"

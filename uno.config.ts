@@ -19,7 +19,7 @@ export default defineConfig({
     // responsive variants used by islands are present in production CSS.
     filesystem: ['./src/**/*.{astro,md,mdx,js,jsx,ts,tsx}', './themes/xen-project/layouts/**/*.html'],
     pipeline: {
-      include: [/\.(astro|js|jsx|ts|tsx|html|md)($|\?)/, './themes/xen-project/layouts/**/*.html'],
+      include: [/\.(astro|js|jsx|ts|tsx|html|md|mdx)($|\?)/, './themes/xen-project/layouts/**/*.html'],
     },
   },
   theme: {

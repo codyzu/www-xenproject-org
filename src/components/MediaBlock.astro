@@ -64,9 +64,25 @@ const formattedTitle = title
           Your browser does not support the video tag.
         </video>
       ) : isYouTube || isSlideShare ? (
-        <div class="video-player">
-          <iframe src={normalizedMedia} title={alt} loading="lazy" allowfullscreen />
-        </div>
+        isYouTube ? (
+          <div class="youtube-video-container">
+            <div class="video-container">
+              <iframe
+                src={normalizedMedia}
+                title={alt}
+                loading="lazy"
+                style="border: 0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              />
+            </div>
+          </div>
+        ) : (
+          <div class="slide-container">
+            <iframe src={normalizedMedia} title={alt} loading="lazy" allowfullscreen />
+          </div>
+        )
       ) : (
         media && <img src={normalizedMedia} alt={alt} loading="lazy" style={imageSize ? `width:${imageSize}` : undefined} />
       )

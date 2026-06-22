@@ -1,5 +1,6 @@
 ---
 import Card from '../../components/Card.astro';
+import FeatureList from '../../components/FeatureList.astro';
 import MediaBlock from '../../components/MediaBlock.astro';
 import CookieBanner from '../../components/react/CookieBanner';
 import LogoWheel from '../../components/react/LogoWheel';
@@ -26,12 +27,15 @@ const keywords = ['Xen Project', 'membership', 'open source', 'community involve
 
       <Section class="section-square-rounded">
         <h2 class="txt-c">Main responsibilities</h2>
-        <div class="row row-from-list" style="--cols: 2">
-          <Card title="Financial oversight" titleLevel={2} class="card--bg-white">Budget management and investment decisions on infrastructure and project operations.</Card>
-          <Card title="Annual pricing" titleLevel={2} class="card--bg-white"><p><strong>Premier Member:</strong> $40,000</p><p><strong>Advisory Board Governing Member:</strong> $30,000</p><p><strong>Startup Member*:</strong> $10,000</p><p><strong>Associate Member**:</strong> Free</p><p><em>* Startup members must have less than 100 employees and require approval from Governing Board Members.</em></p><p><em>** Associate Members are free and available to pre-approved Associate Members of The Linux Foundation e.g. Government or Academic institutions</em></p></Card>
-          <Card title="Steer the project" titleLevel={2} class="card--bg-white">To advance its market and technical success by raising awareness.</Card>
-          <Card title="Global policy decisions" titleLevel={2} class="card--bg-white">Trademarks, compliance requirements, test cases, and infrastructure.</Card>
-        </div>
+        <FeatureList
+          cols={2}
+          items={[
+            {title: 'Financial oversight', icon: 'fas fa-money-bill-alt', description: 'Budget management and investment decisions on infrastructure and project operations.'},
+            {title: 'Annual pricing', icon: 'fas fa-users', description: '<strong>Premier Member:</strong> $40,000<br><br><strong>Advisory Board Governing Member:</strong> $30,000<br><br><strong>Startup Member*:</strong> $10,000<br><br><strong>Associate Member**:</strong> Free<br><br><em>* Startup members must have less than 100 employees and require approval from Governing Board Members.</em><br><br><em>** Associate Members are free and available to pre-approved Associate Members of The Linux Foundation e.g. Government or Academic institutions</em>'},
+            {title: 'Steer the project', icon: 'fas fa-chart-line', description: 'To advance its market and technical success by raising awareness.'},
+            {title: 'Global policy decisions', icon: 'fas fa-globe', description: 'Trademarks, compliance requirements, test cases, and infrastructure.'},
+          ]}
+        />
       </Section>
 
       <Section>
