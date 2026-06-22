@@ -37,6 +37,12 @@ test.describe('download search states', () => {
     const resultLink = results.getByRole('link', {name: 'Xen 4.19.1'});
     await expect(resultLink).toHaveAttribute('href', 'https://downloads.xenproject.org/release/xen/4.19.1/');
     await expect(results.getByRole('heading', {name: 'Xen', exact: true})).toBeVisible();
+    const resultIconGap = await resultLink.evaluate(link => {
+      const label = link.querySelector('span')?.getBoundingClientRect();
+      const icon = link.querySelector('i')?.getBoundingClientRect();
+      return label && icon ? icon.left - label.right : 0;
+    });
+    expect(resultIconGap).toBeGreaterThan(0);
 
     await search.fill('not a release');
     await expect(results.getByText('No downloads found.')).toBeVisible();
@@ -44,6 +50,18 @@ test.describe('download search states', () => {
     await page.waitForTimeout(350);
     await expect(results).toBeEmpty();
     expect(requests).toBe(1);
+  });
+
+  test('keeps visible spacing between download labels and arrows', async ({page}) => {
+    await page.goto('/resources/downloads/');
+
+    const iconGaps = await page.locator('.vertical-lists .list-column--sublists a').evaluateAll(links => links.map(link => {
+      const label = link.querySelector('span')?.getBoundingClientRect();
+      const icon = link.querySelector('i')?.getBoundingClientRect();
+      return label && icon ? icon.left - label.right : 0;
+    }));
+    expect(iconGaps.length).toBeGreaterThan(0);
+    expect(iconGaps.every(gap => gap > 0)).toBe(true);
   });
 
   test('reports loading and a distinct HTTP failure', async ({page}) => {

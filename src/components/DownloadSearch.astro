@@ -96,7 +96,7 @@
           label.textContent = version.name === 'default' ? 'Download' : `${group.name} ${version.name}`;
           const icon = document.createElement('i');
           icon.className = 'fas fa-arrow-right';
-          link.append(label, icon);
+          link.append(label, ' ', icon);
           item.append(link);
           list.append(item);
         }

@@ -12,10 +12,10 @@ const {groups} = Astro.props;
       <ul>
         {group.versions.map((version) => (
           <li>
-            {'link' in version && version.link ? <a href={version.link}><span>{group.name} {version.name === 'default' ? 'Download' : version.name}</span><i class="fas fa-arrow-right"></i></a> : <span>{group.name} {version.name === 'default' ? 'Download' : `${version.name} Series`}</span>}
+            {'link' in version && version.link ? <a href={version.link}><span>{group.name} {version.name === 'default' ? 'Download' : version.name}</span>{' '}<i class="fas fa-arrow-right"></i></a> : <span>{group.name} {version.name === 'default' ? 'Download' : `${version.name} Series`}</span>}
             <ul>
               {('subversions' in version ? version.subversions : version.files.map((file) => ({name: file.name, link: file.url, files: []}))).map((release) => (
-                <li><a href={release.link}><span>{group.name} {release.name}</span><i class="fas fa-arrow-right"></i></a></li>
+                <li><a href={release.link}><span>{group.name} {release.name}</span>{' '}<i class="fas fa-arrow-right"></i></a></li>
               ))}
             </ul>
           </li>
