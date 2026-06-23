@@ -2,7 +2,7 @@ import {type FlatXoConfig} from 'xo';
 
 const xoConfig: FlatXoConfig = [
   {
-    ignores: ['scripts/**/*.js', '!scripts/research/**/*.js', 'tests', 'stories'],
+    ignores: ['scripts/**/*.js', '!scripts/research/**/*.js', 'tests'],
   },
   {
     space: true,
