@@ -1,4 +1,3 @@
-import process from 'node:process';
 import {expect, type Page, test} from '@playwright/test';
 import {mockGhostApi} from './fixtures/ghost-posts';
 
@@ -11,12 +10,6 @@ const scenes = [
   ['consumer', 11.5],
   ['finale', 14.2],
 ] as const;
-const snapshotKind = process.env.STORY_SNAPSHOT_KIND === 'hugo' ? 'hugo' : 'current';
-
-// `story-hugo-*.png` snapshots beside this spec preserve the pre-Astro
-// implementation at the same scene positions. Active `story-current-*`
-// snapshots protect the intentional document-scroll implementation.
-
 async function prepareStory(page: Page) {
   await mockGhostApi(page);
   await page.goto('/');
@@ -37,16 +30,9 @@ async function scrollStoryTo(page: Page, storyPage: number) {
     if (!story) throw new Error('Story root is missing');
 
     const documentStory = story.querySelector<HTMLElement>('[data-story-root]');
-    if (documentStory) {
-      window.scrollTo(0, documentStory.offsetTop + targetPage * window.innerHeight);
-      return;
-    }
+    if (!documentStory) throw new Error('Document Story root is missing');
 
-    const legacyScroller = [...story.querySelectorAll<HTMLElement>('*')]
-      .find(element => element.scrollHeight > element.clientHeight && ['auto', 'scroll'].includes(getComputedStyle(element).overflowY));
-    if (!legacyScroller) throw new Error('Legacy Story scroller is missing');
-    legacyScroller.scrollTop = targetPage * legacyScroller.clientHeight;
-    legacyScroller.dispatchEvent(new Event('scroll'));
+    window.scrollTo(0, documentStory.offsetTop + targetPage * window.innerHeight);
   }, storyPage);
   await page.waitForTimeout(100);
 }
@@ -167,7 +153,7 @@ test.describe('homepage Story regression guardrails', () => {
     test(`matches the approved ${name} scene`, async ({page}) => {
       await prepareStory(page);
       await scrollStoryTo(page, storyPage);
-      await expect(page).toHaveScreenshot(`story-${snapshotKind}-${name}.png`, {fullPage: false, maxDiffPixelRatio: 0.02});
+      await expect(page).toHaveScreenshot(`story-current-${name}.png`, {fullPage: false, maxDiffPixelRatio: 0.02});
     });
   }
 });
@@ -180,7 +166,7 @@ test.describe('homepage Story mobile guardrails', () => {
       await prepareStory(page);
       await scrollStoryTo(page, storyPage);
       await expect(page.locator('html')).toHaveJSProperty('scrollWidth', 390);
-      await expect(page).toHaveScreenshot(`story-${snapshotKind}-mobile-${name}.png`, {fullPage: false, maxDiffPixelRatio: 0.02});
+      await expect(page).toHaveScreenshot(`story-current-mobile-${name}.png`, {fullPage: false, maxDiffPixelRatio: 0.02});
     });
   }
 });

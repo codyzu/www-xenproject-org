@@ -1,7 +1,4 @@
-# Shared navigation data for migrated Astro pages.
-#
-# Hugo still uses hugo.yaml and page frontmatter for production menus during the
-# spike. Keep this file aligned when moving routes into Astro.
+# Shared navigation data for Astro pages.
 - name: Projects
   href: /projects/
   children:

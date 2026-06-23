@@ -1,7 +1,0 @@
-<div class="col {{ if .Get "class" }}{{ .Get "class" }}{{ end }}">
-  {{ if .Get "md" }}
-    {{ .Inner | markdownify }}
-  {{ else }}
-    {{ .Inner }}
-  {{ end }}
-</div>

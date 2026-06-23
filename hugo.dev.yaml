@@ -1,7 +1,0 @@
-# only for development
-baseURL: "https://local.xenproject.org/"
-
-enableGitInfo: true
-
-params:
-  blogApiKey: "aca0295269765205d553f5c953"

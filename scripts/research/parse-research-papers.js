@@ -13,7 +13,6 @@ const __dirname = path.dirname(__filename);
 // Define paths
 const bibDir = path.resolve(__dirname, '../../research');
 const dataOutput = path.resolve(__dirname, '../../data/research.json');
-const contentOutputDir = path.resolve(__dirname, '../../content/research');
 
 // Validation schema
 const schema = z.object({
@@ -97,28 +96,6 @@ for (const file of files) {
   };
 
   papers.push(paper);
-
-  // Generate .md file for Hugo
-  const mdContent = `---
-title: "${title.replaceAll('"', String.raw`\"`)}"
-paper_id: "${id}"
-date: ${year}-01-01
-draft: false
-aside:
-  - type: resource
-    items:
-      - name: Academic Research
-        link: /research
-        icon: fas fa-arrow-right
----
-
-<!-- Paper page generated from ${file} -->
-`;
-
-  fs.mkdirSync(contentOutputDir, {recursive: true});
-  const mdPath = path.join(contentOutputDir, `${id}.md`);
-  fs.writeFileSync(mdPath, mdContent);
-  console.log(chalk.green(`✅ Wrote: ${mdPath}`));
 }
 
 // Write papers.json

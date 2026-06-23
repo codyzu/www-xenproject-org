@@ -1,9 +1,0 @@
-<ul
-  class="features-list {{ with .Get "cols" }}
-    features-list--cols-{{ . }}
-  {{ end }}"
->
-  {{ range .Inner | transform.Unmarshal }}
-    {{ partial "feature-item.html" . }}
-  {{ end }}
-</ul>

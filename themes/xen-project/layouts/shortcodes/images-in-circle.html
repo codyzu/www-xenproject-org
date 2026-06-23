@@ -1,3 +1,0 @@
-{{$class := .Get "class"}}
-{{$images := .Inner | transform.Unmarshal}}
-{{partial "images-in-circle.html" (dict "class" $class "images" $images)}}
