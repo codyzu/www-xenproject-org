@@ -244,6 +244,14 @@ if (standalone) {
     if (/<(?:html|body)(?:\s|>)/i.test(fragment)) {
       errors.push('headerfooter.html: fragment must not contain html or body wrappers');
     }
+
+    if ($fragment('link[href^="/_astro/BaseLayout."][href$=".css"]').length !== 1) {
+      errors.push('headerfooter.html: missing cache-busted Astro stylesheet link');
+    }
+
+    if ($fragment('script[src^="/_astro/blog-shell."][src$=".js"]').length !== 1) {
+      errors.push('headerfooter.html: missing cache-busted blog shell script link');
+    }
   }
 
   const rssPath = path.join(publicDirectory, 'index.xml');

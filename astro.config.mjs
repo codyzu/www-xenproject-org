@@ -1,4 +1,5 @@
-import {readFile, rename, rm} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {readFile, readdir, rename, rm, writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import process from 'node:process';
 import mdx from '@astrojs/mdx';
@@ -25,6 +26,43 @@ const headerFooterOutput = {
   },
 };
 
+// The Ghost blog fetches this stable fragment and injects #block-assets into
+// its document. Keep the fragment stable while pointing it at cache-busted
+// Astro assets.
+const ghostHeaderFooterAssets = {
+  name: 'ghost-header-footer-assets',
+  hooks: {
+    async 'astro:build:done'({dir}) {
+      const astroDirectory = fileURLToPath(new URL('_astro/', dir));
+      const files = await readdir(astroDirectory);
+      const baseLayoutCss = files.find((file) => /^BaseLayout\..+\.css$/.test(file));
+
+      if (!baseLayoutCss) {
+        throw new Error('Unable to find Astro BaseLayout CSS for the Ghost header/footer fragment.');
+      }
+
+      const menuScript = await readFile(new URL('themes/xen-project/assets/js/menu.js', import.meta.url), 'utf8');
+      const animateScript = await readFile(new URL('themes/xen-project/assets/js/animate.js', import.meta.url), 'utf8');
+      const blogShellScript = `${menuScript}\n${animateScript}`;
+      const blogShellHash = createHash('sha256').update(blogShellScript).digest('hex').slice(0, 10);
+      const blogShellFile = `blog-shell.${blogShellHash}.js`;
+      await writeFile(fileURLToPath(new URL(`_astro/${blogShellFile}`, dir)), blogShellScript);
+
+      const headerFooterPath = fileURLToPath(new URL('headerfooter.html', dir));
+      const headerFooter = await readFile(headerFooterPath, 'utf8');
+      const assets = [
+        `<link rel="stylesheet" href="/_astro/${baseLayoutCss}">`,
+        `<script src="/_astro/${blogShellFile}" defer></script>`,
+      ].join(' ');
+
+      await writeFile(
+        headerFooterPath,
+        headerFooter.replace('<div id="block-assets">', `<div id="block-assets"> ${assets}`),
+      );
+    },
+  },
+};
+
 const ghostMockApi = {
   name: 'ghost-mock-api',
   apply: 'serve',
@@ -45,7 +83,7 @@ const ghostMockApi = {
 };
 
 export default defineConfig({
-  integrations: [mdx(), react(), headerFooterOutput],
+  integrations: [mdx(), react(), headerFooterOutput, ghostHeaderFooterAssets],
   outDir: 'public',
   publicDir: 'static',
   site,
