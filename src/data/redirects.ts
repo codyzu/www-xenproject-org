@@ -21,8 +21,8 @@ export type Redirect = {
   source: string;
   target: string;
   /**
-   * `alias` preserves a historical URL declared by a content page's Hugo
-   * frontmatter. `redirect` represents a standalone redirect content route.
+   * `alias` preserves a historical URL declared by a previous content page.
+   * `redirect` represents a standalone redirect content route.
    * Astro renders both with the same static redirect page, but retaining the
    * distinction documents their origin and supports migration auditing.
    */

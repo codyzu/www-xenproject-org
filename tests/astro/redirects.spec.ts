@@ -1,5 +1,4 @@
 import {expect, test} from '@playwright/test';
-import {load} from 'cheerio';
 import {redirects} from '../../src/data/redirects.ts';
 
 const siteUrl = new URL(process.env.SITE_URL ?? 'https://beta.xenproject.org');
@@ -18,15 +17,10 @@ const expectedAstroOwnedRedirects = [
   ['/projects/', internalTarget('/projects/all-projects')],
 ] as const;
 
-const expectedHugoOwnedRedirects = [] as const;
-
 test.describe('Astro redirect ownership', () => {
   test('has an explicit ownership expectation for every manifest entry', () => {
     const manifestSources = redirects.map((redirect) => redirect.source).sort();
-    const expectedSources = [
-      ...expectedAstroOwnedRedirects.map(([source]) => source),
-      ...expectedHugoOwnedRedirects.map(([source]) => source),
-    ].sort();
+    const expectedSources = expectedAstroOwnedRedirects.map(([source]) => source).sort();
 
     expect(manifestSources).toEqual(expectedSources);
   });
@@ -46,17 +40,4 @@ test.describe('Astro redirect ownership', () => {
     });
   }
 
-  for (const [source, target] of expectedHugoOwnedRedirects) {
-    test(`keeps ${source} under Hugo ownership`, async ({request}) => {
-      const response = await request.get(source);
-      const html = await response.text();
-      const $ = load(html);
-
-      expect(response.ok()).toBeTruthy();
-      expect(html).not.toContain('data-astro-redirect');
-      expect($('link[rel="canonical"]').attr('href')).toBe(target);
-      expect($('meta[http-equiv="refresh" i]').attr('content')).toBe(`0; url=${target}`);
-      expect($('meta[name="robots"]').attr('content')).toBe('noindex');
-    });
-  }
 });

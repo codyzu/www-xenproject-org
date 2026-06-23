@@ -12,6 +12,7 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "baseUrl": "./",
+    "types": ["astro/client"],
   },
   "include": [
     "./**/*.ts",

@@ -1,32 +1,33 @@
 import clsx from 'clsx';
 
-const logoAssets = import.meta.glob('../../../static/img/logos/*.(svg|png)', {
-  query: '?url',
-  import: 'default',
-  eager: true,
-  // TODO: vite 7 will support base paths
-  // This might remove the need to drop the `/static` prefix in the URLs
-  // Base: '../../../static',
-});
+const logoUrls = [
+  '/img/logos/amd-logo.svg',
+  '/img/logos/arm-logo.svg',
+  '/img/logos/aws-logo.svg',
+  '/img/logos/boeing-logo.svg',
+  '/img/logos/epam-logo.svg',
+  '/img/logos/ford-logo.svg',
+  '/img/logos/honda-logo.svg',
+  '/img/logos/logo-linux-foundation.svg',
+  '/img/logos/renesas-logo-cropped.svg',
+  '/img/logos/vates-logo.svg',
+  '/img/logos/xenserver-logo.svg',
+];
 
 export default function LogoWheel() {
-  const logos = Object.entries(logoAssets as Record<string, string>)
-    .toSorted(([pathA], [pathB]) => pathA.localeCompare(pathB))
-    .map(([buildPath, assetUrl], index) => {
-      const url = assetUrl;
-      const angle = ((index * 360) / Object.keys(logoAssets).length + 270) % 360; // Start at the top (270 degrees)
-      return {
-        alt:
-          buildPath
-            .split('/')
-            .at(-1)
-            ?.replace(/\.(svg|png)$/, '')
-            .replaceAll('-', ' ') ?? 'Logo',
-        // Remove the `/static` prefix from the URL since hugo serves the static files from the root
-        url: url.replace(/^\/static/, ''),
-        angle,
-      };
-    });
+  const logos = logoUrls.map((url, index) => {
+    const angle = ((index * 360) / logoUrls.length + 270) % 360;
+    return {
+      alt:
+        url
+          .split('/')
+          .at(-1)
+          ?.replace(/\.(svg|png)$/, '')
+          .replaceAll('-', ' ') ?? 'Logo',
+      url,
+      angle,
+    };
+  });
 
   return (
     <div className="uno-w-full uno-min-h-0 uno-max-h-full uno-max-w-full uno-aspect-ratio-square uno-relative">
@@ -51,7 +52,6 @@ export default function LogoWheel() {
               'uno-m-0',
             )}
             style={{
-              // Unocss doesn't support multiple transforms in teh same property yet, so set the element style directly
               transform: `translate(-50%, -50%) rotate(${logo.angle}deg) translate(200%) rotate(-${logo.angle}deg)`,
             }}
           >
@@ -71,6 +71,5 @@ export default function LogoWheel() {
         ))}
       </ul>
     </div>
-    // </div>
   );
 }

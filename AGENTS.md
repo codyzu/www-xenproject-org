@@ -1,18 +1,15 @@
 # Agent Notes
 
-This repo uses Astro as its primary static-site generator. Hugo/Vite remains
-temporarily available through explicit legacy rollback commands until Phase 8.
+This repo uses Astro as its static-site generator.
 
-## Migration Rules
+## Site Rules
 
 - `npm run build` must produce the complete Astro artifact in `public/`.
-- Keep `npm run dev:legacy` and `npm run build:legacy` working until Phase 8.
-- Do not remove Hugo layouts, content, shortcodes, or Vite entry points before
-  Phase 8 unless explicitly requested.
 - Preserve existing public URLs.
-- Prefer shared data sources over duplicating Hugo and Astro configuration.
-- Navigation data for migrated Astro pages lives in `data/navigation.yaml`, with
-  `src/data/navigation.ts` acting as the typed and schema-validated Astro adapter.
+- Prefer shared data sources over duplicating configuration.
+- Navigation data lives in `data/navigation.yaml`, with
+  `src/data/navigation.ts` acting as the typed and schema-validated Astro
+  adapter.
 - Alias and redirect data lives in `data/redirects.yaml`, with
   `src/data/redirects.ts` providing validation and deriving redirect ownership
   from the migrated content routes. Do not duplicate redirect sources in the
@@ -22,8 +19,8 @@ temporarily available through explicit legacy rollback commands until Phase 8.
 
 ## Astro Page Choices
 
-- Use `.astro` for structured UI pages, data-driven pages, card/grid layouts,
-  and pages replacing shortcode-heavy Hugo layouts.
+- Use `.astro` for structured UI pages, data-driven pages, and card/grid
+  layouts.
 - Use `.mdx` for prose-heavy content where authors should edit Markdown-like
   text naturally.
 - Keep structured pages in `.astro` and prose-heavy pages in `.mdx` unless a
@@ -54,5 +51,5 @@ port before running the public smoke test.
 Known acceptable noise:
 
 - `npm run build` may print Sass deprecation warnings from the existing
-  theme styles.
+  styles.
 - `npm run lint` may print the existing TODO / unused eslint-disable warnings.

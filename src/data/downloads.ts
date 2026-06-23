@@ -1,6 +1,6 @@
+import {readFileSync} from 'node:fs';
+import path from 'node:path';
 import {z} from 'zod';
-import allDownloadsJson from '../../assets/data/downloads.json';
-import latestDownloadsJson from '../../assets/data/downloads-latest.json';
 
 const absoluteUrl = z.string().refine((value) => {
   try {
@@ -44,5 +44,10 @@ const downloadGroupSchema = z.object({
 const downloadsSchema = z.array(downloadGroupSchema);
 
 export type DownloadGroup = z.infer<typeof downloadGroupSchema>;
+const allDownloadsJson = JSON.parse(readFileSync(path.resolve('assets/data/downloads.json'), 'utf8')) as unknown;
+const latestDownloadsJson = JSON.parse(
+  readFileSync(path.resolve('assets/data/downloads-latest.json'), 'utf8'),
+) as unknown;
+
 export const allDownloads = downloadsSchema.parse(allDownloadsJson);
 export const latestDownloads = downloadsSchema.parse(latestDownloadsJson);

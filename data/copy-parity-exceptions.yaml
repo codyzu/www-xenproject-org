@@ -4,7 +4,7 @@ exceptions:
     route: /all/
     kind: redesigned-index
     scope: generated page inventory
-    reason: Astro lists canonical migrated routes and redirects instead of retired Hugo taxonomy and generated section pages.
+    reason: Astro lists canonical migrated routes and redirects instead of retired legacy taxonomy and generated section pages.
   - id: contribute-astro-index
     route: /contribute/
     kind: redesigned-index
@@ -54,7 +54,7 @@ exceptions:
     route: /projects/hypervisor/openpgp-keys/
     kind: accessible-rendering
     scope: OpenPGP identity lines
-    reason: Astro preserves angle-bracketed identities as literal code where Hugo's unsafe-HTML handling drops them.
+    reason: Astro preserves angle-bracketed identities as literal code where the previous unsafe-HTML handling dropped them.
   - id: downloads-component-structure
     route: /resources/downloads/
     kind: deterministic-data
@@ -69,12 +69,12 @@ exceptions:
     route: /resources/past-events/
     kind: redesigned-index
     scope: event archive cards
-    reason: Astro uses the event collection and archive-card design rather than the Hugo section listing.
+    reason: Astro uses the event collection and archive-card design rather than the previous section listing.
   - id: spring-meetup-post-event-update
     route: /resources/past-events/spring-meetup-2026/
     kind: event-update
     scope: registration, schedule, travel, accommodation, and status sections
-    reason: The Astro event page intentionally reflects post-event information updated after the Hugo migration baseline.
+    reason: The Astro event page intentionally reflects post-event information updated after the previous migration baseline.
   - id: summit-2025-post-event-update
     route: /resources/past-events/xen-summit-2025/
     kind: event-update
@@ -84,4 +84,4 @@ exceptions:
     route: /resources/summit-2026/
     kind: event-update
     scope: call for proposals, sponsorship, travel, and current status sections
-    reason: The Astro page contains current event information intentionally updated after the Hugo migration baseline.
+    reason: The Astro page contains current event information intentionally updated after the previous migration baseline.

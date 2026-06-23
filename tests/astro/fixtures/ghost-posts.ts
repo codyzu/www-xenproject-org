@@ -1,6 +1,10 @@
+import {readFileSync} from 'node:fs';
+import path from 'node:path';
 import type {Page} from '@playwright/test';
-import ghostFixture from '../../../data/ghost-posts.fixture.json';
 
+const ghostFixture = JSON.parse(readFileSync(path.resolve('data/ghost-posts.fixture.json'), 'utf8')) as {
+  posts: unknown[];
+};
 export const ghostPosts = ghostFixture.posts;
 
 export async function mockGhostApi(page: Page, payload: unknown = {posts: ghostPosts}) {

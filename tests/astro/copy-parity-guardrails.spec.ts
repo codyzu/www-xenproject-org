@@ -54,12 +54,12 @@ test.describe('copy-parity guardrails', () => {
   });
 
   test('unreviewed added copy fails strict ARIA matching', async ({page}) => {
-    await page.setContent('<main><p>Required Hugo copy.</p><p>Additional Astro copy.</p></main>');
+    await page.setContent('<main><p>Required baseline copy.</p><p>Additional Astro copy.</p></main>');
     let failure: unknown;
     try {
       await expect(page.getByRole('main')).toMatchAriaSnapshot(`
         - main:
-          - paragraph: Required Hugo copy.
+          - paragraph: Required baseline copy.
       `, {timeout: 100});
     } catch (error) {
       failure = error;
