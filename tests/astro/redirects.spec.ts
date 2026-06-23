@@ -2,17 +2,20 @@ import {expect, test} from '@playwright/test';
 import {load} from 'cheerio';
 import {redirects} from '../../src/data/redirects.ts';
 
+const siteUrl = new URL(process.env.SITE_URL ?? 'https://beta.xenproject.org');
+const internalTarget = (path: string) => new URL(path, siteUrl).toString();
+
 // These expectations are intentionally hardcoded instead of importing the
 // derived overlay routes. They are the independent acceptance boundary that
 // catches an accidental ownership or destination change in production code.
 const expectedAstroOwnedRedirects = [
-  ['/more/xen-server-branding/', 'https://beta.xenproject.org/more/xen-branding/'],
-  ['/resources/spring-meetup-2026/', 'https://beta.xenproject.org/resources/past-events/spring-meetup-2026/'],
-  ['/resources/spring-meetup/', 'https://beta.xenproject.org/resources/past-events/spring-meetup-2026/'],
-  ['/resources/xen-summit-2025/', 'https://beta.xenproject.org/resources/past-events/xen-summit-2025/'],
-  ['/resources/xen-summit-2026/', 'https://beta.xenproject.org/resources/summit-2026/'],
+  ['/more/xen-server-branding/', internalTarget('/more/xen-branding/')],
+  ['/resources/spring-meetup-2026/', internalTarget('/resources/past-events/spring-meetup-2026/')],
+  ['/resources/spring-meetup/', internalTarget('/resources/past-events/spring-meetup-2026/')],
+  ['/resources/xen-summit-2025/', internalTarget('/resources/past-events/xen-summit-2025/')],
+  ['/resources/xen-summit-2026/', internalTarget('/resources/summit-2026/')],
   ['/spring26/', 'https://docs.google.com/document/d/1ddsfCTaDHvBOCtFLMTgoGEzaQSdJdogfIGooHWFnLJQ/edit?usp=sharing'],
-  ['/projects/', 'https://beta.xenproject.org/projects/all-projects'],
+  ['/projects/', internalTarget('/projects/all-projects')],
 ] as const;
 
 const expectedHugoOwnedRedirects = [] as const;
