@@ -17,9 +17,9 @@ export default defineConfig({
     // Astro's client-only React chunks are not guaranteed to pass every class
     // through UnoCSS's transform pipeline. Scan source files explicitly so
     // responsive variants used by islands are present in production CSS.
-    filesystem: ['./src/**/*.{astro,md,mdx,js,jsx,ts,tsx}', './themes/xen-project/layouts/**/*.html'],
+    filesystem: ['./src/**/*.{astro,md,mdx,js,jsx,ts,tsx}'],
     pipeline: {
-      include: [/\.(astro|js|jsx|ts|tsx|html|md|mdx)($|\?)/, './themes/xen-project/layouts/**/*.html'],
+      include: [/\.(astro|js|jsx|ts|tsx|html|md|mdx)($|\?)/],
     },
   },
   theme: {

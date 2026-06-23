@@ -41,8 +41,8 @@ const ghostHeaderFooterAssets = {
         throw new Error('Unable to find Astro BaseLayout CSS for the Ghost header/footer fragment.');
       }
 
-      const menuScript = await readFile(new URL('themes/xen-project/assets/js/menu.js', import.meta.url), 'utf8');
-      const animateScript = await readFile(new URL('themes/xen-project/assets/js/animate.js', import.meta.url), 'utf8');
+      const menuScript = await readFile(new URL('src/scripts/menu.js', import.meta.url), 'utf8');
+      const animateScript = await readFile(new URL('src/scripts/animate.js', import.meta.url), 'utf8');
       const blogShellScript = `${menuScript}\n${animateScript}`;
       const blogShellHash = createHash('sha256').update(blogShellScript).digest('hex').slice(0, 10);
       const blogShellFile = `blog-shell.${blogShellHash}.js`;

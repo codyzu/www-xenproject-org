@@ -3,7 +3,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import {siteMetadata} from '../data/site';
 import 'uno.css';
-import '../../themes/xen-project/assets/css/main.scss';
+import '../styles/theme/main.scss';
 
 type Props = {
   title: string;
@@ -79,8 +79,8 @@ const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialI
     </main>
     <Footer currentPath={currentPath} />
     <script>
-      import '../../themes/xen-project/assets/js/menu.js';
-      import '../../themes/xen-project/assets/js/animate.js';
+      import '../scripts/menu.js';
+      import '../scripts/animate.js';
     </script>
     <style is:global>
       body.layout-main-flush > main.main { padding-top: 0; }
