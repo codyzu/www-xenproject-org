@@ -670,6 +670,28 @@ Use the following checks for the complete artifact:
 route inventory, canonical origin, redirects, RSS, 404, and
 header/footer fragment contract.
 
+### Ghost Header/Footer Contract
+
+The Ghost blog consumes `/headerfooter.html` as the stable integration boundary
+for the main site shell. Astro owns the header/footer markup and the
+`#block-assets` contents; the Ghost theme should fetch that fragment, inject
+`#block-assets` into the document head, and inject `#block-header` and
+`#block-footer` into the page.
+
+The fragment must stay wrapper-free, without top-level `<html>` or `<body>`
+elements. `#block-assets` should point to cache-busted Astro assets such as
+`/_astro/BaseLayout.*.css` and `/_astro/blog-shell.*.js`. The Ghost theme
+should not hardcode hashed Astro filenames or legacy Hugo/Vite paths such as
+`/css/style.min.css` and `/js/main.js`.
+
+The current implementation uses an Astro post-build hook to discover the
+generated BaseLayout CSS, build a small blog shell script from the menu scripts,
+and write those URLs into `/headerfooter.html`. A future cleanup should replace
+that filename-scanning step with a first-class Astro/Vite entrypoint or
+manifest-backed helper so the fragment can be rendered with the correct asset
+URLs directly. Keep `scripts/astro/check-public-artifact.js` as the acceptance
+contract for this boundary.
+
 Use `npm run test:astro:smoke:public` to run the screenshot and navigation
 smoke tests against the `public/` artifact. The Playwright config
 starts `serve public` automatically on `http://127.0.0.1:4321`. Stop any other
