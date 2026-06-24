@@ -1,0 +1,75 @@
+---
+const layers = Array.from({length: 5}, (_, index) => index);
+---
+
+<div class="xp-layer-stack" aria-hidden="true">
+  {layers.map((index) => (
+    <span style={`--layer-index:${index}`}>
+      <i></i>
+    </span>
+  ))}
+</div>
+
+<style>
+  .xp-layer-stack {
+    position: relative;
+    min-height: 24rem;
+  }
+
+  .xp-layer-stack span {
+    position: absolute;
+    right: 0;
+    width: min(88%, 36rem);
+    height: 6.75rem;
+    border: 1px solid var(--xp-border-muted);
+    border-radius: var(--xp-radius-lg);
+    background:
+      linear-gradient(90deg, rgb(133 194 65 / 0.16), transparent 34%),
+      linear-gradient(135deg, rgb(255 255 255 / 0.05), transparent 46%),
+      var(--xp-surface-2);
+    box-shadow: var(--xp-shadow-md);
+    transform: translateY(calc(var(--layer-index) * 3rem)) translateX(calc(var(--layer-index) * -2.2rem));
+  }
+
+  .xp-layer-stack span::before,
+  .xp-layer-stack span::after {
+    position: absolute;
+    content: "";
+    left: 1.25rem;
+    right: 1.25rem;
+    height: 1px;
+    background: linear-gradient(90deg, var(--xp-accent-primary), transparent);
+    opacity: 0.45;
+  }
+
+  .xp-layer-stack span::before {
+    top: 1.25rem;
+  }
+
+  .xp-layer-stack span::after {
+    bottom: 1.25rem;
+  }
+
+  .xp-layer-stack i {
+    position: absolute;
+    top: 50%;
+    right: 1.25rem;
+    width: 4.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: rgb(133 194 65 / 0.28);
+    transform: translateY(-50%);
+  }
+
+  @media (max-width: 42rem) {
+    .xp-layer-stack {
+      min-height: 18rem;
+    }
+
+    .xp-layer-stack span {
+      width: 92%;
+      height: 4.75rem;
+      transform: translateY(calc(var(--layer-index) * 2.35rem)) translateX(calc(var(--layer-index) * -0.55rem));
+    }
+  }
+</style>

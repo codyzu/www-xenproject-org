@@ -1,0 +1,33 @@
+---
+type StackGap = '2' | '3' | '4' | '5' | '6' | '7';
+
+type Props = {
+  as?: 'div' | 'section' | 'article' | 'ul' | 'ol';
+  gap?: StackGap;
+  class?: string;
+};
+
+const {
+  as = 'div',
+  gap = '4',
+  class: className = '',
+} = Astro.props as Props;
+
+const Tag = as;
+const gapClasses: Record<StackGap, string> = {
+  '2': 'uno-gap-2',
+  '3': 'uno-gap-3',
+  '4': 'uno-gap-4',
+  '5': 'uno-gap-5',
+  '6': 'uno-gap-6',
+  '7': 'uno-gap-12',
+};
+---
+
+<Tag class:list={[
+  'uno-flex uno-min-w-0 uno-flex-col',
+  gapClasses[gap],
+  className,
+]}>
+  <slot />
+</Tag>

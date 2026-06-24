@@ -1,0 +1,20 @@
+---
+import Surface from './Surface.astro';
+
+type Props = {
+  as?: 'article' | 'div' | 'aside';
+  active?: boolean;
+  class?: string;
+};
+
+const {
+  as = 'article',
+  active = false,
+  class: className = '',
+  ...rest
+} = Astro.props as Props & Record<string, unknown>;
+---
+
+<Surface as={as} tone={active ? '3' : '2'} border={active ? 'strong' : 'muted'} padding="md" radius="md" shadow="sm" class={className} {...rest}>
+  <slot />
+</Surface>

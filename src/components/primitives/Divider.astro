@@ -1,0 +1,12 @@
+---
+type Props = {
+  class?: string;
+};
+
+const {class: className = ''} = Astro.props as Props;
+---
+
+<hr class:list={[
+  'uno-m-0 uno-h-px uno-w-full uno-border-0 uno-bg-xp-border-muted',
+  className,
+]} />

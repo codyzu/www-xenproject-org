@@ -1,0 +1,44 @@
+---
+type Props = {
+  as?: 'div' | 'nav' | 'p';
+  gap?: '2' | '3' | '4';
+  align?: 'start' | 'center' | 'end';
+  justify?: 'start' | 'center' | 'between';
+  class?: string;
+};
+
+const {
+  as = 'div',
+  gap = '3',
+  align = 'center',
+  justify = 'start',
+  class: className = '',
+} = Astro.props as Props;
+
+const Tag = as;
+const gapClasses = {
+  '2': 'uno-gap-2',
+  '3': 'uno-gap-3',
+  '4': 'uno-gap-4',
+};
+const alignClasses = {
+  start: 'uno-items-start',
+  center: 'uno-items-center',
+  end: 'uno-items-end',
+};
+const justifyClasses = {
+  start: 'uno-justify-start',
+  center: 'uno-justify-center',
+  between: 'uno-justify-between',
+};
+---
+
+<Tag class:list={[
+  'uno-flex uno-min-w-0 uno-flex-wrap',
+  gapClasses[gap],
+  alignClasses[align],
+  justifyClasses[justify],
+  className,
+]}>
+  <slot />
+</Tag>

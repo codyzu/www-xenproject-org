@@ -1,0 +1,30 @@
+---
+type ContainerSize = 'content' | 'page' | 'wide';
+
+type Props = {
+  as?: 'div' | 'section' | 'article';
+  size?: ContainerSize;
+  class?: string;
+};
+
+const {
+  as = 'div',
+  size = 'wide',
+  class: className = '',
+} = Astro.props as Props;
+
+const Tag = as;
+const sizeClasses: Record<ContainerSize, string> = {
+  content: 'uno-max-w-xp-content',
+  page: 'uno-max-w-xp-page',
+  wide: 'uno-max-w-xp-wide',
+};
+---
+
+<Tag class:list={[
+  'uno-mx-auto uno-w-full uno-min-w-0',
+  sizeClasses[size],
+  className,
+]}>
+  <slot />
+</Tag>

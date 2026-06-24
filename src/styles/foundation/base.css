@@ -18,13 +18,13 @@
   box-sizing: border-box;
 }
 
-.xp-site :where(a) {
+.xp-site :where(a:not([class])) {
   color: var(--xp-accent-primary);
   text-decoration-thickness: 0.08em;
   text-underline-offset: 0.18em;
 }
 
-.xp-site :where(a:hover) {
+.xp-site :where(a:not([class]):hover) {
   color: var(--xp-accent-primary-strong);
 }
 

@@ -1,0 +1,22 @@
+---
+import Badge from '../../primitives/Badge.astro';
+import Surface from '../../primitives/Surface.astro';
+import Heading from '../../primitives/Heading.astro';
+import Text from '../../primitives/Text.astro';
+
+type Props = {
+  step: string;
+  label: string;
+  description: string;
+  tokenClass: string;
+};
+
+const {step, label, description, tokenClass} = Astro.props as Props;
+---
+
+<Surface as="article" tone="2" class={['uno-min-h-64', tokenClass].join(' ')}>
+  <Badge>Surface {step}</Badge>
+  <Heading as="h3" size="heading-m" class="uno-mt-4">{label}</Heading>
+  <Text size="caption" class="uno-mt-3">{description}</Text>
+  <Text size="mono-small" tone="muted" class="uno-mt-6">{tokenClass}</Text>
+</Surface>

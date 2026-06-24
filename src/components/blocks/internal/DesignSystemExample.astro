@@ -1,0 +1,13 @@
+---
+import Surface from '../../primitives/Surface.astro';
+
+type Props = {
+  class?: string;
+};
+
+const {class: className = ''} = Astro.props as Props;
+---
+
+<Surface tone="0" border="light" radius="lg" shadow="lg" padding="sm" class={['uno-mt-6', className].filter(Boolean).join(' ')}>
+  <slot />
+</Surface>

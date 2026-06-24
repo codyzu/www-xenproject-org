@@ -1,0 +1,39 @@
+---
+type GridColumns = '2' | '3' | '4';
+type GridGap = '4' | '5' | '6';
+
+type Props = {
+  as?: 'div' | 'section';
+  columns?: GridColumns;
+  gap?: GridGap;
+  class?: string;
+};
+
+const {
+  as = 'div',
+  columns = '3',
+  gap = '4',
+  class: className = '',
+} = Astro.props as Props;
+
+const Tag = as;
+const columnClasses: Record<GridColumns, string> = {
+  '2': 'md:uno-grid-cols-2',
+  '3': 'md:uno-grid-cols-3',
+  '4': 'md:uno-grid-cols-2 lg:uno-grid-cols-4',
+};
+const gapClasses: Record<GridGap, string> = {
+  '4': 'uno-gap-4',
+  '5': 'uno-gap-5',
+  '6': 'uno-gap-6',
+};
+---
+
+<Tag class:list={[
+  'uno-grid uno-min-w-0 uno-grid-cols-1',
+  columnClasses[columns],
+  gapClasses[gap],
+  className,
+]}>
+  <slot />
+</Tag>

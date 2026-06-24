@@ -1,0 +1,36 @@
+---
+type SectionSurface = '0' | '1';
+type SectionVariant = 'default' | 'hero';
+
+type Props = {
+  id?: string;
+  surface?: SectionSurface;
+  variant?: SectionVariant;
+  class?: string;
+};
+
+const {
+  id,
+  surface = '0',
+  variant = 'default',
+  class: className = '',
+} = Astro.props as Props;
+
+const surfaceClasses: Record<SectionSurface, string> = {
+  '0': 'uno-bg-xp-surface-0',
+  '1': 'uno-bg-xp-surface-1',
+};
+const variantClasses: Record<SectionVariant, string> = {
+  default: 'uno-py-[var(--xp-space-section)]',
+  hero: 'uno-pt-[var(--xp-space-8)] uno-pb-[var(--xp-space-section)] uno-bg-[linear-gradient(180deg,rgb(133_194_65_/_0.10),transparent_34rem)]',
+};
+---
+
+<section id={id} class:list={[
+  'uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-px-4 md:uno-px-6',
+  surfaceClasses[surface],
+  variantClasses[variant],
+  className,
+]}>
+  <slot />
+</section>

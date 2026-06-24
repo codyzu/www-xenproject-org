@@ -1,0 +1,72 @@
+---
+type SurfaceElement = 'div' | 'article' | 'aside' | 'section';
+type SurfaceTone = '0' | '1' | '2' | '3' | 'light' | 'light-raised';
+type SurfacePadding = 'none' | 'sm' | 'md' | 'lg';
+type SurfaceRadius = 'md' | 'lg';
+type SurfaceShadow = 'none' | 'sm' | 'md' | 'lg';
+
+type Props = {
+  as?: SurfaceElement;
+  tone?: SurfaceTone;
+  padding?: SurfacePadding;
+  radius?: SurfaceRadius;
+  shadow?: SurfaceShadow;
+  border?: 'muted' | 'strong' | 'light' | false;
+  class?: string;
+};
+
+const {
+  as = 'div',
+  tone = '2',
+  padding = 'md',
+  radius = 'md',
+  shadow = 'sm',
+  border = 'muted',
+  class: className = '',
+  ...rest
+} = Astro.props as Props & Record<string, unknown>;
+
+const Tag = as;
+const toneClasses: Record<SurfaceTone, string> = {
+  '0': 'uno-bg-xp-surface-0',
+  '1': 'uno-bg-xp-surface-1',
+  '2': 'uno-bg-xp-surface-2',
+  '3': 'uno-bg-xp-surface-3',
+  light: 'uno-bg-xp-surface-light uno-text-[var(--xp-text-on-light)]',
+  'light-raised': 'uno-bg-xp-surface-light-raised uno-text-[var(--xp-text-on-light)]',
+};
+const paddingClasses: Record<SurfacePadding, string> = {
+  none: '',
+  sm: 'uno-p-4',
+  md: 'uno-p-5',
+  lg: 'uno-p-6',
+};
+const radiusClasses: Record<SurfaceRadius, string> = {
+  md: 'uno-rounded-xp-md',
+  lg: 'uno-rounded-xp-lg',
+};
+const shadowClasses: Record<SurfaceShadow, string> = {
+  none: '',
+  sm: 'uno-shadow-xp-sm',
+  md: 'uno-shadow-xp-md',
+  lg: 'uno-shadow-xp-lg',
+};
+const borderClasses = {
+  muted: 'uno-border uno-border-solid uno-border-xp-border-muted',
+  strong: 'uno-border uno-border-solid uno-border-xp-border-strong',
+  light: 'uno-border uno-border-solid uno-border-[rgb(17_24_39_/_0.12)]',
+  false: '',
+};
+---
+
+<Tag class:list={[
+  'uno-min-w-0',
+  toneClasses[tone],
+  paddingClasses[padding],
+  radiusClasses[radius],
+  shadowClasses[shadow],
+  borderClasses[String(border) as keyof typeof borderClasses],
+  className,
+]} {...rest}>
+  <slot />
+</Tag>

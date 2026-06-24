@@ -236,6 +236,8 @@ export default defineConfig({
       'xen-action uno-bg-xp-accent-primary uno-text-[var(--xp-accent-primary-text)] hover:uno-bg-[var(--xp-accent-primary-strong)] active:uno-bg-[var(--xp-accent-primary-active)]',
     'xen-action-secondary':
       'xen-action uno-border uno-border-xp-border-strong uno-bg-xp-surface-2 uno-text-xp-text-primary hover:uno-bg-xp-surface-3',
+    'xen-action-text':
+      'xen-focus uno-inline-flex uno-min-h-11 uno-items-center uno-rounded-xp-md uno-px-2 uno-font-bold uno-leading-none uno-text-xp-text-primary uno-underline uno-decoration-xp-accent-primary uno-decoration-2 uno-underline-offset-6 uno-transition-colors hover:xen-action-text-hover hover:uno-text-xp-text-primary active:xen-action-text-active',
 
     // Homepage story compatibility shortcuts.
     'uno-orbit-0':
@@ -259,6 +261,18 @@ export default defineConfig({
       'uno-align-xen',
       {
         'vertical-align': '0.14em',
+      },
+    ],
+    [
+      'xen-action-text-hover',
+      {
+        'background-color': 'var(--xp-accent-primary-soft)',
+      },
+    ],
+    [
+      'xen-action-text-active',
+      {
+        'background-color': 'var(--xp-accent-primary-soft)',
       },
     ],
     ...Array.from(

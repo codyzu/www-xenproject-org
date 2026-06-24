@@ -1,0 +1,11 @@
+---
+const icons = ['i-carbon-layers', 'i-carbon-cloud-satellite', 'i-carbon-security', 'i-carbon-connect'];
+---
+
+<div class="uno-grid uno-grid-cols-4 uno-gap-3 lg:uno-content-start" aria-hidden="true">
+  {icons.map((icon) => (
+    <span class="uno-grid uno-size-14 uno-place-items-center uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-2 uno-shadow-xp-sm">
+      <i class:list={[icon, 'uno-text-2xl uno-text-xp-accent-primary']}></i>
+    </span>
+  ))}
+</div>

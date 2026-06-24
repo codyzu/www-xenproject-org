@@ -1,0 +1,51 @@
+---
+import Card from '../../primitives/Card.astro';
+import Heading from '../../primitives/Heading.astro';
+import Text from '../../primitives/Text.astro';
+
+type Props = {
+  name: string;
+  duration: string;
+  usage: string;
+};
+
+const {name, duration, usage} = Astro.props as Props;
+---
+
+<Card class="xp-motion-card">
+  <span></span>
+  <Text size="mono-small" tone="accent-primary">{duration}</Text>
+  <Heading as="h3" size="heading-m" class="uno-mt-2">{name}</Heading>
+  <Text size="caption" class="uno-mt-2">{usage}</Text>
+</Card>
+
+<style>
+  :global(.xp-motion-card) {
+    position: relative;
+    overflow: hidden;
+  }
+
+  :global(.xp-motion-card) span {
+    display: block;
+    width: 4rem;
+    height: 0.25rem;
+    margin-bottom: var(--xp-space-4);
+    border-radius: 999px;
+    background: var(--xp-accent-primary);
+    transition: transform var(--xp-motion-base) var(--xp-ease-standard);
+  }
+
+  :global(.xp-motion-card:hover) span {
+    transform: translateX(1.25rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.xp-motion-card) span {
+      transition: none;
+    }
+
+    :global(.xp-motion-card:hover) span {
+      transform: none;
+    }
+  }
+</style>

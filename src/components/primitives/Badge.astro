@@ -1,0 +1,32 @@
+---
+type BadgeVariant = 'default' | 'accent' | 'info' | 'muted' | 'on-light';
+
+type Props = {
+  as?: 'span' | 'strong';
+  variant?: BadgeVariant;
+  class?: string;
+};
+
+const {
+  as = 'span',
+  variant = 'default',
+  class: className = '',
+} = Astro.props as Props;
+
+const Tag = as;
+const variantClasses: Record<BadgeVariant, string> = {
+  default: 'uno-border-xp-border-muted uno-text-xp-text-secondary',
+  accent: 'uno-border-[rgb(133_194_65_/_0.34)] uno-text-xp-accent-primary',
+  info: 'uno-border-[rgb(79_179_255_/_0.34)] uno-text-xp-accent-secondary',
+  muted: 'uno-border-xp-border-muted uno-text-xp-text-muted',
+  'on-light': 'uno-border-[rgb(17_24_39_/_0.16)] uno-text-[var(--xp-text-on-light-muted)]',
+};
+---
+
+<Tag class:list={[
+  'uno-inline-flex uno-min-h-7 uno-items-center uno-rounded-full uno-border uno-border-solid uno-px-2.5 uno-text-[length:var(--xp-type-caption)] uno-font-semibold',
+  variantClasses[variant],
+  className,
+]}>
+  <slot />
+</Tag>
