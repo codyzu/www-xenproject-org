@@ -173,8 +173,7 @@ reintroducing Storybook.
 Possible routes include:
 
 - `src/pages/internal/components.astro`
-- `src/pages/design-system.astro`
-- `src/pages/_patterns.astro`
+- `src/pages/internal/design-system.astro`
 
 The pattern page can show:
 
@@ -190,6 +189,11 @@ The pattern page can show:
 
 This page should be useful to maintainers and future contributors without
 creating a separate toolchain to maintain.
+
+Internal pattern and design-system routes should live under `/internal/*`.
+These pages may be deployed to production for direct maintainer access, but
+they are not public website content: keep them out of navigation and public
+listings, set `noindex, nofollow`, and exclude them from the sitemap.
 
 ## Migration Strategy
 

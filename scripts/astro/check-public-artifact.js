@@ -192,6 +192,80 @@ const assertRedirect = (filePath, $) => {
   assertLocalTargetExists(filePath, target, 'redirect');
 };
 
+const assertSitemap = () => {
+  const sitemapIndexPath = path.join(publicDirectory, 'sitemap-index.xml');
+  if (!fs.existsSync(sitemapIndexPath)) {
+    errors.push('sitemap-index.xml: missing sitemap index output');
+    return;
+  }
+
+  const sitemapIndexXml = fs.readFileSync(sitemapIndexPath, 'utf8');
+  const $index = load(sitemapIndexXml, {xmlMode: true});
+  const sitemapLocations = $index('sitemap > loc').toArray().map(element => $index(element).text());
+  const locations = [];
+
+  if (sitemapLocations.length === 0) {
+    errors.push('sitemap-index.xml: missing sitemap entries');
+  }
+
+  for (const sitemapLocation of sitemapLocations) {
+    let sitemapUrl;
+
+    try {
+      sitemapUrl = new URL(sitemapLocation);
+    } catch {
+      errors.push(`sitemap-index.xml: invalid sitemap URL "${sitemapLocation}"`);
+      continue;
+    }
+
+    if (sitemapUrl.origin !== expectedSite.origin) {
+      errors.push(`sitemap-index.xml: sitemap URLs must use configured site origin "${expectedSite.origin}"`);
+      continue;
+    }
+
+    const sitemapPath = path.join(publicDirectory, decodeURIComponent(sitemapUrl.pathname).replace(/^\/+/, ''));
+    if (!fs.existsSync(sitemapPath)) {
+      errors.push(`${path.relative(process.cwd(), sitemapPath)}: missing sitemap file listed by sitemap-index.xml`);
+      continue;
+    }
+
+    const sitemapXml = fs.readFileSync(sitemapPath, 'utf8');
+    const $sitemap = load(sitemapXml, {xmlMode: true});
+    locations.push(...$sitemap('url > loc').toArray().map(element => $sitemap(element).text()));
+  }
+
+  if (!locations.includes(new URL('/', expectedSite).toString())) {
+    errors.push('sitemap: missing homepage URL');
+  }
+
+  for (const location of locations) {
+    let url;
+
+    try {
+      url = new URL(location);
+    } catch {
+      errors.push(`sitemap: invalid page URL "${location}"`);
+      continue;
+    }
+
+    if (url.origin !== expectedSite.origin) {
+      errors.push(`sitemap: URLs must use configured site origin "${expectedSite.origin}"`);
+    }
+
+    if (url.pathname.startsWith('/internal/')) {
+      errors.push('sitemap: internal routes must not be listed');
+    }
+
+    if (url.pathname === '/all/' || url.pathname === '/headerfooter/') {
+      errors.push(`sitemap: hidden route must not be listed: "${url.pathname}"`);
+    }
+
+    if (migratedRedirectRoutes.includes(url.pathname)) {
+      errors.push(`sitemap: redirect source must not be listed: "${url.pathname}"`);
+    }
+  }
+};
+
 if (!fs.existsSync(publicDirectory)) {
   throw new Error(`${path.relative(process.cwd(), publicDirectory)}/ does not exist. Build the target artifact first.`);
 }
@@ -287,6 +361,8 @@ if (standalone) {
   }
 
 }
+
+assertSitemap();
 
 for (const filePath of htmlFiles) {
   const html = fs.readFileSync(filePath, 'utf8');

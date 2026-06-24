@@ -143,5 +143,11 @@ cannot be expressed clearly with utilities.
 
 The internal page at `/internal/design-system/` is the lightweight Astro-native
 design playground. It is not public site content and must remain unlinked from
-navigation. Use it to review the dark layered identity, tokens, surfaces, and
-future primitives before applying them to public pages.
+navigation, page indexes, breadcrumbs, and other public discovery surfaces. Use
+it to review the dark layered identity, tokens, surfaces, and future primitives
+before applying them to public pages.
+
+Routes under `/internal/*` are contributor resources that may be deployed to
+production for direct-URL access. They should use page-level
+`robots="noindex, nofollow"` and should generally be excluded from the sitemap.
+Do not add internal routes to shared navigation data or public page listings.

@@ -1,14 +1,26 @@
 import {createHash} from 'node:crypto';
+import {readFileSync} from 'node:fs';
 import {readFile, readdir, rename, rm, writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import process from 'node:process';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
+import sitemap from '@astrojs/sitemap';
 import {defineConfig} from 'astro/config';
+import yaml from 'js-yaml';
 import unoCSS from 'unocss/vite';
 
 // Parsing here fails early when CI or a local build provides an invalid origin.
 const site = new URL(process.env.SITE_URL ?? 'https://beta.xenproject.org').toString();
+const hiddenSitemapPaths = new Set(['/all/', '/headerfooter/']);
+const redirectsYaml = readFileSync(new URL('data/redirects.yaml', import.meta.url), 'utf8');
+const redirectEntries = yaml.load(redirectsYaml);
+const redirectSourcePaths = new Set(Array.isArray(redirectEntries) ? redirectEntries.map(({source}) => source) : []);
+
+const isPublicSitemapPage = (page) => {
+  const {pathname} = new URL(page);
+  return !pathname.startsWith('/internal/') && !hiddenSitemapPaths.has(pathname) && !redirectSourcePaths.has(pathname);
+};
 
 // The Ghost blog served under /blog consumes /headerfooter.html to reuse the
 // main site's header, footer, and assets. Astro renders the source page as
@@ -83,7 +95,7 @@ const ghostMockApi = {
 };
 
 export default defineConfig({
-  integrations: [mdx(), react(), headerFooterOutput, ghostHeaderFooterAssets],
+  integrations: [mdx(), react(), sitemap({filter: isPublicSitemapPage}), headerFooterOutput, ghostHeaderFooterAssets],
   outDir: 'public',
   publicDir: 'static',
   site,

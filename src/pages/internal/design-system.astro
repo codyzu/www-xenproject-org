@@ -70,6 +70,15 @@ const motion = [
 
 <BaseLayout title="Design System" description="Internal Xen Project design system reference." robots="noindex, nofollow" bodyClass="xp-design-system">
   <main class="uno-min-h-screen uno-bg-xp-surface-0 uno-text-xp-text-primary">
+    <div class="xp-internal-notice-wrap">
+      <aside class="xp-internal-notice" aria-label="Internal development resource">
+        <span class="xp-internal-notice-kicker">Internal development resource</span>
+        <Text size="caption">
+          This page documents the Xen Design System and is intended for contributors and maintainers. It is not part of the public website.
+        </Text>
+      </aside>
+    </div>
+
     <section class="xp-band xp-band-hero">
       <div class="xp-shell xp-layer-grid">
         <div class="uno-max-w-xp-page">
@@ -353,6 +362,32 @@ const motion = [
   .xp-shell {
     width: min(100%, var(--xp-container-wide));
     margin-inline: auto;
+  }
+
+  .xp-internal-notice-wrap {
+    padding: var(--xp-space-4) var(--xp-space-5) 0;
+  }
+
+  .xp-internal-notice {
+    display: flex;
+    width: min(100%, var(--xp-container-wide));
+    margin-inline: auto;
+    align-items: center;
+    gap: var(--xp-space-3);
+    border: 1px solid var(--xp-border-muted);
+    border-radius: var(--xp-radius-md);
+    background:
+      linear-gradient(90deg, rgb(133 194 65 / 0.10), transparent 26rem),
+      var(--xp-surface-1);
+    padding: var(--xp-space-3) var(--xp-space-4);
+    box-shadow: var(--xp-shadow-sm);
+  }
+
+  .xp-internal-notice-kicker {
+    flex: none;
+    color: var(--xp-accent-primary);
+    font-size: var(--xp-type-caption);
+    font-weight: 700;
   }
 
   .xp-section-intro {
@@ -660,6 +695,16 @@ const motion = [
   @media (max-width: 42rem) {
     .xp-band {
       padding-inline: var(--xp-space-4);
+    }
+
+    .xp-internal-notice-wrap {
+      padding-inline: var(--xp-space-4);
+    }
+
+    .xp-internal-notice {
+      align-items: flex-start;
+      flex-direction: column;
+      gap: var(--xp-space-2);
     }
 
     .xp-type-row {
