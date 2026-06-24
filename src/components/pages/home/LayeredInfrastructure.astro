@@ -1,0 +1,43 @@
+---
+import Badge from '../../primitives/Badge.astro';
+import Cluster from '../../primitives/Cluster.astro';
+import Stack from '../../primitives/Stack.astro';
+import Surface from '../../primitives/Surface.astro';
+import Text from '../../primitives/Text.astro';
+
+const layers = [
+  {label: 'Applications', offset: '0rem'},
+  {label: 'Guests', offset: '1.25rem'},
+  {label: 'Xen hypervisor', offset: '2.5rem'},
+  {label: 'Hardware', offset: '3.75rem'},
+];
+---
+
+<!-- Page-local visual: existing blocks provide the slot and layout, but this specific layered metaphor is homepage narrative content. -->
+<Surface tone="2" border="strong" radius="lg" shadow="lg" padding="lg" aria-label="Layered infrastructure model">
+  <Stack gap="5">
+    <Cluster justify="between">
+      <Badge variant="accent">Layered systems</Badge>
+      <Text as="span" size="mono-small" tone="muted">isolation / control</Text>
+    </Cluster>
+    <div class="uno-relative uno-min-h-74 uno-overflow-hidden uno-rounded-xp-lg uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-p-5">
+      <div class="uno-absolute uno-inset-0 uno-bg-[radial-gradient(circle_at_18%_20%,rgb(133_194_65_/_0.18),transparent_18rem),linear-gradient(135deg,rgb(79_179_255_/_0.12),transparent_24rem)]"></div>
+      <div class="uno-relative uno-grid uno-gap-4">
+        {layers.map((layer, index) => (
+          <div
+            class="uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(20_34_56_/_0.82)] uno-p-4 uno-shadow-xp-sm"
+            style={`margin-left:${layer.offset}`}
+          >
+            <Cluster justify="between">
+              <Text as="span" size="caption" tone={index === 2 ? 'accent-primary' : 'secondary'} class="uno-font-bold">{layer.label}</Text>
+              <Text as="span" size="mono-small" tone="muted">0{index + 1}</Text>
+            </Cluster>
+          </div>
+        ))}
+      </div>
+    </div>
+    <Text size="caption">
+      Xen sits below guest systems and above hardware, providing a focused layer for virtualization and isolation decisions.
+    </Text>
+  </Stack>
+</Surface>

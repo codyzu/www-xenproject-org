@@ -1,0 +1,108 @@
+---
+import {navigationItems, type NavigationItem} from '../../data/navigation';
+import Button from '../primitives/Button.astro';
+import Container from '../primitives/Container.astro';
+
+type Props = {
+  currentPath: string;
+};
+
+const {currentPath} = Astro.props as Props;
+
+const normalize = (href: string) => {
+  if (href.startsWith('http')) return href;
+  if (href === '/') return href;
+  return href.endsWith('/') ? href : `${href}/`;
+};
+const shouldDisplay = (item: NavigationItem) => item.header !== false;
+const isActive = (item: NavigationItem) => normalize(item.href) === normalize(currentPath);
+const hasActiveChild = (item: NavigationItem): boolean => item.children?.some(child => isActive(child) || hasActiveChild(child)) ?? false;
+const visibleNavigationItems = navigationItems.filter(shouldDisplay);
+---
+
+<header class="uno-sticky uno-top-0 uno-z-[var(--xp-z-header)] uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(5_8_14_/_0.88)] uno-backdrop-blur-md">
+  <Container size="wide" class="uno-px-4 md:uno-px-6">
+    <div class="uno-flex uno-min-h-18 uno-items-center uno-justify-between uno-gap-4">
+      <a href="/" class="xen-focus uno-inline-flex uno-rounded-xp-md" aria-label="Xen Project home">
+        <img src="/img/logo-xen-reverse.svg" alt="Xen Project" width="174" height="48" class="uno-h-10 uno-w-auto" />
+      </a>
+
+      <nav class="uno-hidden lg:uno-block" aria-label="Primary navigation">
+        <ul class="uno-m-0 uno-flex uno-list-none uno-items-center uno-gap-1 uno-p-0">
+          {visibleNavigationItems.map(item => (
+            <li class="uno-relative">
+              <a
+                href={item.href}
+                target={item.target}
+                class:list={[
+                  'xen-focus uno-inline-flex uno-rounded-xp-md uno-px-3 uno-py-2 uno-text-sm uno-font-semibold uno-text-xp-text-secondary uno-no-underline hover:uno-bg-xp-surface-2 hover:uno-text-xp-text-primary',
+                  (isActive(item) || hasActiveChild(item)) && 'uno-bg-xp-surface-2 uno-text-xp-text-primary',
+                ]}
+                aria-current={isActive(item) ? 'page' : hasActiveChild(item) ? 'true' : undefined}
+              >
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="uno-hidden uno-items-center uno-gap-3 lg:uno-flex">
+        <Button href="/about/become-a-member/" variant="secondary" class="uno-min-w-0">Become a member</Button>
+      </div>
+
+      <details class="xp-mobile-nav uno-relative lg:uno-hidden">
+        <summary class="xen-action-secondary uno-min-w-0 uno-cursor-pointer uno-list-none">
+          Menu
+        </summary>
+        <nav class="uno-absolute uno-right-0 uno-top-[calc(100%+0.75rem)] uno-w-[min(22rem,calc(100vw-2rem))] uno-rounded-xp-lg uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-p-3 uno-shadow-xp-lg" aria-label="Mobile navigation">
+          <ul class="uno-m-0 uno-list-none uno-p-0">
+            {visibleNavigationItems.map(item => (
+              <li>
+                <a
+                  href={item.href}
+                  target={item.target}
+                  class:list={[
+                    'xen-focus uno-flex uno-rounded-xp-md uno-px-3 uno-py-3 uno-font-semibold uno-text-xp-text-primary uno-no-underline hover:uno-bg-xp-surface-2',
+                    (isActive(item) || hasActiveChild(item)) && 'uno-bg-xp-surface-2',
+                  ]}
+                  aria-current={isActive(item) ? 'page' : hasActiveChild(item) ? 'true' : undefined}
+                >
+                  {item.name}
+                </a>
+                {item.children && item.children.length > 0 && (
+                  <ul class="uno-m-0 uno-list-none uno-p-0 uno-pb-2 uno-pl-4">
+                    {item.children.filter(shouldDisplay).map(child => (
+                      <li>
+                        <a
+                          href={child.href}
+                          target={child.target}
+                          class:list={[
+                            'xen-focus uno-flex uno-rounded-xp-md uno-px-3 uno-py-2 uno-text-sm uno-font-medium uno-text-xp-text-secondary uno-no-underline hover:uno-bg-xp-surface-2 hover:uno-text-xp-text-primary',
+                            isActive(child) && 'uno-bg-xp-surface-2 uno-text-xp-text-primary',
+                          ]}
+                          aria-current={isActive(child) ? 'page' : undefined}
+                        >
+                          {child.name}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+          <div class="uno-mt-3 uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-pt-3">
+            <Button href="/about/become-a-member/" class="uno-w-full">Become a member</Button>
+          </div>
+        </nav>
+      </details>
+    </div>
+  </Container>
+</header>
+
+<style>
+  .xp-mobile-nav summary::-webkit-details-marker {
+    display: none;
+  }
+</style>

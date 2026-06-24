@@ -1,5 +1,10 @@
 version: 1
 exceptions:
+  - id: homepage-redesign
+    route: /
+    kind: redesigned-page
+    scope: full homepage narrative and section structure
+    reason: The homepage intentionally becomes the first public consumer of the Xen Design System and replaces the legacy Story, carousels, and news shell.
   - id: all-pages-astro-inventory
     route: /all/
     kind: redesigned-index

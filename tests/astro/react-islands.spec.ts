@@ -1,6 +1,5 @@
 import {expect, test} from '@playwright/test';
 import {mockGitlabGraphQl} from './fixtures/gitlab-pipelines';
-import {mockGhostApi} from './fixtures/ghost-posts';
 
 test.describe('React island migration guardrails', () => {
   test('hydrates the Astro-owned CI status dashboard island', async ({page}) => {
@@ -57,17 +56,12 @@ test.describe('React island migration guardrails', () => {
     await expect(island.locator('img').first()).toHaveAttribute('src', /\S/);
   });
 
-  test('hydrates the Astro-owned homepage islands', async ({page}) => {
-    await mockGhostApi(page);
+  test('keeps the redesigned homepage free of retired React islands', async ({page}) => {
     await page.goto('/');
 
-    const story = page.locator('#xen-story');
-    await expect(story).toBeVisible();
-    await expect(story.getByText('Scroll down to meet your guide...')).toBeVisible();
-
-    const logoWheel = page.locator('#logo-wheel');
-    await logoWheel.scrollIntoViewIfNeeded();
-    await expect(logoWheel.locator('img')).not.toHaveCount(0);
+    await expect(page.locator('#xen-story')).toHaveCount(0);
+    await expect(page.locator('#logo-wheel')).toHaveCount(0);
+    await expect(page.locator('[data-latest-news]')).toHaveCount(0);
   });
 
   test('renders Astro-owned research links without legacy React mounts', async ({page}) => {

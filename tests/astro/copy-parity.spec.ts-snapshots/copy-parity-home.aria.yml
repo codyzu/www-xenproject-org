@@ -1,160 +1,184 @@
 - main:
-  - text: Meet Xen. The world's most secure, stable, and performant open source hypervisor. Scroll down to meet your guide...
-  - img
-  - text: ...the Xen Panda travels through the universe, guiding users through the wonders of Xen virtualization. Planet Data Center Xen brings virtualization to a wide range of server environments, from data centers to enterprise IT, edge deployments, and labs. As an Open Source hypervisor, Xen powers a variety of platforms supported by both community and commercial contributors. Sub-projects like
-  - strong: XCP-ng
-  - text: offer a drop-in solution built on Xen for those seeking a fully open and stable virtualization stack. Commercial offerings from Xen partners provide additional features, support, and long-term stability, all built on the same trusted core. Whether you're managing thousands of virtual machines or a single node on-premises, Xen provides the flexibility and stability to meet your needs.
-  - img
-  - text: Planet Automotive Xen is powering innovation in automotive computing by enabling secure, efficient virtualization across in-vehicle systems. From dashboards and infotainment to safety-critical functions, Xen consolidates multiple operating systems onto a single SoC while preserving isolation and performance. It plays a key role in the
-  - strong: Automotive Grade Linux
-  - text: Software-Defined Vehicle reference platform, supporting mixed-criticality workloads with VirtIO and real-time OSes like
-  - strong: Zephyr
-  - text: . With long-term security support and a rigorous open CI system, Xen provides a trusted foundation for next-generation vehicles. Automotive partners across manufacturing and component sectors collaborate within the Xen ecosystem to advance software-defined mobility.
-  - img
-  - text: Planet Industrial Xen is transforming industrial computing by enabling secure, efficient virtualization across embedded controllers, robotics, factory automation systems, and energy infrastructure. With real-time performance, low and deterministic interrupt latency, strong isolation, and minimal overhead, Xen allows manufacturers and operators to consolidate workloads and extend device lifecycles. The open CI network ensures compatibility with real-world hardware while supporting robust validation workflows essential in mission-critical environments, enabling predictive maintenance strategies. Industrial and energy sector partners can contribute and test directly within the Xen ecosystem, helping shape a resilient and flexible virtualization platform for modern operations.
-  - img
-  - text: Planet Consumer Xen isn't just for servers and vehicles, it's empowering end-user systems too. Renowned security-focused projects like
-  - strong: Qubes OS
-  - text: and
-  - strong: OpenXT
-  - text: rely on Xen to provide hardware-enforced isolation on desktops and laptops, ensuring privacy and protection for advanced users and developers. Contributors from these communities even provide test hardware to the Xen CI network, reinforcing the platform's real-world reliability. Xen also powers home labs, small businesses, and university research environments, offering a secure, flexible virtualization stack for experimentation and innovation.
-  - img
-  - text: Where will Xen take you? Xen
+  - paragraph: A Linux Foundation Project
+  - heading "Open source virtualization for systems that demand isolation and control." [level=1]
+  - paragraph: Xen is a hypervisor and open source project for teams building infrastructure, embedded platforms, security-sensitive systems, and virtualization products that need a clear layer of separation.
+  - link "Explore Xen":
+    - /url: /projects/hypervisor
+  - link "Explore membership":
+    - /url: /about/become-a-member
+  - text: Hypervisor Open source Infrastructure Layered systems isolation / control Applications 01 Guests 02 Xen hypervisor 03 Hardware 04
+  - paragraph: Xen sits below guest systems and above hardware, providing a focused layer for virtualization and isolation decisions.
+  - paragraph: Built in the Open
+  - heading "A project you can evaluate in the open." [level=2]
+  - paragraph: Governance, security handling, and testing resources are published so technical teams can inspect how the project works.
   - article:
-    - text: A Linux Foundation Project
-    - heading "Bring the power of open virtualization everywhere." [level=1]:
-      - text: Bring the power of
-      - strong: open virtualization
-      - text: everywhere.
-    - paragraph: The Xen Project team is a global open source community that develops the Xen Project Hypervisor and its associated subprojects.
-    - paragraph: Our mission is to advance virtualization technology across a wide range of commercial and open-source domains.
-    - img "Illustration of a computer monitor displaying bar charts with Xen Project Logo"
-    - list:
-      - listitem:
-        - heading " Open-source" [level=2]
-        - paragraph: Wide variety of vendors and individuals opens new opportunities for the hypervisor and provides end-users with numerous places to find support.
-      - listitem:
-        - heading " Reliable" [level=2]
-        - paragraph: Over 10 million people use Xen with an ecosystem of more than 2000 commercially certified partners.
-      - listitem:
-        - heading " Flexible" [level=2]
-        - paragraph: Architecture enables vendors to create Xen-based products and services for servers, cloud, desktop, embedded, and security-first environments.
-      - listitem:
-        - heading " Support" [level=2]
-        - paragraph: Hypervisor supports multiple guest operating systems and cloud platforms.
-      - listitem:
-        - heading " Secure" [level=2]
-        - paragraph: Minimal attack surface with key security features like KCONFIG and Virtual Machine Introspection.
-      - listitem:
-        - heading " Modular" [level=2]
-        - paragraph: Architecture enables a degree of scalability, robustness, and security suitable for large, critical, and extremely secure environments.
-    - heading "A virtualization revolution" [level=2]:
-      - text: A virtualization
-      - strong: revolution
-    - paragraph: "The Xen Project focuses on revolutionizing virtualization by providing a versatile and powerful hypervisor that addresses the evolving needs of diverse industries :"
-    - list:
-      - listitem:
-        - strong: "Empower Innovation:"
-        - text: Tailored virtualization to drive progress across various domains.
-      - listitem:
-        - strong: "Enhance Cloud Ecosystems:"
-        - text: Elevate cloud capabilities with high-performing, reliable virtualization.
-      - listitem:
-        - strong: "Secure Critical Systems:"
-        - text: Safeguard data and applications through industry-leading security.
-      - listitem:
-        - strong: "Revolutionize Embedded Technologies:"
-        - text: Transform embedded and automotive sectors with mature, safe, secure solutions.
-    - region "Xen Project technologies":
-      - heading "Embedded & Automotive" [level=3]
-      - paragraph: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automotive systems.
-      - link "Discover ":
-        - /url: /projects/embedded-and-automotive
-      - heading "HVMI" [level=3]
-      - paragraph: Explore Xen Project's Hypervisor Memory Introspection (HVMI). Learn how HVMI enhances security by providing real-time monitoring and protection for virtualized environments.
-      - link "Discover ":
-        - /url: /projects/hvmi
-      - heading "Hypervisor" [level=3]
-      - paragraph: Discover Xen Hypervisor, the open-source virtualization platform.
-      - link "Discover ":
-        - /url: /projects/hypervisor
-      - heading "Mirage OS" [level=3]
-      - paragraph: MirageOS is a library operating system that constructs unikernels for secure, high-performance, low-energy footprint applications.
-      - link "Discover ":
-        - /url: /projects/mirage-os
-      - heading "Unikraft" [level=3]
-      - paragraph: Unikraft is an open-source project for building efficient, secure unikernels. It provides customizable libraries and tools to create lightweight, single-purpose operating systems.
-      - link "Discover ":
-        - /url: /projects/unikraft
-      - heading "Windows PV Drivers" [level=3]
-      - paragraph: Windows PV Drivers enhance the performance and efficiency of Windows virtual machines. Access documentation and support for seamless integration.
-      - link "Discover ":
-        - /url: /projects/windows-pv-drivers
-      - heading "XAPI" [level=3]
-      - paragraph: The XAPI project is an enterprise-ready toolstack for use with the Xen Project hypervisor.
-      - link "Discover ":
-        - /url: /projects/xapi
-      - heading "XCP-ng" [level=3]
-      - paragraph: XCP-ng (Xen Cloud Platform – new generation) is a turnkey virtualization platform built on the Xen Project Hypervisor and using the Xen API (XAPI). It is typically managed with Xen Orchestra, an agentless, multi-cluster web interface that provides management, monitoring, and backup capabilities.
-      - link "Discover ":
-        - /url: /projects/xcp-ng
-      - button "Previous projects" [disabled]: 
-      - button "Next projects": 
-    - paragraph:
-      - link "Discover all projects ":
-        - /url: /projects/all-projects
-    - heading "Latest news Read all news " [level=2]:
-      - text: Latest
-      - strong: news
-      - link "Read all news ":
-        - /url: /blog
-    - region "Latest Xen Project news":
-      - button "Previous news" [disabled]: 
-      - button "Next news" [disabled]: 
-    - paragraph: Latest news is temporarily unavailable.
-    - heading "Governed by Xen project members" [level=2]:
-      - text: Governed by Xen project
-      - strong: members
-    - paragraph: Board members can propose and vote upon changes to the Xen Project. Members also gain valuable strategic insight into project plans and future scope.
-    - paragraph:
-      - link "Join the advisory board ":
-        - /url: /about/become-a-member
-    - list:
-      - listitem:
-        - img "amd logo"
-      - listitem:
-        - img "arm logo"
-      - listitem:
-        - img "aws logo"
-      - listitem:
-        - img "boeing logo"
-      - listitem:
-        - img "epam logo"
-      - listitem:
-        - img "ford logo"
-      - listitem:
-        - img "honda logo"
-      - listitem:
-        - img "logo linux foundation"
-      - listitem:
-        - img "renesas logo cropped"
-      - listitem:
-        - img "vates logo"
-      - listitem:
-        - img "xenserver logo"
-    - heading "Led by a dedicated community" [level=2]:
-      - text: Led by a
-      - strong: dedicated community
-    - paragraph: The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology. With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.
-    - paragraph:
-      - link "Get started ":
-        - /url: /contribute/get-started
-    - img "Illustration symbolizing teamwork."
-    - heading "About Xen Project" [level=2]:
-      - text: About
-      - strong: Xen Project
-    - paragraph: The mission of the Xen Project is to advance virtualisation technology across a wide range of commercial and open-source domains.
-    - paragraph:
-      - link "Learn about Xen Project ":
-        - /url: /about
-    - img "Illustration representing data integration."
+    - text: Governance
+    - heading "Open project model" [level=3]
+    - paragraph: Project roles, governance, and decision processes are available for review.
+    - link "Governance":
+      - /url: /about/governance
+  - article:
+    - text: Security
+    - heading "Published response process" [level=3]
+    - paragraph: Security reporting and response expectations are documented for users and vendors.
+    - link "Security policy":
+      - /url: /about/security-policy
+  - article:
+    - text: CI
+    - heading "Public testing resources" [level=3]
+    - paragraph: CI resources and status information are available for contributors and evaluators.
+    - link "CI resources":
+      - /url: /contribute/ci
+  - paragraph: Why Xen matters now
+  - heading "Modern platforms still need a strong virtualization layer." [level=2]
+  - paragraph: For technical evaluators, Xen is most relevant where isolation, openness, long-term platform work, and security-sensitive engineering matter.
+  - article:
+    - heading "Isolation as a foundation" [level=3]
+    - paragraph: Xen is built around a hypervisor layer that separates guest systems from the underlying platform.
+    - link "Explore the hypervisor":
+      - /url: /projects/hypervisor
+  - article:
+    - heading "Open engineering model" [level=3]
+    - paragraph: Governance and contribution paths are visible to organizations and individual engineers.
+    - link "Read governance":
+      - /url: /about/governance
+  - article:
+    - heading "Security-sensitive platforms" [level=3]
+    - paragraph: Security policy, vulnerability reporting, and related project work are part of the evaluation path.
+    - link "Review security policy":
+      - /url: /about/security-policy
+  - paragraph: Where Xen excels
+  - heading "Built for engineers working close to the platform." [level=2]
+  - paragraph: Xen is strongest when teams need to reason carefully about virtual machines, hardware, operating systems, and trust boundaries.
+  - article:
+    - heading "Cloud and infrastructure" [level=3]
+    - paragraph: Xen projects include the hypervisor and toolstack work used to build virtualization platforms.
+    - link "View projects":
+      - /url: /projects/all-projects
+  - article:
+    - heading "Embedded and automotive" [level=3]
+    - paragraph: The Embedded & Automotive project describes Xen for systems that need isolation, real-time support, and fault tolerance.
+    - link "Explore embedded work":
+      - /url: /projects/embedded-and-automotive
+  - article:
+    - heading "Introspection and security tooling" [level=3]
+    - paragraph: HVMI focuses on real-time monitoring and protection for virtualized environments.
+    - link "Explore HVMI":
+      - /url: /projects/hvmi
+  - article:
+    - heading "Specialized operating systems" [level=3]
+    - paragraph: MirageOS and Unikraft show how Xen ecosystem projects support focused, lightweight systems work.
+    - link "See ecosystem projects":
+      - /url: /projects/all-projects
+  - paragraph: Architecture
+  - heading "A clear boundary for platform control." [level=2]
+  - paragraph: Xen sits between hardware and guest systems. That position gives platform teams a place to make virtualization, isolation, and control decisions without treating the operating system as the whole boundary.
+  - link "Explore the hypervisor":
+    - /url: /projects/hypervisor
+  - link "Read use cases":
+    - /url: /resources/use-cases
+  - complementary:
+    - heading "A focused virtualization layer" [level=2]
+    - paragraph: The hypervisor project page is the best place to start for architecture details, related resources, and project scope.
+    - link "Hypervisor details":
+      - /url: /projects/hypervisor
+  - paragraph: Guests
+  - paragraph: Virtualized systems stay above the hypervisor boundary.
+  - paragraph: Hardware
+  - paragraph: Platform integration stays visible to teams that need control.
+  - paragraph: Project areas
+  - heading "Explore the Xen project ecosystem." [level=2]
+  - paragraph: Key project areas are available through direct links so teams can scan capabilities and go deeper where relevant.
+  - article:
+    - heading "Embedded & Automotive" [level=3]
+    - paragraph: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automotive systems.
+    - link "Open project":
+      - /url: /projects/embedded-and-automotive
+  - article:
+    - heading "HVMI" [level=3]
+    - paragraph: Explore Xen Project's Hypervisor Memory Introspection (HVMI). Learn how HVMI enhances security by providing real-time monitoring and protection for virtualized environments.
+    - link "Open project":
+      - /url: /projects/hvmi
+  - article:
+    - heading "Hypervisor" [level=3]
+    - paragraph: Discover Xen Hypervisor, the open-source virtualization platform.
+    - link "Open project":
+      - /url: /projects/hypervisor
+  - article:
+    - heading "Mirage OS" [level=3]
+    - paragraph: MirageOS is a library operating system that constructs unikernels for secure, high-performance, low-energy footprint applications.
+    - link "Open project":
+      - /url: /projects/mirage-os
+  - article:
+    - heading "XAPI" [level=3]
+    - paragraph: The XAPI project is an enterprise-ready toolstack for use with the Xen Project hypervisor.
+    - link "Open project":
+      - /url: /projects/xapi
+  - article:
+    - heading "XCP-ng" [level=3]
+    - paragraph: XCP-ng (Xen Cloud Platform – new generation) is a turnkey virtualization platform built on the Xen Project Hypervisor and using the Xen API (XAPI). It is typically managed with Xen Orchestra, an agentless, multi-cluster web interface that provides management, monitoring, and backup capabilities.
+    - link "Open project":
+      - /url: /projects/xcp-ng
+  - paragraph: Members
+  - heading "Sustained by organizations with a stake in open virtualization." [level=2]
+  - paragraph: Members help sustain shared project infrastructure, events, trademark stewardship, and ecosystem coordination.
+  - link "Visit AMD":
+    - /url: http://www.amd.com/
+    - img "AMD"
+    - text: AMD
+  - link "Visit ARM":
+    - /url: https://www.arm.com/
+    - img "ARM"
+    - text: ARM
+  - link "Visit AWS":
+    - /url: https://aws.amazon.com/
+    - img "AWS"
+    - text: AWS
+  - link "Visit Boeing":
+    - /url: https://www.boeing.com/
+    - img "Boeing"
+    - text: Boeing
+  - link "Visit EPAM":
+    - /url: https://www.epam.com/
+    - img "EPAM"
+    - text: EPAM
+  - link "Visit Ford Motor Company":
+    - /url: https://ford.com/
+    - img "Ford Motor Company"
+    - text: Ford Motor Company
+  - link "Visit Honda":
+    - /url: https://www.honda.com/
+    - img "Honda"
+    - text: Honda
+  - link "Visit Renesas":
+    - /url: https://www.renesas.com/
+    - img "Renesas"
+    - text: Renesas
+  - link "Visit Vates":
+    - /url: https://vates.fr/
+    - img "Vates"
+    - text: Vates
+  - link "Visit XenServer":
+    - /url: https://www.xenserver.com/
+    - img "XenServer"
+    - text: XenServer
+  - paragraph: Open governance and community
+  - heading "Technical work happens in the open." [level=2]
+  - paragraph: Xen contribution follows documented project processes. Engineers can find a practical starting point, and organizations can support the ecosystem through membership.
+  - complementary:
+    - heading "For engineers" [level=2]
+    - paragraph: Start with contribution guidance, development resources, and project-specific entry points.
+    - link "Start contributing":
+      - /url: /contribute/get-started
+  - complementary:
+    - heading "For organizations" [level=2]
+    - paragraph: Membership is a way to support the project infrastructure and coordination that keep Xen healthy.
+    - link "Explore membership":
+      - /url: /about/become-a-member
+  - paragraph: Next step
+  - heading "Support Xen's future, or help build it." [level=2]
+  - paragraph: Organizations can support the project through membership. Engineers can start with the contributor resources.
+  - link "Explore membership":
+    - /url: /about/become-a-member
+  - link "Start contributing":
+    - /url: /contribute/get-started

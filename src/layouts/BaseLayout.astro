@@ -1,5 +1,7 @@
 ---
 import {siteMetadata} from '../data/site';
+import SiteFooter from '../components/blocks/SiteFooter.astro';
+import SiteHeader from '../components/blocks/SiteHeader.astro';
 import 'uno.css';
 import '../styles/foundation/base.css';
 
@@ -13,6 +15,7 @@ type Props = {
   image?: string;
   robots?: string;
   bodyClass?: string;
+  publicShell?: boolean;
 };
 
 const {
@@ -25,6 +28,7 @@ const {
   image,
   robots = 'index, follow',
   bodyClass = '',
+  publicShell = false,
 } = Astro.props;
 const currentPath = Astro.url.pathname;
 const siteUrl = Astro.site ?? new URL('https://beta.xenproject.org');
@@ -67,6 +71,16 @@ const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialI
     <link rel="canonical" href={resolvedCanonicalUrl} />
   </head>
   <body class:list={['xp-site', bodyClass]}>
-    <slot />
+    {publicShell ? (
+      <>
+        <SiteHeader currentPath={currentPath} />
+        <main id="main-content">
+          <slot />
+        </main>
+        <SiteFooter currentPath={currentPath} />
+      </>
+    ) : (
+      <slot />
+    )}
   </body>
 </html>

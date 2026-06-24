@@ -6,9 +6,8 @@ const highValuePages = [
     name: 'home',
     path: '/',
     title: /Xen Project/i,
-    heading: /Bring the power of/i,
+    heading: /Open source virtualization for systems that demand isolation and control/i,
     screenshot: 'home-page.png',
-    hide: '[data-story-star]',
     fullPage: false,
   },
   {

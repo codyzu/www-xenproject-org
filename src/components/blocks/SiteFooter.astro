@@ -1,0 +1,78 @@
+---
+import {navigationItems, type NavigationItem} from '../../data/navigation';
+import Container from '../primitives/Container.astro';
+import Grid from '../primitives/Grid.astro';
+import Heading from '../primitives/Heading.astro';
+import Stack from '../primitives/Stack.astro';
+import Text from '../primitives/Text.astro';
+
+type Props = {
+  currentPath: string;
+};
+
+const {currentPath} = Astro.props as Props;
+const shouldDisplay = (item: NavigationItem) => item.footer !== false;
+const normalize = (href: string) => {
+  if (href.startsWith('http')) return href;
+  if (href === '/') return href;
+  return href.endsWith('/') ? href : `${href}/`;
+};
+const isActive = (item: NavigationItem) => normalize(item.href) === normalize(currentPath);
+const visibleNavigationItems = navigationItems.filter(shouldDisplay);
+---
+
+<footer class="uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-px-4 uno-py-12 md:uno-px-6">
+  <Container size="wide">
+    <Stack gap="6">
+      <Grid columns="2" gap="6">
+        <Stack gap="3">
+          <img src="/img/logo-xen-reverse.svg" alt="Xen Project" width="174" height="48" class="uno-h-10 uno-w-fit" />
+          <Text class="uno-max-w-xp-content">
+            The Xen Project advances open source virtualization across commercial and open source domains.
+          </Text>
+          <Text size="caption" tone="muted">A Linux Foundation Project.</Text>
+        </Stack>
+        <nav aria-label="Footer navigation">
+          <Grid columns="3" gap="5">
+            {visibleNavigationItems.map(item => (
+              <Stack gap="2">
+                <Heading as="h2" size="card">{item.name}</Heading>
+                <ul class="uno-m-0 uno-list-none uno-p-0">
+                  <li>
+                    <a
+                      href={item.href}
+                      target={item.target}
+                      class="xen-focus uno-inline-flex uno-rounded-xp-sm uno-py-1 uno-text-sm uno-font-semibold uno-text-xp-text-secondary uno-no-underline hover:uno-text-xp-text-primary"
+                      aria-current={isActive(item) ? 'page' : undefined}
+                    >
+                      Overview
+                    </a>
+                  </li>
+                  {item.children?.filter(shouldDisplay).map(child => (
+                    <li>
+                      <a
+                        href={child.href}
+                        target={child.target}
+                        class="xen-focus uno-inline-flex uno-rounded-xp-sm uno-py-1 uno-text-sm uno-text-xp-text-muted uno-no-underline hover:uno-text-xp-text-primary"
+                        aria-current={isActive(child) ? 'page' : undefined}
+                      >
+                        {child.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </Stack>
+            ))}
+          </Grid>
+        </nav>
+      </Grid>
+      <div class="uno-flex uno-flex-col uno-gap-3 uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-pt-5 md:uno-flex-row md:uno-items-center md:uno-justify-between">
+        <Text size="caption" tone="muted">xenproject.org content is licensed under CC BY 4.0.</Text>
+        <div class="uno-flex uno-flex-wrap uno-gap-4">
+          <a href="https://www.linuxfoundation.org/legal/privacy-policy" class="xen-focus uno-rounded-xp-sm uno-text-sm uno-font-semibold uno-text-xp-text-secondary uno-no-underline hover:uno-text-xp-text-primary">Privacy Policy</a>
+          <a href="https://www.linuxfoundation.org/legal/trademark-usage" class="xen-focus uno-rounded-xp-sm uno-text-sm uno-font-semibold uno-text-xp-text-secondary uno-no-underline hover:uno-text-xp-text-primary">Terms of Use</a>
+        </div>
+      </div>
+    </Stack>
+  </Container>
+</footer>

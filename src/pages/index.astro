@@ -1,95 +1,261 @@
 ---
-import LatestNewsShell from '../components/legacy/LatestNewsShell.astro';
-import MediaBlock from '../components/legacy/MediaBlock.astro';
-import ProjectCarousel from '../components/legacy/ProjectCarousel.astro';
-import LogoWheel from '../components/react/LogoWheel';
-import Story from '../components/react/Story';
-import Section from '../components/legacy/Section.astro';
-import LegacyLayout from '../layouts/LegacyLayout.astro';
+import CTA from '../components/blocks/CTA.astro';
+import Callout from '../components/blocks/Callout.astro';
+import FeatureGrid from '../components/blocks/FeatureGrid.astro';
+import Hero from '../components/blocks/Hero.astro';
+import LogoCloud from '../components/blocks/LogoCloud.astro';
+import Stats from '../components/blocks/Stats.astro';
+import Badge from '../components/primitives/Badge.astro';
+import Button from '../components/primitives/Button.astro';
+import Cluster from '../components/primitives/Cluster.astro';
+import Container from '../components/primitives/Container.astro';
+import Grid from '../components/primitives/Grid.astro';
+import Heading from '../components/primitives/Heading.astro';
+import Section from '../components/primitives/Section.astro';
+import Split from '../components/primitives/Split.astro';
+import Stack from '../components/primitives/Stack.astro';
+import Surface from '../components/primitives/Surface.astro';
+import Text from '../components/primitives/Text.astro';
+import LayeredInfrastructure from '../components/pages/home/LayeredInfrastructure.astro';
+import {memberLogos} from '../data/member-logos';
 import {projects} from '../data/projects';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Xen Project';
 const description = 'The Xen Project develops enterprise-grade open source virtualization solutions trusted by millions of users. Secure, flexible, and powerful hypervisor technology.';
-const keywords = ['Xen Project', 'open source virtualization', 'enterprise-grade hypervisor', 'secure virtualization', 'flexible hypervisor', 'virtualization solutions', 'Linux Foundation', 'community', 'innovation', 'technology'];
-const features = [
-  ['Open-source', 'fas fa-code', 'Wide variety of vendors and individuals opens new opportunities for the hypervisor and provides end-users with numerous places to find support.'],
-  ['Reliable', 'fas fa-thumbs-up', 'Over 10 million people use Xen with an ecosystem of more than 2000 commercially certified partners.'],
-  ['Flexible', 'fas fa-cogs', 'Architecture enables vendors to create Xen-based products and services for servers, cloud, desktop, embedded, and security-first environments.'],
-  ['Support', 'fas fa-headset', 'Hypervisor supports multiple guest operating systems and cloud platforms.'],
-  ['Secure', 'fas fa-shield-alt', 'Minimal attack surface with key security features like KCONFIG and Virtual Machine Introspection.'],
-  ['Modular', 'fas fa-puzzle-piece', 'Architecture enables a degree of scalability, robustness, and security suitable for large, critical, and extremely secure environments.'],
+const keywords = ['Xen Project', 'open source virtualization', 'enterprise-grade hypervisor', 'secure virtualization', 'flexible hypervisor', 'virtualization solutions', 'Linux Foundation', 'community', 'technology'];
+
+const proofPoints = [
+  {
+    value: 'Governance',
+    label: 'Open project model',
+    description: 'Project roles, governance, and decision processes are available for review.',
+    sourceHref: '/about/governance/',
+    sourceLabel: 'Governance',
+  },
+  {
+    value: 'Security',
+    label: 'Published response process',
+    description: 'Security reporting and response expectations are documented for users and vendors.',
+    sourceHref: '/about/security-policy/',
+    sourceLabel: 'Security policy',
+  },
+  {
+    value: 'CI',
+    label: 'Public testing resources',
+    description: 'CI resources and status information are available for contributors and evaluators.',
+    sourceHref: '/contribute/ci/',
+    sourceLabel: 'CI resources',
+  },
 ];
-const homepageProjects = projects.filter((project) => project.route !== '/projects/hypervisor/openpgp-keys/');
+
+const relevanceFeatures = [
+  {
+    icon: 'i-carbon-layers',
+    title: 'Isolation as a foundation',
+    description: 'Xen is built around a hypervisor layer that separates guest systems from the underlying platform.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Explore the hypervisor',
+  },
+  {
+    icon: 'i-carbon-open-panel-filled-center',
+    title: 'Open engineering model',
+    description: 'Governance and contribution paths are visible to organizations and individual engineers.',
+    href: '/about/governance/',
+    linkLabel: 'Read governance',
+  },
+  {
+    icon: 'i-carbon-security',
+    title: 'Security-sensitive platforms',
+    description: 'Security policy, vulnerability reporting, and related project work are part of the evaluation path.',
+    href: '/about/security-policy/',
+    linkLabel: 'Review security policy',
+  },
+];
+
+const excellenceFeatures = [
+  {
+    icon: 'i-carbon-ibm-cloud-vpc',
+    title: 'Cloud and infrastructure',
+    description: 'Xen projects include the hypervisor and toolstack work used to build virtualization platforms.',
+    href: '/projects/all-projects/',
+    linkLabel: 'View projects',
+  },
+  {
+    icon: 'i-carbon-car',
+    title: 'Embedded and automotive',
+    description: 'The Embedded & Automotive project describes Xen for systems that need isolation, real-time support, and fault tolerance.',
+    href: '/projects/embedded-and-automotive/',
+    linkLabel: 'Explore embedded work',
+  },
+  {
+    icon: 'i-carbon-view',
+    title: 'Introspection and security tooling',
+    description: 'HVMI focuses on real-time monitoring and protection for virtualized environments.',
+    href: '/projects/hvmi/',
+    linkLabel: 'Explore HVMI',
+  },
+  {
+    icon: 'i-carbon-code',
+    title: 'Specialized operating systems',
+    description: 'MirageOS and Unikraft show how Xen ecosystem projects support focused, lightweight systems work.',
+    href: '/projects/all-projects/',
+    linkLabel: 'See ecosystem projects',
+  },
+];
+
+const featuredProjects = projects.filter(project => ['Hypervisor', 'Embedded & Automotive', 'HVMI', 'XAPI', 'XCP-ng', 'Mirage OS'].includes(project.title));
+const projectFeatures = featuredProjects.map(project => ({
+  icon: project.title === 'Embedded & Automotive' ? 'i-carbon-car' : 'i-carbon-cube',
+  title: project.title,
+  description: project.description,
+  href: project.route,
+  linkLabel: 'Open project',
+}));
 ---
 
-<LegacyLayout title={title} description={description} keywords={keywords} flushMain overlayHeader>
-  <div id="xen-story" class="uno-w-full uno-bg-black"><Story client:load /></div>
-  <article
-    data-story-followup
-    class="article"
-    style="position: relative; z-index: 1; background: var(--color-surface-secondary); box-shadow: 0 -2px 0 var(--color-surface-secondary);"
+<BaseLayout title={title} description={description} keywords={keywords} publicShell bodyClass="xp-home">
+  <Hero
+    eyebrow="A Linux Foundation Project"
+    title="Open source virtualization for systems that demand isolation and control."
+    description="Xen is a hypervisor and open source project for teams building infrastructure, embedded platforms, security-sensitive systems, and virtualization products that need a clear layer of separation."
+    actions={[
+      {label: 'Explore Xen', href: '/projects/hypervisor/'},
+      {label: 'Explore membership', href: '/about/become-a-member/', variant: 'secondary'},
+    ]}
   >
-    <Section class="home-section-hero home-hero-animated">
-      <MediaBlock class="hero-block" mediaPosition="right">
-        <div class="media-block__label">A Linux Foundation Project</div>
-        <h1 class="media-block__title title-with-gradient-underline">Bring the power of <strong>open virtualization</strong> everywhere.</h1>
-        <p>The Xen Project team is a global open source community that develops the Xen Project Hypervisor and its associated subprojects.</p>
-        <p>Our mission is to advance virtualization technology across a wide range of commercial and open-source domains.</p>
-        <div class="animated-home-screen-container" slot="media">
-          <img src="/img/flatline/screen-with-xen-logo.webp" class="animated-home-screen" alt="Illustration of a computer monitor displaying bar charts with Xen Project Logo" />
-          <img class="animated-home-shadow-screen" src="/img/decorative/screen-with-wire.svg" alt="" />
-        </div>
-      </MediaBlock>
-      <img class="animated-home-server" src="/img/decorative/home-servers.webp" alt="" />
-    </Section>
+    <LayeredInfrastructure slot="media" />
+    <Cluster slot="metadata">
+      <Badge variant="accent">Hypervisor</Badge>
+      <Badge variant="info">Open source</Badge>
+      <Badge variant="muted">Infrastructure</Badge>
+    </Cluster>
+  </Hero>
 
-    <Section class="section-square-rounded no-mt">
-      <ul class="features-list">
-        {features.map(([featureTitle, icon, featureDescription]) => (
-          <li class="feature-item"><div class="feature-content"><h2 class="feature-item__title"><i class:list={['feature-item__icon', icon]}></i> {featureTitle}</h2><p>{featureDescription}</p></div></li>
-        ))}
-      </ul>
-    </Section>
+  <Stats
+    id="proof"
+    eyebrow="Built in the Open"
+    title="A project you can evaluate in the open."
+    description="Governance, security handling, and testing resources are published so technical teams can inspect how the project works."
+    stats={proofPoints}
+  />
 
-    <Section>
-      <div class="section-row cols-3">
-        <div class="col"><h2>A virtualization <strong>revolution</strong></h2><p>The Xen Project focuses on revolutionizing virtualization by providing a versatile and powerful hypervisor that addresses the evolving needs of diverse industries :</p></div>
-        <div class="col presentation-list"><ul><li><strong>Empower Innovation:</strong> Tailored virtualization to drive progress across various domains.</li><li><strong>Enhance Cloud Ecosystems:</strong> Elevate cloud capabilities with high-performing, reliable virtualization.</li><li><strong>Secure Critical Systems:</strong> Safeguard data and applications through industry-leading security.</li><li><strong>Revolutionize Embedded Technologies:</strong> Transform embedded and automotive sectors with mature, safe, secure solutions.</li></ul></div>
-      </div>
-    </Section>
+  <FeatureGrid
+    id="why-now"
+    eyebrow="Why Xen matters now"
+    title="Modern platforms still need a strong virtualization layer."
+    description="For technical evaluators, Xen is most relevant where isolation, openness, long-term platform work, and security-sensitive engineering matter."
+    features={relevanceFeatures}
+  />
 
-    <Section container="full">
-      <ProjectCarousel projects={homepageProjects} />
-      <p class="mob-mg-v-xl mg-v-xxl txt-c"><a class="btn btn-primary" href="/projects/all-projects/">Discover all projects <i class="fas fa-arrow-right"></i></a></p>
-    </Section>
+  <FeatureGrid
+    id="where-xen-excels"
+    eyebrow="Where Xen excels"
+    title="Built for engineers working close to the platform."
+    description="Xen is strongest when teams need to reason carefully about virtual machines, hardware, operating systems, and trust boundaries."
+    surface="1"
+    columns="4"
+    features={excellenceFeatures}
+  />
 
-    <Section container="full"><LatestNewsShell /></Section>
+  <Section id="architecture">
+    <Container>
+      <Split align="center">
+        <Stack gap="5">
+          <Stack gap="3">
+            <Text size="eyebrow" tone="muted">Architecture</Text>
+            <Heading size="heading-xl">A clear boundary for platform control.</Heading>
+            <Text>
+              Xen sits between hardware and guest systems. That position gives platform teams a place to make virtualization, isolation, and control decisions without treating the operating system as the whole boundary.
+            </Text>
+          </Stack>
+          <Cluster>
+            <Button href="/projects/hypervisor/">Explore the hypervisor</Button>
+            <Button href="/resources/use-cases/" variant="text">Read use cases</Button>
+          </Cluster>
+        </Stack>
+        <Surface tone="2" border="strong" radius="lg" shadow="md" padding="lg">
+          <Stack gap="4">
+            <Callout
+              title="A focused virtualization layer"
+              description="The hypervisor project page is the best place to start for architecture details, related resources, and project scope."
+              action={{label: 'Hypervisor details', href: '/projects/hypervisor/', variant: 'text'}}
+            >
+              <span slot="icon" class="i-carbon-layers"></span>
+            </Callout>
+            <Grid columns="2">
+              <Surface tone="3" border="muted" padding="md" radius="md" shadow="sm">
+                <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Guests</Text>
+                <Text size="caption" class="uno-mt-2">Virtualized systems stay above the hypervisor boundary.</Text>
+              </Surface>
+              <Surface tone="3" border="muted" padding="md" radius="md" shadow="sm">
+                <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Hardware</Text>
+                <Text size="caption" class="uno-mt-2">Platform integration stays visible to teams that need control.</Text>
+              </Surface>
+            </Grid>
+          </Stack>
+        </Surface>
+      </Split>
+    </Container>
+  </Section>
 
-    <Section class="section-square-primary">
-      <MediaBlock title="Governed by Xen project <strong>members</strong>" mobileMediaPosition="top" animate>
-        <p>Board members can propose and vote upon changes to the Xen Project. Members also gain valuable strategic insight into project plans and future scope.</p>
-        <p class="mg-t-md"><a href="/about/become-a-member/" class="btn btn-secondary">Join the advisory board <i class="fas fa-arrow-right"></i></a></p>
-        <div id="logo-wheel" class="uno-w-full" slot="media"><LogoWheel client:visible /></div>
-      </MediaBlock>
-      <MediaBlock title="Led by a <strong>dedicated community</strong>" media="/img/flatline/team-work.svg" alt="Illustration symbolizing teamwork." mediaPosition="right" mobileMediaPosition="bottom" class="block-space" animate>
-        <p>The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology. With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.</p>
-        <p class="mg-t-md"><a href="/contribute/get-started/" class="btn btn-primary">Get started <i class="fas fa-arrow-right"></i></a></p>
-      </MediaBlock>
-    </Section>
+  <FeatureGrid
+    id="evidence-in-use"
+    eyebrow="Project areas"
+    title="Explore the Xen project ecosystem."
+    description="Key project areas are available through direct links so teams can scan capabilities and go deeper where relevant."
+    columns="3"
+    features={projectFeatures}
+  />
 
-    <Section>
-      <MediaBlock title="About <strong>Xen Project</strong>" media="/img/flatline/data-process.svg" alt="Illustration representing data integration." mobileMediaPosition="bottom" animate>
-        <p>The mission of the Xen Project is to advance virtualisation technology across a wide range of commercial and open-source domains.</p>
-        <p><a href="/about/" class="btn btn-secondary">Learn about Xen Project <i class="fas fa-arrow-right"></i></a></p>
-      </MediaBlock>
-    </Section>
-  </article>
-  <style is:global>
-    @media (prefers-reduced-motion: reduce) {
-      #xen-story *, #xen-story *::before, #xen-story *::after {
-        animation-duration: 1ms !important;
-        transition-duration: 1ms !important;
-      }
-    }
-  </style>
-</LegacyLayout>
+  <LogoCloud
+    id="members"
+    eyebrow="Members"
+    title="Sustained by organizations with a stake in open virtualization."
+    description="Members help sustain shared project infrastructure, events, trademark stewardship, and ecosystem coordination."
+    surface="light"
+    logos={memberLogos}
+  />
+
+  <Section id="community" surface="1">
+    <Container>
+      <Stack gap="6">
+        <Stack gap="3" class="uno-max-w-xp-content">
+          <Text size="eyebrow" tone="muted">Open governance and community</Text>
+          <Heading size="heading-xl">Technical work happens in the open.</Heading>
+          <Text>
+            Xen contribution follows documented project processes. Engineers can find a practical starting point, and organizations can support the ecosystem through membership.
+          </Text>
+        </Stack>
+        <Grid columns="2" gap="5">
+          <Callout
+            title="For engineers"
+            description="Start with contribution guidance, development resources, and project-specific entry points."
+            action={{label: 'Start contributing', href: '/contribute/get-started/'}}
+          >
+            <span slot="icon" class="i-carbon-code"></span>
+          </Callout>
+          <Callout
+            title="For organizations"
+            description="Membership is a way to support the project infrastructure and coordination that keep Xen healthy."
+            action={{label: 'Explore membership', href: '/about/become-a-member/'}}
+          >
+            <span slot="icon" class="i-carbon-enterprise"></span>
+          </Callout>
+        </Grid>
+      </Stack>
+    </Container>
+  </Section>
+
+  <CTA
+    id="next-step"
+    eyebrow="Next step"
+    title="Support Xen's future, or help build it."
+    description="Organizations can support the project through membership. Engineers can start with the contributor resources."
+    actions={[
+      {label: 'Explore membership', href: '/about/become-a-member/'},
+      {label: 'Start contributing', href: '/contribute/get-started/', variant: 'secondary'},
+    ]}
+    align="center"
+  />
+</BaseLayout>
