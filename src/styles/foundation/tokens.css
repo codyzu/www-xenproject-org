@@ -1,31 +1,43 @@
 :root {
-  --xp-surface-0: #070b14;
-  --xp-surface-1: #101828;
-  --xp-surface-2: #172235;
-  --xp-surface-3: #20314a;
-  --xp-surface-light: #f4f7fb;
+  --xp-surface-0: #05080e;
+  --xp-surface-1: #0b1320;
+  --xp-surface-2: #142238;
+  --xp-surface-3: #213751;
+  --xp-surface-light: #f3f6fa;
   --xp-surface-light-raised: #ffffff;
-  --xp-border-muted: rgb(178 199 226 / 0.18);
-  --xp-border-strong: rgb(178 199 226 / 0.36);
+  --xp-border-muted: rgb(198 214 235 / 0.14);
+  --xp-border-strong: rgb(198 214 235 / 0.30);
+  --xp-inner-highlight: inset 0 1px 0 rgb(255 255 255 / 0.07);
   --xp-text-primary: #f7fbff;
   --xp-text-secondary: #c8d4e5;
   --xp-text-muted: #8fa1ba;
   --xp-text-on-light: #111827;
   --xp-text-on-light-muted: #516070;
-  --xp-accent-primary: #4fb3ff;
-  --xp-accent-primary-strong: #87d0ff;
-  --xp-accent-primary-soft: rgb(79 179 255 / 0.14);
-  --xp-accent-secondary: #85c241;
-  --xp-accent-secondary-soft: rgb(133 194 65 / 0.16);
+  --xp-accent-primary: #85c241;
+  --xp-accent-primary-strong: #91c84b;
+  --xp-accent-primary-active: #6fa832;
+  --xp-accent-primary-text: #1e2b0e;
+  --xp-accent-primary-soft: rgb(133 194 65 / 0.16);
+  --xp-accent-secondary: #4fb3ff;
+  --xp-accent-secondary-soft: rgb(79 179 255 / 0.14);
   --xp-color-warning: #b7791f;
   --xp-color-danger: #c2410c;
 
   --xp-font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --xp-font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --xp-text-base: 1rem;
+  --xp-type-display-xl: 4.5rem;
+  --xp-type-display-l: 3.75rem;
+  --xp-type-heading-xl: 3rem;
+  --xp-type-heading-l: 2.25rem;
+  --xp-type-heading-m: 1.5rem;
+  --xp-type-body: 1rem;
+  --xp-type-caption: 0.875rem;
   --xp-line-body: 1.65;
-  --xp-line-heading: 1.12;
+  --xp-line-heading: 1.08;
+  --xp-line-tight: 1;
   --xp-weight-heading: 700;
+  --xp-weight-display: 800;
 
   --xp-space-1: 0.25rem;
   --xp-space-2: 0.5rem;
@@ -45,9 +57,9 @@
   --xp-radius-md: 0.5rem;
   --xp-radius-lg: 0.75rem;
 
-  --xp-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.28);
-  --xp-shadow-md: 0 18px 48px rgb(0 0 0 / 0.32);
-  --xp-shadow-lg: 0 28px 80px rgb(0 0 0 / 0.42);
+  --xp-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.28), 0 10px 24px rgb(0 0 0 / 0.16), var(--xp-inner-highlight);
+  --xp-shadow-md: 0 18px 46px rgb(0 0 0 / 0.38), var(--xp-inner-highlight);
+  --xp-shadow-lg: 0 30px 88px rgb(0 0 0 / 0.50), var(--xp-inner-highlight);
 
   --xp-motion-fast: 120ms;
   --xp-motion-base: 200ms;
@@ -55,7 +67,7 @@
   --xp-ease-standard: cubic-bezier(0.2, 0, 0, 1);
   --xp-ease-emphasized: cubic-bezier(0.2, 0, 0, 1.2);
 
-  --xp-focus-ring: #0284c7;
+  --xp-focus-ring: #5d9a2d;
   --xp-focus-width: 3px;
   --xp-focus-offset: 3px;
 
@@ -73,8 +85,8 @@
   --xp-color-accent: var(--xp-accent-primary);
   --xp-color-accent-strong: var(--xp-accent-primary-strong);
   --xp-color-accent-soft: var(--xp-accent-primary-soft);
-  --xp-color-green: var(--xp-accent-secondary);
-  --xp-color-green-soft: var(--xp-accent-secondary-soft);
+  --xp-color-green: var(--xp-accent-primary);
+  --xp-color-green-soft: var(--xp-accent-primary-soft);
 
   --xp-z-header: 20;
   --xp-z-overlay: 40;

@@ -40,8 +40,10 @@ custom properties. The token set is intentionally small:
 - surface colors from `surface-0` through `surface-3` for the dark layered
   identity
 - occasional light contrast surfaces for readability or emphasis
-- text, border, accent, and focus tokens tuned for dark surfaces first
-- typography defaults
+- text, border, accent, and focus tokens tuned for dark surfaces first, with
+  Xen green as the primary brand accent
+- typography defaults and a named type scale for `Display XL`, `Display L`,
+  `Heading XL`, `Heading L`, `Heading M`, body, and caption text
 - spacing and section rhythm
 - container widths
 - radius
@@ -77,6 +79,14 @@ high-impact pages should treat dark surfaces as the default brand canvas, then
 use light surfaces sparingly for intentional contrast, long-form readability,
 or emphasis. Do not interpret this as "every section must be black"; use
 surface steps, elevation, muted borders, and accent color to create depth.
+Surface 0 is the deepest page canvas, surface 1 is the default dark section
+canvas, surface 2 is the raised card or proof layer, and surface 3 is reserved
+for active, selected, or locally emphasized surfaces.
+
+Xen green is the primary accent for new redesign work. Use it for primary
+actions, active states, focus treatment, and key brand highlights. Blue remains
+available as a secondary technical or informational accent, but should not be
+the dominant highlight color on new pages.
 
 ## Contrast Guidance
 
@@ -86,12 +96,13 @@ ratios show these supported pairings:
 
 | Pairing | Intended use | Minimum measured ratio |
 | --- | --- | --- |
-| `--xp-text-primary` on `--xp-surface-0` through `--xp-surface-3` | Headings and important UI copy | 12.63:1 |
-| `--xp-text-secondary` on `--xp-surface-0` through `--xp-surface-3` | Body copy and supporting statements | 8.75:1 |
-| `--xp-text-muted` on `--xp-surface-0` through `--xp-surface-3` | Metadata and lower-emphasis copy | 4.99:1 |
-| `--xp-surface-0` text on `--xp-accent-primary` and `--xp-accent-secondary` | Accent-filled buttons and badges | 8.65:1 |
-| `--xp-text-on-light` and `--xp-text-on-light-muted` on `--xp-surface-light` and `--xp-surface-light-raised` | Intentional light sections | 6.00:1 |
-| `--xp-focus-ring` against dark and light surfaces | Keyboard focus indication | 3.21:1 |
+| `--xp-text-primary` on `--xp-surface-0` through `--xp-surface-3` | Headings and important UI copy | 11.68:1 |
+| `--xp-text-secondary` on `--xp-surface-0` through `--xp-surface-3` | Body copy and supporting statements | 8.10:1 |
+| `--xp-text-muted` on `--xp-surface-0` through `--xp-surface-3` | Metadata and lower-emphasis copy | 4.61:1 |
+| `--xp-accent-primary-text` on `--xp-accent-primary`, `--xp-accent-primary-strong`, and `--xp-accent-primary-active` | Primary action labels | 5.20:1 |
+| `--xp-surface-0` text on `--xp-accent-primary` and `--xp-accent-secondary` | Accent-filled badges and technical labels | 8.81:1 |
+| `--xp-text-on-light` and `--xp-text-on-light-muted` on `--xp-surface-light` and `--xp-surface-light-raised` | Intentional light sections | 5.95:1 |
+| `--xp-focus-ring` against dark and light surfaces | Keyboard focus indication | 3.16:1 |
 
 Do not use `on-light` text tokens on dark surfaces, dark-surface text tokens on
 light surfaces, or soft accent background tokens as text colors. Avoid creating
@@ -106,11 +117,24 @@ action treatment. New redesign shortcuts should use `xen-*`; reserve new
 as `uno-*` utilities, avoid page-specific shortcut names, and do not use
 shortcuts as a substitute for Astro components. Components own structure,
 semantics, slots, variants, and composition.
+The shared `xen-action-primary` and `xen-focus` shortcuts are green-forward and
+should be the default treatment for primary actions and keyboard focus in the
+redesign system. `xen-action-primary` uses separate primary, hover, active, and
+text tokens so action contrast does not depend on legacy brand aliases.
 
 Use `src/components/primitives/Heading.astro` and
 `src/components/primitives/Text.astro` for new redesign typography. These
 primitives encode responsive type scale, token-backed tones, and safe wrapping
 behavior so narrow layouts do not require one-off font-size patches.
+`Heading.astro` exposes `display-xl`, `display-l`, `heading-xl`, `heading-l`,
+and `heading-m` for new work, while preserving the earlier `hero`, `display`,
+`section`, `subsection`, and `card` aliases for compatibility. `Text.astro`
+exposes body, lead, small, caption, eyebrow, and monospaced annotation sizes.
+
+Use iconography as a lightweight aid to technical clarity. Prefer simple line
+icons at 20px for inline UI, 24px for compact cards, and 32px only for larger
+explanatory moments. Icons should clarify actions, status, system concepts, or
+navigation; avoid decorative icon use in the foundation system.
 
 Use token-backed utilities first. Add custom CSS only when a behavior or layout
 cannot be expressed clearly with utilities.

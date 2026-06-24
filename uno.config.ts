@@ -125,7 +125,9 @@ export default defineConfig({
           strong: 'var(--xp-color-accent-strong)',
           soft: 'var(--xp-color-accent-soft)',
           'primary-strong': 'var(--xp-accent-primary-strong)',
+          'primary-active': 'var(--xp-accent-primary-active)',
           'primary-soft': 'var(--xp-accent-primary-soft)',
+          'primary-text': 'var(--xp-accent-primary-text)',
           'secondary-soft': 'var(--xp-accent-secondary-soft)',
         },
         green: {
@@ -227,11 +229,11 @@ export default defineConfig({
       'uno-rounded-xp-lg uno-border uno-border-xp-border-muted uno-bg-xp-surface-2 uno-p-6 uno-shadow-xp-md',
     'xen-card': 'uno-rounded-xp-md uno-border uno-border-xp-border-muted uno-bg-xp-surface-2 uno-p-5 uno-shadow-xp-sm',
     'xen-focus':
-      'uno-outline-none focus-visible:uno-outline focus-visible:uno-outline-3 focus-visible:uno-outline-offset-3 focus-visible:uno-outline-[var(--xp-focus-ring)]',
+      'uno-outline-none focus-visible:uno-outline focus-visible:uno-outline-3 focus-visible:uno-outline-offset-3 focus-visible:uno-outline-[var(--xp-focus-ring)] focus-visible:uno-shadow-[0_0_0_6px_var(--xp-accent-primary-soft)]',
     'xen-action':
-      'xen-focus uno-inline-flex uno-min-h-11 uno-items-center uno-rounded-xp-md uno-px-5 uno-font-semibold uno-no-underline uno-shadow-xp-sm uno-transition-colors',
+      'xen-focus uno-inline-flex uno-min-h-11 uno-min-w-36 uno-items-center uno-justify-center uno-rounded-xp-md uno-px-5 uno-font-bold uno-leading-none uno-no-underline uno-shadow-xp-sm uno-transition-colors',
     'xen-action-primary':
-      'xen-action uno-bg-xp-accent-primary uno-text-xp-surface-0 hover:uno-bg-[var(--xp-accent-primary-strong)]',
+      'xen-action uno-bg-xp-accent-primary uno-text-[var(--xp-accent-primary-text)] hover:uno-bg-[var(--xp-accent-primary-strong)] active:uno-bg-[var(--xp-accent-primary-active)]',
     'xen-action-secondary':
       'xen-action uno-border uno-border-xp-border-strong uno-bg-xp-surface-2 uno-text-xp-text-primary hover:uno-bg-xp-surface-3',
 

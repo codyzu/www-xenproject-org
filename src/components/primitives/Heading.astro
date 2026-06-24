@@ -1,6 +1,6 @@
 ---
 type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
-type HeadingSize = 'hero' | 'display' | 'section' | 'subsection' | 'card';
+type HeadingSize = 'display-xl' | 'display-l' | 'heading-xl' | 'heading-l' | 'heading-m' | 'hero' | 'display' | 'section' | 'subsection' | 'card';
 type HeadingTone = 'primary' | 'muted' | 'on-light';
 
 type Props = {
@@ -19,10 +19,15 @@ const {
 
 const Tag = as;
 const sizeClasses: Record<HeadingSize, string> = {
-  hero: 'uno-text-4xl md:uno-text-6xl',
-  display: 'uno-text-3xl md:uno-text-5xl',
-  section: 'uno-text-3xl',
-  subsection: 'uno-text-2xl md:uno-text-3xl',
+  'display-xl': 'uno-text-5xl md:uno-text-[length:var(--xp-type-display-xl)] uno-font-extrabold uno-leading-[var(--xp-line-tight)]',
+  'display-l': 'uno-text-4xl md:uno-text-[length:var(--xp-type-display-l)] uno-font-extrabold uno-leading-[var(--xp-line-tight)]',
+  'heading-xl': 'uno-text-4xl md:uno-text-[length:var(--xp-type-heading-xl)]',
+  'heading-l': 'uno-text-3xl md:uno-text-[length:var(--xp-type-heading-l)]',
+  'heading-m': 'uno-text-[length:var(--xp-type-heading-m)]',
+  hero: 'uno-text-5xl md:uno-text-[length:var(--xp-type-display-xl)] uno-font-extrabold uno-leading-[var(--xp-line-tight)]',
+  display: 'uno-text-4xl md:uno-text-[length:var(--xp-type-display-l)] uno-font-extrabold uno-leading-[var(--xp-line-tight)]',
+  section: 'uno-text-3xl md:uno-text-[length:var(--xp-type-heading-l)]',
+  subsection: 'uno-text-2xl md:uno-text-[length:var(--xp-type-heading-m)]',
   card: 'uno-text-xl',
 };
 const toneClasses: Record<HeadingTone, string> = {
@@ -33,7 +38,7 @@ const toneClasses: Record<HeadingTone, string> = {
 ---
 
 <Tag class:list={[
-  'uno-m-0 uno-min-w-0 uno-break-words uno-font-sans uno-font-bold uno-leading-tight',
+  'uno-m-0 uno-min-w-0 uno-break-words uno-font-sans uno-font-bold uno-leading-[var(--xp-line-heading)]',
   sizeClasses[size],
   toneClasses[tone],
   className,

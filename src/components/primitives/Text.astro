@@ -1,6 +1,6 @@
 ---
 type TextElement = 'p' | 'span' | 'div';
-type TextSize = 'body' | 'lead' | 'small' | 'eyebrow' | 'mono-small';
+type TextSize = 'body' | 'lead' | 'small' | 'caption' | 'eyebrow' | 'mono-small';
 type TextTone = 'primary' | 'secondary' | 'muted' | 'accent-primary' | 'accent-secondary' | 'on-light' | 'on-light-muted';
 
 type Props = {
@@ -19,9 +19,10 @@ const {
 
 const Tag = as;
 const sizeClasses: Record<TextSize, string> = {
-  body: 'uno-text-base',
+  body: 'uno-text-[length:var(--xp-type-body)]',
   lead: 'uno-text-lg',
   small: 'uno-text-sm',
+  caption: 'uno-text-[length:var(--xp-type-caption)]',
   eyebrow: 'uno-text-sm uno-font-semibold uno-uppercase uno-tracking-[0.12em]',
   'mono-small': 'uno-font-mono uno-text-xs',
 };
