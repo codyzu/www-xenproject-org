@@ -1,0 +1,65 @@
+---
+import Button from '../primitives/Button.astro';
+import Cluster from '../primitives/Cluster.astro';
+import Container from '../primitives/Container.astro';
+import Heading from '../primitives/Heading.astro';
+import Section from '../primitives/Section.astro';
+import Stack from '../primitives/Stack.astro';
+import Surface from '../primitives/Surface.astro';
+import Text from '../primitives/Text.astro';
+
+type Action = {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'text';
+};
+type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type Props = {
+  id?: string;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  actions?: Action[];
+  headingLevel?: HeadingLevel;
+  surface?: '1' | 'light';
+  containerSize?: 'content' | 'page' | 'wide';
+  align?: 'left' | 'center';
+  class?: string;
+};
+
+const {
+  id,
+  eyebrow,
+  title,
+  description,
+  actions = [],
+  headingLevel = 'h2',
+  surface = '1',
+  containerSize = 'page',
+  align = 'left',
+  class: className = '',
+} = Astro.props as Props;
+const isLight = surface === 'light';
+const textAlignClasses = align === 'center' ? 'uno-items-start uno-text-left md:uno-items-center md:uno-text-center' : '';
+const headingTone = isLight ? 'on-light' : 'primary';
+const textTone = isLight ? 'on-light-muted' : 'secondary';
+---
+
+<Section id={id} surface={isLight ? '0' : '1'} class={className}>
+  <Container size={containerSize}>
+    <Surface tone={isLight ? 'light-raised' : '2'} border={isLight ? 'light' : 'strong'} padding="lg" radius="lg" shadow="md">
+      <Stack gap="5" class={textAlignClasses}>
+        {eyebrow && <Text size="eyebrow" tone={isLight ? 'on-light-muted' : 'accent-primary'}>{eyebrow}</Text>}
+        <Heading as={headingLevel} size="heading-xl" tone={headingTone} class="uno-max-w-4xl">{title}</Heading>
+        {description && <Text tone={textTone} class="uno-max-w-xp-content">{description}</Text>}
+        {actions.length > 0 && (
+          <Cluster justify={align === 'center' ? 'center' : 'start'} class="uno-pt-2">
+            {actions.map(action => (
+              <Button href={action.href} variant={action.variant ?? 'primary'}>{action.label}</Button>
+            ))}
+          </Cluster>
+        )}
+      </Stack>
+    </Surface>
+  </Container>
+</Section>

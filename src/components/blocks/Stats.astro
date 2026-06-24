@@ -1,0 +1,74 @@
+---
+import Container from '../primitives/Container.astro';
+import Grid from '../primitives/Grid.astro';
+import Heading from '../primitives/Heading.astro';
+import Section from '../primitives/Section.astro';
+import Stack from '../primitives/Stack.astro';
+import Surface from '../primitives/Surface.astro';
+import Text from '../primitives/Text.astro';
+
+type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type Stat = {
+  value: string;
+  label: string;
+  description?: string;
+  sourceHref?: string;
+  sourceLabel?: string;
+};
+type Props = {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  headingLevel?: HeadingLevel;
+  surface?: '0' | '1';
+  containerSize?: 'content' | 'page' | 'wide';
+  columns?: '2' | '3' | '4';
+  stats: Stat[];
+  class?: string;
+};
+
+const {
+  id,
+  eyebrow,
+  title,
+  description,
+  headingLevel = 'h2',
+  surface = '1',
+  containerSize = 'page',
+  columns = '3',
+  stats,
+  class: className = '',
+} = Astro.props as Props;
+const statHeadingLevel = `h${Math.min(Number(headingLevel.slice(1)) + 1, 6)}` as HeadingLevel;
+---
+
+<Section id={id} surface={surface} class={className}>
+  <Container size={containerSize}>
+    <Stack gap="6">
+      {(eyebrow || title || description) && (
+        <Stack gap="3" class="uno-max-w-xp-content">
+          {eyebrow && <Text size="eyebrow" tone="muted">{eyebrow}</Text>}
+          {title && <Heading as={headingLevel} size="heading-xl">{title}</Heading>}
+          {description && <Text>{description}</Text>}
+        </Stack>
+      )}
+      <Grid columns={columns} gap="5">
+        {stats.map(stat => (
+          <Surface as="article" tone="2" border="muted" padding="lg" radius="md" shadow="sm">
+            <Stack gap="3">
+              <Text as="div" size="mono-small" tone="accent-primary" class="uno-font-semibold">{stat.value}</Text>
+              <Heading as={statHeadingLevel} size="heading-m">{stat.label}</Heading>
+              {stat.description && <Text size="caption">{stat.description}</Text>}
+              {stat.sourceHref && (
+                <a href={stat.sourceHref} class="xen-focus uno-inline-flex uno-self-start uno-rounded-xp-sm uno-text-sm uno-font-bold uno-text-xp-accent-primary uno-underline uno-decoration-2 uno-underline-offset-4">
+                  {stat.sourceLabel ?? 'Source'}
+                </a>
+              )}
+            </Stack>
+          </Surface>
+        ))}
+      </Grid>
+    </Stack>
+  </Container>
+</Section>

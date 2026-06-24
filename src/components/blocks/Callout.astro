@@ -1,0 +1,62 @@
+---
+import Button from '../primitives/Button.astro';
+import Cluster from '../primitives/Cluster.astro';
+import Heading from '../primitives/Heading.astro';
+import Stack from '../primitives/Stack.astro';
+import Surface from '../primitives/Surface.astro';
+import Text from '../primitives/Text.astro';
+
+type Action = {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'text';
+};
+type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type Props = {
+  id?: string;
+  title: string;
+  description?: string;
+  headingLevel?: HeadingLevel;
+  variant?: 'default' | 'accent' | 'warning' | 'light';
+  action?: Action;
+  class?: string;
+};
+
+const {
+  id,
+  title,
+  description,
+  headingLevel = 'h2',
+  variant = 'default',
+  action,
+  class: className = '',
+} = Astro.props as Props;
+const isLight = variant === 'light';
+const tone = isLight ? 'light-raised' : variant === 'default' ? '2' : '3';
+const border = isLight ? 'light' : variant === 'default' ? 'muted' : 'strong';
+const headingTone = isLight ? 'on-light' : 'primary';
+const textTone = isLight ? 'on-light-muted' : 'secondary';
+const iconToneClass = variant === 'warning' ? 'uno-text-xp-warning' : isLight ? 'uno-text-[var(--xp-text-on-light-muted)]' : 'uno-text-xp-accent-primary';
+---
+
+<Surface id={id} as="aside" tone={tone} border={border} padding="lg" radius="lg" shadow="sm" class={className}>
+  <Cluster align="start" justify="between" gap="4">
+    <Cluster align="start" gap="4" class="uno-flex-1">
+      {Astro.slots.has('icon') && (
+        <span class:list={['uno-mt-1 uno-inline-flex uno-shrink-0 uno-text-2xl', iconToneClass]} aria-hidden="true">
+          <slot name="icon" />
+        </span>
+      )}
+      <Stack gap="3" class="uno-min-w-0 uno-flex-1">
+        {variant === 'warning' && <Text as="span" size="eyebrow" tone={isLight ? 'on-light-muted' : 'accent-primary'}>Important</Text>}
+        <Heading as={headingLevel} size="heading-m" tone={headingTone}>{title}</Heading>
+        {description && <Text size="caption" tone={textTone}>{description}</Text>}
+      </Stack>
+    </Cluster>
+    {action && (
+      <Button href={action.href} variant={action.variant ?? (isLight ? 'secondary' : 'primary')} class="uno-shrink-0">
+        {action.label}
+      </Button>
+    )}
+  </Cluster>
+</Surface>

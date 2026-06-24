@@ -1,0 +1,86 @@
+---
+import Button from '../primitives/Button.astro';
+import Cluster from '../primitives/Cluster.astro';
+import Container from '../primitives/Container.astro';
+import Heading from '../primitives/Heading.astro';
+import Section from '../primitives/Section.astro';
+import Split from '../primitives/Split.astro';
+import Stack from '../primitives/Stack.astro';
+import Text from '../primitives/Text.astro';
+
+type Action = {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'text';
+};
+type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type Props = {
+  id?: string;
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  actions?: Action[];
+  headingLevel?: HeadingLevel;
+  surface?: '0' | '1';
+  containerSize?: 'content' | 'page' | 'wide';
+  align?: 'split' | 'center';
+  class?: string;
+};
+
+const {
+  id,
+  eyebrow,
+  title,
+  description,
+  actions = [],
+  headingLevel = 'h1',
+  surface = '1',
+  containerSize = 'wide',
+  align = 'split',
+  class: className = '',
+} = Astro.props as Props;
+const hasActions = actions.length > 0;
+const hasAside = Boolean(Astro.slots.has('media') || Astro.slots.has('proof') || Astro.slots.has('metadata'));
+---
+
+<Section id={id} surface={surface} variant="hero" class={className}>
+  <Container size={containerSize}>
+    {align === 'center' || !hasAside ? (
+      <Stack gap="5" class="uno-mx-auto uno-max-w-xp-page uno-items-start uno-text-left md:uno-items-center md:uno-text-center">
+        {eyebrow && <Text size="eyebrow" tone="accent-primary">{eyebrow}</Text>}
+        <Heading as={headingLevel} size="display-xl" class="uno-max-w-5xl">{title}</Heading>
+        {description && <Text size="lead" class="uno-max-w-xp-content">{description}</Text>}
+        {hasActions && (
+          <Cluster justify="center" class="uno-pt-2">
+            {actions.map(action => (
+              <Button href={action.href} variant={action.variant ?? 'primary'}>{action.label}</Button>
+            ))}
+          </Cluster>
+        )}
+        {Astro.slots.has('metadata') && <slot name="metadata" />}
+        {Astro.slots.has('proof') && <slot name="proof" />}
+        {Astro.slots.has('media') && <slot name="media" />}
+      </Stack>
+    ) : (
+      <Split align="center">
+        <Stack gap="5" class="uno-max-w-xp-page">
+          {eyebrow && <Text size="eyebrow" tone="accent-primary">{eyebrow}</Text>}
+          <Heading as={headingLevel} size="display-xl" class="uno-max-w-5xl">{title}</Heading>
+          {description && <Text size="lead" class="uno-max-w-xp-content">{description}</Text>}
+          {hasActions && (
+            <Cluster class="uno-pt-2">
+              {actions.map(action => (
+                <Button href={action.href} variant={action.variant ?? 'primary'}>{action.label}</Button>
+              ))}
+            </Cluster>
+          )}
+          {Astro.slots.has('metadata') && <slot name="metadata" />}
+        </Stack>
+        <Stack gap="4">
+          {Astro.slots.has('media') && <slot name="media" />}
+          {Astro.slots.has('proof') && <slot name="proof" />}
+        </Stack>
+      </Split>
+    )}
+  </Container>
+</Section>

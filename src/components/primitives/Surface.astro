@@ -6,6 +6,7 @@ type SurfaceRadius = 'md' | 'lg';
 type SurfaceShadow = 'none' | 'sm' | 'md' | 'lg';
 
 type Props = {
+  id?: string;
   as?: SurfaceElement;
   tone?: SurfaceTone;
   padding?: SurfacePadding;
@@ -16,6 +17,7 @@ type Props = {
 };
 
 const {
+  id,
   as = 'div',
   tone = '2',
   padding = 'md',
@@ -59,7 +61,7 @@ const borderClasses = {
 };
 ---
 
-<Tag class:list={[
+<Tag id={id} class:list={[
   'uno-min-w-0',
   toneClasses[tone],
   paddingClasses[padding],

@@ -22,6 +22,10 @@ This repo uses Astro as its static-site generator.
 - Read `docs/redesign-strategy.md` before redesign, homepage, component-system,
   layout, or visual-direction work. It documents the long-term direction for
   the Astro-era site and the intended legacy/new component boundary.
+- Read `docs/redesign-foundation.md` before creating new primitives, blocks, or
+  homepage UI. Prefer composing existing blocks before adding a block, and
+  prefer page-local composition before adding a primitive. New homepage work
+  should consume the design system rather than define it.
 - Read `docs/migration/astro.md` before changing build architecture, layouts,
   Astro routes, migrated components, redirects, Ghost header/footer output, or
   the public artifact contract.

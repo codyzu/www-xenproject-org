@@ -1,0 +1,77 @@
+---
+import Button from '../primitives/Button.astro';
+import Card from '../primitives/Card.astro';
+import Container from '../primitives/Container.astro';
+import Grid from '../primitives/Grid.astro';
+import Heading from '../primitives/Heading.astro';
+import Section from '../primitives/Section.astro';
+import Stack from '../primitives/Stack.astro';
+import Text from '../primitives/Text.astro';
+
+type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type Feature = {
+  icon?: string;
+  title: string;
+  description: string;
+  href?: string;
+  linkLabel?: string;
+};
+type Props = {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  headingLevel?: HeadingLevel;
+  surface?: '0' | '1';
+  containerSize?: 'content' | 'page' | 'wide';
+  columns?: '2' | '3' | '4';
+  features: Feature[];
+  class?: string;
+};
+
+const {
+  id,
+  eyebrow,
+  title,
+  description,
+  headingLevel = 'h2',
+  surface = '0',
+  containerSize = 'wide',
+  columns = '3',
+  features,
+  class: className = '',
+} = Astro.props as Props;
+const featureHeadingLevel = `h${Math.min(Number(headingLevel.slice(1)) + 1, 6)}` as HeadingLevel;
+---
+
+<Section id={id} surface={surface} class={className}>
+  <Container size={containerSize}>
+    <Stack gap="6">
+      {(eyebrow || title || description) && (
+        <Stack gap="3" class="uno-max-w-xp-content">
+          {eyebrow && <Text size="eyebrow" tone="muted">{eyebrow}</Text>}
+          {title && <Heading as={headingLevel} size="heading-xl">{title}</Heading>}
+          {description && <Text>{description}</Text>}
+        </Stack>
+      )}
+      <Grid columns={columns} gap="5">
+        {features.map(feature => (
+          <Card>
+            <Stack gap="4">
+              {feature.icon && <span class:list={[feature.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>}
+              <Stack gap="3">
+                <Heading as={featureHeadingLevel} size="heading-m">{feature.title}</Heading>
+                <Text size="caption">{feature.description}</Text>
+              </Stack>
+              {feature.href && (
+                <Button href={feature.href} variant="text" class="uno-self-start">
+                  {feature.linkLabel ?? 'Learn more'}
+                </Button>
+              )}
+            </Stack>
+          </Card>
+        ))}
+      </Grid>
+    </Stack>
+  </Container>
+</Section>

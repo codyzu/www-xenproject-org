@@ -18,6 +18,25 @@ Astro-first redesign foundation.
 New redesign work should start in `primitives/`, `blocks/`, or `pages/`.
 Do not add new redesign components to `legacy/`.
 
+## Block Philosophy
+
+Blocks are opinionated compositions of primitives. They should solve recurring
+content patterns, not page-specific layouts. If a block cannot reasonably be
+reused across multiple pages, it probably should not become part of the shared
+block library. Prefer local page composition for one-off needs, and let the
+homepage consume the design system rather than define it.
+
+A reusable block should:
+
+- use existing primitives where possible
+- use design tokens and `xen-*` shortcuts where appropriate
+- avoid legacy SCSS
+- support responsive layouts
+- preserve accessibility and keyboard behavior
+- be documented or demonstrated in `/internal/design-system`
+- have at least two realistic use cases
+- avoid homepage-specific naming or assumptions
+
 ## Layout And CSS Boundary
 
 - `src/layouts/LegacyLayout.astro` owns existing public pages, the migrated

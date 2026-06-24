@@ -4,6 +4,12 @@ import IconSamples from '../../components/blocks/internal/IconSamples.astro';
 import LayerStackDemo from '../../components/blocks/internal/LayerStackDemo.astro';
 import MotionDemoCard from '../../components/blocks/internal/MotionDemoCard.astro';
 import TokenSwatch from '../../components/blocks/internal/TokenSwatch.astro';
+import CTA from '../../components/blocks/CTA.astro';
+import Callout from '../../components/blocks/Callout.astro';
+import FeatureGrid from '../../components/blocks/FeatureGrid.astro';
+import Hero from '../../components/blocks/Hero.astro';
+import LogoCloud from '../../components/blocks/LogoCloud.astro';
+import Stats from '../../components/blocks/Stats.astro';
 import Badge from '../../components/primitives/Badge.astro';
 import Button from '../../components/primitives/Button.astro';
 import Card from '../../components/primitives/Card.astro';
@@ -17,70 +23,285 @@ import Split from '../../components/primitives/Split.astro';
 import Stack from '../../components/primitives/Stack.astro';
 import Surface from '../../components/primitives/Surface.astro';
 import Text from '../../components/primitives/Text.astro';
+import {memberLogos} from '../../data/member-logos';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 type TypeScale = 'display-xl' | 'display-l' | 'heading-xl' | 'heading-l' | 'heading-m';
-type TypeSample = [string, TypeScale, string];
+type Principle = {
+  title: string;
+  description: string;
+};
+type SurfaceSample = {
+  step: string;
+  label: string;
+  description: string;
+  tokenClass: string;
+};
+type TypeSample = {
+  label: string;
+  size: TypeScale;
+  sample: string;
+};
+type TextCard = {
+  title: string;
+  description: string;
+};
+type MotionSample = {
+  name: string;
+  duration: string;
+  usage: string;
+};
 
-const principles = [
-  ['Dark-first identity', 'Use deep infrastructure surfaces as the default brand canvas for high-impact pages.'],
-  ['Layers create trust', 'Surface steps, borders, and elevation should imply isolation, virtualization, and safety.'],
-  ['Reusable foundations', 'Prefer tokens, layout primitives, and small components over page-specific visual inventions.'],
+const principles: Principle[] = [
+  {
+    title: 'Dark-first identity',
+    description: 'Use deep infrastructure surfaces as the default brand canvas for high-impact pages.',
+  },
+  {
+    title: 'Layers create trust',
+    description: 'Surface steps, borders, and elevation should imply isolation, virtualization, and safety.',
+  },
+  {
+    title: 'Reusable foundations',
+    description: 'Prefer tokens, layout primitives, and small components over page-specific visual inventions.',
+  },
 ];
 
-const surfaces = [
-  ['0', 'Base canvas', 'Page background and deepest system layer.', 'uno-bg-xp-surface-0'],
-  ['1', 'Section canvas', 'Default dark section for high-impact brand moments.', 'uno-bg-xp-surface-1'],
-  ['2', 'Raised surface', 'Cards, callouts, and proof blocks above a section.', 'uno-bg-xp-surface-2'],
-  ['3', 'Active surface', 'Interactive, selected, or highest local emphasis.', 'uno-bg-xp-surface-3'],
+const surfaces: SurfaceSample[] = [
+  {
+    step: '0',
+    label: 'Base canvas',
+    description: 'Page background and deepest system layer.',
+    tokenClass: 'uno-bg-xp-surface-0',
+  },
+  {
+    step: '1',
+    label: 'Section canvas',
+    description: 'Default dark section for high-impact brand moments.',
+    tokenClass: 'uno-bg-xp-surface-1',
+  },
+  {
+    step: '2',
+    label: 'Raised surface',
+    description: 'Cards, callouts, and proof blocks above a section.',
+    tokenClass: 'uno-bg-xp-surface-2',
+  },
+  {
+    step: '3',
+    label: 'Active surface',
+    description: 'Interactive, selected, or highest local emphasis.',
+    tokenClass: 'uno-bg-xp-surface-3',
+  },
 ];
 
 const typography: TypeSample[] = [
-  ['Display XL', 'display-xl', 'A mature hypervisor for infrastructure that cannot fail.'],
-  ['Display L', 'display-l', 'Layered virtualization, built in the open.'],
-  ['Heading XL', 'heading-xl', 'Systems confidence'],
-  ['Heading L', 'heading-l', 'A foundation for secure platforms'],
-  ['Heading M', 'heading-m', 'Isolation layer'],
+  {
+    label: 'Display XL',
+    size: 'display-xl',
+    sample: 'A mature hypervisor for infrastructure that cannot fail.',
+  },
+  {
+    label: 'Display L',
+    size: 'display-l',
+    sample: 'Layered virtualization, built in the open.',
+  },
+  {
+    label: 'Heading XL',
+    size: 'heading-xl',
+    sample: 'Systems confidence',
+  },
+  {
+    label: 'Heading L',
+    size: 'heading-l',
+    sample: 'A foundation for secure platforms',
+  },
+  {
+    label: 'Heading M',
+    size: 'heading-m',
+    sample: 'Isolation layer',
+  },
 ];
 
-const layouts = [
-  ['Container', 'Constrain reading width with xp-content, page layouts with xp-page, and broad compositions with xp-wide.'],
-  ['Section', 'Use full-width bands on surface 0 or 1. Sections should not need decorative wrappers.'],
-  ['Stack', 'Use vertical rhythm for prose, forms, and ordered content.'],
-  ['Flow', 'Let related text and actions follow source order with predictable gaps.'],
-  ['Grid', 'Use equal-weight proof, feature, member, and resource collections.'],
-  ['Split', 'Pair an argument with evidence, media, or a compact technical panel.'],
-  ['Cluster', 'Wrap badges, actions, filters, and metadata without layout shifts.'],
+const layouts: TextCard[] = [
+  {
+    title: 'Container',
+    description: 'Constrain reading width with xp-content, page layouts with xp-page, and broad compositions with xp-wide.',
+  },
+  {
+    title: 'Section',
+    description: 'Use full-width bands on surface 0 or 1. Sections should not need decorative wrappers.',
+  },
+  {
+    title: 'Stack',
+    description: 'Use vertical rhythm for prose, forms, and ordered content.',
+  },
+  {
+    title: 'Flow',
+    description: 'Let related text and actions follow source order with predictable gaps.',
+  },
+  {
+    title: 'Grid',
+    description: 'Use equal-weight proof, feature, member, and resource collections.',
+  },
+  {
+    title: 'Split',
+    description: 'Pair an argument with evidence, media, or a compact technical panel.',
+  },
+  {
+    title: 'Cluster',
+    description: 'Wrap badges, actions, filters, and metadata without layout shifts.',
+  },
 ];
 
-const primitives = [
-  ['Button', 'Primary, secondary, and text actions. Keep labels short and states obvious.'],
-  ['Card', 'A repeated item on surface 2. Use for proof, resources, features, and links.'],
-  ['Badge', 'Compact status, category, release, or ecosystem labels.'],
-  ['Divider', 'A structural line that separates layers or content groups.'],
-  ['Surface', 'A token-backed background step: 0, 1, 2, 3, or intentional light.'],
-  ['Heading', 'Semantic heading with display and content sizes.'],
-  ['Text', 'Body, lead, caption, eyebrow, and monospaced annotations.'],
+const primitives: TextCard[] = [
+  {
+    title: 'Button',
+    description: 'Primary, secondary, and text actions. Keep labels short and states obvious.',
+  },
+  {
+    title: 'Card',
+    description: 'A repeated item on surface 2. Use for proof, resources, features, and links.',
+  },
+  {
+    title: 'Badge',
+    description: 'Compact status, category, release, or ecosystem labels.',
+  },
+  {
+    title: 'Divider',
+    description: 'A structural line that separates layers or content groups.',
+  },
+  {
+    title: 'Surface',
+    description: 'A token-backed background step: 0, 1, 2, 3, or intentional light.',
+  },
+  {
+    title: 'Heading',
+    description: 'Semantic heading with display and content sizes.',
+  },
+  {
+    title: 'Text',
+    description: 'Body, lead, caption, eyebrow, and monospaced annotations.',
+  },
 ];
 
-const iconography = [
-  ['Size', 'Use 20px for inline UI, 24px for compact cards, and 32px only for larger explanatory moments.'],
-  ['Style', 'Prefer simple line icons with a consistent stroke. Filled icons are reserved for status or brand marks.'],
-  ['Alignment', 'Align icons to text cap height or center them in fixed-size controls to prevent layout shift.'],
-  ['Purpose', 'Use icons to clarify actions, statuses, systems, or navigation. Do not use them as decoration.'],
+const iconography: TextCard[] = [
+  {
+    title: 'Size',
+    description: 'Use 20px for inline UI, 24px for compact cards, and 32px only for larger explanatory moments.',
+  },
+  {
+    title: 'Style',
+    description: 'Prefer simple line icons with a consistent stroke. Filled icons are reserved for status or brand marks.',
+  },
+  {
+    title: 'Alignment',
+    description: 'Align icons to text cap height or center them in fixed-size controls to prevent layout shift.',
+  },
+  {
+    title: 'Purpose',
+    description: 'Use icons to clarify actions, statuses, systems, or navigation. Do not use them as decoration.',
+  },
 ];
 
-const accessibility = [
-  ['Focus', 'Keyboard focus uses a visible token-backed ring on dark and light surfaces.'],
-  ['Keyboard', 'Interactive primitives must be reachable and usable without pointer input.'],
-  ['Contrast', 'Use documented text and surface pairings; do not invent opacity-based text tones.'],
-  ['Reduced motion', 'Motion should have a reduced-motion fallback and never hide content.'],
+const accessibility: TextCard[] = [
+  {
+    title: 'Focus',
+    description: 'Keyboard focus uses a visible token-backed ring on dark and light surfaces.',
+  },
+  {
+    title: 'Keyboard',
+    description: 'Interactive primitives must be reachable and usable without pointer input.',
+  },
+  {
+    title: 'Contrast',
+    description: 'Use documented text and surface pairings; do not invent opacity-based text tones.',
+  },
+  {
+    title: 'Reduced motion',
+    description: 'Motion should have a reduced-motion fallback and never hide content.',
+  },
 ];
 
-const motion = [
-  ['Fast', '120ms', 'Hover color, focus affordance, compact state change.'],
-  ['Base', '200ms', 'Elevation, small transform, disclosure.'],
-  ['Slow', '360ms', 'Section reveal or larger layered transition.'],
+const motion: MotionSample[] = [
+  {
+    name: 'Fast',
+    duration: '120ms',
+    usage: 'Hover color, focus affordance, compact state change.',
+  },
+  {
+    name: 'Base',
+    duration: '200ms',
+    usage: 'Elevation, small transform, disclosure.',
+  },
+  {
+    name: 'Slow',
+    duration: '360ms',
+    usage: 'Section reveal or larger layered transition.',
+  },
+];
+
+const foundationDetails: TextCard[] = [
+  {
+    title: 'Color',
+    description: 'Use surface, text, border, accent, warning, and danger tokens as documented pairings.',
+  },
+  {
+    title: 'Spacing',
+    description: 'Use the 4px-based spacing scale and section rhythm. Dense technical content should remain scannable.',
+  },
+  {
+    title: 'Elevation',
+    description: 'Use elevation to show layer order, not to create decorative depth.',
+  },
+  {
+    title: 'Motion',
+    description: 'Motion clarifies relationship, emphasis, or state. It should be short, reversible, and optional.',
+  },
+];
+
+const blockActions = [
+  {label: 'Primary action', href: '#blocks'},
+  {label: 'Secondary action', href: '#composition', variant: 'secondary' as const},
+];
+
+const blockFeatures = [
+  {
+    icon: 'i-carbon-layers',
+    title: 'Layered systems',
+    description: 'Use cards for reusable proof, capabilities, and technical explanations.',
+    href: '#composition',
+    linkLabel: 'View composition',
+  },
+  {
+    icon: 'i-carbon-security',
+    title: 'Trust signals',
+    description: 'Pair claims with evidence that future pages can reuse without custom layout code.',
+  },
+  {
+    icon: 'i-carbon-ibm-cloud-vpc',
+    title: 'Infrastructure fit',
+    description: 'Keep dense technical content scannable across small and large screens.',
+  },
+];
+
+const blockStats = [
+  {
+    value: '20+ years',
+    label: 'Open development',
+    description: 'A long-running project needs proof blocks that feel mature, not nostalgic.',
+    sourceHref: 'https://xenproject.org/',
+    sourceLabel: 'Project site',
+  },
+  {
+    value: '3 layers',
+    label: 'Reusable hierarchy',
+    description: 'Primitives, blocks, and pages keep layout decisions in the right place.',
+  },
+  {
+    value: '0 legacy CSS',
+    label: 'Clean boundary',
+    description: 'New blocks stay independent of the migrated Sass cascade.',
+  },
 ];
 ---
 
@@ -125,10 +346,10 @@ const motion = [
             </Text>
           </Stack>
           <Grid columns="3">
-            {principles.map(([title, description]) => (
+            {principles.map(principle => (
               <Card>
-                <Heading as="h3" size="heading-m">{title}</Heading>
-                <Text size="caption" class="uno-mt-3">{description}</Text>
+                <Heading as="h3" size="heading-m">{principle.title}</Heading>
+                <Text size="caption" class="uno-mt-3">{principle.description}</Text>
               </Card>
             ))}
           </Grid>
@@ -147,21 +368,16 @@ const motion = [
             </Text>
           </Stack>
           <Grid columns="4">
-            {surfaces.map(([step, label, description, tokenClass]) => (
-              <TokenSwatch step={step} label={label} description={description} tokenClass={tokenClass} />
+            {surfaces.map(surface => (
+              <TokenSwatch step={surface.step} label={surface.label} description={surface.description} tokenClass={surface.tokenClass} />
             ))}
           </Grid>
           <Grid columns="2">
-            {[
-              ['Color', 'Use surface, text, border, accent, warning, and danger tokens as documented pairings.'],
-              ['Spacing', 'Use the 4px-based spacing scale and section rhythm. Dense technical content should remain scannable.'],
-              ['Elevation', 'Use elevation to show layer order, not to create decorative depth.'],
-              ['Motion', 'Motion clarifies relationship, emphasis, or state. It should be short, reversible, and optional.'],
-            ].map(([title, description]) => (
+            {foundationDetails.map(detail => (
               <Stack gap="3">
                 <Divider />
-                <Heading as="h3" size="heading-m">{title}</Heading>
-                <Text size="caption">{description}</Text>
+                <Heading as="h3" size="heading-m">{detail.title}</Heading>
+                <Text size="caption">{detail.description}</Text>
               </Stack>
             ))}
           </Grid>
@@ -178,10 +394,10 @@ const motion = [
             <Text>Inter carries the main voice. JetBrains Mono is reserved for version labels, code-like metadata, and technical annotations.</Text>
           </Stack>
           <Stack gap="5">
-            {typography.map(([label, size, sample]) => (
+            {typography.map(typeSample => (
               <div class="uno-grid uno-grid-cols-1 uno-gap-2 uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-pt-5 md:uno-grid-cols-[minmax(7rem,0.22fr)_minmax(0,1fr)] md:uno-gap-5">
-                <Text size="mono-small" tone="muted">{label}</Text>
-                <Heading as="h3" size={size}>{sample}</Heading>
+                <Text size="mono-small" tone="muted">{typeSample.label}</Text>
+                <Heading as="h3" size={typeSample.size}>{typeSample.sample}</Heading>
               </div>
             ))}
             <div class="uno-grid uno-grid-cols-1 uno-gap-2 uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-pt-5 md:uno-grid-cols-[minmax(7rem,0.22fr)_minmax(0,1fr)] md:uno-gap-5">
@@ -206,10 +422,10 @@ const motion = [
             <Text>Pages should be composed from a small set of repeatable layout behaviors before introducing named blocks.</Text>
           </Stack>
           <Grid columns="2">
-            {layouts.map(([name, description]) => (
+            {layouts.map(layout => (
               <Card>
-                <Heading as="h3" size="heading-m">{name}</Heading>
-                <Text size="caption" class="uno-mt-2">{description}</Text>
+                <Heading as="h3" size="heading-m">{layout.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{layout.description}</Text>
               </Card>
             ))}
           </Grid>
@@ -239,10 +455,10 @@ const motion = [
               </Cluster>
             </Stack>
             <Grid columns="2">
-              {primitives.map(([name, description]) => (
+              {primitives.map(primitive => (
                 <Card>
-                  <Heading as="h3" size="heading-m">{name}</Heading>
-                  <Text size="caption" class="uno-mt-2">{description}</Text>
+                  <Heading as="h3" size="heading-m">{primitive.title}</Heading>
+                  <Text size="caption" class="uno-mt-2">{primitive.description}</Text>
                 </Card>
               ))}
             </Grid>
@@ -262,10 +478,10 @@ const motion = [
           <Split align="center">
             <IconSamples />
             <Grid columns="2">
-              {iconography.map(([name, description]) => (
+              {iconography.map(iconRule => (
                 <Card>
-                  <Heading as="h3" size="heading-m">{name}</Heading>
-                  <Text size="caption" class="uno-mt-2">{description}</Text>
+                  <Heading as="h3" size="heading-m">{iconRule.title}</Heading>
+                  <Text size="caption" class="uno-mt-2">{iconRule.description}</Text>
                 </Card>
               ))}
             </Grid>
@@ -283,10 +499,10 @@ const motion = [
             <Text>New primitives and blocks must preserve focus, keyboard operation, contrast, and reduced-motion behavior by default.</Text>
           </Stack>
           <Grid columns="2">
-            {accessibility.map(([name, description]) => (
+            {accessibility.map(accessibilityRule => (
               <Card>
-                <Heading as="h3" size="heading-m">{name}</Heading>
-                <Text size="caption" class="uno-mt-2">{description}</Text>
+                <Heading as="h3" size="heading-m">{accessibilityRule.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{accessibilityRule.description}</Text>
               </Card>
             ))}
           </Grid>
@@ -303,9 +519,113 @@ const motion = [
             <Text>Use standard easing for most states and emphasized easing only when a layer changes position or prominence.</Text>
           </Stack>
           <Grid columns="3">
-            {motion.map(([name, duration, usage]) => (
-              <MotionDemoCard name={name} duration={duration} usage={usage} />
+            {motion.map(motionSample => (
+              <MotionDemoCard name={motionSample.name} duration={motionSample.duration} usage={motionSample.usage} />
             ))}
+          </Grid>
+        </Stack>
+      </Container>
+    </Section>
+
+    <Section id="blocks" surface="1">
+      <Container>
+        <Stack gap="7">
+          <Stack gap="3" class="uno-max-w-xp-content">
+            <Text size="eyebrow" tone="muted">Blocks</Text>
+            <Heading size="heading-xl">Reusable sections for high-impact pages.</Heading>
+            <Text>
+              Blocks compose primitives into repeatable content patterns. These examples show the component APIs without defining a future homepage.
+            </Text>
+          </Stack>
+        </Stack>
+      </Container>
+    </Section>
+
+    <Hero
+      id="block-hero"
+      eyebrow="Hero block"
+      title="A reusable lead section for technical pages."
+      description="The Hero block supports a focused argument, primary and secondary actions, optional media, and compact proof without relying on page-specific code."
+      actions={blockActions}
+      headingLevel="h2"
+    >
+      <Surface slot="media" tone="2" border="strong" radius="lg" shadow="md" padding="lg" aria-label="Layered infrastructure visual">
+        <Stack gap="4">
+          <Cluster justify="between">
+            <Badge variant="accent">Surface 2</Badge>
+            <Text as="span" size="mono-small" tone="muted">media slot</Text>
+          </Cluster>
+          <div class="uno-grid uno-gap-3">
+            <div class="uno-h-16 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-[linear-gradient(90deg,rgb(133_194_65_/_0.18),transparent)]"></div>
+            <div class="uno-ml-6 uno-h-16 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-3"></div>
+            <div class="uno-ml-12 uno-h-16 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-2"></div>
+          </div>
+        </Stack>
+      </Surface>
+      <Surface slot="proof" tone="3" border="strong" padding="md" radius="md" shadow="sm">
+        <Text size="caption" tone="accent-primary" class="uno-font-bold">Proof slot</Text>
+        <Text size="caption" class="uno-mt-2">Use this area for credible metadata, not decoration.</Text>
+      </Surface>
+    </Hero>
+
+    <LogoCloud
+      id="block-logo-cloud"
+      eyebrow="LogoCloud block"
+      title="Credibility without carousel behavior."
+      description="LogoCloud presents members, sponsors, users, or ecosystem marks in a static accessible grid."
+      headingLevel="h2"
+      surface="light"
+      logos={memberLogos}
+    />
+
+    <FeatureGrid
+      id="block-feature-grid"
+      eyebrow="FeatureGrid block"
+      title="Reusable cards for technical arguments."
+      description="FeatureGrid is the default workhorse for capabilities, benefits, and use-case summaries."
+      features={blockFeatures}
+    />
+
+    <Stats
+      id="block-stats"
+      eyebrow="Stats block"
+      title="Proof that reads as content."
+      description="Stats uses strong typography and optional source links without animated counters."
+      stats={blockStats}
+    />
+
+    <CTA
+      id="block-cta"
+      eyebrow="CTA block"
+      title="A standard next step for redesigned pages."
+      description="CTA keeps action areas consistent while allowing dark-first and light contrast surfaces."
+      actions={blockActions}
+      align="center"
+    />
+
+    <Section id="block-callout" surface="0">
+      <Container>
+        <Stack gap="5">
+          <Stack gap="3" class="uno-max-w-xp-content">
+            <Text size="eyebrow" tone="muted">Callout block</Text>
+            <Heading size="heading-xl">Compact highlights for important context.</Heading>
+          </Stack>
+          <Grid columns="2">
+            <Callout
+              title="Accent callout"
+              description="Use this for release notes, sponsor moments, or page-specific emphasis that should remain bounded."
+              action={{label: 'Read more', href: '#blocks', variant: 'text'}}
+            >
+              <span slot="icon" class="i-carbon-information"></span>
+            </Callout>
+            <Callout
+              title="Warning callout"
+              description="Important notices include a visible label so the message does not rely on color alone."
+              variant="warning"
+              action={{label: 'Review notice', href: '#accessibility', variant: 'secondary'}}
+            >
+              <span slot="icon" class="i-carbon-warning-alt"></span>
+            </Callout>
           </Grid>
         </Stack>
       </Container>

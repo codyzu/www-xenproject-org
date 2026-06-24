@@ -1,0 +1,29 @@
+import {expect, test} from '@playwright/test';
+import {memberLogos} from '../../src/data/member-logos';
+
+test.describe('Internal design system', () => {
+  test('renders reusable block examples', async ({page}) => {
+    await page.goto('/internal/design-system/');
+
+    const main = page.locator('main');
+
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'noindex, nofollow');
+    await expect(main.getByRole('heading', {name: 'Reusable sections for high-impact pages.'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'A reusable lead section for technical pages.'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Credibility without carousel behavior.'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Reusable cards for technical arguments.'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Proof that reads as content.'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'A standard next step for redesigned pages.'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Compact highlights for important context.'})).toBeVisible();
+    await expect(main.getByRole('link', {name: 'Primary action'}).first()).toBeVisible();
+    await expect(main.getByRole('link', {name: 'Secondary action'}).first()).toBeVisible();
+    await expect(main.locator('#block-logo-cloud .uno-bg-xp-surface-light')).toHaveCount(1);
+    await expect(main.locator('#block-logo-cloud img')).toHaveCount(10);
+    for (const logo of memberLogos) {
+      await expect(main.getByRole('link', {name: `Visit ${logo.label}`})).toHaveAttribute('href', logo.href);
+      await expect(main.locator(`img[alt="${logo.label}"]`)).toHaveAttribute('src', logo.src);
+    }
+
+    await expect(main.getByRole('heading', {name: /404/i})).toHaveCount(0);
+  });
+});

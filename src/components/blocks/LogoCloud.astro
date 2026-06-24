@@ -1,0 +1,119 @@
+---
+import Container from '../primitives/Container.astro';
+import Heading from '../primitives/Heading.astro';
+import Section from '../primitives/Section.astro';
+import Stack from '../primitives/Stack.astro';
+import Surface from '../primitives/Surface.astro';
+import Text from '../primitives/Text.astro';
+
+type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type Logo = {
+  label: string;
+  src: string;
+  href?: string;
+  width?: number;
+  height?: number;
+};
+type Props = {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  description?: string;
+  headingLevel?: HeadingLevel;
+  surface?: '0' | '1' | 'light';
+  containerSize?: 'content' | 'page' | 'wide';
+  logos: Logo[];
+  class?: string;
+};
+
+const {
+  id,
+  eyebrow,
+  title,
+  description,
+  headingLevel = 'h2',
+  surface = '0',
+  containerSize = 'page',
+  logos,
+  class: className = '',
+} = Astro.props as Props;
+const isLight = surface === 'light';
+const sectionSurface = isLight ? '0' : surface;
+const headingTone = isLight ? 'on-light' : 'primary';
+const textTone = isLight ? 'on-light-muted' : 'secondary';
+const logoGridClasses = 'uno-grid uno-grid-cols-2 uno-gap-4 md:uno-grid-cols-3 lg:uno-grid-cols-5';
+---
+
+<Section id={id} surface={sectionSurface} class={className}>
+  <Container size={containerSize}>
+    {isLight ? (
+      <Surface tone="light" border="light" padding="lg" radius="lg" shadow="md">
+        <Stack gap="6">
+          {(eyebrow || title || description) && (
+            <Stack gap="3" class="uno-max-w-xp-content">
+              {eyebrow && <Text size="eyebrow" tone="on-light-muted">{eyebrow}</Text>}
+              {title && <Heading as={headingLevel} size="heading-xl" tone={headingTone}>{title}</Heading>}
+              {description && <Text tone={textTone}>{description}</Text>}
+            </Stack>
+          )}
+          <div class={logoGridClasses}>
+            {logos.map(logo => {
+              const content = (
+                <>
+                  <img src={logo.src} width={logo.width} height={logo.height} alt={logo.label} loading="lazy" class="uno-max-h-10 uno-w-auto uno-max-w-full uno-object-contain" />
+                  <Text as="span" size="caption" tone="on-light-muted" class="uno-sr-only">{logo.label}</Text>
+                </>
+              );
+              return (
+                <Surface tone="light-raised" border="light" shadow="sm" padding="sm" class="uno-flex uno-min-h-24 uno-items-center uno-justify-center">
+                  {logo.href ? (
+                    <a href={logo.href} aria-label={`Visit ${logo.label}`} class="xen-focus uno-flex uno-min-h-14 uno-w-full uno-items-center uno-justify-center uno-rounded-xp-md uno-p-2">
+                      {content}
+                    </a>
+                  ) : (
+                    <div class="uno-flex uno-min-h-14 uno-w-full uno-items-center uno-justify-center uno-p-2">
+                      {content}
+                    </div>
+                  )}
+                </Surface>
+              );
+            })}
+          </div>
+        </Stack>
+      </Surface>
+    ) : (
+      <Stack gap="6">
+        {(eyebrow || title || description) && (
+          <Stack gap="3" class="uno-max-w-xp-content">
+            {eyebrow && <Text size="eyebrow" tone="muted">{eyebrow}</Text>}
+            {title && <Heading as={headingLevel} size="heading-xl" tone={headingTone}>{title}</Heading>}
+            {description && <Text tone={textTone}>{description}</Text>}
+          </Stack>
+        )}
+        <div class={logoGridClasses}>
+          {logos.map(logo => {
+            const content = (
+              <>
+                <img src={logo.src} width={logo.width} height={logo.height} alt={logo.label} loading="lazy" class="uno-max-h-10 uno-w-auto uno-max-w-full uno-object-contain" />
+                <Text as="span" size="caption" tone="muted" class="uno-sr-only">{logo.label}</Text>
+              </>
+            );
+            return (
+              <Surface tone="light-raised" border="light" shadow="sm" padding="sm" class="uno-flex uno-min-h-24 uno-items-center uno-justify-center">
+                {logo.href ? (
+                  <a href={logo.href} aria-label={`Visit ${logo.label}`} class="xen-focus uno-flex uno-min-h-14 uno-w-full uno-items-center uno-justify-center uno-rounded-xp-md uno-p-2">
+                    {content}
+                  </a>
+                ) : (
+                  <div class="uno-flex uno-min-h-14 uno-w-full uno-items-center uno-justify-center uno-p-2">
+                    {content}
+                  </div>
+                )}
+              </Surface>
+            );
+          })}
+        </div>
+      </Stack>
+    )}
+  </Container>
+</Section>
