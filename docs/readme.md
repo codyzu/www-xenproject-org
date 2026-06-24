@@ -4,6 +4,7 @@
 
 - [Download data](downloads.md)
 - [Images](images.md)
+- [Redesign strategy](redesign-strategy.md)
 
 ## Migration Notes
 

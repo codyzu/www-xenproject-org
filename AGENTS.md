@@ -17,6 +17,21 @@ This repo uses Astro as its static-site generator.
 - `SITE_URL` controls absolute canonical, redirect, social, and RSS URLs. It
   defaults to `https://beta.xenproject.org`.
 
+## Relevant Docs
+
+- Read `docs/redesign-strategy.md` before redesign, homepage, component-system,
+  layout, or visual-direction work. It documents the long-term direction for
+  the Astro-era site and the intended legacy/new component boundary.
+- Read `docs/migration/astro.md` before changing build architecture, layouts,
+  Astro routes, migrated components, redirects, Ghost header/footer output, or
+  the public artifact contract.
+- Use `docs/downloads.md` when working on downloads data or download refresh
+  scripts.
+- Use `docs/images.md` when selecting existing image assets.
+- Use `docs/small-components.md` when updating editor-facing component usage
+  guidance.
+- `docs/readme.md` is the top-level index for maintainer and migration docs.
+
 ## Astro Page Choices
 
 - Use `.astro` for structured UI pages, data-driven pages, and card/grid
