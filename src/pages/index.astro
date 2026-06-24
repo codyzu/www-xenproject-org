@@ -1,11 +1,11 @@
 ---
-import LatestNewsShell from '../components/LatestNewsShell.astro';
-import MediaBlock from '../components/MediaBlock.astro';
-import ProjectCarousel from '../components/ProjectCarousel.astro';
+import LatestNewsShell from '../components/legacy/LatestNewsShell.astro';
+import MediaBlock from '../components/legacy/MediaBlock.astro';
+import ProjectCarousel from '../components/legacy/ProjectCarousel.astro';
 import LogoWheel from '../components/react/LogoWheel';
 import Story from '../components/react/Story';
-import Section from '../components/Section.astro';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Section from '../components/legacy/Section.astro';
+import LegacyLayout from '../layouts/LegacyLayout.astro';
 import {projects} from '../data/projects';
 
 const title = 'Xen Project';
@@ -22,7 +22,7 @@ const features = [
 const homepageProjects = projects.filter((project) => project.route !== '/projects/hypervisor/openpgp-keys/');
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords} flushMain overlayHeader>
+<LegacyLayout title={title} description={description} keywords={keywords} flushMain overlayHeader>
   <div id="xen-story" class="uno-w-full uno-bg-black"><Story client:load /></div>
   <article
     data-story-followup
@@ -92,4 +92,4 @@ const homepageProjects = projects.filter((project) => project.route !== '/projec
       }
     }
   </style>
-</BaseLayout>
+</LegacyLayout>

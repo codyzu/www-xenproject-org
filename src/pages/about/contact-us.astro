@@ -1,6 +1,6 @@
 ---
-import Card from '../../components/Card.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import Card from '../../components/legacy/Card.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 const title = 'Contact us';
 const description = 'Contact Xen Project for inquiries, support, and collaboration opportunities. Reach out to our team and join the conversation in our community forums.';
@@ -17,7 +17,7 @@ const keywords = [
 ];
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<LegacyLayout title={title} description={description} keywords={keywords}>
   <article class="article">
     <div class="container page-top">
       <h1>{title}</h1>
@@ -45,4 +45,4 @@ const keywords = [
       </section>
     </div>
   </article>
-</BaseLayout>
+</LegacyLayout>

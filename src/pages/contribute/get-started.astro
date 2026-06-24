@@ -1,15 +1,15 @@
 ---
-import MediaBlock from '../../components/MediaBlock.astro';
+import MediaBlock from '../../components/legacy/MediaBlock.astro';
 import LogoWheel from '../../components/react/LogoWheel';
-import Section from '../../components/Section.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/legacy/Section.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 const title = 'Get started';
 const description = 'Begin your journey with Xen Project. Follow our step-by-step installation and setup guide to deploy Xen hypervisor. Access essential resources, tutorials, and support for a smooth start.';
 const keywords = ['Xen Project', 'hypervisor', 'installation guide', 'setup tutorial', 'resources', 'support', 'tutorials', 'beginner guide', 'community', 'contribution', 'development', 'open source', 'documentation'];
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<LegacyLayout title={title} description={description} keywords={keywords}>
   <article class="article page-single">
     <div class="container page-top"><h1>{title}</h1><div class="description">{description}</div></div>
     <div class="single-content">
@@ -60,4 +60,4 @@ const keywords = ['Xen Project', 'hypervisor', 'installation guide', 'setup tuto
       </Section>
     </div>
   </article>
-</BaseLayout>
+</LegacyLayout>

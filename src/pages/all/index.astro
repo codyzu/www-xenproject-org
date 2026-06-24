@@ -1,7 +1,7 @@
 ---
 import {migratedRoutes} from '../../../scripts/astro/migrated-routes';
 import {redirects} from '../../data/redirects';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 const routeLabel = (route: string) => route === '/'
   ? 'Xen Project'
@@ -12,9 +12,9 @@ const entries = [
 ].toSorted((a, b) => a.route.localeCompare(b.route));
 ---
 
-<BaseLayout title="All pages" description="A complete inventory of Xen Project website pages and redirects." robots="noindex, follow">
+<LegacyLayout title="All pages" description="A complete inventory of Xen Project website pages and redirects." robots="noindex, follow">
   <div class="all-pages container section-space">
     <h1>All pages</h1>
     <ul>{entries.map((entry) => <li><a href={entry.route}>{entry.label}</a> <small>({entry.type})</small></li>)}</ul>
   </div>
-</BaseLayout>
+</LegacyLayout>

@@ -1,7 +1,7 @@
 ---
 import {getCollection} from 'astro:content';
-import Section from '../../../components/Section.astro';
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Section from '../../../components/legacy/Section.astro';
+import LegacyLayout from '../../../layouts/LegacyLayout.astro';
 
 const title = 'Past Events';
 const description = 'Browse past Xen Project events, watch recordings, and revisit agendas in one place.';
@@ -9,7 +9,7 @@ const keywords = ['Xen Project', 'past events', 'Xen Summit archive'];
 const events = (await getCollection('pastEvents')).toSorted((a, b) => b.data.eventEnd.getTime() - a.data.eventEnd.getTime());
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<LegacyLayout title={title} description={description} keywords={keywords}>
   <article class="article">
     <div class="container section-space">
       <Section><h1 class="past-events-title">Past Events Archive</h1><p>Catch up on previous Xen Project gatherings, watch recordings, and find agendas or slide decks from earlier conferences. Each listing links to the event recap page for full details.</p></Section>
@@ -19,7 +19,7 @@ const events = (await getCollection('pastEvents')).toSorted((a, b) => b.data.eve
       <section class="txt-c uno-mt-10"><p class="content-markdown"><em>Last updated: December 19, 2025</em></p></section>
     </div>
   </article>
-</BaseLayout>
+</LegacyLayout>
 
 <style>
   .past-events-title {

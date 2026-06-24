@@ -210,6 +210,7 @@ if (standalone) {
     '404.html',
     'all/index.html',
     'headerfooter.html',
+    'internal/design-system/index.html',
   ]);
   const actualHtml = new Set(htmlFiles.map(filePath => path.relative(publicDirectory, filePath)));
 
@@ -245,7 +246,7 @@ if (standalone) {
       errors.push('headerfooter.html: fragment must not contain html or body wrappers');
     }
 
-    if ($fragment('link[href^="/_astro/BaseLayout."][href$=".css"]').length !== 1) {
+    if ($fragment('link[href^="/_astro/LegacyLayout."][href$=".css"]').length !== 1) {
       errors.push('headerfooter.html: missing cache-busted Astro stylesheet link');
     }
 

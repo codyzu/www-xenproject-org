@@ -1,0 +1,45 @@
+@import "./tokens.css";
+
+.xp-site {
+  min-width: 320px;
+  margin: 0;
+  background: var(--xp-surface-0);
+  color: var(--xp-text-primary);
+  font-family: var(--xp-font-sans);
+  font-size: var(--xp-text-base);
+  line-height: var(--xp-line-body);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.xp-site *,
+.xp-site *::before,
+.xp-site *::after {
+  box-sizing: border-box;
+}
+
+.xp-site a {
+  color: var(--xp-accent-primary);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.18em;
+}
+
+.xp-site a:hover {
+  color: var(--xp-accent-primary-strong);
+}
+
+.xp-site :focus-visible {
+  outline: var(--xp-focus-width) solid var(--xp-focus-ring);
+  outline-offset: var(--xp-focus-offset);
+}
+
+:where(.xp-site) :where(h1, h2, h3, h4, h5, h6) {
+  color: var(--xp-text-primary);
+  font-weight: var(--xp-weight-heading);
+  line-height: var(--xp-line-heading);
+}
+
+.xp-site img,
+.xp-site svg {
+  max-width: 100%;
+}

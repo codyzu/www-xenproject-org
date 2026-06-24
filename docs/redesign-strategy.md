@@ -36,6 +36,13 @@ trust. The visual direction should feel like layered systems sliding into
 place: structured, precise, calm, and strong. It should communicate depth,
 clarity, motion, and infrastructure-grade reliability.
 
+The Xen Project's primary visual identity uses a dark, infrastructure-inspired
+palette. Dark surfaces are the default brand canvas for new high-impact pages
+because they can communicate depth, focus, technical sophistication,
+infrastructure, and layered systems. This does not mean every page or every
+section must be dark. It means the strongest brand moments should start from a
+dark foundation and use elevation, contrast, light, and accent deliberately.
+
 The design should feel:
 
 - Modern.
@@ -45,10 +52,12 @@ The design should feel:
 - Structured.
 - Infrastructure-grade.
 
-A dark visual direction is promising because it can help the site feel
-technical and substantial, but it must be balanced with readability,
-accessibility, contrast, and long-form content comfort. Dark surfaces should
-not become a blanket style that makes every page feel heavy.
+Lighter surfaces are allowed, but they should be intentional and limited. Use
+them for contrast, readability, data-heavy content, or emphasis when a dark
+section would make the experience less clear. Avoid letting "dark identity"
+become a monotonous black theme; the system should rely on layered surface
+steps, muted borders, restrained highlights, and readable typography rather
+than making every section visually identical.
 
 Animation can support the layered-systems metaphor, but it should be subtle,
 useful, and performance-conscious. Motion should clarify relationships,
@@ -218,6 +227,8 @@ Use this checklist before redesigning or rebuilding a page:
 - Is the page too generic?
 - Is the page showing proof: releases, users, members, use cases, benchmarks,
   integrations, talks, docs, or community activity?
+- Does the page use the dark infrastructure-grade identity where it matters,
+  while keeping any light surfaces intentional?
 - Can the page be built with new primitives and blocks?
 - Does it avoid legacy SCSS?
 - Does it need JavaScript or hydration?

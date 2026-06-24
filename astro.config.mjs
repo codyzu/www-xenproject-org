@@ -35,10 +35,10 @@ const ghostHeaderFooterAssets = {
     async 'astro:build:done'({dir}) {
       const astroDirectory = fileURLToPath(new URL('_astro/', dir));
       const files = await readdir(astroDirectory);
-      const baseLayoutCss = files.find((file) => /^BaseLayout\..+\.css$/.test(file));
+      const legacyLayoutCss = files.find((file) => /^LegacyLayout\..+\.css$/.test(file));
 
-      if (!baseLayoutCss) {
-        throw new Error('Unable to find Astro BaseLayout CSS for the Ghost header/footer fragment.');
+      if (!legacyLayoutCss) {
+        throw new Error('Unable to find Astro LegacyLayout CSS for the Ghost header/footer fragment.');
       }
 
       const menuScript = await readFile(new URL('src/scripts/menu.js', import.meta.url), 'utf8');
@@ -51,7 +51,7 @@ const ghostHeaderFooterAssets = {
       const headerFooterPath = fileURLToPath(new URL('headerfooter.html', dir));
       const headerFooter = await readFile(headerFooterPath, 'utf8');
       const assets = [
-        `<link rel="stylesheet" href="/_astro/${baseLayoutCss}">`,
+        `<link rel="stylesheet" href="/_astro/${legacyLayoutCss}">`,
         `<script src="/_astro/${blogShellFile}" defer></script>`,
       ].join(' ');
 

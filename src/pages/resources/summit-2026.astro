@@ -1,16 +1,16 @@
 ---
-import EventHero from '../../components/EventHero.astro';
-import Pricing from '../../components/Pricing.astro';
-import Section from '../../components/Section.astro';
+import EventHero from '../../components/legacy/EventHero.astro';
+import Pricing from '../../components/legacy/Pricing.astro';
+import Section from '../../components/legacy/Section.astro';
 import {ticketSets} from '../../data/tickets';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 const title = 'Xen Summit 2026';
 const description = 'Join the Xen Project community in Munich, Germany, September 15–17, 2026, for technical talks, design sessions, and collaboration.';
 const keywords = ['Xen Project', 'Xen Summit', 'Munich', 'virtualization conference', 'hypervisor technology', 'community event'];
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords} socialImage="/assets/summit-2026/social-card.jpg">
+<LegacyLayout title={title} description={description} keywords={keywords} socialImage="/assets/summit-2026/social-card.jpg">
   <article class="article page-single">
     <div class="single-content">
       <EventHero
@@ -94,4 +94,4 @@ const keywords = ['Xen Project', 'Xen Summit', 'Munich', 'virtualization confere
       <Section class="txt-c"><p class="content-markdown"><em>Last updated: June 12, 2026</em></p></Section>
     </div>
   </article>
-</BaseLayout>
+</LegacyLayout>

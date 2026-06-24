@@ -1,9 +1,9 @@
 ---
-import CardGrid from '../../components/CardGrid.astro';
-import MediaBlock from '../../components/MediaBlock.astro';
-import Section from '../../components/Section.astro';
+import CardGrid from '../../components/legacy/CardGrid.astro';
+import MediaBlock from '../../components/legacy/MediaBlock.astro';
+import Section from '../../components/legacy/Section.astro';
 import {projects} from '../../data/projects';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 const title = 'All projects';
 const description = 'Learn about Xen Project, its mission, history, and the vibrant community behind the leading open source hypervisor. Find out how you can get involved.';
@@ -11,7 +11,7 @@ const keywords = ['Xen Project', 'open source', 'community', 'projects', 'develo
 const cards = projects.map((project) => ({...project, link: project.route, linkText: 'Discover', linkIcon: 'fa-arrow-right'}));
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<LegacyLayout title={title} description={description} keywords={keywords}>
   <article class="article page-single">
     <div class="container page-top"><h1>{title}</h1><div class="description">{description}</div></div>
     <div class="single-content">
@@ -24,4 +24,4 @@ const cards = projects.map((project) => ({...project, link: project.route, linkT
       <Section><MediaBlock title="About **Xen Project**" media="/img/flatline/data-process.svg" alt="Illustration of a laptop connected to cloud storage and file management icons." mediaPosition="right" animate>The Xen community is a dynamic and collaborative ecosystem comprised of developers, researchers, and enthusiasts dedicated to advancing open-source virtualization technology. With diverse backgrounds and expertise, members actively contribute to Xen's evolution, fostering innovation, sharing knowledge, and supporting one another through continuous development efforts.<p class="mg-t-md"><a href="/contribute/get-started/" class="btn btn-secondary">Get started <i class="fas fa-arrow-right"></i></a></p></MediaBlock></Section>
     </div>
   </article>
-</BaseLayout>
+</LegacyLayout>

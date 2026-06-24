@@ -1,7 +1,9 @@
 ---
+import Footer from '../components/legacy/Footer.astro';
+import Header from '../components/legacy/Header.astro';
 import {siteMetadata} from '../data/site';
 import 'uno.css';
-import '../styles/foundation/base.css';
+import '../styles/legacy.scss';
 
 type Props = {
   title: string;
@@ -11,8 +13,11 @@ type Props = {
   canonicalUrl?: string;
   socialImage?: string;
   image?: string;
+  hasAside?: boolean;
   robots?: string;
   bodyClass?: string;
+  flushMain?: boolean;
+  overlayHeader?: boolean;
 };
 
 const {
@@ -23,8 +28,11 @@ const {
   canonicalUrl,
   socialImage,
   image,
+  hasAside = false,
   robots = 'index, follow',
   bodyClass = '',
+  flushMain = false,
+  overlayHeader = false,
 } = Astro.props;
 const currentPath = Astro.url.pathname;
 const siteUrl = Astro.site ?? new URL('https://beta.xenproject.org');
@@ -45,12 +53,6 @@ const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialI
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
-    />
     <title>{pageTitle}</title>
     <meta name="description" content={resolvedDescription} />
     {keywords.length > 0 && <meta name="keywords" content={keywords.join(',  ')} />}
@@ -65,8 +67,24 @@ const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialI
     <meta name="twitter:image" content={resolvedSocialImage} />
     <meta name="robots" content={robots} />
     <link rel="canonical" href={resolvedCanonicalUrl} />
+    <link rel="stylesheet" href="/font-awesomepro/fontawesome.css" />
+    <link rel="stylesheet" href="/font-awesomepro/regular.css" />
+    <link rel="stylesheet" href="/font-awesomepro/solid.css" />
+    <link rel="stylesheet" href="/font-awesomepro/brands.css" />
   </head>
-  <body class:list={['xp-site', bodyClass]}>
-    <slot />
+  <body class:list={[bodyClass, flushMain && 'layout-main-flush', overlayHeader && 'layout-header-overlay']}>
+    <Header currentPath={currentPath} />
+    <main class:list={['main', hasAside && 'has-aside']}>
+      <slot />
+    </main>
+    <Footer currentPath={currentPath} />
+    <script>
+      import '../scripts/menu.js';
+      import '../scripts/animate.js';
+    </script>
+    <style is:global>
+      body.layout-main-flush > main.main { padding-top: 0; }
+      body.layout-header-overlay > header.header { position: absolute; inset: 0 0 auto; z-index: 20; }
+    </style>
   </body>
 </html>

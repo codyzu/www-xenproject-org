@@ -1,6 +1,6 @@
 ---
 import {getCollection, render, type CollectionEntry} from 'astro:content';
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LegacyLayout from '../../../layouts/LegacyLayout.astro';
 
 export async function getStaticPaths() {
   const events = await getCollection('pastEvents');
@@ -12,10 +12,10 @@ const {event} = Astro.props;
 const {Content} = await render(event);
 ---
 
-<BaseLayout title={event.data.title} description={event.data.description} keywords={event.data.keywords}>
+<LegacyLayout title={event.data.title} description={event.data.description} keywords={event.data.keywords}>
   <article class="article page-single">
     <div class="container page-top"><h1>{event.data.title}</h1><div class="description">{event.data.description}</div></div>
     <div class="single-content"><Content /></div>
   </article>
-</BaseLayout>
+</LegacyLayout>
 

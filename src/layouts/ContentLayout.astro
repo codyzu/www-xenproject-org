@@ -1,6 +1,6 @@
 ---
-import Aside from '../components/Aside.astro';
-import BaseLayout from './BaseLayout.astro';
+import Aside from '../components/legacy/Aside.astro';
+import LegacyLayout from './LegacyLayout.astro';
 
 type AsideLink = {
   name: string;
@@ -50,7 +50,7 @@ const {
 const hasAside = aside.length > 0;
 ---
 
-<BaseLayout
+<LegacyLayout
   title={title}
   description={description}
   summary={summary}
@@ -86,4 +86,4 @@ const hasAside = aside.length > 0;
     </div>
   </article>
   {hasAside && asidePosition === 'after' && <Aside items={aside} />}
-</BaseLayout>
+</LegacyLayout>

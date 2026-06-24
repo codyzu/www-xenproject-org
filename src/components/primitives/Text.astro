@@ -1,0 +1,46 @@
+---
+type TextElement = 'p' | 'span' | 'div';
+type TextSize = 'body' | 'lead' | 'small' | 'eyebrow' | 'mono-small';
+type TextTone = 'primary' | 'secondary' | 'muted' | 'accent-primary' | 'accent-secondary' | 'on-light' | 'on-light-muted';
+
+type Props = {
+  as?: TextElement;
+  size?: TextSize;
+  tone?: TextTone;
+  class?: string;
+};
+
+const {
+  as = 'p',
+  size = 'body',
+  tone = 'secondary',
+  class: className = '',
+} = Astro.props as Props;
+
+const Tag = as;
+const sizeClasses: Record<TextSize, string> = {
+  body: 'uno-text-base',
+  lead: 'uno-text-lg',
+  small: 'uno-text-sm',
+  eyebrow: 'uno-text-sm uno-font-semibold uno-uppercase uno-tracking-[0.12em]',
+  'mono-small': 'uno-font-mono uno-text-xs',
+};
+const toneClasses: Record<TextTone, string> = {
+  primary: 'uno-text-xp-text-primary',
+  secondary: 'uno-text-xp-text-secondary',
+  muted: 'uno-text-xp-text-muted',
+  'accent-primary': 'uno-text-xp-accent-primary',
+  'accent-secondary': 'uno-text-xp-accent-secondary',
+  'on-light': 'uno-text-[var(--xp-text-on-light)]',
+  'on-light-muted': 'uno-text-[var(--xp-text-on-light-muted)]',
+};
+---
+
+<Tag class:list={[
+  'uno-m-0 uno-min-w-0 uno-break-words',
+  sizeClasses[size],
+  toneClasses[tone],
+  className,
+]}>
+  <slot />
+</Tag>

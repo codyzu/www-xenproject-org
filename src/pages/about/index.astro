@@ -1,16 +1,16 @@
 ---
-import LatestNewsShell from '../../components/LatestNewsShell.astro';
-import MediaBlock from '../../components/MediaBlock.astro';
+import LatestNewsShell from '../../components/legacy/LatestNewsShell.astro';
+import MediaBlock from '../../components/legacy/MediaBlock.astro';
 import LogoWheel from '../../components/react/LogoWheel';
-import Section from '../../components/Section.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import Section from '../../components/legacy/Section.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 const title = 'About Xen Project';
 const description = 'Learn about Xen Project, its mission, history, and the vibrant community behind the leading open source hypervisor. Find out how you can get involved.';
 const keywords = ['Xen Project', 'virtualization', 'hypervisor', 'open source', 'cloud computing', 'community', 'innovation', 'governance', 'collaboration', 'security', 'embedded systems', 'real-time systems', 'automotive', 'Linux Foundation'];
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<LegacyLayout title={title} description={description} keywords={keywords}>
   <article class="article page-single">
     <div class="container page-top"><h1>{title}</h1><div class="description">{description}</div></div>
     <div class="single-content">
@@ -73,4 +73,4 @@ const keywords = ['Xen Project', 'virtualization', 'hypervisor', 'open source', 
       <Section><LatestNewsShell /></Section>
     </div>
   </article>
-</BaseLayout>
+</LegacyLayout>

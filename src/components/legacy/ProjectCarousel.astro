@@ -1,6 +1,6 @@
 ---
 import Card from './Card.astro';
-import type {Project} from '../data/projects';
+import type {Project} from '../../data/projects';
 
 type Props = {
   projects: Project[];
@@ -33,7 +33,7 @@ const {projects} = Astro.props;
 </div>
 
 <script>
-  import {initializeCarousel} from '../scripts/carousel';
+  import {initializeCarousel} from '../../scripts/carousel';
 
   document.documentElement.classList.add('has-js');
 

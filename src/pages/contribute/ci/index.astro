@@ -1,11 +1,11 @@
 ---
-import CiPipelineDiagram from '../../../components/ci/CiPipelineDiagram.astro';
-import HardwareDiagram from '../../../components/ci/HardwareDiagram.astro';
-import QemuDiagram from '../../../components/ci/QemuDiagram.astro';
-import MediaBlock from '../../../components/MediaBlock.astro';
+import CiPipelineDiagram from '../../../components/legacy/ci/CiPipelineDiagram.astro';
+import HardwareDiagram from '../../../components/legacy/ci/HardwareDiagram.astro';
+import QemuDiagram from '../../../components/legacy/ci/QemuDiagram.astro';
+import MediaBlock from '../../../components/legacy/MediaBlock.astro';
 import HardwareGrid from '../../../components/react/ci/HardwareGrid';
-import Section from '../../../components/Section.astro';
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Section from '../../../components/legacy/Section.astro';
+import LegacyLayout from '../../../layouts/LegacyLayout.astro';
 
 const title = 'Continuous Integration';
 const description = "Learn how to integrate custom hardware test runners into the Xen Project's GitLab CI pipeline for seamless testing on every build.";
@@ -16,7 +16,7 @@ const keywords = [
 ];
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<LegacyLayout title={title} description={description} keywords={keywords}>
   <article class="article">
     <div class="container section-space"><h1>{title}</h1></div>
     <Section class="content-markdown">
@@ -127,7 +127,7 @@ const keywords = [
 
     <div class="container"><h2><a href="/contribute/ci/status/">CI status dashboard</a></h2><p>A global live CI status dashboard.</p></div>
   </article>
-</BaseLayout>
+</LegacyLayout>
 
 <style is:global>
   .ci-contained-panel.section-square-rounded,

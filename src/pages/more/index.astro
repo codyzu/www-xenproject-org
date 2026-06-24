@@ -1,12 +1,12 @@
 ---
-import SectionIndex from '../../components/SectionIndex.astro';
+import SectionIndex from '../../components/legacy/SectionIndex.astro';
 import {navigationItems} from '../../data/navigation';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 const item = navigationItems.find((entry) => entry.name === 'More');
 if (!item) throw new Error('More navigation section is missing');
 ---
 
-<BaseLayout title="More" description="Find Xen Project releases and official brand resources.">
+<LegacyLayout title="More" description="Find Xen Project releases and official brand resources.">
   <article class="article page-single"><div class="single-content"><SectionIndex item={item} introduction="Find Xen Project release news and official branding resources." /></div></article>
-</BaseLayout>
+</LegacyLayout>

@@ -1,12 +1,12 @@
 ---
-import SectionIndex from '../../components/SectionIndex.astro';
+import SectionIndex from '../../components/legacy/SectionIndex.astro';
 import {navigationItems} from '../../data/navigation';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 const item = navigationItems.find((entry) => entry.name === 'Resources');
 if (!item) throw new Error('Resources navigation section is missing');
 ---
 
-<BaseLayout title="Resources" description="Explore Xen Project events, downloads, research, community channels, and real-world use cases.">
+<LegacyLayout title="Resources" description="Explore Xen Project events, downloads, research, community channels, and real-world use cases.">
   <article class="article page-single"><div class="single-content"><SectionIndex item={item} introduction="Browse technical resources, community channels, events, downloads, and examples of Xen Project technology in practice." /></div></article>
-</BaseLayout>
+</LegacyLayout>

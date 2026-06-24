@@ -1,16 +1,16 @@
 ---
-import DownloadLists from '../../components/DownloadLists.astro';
-import DownloadSearch from '../../components/DownloadSearch.astro';
-import Section from '../../components/Section.astro';
+import DownloadLists from '../../components/legacy/DownloadLists.astro';
+import DownloadSearch from '../../components/legacy/DownloadSearch.astro';
+import Section from '../../components/legacy/Section.astro';
 import {latestDownloads} from '../../data/downloads';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 const title = 'Downloads';
 const description = 'Find all the relevant resources to download on this page.';
 const keywords = ['Xen Project', 'downloads', 'virtualization software', 'installation files', 'software packages', 'hypervisor tools', 'open-source resources'];
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<LegacyLayout title={title} description={description} keywords={keywords}>
   <article class="article page-single">
     <div class="container page-top"><h1>{title}</h1><div class="description">{description}</div></div>
     <div class="single-content">
@@ -20,5 +20,5 @@ const keywords = ['Xen Project', 'downloads', 'virtualization software', 'instal
       </Section>
     </div>
   </article>
-</BaseLayout>
+</LegacyLayout>
 

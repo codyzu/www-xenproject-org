@@ -1,6 +1,6 @@
 ---
 import CiStatus from '../../../components/react/ci/CiStatus';
-import BaseLayout from '../../../layouts/BaseLayout.astro';
+import LegacyLayout from '../../../layouts/LegacyLayout.astro';
 
 const title = 'CI status dashboard';
 const description = 'Xen Project real-time continuous integration tests dashboard.';
@@ -15,7 +15,7 @@ const keywords = [
 ];
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<LegacyLayout title={title} description={description} keywords={keywords}>
   <article class="article">
     <div class="container page-top">
       <h1>{title}</h1>
@@ -32,4 +32,4 @@ const keywords = [
       </section>
     </div>
   </article>
-</BaseLayout>
+</LegacyLayout>

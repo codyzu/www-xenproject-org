@@ -53,10 +53,10 @@ for the main site shell. Astro owns the header/footer markup and the
 
 The fragment must stay wrapper-free, without top-level `<html>` or `<body>`
 elements. `#block-assets` should point to cache-busted Astro assets such as
-`/_astro/BaseLayout.*.css` and `/_astro/blog-shell.*.js`.
+`/_astro/LegacyLayout.*.css` and `/_astro/blog-shell.*.js`.
 
 The current implementation uses an Astro post-build hook to discover the
-generated BaseLayout CSS, build a small blog shell script from the menu scripts,
+generated LegacyLayout CSS, build a small blog shell script from the menu scripts,
 and write those URLs into `/headerfooter.html`. Keep
 `scripts/astro/check-public-artifact.js` as the acceptance contract for this
 boundary.

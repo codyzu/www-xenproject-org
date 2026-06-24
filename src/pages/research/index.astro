@@ -1,8 +1,8 @@
 ---
 import researchPapers from '../../../data/research.json';
-import ExternalLinkButton from '../../components/ExternalLinkButton.astro';
-import Section from '../../components/Section.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import ExternalLinkButton from '../../components/legacy/ExternalLinkButton.astro';
+import Section from '../../components/legacy/Section.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 const title = 'Academic Research';
 const description = 'Explore academic research papers related to the Xen Project';
@@ -10,7 +10,7 @@ const keywords = ['Xen Project research', 'academic papers', 'Xen hypervisor stu
 const papers = researchPapers.toSorted((a, b) => Number(b.year) - Number(a.year) || a.title.localeCompare(b.title));
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<LegacyLayout title={title} description={description} keywords={keywords}>
   <article class="article page-single">
     <div class="container page-top">
       <h1>{title}</h1>
@@ -86,4 +86,4 @@ const papers = researchPapers.toSorted((a, b) => Number(b.year) - Number(a.year)
       noResults?.classList.toggle('uno-flex', matches === 0);
     });
   </script>
-</BaseLayout>
+</LegacyLayout>

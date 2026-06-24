@@ -1,8 +1,8 @@
 ---
 import researchPapers from '../../../data/research.json';
-import Aside from '../../components/Aside.astro';
-import ExternalLinkButton from '../../components/ExternalLinkButton.astro';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import Aside from '../../components/legacy/Aside.astro';
+import ExternalLinkButton from '../../components/legacy/ExternalLinkButton.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 export function getStaticPaths() {
   return researchPapers.map((paper) => ({params: {id: paper.id}, props: {paper}}));
@@ -13,7 +13,7 @@ const {paper} = Astro.props as {paper: Paper};
 const aside = [{type: 'resource' as const, items: [{name: 'Academic Research', link: '/research/', icon: 'fas fa-arrow-right'}]}];
 ---
 
-<BaseLayout title={paper.title} summary={paper.abstract} keywords={paper.tags} hasAside>
+<LegacyLayout title={paper.title} summary={paper.abstract} keywords={paper.tags} hasAside>
   <Aside items={aside} />
   <div class="uno-section">
     <article class="uno-flex uno-flex-col uno-gap-6">
@@ -30,4 +30,4 @@ const aside = [{type: 'resource' as const, items: [{name: 'Academic Research', l
       <ExternalLinkButton href={paper.url}>Read the Full Paper</ExternalLinkButton>
     </article>
   </div>
-</BaseLayout>
+</LegacyLayout>

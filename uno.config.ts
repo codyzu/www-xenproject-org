@@ -1,10 +1,28 @@
 // Uno.config.js
-import {defineConfig, presetWind3, presetIcons, transformerVariantGroup, type Rule} from 'unocss';
+import {defineConfig, presetWind3, presetIcons, presetWebFonts, transformerVariantGroup, type Rule} from 'unocss';
 import {clsx} from 'clsx';
 
 export default defineConfig({
   presets: [
+    // Keep Wind 3 semantics for now. Migrated pages and React islands depend
+    // on Tailwind 3-style UnoCSS behavior and the `uno-` prefix.
     presetWind3({prefix: 'uno-'}),
+    // Redesign font utilities. BaseLayout loads the Google Fonts stylesheet
+    // for new pages; this preset maps `uno-font-sans` and `uno-font-mono`.
+    presetWebFonts({
+      provider: 'google',
+      inlineImports: false,
+      fonts: {
+        sans: {
+          name: 'Inter',
+          weights: [400, 500, 600, 700, 800],
+        },
+        mono: {
+          name: 'JetBrains Mono',
+          weights: [400, 500, 600],
+        },
+      },
+    }),
     presetIcons({
       extraProperties: {
         display: 'inline-block',
@@ -24,9 +42,15 @@ export default defineConfig({
   },
   theme: {
     maxWidth: {
-      // '8xl': `${1312 + 40 + 40}px`,
+      // Redesign container accessors. Values live in CSS variables so
+      // `tokens.css` remains the source of truth.
+      'xp-content': 'var(--xp-container-content)',
+      'xp-page': 'var(--xp-container-page)',
+      'xp-wide': 'var(--xp-container-wide)',
     },
     colors: {
+      // Legacy-compatible aliases used by migrated pages and existing islands.
+      // Keep these stable unless every consumer has moved to `xp.*` tokens.
       primary: '#101828',
       secondary: '#475467',
       border: '#dbdbdb',
@@ -49,6 +73,68 @@ export default defineConfig({
         fill: '#85c241',
         onfill: '#1e2b0e',
         text: '#567c2a',
+      },
+      // New redesign token namespace. CSS variables in
+      // `src/styles/foundation/tokens.css` are the source of values; these
+      // entries are ergonomic accessors for utilities like
+      // `uno-bg-xp-surface-1` and `uno-text-xp-text-primary`.
+      xp: {
+        ink: 'var(--xp-color-ink)',
+        muted: 'var(--xp-color-ink-muted)',
+        subtle: 'var(--xp-color-ink-subtle)',
+        canvas: 'var(--xp-color-canvas)',
+        text: {
+          primary: 'var(--xp-text-primary)',
+          secondary: 'var(--xp-text-secondary)',
+          muted: 'var(--xp-text-muted)',
+          'on-light': 'var(--xp-text-on-light)',
+          'on-light-muted': 'var(--xp-text-on-light-muted)',
+        },
+        surface: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          DEFAULT: 'var(--xp-color-surface)',
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          0: 'var(--xp-surface-0)',
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          1: 'var(--xp-surface-1)',
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          2: 'var(--xp-surface-2)',
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          3: 'var(--xp-surface-3)',
+          light: 'var(--xp-surface-light)',
+          'light-raised': 'var(--xp-surface-light-raised)',
+          subtle: 'var(--xp-color-surface-subtle)',
+        },
+        raised: 'var(--xp-color-surface-raised)',
+        dark: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          DEFAULT: 'var(--xp-color-surface-dark)',
+          raised: 'var(--xp-color-surface-dark-raised)',
+        },
+        border: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          DEFAULT: 'var(--xp-color-border)',
+          muted: 'var(--xp-border-muted)',
+          strong: 'var(--xp-color-border-strong)',
+        },
+        accent: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          DEFAULT: 'var(--xp-color-accent)',
+          primary: 'var(--xp-accent-primary)',
+          secondary: 'var(--xp-accent-secondary)',
+          strong: 'var(--xp-color-accent-strong)',
+          soft: 'var(--xp-color-accent-soft)',
+          'primary-strong': 'var(--xp-accent-primary-strong)',
+          'primary-soft': 'var(--xp-accent-primary-soft)',
+          'secondary-soft': 'var(--xp-accent-secondary-soft)',
+        },
+        green: {
+          // eslint-disable-next-line @typescript-eslint/naming-convention
+          DEFAULT: 'var(--xp-color-green)',
+          soft: 'var(--xp-color-green-soft)',
+        },
+        warning: 'var(--xp-color-warning)',
+        danger: 'var(--xp-color-danger)',
       },
     },
     animation: {
@@ -95,13 +181,27 @@ export default defineConfig({
       },
     },
     boxShadow: {
+      // Existing homepage/legacy shadow names.
       'fade-in': 'inset 0 0 12px 12px var(--un-shadow-color)',
       glow: 'var(--un-shadow-inset) 0 0 14px 3px rgb(0 0 0 / 0.05)',
       'glow-lg': 'var(--un-shadow-inset) 0 0 14px 4px rgb(0 0 0 / 0.05)',
       'glow-xl': 'var(--un-shadow-inset) 0 0 14px 5px rgb(0 0 0 / 0.05)',
+      // Redesign elevation accessors backed by CSS variables.
+      'xp-sm': 'var(--xp-shadow-sm)',
+      'xp-md': 'var(--xp-shadow-md)',
+      'xp-lg': 'var(--xp-shadow-lg)',
+    },
+    borderRadius: {
+      // Redesign radius accessors backed by CSS variables.
+      'xp-sm': 'var(--xp-radius-sm)',
+      'xp-md': 'var(--xp-radius-md)',
+      'xp-lg': 'var(--xp-radius-lg)',
     },
   },
   shortcuts: {
+    // Legacy compatibility shortcuts. These keep migrated pages and current
+    // islands stable; avoid adding new `uno-*` shortcuts unless they are
+    // compatibility helpers.
     'uno-section': `uno-section-base uno-px-3 md:uno-px-10 uno-max-w-[1392px]`,
     'uno-section-nested': `uno-section-base uno-max-w-[1312px]`,
     'uno-section-base': 'uno-flex uno-flex-col uno-flex-1 uno-gap-6 uno-mx-auto uno-pb-10 uno-w-full',
@@ -118,6 +218,24 @@ export default defineConfig({
       'uno-shadow-xl uno-bg-white uno-text-primary',
     ),
     'uno-surface': 'uno-bg-surface uno-p-x-6 uno-p-y-8 uno-rounded-lg uno-shadow-lg',
+
+    // Redesign shortcuts. Use `xen-*` only for repeated visual recipes that
+    // support components. Astro components still own structure, semantics,
+    // slots, variants, and composition.
+    'xen-panel': 'uno-rounded-xp-lg uno-border uno-border-xp-border-muted uno-bg-xp-surface-1 uno-p-6 uno-shadow-xp-sm',
+    'xen-panel-elevated':
+      'uno-rounded-xp-lg uno-border uno-border-xp-border-muted uno-bg-xp-surface-2 uno-p-6 uno-shadow-xp-md',
+    'xen-card': 'uno-rounded-xp-md uno-border uno-border-xp-border-muted uno-bg-xp-surface-2 uno-p-5 uno-shadow-xp-sm',
+    'xen-focus':
+      'uno-outline-none focus-visible:uno-outline focus-visible:uno-outline-3 focus-visible:uno-outline-offset-3 focus-visible:uno-outline-[var(--xp-focus-ring)]',
+    'xen-action':
+      'xen-focus uno-inline-flex uno-min-h-11 uno-items-center uno-rounded-xp-md uno-px-5 uno-font-semibold uno-no-underline uno-shadow-xp-sm uno-transition-colors',
+    'xen-action-primary':
+      'xen-action uno-bg-xp-accent-primary uno-text-xp-surface-0 hover:uno-bg-[var(--xp-accent-primary-strong)]',
+    'xen-action-secondary':
+      'xen-action uno-border uno-border-xp-border-strong uno-bg-xp-surface-2 uno-text-xp-text-primary hover:uno-bg-xp-surface-3',
+
+    // Homepage story compatibility shortcuts.
     'uno-orbit-0':
       'uno-translate-y--80% sm:uno-translate-y--250% children:(uno-animate-orbit uno-orbit-offset-0 uno-transform-origin-[center_130%]) children:sm:(uno-transform-origin-[center_300%])',
     'uno-orbit-1':

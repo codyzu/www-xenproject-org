@@ -1,0 +1,223 @@
+---
+import Heading from '../../components/primitives/Heading.astro';
+import Text from '../../components/primitives/Text.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const principles = [
+  ['Dark first', 'The brand canvas starts in deep infrastructure surfaces, not white space.'],
+  ['Layered systems', 'Depth should suggest isolation, virtualization, safety, infrastructure, and trust.'],
+  ['Calm proof', 'Motion, contrast, and emphasis should clarify technical confidence rather than decorate it.'],
+];
+
+const darkSurfaces = [
+  ['Surface 0', 'Deepest background', 'uno-bg-xp-surface-0'],
+  ['Surface 1', 'Default dark section', 'uno-bg-xp-surface-1'],
+  ['Surface 2', 'Elevated panel or card', 'uno-bg-xp-surface-2'],
+  ['Surface 3', 'Interactive or raised state', 'uno-bg-xp-surface-3'],
+  ['Accent primary', 'Technical action and signal', 'uno-bg-xp-accent-primary uno-text-xp-surface-0'],
+  ['Accent secondary', 'Community and project energy', 'uno-bg-xp-accent-secondary uno-text-xp-surface-0'],
+];
+
+const contrastPairs = [
+  ['Dark primary text', 'uno-text-xp-text-primary on surfaces 0-3', '12.63:1 minimum', 'Headings and important UI copy'],
+  ['Dark secondary text', 'uno-text-xp-text-secondary on surfaces 0-3', '8.75:1 minimum', 'Body copy and supporting statements'],
+  ['Dark muted text', 'uno-text-xp-text-muted on surfaces 0-3', '4.99:1 minimum', 'Metadata and lower-emphasis copy'],
+  ['Accent buttons', 'uno-text-xp-surface-0 on accent fills', '8.65:1 minimum', 'Primary and secondary action labels'],
+  ['Light contrast text', 'on-light text on light surfaces', '6.00:1 minimum', 'Intentional light sections'],
+  ['Focus ring', 'var(--xp-focus-ring)', '3.21:1 minimum', 'Visible focus on dark and light surfaces'],
+];
+
+const unsupportedPairs = [
+  'Do not use on-light text tokens on dark surfaces.',
+  'Do not use dark-surface text tokens on light surfaces.',
+  'Do not use soft accent backgrounds as text colors.',
+  'Do not rely on opacity to create new text tones without checking contrast.',
+];
+
+const spacing = [
+  ['1', 'uno-w-1'],
+  ['2', 'uno-w-2'],
+  ['3', 'uno-w-3'],
+  ['4', 'uno-w-4'],
+  ['5', 'uno-w-5'],
+  ['6', 'uno-w-6'],
+  ['7', 'uno-w-7'],
+  ['8', 'uno-w-8'],
+];
+---
+
+<BaseLayout title="Design System" description="Internal Xen Project dark redesign foundation playground." robots="noindex, nofollow" bodyClass="xp-design-system">
+  <main class="uno-min-h-screen uno-overflow-hidden uno-bg-xp-surface-0 uno-px-5 uno-py-8 uno-text-xp-text-primary md:uno-px-10 md:uno-py-12">
+    <div class="uno-mx-auto uno-flex uno-max-w-xp-wide uno-flex-col uno-gap-10">
+      <header class="uno-relative uno-isolate uno-overflow-hidden uno-rounded-xp-lg uno-border uno-border-xp-border-muted uno-bg-xp-surface-1 uno-p-6 uno-shadow-xp-lg md:uno-p-10">
+        <div class="uno-absolute uno-inset-x-8 uno-top-0 uno-h-px uno-bg-xp-accent-primary-soft"></div>
+        <div class="uno-absolute uno-right-8 uno-top-8 uno-hidden uno-w-72 uno-flex-col uno-gap-3 md:uno-flex">
+          <span class="uno-h-px uno-w-full uno-bg-xp-border-strong"></span>
+          <span class="uno-h-px uno-w-5/6 uno-self-end uno-bg-xp-accent-primary-soft"></span>
+          <span class="uno-h-px uno-w-2/3 uno-self-end uno-bg-xp-border-muted"></span>
+        </div>
+        <div class="uno-relative uno-max-w-xp-page">
+          <p class="uno-m-0 uno-text-sm uno-font-semibold uno-uppercase uno-tracking-[0.14em] uno-text-xp-accent-primary">Internal foundation</p>
+          <h1 class="uno-mb-0 uno-mt-4 uno-max-w-4xl uno-text-4xl uno-leading-tight uno-text-xp-text-primary md:uno-text-6xl">Dark layered redesign system</h1>
+          <p class="uno-mb-0 uno-mt-5 uno-max-w-xp-content uno-text-lg uno-text-xp-text-secondary">
+            The Xen Project identity is dark, infrastructure-grade, and built around layered surfaces. Light surfaces are secondary tools for contrast and readability.
+          </p>
+        </div>
+      </header>
+
+      <section class="xen-panel-elevated">
+        <div class="uno-flex uno-flex-col uno-gap-4 md:uno-flex-row md:uno-items-end md:uno-justify-between">
+          <div>
+            <p class="uno-m-0 uno-text-sm uno-font-semibold uno-uppercase uno-tracking-[0.12em] uno-text-xp-accent-secondary">Principles</p>
+            <h2 class="uno-mb-0 uno-mt-2 uno-text-3xl uno-text-xp-text-primary">Visual direction</h2>
+          </div>
+          <p class="uno-m-0 uno-max-w-xl uno-text-sm uno-text-xp-text-muted">Dark does not mean every section is black. It means the primary canvas communicates depth, focus, technical sophistication, and trust.</p>
+        </div>
+        <div class="uno-mt-6 uno-grid uno-gap-4 md:uno-grid-cols-3">
+          {principles.map(([title, description]) => (
+            <article class="xen-card">
+              <h3 class="uno-mt-0 uno-text-xl uno-text-xp-text-primary">{title}</h3>
+              <p class="uno-mb-0 uno-text-sm uno-text-xp-text-secondary">{description}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="xen-panel">
+        <h2 class="uno-mt-0 uno-text-3xl uno-text-xp-text-primary">Colors And Surfaces</h2>
+        <div class="uno-grid uno-gap-4 md:uno-grid-cols-2 lg:uno-grid-cols-3">
+          {darkSurfaces.map(([label, description, className]) => (
+            <div class:list={['uno-min-h-32 uno-rounded-xp-md uno-border uno-border-xp-border-muted uno-p-4 uno-shadow-xp-sm', className]}>
+              <p class="uno-m-0 uno-font-semibold">{label}</p>
+              <p class="uno-mb-0 uno-mt-2 uno-text-sm uno-opacity-78">{description}</p>
+              <p class="uno-mb-0 uno-mt-6 uno-font-mono uno-text-xs uno-opacity-70">{className}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="xen-panel-elevated">
+        <div class="uno-flex uno-flex-col uno-gap-3 md:uno-flex-row md:uno-items-end md:uno-justify-between">
+          <div>
+            <Text size="eyebrow" tone="muted">Accessibility baseline</Text>
+            <Heading class="uno-mt-2" size="section">Supported contrast pairings</Heading>
+          </div>
+          <Text size="small" tone="muted" class="uno-max-w-xl">
+            These are the intended token combinations for new redesign work. Ratios are measured against the current foundation tokens.
+          </Text>
+        </div>
+        <div class="uno-mt-6 uno-grid uno-gap-4 lg:uno-grid-cols-3">
+          {contrastPairs.map(([label, pairing, ratio, usage]) => (
+            <article class="xen-card">
+              <Text size="small" tone="accent-primary" class="uno-font-semibold">{ratio}</Text>
+              <Heading as="h3" class="uno-mt-2" size="card">{label}</Heading>
+              <Text size="small" class="uno-mt-2">{pairing}</Text>
+              <Text size="small" tone="muted" class="uno-mt-3">{usage}</Text>
+            </article>
+          ))}
+        </div>
+        <div class="uno-mt-6 uno-rounded-xp-md uno-border uno-border-xp-border-strong uno-bg-xp-surface-3 uno-p-5">
+          <Heading as="h3" size="card">Combinations to avoid</Heading>
+          <ul class="uno-mb-0 uno-mt-3 uno-grid uno-gap-2 uno-pl-5 uno-text-sm uno-text-xp-text-secondary">
+            {unsupportedPairs.map((pairing) => <li>{pairing}</li>)}
+          </ul>
+        </div>
+      </section>
+
+      <section class="xen-panel-elevated">
+        <div class="uno-grid uno-gap-6 lg:uno-grid-cols-[1fr_0.85fr]">
+          <div class="uno-min-w-0">
+            <Text size="eyebrow" tone="muted">Typography on dark</Text>
+            <Heading class="uno-mt-3" size="display">Infrastructure-grade trust</Heading>
+            <Heading as="h3" class="uno-mt-4" size="section">Layered by design</Heading>
+            <Text class="uno-mt-4">Type should remain calm and readable on deep surfaces, with muted copy supporting sharper proof points and actions.</Text>
+          </div>
+          <div class="uno-min-w-0 uno-rounded-xp-md uno-border uno-border-xp-border-muted uno-bg-xp-surface-3 uno-p-5">
+            <Text size="small" tone="muted" class="uno-font-mono">font: var(--xp-font-mono)</Text>
+            <Text class="uno-mt-3">Use monospaced details sparingly for technical annotations, not as the main brand voice.</Text>
+          </div>
+        </div>
+        <div class="uno-mt-6 uno-grid uno-gap-4 md:uno-grid-cols-2">
+          <div class="xen-card uno-min-w-0">
+            <Text size="mono-small" tone="muted" class="uno-uppercase uno-tracking-[0.12em]">uno-font-sans</Text>
+            <Heading as="h3" class="uno-mt-3" size="subsection">Inter carries the primary voice for clear technical pages.</Heading>
+          </div>
+          <div class="xen-card uno-min-w-0">
+            <Text size="mono-small" tone="muted" class="uno-uppercase uno-tracking-[0.12em]">uno-font-mono</Text>
+            <Text size="small" class="uno-mt-3 uno-font-mono uno-leading-relaxed">JetBrains Mono is reserved for code-like labels, version details, and technical annotations.</Text>
+          </div>
+        </div>
+      </section>
+
+      <section class="xen-panel">
+        <h2 class="uno-mt-0 uno-text-3xl uno-text-xp-text-primary">Spacing</h2>
+        <p class="uno-mt-0 uno-text-xp-text-secondary">Spacing should keep dense technical information scannable without making the interface feel sparse.</p>
+        <div class="uno-flex uno-flex-col uno-gap-3">
+          {spacing.map(([label, widthClass]) => (
+            <div class="uno-flex uno-items-center uno-gap-4">
+              <span class="uno-w-10 uno-font-mono uno-text-sm uno-text-xp-text-muted">{label}</span>
+              <span class:list={['uno-block uno-h-5 uno-rounded-xp-sm uno-bg-xp-accent-primary', widthClass]}></span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="uno-grid uno-gap-6 lg:uno-grid-cols-2">
+        <div class="xen-panel-elevated">
+          <h2 class="uno-mt-0 uno-text-3xl uno-text-xp-text-primary">Cards And Elevation</h2>
+          <div class="uno-grid uno-gap-4 md:uno-grid-cols-2">
+            <article class="xen-card">
+              <h3 class="uno-mt-0 uno-text-xl uno-text-xp-text-primary">Surface 2</h3>
+              <p class="uno-mb-0 uno-text-sm uno-text-xp-text-secondary">Default elevated card layer for proof, members, use cases, and technical claims.</p>
+            </article>
+            <article class="xen-card uno-bg-xp-surface-3">
+              <h3 class="uno-mt-0 uno-text-xl uno-text-xp-text-primary">Surface 3</h3>
+              <p class="uno-mb-0 uno-text-sm uno-text-xp-text-secondary">Interactive or selected state with a stronger visual step forward.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="xen-panel-elevated">
+          <h2 class="uno-mt-0 uno-text-3xl uno-text-xp-text-primary">Buttons, Links, Focus</h2>
+          <div class="uno-flex uno-flex-wrap uno-gap-3">
+            <a class="xen-action-primary" href="#composition">Primary action</a>
+            <a class="xen-action-secondary" href="#light-surface">Secondary action</a>
+            <a class="xen-focus uno-inline-flex uno-min-h-11 uno-items-center uno-rounded-xp-md uno-px-2 uno-font-semibold uno-text-xp-accent-primary uno-underline-offset-4 hover:uno-text-xp-accent-primary-strong" href="#focus">Text link</a>
+          </div>
+          <div id="focus" class="uno-mt-6 uno-rounded-xp-md uno-border uno-border-xp-border-strong uno-bg-xp-accent-primary-soft uno-p-4">
+            <p class="uno-m-0 uno-text-sm uno-text-xp-text-secondary">Keyboard focus uses a visible blue ring on dark and light surfaces. Tab to the actions above to inspect it.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="composition" class="xen-panel-elevated">
+        <h2 class="uno-mt-0 uno-text-3xl uno-text-xp-text-primary">Example Composition</h2>
+        <div class="uno-grid uno-gap-4 lg:uno-grid-cols-[1.1fr_0.9fr]">
+          <div class="uno-rounded-xp-lg uno-border uno-border-xp-border-muted uno-bg-xp-surface-1 uno-p-6">
+            <p class="uno-m-0 uno-text-sm uno-font-semibold uno-uppercase uno-tracking-[0.12em] uno-text-xp-accent-secondary">Layered systems</p>
+            <h3 class="uno-mb-0 uno-mt-3 uno-text-3xl uno-text-xp-text-primary">Isolation, infrastructure, and trust in one visual language.</h3>
+            <p class="uno-mb-0 uno-mt-4 uno-text-xp-text-secondary">This is the default high-impact page direction: deep canvas, elevated proof, restrained accent, and clear hierarchy.</p>
+          </div>
+          <div class="uno-grid uno-gap-3">
+            <div class="uno-rounded-xp-md uno-border uno-border-xp-border-muted uno-bg-xp-surface-2 uno-p-4">
+              <p class="uno-m-0 uno-font-semibold uno-text-xp-text-primary">Virtualization layer</p>
+              <p class="uno-mb-0 uno-mt-1 uno-text-sm uno-text-xp-text-muted">Depth communicates architecture.</p>
+            </div>
+            <div class="uno-rounded-xp-md uno-border uno-border-xp-border-muted uno-bg-xp-surface-3 uno-p-4">
+              <p class="uno-m-0 uno-font-semibold uno-text-xp-text-primary">Trust layer</p>
+              <p class="uno-mb-0 uno-mt-1 uno-text-sm uno-text-xp-text-muted">Elevation communicates focus.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="light-surface" class="uno-rounded-xp-lg uno-bg-xp-surface-light uno-p-6 uno-text-[var(--xp-text-on-light)] uno-shadow-xp-md">
+        <p class="uno-m-0 uno-text-sm uno-font-semibold uno-uppercase uno-tracking-[0.12em] uno-text-[var(--xp-text-on-light-muted)]">Intentional contrast</p>
+        <h2 class="uno-mb-0 uno-mt-2 uno-text-3xl" style="color: var(--xp-text-on-light);">Light Surfaces Are Secondary</h2>
+        <p class="uno-mb-0 uno-mt-4 uno-max-w-xp-content uno-text-[var(--xp-text-on-light-muted)]">
+          Light sections can support long-form readability, data-heavy content, or contrast moments. They should not become the default identity for high-impact redesign pages.
+        </p>
+      </section>
+    </div>
+  </main>
+</BaseLayout>

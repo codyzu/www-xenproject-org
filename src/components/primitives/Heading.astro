@@ -1,0 +1,42 @@
+---
+type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type HeadingSize = 'hero' | 'display' | 'section' | 'subsection' | 'card';
+type HeadingTone = 'primary' | 'muted' | 'on-light';
+
+type Props = {
+  as?: HeadingLevel;
+  size?: HeadingSize;
+  tone?: HeadingTone;
+  class?: string;
+};
+
+const {
+  as = 'h2',
+  size = 'section',
+  tone = 'primary',
+  class: className = '',
+} = Astro.props as Props;
+
+const Tag = as;
+const sizeClasses: Record<HeadingSize, string> = {
+  hero: 'uno-text-4xl md:uno-text-6xl',
+  display: 'uno-text-3xl md:uno-text-5xl',
+  section: 'uno-text-3xl',
+  subsection: 'uno-text-2xl md:uno-text-3xl',
+  card: 'uno-text-xl',
+};
+const toneClasses: Record<HeadingTone, string> = {
+  primary: 'uno-text-xp-text-primary',
+  muted: 'uno-text-xp-text-secondary',
+  'on-light': 'uno-text-[var(--xp-text-on-light)]',
+};
+---
+
+<Tag class:list={[
+  'uno-m-0 uno-min-w-0 uno-break-words uno-font-sans uno-font-bold uno-leading-tight',
+  sizeClasses[size],
+  toneClasses[tone],
+  className,
+]}>
+  <slot />
+</Tag>

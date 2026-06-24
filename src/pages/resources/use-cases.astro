@@ -1,9 +1,9 @@
 ---
-import MediaBlock from '../../components/MediaBlock.astro';
-import ProjectCarousel from '../../components/ProjectCarousel.astro';
-import Section from '../../components/Section.astro';
+import MediaBlock from '../../components/legacy/MediaBlock.astro';
+import ProjectCarousel from '../../components/legacy/ProjectCarousel.astro';
+import Section from '../../components/legacy/Section.astro';
 import {projects} from '../../data/projects';
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
 const title = 'Use cases';
 const description = 'See how the Xen Project operates in real life.';
@@ -11,7 +11,7 @@ const keywords = ['Xen Project', 'use cases', 'hypervisor applications', 'cloud 
 const useCaseProjects = projects.filter(project => project.route !== '/projects/hypervisor/openpgp-keys/');
 ---
 
-<BaseLayout title={title} description={description} keywords={keywords}>
+<LegacyLayout title={title} description={description} keywords={keywords}>
   <article class="article page-single">
     <div class="container page-top"><h1>{title}</h1><div class="description">{description}</div></div>
     <div class="single-content">
@@ -24,4 +24,4 @@ const useCaseProjects = projects.filter(project => project.route !== '/projects/
       <Section container="full"><ProjectCarousel projects={useCaseProjects} /><p class="mg-t-xl txt-c"><a href="/projects/all-projects/" class="btn btn-primary">Discover all projects <i class="fas fa-arrow-right"></i></a></p></Section>
     </div>
   </article>
-</BaseLayout>
+</LegacyLayout>
