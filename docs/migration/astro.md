@@ -68,6 +68,9 @@ boundary.
   card metadata, keyboard-accessible carousel controls, and responsive layout.
 - Consolidate the project and news carousel behavior once the React island owns
   Latest News.
+- Review the RSS feed scope in `src/pages/index.xml.ts`. It currently includes
+  past events and research papers; decide whether other migrated content should
+  be included as well.
 - Make download updates deterministic by replacing live deploy/test refreshes
   with a scheduled or manually triggered update job that commits regenerated
   JSON and reviewed snapshots through a merge request.
