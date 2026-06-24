@@ -1,6 +1,5 @@
 ---
 import Button from '../primitives/Button.astro';
-import Cluster from '../primitives/Cluster.astro';
 import Container from '../primitives/Container.astro';
 import Heading from '../primitives/Heading.astro';
 import Section from '../primitives/Section.astro';
@@ -51,11 +50,11 @@ const hasAside = Boolean(Astro.slots.has('media') || Astro.slots.has('proof') ||
         <Heading as={headingLevel} size="display-xl" class="uno-max-w-5xl">{title}</Heading>
         {description && <Text size="lead" class="uno-max-w-xp-content">{description}</Text>}
         {hasActions && (
-          <Cluster justify="center" class="uno-pt-2">
+          <div class="uno-flex uno-w-full uno-flex-col uno-gap-3 uno-pt-2 sm:uno-w-auto sm:uno-flex-row sm:uno-flex-wrap sm:uno-justify-center">
             {actions.map(action => (
-              <Button href={action.href} variant={action.variant ?? 'primary'}>{action.label}</Button>
+              <Button href={action.href} variant={action.variant ?? 'primary'} class="uno-w-full sm:uno-w-auto">{action.label}</Button>
             ))}
-          </Cluster>
+          </div>
         )}
         {Astro.slots.has('metadata') && <slot name="metadata" />}
         {Astro.slots.has('proof') && <slot name="proof" />}
@@ -68,11 +67,11 @@ const hasAside = Boolean(Astro.slots.has('media') || Astro.slots.has('proof') ||
           <Heading as={headingLevel} size="display-xl" class="uno-max-w-5xl">{title}</Heading>
           {description && <Text size="lead" class="uno-max-w-xp-content">{description}</Text>}
           {hasActions && (
-            <Cluster class="uno-pt-2">
+            <div class="uno-flex uno-w-full uno-flex-col uno-gap-3 uno-pt-2 sm:uno-w-auto sm:uno-flex-row sm:uno-flex-wrap">
               {actions.map(action => (
-                <Button href={action.href} variant={action.variant ?? 'primary'}>{action.label}</Button>
+                <Button href={action.href} variant={action.variant ?? 'primary'} class="uno-w-full sm:uno-w-auto">{action.label}</Button>
               ))}
-            </Cluster>
+            </div>
           )}
           {Astro.slots.has('metadata') && <slot name="metadata" />}
         </Stack>

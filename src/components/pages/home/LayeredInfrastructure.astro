@@ -6,10 +6,10 @@ import Surface from '../../primitives/Surface.astro';
 import Text from '../../primitives/Text.astro';
 
 const layers = [
-  {label: 'Applications', offset: '0rem'},
-  {label: 'Guests', offset: '1.25rem'},
-  {label: 'Xen hypervisor', offset: '2.5rem'},
-  {label: 'Hardware', offset: '3.75rem'},
+  {label: 'Applications', offsetClass: 'uno-ml-0'},
+  {label: 'Guests', offsetClass: 'uno-ml-[0.75rem] sm:uno-ml-[1.25rem]'},
+  {label: 'Xen hypervisor', offsetClass: 'uno-ml-[1.5rem] sm:uno-ml-[2.5rem]'},
+  {label: 'Hardware', offsetClass: 'uno-ml-[2.25rem] sm:uno-ml-[3.75rem]'},
 ];
 ---
 
@@ -25,8 +25,10 @@ const layers = [
       <div class="uno-relative uno-grid uno-gap-4">
         {layers.map((layer, index) => (
           <div
-            class="uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(20_34_56_/_0.82)] uno-p-4 uno-shadow-xp-sm"
-            style={`margin-left:${layer.offset}`}
+            class:list={[
+              layer.offsetClass,
+              'uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(20_34_56_/_0.82)] uno-p-4 uno-shadow-xp-sm',
+            ]}
           >
             <Cluster justify="between">
               <Text as="span" size="caption" tone={index === 2 ? 'accent-primary' : 'secondary'} class="uno-font-bold">{layer.label}</Text>

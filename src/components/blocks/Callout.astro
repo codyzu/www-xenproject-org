@@ -1,6 +1,5 @@
 ---
 import Button from '../primitives/Button.astro';
-import Cluster from '../primitives/Cluster.astro';
 import Heading from '../primitives/Heading.astro';
 import Stack from '../primitives/Stack.astro';
 import Surface from '../primitives/Surface.astro';
@@ -40,8 +39,8 @@ const iconToneClass = variant === 'warning' ? 'uno-text-xp-warning' : isLight ? 
 ---
 
 <Surface id={id} as="aside" tone={tone} border={border} padding="lg" radius="lg" shadow="sm" class={className}>
-  <Cluster align="start" justify="between" gap="4">
-    <Cluster align="start" gap="4" class="uno-flex-1">
+  <div class="uno-flex uno-min-w-0 uno-flex-col uno-gap-4 md:uno-flex-row md:uno-items-start md:uno-justify-between">
+    <div class="uno-flex uno-min-w-0 uno-flex-col uno-gap-3 sm:uno-flex-row sm:uno-items-start sm:uno-gap-4 md:uno-flex-1">
       {Astro.slots.has('icon') && (
         <span class:list={['uno-mt-1 uno-inline-flex uno-shrink-0 uno-text-2xl', iconToneClass]} aria-hidden="true">
           <slot name="icon" />
@@ -52,11 +51,11 @@ const iconToneClass = variant === 'warning' ? 'uno-text-xp-warning' : isLight ? 
         <Heading as={headingLevel} size="heading-m" tone={headingTone}>{title}</Heading>
         {description && <Text size="caption" tone={textTone}>{description}</Text>}
       </Stack>
-    </Cluster>
+    </div>
     {action && (
-      <Button href={action.href} variant={action.variant ?? (isLight ? 'secondary' : 'primary')} class="uno-shrink-0">
+      <Button href={action.href} variant={action.variant ?? (isLight ? 'secondary' : 'primary')} class="uno-w-full md:uno-w-auto md:uno-shrink-0">
         {action.label}
       </Button>
     )}
-  </Cluster>
+  </div>
 </Surface>
