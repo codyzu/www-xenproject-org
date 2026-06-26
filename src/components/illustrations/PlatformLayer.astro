@@ -1,0 +1,11 @@
+---
+import IllustrationLayerPlane from './primitives/IllustrationLayerPlane.astro';
+import type {PlatformLayer} from '../../data/layered-platform';
+
+type Props = {
+  layer: PlatformLayer;
+  motion?: 'subtle' | 'none';
+};
+---
+
+<IllustrationLayerPlane {...Astro.props as Props} />

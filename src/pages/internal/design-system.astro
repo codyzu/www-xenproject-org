@@ -10,6 +10,7 @@ import FeatureGrid from '../../components/blocks/FeatureGrid.astro';
 import Hero from '../../components/blocks/Hero.astro';
 import LogoCloud from '../../components/blocks/LogoCloud.astro';
 import Stats from '../../components/blocks/Stats.astro';
+import LayeredPlatform from '../../components/illustrations/scenes/LayeredPlatform.astro';
 import Badge from '../../components/primitives/Badge.astro';
 import Button from '../../components/primitives/Button.astro';
 import Card from '../../components/primitives/Card.astro';
@@ -23,6 +24,7 @@ import Split from '../../components/primitives/Split.astro';
 import Stack from '../../components/primitives/Stack.astro';
 import Surface from '../../components/primitives/Surface.astro';
 import Text from '../../components/primitives/Text.astro';
+import {layeredPlatformScene} from '../../data/illustrations/layered-platform';
 import {memberLogos} from '../../data/member-logos';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
@@ -256,6 +258,25 @@ const foundationDetails: TextCard[] = [
   {
     title: 'Motion',
     description: 'Motion clarifies relationship, emphasis, or state. It should be short, reversible, and optional.',
+  },
+];
+
+const futureIllustrationScenes: TextCard[] = [
+  {
+    title: 'Safety boundary',
+    description: 'Reuse layer planes, connector brackets, and HTML callouts to explain isolation, containment, and assurance.',
+  },
+  {
+    title: 'Automotive stack',
+    description: 'Reuse the platform scene with hardware emphasis, domain labels, and restrained generated interiors.',
+  },
+  {
+    title: 'Community network',
+    description: 'Reuse SVG topology lines, labels, and muted node surfaces to show governance and ecosystem relationships.',
+  },
+  {
+    title: 'Downloads flow',
+    description: 'Reuse layer index, connector paths, and proof callouts to explain releases, artifacts, verification, and docs.',
   },
 ];
 
@@ -521,6 +542,44 @@ const blockStats = [
           <Grid columns="3">
             {motion.map(motionSample => (
               <MotionDemoCard name={motionSample.name} duration={motionSample.duration} usage={motionSample.usage} />
+            ))}
+          </Grid>
+        </Stack>
+      </Container>
+    </Section>
+
+    <Section id="illustrations" surface="1">
+      <Container>
+        <Stack gap="6">
+          <Stack gap="3" class="uno-max-w-xp-content">
+            <Text size="eyebrow" tone="muted">Illustration system</Text>
+            <Heading size="heading-xl">Reusable scenes, not one-off artwork.</Heading>
+            <Text>
+              Xen illustrations use Astro composition, HTML labels, SVG connectors, reusable overlays, and optional transparent assets so future pages inherit the same visual language.
+            </Text>
+          </Stack>
+          <Split align="center">
+            <LayeredPlatform id="internal-layered-platform" variant="compact" motion="none" />
+            <Stack gap="4">
+              <Heading as="h3" size="heading-m">{layeredPlatformScene.title}</Heading>
+              <Text size="caption">{layeredPlatformScene.description}</Text>
+              <Grid columns="2">
+                {layeredPlatformScene.assetPlan.map(asset => (
+                  <Surface tone="2" border="muted" padding="md" radius="md" shadow="sm">
+                    <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">{asset.complexity}</Text>
+                    <Heading as="h4" size="heading-m" class="uno-mt-2">{asset.id}</Heading>
+                    <Text size="caption" class="uno-mt-2">{asset.purpose}</Text>
+                  </Surface>
+                ))}
+              </Grid>
+            </Stack>
+          </Split>
+          <Grid columns="4">
+            {futureIllustrationScenes.map(scene => (
+              <Card>
+                <Heading as="h3" size="heading-m">{scene.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{scene.description}</Text>
+              </Card>
             ))}
           </Grid>
         </Stack>

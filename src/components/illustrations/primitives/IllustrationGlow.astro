@@ -1,0 +1,27 @@
+---
+type Props = {
+  variant?: 'platform' | 'boundary' | 'network';
+  class?: string;
+};
+
+const {variant = 'platform', class: className = ''} = Astro.props as Props;
+const gradientByVariant: Record<NonNullable<Props['variant']>, string> = {
+  platform:
+    'uno-bg-[radial-gradient(circle_at_18%_22%,rgb(133_194_65_/_0.20),transparent_16rem),radial-gradient(circle_at_78%_10%,rgb(79_179_255_/_0.14),transparent_18rem),linear-gradient(135deg,rgb(255_255_255_/_0.04),transparent_34rem)]',
+  boundary:
+    'uno-bg-[radial-gradient(circle_at_50%_52%,rgb(133_194_65_/_0.18),transparent_15rem),radial-gradient(circle_at_78%_18%,rgb(79_179_255_/_0.10),transparent_18rem)]',
+  network:
+    'uno-bg-[radial-gradient(circle_at_20%_18%,rgb(79_179_255_/_0.13),transparent_17rem),radial-gradient(circle_at_72%_70%,rgb(133_194_65_/_0.14),transparent_18rem)]',
+};
+---
+
+<div
+  aria-hidden="true"
+  data-illustration-overlay="glow"
+  data-illustration-overlay-variant={variant}
+  class:list={[
+    'uno-pointer-events-none uno-absolute uno-inset-0',
+    gradientByVariant[variant],
+    className,
+  ]}
+></div>

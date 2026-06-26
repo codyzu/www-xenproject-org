@@ -15,6 +15,12 @@ test.describe('Internal design system', () => {
     await expect(main.getByRole('heading', {name: 'Proof that reads as content.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'A standard next step for redesigned pages.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Compact highlights for important context.'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Reusable scenes, not one-off artwork.'})).toBeVisible();
+    await expect(main.locator('#internal-layered-platform[data-illustration-scene="layered-platform"]')).toBeVisible();
+    await expect(main.locator('#illustrations [data-illustration-overlay="glow"]')).toHaveAttribute('aria-hidden', 'true');
+    await expect(main.locator('#internal-layered-platform [data-platform-layer="hypervisor"]')).toHaveAttribute('data-platform-layer-asset', 'image');
+    await expect(main.getByRole('heading', {name: 'Safety boundary'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Automotive stack'})).toBeVisible();
     await expect(main.getByRole('link', {name: 'Primary action'}).first()).toBeVisible();
     await expect(main.getByRole('link', {name: 'Secondary action'}).first()).toBeVisible();
     await expect(main.locator('#block-logo-cloud .uno-bg-xp-surface-light')).toHaveCount(1);

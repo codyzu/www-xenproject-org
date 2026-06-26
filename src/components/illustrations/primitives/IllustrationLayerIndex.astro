@@ -1,0 +1,23 @@
+---
+import Text from '../../primitives/Text.astro';
+import type {IllustrationLayer} from '../../../data/illustrations/types';
+
+type Props = {
+  layers: IllustrationLayer[];
+};
+
+const {layers} = Astro.props as Props;
+---
+
+<div class="uno-grid uno-grid-cols-2 uno-gap-2 sm:uno-grid-cols-4" aria-hidden="true" data-illustration-layer-index>
+  {layers.map(layer => (
+    <div class="uno-min-w-0 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(11_19_32_/_0.52)] uno-px-3 uno-py-2">
+      <Text as="span" size="mono-small" tone={layer.priority === 'primary' ? 'accent-primary' : 'muted'} class="uno-font-semibold">
+        {layer.indexLabel}
+      </Text>
+      <Text as="span" size="caption" tone="secondary" class="uno-mt-1 uno-block uno-font-semibold">
+        {layer.label}
+      </Text>
+    </div>
+  ))}
+</div>

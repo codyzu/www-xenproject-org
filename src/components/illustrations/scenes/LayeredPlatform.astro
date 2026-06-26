@@ -1,0 +1,56 @@
+---
+import IllustrationConnectors from '../primitives/IllustrationConnectors.astro';
+import IllustrationGlow from '../primitives/IllustrationGlow.astro';
+import IllustrationLayerIndex from '../primitives/IllustrationLayerIndex.astro';
+import IllustrationLayerPlane from '../primitives/IllustrationLayerPlane.astro';
+import IllustrationSceneShell from '../primitives/IllustrationSceneShell.astro';
+import {layeredPlatformScene, type PlatformLayer} from '../../../data/illustrations/layered-platform';
+import type {IllustrationMotion} from '../../../data/illustrations/types';
+
+type Props = {
+  id?: string;
+  layers?: PlatformLayer[];
+  title?: string;
+  description?: string;
+  ariaLabel?: string;
+  variant?: 'hero' | 'compact';
+  motion?: IllustrationMotion;
+  connectorVariant?: 'platform' | 'boundary' | 'network';
+  glowVariant?: 'platform' | 'boundary' | 'network';
+  class?: string;
+};
+
+const {
+  id = 'xen-layered-platform',
+  layers = layeredPlatformScene.layers,
+  title = layeredPlatformScene.title,
+  description = layeredPlatformScene.description,
+  ariaLabel = layeredPlatformScene.ariaLabel,
+  variant = 'hero',
+  motion = 'subtle',
+  connectorVariant = 'platform',
+  glowVariant = 'platform',
+  class: className = '',
+} = Astro.props as Props;
+---
+
+<IllustrationSceneShell
+  id={id}
+  title={title}
+  description={description}
+  ariaLabel={ariaLabel}
+  metadata="applications / guests / Xen / hardware"
+  variant={variant}
+  motion={motion}
+  dataScene="layered-platform"
+  class={className}
+>
+  <Fragment slot="overlays">
+    <IllustrationGlow variant={glowVariant} />
+    <IllustrationConnectors variant={connectorVariant} />
+  </Fragment>
+
+  {layers.map(layer => <IllustrationLayerPlane layer={layer} motion={motion} />)}
+
+  <IllustrationLayerIndex slot="index" layers={layers} />
+</IllustrationSceneShell>

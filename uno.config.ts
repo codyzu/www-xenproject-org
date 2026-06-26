@@ -165,21 +165,28 @@ export default defineConfig({
           80% { transform:translate(3%, 35%) }
           90% { transform:translate(-10%, 10%) }
         }`,
+        'platform-float': `{
+          0%, 100% { transform:translate3d(0, 0, 0) }
+          50% { transform:translate3d(0, -0.35rem, 0) }
+        }`,
       },
       durations: {
         'fade-in-left-short': '0.8s',
         'fade-in-right-short': '0.8s',
         grain: '1s',
         orbit: `${360 / 25}s`,
+        'platform-float': '7s',
       },
       timingFns: {
         'fade-in-left-short': 'ease-out',
         'fade-in-right-short': 'ease-out',
         grain: 'steps(10)',
+        'platform-float': 'var(--xp-ease-standard)',
       },
       counts: {
         grain: 'infinite',
         orbit: 'infinite',
+        'platform-float': 'infinite',
       },
     },
     boxShadow: {
@@ -228,6 +235,14 @@ export default defineConfig({
     'xen-panel-elevated':
       'uno-rounded-xp-lg uno-border uno-border-xp-border-muted uno-bg-xp-surface-2 uno-p-6 uno-shadow-xp-md',
     'xen-card': 'uno-rounded-xp-md uno-border uno-border-xp-border-muted uno-bg-xp-surface-2 uno-p-5 uno-shadow-xp-sm',
+    'xen-illustration-shell': 'uno-w-full uno-max-w-[34rem] uno-justify-self-center lg:uno-justify-self-stretch',
+    'xen-illustration-layer':
+      'uno-relative uno-rounded-xp-md uno-border uno-border-solid uno-bg-[rgb(20_34_56_/_0.86)] uno-p-3 uno-shadow-xp-sm uno-transition-[transform,box-shadow,border-color] uno-duration-[var(--xp-motion-base)] sm:uno-p-4',
+    'xen-illustration-layer-primary':
+      'uno-bg-[linear-gradient(90deg,rgb(133_194_65_/_0.16),rgb(20_34_56_/_0.92)_42%,rgb(20_34_56_/_0.86))]',
+    'xen-platform-shell': 'xen-illustration-shell',
+    'xen-platform-layer': 'xen-illustration-layer',
+    'xen-platform-layer-active': 'xen-illustration-layer-primary',
     'xen-layered-popover':
       'xen-layered-backdrop uno-rounded-xp-lg uno-border uno-border-solid uno-border-[var(--xp-border-layered-popover)] uno-bg-[var(--xp-surface-layered-popover)] uno-shadow-[var(--xp-shadow-layered-popover)]',
     'xen-popover-intro':

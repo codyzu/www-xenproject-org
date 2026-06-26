@@ -1,0 +1,120 @@
+---
+import Badge from '../../primitives/Badge.astro';
+import Cluster from '../../primitives/Cluster.astro';
+import Stack from '../../primitives/Stack.astro';
+import Surface from '../../primitives/Surface.astro';
+import Text from '../../primitives/Text.astro';
+
+type Props = {
+  id: string;
+  title: string;
+  description: string;
+  ariaLabel: string;
+  metadata?: string;
+  variant?: 'hero' | 'compact';
+  motion?: 'subtle' | 'none';
+  class?: string;
+  dataScene?: string;
+};
+
+const {
+  id,
+  title,
+  description,
+  ariaLabel,
+  metadata,
+  variant = 'hero',
+  motion = 'subtle',
+  class: className = '',
+  dataScene,
+} = Astro.props as Props;
+
+const descriptionId = `${id}-description`;
+const sceneHeightClass = variant === 'compact' ? 'uno-min-h-74' : 'uno-min-h-[21rem] sm:uno-min-h-[24rem]';
+---
+
+<Surface
+  id={id}
+  tone="2"
+  border="strong"
+  radius="lg"
+  shadow="lg"
+  padding="lg"
+  role="img"
+  aria-label={ariaLabel}
+  aria-describedby={descriptionId}
+  data-illustration-scene={dataScene}
+  data-layered-platform={dataScene === 'layered-platform' ? '' : undefined}
+  data-motion={motion}
+  class={['xen-illustration-shell', className].filter(Boolean).join(' ')}
+>
+  <Stack gap="5">
+    <Cluster justify="between">
+      <Badge variant="accent" class="uno-shrink-0">{title}</Badge>
+      {metadata && <Text as="span" size="mono-small" tone="muted">{metadata}</Text>}
+    </Cluster>
+
+    <div class:list={[
+      'uno-relative uno-overflow-hidden uno-rounded-xp-lg uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-p-4 sm:uno-p-5',
+      sceneHeightClass,
+    ]}>
+      <slot name="overlays" />
+      <div class:list={[
+        'uno-relative uno-z-[1] uno-grid uno-gap-3 sm:uno-gap-4',
+        motion === 'subtle' && 'xp-illustration-stack-motion xp-platform-stack-motion',
+      ]}>
+        <slot />
+      </div>
+    </div>
+
+    <slot name="index" />
+    <div id={descriptionId}>
+      <Text size="caption">{description}</Text>
+    </div>
+  </Stack>
+</Surface>
+
+<style>
+  @keyframes illustration-float {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+
+    50% {
+      transform: translate3d(0, -0.35rem, 0);
+    }
+  }
+
+  :global(.xp-illustration-stack-motion) {
+    animation: illustration-float 7s var(--xp-ease-standard) infinite;
+  }
+
+  :global(.xp-platform-stack-motion) {
+    animation: illustration-float 7s var(--xp-ease-standard) infinite;
+  }
+
+  :global(.xp-illustration-layer-motion) {
+    --illustration-layer-hover-y: -0.2rem;
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    :global(.xp-illustration-layer-motion:hover) {
+      transform: translateY(var(--illustration-layer-hover-y));
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.xp-illustration-stack-motion) {
+      animation: none;
+    }
+
+    :global(.xp-platform-stack-motion) {
+      animation: none;
+    }
+
+    :global(.xp-illustration-layer-motion) {
+      transition: none;
+    }
+  }
+</style>

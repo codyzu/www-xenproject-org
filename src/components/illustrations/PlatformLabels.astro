@@ -1,0 +1,10 @@
+---
+import IllustrationLayerIndex from './primitives/IllustrationLayerIndex.astro';
+import type {PlatformLayer} from '../../data/layered-platform';
+
+type Props = {
+  layers: PlatformLayer[];
+};
+---
+
+<IllustrationLayerIndex {...Astro.props as Props} />

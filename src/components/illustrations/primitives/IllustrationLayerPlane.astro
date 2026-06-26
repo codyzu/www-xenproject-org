@@ -1,0 +1,79 @@
+---
+import Text from '../../primitives/Text.astro';
+import type {IllustrationLayer, IllustrationMotion} from '../../../data/illustrations/types';
+
+type Props = {
+  layer: IllustrationLayer;
+  motion?: IllustrationMotion;
+};
+
+const {layer, motion = 'subtle'} = Astro.props as Props;
+
+const offsetClasses: Record<IllustrationLayer['offset'], string> = {
+  none: 'uno-ml-0',
+  sm: 'uno-ml-[0.5rem] sm:uno-ml-[1rem]',
+  md: 'uno-ml-[1rem] sm:uno-ml-[2rem]',
+  lg: 'uno-ml-[1.5rem] sm:uno-ml-[3rem]',
+};
+const accentClasses: Record<IllustrationLayer['accent'], string> = {
+  green: 'uno-border-[rgb(133_194_65_/_0.44)] uno-shadow-[0_18px_42px_rgb(133_194_65_/_0.12),var(--xp-inner-highlight)]',
+  blue: 'uno-border-[rgb(79_179_255_/_0.30)]',
+  neutral: 'uno-border-xp-border-muted',
+};
+const labelTone = layer.accent === 'green' ? 'accent-primary' : layer.accent === 'blue' ? 'accent-secondary' : 'secondary';
+const hasAsset = Boolean(layer.asset);
+const assetSource = (typeof layer.asset?.src === 'string' ? layer.asset.src : layer.asset?.src.src) ?? '';
+const assetWidth = layer.asset?.width ?? (typeof layer.asset?.src === 'string' ? undefined : layer.asset?.src.width);
+const assetHeight = layer.asset?.height ?? (typeof layer.asset?.src === 'string' ? undefined : layer.asset?.src.height);
+---
+
+<article
+  class:list={[
+    'xen-illustration-layer',
+    layer.priority === 'primary' && 'xen-illustration-layer-primary',
+    offsetClasses[layer.offset],
+    accentClasses[layer.accent],
+    motion === 'subtle' && 'xp-illustration-layer-motion',
+  ]}
+  data-platform-layer={layer.id}
+  data-platform-layer-asset={hasAsset ? 'image' : 'placeholder'}
+  data-illustration-layer={layer.id}
+  data-illustration-layer-asset={hasAsset ? 'image' : 'placeholder'}
+  style={`--illustration-layer-elevation:${layer.elevation};`}
+>
+  <div class:list={[
+    'uno-grid uno-min-w-0 uno-items-center uno-gap-3',
+    hasAsset
+      ? 'uno-grid-cols-[minmax(0,1fr)_minmax(5.5rem,0.42fr)] sm:uno-grid-cols-[minmax(0,1fr)_minmax(8rem,0.44fr)]'
+      : 'uno-grid-cols-[minmax(0,1fr)_minmax(4.5rem,0.34fr)] sm:uno-grid-cols-[minmax(0,1fr)_minmax(6.5rem,0.36fr)]',
+  ]}>
+    <div class="uno-relative uno-z-[1] uno-min-w-0">
+      <Text as="span" size="caption" tone={labelTone} class="uno-font-bold">{layer.label}</Text>
+      <Text as="span" size="mono-small" tone="muted" class="uno-mt-1 uno-block">{layer.description}</Text>
+      <Text as="span" size="mono-small" tone="muted" class="uno-mt-2 uno-block">{layer.indexLabel}</Text>
+    </div>
+    <div class="uno-relative uno-z-0 uno-flex uno-min-h-14 uno-items-center uno-justify-end sm:uno-min-h-18">
+      {hasAsset ? (
+        <img
+          src={assetSource}
+          alt={layer.asset!.alt}
+          width={assetWidth}
+          height={assetHeight}
+          loading={layer.asset!.loading ?? 'lazy'}
+          decoding={layer.asset!.decoding ?? 'async'}
+          fetchpriority={layer.asset!.fetchpriority}
+          class="uno-block uno-h-auto uno-max-h-24 uno-w-full uno-object-contain uno-object-right sm:uno-max-h-28"
+        />
+      ) : (
+        <div class="uno-grid uno-w-full uno-gap-2" aria-hidden="true">
+          <span class="uno-h-2 uno-w-full uno-rounded-full uno-bg-[linear-gradient(90deg,var(--xp-accent-primary),transparent)] uno-opacity-45"></span>
+          <span class:list={[
+            'uno-ml-auto uno-h-2 uno-w-3/4 uno-rounded-full uno-opacity-40',
+            layer.accent === 'blue' ? 'uno-bg-[rgb(79_179_255_/_0.42)]' : 'uno-bg-[rgb(133_194_65_/_0.34)]',
+          ]}></span>
+          <span class="uno-ml-auto uno-h-2 uno-w-1/2 uno-rounded-full uno-bg-[rgb(255_255_255_/_0.16)]"></span>
+        </div>
+      )}
+    </div>
+  </div>
+</article>

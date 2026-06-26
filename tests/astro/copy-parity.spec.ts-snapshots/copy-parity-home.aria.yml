@@ -6,8 +6,14 @@
     - /url: /projects/hypervisor
   - link "Explore membership":
     - /url: /about/become-a-member
-  - text: Hypervisor Open source Infrastructure Layered systems isolation / control Applications 01 Guests 02 Xen hypervisor 03 Hardware 04
-  - paragraph: Xen sits below guest systems and above hardware, providing a focused layer for virtualization and isolation decisions.
+  - text: Hypervisor Open source Infrastructure
+  - img "Layered platform diagram showing applications, guest systems, the Xen hypervisor, and hardware":
+    - text: Layered systems applications / guests / Xen / hardware
+    - article: Applications Application workloads and services run at the top of the platform stack. 01
+    - article: Guest systems Guest operating systems and specialized runtimes stay isolated above the hypervisor. 02
+    - article: Xen hypervisor Xen provides the focused virtualization boundary between guest systems and hardware. 03
+    - article: Hardware Physical platform resources form the base layer for virtualized systems. 04
+    - paragraph: Xen sits below guest systems and above hardware, providing a focused layer for virtualization and isolation decisions.
   - paragraph: Built in the Open
   - heading "A project you can evaluate in the open." [level=2]
   - paragraph: Governance, security handling, and testing resources are published so technical teams can inspect how the project works.

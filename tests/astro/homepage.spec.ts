@@ -27,6 +27,17 @@ test.describe('redesigned homepage', () => {
     await expect(main.getByText('Xen is a hypervisor and open source project')).toBeVisible();
     await expect(main.getByRole('link', {name: 'Explore Xen'})).toHaveAttribute('href', '/projects/hypervisor/');
     await expect(main.getByRole('link', {name: 'Explore membership'}).first()).toHaveAttribute('href', '/about/become-a-member/');
+    await expect(main.getByRole('img', {
+      name: 'Layered platform diagram showing applications, guest systems, the Xen hypervisor, and hardware',
+    })).toBeVisible();
+    await expect(main.locator('[data-illustration-scene="layered-platform"]')).toBeVisible();
+    await expect(main.locator('[data-layered-platform] [data-platform-layer="applications"]')).toContainText('Applications');
+    await expect(main.locator('[data-layered-platform] [data-platform-layer="guests"]')).toContainText('Guest systems');
+    await expect(main.locator('[data-layered-platform] [data-platform-layer="hypervisor"]')).toContainText('Xen hypervisor');
+    await expect(main.locator('[data-layered-platform] [data-platform-layer="hardware"]')).toContainText('Hardware');
+    await expect(main.locator('[data-layered-platform] [data-platform-layer="hypervisor"]')).toHaveAttribute('data-platform-layer-asset', 'image');
+    await expect(main.locator('[data-layered-platform] [data-platform-layer="hypervisor"] img')).toHaveAttribute('alt', '');
+    await expect(main.locator('[data-layered-platform] [data-illustration-overlay="connectors"]')).toHaveAttribute('aria-hidden', 'true');
 
     await expect(main.getByRole('heading', {name: 'A project you can evaluate in the open.'})).toBeVisible();
     await expect(main.getByRole('link', {name: 'Governance', exact: true})).toHaveAttribute('href', '/about/governance/');
@@ -236,5 +247,28 @@ test.describe('redesigned homepage', () => {
 
     expect(focusStyle.outlineStyle).not.toBe('none');
     expect(Number.parseFloat(focusStyle.outlineWidth)).toBeGreaterThan(0);
+  });
+
+  test('keeps the layered platform illustration responsive on mobile and reduced motion', async ({page}) => {
+    await page.setViewportSize({width: 390, height: 844});
+    await prepareHomepage(page);
+
+    const diagram = page.locator('[data-layered-platform]');
+    await expect(diagram).toBeVisible();
+
+    const box = await diagram.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.x).toBeGreaterThanOrEqual(0);
+    expect(box!.x + box!.width).toBeLessThanOrEqual(390);
+
+    await page.emulateMedia({reducedMotion: 'reduce'});
+    await page.reload();
+    await page.evaluate(async () => document.fonts.ready);
+
+    await expect(diagram).toBeVisible();
+    const animationName = await page.locator('.xp-platform-stack-motion').evaluate(element => getComputedStyle(element).animationName);
+    expect(animationName).toBe('none');
+    const illustrationAnimationName = await page.locator('.xp-illustration-stack-motion').evaluate(element => getComputedStyle(element).animationName);
+    expect(illustrationAnimationName).toBe('none');
   });
 });

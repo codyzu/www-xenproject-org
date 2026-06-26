@@ -1,0 +1,50 @@
+---
+type ConnectorVariant = 'platform' | 'boundary' | 'network';
+type Props = {
+  variant?: ConnectorVariant;
+  class?: string;
+};
+
+const {variant = 'platform', class: className = ''} = Astro.props as Props;
+const pathsByVariant: Record<ConnectorVariant, string[]> = {
+  platform: [
+    'M18 12 C28 24 36 30 48 37 C60 44 67 52 77 64',
+    'M23 32 C34 39 43 45 54 52 C64 58 72 66 83 82',
+    'M12 61 C26 63 37 66 49 71 C61 75 71 80 88 88',
+  ],
+  boundary: [
+    'M16 24 C32 18 68 18 84 24',
+    'M16 76 C32 82 68 82 84 76',
+    'M24 20 C18 34 18 66 24 80',
+    'M76 20 C82 34 82 66 76 80',
+  ],
+  network: [
+    'M18 32 C34 28 42 42 52 50 C62 58 72 64 86 58',
+    'M16 68 C30 54 43 62 54 54 C66 46 74 34 88 38',
+    'M30 20 C38 34 41 52 46 80',
+  ],
+};
+---
+
+<svg
+  aria-hidden="true"
+  data-illustration-overlay="connectors"
+  data-illustration-overlay-variant={variant}
+  class:list={[
+    'uno-pointer-events-none uno-absolute uno-inset-x-4 uno-top-7 uno-h-[calc(100%-3.5rem)] uno-w-[calc(100%-2rem)] uno-overflow-visible uno-text-xp-border-strong',
+    className,
+  ]}
+  fill="none"
+  preserveAspectRatio="none"
+  viewBox="0 0 100 100"
+>
+  {pathsByVariant[variant].map((path, index) => (
+    <path
+      d={path}
+      stroke={index === pathsByVariant[variant].length - 1 ? 'var(--xp-accent-primary)' : 'currentColor'}
+      stroke-width={variant === 'boundary' ? '0.8' : '0.65'}
+      stroke-dasharray={variant === 'boundary' ? '3 4' : '2 3'}
+      opacity={index === 0 ? '0.66' : index === 1 ? '0.42' : '0.46'}
+    />
+  ))}
+</svg>
