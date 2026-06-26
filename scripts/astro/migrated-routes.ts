@@ -10,6 +10,7 @@ export const migratedRoutes = [
   '/about/governance/',
   '/about/project-members/',
   '/about/security-policy/',
+  '/community/',
   '/contribute/code-of-conduct/',
   '/contribute/contribution-guidelines/',
   '/contribute/get-started/',
@@ -41,6 +42,10 @@ export const migratedRoutes = [
   '/resources/past-events/xen-summit-2025/',
   '/resources/summit-2026/',
   '/resources/use-cases/',
+  '/technology/',
+  '/technology/architecture/',
+  '/technology/isolation-and-security/',
+  '/technology/safety/',
 ] as const satisfies readonly string[];
 
 export const migratedRedirectRoutes = getOwnedRedirects(migratedRoutes).map((redirect) => redirect.source);
