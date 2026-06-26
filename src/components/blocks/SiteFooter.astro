@@ -1,5 +1,5 @@
 ---
-import {navigationItems, type NavigationItem} from '../../data/navigation';
+import {navigationV2Sections, type NavigationV2Link} from '../../data/navigation-v2';
 import Container from '../primitives/Container.astro';
 import Grid from '../primitives/Grid.astro';
 import Heading from '../primitives/Heading.astro';
@@ -11,14 +11,15 @@ type Props = {
 };
 
 const {currentPath} = Astro.props as Props;
-const shouldDisplay = (item: NavigationItem) => item.footer !== false;
+const shouldDisplayInFooter = (item: NavigationV2Link) => item.footer !== false;
 const normalize = (href: string) => {
   if (href.startsWith('http')) return href;
   if (href === '/') return href;
   return href.endsWith('/') ? href : `${href}/`;
 };
-const isActive = (item: NavigationItem) => normalize(item.href) === normalize(currentPath);
-const visibleNavigationItems = navigationItems.filter(shouldDisplay);
+const isActive = (item: NavigationV2Link) => normalize(item.href) === normalize(currentPath);
+const visibleNavigationItems = navigationV2Sections.filter(shouldDisplayInFooter);
+const linkRel = (link: NavigationV2Link) => link.target === '_blank' ? 'noopener noreferrer' : undefined;
 ---
 
 <footer class="uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-px-4 uno-py-12 md:uno-px-6">
@@ -42,21 +43,23 @@ const visibleNavigationItems = navigationItems.filter(shouldDisplay);
                     <a
                       href={item.href}
                       target={item.target}
+                      rel={linkRel(item)}
                       class="xen-focus uno-inline-flex uno-rounded-xp-sm uno-py-1 uno-text-sm uno-font-semibold uno-text-xp-text-secondary uno-no-underline hover:uno-text-xp-text-primary"
                       aria-current={isActive(item) ? 'page' : undefined}
                     >
                       Overview
                     </a>
                   </li>
-                  {item.children?.filter(shouldDisplay).map(child => (
+                  {item.groups?.flatMap(group => group.links).filter(shouldDisplayInFooter).map(link => (
                     <li>
                       <a
-                        href={child.href}
-                        target={child.target}
+                        href={link.href}
+                        target={link.target}
+                        rel={linkRel(link)}
                         class="xen-focus uno-inline-flex uno-rounded-xp-sm uno-py-1 uno-text-sm uno-text-xp-text-muted uno-no-underline hover:uno-text-xp-text-primary"
-                        aria-current={isActive(child) ? 'page' : undefined}
+                        aria-current={isActive(link) ? 'page' : undefined}
                       >
-                        {child.name}
+                        {link.name}
                       </a>
                     </li>
                   ))}

@@ -228,6 +228,34 @@ export default defineConfig({
     'xen-panel-elevated':
       'uno-rounded-xp-lg uno-border uno-border-xp-border-muted uno-bg-xp-surface-2 uno-p-6 uno-shadow-xp-md',
     'xen-card': 'uno-rounded-xp-md uno-border uno-border-xp-border-muted uno-bg-xp-surface-2 uno-p-5 uno-shadow-xp-sm',
+    'xen-layered-popover':
+      'xen-layered-backdrop uno-rounded-xp-lg uno-border uno-border-solid uno-border-[var(--xp-border-layered-popover)] uno-bg-[var(--xp-surface-layered-popover)] uno-shadow-[var(--xp-shadow-layered-popover)]',
+    'xen-popover-intro':
+      'uno-flex uno-min-w-0 uno-flex-col uno-gap-5 lg:uno-border-0 lg:uno-border-r lg:uno-border-solid lg:uno-border-xp-border-muted lg:uno-pr-6',
+    'xen-popover-title':
+      'xen-focus uno-rounded-xp-md uno-text-lg uno-font-bold uno-text-xp-text-primary uno-no-underline hover:uno-text-xp-text-primary hover:uno-underline hover:uno-decoration-[var(--xp-accent-primary)] hover:uno-underline-offset-4',
+    'xen-popover-description': 'uno-m-0 uno-text-sm uno-leading-6 uno-text-xp-text-secondary',
+    'xen-popover-cta': 'uno-flex uno-pt-1',
+    'xen-popover-cta-button': 'uno-w-fit uno-min-w-0 uno-px-4',
+    'xen-popover-heading':
+      'uno-m-0 uno-flex uno-items-center uno-gap-2 uno-pb-2 uno-text-xs uno-font-bold uno-uppercase uno-tracking-[0.08em] uno-text-[var(--xp-accent-primary-strong)]',
+    'xen-popover-heading-icon': 'uno-h-4 uno-w-4 uno-shrink-0 uno-opacity-55',
+    'xen-popover-link':
+      'xen-focus uno-flex uno-rounded-xp-md uno-border-0 uno-border-b uno-border-solid uno-border-transparent uno-px-3 uno-py-2 uno-text-sm uno-font-semibold uno-text-xp-text-secondary uno-no-underline uno-transition-colors hover:uno-border-[var(--xp-accent-primary)] hover:uno-bg-xp-surface-2 hover:uno-text-xp-text-primary active:uno-border-[var(--xp-accent-primary-active)] active:uno-text-xp-text-primary',
+    'xen-mobile-nav-panel':
+      'uno-fixed uno-inset-auto uno-left-auto uno-bottom-auto uno-right-4 uno-top-[4.375rem] uno-m-0 uno-max-h-[calc(100dvh-5.25rem)] uno-w-[min(24rem,calc(100vw-2rem))] uno-overflow-y-auto uno-overscroll-contain uno-p-3',
+    'xen-mobile-nav-summary':
+      'xen-focus uno-flex uno-cursor-pointer uno-list-none uno-items-center uno-justify-between uno-gap-3 uno-rounded-xp-md uno-px-3 uno-py-3 uno-font-semibold uno-text-xp-text-primary hover:uno-bg-xp-surface-2',
+    'xen-mobile-nav-content': 'uno-flex uno-flex-col uno-gap-4 uno-px-3 uno-pb-4 uno-pt-1',
+    'xen-mobile-nav-description': 'uno-m-0 uno-text-sm uno-leading-6 uno-text-xp-text-secondary',
+    'xen-mobile-nav-overview':
+      'xen-focus uno-flex uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-2 uno-px-3 uno-py-2 uno-text-sm uno-font-semibold uno-text-xp-text-primary uno-no-underline hover:uno-border-[var(--xp-accent-primary)] hover:uno-bg-xp-surface-3',
+    'xen-mobile-nav-heading':
+      'uno-m-0 uno-pb-1 uno-text-xs uno-font-bold uno-uppercase uno-tracking-[0.08em] uno-text-[var(--xp-accent-primary-strong)]',
+    'xen-mobile-nav-link':
+      'xen-focus uno-flex uno-rounded-xp-md uno-py-2 uno-text-sm uno-font-medium uno-text-xp-text-secondary uno-no-underline hover:uno-text-xp-text-primary',
+    'xen-mobile-nav-cta': 'uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-pt-4',
+    'xen-mobile-nav-cta-button': 'uno-w-full uno-min-w-0',
     'xen-focus':
       'uno-outline-none focus-visible:uno-outline focus-visible:uno-outline-3 focus-visible:uno-outline-offset-3 focus-visible:uno-outline-[var(--xp-focus-ring)] focus-visible:uno-shadow-[0_0_0_6px_var(--xp-accent-primary-soft)]',
     'xen-action':
@@ -273,6 +301,13 @@ export default defineConfig({
       'xen-action-text-active',
       {
         'background-color': 'var(--xp-accent-primary-soft)',
+      },
+    ],
+    [
+      'xen-layered-backdrop',
+      {
+        '-webkit-backdrop-filter': 'var(--xp-backdrop-layered-popover)',
+        'backdrop-filter': 'var(--xp-backdrop-layered-popover)',
       },
     ],
     ...Array.from(

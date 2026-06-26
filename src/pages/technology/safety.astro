@@ -1,0 +1,19 @@
+---
+import CTA from '../../components/blocks/CTA.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Safety-Critical Systems';
+const description = 'A starting point for Xen safety-critical systems resources.';
+---
+
+<BaseLayout title={title} description={description} publicShell>
+  <CTA
+    eyebrow="Technology"
+    title="Safety-critical systems resources are being organized."
+    description="This page will collect material for safety-oriented evaluation. The embedded and automotive project page currently has the most relevant detail."
+    actions={[
+      {label: 'Explore embedded and automotive', href: '/projects/embedded-and-automotive/'},
+      {label: 'Read use cases', href: '/resources/use-cases/', variant: 'secondary'},
+    ]}
+  />
+</BaseLayout>

@@ -1,0 +1,19 @@
+---
+import CTA from '../../components/blocks/CTA.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Isolation and Security';
+const description = 'A starting point for Xen isolation and security resources.';
+---
+
+<BaseLayout title={title} description={description} publicShell>
+  <CTA
+    eyebrow="Technology"
+    title="Isolation and security resources are being organized."
+    description="This page will connect Xen's isolation model with security policy, vulnerability reporting, and related project work."
+    actions={[
+      {label: 'Read security policy', href: '/about/security-policy/'},
+      {label: 'Explore HVMI', href: '/projects/hvmi/', variant: 'secondary'},
+    ]}
+  />
+</BaseLayout>

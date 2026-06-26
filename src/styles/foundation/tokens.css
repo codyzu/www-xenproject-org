@@ -3,10 +3,12 @@
   --xp-surface-1: #0b1320;
   --xp-surface-2: #142238;
   --xp-surface-3: #213751;
+  --xp-surface-layered-popover: rgb(11 19 32 / 0.91);
   --xp-surface-light: #f3f6fa;
   --xp-surface-light-raised: #ffffff;
   --xp-border-muted: rgb(198 214 235 / 0.14);
   --xp-border-strong: rgb(198 214 235 / 0.30);
+  --xp-border-layered-popover: rgb(198 214 235 / 0.36);
   --xp-inner-highlight: inset 0 1px 0 rgb(255 255 255 / 0.07);
   --xp-text-primary: #f7fbff;
   --xp-text-secondary: #c8d4e5;
@@ -60,6 +62,11 @@
   --xp-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.28), 0 10px 24px rgb(0 0 0 / 0.16), var(--xp-inner-highlight);
   --xp-shadow-md: 0 18px 46px rgb(0 0 0 / 0.38), var(--xp-inner-highlight);
   --xp-shadow-lg: 0 30px 88px rgb(0 0 0 / 0.50), var(--xp-inner-highlight);
+  --xp-shadow-layered-popover:
+    0 36px 96px rgb(0 0 0 / 0.56),
+    0 14px 40px rgb(20 34 56 / 0.34),
+    var(--xp-inner-highlight);
+  --xp-backdrop-layered-popover: blur(6px) saturate(112%);
 
   --xp-motion-fast: 120ms;
   --xp-motion-base: 200ms;

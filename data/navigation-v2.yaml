@@ -1,0 +1,173 @@
+- name: Technology
+  href: /technology/
+  description: Understand Xen’s architecture, isolation model, and platform use cases.
+  groups:
+    - name: Core layers
+      links:
+        - name: Hypervisor
+          href: /projects/hypervisor/
+        - name: Architecture
+          href: /technology/architecture/
+        - name: Isolation & security
+          href: /technology/isolation-and-security/
+    - name: Platform use cases
+      links:
+        - name: Embedded & Automotive
+          href: /projects/embedded-and-automotive/
+        - name: Cloud & Infrastructure
+          href: /resources/use-cases/
+        - name: Safety-critical systems
+          href: /technology/safety/
+  cta:
+    name: Explore technology
+    href: /technology/
+
+- name: Projects
+  href: /projects/
+  description: Explore the Xen Project ecosystem and related open source efforts.
+  groups:
+    - name: Core
+      links:
+        - name: Hypervisor
+          href: /projects/hypervisor/
+        - name: XAPI
+          href: /projects/xapi/
+        - name: XCP-ng
+          href: /projects/xcp-ng/
+    - name: Security and platforms
+      links:
+        - name: Embedded & Automotive
+          href: /projects/embedded-and-automotive/
+        - name: HVMI
+          href: /projects/hvmi/
+        - name: Windows PV Drivers
+          href: /projects/windows-pv-drivers/
+    - name: Specialized systems
+      links:
+        - name: MirageOS
+          href: /projects/mirage-os/
+        - name: Unikraft
+          href: /projects/unikraft/
+  cta:
+    name: View all projects
+    href: /projects/all-projects/
+
+- name: Developers
+  href: /contribute/
+  description: Start contributing, find technical resources, and connect with Xen development.
+  groups:
+    - name: Start here
+      links:
+        - name: Get started
+          href: /contribute/get-started/
+        - name: Contribution guidelines
+          href: /contribute/contribution-guidelines/
+        - name: Documentation
+          href: https://wiki.xenproject.org/
+          target: _blank
+    - name: Development resources
+      links:
+        - name: Continuous Integration
+          href: /contribute/ci/
+        - name: CI status dashboard
+          href: /contribute/ci/status/
+        - name: Downloads
+          href: /resources/downloads/
+    - name: Community channels
+      links:
+        - name: Matrix
+          href: /resources/matrix/
+        - name: Mailing lists
+          href: /resources/mailing-lists/
+        - name: Code of Conduct
+          href: /contribute/code-of-conduct/
+  cta:
+    name: Start contributing
+    href: /contribute/get-started/
+
+- name: Community
+  href: /community/
+  description: Join the people, events, and conversations around the Xen Project.
+  groups:
+    - name: Events
+      links:
+        - name: Xen Summit 2026
+          href: /resources/summit-2026/
+        - name: Past events
+          href: /resources/past-events/
+    - name: Connect
+      links:
+        - name: Matrix
+          href: /resources/matrix/
+        - name: Mailing lists
+          href: /resources/mailing-lists/
+        - name: Blog
+          href: /blog
+    - name: Participate
+      links:
+        - name: Start contributing
+          href: /contribute/get-started/
+        - name: Code of Conduct
+          href: /contribute/code-of-conduct/
+  cta:
+    name: Join the community
+    href: /community/
+
+- name: Resources
+  href: /resources/
+  description: Find downloads, releases, research, blog posts, and practical project links.
+  groups:
+    - name: Use Xen
+      links:
+        - name: Downloads
+          href: /resources/downloads/
+        - name: Use cases
+          href: /resources/use-cases/
+        - name: Documentation
+          href: https://wiki.xenproject.org/
+          target: _blank
+    - name: Learn
+      links:
+        - name: Blog
+          href: /blog
+        - name: Releases
+          href: /blog/tag/releases/
+        - name: Academic Research
+          href: /research/
+    - name: Project assets
+      links:
+        - name: Xen Project branding
+          href: /more/xen-branding/
+  cta:
+    name: Browse resources
+    href: /resources/
+
+- name: About
+  href: /about/
+  description: Learn how Xen is governed, sustained, secured, and supported.
+  groups:
+    - name: Project
+      links:
+        - name: About Xen Project
+          href: /about/
+        - name: Governance
+          href: /about/governance/
+        - name: Security policy
+          href: /about/security-policy/
+    - name: Membership
+      links:
+        - name: Xen Project members
+          href: /about/project-members/
+        - name: Become a member
+          href: /about/become-a-member/
+    - name: Contact
+      links:
+        - name: Contact us
+          href: /about/contact-us/
+  cta:
+    name: Become a member
+    href: /about/become-a-member/
+
+- name: Become a member
+  href: /about/become-a-member/
+  cta: true

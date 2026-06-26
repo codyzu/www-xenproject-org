@@ -1,0 +1,19 @@
+---
+import CTA from '../../components/blocks/CTA.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Community';
+const description = 'Join the people, events, and conversations around the Xen Project.';
+---
+
+<BaseLayout title={title} description={description} publicShell>
+  <CTA
+    eyebrow="Community"
+    title="Join the Xen Project community."
+    description="This section will bring together events, discussion channels, and contributor pathways. Start with Matrix, mailing lists, and contribution resources."
+    actions={[
+      {label: 'Start contributing', href: '/contribute/get-started/'},
+      {label: 'Join Matrix', href: '/resources/matrix/', variant: 'secondary'},
+    ]}
+  />
+</BaseLayout>

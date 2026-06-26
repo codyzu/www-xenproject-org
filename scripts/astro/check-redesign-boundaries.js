@@ -103,7 +103,14 @@ for (const filePath of publicPageFiles) {
   const file = relative(filePath);
   const contents = fs.readFileSync(filePath, 'utf8');
   const isInternalDesignSystem = file === 'src/pages/internal/design-system.astro';
-  const isApprovedPublicRedesign = file === 'src/pages/index.astro';
+  const isApprovedPublicRedesign = [
+    'src/pages/index.astro',
+    'src/pages/community/index.astro',
+    'src/pages/technology/architecture.astro',
+    'src/pages/technology/index.astro',
+    'src/pages/technology/isolation-and-security.astro',
+    'src/pages/technology/safety.astro',
+  ].includes(file);
 
   if (!isInternalDesignSystem && !isApprovedPublicRedesign && contents.includes('BaseLayout')) {
     errors.push(`${file}: existing public pages must use LegacyLayout or ContentLayout, not BaseLayout`);

@@ -1,0 +1,19 @@
+---
+import CTA from '../../components/blocks/CTA.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Architecture';
+const description = 'A starting point for Xen architecture resources.';
+---
+
+<BaseLayout title={title} description={description} publicShell>
+  <CTA
+    eyebrow="Technology"
+    title="Xen architecture resources are being organized."
+    description="This page will become the architecture entry point for the redesigned site. For now, the hypervisor project page is the best place to start."
+    actions={[
+      {label: 'Explore the hypervisor', href: '/projects/hypervisor/'},
+      {label: 'View all projects', href: '/projects/all-projects/', variant: 'secondary'},
+    ]}
+  />
+</BaseLayout>

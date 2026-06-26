@@ -1,5 +1,5 @@
 ---
-import {navigationItems, type NavigationItem} from '../../data/navigation';
+import {navigationV2Ctas, navigationV2Sections, type NavigationV2Item, type NavigationV2Link} from '../../data/navigation-v2';
 import Button from '../primitives/Button.astro';
 import Container from '../primitives/Container.astro';
 
@@ -14,95 +14,539 @@ const normalize = (href: string) => {
   if (href === '/') return href;
   return href.endsWith('/') ? href : `${href}/`;
 };
-const shouldDisplay = (item: NavigationItem) => item.header !== false;
-const isActive = (item: NavigationItem) => normalize(item.href) === normalize(currentPath);
-const hasActiveChild = (item: NavigationItem): boolean => item.children?.some(child => isActive(child) || hasActiveChild(child)) ?? false;
-const visibleNavigationItems = navigationItems.filter(shouldDisplay);
+const shouldDisplayInHeader = (item: NavigationV2Link) => item.header !== false;
+const visibleNavigationItems = navigationV2Sections.filter(shouldDisplayInHeader);
+const primaryCta = navigationV2Ctas.find(shouldDisplayInHeader);
+const isActiveHref = (href: string) => normalize(href) === normalize(currentPath);
+const isActiveLink = (link: NavigationV2Link) => isActiveHref(link.href);
+const hasActiveChild = (item: NavigationV2Item) =>
+  item.groups?.some(group => group.links.some(isActiveLink)) || (typeof item.cta === 'object' && isActiveLink(item.cta));
+const hasPopover = (item: NavigationV2Item) => (item.groups?.length ?? 0) > 0;
+const popoverId = (index: number) => `xp-nav-popover-${index}`;
+const linkRel = (link: NavigationV2Link) => link.target === '_blank' ? 'noopener noreferrer' : undefined;
+const groupIconByName: Record<string, string> = {
+  'Core layers': 'i-carbon-layers',
+  'Platform use cases': 'i-carbon-platforms',
+  Core: 'i-carbon-chip',
+  'Security and platforms': 'i-carbon-security',
+  'Specialized systems': 'i-carbon-code',
+  'Start here': 'i-carbon-rocket',
+  'Development resources': 'i-carbon-development',
+  'Community channels': 'i-carbon-connect',
+  Events: 'i-carbon-events',
+  Connect: 'i-carbon-connect',
+  Participate: 'i-carbon-user-multiple',
+  'Use Xen': 'i-carbon-download',
+  Learn: 'i-carbon-education',
+  'Project assets': 'i-carbon-image',
+  Project: 'i-carbon-information',
+  Membership: 'i-carbon-certificate',
+  Contact: 'i-carbon-email',
+};
+const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-4';
 ---
 
 <header class="uno-sticky uno-top-0 uno-z-[var(--xp-z-header)] uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(5_8_14_/_0.88)] uno-backdrop-blur-md">
   <Container size="wide" class="uno-px-4 md:uno-px-6">
     <div class="uno-flex uno-min-h-18 uno-items-center uno-justify-between uno-gap-4">
-      <a href="/" class="xen-focus uno-inline-flex uno-rounded-xp-md" aria-label="Xen Project home">
+      <a href="/" class="xen-focus uno-inline-flex uno-shrink-0 uno-rounded-xp-md" aria-label="Xen Project home">
         <img src="/img/logo-xen-reverse.svg" alt="Xen Project" width="174" height="48" class="uno-h-10 uno-w-auto" />
       </a>
 
       <nav class="uno-hidden lg:uno-block" aria-label="Primary navigation">
         <ul class="uno-m-0 uno-flex uno-list-none uno-items-center uno-gap-1 uno-p-0">
-          {visibleNavigationItems.map(item => (
-            <li class="uno-relative">
-              <a
-                href={item.href}
-                target={item.target}
-                class:list={[
-                  'xen-focus uno-inline-flex uno-rounded-xp-md uno-px-3 uno-py-2 uno-text-sm uno-font-semibold uno-text-xp-text-secondary uno-no-underline hover:uno-bg-xp-surface-2 hover:uno-text-xp-text-primary',
-                  (isActive(item) || hasActiveChild(item)) && 'uno-bg-xp-surface-2 uno-text-xp-text-primary',
-                ]}
-                aria-current={isActive(item) ? 'page' : hasActiveChild(item) ? 'true' : undefined}
-              >
-                {item.name}
-              </a>
+          {visibleNavigationItems.map((item, index) => (
+            <li class="xp-nav-item uno-relative" data-nav-item data-popover-id={popoverId(index)}>
+              <div class="xp-nav-trigger uno-flex uno-items-center uno-rounded-xp-md">
+                <a
+                  href={item.href}
+                  target={item.target}
+                  rel={linkRel(item)}
+                  data-nav-link
+                  class:list={[
+                    'xen-focus xp-nav-link uno-inline-flex uno-rounded-xp-md uno-px-3 uno-py-2 uno-text-sm uno-font-semibold uno-text-xp-text-secondary uno-no-underline',
+                    (isActiveLink(item) || hasActiveChild(item)) && 'uno-bg-xp-surface-2 uno-text-xp-text-primary',
+                  ]}
+                  aria-current={isActiveLink(item) ? 'page' : hasActiveChild(item) ? 'true' : undefined}
+                >
+                  {item.name}
+                </a>
+                {hasPopover(item) && (
+                  <button
+                    type="button"
+                    data-nav-toggle
+                    class="xen-focus xp-nav-disclosure uno-ml-[-0.375rem] uno-inline-flex uno-h-9 uno-w-7 uno-items-center uno-justify-center uno-rounded-xp-md uno-border-0 uno-bg-transparent uno-p-0 uno-text-xp-text-muted"
+                    aria-label={`Open ${item.name} navigation`}
+                    aria-expanded="false"
+                  >
+                    <span class="i-carbon-chevron-down xp-nav-chevron uno-h-4 uno-w-4" aria-hidden="true"></span>
+                  </button>
+                )}
+              </div>
+              {hasPopover(item) && (
+                <div id={popoverId(index)} popover="manual" data-nav-popover class="xp-nav-popover xen-layered-popover uno-m-0 uno-w-[min(64rem,calc(100vw-2rem))] uno-p-0 uno-text-xp-text-primary">
+                  <div class="uno-grid uno-gap-6 uno-p-6 lg:uno-grid-cols-[minmax(14rem,0.8fr)_minmax(0,2fr)]">
+                    <div class="xen-popover-intro">
+                      <a
+                        href={item.href}
+                        target={item.target}
+                        rel={linkRel(item)}
+                        class="xen-popover-title"
+                      >
+                        {item.name}
+                      </a>
+                      {item.description && (
+                        <p class="xen-popover-description">{item.description}</p>
+                      )}
+                      {typeof item.cta === 'object' && (
+                        <div class="xen-popover-cta">
+                          <Button href={item.cta.href} target={item.cta.target} rel={linkRel(item.cta)} class="xen-popover-cta-button">{item.cta.name}</Button>
+                        </div>
+                      )}
+                    </div>
+                    <div class="uno-grid uno-gap-5 md:uno-grid-cols-2 xl:uno-grid-cols-3">
+                      {item.groups?.map(group => (
+                        <section class="uno-min-w-0" aria-labelledby={`${popoverId(index)}-${group.name.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-')}`}>
+                          <h2 id={`${popoverId(index)}-${group.name.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-')}`} class="xen-popover-heading">
+                            <span class:list={[groupIcon(group.name), 'xen-popover-heading-icon']} aria-hidden="true"></span>
+                            <span>{group.name}</span>
+                          </h2>
+                          <ul class="uno-m-0 uno-list-none uno-p-0">
+                            {group.links.filter(shouldDisplayInHeader).map(link => (
+                              <li>
+                                <a
+                                  href={link.href}
+                                  target={link.target}
+                                  rel={linkRel(link)}
+                                  class:list={[
+                                    'xen-popover-link',
+                                    isActiveLink(link) && 'uno-bg-xp-surface-2 uno-text-xp-text-primary',
+                                  ]}
+                                  aria-current={isActiveLink(link) ? 'page' : undefined}
+                                >
+                                  {link.name}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        </section>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
             </li>
           ))}
         </ul>
       </nav>
 
-      <div class="uno-hidden uno-items-center uno-gap-3 lg:uno-flex">
-        <Button href="/about/become-a-member/" variant="secondary" class="uno-min-w-0">Become a member</Button>
-      </div>
+      {primaryCta && (
+        <div class="uno-hidden uno-items-center uno-gap-3 lg:uno-flex">
+          <Button href={primaryCta.href} target={primaryCta.target} rel={linkRel(primaryCta)} variant="secondary" class="uno-min-w-0">{primaryCta.name}</Button>
+        </div>
+      )}
 
-      <details class="xp-mobile-nav uno-relative lg:uno-hidden">
-        <summary class="xen-action-secondary uno-min-w-0 uno-cursor-pointer uno-list-none">
+      <div class="xp-mobile-nav lg:uno-hidden">
+        <button
+          type="button"
+          class="xen-action-secondary uno-min-w-0"
+          popovertarget="xp-mobile-nav-panel"
+          data-mobile-nav-toggle
+          aria-label="Toggle mobile navigation"
+        >
           Menu
-        </summary>
-        <nav class="uno-absolute uno-right-0 uno-top-[calc(100%+0.75rem)] uno-w-[min(22rem,calc(100vw-2rem))] uno-rounded-xp-lg uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-p-3 uno-shadow-xp-lg" aria-label="Mobile navigation">
+        </button>
+        <nav id="xp-mobile-nav-panel" popover class="xen-layered-popover xen-mobile-nav-panel" aria-label="Mobile navigation">
           <ul class="uno-m-0 uno-list-none uno-p-0">
             {visibleNavigationItems.map(item => (
               <li>
-                <a
-                  href={item.href}
-                  target={item.target}
-                  class:list={[
-                    'xen-focus uno-flex uno-rounded-xp-md uno-px-3 uno-py-3 uno-font-semibold uno-text-xp-text-primary uno-no-underline hover:uno-bg-xp-surface-2',
-                    (isActive(item) || hasActiveChild(item)) && 'uno-bg-xp-surface-2',
-                  ]}
-                  aria-current={isActive(item) ? 'page' : hasActiveChild(item) ? 'true' : undefined}
-                >
-                  {item.name}
-                </a>
-                {item.children && item.children.length > 0 && (
-                  <ul class="uno-m-0 uno-list-none uno-p-0 uno-pb-2 uno-pl-4">
-                    {item.children.filter(shouldDisplay).map(child => (
-                      <li>
-                        <a
-                          href={child.href}
-                          target={child.target}
-                          class:list={[
-                            'xen-focus uno-flex uno-rounded-xp-md uno-px-3 uno-py-2 uno-text-sm uno-font-medium uno-text-xp-text-secondary uno-no-underline hover:uno-bg-xp-surface-2 hover:uno-text-xp-text-primary',
-                            isActive(child) && 'uno-bg-xp-surface-2 uno-text-xp-text-primary',
-                          ]}
-                          aria-current={isActive(child) ? 'page' : undefined}
-                        >
-                          {child.name}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
+                {hasPopover(item) ? (
+                  <details name="mobile-nav" class="xp-mobile-nav-section uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted" data-mobile-nav-section>
+                    <summary
+                      class:list={[
+                        'xen-mobile-nav-summary',
+                        (isActiveLink(item) || hasActiveChild(item)) && 'uno-bg-xp-surface-2',
+                      ]}
+                    >
+                      <span>{item.name}</span>
+                      <span class="i-carbon-chevron-down xp-mobile-section-icon uno-h-4 uno-w-4 uno-shrink-0" aria-hidden="true"></span>
+                    </summary>
+                    <div class="xen-mobile-nav-content">
+                      {item.description && <p class="xen-mobile-nav-description">{item.description}</p>}
+                      <a
+                        href={item.href}
+                        target={item.target}
+                        rel={linkRel(item)}
+                        class:list={[
+                          'xen-mobile-nav-overview',
+                          isActiveLink(item) && 'uno-border-[var(--xp-accent-primary)]',
+                        ]}
+                        aria-current={isActiveLink(item) ? 'page' : undefined}
+                      >
+                        {item.name} overview
+                      </a>
+                      <div class="uno-flex uno-flex-col uno-gap-3">
+                        {item.groups?.map(group => (
+                          <section>
+                            <h2 class="xen-mobile-nav-heading">{group.name}</h2>
+                            <ul class="uno-m-0 uno-list-none uno-p-0">
+                              {group.links.filter(shouldDisplayInHeader).map(link => (
+                                <li>
+                                  <a
+                                    href={link.href}
+                                    target={link.target}
+                                    rel={linkRel(link)}
+                                    class:list={[
+                                      'xen-mobile-nav-link',
+                                      isActiveLink(link) && 'uno-text-xp-text-primary',
+                                    ]}
+                                    aria-current={isActiveLink(link) ? 'page' : undefined}
+                                  >
+                                    {link.name}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          </section>
+                        ))}
+                      </div>
+                      {typeof item.cta === 'object' && (
+                        <div class="xen-mobile-nav-cta">
+                          <Button href={item.cta.href} target={item.cta.target} rel={linkRel(item.cta)} class="xen-mobile-nav-cta-button">{item.cta.name}</Button>
+                        </div>
+                      )}
+                    </div>
+                  </details>
+                ) : (
+                  <a
+                    href={item.href}
+                    target={item.target}
+                    rel={linkRel(item)}
+                    class:list={[
+                      'xen-focus uno-flex uno-rounded-xp-md uno-px-3 uno-py-3 uno-font-semibold uno-text-xp-text-primary uno-no-underline hover:uno-bg-xp-surface-2',
+                      isActiveLink(item) && 'uno-bg-xp-surface-2',
+                    ]}
+                    aria-current={isActiveLink(item) ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </a>
                 )}
               </li>
             ))}
           </ul>
-          <div class="uno-mt-3 uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-pt-3">
-            <Button href="/about/become-a-member/" class="uno-w-full">Become a member</Button>
-          </div>
+          {primaryCta && (
+            <div class="uno-mt-3 uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-pt-3">
+              <Button href={primaryCta.href} target={primaryCta.target} rel={linkRel(primaryCta)} class="uno-w-full">{primaryCta.name}</Button>
+            </div>
+          )}
         </nav>
-      </details>
+      </div>
     </div>
   </Container>
 </header>
 
+<script>
+  const hoverQuery = globalThis.matchMedia?.('(hover: hover) and (pointer: fine)');
+  const closeDelay = 150;
+  const navItems = [...document.querySelectorAll<HTMLElement>('[data-nav-item]')];
+  const mobileNavPanel = document.getElementById('xp-mobile-nav-panel');
+  const mobileNavToggle = document.querySelector<HTMLElement>('[data-mobile-nav-toggle]');
+  const returnFocusTargets = new WeakMap<HTMLElement, HTMLElement>();
+  let activeItem: HTMLElement | undefined;
+  let lockedScrollY = 0;
+  let isPageScrollLocked = false;
+
+  const getParts = (item: HTMLElement) => {
+    const popoverId = item.dataset.popoverId;
+    const popover = popoverId ? document.getElementById(popoverId) : null;
+
+    return {
+      link: item.querySelector<HTMLElement>('[data-nav-link]'),
+      popover,
+      toggle: item.querySelector<HTMLButtonElement>('[data-nav-toggle]'),
+    };
+  };
+
+  const isOpen = (popover: HTMLElement | null) => popover?.matches(':popover-open') ?? false;
+
+  const setExpanded = (item: HTMLElement, expanded: boolean) => {
+    const {toggle} = getParts(item);
+    toggle?.setAttribute('aria-expanded', String(expanded));
+    item.toggleAttribute('data-nav-open', expanded);
+  };
+
+  const firstPopoverTarget = (popover: HTMLElement | null) =>
+    popover?.querySelector<HTMLElement>('a[href], button:not([disabled])');
+
+  const closeItem = (item: HTMLElement, options: {returnFocus?: boolean} = {}) => {
+    const {popover, toggle} = getParts(item);
+
+    if (!popover || !isOpen(popover)) {
+      setExpanded(item, false);
+      return;
+    }
+
+    popover.hidePopover();
+    setExpanded(item, false);
+
+    if (options.returnFocus) {
+      (returnFocusTargets.get(item) ?? toggle)?.focus();
+    }
+
+    if (activeItem === item) {
+      activeItem = undefined;
+    }
+  };
+
+  const closeOtherItems = (item: HTMLElement) => {
+    for (const otherItem of navItems) {
+      if (otherItem !== item) {
+        closeItem(otherItem);
+      }
+    }
+  };
+
+  const openItem = (item: HTMLElement, options: {focusFirst?: boolean; trigger?: HTMLElement} = {}) => {
+    const {popover} = getParts(item);
+    if (!popover) return;
+
+    closeOtherItems(item);
+
+    if (!isOpen(popover)) {
+      popover.showPopover();
+    }
+
+    activeItem = item;
+    setExpanded(item, true);
+
+    if (options.trigger) {
+      returnFocusTargets.set(item, options.trigger);
+    }
+
+    if (options.focusFirst) {
+      firstPopoverTarget(popover)?.focus();
+    }
+  };
+
+  const scheduleClose = (item: HTMLElement) => {
+    globalThis.clearTimeout(Number(item.dataset.closeTimer));
+    item.dataset.closeTimer = String(globalThis.setTimeout(() => closeItem(item), closeDelay));
+  };
+
+  const cancelClose = (item: HTMLElement) => {
+    globalThis.clearTimeout(Number(item.dataset.closeTimer));
+    delete item.dataset.closeTimer;
+  };
+
+  for (const item of navItems) {
+    const {link, popover, toggle} = getParts(item);
+    if (!popover || !toggle) continue;
+
+    const openForHover = () => {
+      if (!hoverQuery?.matches) return;
+      if (item.dataset.navHoverSuppressed === 'true') return;
+      cancelClose(item);
+      openItem(item);
+    };
+
+    const closeForHover = () => {
+      if (!hoverQuery?.matches) return;
+      delete item.dataset.navHoverSuppressed;
+      scheduleClose(item);
+    };
+
+    item.addEventListener('pointerenter', openForHover);
+    item.addEventListener('pointerleave', closeForHover);
+    popover.addEventListener('pointerenter', () => cancelClose(item));
+    popover.addEventListener('pointerleave', closeForHover);
+
+    toggle.addEventListener('click', (event) => {
+      event.preventDefault();
+      if (isOpen(popover)) {
+        item.dataset.navHoverSuppressed = 'true';
+        closeItem(item, {returnFocus: true});
+      } else {
+        delete item.dataset.navHoverSuppressed;
+        openItem(item, {trigger: toggle});
+      }
+    });
+
+    for (const trigger of [link, toggle]) {
+      trigger?.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowDown') {
+          event.preventDefault();
+          openItem(item, {focusFirst: true, trigger});
+        }
+      });
+    }
+
+    popover.addEventListener('toggle', () => {
+      const expanded = isOpen(popover);
+      setExpanded(item, expanded);
+      activeItem = expanded ? item : activeItem === item ? undefined : activeItem;
+    });
+  }
+
+  const mobileSections = [...document.querySelectorAll<HTMLDetailsElement>('[data-mobile-nav-section]')];
+
+  const lockPageScroll = () => {
+    if (isPageScrollLocked) return;
+
+    lockedScrollY = globalThis.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${lockedScrollY}px`;
+    document.body.style.left = '0';
+    document.body.style.right = '0';
+    document.body.style.width = '100%';
+    isPageScrollLocked = true;
+  };
+
+  const unlockPageScroll = () => {
+    if (!isPageScrollLocked) return;
+
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.left = '';
+    document.body.style.right = '';
+    document.body.style.width = '';
+    globalThis.scrollTo(0, lockedScrollY);
+    isPageScrollLocked = false;
+  };
+
+  mobileNavToggle?.addEventListener('click', () => {
+    globalThis.requestAnimationFrame(() => {
+      if (isPageScrollLocked) {
+        unlockPageScroll();
+      } else {
+        lockPageScroll();
+      }
+    });
+  });
+
+  mobileNavPanel?.addEventListener('toggle', () => {
+    if (mobileNavPanel.matches(':popover-open')) {
+      lockPageScroll();
+    } else {
+      unlockPageScroll();
+    }
+  });
+
+  for (const section of mobileSections) {
+    section.addEventListener('toggle', () => {
+      if (!section.open) return;
+
+      for (const otherSection of mobileSections) {
+        if (otherSection !== section) {
+          otherSection.open = false;
+        }
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isPageScrollLocked) {
+      unlockPageScroll();
+    }
+
+    if (event.key === 'Escape' && activeItem) {
+      event.preventDefault();
+      closeItem(activeItem, {returnFocus: true});
+    }
+  });
+
+  document.addEventListener('pointerdown', (event) => {
+    if (isPageScrollLocked) {
+      const target = event.target;
+
+      if (target instanceof Node && !mobileNavPanel?.contains(target) && !mobileNavToggle?.contains(target)) {
+        globalThis.requestAnimationFrame(() => unlockPageScroll());
+      }
+    }
+
+    if (!activeItem) return;
+
+    const {popover} = getParts(activeItem);
+    const target = event.target;
+    if (!(target instanceof Node)) return;
+
+    if (!activeItem.contains(target) && !popover?.contains(target)) {
+      closeItem(activeItem);
+    }
+  }, {capture: true});
+</script>
+
 <style>
-  .xp-mobile-nav summary::-webkit-details-marker {
+  .xp-nav-trigger {
+    transition:
+      background-color var(--xp-motion-fast) var(--xp-ease-standard),
+      color var(--xp-motion-fast) var(--xp-ease-standard);
+  }
+
+  .xp-nav-item:hover .xp-nav-trigger,
+  .xp-nav-item:focus-within .xp-nav-trigger,
+  .xp-nav-item[data-nav-open] .xp-nav-trigger {
+    background: var(--xp-surface-2);
+  }
+
+  .xp-nav-item:hover .xp-nav-link,
+  .xp-nav-item:hover .xp-nav-disclosure,
+  .xp-nav-item:focus-within .xp-nav-link,
+  .xp-nav-item:focus-within .xp-nav-disclosure,
+  .xp-nav-item[data-nav-open] .xp-nav-link,
+  .xp-nav-item[data-nav-open] .xp-nav-disclosure {
+    color: var(--xp-text-primary);
+  }
+
+  .xp-nav-chevron {
+    transition: transform var(--xp-motion-fast) var(--xp-ease-standard);
+  }
+
+  .xp-nav-item[data-nav-open] .xp-nav-chevron {
+    transform: rotate(180deg);
+  }
+
+  .xp-nav-popover {
+    border-radius: var(--xp-radius-lg);
+    inset: 4.75rem auto auto 50%;
+    opacity: 0;
+    transform: translateX(-50%);
+    transition:
+      opacity var(--xp-motion-fast) var(--xp-ease-standard),
+      transform var(--xp-motion-fast) var(--xp-ease-standard),
+      overlay var(--xp-motion-fast) allow-discrete,
+      display var(--xp-motion-fast) allow-discrete;
+  }
+
+  .xp-nav-popover:popover-open {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0.25rem);
+  }
+
+  @starting-style {
+    .xp-nav-popover:popover-open {
+      opacity: 0;
+      transform: translateX(-50%) translateY(-0.25rem);
+    }
+  }
+
+  .xp-nav-popover::backdrop {
+    background: transparent;
+  }
+
+  .xp-mobile-nav summary::-webkit-details-marker,
+  .xp-mobile-nav-section summary::-webkit-details-marker {
     display: none;
+  }
+
+  .xp-mobile-nav-section[open] .xp-mobile-section-icon {
+    transform: rotate(180deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .xp-nav-trigger,
+    .xp-nav-chevron,
+    .xp-nav-popover {
+      transition: none;
+    }
   }
 </style>

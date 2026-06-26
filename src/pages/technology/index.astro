@@ -1,0 +1,19 @@
+---
+import CTA from '../../components/blocks/CTA.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Technology';
+const description = 'Understand Xen architecture, isolation, and platform use cases.';
+---
+
+<BaseLayout title={title} description={description} publicShell>
+  <CTA
+    eyebrow="Technology"
+    title="Understand Xen's virtualization layers."
+    description="This section will collect architecture, isolation, security, and platform-use-case material for technical evaluators. Start with the hypervisor project and use cases while the technology pages are expanded."
+    actions={[
+      {label: 'Explore the hypervisor', href: '/projects/hypervisor/'},
+      {label: 'Read use cases', href: '/resources/use-cases/', variant: 'secondary'},
+    ]}
+  />
+</BaseLayout>
