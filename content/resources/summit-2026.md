@@ -29,7 +29,7 @@ aliases:
   title="Xen Summit 2026"
   locationDate="HEADS office, Munich, Germany · September 15–17, 2026"
   format="Hybrid event · 2 days of talks + 1 day of design sessions"
-  badges="CFP Open Until June 30, 2026|Venue Confirmed|Registration Opening Soon"
+  badges="Registration Open|CFP Open Until June 30, 2026|Early Bird Until July 31, 2026"
   backgroundSrc="/assets/summit-2026/hero.webp"
   backgroundMobileSrc="/assets/summit-2026/hero-mobile.webp"
   backgroundAlt="Munich cityscape hero artwork for Xen Summit 2026"
@@ -39,12 +39,12 @@ aliases:
   accentAlt="Xen Project panda in Bavarian festival clothing"
   accentWidth="780"
   accentHeight="1170"
-  primaryLabel="Submit a Proposal"
-  primaryHref="https://sessionize.com/XenSummit2026/"
-  secondaryLabel="Become a Sponsor"
-  secondaryHref="/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf"
-  tertiaryLabel="Stay Informed"
-  tertiaryHref="#stay-informed"
+  primaryLabel="Register Now"
+  primaryHref="https://register.linuxfoundation.org/xen-summit-2026"
+  secondaryLabel="Submit a Proposal"
+  secondaryHref="https://sessionize.com/XenSummit2026/"
+  tertiaryLabel="Become a Sponsor"
+  tertiaryHref="/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf"
 >}}
 
 {{<section>}}
@@ -126,13 +126,17 @@ Xen Summit 2026 is proudly hosted by Renesas in Munich, Germany. The event will 
 
 {{<div class="uno-card">}}
 {{<md class="content-markdown">}}
-### Registration status
+### Registration
 
-Registration is not open yet.
+Registration is open for Xen Summit 2026.
 
-Pricing is available now so attendees, organizations, and sponsors can plan ahead before registration opens.
+Early Bird pricing is available until **July 31, 2026**, with standard in-person registration now reduced to **$200**.
 
-Early Bird pricing runs until June 30, 2026.
+<p class="uno-mt-6">
+  <a href="https://register.linuxfoundation.org/xen-summit-2026" class="btn btn-primary">
+    Register now <i class="fas fa-arrow-up-right-from-square"></i>
+  </a>
+</p>
 {{</md>}}
 {{</div>}}
 
@@ -191,12 +195,20 @@ We welcome proposals from across the Xen ecosystem, including:
 {{<md class="content-markdown">}}
 ## Registration
 
-Registration is opening soon. Pricing is now available so attendees, organizations, and sponsors can plan ahead for Xen Summit 2026.
+Registration is open for Xen Summit 2026. Register now to attend in Munich or online.
 
-Early Bird pricing runs until **June 30, 2026**. Registration links are not yet available.
+Early Bird pricing runs until **July 31, 2026**. The standard in-person attendee price has been reduced to **$200**.
 {{</md>}}
 
-<!-- TODO: Add the public registration URL when registration opens. -->
+<p class="uno-mt-6 uno-flex uno-flex-wrap uno-gap-3">
+  <a href="https://register.linuxfoundation.org/xen-summit-2026" class="btn btn-primary">
+    Register now <i class="fas fa-arrow-up-right-from-square"></i>
+  </a>
+  <a href="https://sessionize.com/XenSummit2026/" class="btn btn-secondary">
+    Submit a Proposal <i class="fas fa-arrow-up-right-from-square"></i>
+  </a>
+</p>
+
 {{<pricing data="tickets-2026" id="registration-pricing">}}
 {{</div>}}
 {{</section>}}
@@ -282,9 +294,9 @@ Xen Summit 2026 follows the [Xen Project Code of Conduct](/contribute/code-of-co
 {{<section md="true">}}
 ## Stay Informed
 
-Follow Xen Project channels, join the community on [Matrix](/resources/matrix/), subscribe to the [mailing lists](/resources/mailing-lists/), or follow Xen Project on [LinkedIn](https://www.linkedin.com/company/the-xen-project/). Revisit this page for updates on registration, the CFP, the schedule, travel guidance, and sponsorship opportunities.
+Follow Xen Project channels, join the community on [Matrix](/resources/matrix/), subscribe to the [mailing lists](/resources/mailing-lists/), or follow Xen Project on [LinkedIn](https://www.linkedin.com/company/the-xen-project/). Revisit this page for updates on the CFP, registration, the schedule, travel guidance, and sponsorship opportunities.
 
-The Call for Proposals is open until **June 30, 2026**. [Submit a Proposal](https://sessionize.com/XenSummit2026/) to share your Xen Project work in Munich or online.
+[Register for Xen Summit 2026](https://register.linuxfoundation.org/xen-summit-2026) and submit a talk while the [Call for Proposals](https://sessionize.com/XenSummit2026/) remains open until **June 30, 2026**.
 {{</section>}}
 
 {{<section class="section-square-primary txt-c">}}

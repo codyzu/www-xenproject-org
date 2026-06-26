@@ -64,12 +64,15 @@ test.describe('Phase 6 data-driven routes', () => {
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/resources\/past-events\/xen-summit-2025\/$/);
   });
 
-  test('renders event hero and disabled ticket pricing', async ({page}) => {
+  test('renders event hero and live ticket pricing', async ({page}) => {
     await page.goto('/resources/summit-2026/');
     await expect(page.getByRole('heading', {level: 1, name: 'Xen Summit 2026'})).toBeVisible();
+    await expect(page.getByRole('link', {name: 'Register Now'}).first()).toHaveAttribute('href', 'https://register.linuxfoundation.org/xen-summit-2026');
     await expect(page.getByRole('link', {name: 'Submit a Proposal'}).first()).toHaveAttribute('target', '_blank');
     await expect(page.locator('#registration-pricing .ticket-card')).toHaveCount(5);
-    await expect(page.locator('#registration-pricing .card__actions')).toHaveCount(0);
+    await expect(page.locator('#registration-pricing .card__actions')).toHaveCount(5);
+    const speakerCard = page.locator('#registration-pricing .ticket-card').filter({has: page.getByRole('heading', {name: 'Speaker Free'})});
+    await expect(speakerCard.getByRole('link', {name: 'Submit a talk'})).toHaveAttribute('href', 'https://sessionize.com/XenSummit2026/');
     await page.locator('label[for^="virtual-"]').click();
     await expect(page.locator('.ticket-group-virtual')).toBeVisible();
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${siteUrl}/resources/summit-2026/`);

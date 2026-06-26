@@ -1,42 +1,42 @@
 tickets:
   inPerson:
-    - title: "In-Person Early Bird $150"
-      price: "$150"
+    - title: "In-Person Early Bird $140"
+      price: "$140"
       description: |
-        - Available until **June 30, 2026**
-        - Registration opening soon
+        - Available until **July 31, 2026**
         - Access to the in-person talks and design sessions
-      enabled: false
+      link: "https://register.linuxfoundation.org/xen-summit-2026"
+      linkText: "Register now"
 
-    - title: "In-Person Standard $300"
-      price: "$300"
+    - title: "In-Person Standard $200"
+      price: "$200"
       description: |
         - Standard in-person rate after Early Bird pricing ends
-        - Registration opening soon
         - Access to the in-person talks and design sessions
-      enabled: false
+      link: "https://register.linuxfoundation.org/xen-summit-2026"
+      linkText: "Register now"
 
-    - title: "Academic $50"
-      price: "$50"
-      description: |
-        - Discounted in-person rate for academic attendees
-        - Registration opening soon
-        - Access to the in-person talks and design sessions
-      enabled: false
-
-    - title: "Student $20"
+    - title: "Academic $20"
       price: "$20"
       description: |
-        - Discounted in-person student rate
-        - Registration opening soon
+        - Discounted in-person rate for academic attendees
         - Access to the in-person talks and design sessions
-      enabled: false
+      link: "https://register.linuxfoundation.org/xen-summit-2026"
+      linkText: "Register now"
+
+    - title: "Speaker Free"
+      price: "Free"
+      description: |
+        - Complimentary registration for accepted speakers
+        - Speaker registration details will be provided after acceptance
+      link: "https://sessionize.com/XenSummit2026/"
+      linkText: "Submit a talk"
 
   virtual:
     - title: "Virtual $20"
       price: "$20"
       description: |
         - Online attendance option
-        - Registration opening soon
-        - Access details will be shared when registration opens
-      enabled: false
+        - Access details will be shared with registered attendees
+      link: "https://register.linuxfoundation.org/xen-summit-2026"
+      linkText: "Register now"
