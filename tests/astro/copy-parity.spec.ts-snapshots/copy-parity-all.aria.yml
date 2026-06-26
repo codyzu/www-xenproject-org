@@ -34,6 +34,10 @@
         - /url: /all
       - text: (Page)
     - listitem:
+      - link "Community":
+        - /url: /community
+      - text: (Page)
+    - listitem:
       - link "Contribute":
         - /url: /contribute
       - text: (Page)
@@ -185,3 +189,19 @@
       - link "Spring26 → https://docs.google.com/document/d/1ddsfCTaDHvBOCtFLMTgoGEzaQSdJdogfIGooHWFnLJQ/edit?usp=sharing":
         - /url: /spring26
       - text: (Redirect)
+    - listitem:
+      - link "Technology":
+        - /url: /technology
+      - text: (Page)
+    - listitem:
+      - link "Architecture":
+        - /url: /technology/architecture
+      - text: (Page)
+    - listitem:
+      - link "Isolation And Security":
+        - /url: /technology/isolation-and-security
+      - text: (Page)
+    - listitem:
+      - link "Safety":
+        - /url: /technology/safety
+      - text: (Page)

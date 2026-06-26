@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import {load} from 'cheerio';
-import {migratedRoutes, migratedRedirectRoutes} from './migrated-routes.ts';
+import {migratedRedirectRoutes, standaloneContentRoutes} from './migrated-routes.ts';
 
 const outputArgument = process.argv.find((argument) => !argument.startsWith('--') && argument !== process.argv[0] && argument !== process.argv[1]);
 const standalone = process.argv.includes('--standalone');
@@ -279,7 +279,7 @@ const htmlFiles = walk(publicDirectory).filter(isHtmlFile);
 if (standalone) {
   const routeFile = route => route === '/' ? 'index.html' : `${route.replace(/^\//, '')}index.html`;
   const expectedHtml = new Set([
-    ...migratedRoutes.map(routeFile),
+    ...standaloneContentRoutes.map(routeFile),
     ...migratedRedirectRoutes.map(routeFile),
     '404.html',
     'all/index.html',
