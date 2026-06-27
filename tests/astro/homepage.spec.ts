@@ -28,16 +28,18 @@ test.describe('redesigned homepage', () => {
     await expect(main.getByRole('link', {name: 'Explore Xen'})).toHaveAttribute('href', '/projects/hypervisor/');
     await expect(main.getByRole('link', {name: 'Explore membership'}).first()).toHaveAttribute('href', '/about/become-a-member/');
     await expect(main.getByRole('img', {
-      name: 'Layered platform diagram showing applications, guest systems, the Xen hypervisor, and hardware',
+      name: 'Exploded Xen architecture scene showing applications above guest systems, a thin luminous Xen hypervisor layer, and a substantial hardware platform foundation.',
     })).toBeVisible();
-    await expect(main.locator('[data-illustration-scene="layered-platform"]')).toBeVisible();
-    await expect(main.locator('[data-layered-platform] [data-platform-layer="applications"]')).toContainText('Applications');
-    await expect(main.locator('[data-layered-platform] [data-platform-layer="guests"]')).toContainText('Guest systems');
-    await expect(main.locator('[data-layered-platform] [data-platform-layer="hypervisor"]')).toContainText('Xen hypervisor');
-    await expect(main.locator('[data-layered-platform] [data-platform-layer="hardware"]')).toContainText('Hardware');
-    await expect(main.locator('[data-layered-platform] [data-platform-layer="hypervisor"]')).toHaveAttribute('data-platform-layer-asset', 'image');
-    await expect(main.locator('[data-layered-platform] [data-platform-layer="hypervisor"] img')).toHaveAttribute('alt', '');
-    await expect(main.locator('[data-layered-platform] [data-illustration-overlay="connectors"]')).toHaveAttribute('aria-hidden', 'true');
+    const heroScene = main.locator('[data-hero-layered-platform]');
+    await expect(heroScene).toBeVisible();
+    await expect(heroScene.locator('[data-platform-layer="applications"]')).toHaveAttribute('data-platform-layer-asset', 'image');
+    await expect(heroScene.locator('[data-platform-layer="guest-systems"]')).toHaveAttribute('data-platform-layer-asset', 'image');
+    await expect(heroScene.locator('[data-platform-layer="xen-hypervisor"]')).toHaveAttribute('data-platform-layer-asset', 'image');
+    await expect(heroScene.locator('[data-platform-layer="hardware"]')).toHaveAttribute('data-platform-layer-asset', 'image');
+    await expect(heroScene.locator('[data-platform-layer] img')).toHaveCount(4);
+    await expect(heroScene.locator('[data-platform-layer="xen-hypervisor"] img')).toHaveAttribute('alt', '');
+    await expect(heroScene.locator('.hero-layered-platform__label--xen-hypervisor')).toContainText('Xen hypervisor');
+    await expect(heroScene.locator('.hero-layered-platform__label--hardware')).toContainText('Hardware');
 
     await expect(main.getByRole('heading', {name: 'A project you can evaluate in the open.'})).toBeVisible();
     await expect(main.getByRole('link', {name: 'Governance', exact: true})).toHaveAttribute('href', '/about/governance/');
@@ -253,7 +255,7 @@ test.describe('redesigned homepage', () => {
     await page.setViewportSize({width: 390, height: 844});
     await prepareHomepage(page);
 
-    const diagram = page.locator('[data-layered-platform]');
+    const diagram = page.locator('[data-hero-layered-platform]');
     await expect(diagram).toBeVisible();
 
     const box = await diagram.boundingBox();
@@ -266,9 +268,8 @@ test.describe('redesigned homepage', () => {
     await page.evaluate(async () => document.fonts.ready);
 
     await expect(diagram).toBeVisible();
-    const animationName = await page.locator('.xp-platform-stack-motion').evaluate(element => getComputedStyle(element).animationName);
+    const animationName = await page.locator('.hero-layered-platform__stack').evaluate(element => getComputedStyle(element).animationName);
     expect(animationName).toBe('none');
-    const illustrationAnimationName = await page.locator('.xp-illustration-stack-motion').evaluate(element => getComputedStyle(element).animationName);
-    expect(illustrationAnimationName).toBe('none');
+    await expect(diagram.locator('[data-platform-layer] img')).toHaveCount(4);
   });
 });

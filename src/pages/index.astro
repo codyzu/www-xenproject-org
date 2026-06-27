@@ -5,7 +5,6 @@ import FeatureGrid from '../components/blocks/FeatureGrid.astro';
 import Hero from '../components/blocks/Hero.astro';
 import LogoCloud from '../components/blocks/LogoCloud.astro';
 import Stats from '../components/blocks/Stats.astro';
-import Badge from '../components/primitives/Badge.astro';
 import Button from '../components/primitives/Button.astro';
 import Cluster from '../components/primitives/Cluster.astro';
 import Container from '../components/primitives/Container.astro';
@@ -16,7 +15,7 @@ import Split from '../components/primitives/Split.astro';
 import Stack from '../components/primitives/Stack.astro';
 import Surface from '../components/primitives/Surface.astro';
 import Text from '../components/primitives/Text.astro';
-import LayeredPlatform from '../components/illustrations/LayeredPlatform.astro';
+import HeroLayeredPlatformArtwork from '../components/pages/home/HeroLayeredPlatformArtwork.astro';
 import {memberLogos} from '../data/member-logos';
 import {projects} from '../data/projects';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -124,12 +123,7 @@ const projectFeatures = featuredProjects.map(project => ({
       {label: 'Explore membership', href: '/about/become-a-member/', variant: 'secondary'},
     ]}
   >
-    <LayeredPlatform slot="media" />
-    <Cluster slot="metadata">
-      <Badge variant="accent">Hypervisor</Badge>
-      <Badge variant="info">Open source</Badge>
-      <Badge variant="muted">Infrastructure</Badge>
-    </Cluster>
+    <HeroLayeredPlatformArtwork slot="media" />
   </Hero>
 
   <Stats
