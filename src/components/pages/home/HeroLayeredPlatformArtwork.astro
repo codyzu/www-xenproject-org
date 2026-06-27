@@ -40,6 +40,8 @@ const layers = [
     mobileY: '9.25rem',
   },
 ];
+
+const paintedLayers = [...layers].reverse();
 ---
 
 <figure
@@ -62,17 +64,17 @@ const layers = [
     </div>
 
     <div class="hero-layered-platform__stack">
-      {layers.map((layer, index) => (
+      {paintedLayers.map(layer => (
         <div
           class:list={[
             'hero-layered-platform__layer',
             `hero-layered-platform__layer--${layer.key}`,
           ]}
-          style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY}; --layer-index: ${index};`}
+          style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY};`}
           data-platform-layer={layer.key}
           data-platform-layer-asset="image"
         >
-          <img src={layer.src} alt="" loading="eager" decoding="async" fetchpriority={index === 0 ? 'high' : 'auto'} />
+          <img src={layer.src} alt="" loading="eager" decoding="async" fetchpriority={layer.key === 'applications' ? 'high' : 'auto'} />
         </div>
       ))}
     </div>

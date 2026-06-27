@@ -40,6 +40,11 @@ test.describe('redesigned homepage', () => {
     await expect(heroScene.locator('[data-platform-layer="xen-hypervisor"] img')).toHaveAttribute('alt', '');
     await expect(heroScene.locator('.hero-layered-platform__label--xen-hypervisor')).toContainText('Xen hypervisor');
     await expect(heroScene.locator('.hero-layered-platform__label--hardware')).toContainText('Hardware');
+    await expect(heroScene.locator('[data-platform-layer]')).toHaveCount(4);
+    const paintedLayerOrder = await heroScene.locator('[data-platform-layer]').evaluateAll(elements =>
+      elements.map(element => element.getAttribute('data-platform-layer')),
+    );
+    expect(paintedLayerOrder).toEqual(['hardware', 'xen-hypervisor', 'guest-systems', 'applications']);
 
     await expect(main.getByRole('heading', {name: 'A project you can evaluate in the open.'})).toBeVisible();
     await expect(main.getByRole('link', {name: 'Governance', exact: true})).toHaveAttribute('href', '/about/governance/');
