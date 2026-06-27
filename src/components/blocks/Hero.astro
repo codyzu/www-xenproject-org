@@ -3,7 +3,6 @@ import Button from '../primitives/Button.astro';
 import Container from '../primitives/Container.astro';
 import Heading from '../primitives/Heading.astro';
 import Section from '../primitives/Section.astro';
-import Split from '../primitives/Split.astro';
 import Stack from '../primitives/Stack.astro';
 import Text from '../primitives/Text.astro';
 
@@ -23,6 +22,7 @@ type Props = {
   surface?: '0' | '1';
   containerSize?: 'content' | 'page' | 'wide';
   align?: 'split' | 'center';
+  layout?: 'balanced' | 'media-dominant';
   class?: string;
 };
 
@@ -36,10 +36,27 @@ const {
   surface = '1',
   containerSize = 'wide',
   align = 'split',
+  layout = 'balanced',
   class: className = '',
 } = Astro.props as Props;
 const hasActions = actions.length > 0;
 const hasAside = Boolean(Astro.slots.has('media') || Astro.slots.has('proof') || Astro.slots.has('metadata'));
+const splitLayoutClasses = {
+  balanced: 'uno-grid uno-min-w-0 uno-grid-cols-1 uno-gap-6 lg:uno-grid-cols-[minmax(0,1fr)_minmax(22rem,0.72fr)] lg:uno-items-center',
+  'media-dominant': 'uno-grid uno-min-w-0 uno-grid-cols-1 uno-gap-8 lg:uno-grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:uno-items-center xl:uno-gap-10',
+};
+const contentClasses = {
+  balanced: 'uno-max-w-xp-page',
+  'media-dominant': 'uno-max-w-[34rem]',
+};
+const headingClasses = {
+  balanced: 'uno-max-w-5xl',
+  'media-dominant': 'uno-max-w-[36rem]',
+};
+const descriptionClasses = {
+  balanced: 'uno-max-w-xp-content',
+  'media-dominant': 'uno-max-w-[32rem]',
+};
 ---
 
 <Section id={id} surface={surface} variant="hero" class={className}>
@@ -61,11 +78,11 @@ const hasAside = Boolean(Astro.slots.has('media') || Astro.slots.has('proof') ||
         {Astro.slots.has('media') && <slot name="media" />}
       </Stack>
     ) : (
-      <Split align="center">
-        <Stack gap="5" class="uno-max-w-xp-page">
+      <div class={splitLayoutClasses[layout]}>
+        <Stack gap="5" class={contentClasses[layout]}>
           {eyebrow && <Text size="eyebrow" tone="accent-primary">{eyebrow}</Text>}
-          <Heading as={headingLevel} size="display-xl" class="uno-max-w-5xl">{title}</Heading>
-          {description && <Text size="lead" class="uno-max-w-xp-content">{description}</Text>}
+          <Heading as={headingLevel} size="display-xl" class={headingClasses[layout]}>{title}</Heading>
+          {description && <Text size="lead" class={descriptionClasses[layout]}>{description}</Text>}
           {hasActions && (
             <div class="uno-flex uno-w-full uno-flex-col uno-gap-3 uno-pt-2 sm:uno-w-auto sm:uno-flex-row sm:uno-flex-wrap">
               {actions.map(action => (
@@ -75,11 +92,11 @@ const hasAside = Boolean(Astro.slots.has('media') || Astro.slots.has('proof') ||
           )}
           {Astro.slots.has('metadata') && <slot name="metadata" />}
         </Stack>
-        <Stack gap="4">
+        <Stack gap="4" class="uno-min-w-0">
           {Astro.slots.has('media') && <slot name="media" />}
           {Astro.slots.has('proof') && <slot name="proof" />}
         </Stack>
-      </Split>
+      </div>
     )}
   </Container>
 </Section>
