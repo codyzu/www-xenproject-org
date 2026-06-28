@@ -595,12 +595,15 @@ const paintedLayers = [...layers].reverse();
   @media (max-width: 63.9375rem) {
     .hero-layered-platform {
       --stage-label-zone: 0rem;
-      --stage-artwork-width: min(100%, 38rem);
+      --stage-artwork-width: min(92%, 35.5rem);
+      --stage-grid-opacity: 0.09;
       width: min(100%, 42rem);
+      margin-block-start: clamp(2.5rem, 7vw, 4rem);
+      padding-block-end: clamp(2.75rem, 7vw, 4.5rem);
     }
 
     .hero-layered-platform__stage {
-      min-height: clamp(25rem, 74vw, 34rem);
+      min-height: clamp(29rem, 70vw, 36rem);
     }
 
     .hero-layered-platform__layer {
@@ -625,11 +628,14 @@ const paintedLayers = [...layers].reverse();
 
   @media (max-width: 39.9375rem) {
     .hero-layered-platform {
-      --stage-artwork-width: min(100%, 33rem);
+      --stage-artwork-width: min(92%, 30.5rem);
+      --stage-grid-opacity: 0.07;
+      margin-block-start: clamp(2.75rem, 9vw, 3.75rem);
+      padding-block-end: clamp(3rem, 10vw, 4rem);
     }
 
     .hero-layered-platform__stage {
-      min-height: clamp(21rem, 90vw, 27rem);
+      min-height: clamp(28rem, 98vw, 31rem);
     }
 
     .hero-layered-platform__aura,
