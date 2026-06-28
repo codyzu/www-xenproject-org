@@ -48,6 +48,10 @@ test.describe('redesigned homepage', () => {
     await expect(heroScene.locator('[data-platform-layer="xen-hypervisor"] img')).toHaveAttribute('alt', '');
     await expect(heroScene.locator('.hero-layered-platform__label--xen-hypervisor')).toContainText('Xen hypervisor');
     await expect(heroScene.locator('.hero-layered-platform__label--hardware')).toContainText('Hardware');
+    await expect(heroScene.locator('.hero-layered-platform__label--applications .i-carbon-application-web')).toBeVisible();
+    await expect(heroScene.locator('.hero-layered-platform__label--guest-systems .i-carbon-virtual-machine')).toBeVisible();
+    await expect(heroScene.locator('.hero-layered-platform__label--hardware .i-carbon-chip')).toBeVisible();
+    await expect(heroScene.locator('.hero-layered-platform__label--xen-hypervisor .hero-layered-platform__xen-mark')).toBeVisible();
     await expect(heroScene.locator('[data-platform-layer]')).toHaveCount(4);
     const paintedLayerOrder = await heroScene.locator('[data-platform-layer]').evaluateAll(elements =>
       elements.map(element => element.getAttribute('data-platform-layer')),
@@ -302,6 +306,7 @@ test.describe('redesigned homepage', () => {
             key: layer.dataset.platformLayer,
             left: rect.left,
             right: rect.right,
+            width: rect.width,
             centerY: rect.top + rect.height / 2,
           };
         });
@@ -313,6 +318,8 @@ test.describe('redesigned homepage', () => {
 
           const connector = label.querySelector<SVGElement>('.hero-layered-platform__connector');
           const connectorRect = connector?.getBoundingClientRect();
+          const layerNode = label.querySelector<HTMLElement>('.hero-layered-platform__connector-node--layer');
+          const layerNodeRect = layerNode?.getBoundingClientRect();
 
           return [{
             key: [...label.classList].find(className => className.startsWith('hero-layered-platform__label--'))?.replace('hero-layered-platform__label--', ''),
@@ -321,7 +328,13 @@ test.describe('redesigned homepage', () => {
             connectorLeft: connectorRect?.left ?? 0,
             connectorRight: connectorRect?.right ?? 0,
             connectorWidth: connectorRect?.width ?? 0,
+            layerNodeLeft: layerNodeRect?.left ?? 0,
+            layerNodeRight: layerNodeRect?.right ?? 0,
           }];
+        });
+        const guideGeometry = [...element.querySelectorAll<HTMLElement>('.hero-layered-platform__guides span')].map(guide => {
+          const rect = guide.getBoundingClientRect();
+          return rect.left + rect.width / 2;
         });
 
         return {
@@ -329,6 +342,7 @@ test.describe('redesigned homepage', () => {
           diagramRight: diagramRect.right,
           layerGeometry,
           labelGeometry,
+          guideGeometry,
         };
       });
 
@@ -340,14 +354,31 @@ test.describe('redesigned homepage', () => {
         expect(layer.right, `${viewport.name}: ${layer.key} right edge`).toBeLessThanOrEqual(geometry.diagramRight + 1);
       }
 
+      if (geometry.labelGeometry.length > 0) {
+        expect(geometry.guideGeometry, `${viewport.name}: guide count`).toHaveLength(2);
+        const widestLayer = geometry.layerGeometry.reduce((widest, layer) => layer.width > widest.width ? layer : widest);
+        for (const guideX of geometry.guideGeometry) {
+          expect(guideX, `${viewport.name}: guide inside artwork left`).toBeGreaterThan(widestLayer.left);
+          expect(guideX, `${viewport.name}: guide inside artwork right`).toBeLessThan(widestLayer.right);
+        }
+
+        const guideSeparation = geometry.guideGeometry[1] - geometry.guideGeometry[0];
+        expect(guideSeparation, `${viewport.name}: guide construction columns separated`).toBeGreaterThan(widestLayer.width * 0.38);
+        expect(guideSeparation, `${viewport.name}: guide construction columns contained`).toBeLessThan(widestLayer.width * 0.58);
+      }
+
       for (const label of geometry.labelGeometry) {
         const layer = geometry.layerGeometry.find(candidate => candidate.key === label.key);
         expect(layer, `${viewport.name}: ${label.key} layer`).toBeDefined();
-        expect(Math.abs(label.centerY - layer!.centerY), `${viewport.name}: ${label.key} connector center`).toBeLessThanOrEqual(2);
-        expect(label.left, `${viewport.name}: ${label.key} label spacing`).toBeGreaterThan(layer!.right + 8);
-        expect(label.connectorWidth, `${viewport.name}: ${label.key} connector length`).toBeGreaterThan(48);
-        expect(label.connectorLeft, `${viewport.name}: ${label.key} connector reaches layer`).toBeGreaterThanOrEqual(layer!.right - 2);
-        expect(label.connectorRight, `${viewport.name}: ${label.key} connector avoids label`).toBeLessThanOrEqual(label.left - 8);
+        expect(Math.abs(label.centerY - layer!.centerY), `${viewport.name}: ${label.key} connector center`).toBeLessThanOrEqual(3);
+        expect(label.left, `${viewport.name}: ${label.key} label stays close to layer`).toBeLessThanOrEqual(layer!.right + 56);
+        expect(label.left, `${viewport.name}: ${label.key} label avoids layer overlap`).toBeGreaterThan(layer!.right + 20);
+        expect(label.connectorWidth, `${viewport.name}: ${label.key} compact connector length`).toBeGreaterThanOrEqual(32);
+        expect(label.connectorWidth, `${viewport.name}: ${label.key} compact connector length`).toBeLessThanOrEqual(46);
+        expect(label.connectorLeft, `${viewport.name}: ${label.key} connector reaches layer`).toBeLessThanOrEqual(layer!.right + 1);
+        expect(label.layerNodeLeft, `${viewport.name}: ${label.key} endpoint touches layer`).toBeLessThanOrEqual(layer!.right + 1);
+        expect(label.layerNodeRight, `${viewport.name}: ${label.key} endpoint touches layer`).toBeGreaterThanOrEqual(layer!.right - 12);
+        expect(label.connectorRight, `${viewport.name}: ${label.key} connector avoids label`).toBeLessThanOrEqual(label.left - 4);
       }
     }
   });
