@@ -1,8 +1,9 @@
 ---
-import applicationsSrc from '../../../assets/illustrations/layered-platform/applications.png?url';
-import guestSystemsSrc from '../../../assets/illustrations/layered-platform/guest-systems.png?url';
-import hardwareSrc from '../../../assets/illustrations/layered-platform/hardware.png?url';
-import xenHypervisorSrc from '../../../assets/illustrations/layered-platform/xen-hypervisor.png?url';
+import {Picture} from 'astro:assets';
+import applicationsSrc from '../../../assets/illustrations/layered-platform/applications.png';
+import guestSystemsSrc from '../../../assets/illustrations/layered-platform/guest-systems.png';
+import hardwareSrc from '../../../assets/illustrations/layered-platform/hardware.png';
+import xenHypervisorSrc from '../../../assets/illustrations/layered-platform/xen-hypervisor.png';
 
 const descriptionId = 'hero-layered-platform-description';
 
@@ -17,9 +18,6 @@ const layers = [
     hoverY: '-0.5rem',
     parallax: 4,
     icon: 'i-carbon-application-web',
-    connectorWidth: '1.45rem',
-    calloutY: '-0.1rem',
-    visibleRightInset: '0.45rem',
   },
   {
     key: 'guest-systems',
@@ -31,9 +29,6 @@ const layers = [
     hoverY: '-0.3125rem',
     parallax: 3,
     icon: 'i-carbon-virtual-machine',
-    connectorWidth: '1.35rem',
-    calloutY: '-0.05rem',
-    visibleRightInset: '0.5rem',
   },
   {
     key: 'xen-hypervisor',
@@ -45,9 +40,6 @@ const layers = [
     hoverY: '-0.1875rem',
     parallax: 2,
     icon: '',
-    connectorWidth: '1.32rem',
-    calloutY: '0rem',
-    visibleRightInset: '2.65rem',
   },
   {
     key: 'hardware',
@@ -59,9 +51,6 @@ const layers = [
     hoverY: '0rem',
     parallax: 1,
     icon: 'i-carbon-chip',
-    connectorWidth: '1.32rem',
-    calloutY: '0.15rem',
-    visibleRightInset: '2.45rem',
   },
 ];
 
@@ -83,8 +72,8 @@ const paintedLayers = [...layers].reverse();
     <div class="hero-layered-platform__aura"></div>
     <div class="hero-layered-platform__grid"></div>
     <div class="hero-layered-platform__guides">
-      <span style="--guide-x: var(--stage-guide-left-x);"></span>
-      <span style="--guide-x: var(--stage-guide-right-x);"></span>
+      <span style="--guide-x: var(--guide-left-x);"></span>
+      <span style="--guide-x: var(--guide-right-x);"></span>
     </div>
 
     <div class="hero-layered-platform__stack">
@@ -94,11 +83,20 @@ const paintedLayers = [...layers].reverse();
             'hero-layered-platform__layer',
             `hero-layered-platform__layer--${layer.key}`,
           ]}
-          style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY}; --layer-hover-y: ${layer.hoverY}; --layer-parallax-strength: ${layer.parallax}; --visible-right-inset: ${layer.visibleRightInset};`}
+          style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY}; --layer-hover-y: ${layer.hoverY}; --layer-parallax-strength: ${layer.parallax};`}
           data-platform-layer={layer.key}
           data-platform-layer-asset="image"
         >
-          <img src={layer.src} alt="" loading="eager" decoding="async" fetchpriority={layer.key === 'applications' ? 'high' : 'auto'} />
+          <Picture
+            src={layer.src}
+            alt=""
+            widths={[736, 920, 1104, 1472]}
+            sizes="(max-width: 639px) 100vw, (max-width: 1023px) 38rem, 46rem"
+            formats={['avif', 'webp']}
+            loading="eager"
+            decoding="async"
+            fetchpriority={layer.key === 'applications' ? 'high' : 'auto'}
+          />
         </div>
       ))}
     </div>
@@ -108,7 +106,7 @@ const paintedLayers = [...layers].reverse();
         <div class:list={[
           'hero-layered-platform__label',
           `hero-layered-platform__label--${layer.key}`,
-        ]} style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY}; --callout-y: ${layer.calloutY}; --connector-width: ${layer.connectorWidth}; --visible-right-inset: ${layer.visibleRightInset};`}>
+        ]} style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY};`}>
           <span class="hero-layered-platform__connector" aria-hidden="true">
             <span class="hero-layered-platform__connector-line"></span>
             <span class="hero-layered-platform__connector-node hero-layered-platform__connector-node--layer"></span>
@@ -177,15 +175,17 @@ const paintedLayers = [...layers].reverse();
 <style>
   .hero-layered-platform {
     position: relative;
-    --stage-label-width: clamp(9.95rem, 12.5vw, 11.35rem);
-    --stage-label-gap: clamp(0.28rem, 0.5vw, 0.45rem);
-    --stage-label-right-offset: clamp(0.7rem, 1.1vw, 1.15rem);
-    --stage-label-zone: calc(var(--stage-label-width) + 2.2rem + var(--stage-label-gap));
+    --stage-label-width: clamp(12.4rem, 16vw, 14.8rem);
+    --stage-label-right-offset: clamp(0.55rem, 1vw, 1rem);
+    --stage-label-zone: calc(var(--stage-label-width) + 2.35rem + var(--callout-gap) + var(--stage-label-right-offset));
     --stage-artwork-width: min(100%, 46rem);
-    --stage-standoff-left-x: 22.35%;
-    --stage-standoff-right-x: 77.65%;
-    --stage-guide-left-x: var(--stage-standoff-left-x);
-    --stage-guide-right-x: var(--stage-standoff-right-x);
+    --callout-gap: clamp(0.28rem, 0.45vw, 0.42rem);
+    --callout-line-length: clamp(5.35rem, 7vw, 6.6rem);
+    --callout-label-x: calc(100% - var(--stage-label-right-offset) - var(--stage-label-width));
+    --callout-rail-x: calc(var(--callout-label-x) - var(--callout-gap) - var(--callout-line-length));
+    --callout-y-nudge: 0.04rem;
+    --guide-left-x: 27.6%;
+    --guide-right-x: 72.4%;
     --stage-guide-opacity: 0.54;
     --stage-guide-glow: 0.18;
     --stage-aura-opacity: 0.82;
@@ -388,22 +388,20 @@ const paintedLayers = [...layers].reverse();
   .hero-layered-platform__labels {
     position: absolute;
     z-index: 4;
-    top: 0;
-    right: var(--stage-label-right-offset);
-    bottom: 0;
-    width: var(--stage-label-width);
+    inset: 0;
     pointer-events: none;
     animation: hero-platform-float 8s var(--xp-ease-standard) infinite;
   }
 
   .hero-layered-platform__label {
     position: absolute;
-    top: calc(50% + var(--layer-y) + var(--callout-y, 0rem));
-    left: 0;
+    top: calc(50% + var(--layer-y) + var(--callout-y-nudge));
+    left: var(--callout-label-x);
     display: grid;
     grid-template-columns: 1.85rem minmax(0, 1fr);
     column-gap: 0.55rem;
     align-items: center;
+    width: var(--stage-label-width);
     max-width: 100%;
     color: var(--xp-text-secondary);
     opacity: 0.94;
@@ -413,12 +411,12 @@ const paintedLayers = [...layers].reverse();
   .hero-layered-platform__connector {
     position: absolute;
     top: 50%;
-    right: calc(100% + var(--stage-label-gap));
+    right: calc(100% + var(--callout-gap));
     display: block;
-    width: calc(var(--connector-width) + var(--visible-right-inset, 0rem));
+    width: var(--callout-line-length);
     height: 0.85rem;
     color: var(--connector-color, currentColor);
-    opacity: 0.58;
+    opacity: 0.64;
     transform: translateY(-50%);
   }
 
@@ -485,7 +483,7 @@ const paintedLayers = [...layers].reverse();
   .hero-layered-platform__label strong {
     display: block;
     color: var(--xp-text-primary);
-    font-size: 0.71rem;
+    font-size: 0.73rem;
     font-weight: 700;
     letter-spacing: 0.045em;
     line-height: 1.2;
@@ -494,11 +492,11 @@ const paintedLayers = [...layers].reverse();
 
   .hero-layered-platform__label small {
     display: block;
-    margin-top: 0.22rem;
-    color: color-mix(in srgb, var(--xp-text-muted) 72%, var(--xp-text-primary));
-    font-size: 0.67rem;
-    font-weight: 450;
-    line-height: 1.42;
+    margin-top: 0.25rem;
+    color: rgb(220 230 245 / 0.8);
+    font-size: clamp(0.82rem, 0.9vw, 0.875rem);
+    font-weight: 500;
+    line-height: 1.4;
   }
 
   .hero-layered-platform__label--applications,
