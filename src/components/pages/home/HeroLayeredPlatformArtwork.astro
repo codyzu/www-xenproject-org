@@ -17,8 +17,9 @@ const layers = [
     hoverY: '-0.5rem',
     parallax: 4,
     icon: 'i-carbon-application-web',
-    connectorWidth: '2.55rem',
+    connectorWidth: '1.45rem',
     calloutY: '-0.1rem',
+    visibleRightInset: '0.45rem',
   },
   {
     key: 'guest-systems',
@@ -30,8 +31,9 @@ const layers = [
     hoverY: '-0.3125rem',
     parallax: 3,
     icon: 'i-carbon-virtual-machine',
-    connectorWidth: '2.6rem',
+    connectorWidth: '1.35rem',
     calloutY: '-0.05rem',
+    visibleRightInset: '0.5rem',
   },
   {
     key: 'xen-hypervisor',
@@ -43,8 +45,9 @@ const layers = [
     hoverY: '-0.1875rem',
     parallax: 2,
     icon: '',
-    connectorWidth: '2.7rem',
+    connectorWidth: '1.32rem',
     calloutY: '0rem',
+    visibleRightInset: '2.65rem',
   },
   {
     key: 'hardware',
@@ -56,8 +59,9 @@ const layers = [
     hoverY: '0rem',
     parallax: 1,
     icon: 'i-carbon-chip',
-    connectorWidth: '2.5rem',
+    connectorWidth: '1.32rem',
     calloutY: '0.15rem',
+    visibleRightInset: '2.45rem',
   },
 ];
 
@@ -90,7 +94,7 @@ const paintedLayers = [...layers].reverse();
             'hero-layered-platform__layer',
             `hero-layered-platform__layer--${layer.key}`,
           ]}
-          style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY}; --layer-hover-y: ${layer.hoverY}; --layer-parallax-strength: ${layer.parallax};`}
+          style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY}; --layer-hover-y: ${layer.hoverY}; --layer-parallax-strength: ${layer.parallax}; --visible-right-inset: ${layer.visibleRightInset};`}
           data-platform-layer={layer.key}
           data-platform-layer-asset="image"
         >
@@ -104,7 +108,7 @@ const paintedLayers = [...layers].reverse();
         <div class:list={[
           'hero-layered-platform__label',
           `hero-layered-platform__label--${layer.key}`,
-        ]} style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY}; --callout-y: ${layer.calloutY}; --connector-width: ${layer.connectorWidth};`}>
+        ]} style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY}; --callout-y: ${layer.calloutY}; --connector-width: ${layer.connectorWidth}; --visible-right-inset: ${layer.visibleRightInset};`}>
           <span class="hero-layered-platform__connector" aria-hidden="true">
             <span class="hero-layered-platform__connector-line"></span>
             <span class="hero-layered-platform__connector-node hero-layered-platform__connector-node--layer"></span>
@@ -173,17 +177,20 @@ const paintedLayers = [...layers].reverse();
 <style>
   .hero-layered-platform {
     position: relative;
-    --stage-label-width: clamp(9.5rem, 12vw, 11rem);
-    --stage-label-gap: clamp(0.4rem, 0.7vw, 0.65rem);
+    --stage-label-width: clamp(9.95rem, 12.5vw, 11.35rem);
+    --stage-label-gap: clamp(0.28rem, 0.5vw, 0.45rem);
+    --stage-label-right-offset: clamp(0.7rem, 1.1vw, 1.15rem);
     --stage-label-zone: calc(var(--stage-label-width) + 2.2rem + var(--stage-label-gap));
     --stage-artwork-width: min(100%, 46rem);
-    --stage-guide-left-x: 21.5%;
-    --stage-guide-right-x: 78.5%;
-    --stage-guide-opacity: 0.58;
-    --stage-guide-glow: 0.22;
-    --stage-aura-opacity: 0.88;
-    --stage-grid-opacity: 0.16;
-    --stage-xen-glow-opacity: 0.18;
+    --stage-standoff-left-x: 22.35%;
+    --stage-standoff-right-x: 77.65%;
+    --stage-guide-left-x: var(--stage-standoff-left-x);
+    --stage-guide-right-x: var(--stage-standoff-right-x);
+    --stage-guide-opacity: 0.54;
+    --stage-guide-glow: 0.18;
+    --stage-aura-opacity: 0.82;
+    --stage-grid-opacity: 0.13;
+    --stage-xen-glow-opacity: 0.16;
     width: min(100%, 62rem);
     margin: 0;
     margin-inline: auto;
@@ -217,18 +224,18 @@ const paintedLayers = [...layers].reverse();
   .hero-layered-platform__stage::after {
     position: absolute;
     pointer-events: none;
-    inset: -8% -4% -7% -12%;
+    inset: -10% -7% -9% -13%;
     z-index: 0;
   }
 
   .hero-layered-platform__aura {
     opacity: var(--stage-aura-opacity);
     background:
-      radial-gradient(circle at 46% 59%, rgb(140 255 0 / var(--stage-xen-glow-opacity)), transparent 18rem),
-      radial-gradient(circle at 59% 35%, rgb(58 152 255 / 0.14), transparent 24rem),
-      radial-gradient(ellipse at 44% 77%, rgb(0 0 0 / 0.54), transparent 31rem);
-    filter: blur(20px);
-    mask-image: radial-gradient(ellipse at 46% 55%, black 0 46%, transparent 78%);
+      radial-gradient(circle at 46% 59%, rgb(140 255 0 / var(--stage-xen-glow-opacity)), transparent 17rem),
+      radial-gradient(circle at 58% 35%, rgb(58 152 255 / 0.11), transparent 25rem),
+      radial-gradient(ellipse at 43% 78%, rgb(0 0 0 / 0.5), transparent 32rem);
+    filter: blur(22px);
+    mask-image: radial-gradient(ellipse at 45% 56%, black 0 42%, transparent 80%);
   }
 
   .hero-layered-platform__stage::before,
@@ -240,7 +247,7 @@ const paintedLayers = [...layers].reverse();
     z-index: 1;
     background:
       linear-gradient(105deg, transparent 15%, rgb(255 255 255 / 0.08) 32%, transparent 49%),
-      radial-gradient(ellipse at 42% 52%, transparent 0 36%, rgb(1 5 12 / 0.18) 73%, transparent 88%);
+      radial-gradient(ellipse at 42% 52%, transparent 0 36%, rgb(1 5 12 / 0.14) 72%, transparent 90%);
     mix-blend-mode: screen;
     opacity: 0.24;
     mask-image: radial-gradient(ellipse at 43% 51%, black 0 43%, transparent 74%);
@@ -249,8 +256,8 @@ const paintedLayers = [...layers].reverse();
 
   .hero-layered-platform__stage::after {
     z-index: 2;
-    background: radial-gradient(ellipse at 43% 57%, transparent 0 42%, rgb(2 6 14 / 0.2) 78%, transparent 92%);
-    opacity: 0.62;
+    background: radial-gradient(ellipse at 43% 57%, transparent 0 40%, rgb(2 6 14 / 0.17) 77%, transparent 93%);
+    opacity: 0.56;
     mix-blend-mode: multiply;
   }
 
@@ -259,10 +266,10 @@ const paintedLayers = [...layers].reverse();
     background-image:
       linear-gradient(rgb(79 179 255 / 0.16) 1px, transparent 1px),
       linear-gradient(90deg, rgb(79 179 255 / 0.13) 1px, transparent 1px);
-    background-size: 40px 40px;
-    transform: perspective(58rem) rotateX(62deg) rotateZ(-28deg) translate3d(-4rem, 16rem, 0);
+    background-size: 42px 42px;
+    transform: perspective(58rem) rotateX(62deg) rotateZ(-28deg) translate3d(-4.25rem, 16.25rem, 0);
     transform-origin: center;
-    mask-image: radial-gradient(ellipse at 42% 62%, black 0 31%, transparent 69%);
+    mask-image: radial-gradient(ellipse at 42% 62%, black 0 28%, transparent 72%);
   }
 
   .hero-layered-platform__guides {
@@ -281,8 +288,8 @@ const paintedLayers = [...layers].reverse();
     background: linear-gradient(
       to bottom,
       transparent,
-      rgb(79 179 255 / 0.42) 19%,
-      rgb(140 255 0 / 0.5) 63%,
+      rgb(79 179 255 / 0.36) 19%,
+      rgb(140 255 0 / 0.44) 63%,
       transparent
     );
     opacity: var(--stage-guide-opacity);
@@ -382,7 +389,7 @@ const paintedLayers = [...layers].reverse();
     position: absolute;
     z-index: 4;
     top: 0;
-    right: 0;
+    right: var(--stage-label-right-offset);
     bottom: 0;
     width: var(--stage-label-width);
     pointer-events: none;
@@ -399,7 +406,7 @@ const paintedLayers = [...layers].reverse();
     align-items: center;
     max-width: 100%;
     color: var(--xp-text-secondary);
-    opacity: 0.92;
+    opacity: 0.94;
     transform: translateY(-50%);
   }
 
@@ -408,10 +415,10 @@ const paintedLayers = [...layers].reverse();
     top: 50%;
     right: calc(100% + var(--stage-label-gap));
     display: block;
-    width: var(--connector-width);
+    width: calc(var(--connector-width) + var(--visible-right-inset, 0rem));
     height: 0.85rem;
     color: var(--connector-color, currentColor);
-    opacity: 0.62;
+    opacity: 0.58;
     transform: translateY(-50%);
   }
 
@@ -421,7 +428,7 @@ const paintedLayers = [...layers].reverse();
     right: 0;
     left: 0;
     height: 1px;
-    background: linear-gradient(90deg, currentColor, rgb(198 214 235 / 0.38));
+    background: linear-gradient(90deg, currentColor, rgb(198 214 235 / 0.34));
     transform: translateY(-50%);
   }
 
@@ -436,9 +443,9 @@ const paintedLayers = [...layers].reverse();
 
   .hero-layered-platform__connector-node--layer {
     left: -0.18rem;
-    width: 0.42rem;
-    height: 0.42rem;
-    box-shadow: 0 0 0 1px rgb(4 8 14 / 0.8), 0 0 0.55rem currentColor;
+    width: 0.38rem;
+    height: 0.38rem;
+    box-shadow: 0 0 0 1px rgb(4 8 14 / 0.82), 0 0 0.44rem currentColor;
   }
 
   .hero-layered-platform__connector-node--label {
@@ -453,14 +460,14 @@ const paintedLayers = [...layers].reverse();
     width: 1.85rem;
     aspect-ratio: 1;
     place-items: center;
-    border: 1px solid rgb(198 214 235 / 0.26);
+    border: 1px solid rgb(198 214 235 / 0.24);
     border-radius: 0.42rem;
-    background: rgb(5 8 14 / 0.48);
+    background: rgb(5 8 14 / 0.46);
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 0.06),
       0 0.4rem 1rem rgb(0 0 0 / 0.16);
     color: currentColor;
-    font-size: 1.05rem;
+    font-size: 1rem;
     line-height: 1;
   }
 
@@ -478,7 +485,7 @@ const paintedLayers = [...layers].reverse();
   .hero-layered-platform__label strong {
     display: block;
     color: var(--xp-text-primary);
-    font-size: 0.7rem;
+    font-size: 0.71rem;
     font-weight: 700;
     letter-spacing: 0.045em;
     line-height: 1.2;
@@ -488,14 +495,15 @@ const paintedLayers = [...layers].reverse();
   .hero-layered-platform__label small {
     display: block;
     margin-top: 0.22rem;
-    color: color-mix(in srgb, var(--xp-text-muted) 82%, var(--xp-text-primary));
-    font-size: 0.64rem;
-    line-height: 1.38;
+    color: color-mix(in srgb, var(--xp-text-muted) 72%, var(--xp-text-primary));
+    font-size: 0.67rem;
+    font-weight: 450;
+    line-height: 1.42;
   }
 
   .hero-layered-platform__label--applications,
   .hero-layered-platform__label--guest-systems {
-    color: #59b7ff;
+    color: #4da7ea;
   }
 
   .hero-layered-platform__label--xen-hypervisor {
@@ -509,10 +517,10 @@ const paintedLayers = [...layers].reverse();
 
   .hero-layered-platform__label--xen-hypervisor .hero-layered-platform__icon {
     border-color: rgb(140 255 0 / 0.24);
-    background: rgb(133 194 65 / 0.12);
+    background: rgb(133 194 65 / 0.11);
     box-shadow:
       inset 0 1px 0 rgb(255 255 255 / 0.07),
-      0 0 0.85rem rgb(140 255 0 / 0.16);
+      0 0 0.78rem rgb(140 255 0 / 0.14);
   }
 
   .hero-layered-platform__label--xen-hypervisor strong {

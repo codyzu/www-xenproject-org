@@ -299,13 +299,31 @@ test.describe('redesigned homepage', () => {
       await expect(diagram, viewport.name).toBeVisible();
 
       const geometry = await diagram.evaluate(element => {
+        const toPixels = (value: string, basis: number) => {
+          const trimmed = value.trim();
+          if (trimmed.endsWith('rem')) {
+            return Number.parseFloat(trimmed) * Number.parseFloat(getComputedStyle(document.documentElement).fontSize);
+          }
+
+          if (trimmed.endsWith('%')) {
+            return Number.parseFloat(trimmed) * basis / 100;
+          }
+
+          return Number.parseFloat(trimmed) || 0;
+        };
+
         const diagramRect = element.getBoundingClientRect();
+        const stageStyle = getComputedStyle(element);
         const layerGeometry = [...element.querySelectorAll<HTMLElement>('[data-platform-layer]')].map(layer => {
           const rect = layer.getBoundingClientRect();
+          const layerStyle = getComputedStyle(layer);
+          const visibleRightInset = toPixels(layerStyle.getPropertyValue('--visible-right-inset'), rect.width);
+
           return {
             key: layer.dataset.platformLayer,
             left: rect.left,
             right: rect.right,
+            visibleRight: rect.right - visibleRightInset,
             width: rect.width,
             centerY: rect.top + rect.height / 2,
           };
@@ -320,22 +338,36 @@ test.describe('redesigned homepage', () => {
           const connectorRect = connector?.getBoundingClientRect();
           const layerNode = label.querySelector<HTMLElement>('.hero-layered-platform__connector-node--layer');
           const layerNodeRect = layerNode?.getBoundingClientRect();
+          const icon = label.querySelector<HTMLElement>('.hero-layered-platform__icon');
+          const iconRect = icon?.getBoundingClientRect();
+          const description = label.querySelector<HTMLElement>('small');
+          const descriptionStyle = description ? getComputedStyle(description) : undefined;
 
           return [{
             key: [...label.classList].find(className => className.startsWith('hero-layered-platform__label--'))?.replace('hero-layered-platform__label--', ''),
             left: labelRect.left,
+            iconLeft: iconRect?.left ?? 0,
             centerY: labelRect.top + labelRect.height / 2,
             connectorLeft: connectorRect?.left ?? 0,
             connectorRight: connectorRect?.right ?? 0,
             connectorWidth: connectorRect?.width ?? 0,
             layerNodeLeft: layerNodeRect?.left ?? 0,
             layerNodeRight: layerNodeRect?.right ?? 0,
+            layerNodeCenter: layerNodeRect ? layerNodeRect.left + layerNodeRect.width / 2 : 0,
+            descriptionFontSize: descriptionStyle ? Number.parseFloat(descriptionStyle.fontSize) : 0,
+            descriptionLineHeight: descriptionStyle ? Number.parseFloat(descriptionStyle.lineHeight) : 0,
           }];
         });
+        const guideHost = element.querySelector<HTMLElement>('.hero-layered-platform__guides');
+        const guideHostRect = guideHost?.getBoundingClientRect();
         const guideGeometry = [...element.querySelectorAll<HTMLElement>('.hero-layered-platform__guides span')].map(guide => {
           const rect = guide.getBoundingClientRect();
           return rect.left + rect.width / 2;
         });
+        const expectedGuideGeometry = guideHostRect ? [
+          guideHostRect.left + toPixels(stageStyle.getPropertyValue('--stage-standoff-left-x'), guideHostRect.width),
+          guideHostRect.left + toPixels(stageStyle.getPropertyValue('--stage-standoff-right-x'), guideHostRect.width),
+        ] : [];
 
         return {
           diagramLeft: diagramRect.left,
@@ -343,6 +375,7 @@ test.describe('redesigned homepage', () => {
           layerGeometry,
           labelGeometry,
           guideGeometry,
+          expectedGuideGeometry,
         };
       });
 
@@ -356,6 +389,11 @@ test.describe('redesigned homepage', () => {
 
       if (geometry.labelGeometry.length > 0) {
         expect(geometry.guideGeometry, `${viewport.name}: guide count`).toHaveLength(2);
+        expect(geometry.expectedGuideGeometry, `${viewport.name}: expected guide count`).toHaveLength(2);
+        for (const [index, guideX] of geometry.guideGeometry.entries()) {
+          expect(Math.abs(guideX - geometry.expectedGuideGeometry[index]!), `${viewport.name}: guide follows standoff variable ${index}`).toBeLessThanOrEqual(1);
+        }
+
         const widestLayer = geometry.layerGeometry.reduce((widest, layer) => layer.width > widest.width ? layer : widest);
         for (const guideX of geometry.guideGeometry) {
           expect(guideX, `${viewport.name}: guide inside artwork left`).toBeGreaterThan(widestLayer.left);
@@ -371,14 +409,16 @@ test.describe('redesigned homepage', () => {
         const layer = geometry.layerGeometry.find(candidate => candidate.key === label.key);
         expect(layer, `${viewport.name}: ${label.key} layer`).toBeDefined();
         expect(Math.abs(label.centerY - layer!.centerY), `${viewport.name}: ${label.key} connector center`).toBeLessThanOrEqual(3);
-        expect(label.left, `${viewport.name}: ${label.key} label stays close to layer`).toBeLessThanOrEqual(layer!.right + 56);
-        expect(label.left, `${viewport.name}: ${label.key} label avoids layer overlap`).toBeGreaterThan(layer!.right + 20);
-        expect(label.connectorWidth, `${viewport.name}: ${label.key} compact connector length`).toBeGreaterThanOrEqual(32);
-        expect(label.connectorWidth, `${viewport.name}: ${label.key} compact connector length`).toBeLessThanOrEqual(46);
-        expect(label.connectorLeft, `${viewport.name}: ${label.key} connector reaches layer`).toBeLessThanOrEqual(layer!.right + 1);
-        expect(label.layerNodeLeft, `${viewport.name}: ${label.key} endpoint touches layer`).toBeLessThanOrEqual(layer!.right + 1);
-        expect(label.layerNodeRight, `${viewport.name}: ${label.key} endpoint touches layer`).toBeGreaterThanOrEqual(layer!.right - 12);
+        expect(label.iconLeft, `${viewport.name}: ${label.key} label stays close to visible layer`).toBeLessThanOrEqual(layer!.visibleRight + 72);
+        expect(label.iconLeft, `${viewport.name}: ${label.key} label avoids visible layer overlap`).toBeGreaterThan(layer!.visibleRight + 28);
+        expect(label.connectorWidth, `${viewport.name}: ${label.key} connector reaches visible geometry`).toBeGreaterThanOrEqual(26);
+        expect(label.connectorWidth, `${viewport.name}: ${label.key} connector remains compact`).toBeLessThanOrEqual(68);
+        expect(Math.abs(label.layerNodeCenter - layer!.visibleRight), `${viewport.name}: ${label.key} endpoint lands on visible layer`).toBeLessThanOrEqual(4.5);
+        expect(label.layerNodeLeft, `${viewport.name}: ${label.key} endpoint does not float away from visible edge`).toBeLessThanOrEqual(layer!.visibleRight + 4);
+        expect(label.layerNodeRight, `${viewport.name}: ${label.key} endpoint reaches visible edge`).toBeGreaterThanOrEqual(layer!.visibleRight - 8);
         expect(label.connectorRight, `${viewport.name}: ${label.key} connector avoids label`).toBeLessThanOrEqual(label.left - 4);
+        expect(label.descriptionFontSize, `${viewport.name}: ${label.key} readable description size`).toBeGreaterThanOrEqual(10.5);
+        expect(label.descriptionLineHeight, `${viewport.name}: ${label.key} readable description line height`).toBeGreaterThan(label.descriptionFontSize);
       }
     }
   });
