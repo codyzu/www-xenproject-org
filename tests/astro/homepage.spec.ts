@@ -5,6 +5,14 @@ import {projects} from '../../src/data/projects';
 
 const featuredProjectNames = ['Hypervisor', 'Embedded & Automotive', 'HVMI', 'XAPI', 'XCP-ng', 'Mirage OS'];
 const featuredProjects = projects.filter(project => featuredProjectNames.includes(project.title));
+const heroIllustrationViewports = [
+  {name: 'laptop', width: 1280, height: 900},
+  {name: 'desktop', width: 1440, height: 1000},
+  {name: 'large desktop', width: 1600, height: 1000},
+  {name: 'ultrawide', width: 2560, height: 1080},
+  {name: 'iPad landscape', width: 1024, height: 768},
+  {name: 'iPad portrait', width: 834, height: 1194},
+];
 
 async function prepareHomepage(page: Page) {
   await page.goto('/');
@@ -276,5 +284,71 @@ test.describe('redesigned homepage', () => {
     const animationName = await page.locator('.hero-layered-platform__stack').evaluate(element => getComputedStyle(element).animationName);
     expect(animationName).toBe('none');
     await expect(diagram.locator('[data-platform-layer] img')).toHaveCount(4);
+  });
+
+  test('keeps the layered platform artwork visible and label connectors registered', async ({page}) => {
+    for (const viewport of heroIllustrationViewports) {
+      await page.setViewportSize({width: viewport.width, height: viewport.height});
+      await prepareHomepage(page);
+
+      const diagram = page.locator('[data-hero-layered-platform]');
+      await expect(diagram, viewport.name).toBeVisible();
+
+      const geometry = await diagram.evaluate(element => {
+        const diagramRect = element.getBoundingClientRect();
+        const layerGeometry = [...element.querySelectorAll<HTMLElement>('[data-platform-layer]')].map(layer => {
+          const rect = layer.getBoundingClientRect();
+          return {
+            key: layer.dataset.platformLayer,
+            left: rect.left,
+            right: rect.right,
+            centerY: rect.top + rect.height / 2,
+          };
+        });
+        const labelGeometry = [...element.querySelectorAll<HTMLElement>('.hero-layered-platform__label')].flatMap(label => {
+          const labelRect = label.getBoundingClientRect();
+          if (labelRect.width === 0 || labelRect.height === 0) {
+            return [];
+          }
+
+          const connector = label.querySelector<SVGElement>('.hero-layered-platform__connector');
+          const connectorRect = connector?.getBoundingClientRect();
+
+          return [{
+            key: [...label.classList].find(className => className.startsWith('hero-layered-platform__label--'))?.replace('hero-layered-platform__label--', ''),
+            left: labelRect.left,
+            centerY: labelRect.top + labelRect.height / 2,
+            connectorLeft: connectorRect?.left ?? 0,
+            connectorRight: connectorRect?.right ?? 0,
+            connectorWidth: connectorRect?.width ?? 0,
+          }];
+        });
+
+        return {
+          diagramLeft: diagramRect.left,
+          diagramRight: diagramRect.right,
+          layerGeometry,
+          labelGeometry,
+        };
+      });
+
+      expect(geometry.diagramLeft, `${viewport.name}: diagram left edge`).toBeGreaterThanOrEqual(0);
+      expect(geometry.diagramRight, `${viewport.name}: diagram right edge`).toBeLessThanOrEqual(viewport.width);
+
+      for (const layer of geometry.layerGeometry) {
+        expect(layer.left, `${viewport.name}: ${layer.key} left edge`).toBeGreaterThanOrEqual(geometry.diagramLeft - 1);
+        expect(layer.right, `${viewport.name}: ${layer.key} right edge`).toBeLessThanOrEqual(geometry.diagramRight + 1);
+      }
+
+      for (const label of geometry.labelGeometry) {
+        const layer = geometry.layerGeometry.find(candidate => candidate.key === label.key);
+        expect(layer, `${viewport.name}: ${label.key} layer`).toBeDefined();
+        expect(Math.abs(label.centerY - layer!.centerY), `${viewport.name}: ${label.key} connector center`).toBeLessThanOrEqual(2);
+        expect(label.left, `${viewport.name}: ${label.key} label spacing`).toBeGreaterThan(layer!.right + 8);
+        expect(label.connectorWidth, `${viewport.name}: ${label.key} connector length`).toBeGreaterThan(48);
+        expect(label.connectorLeft, `${viewport.name}: ${label.key} connector reaches layer`).toBeGreaterThanOrEqual(layer!.right - 2);
+        expect(label.connectorRight, `${viewport.name}: ${label.key} connector avoids label`).toBeLessThanOrEqual(label.left - 8);
+      }
+    }
   });
 });

@@ -14,6 +14,8 @@ const layers = [
     src: applicationsSrc,
     y: '-14.5rem',
     mobileY: '-10.25rem',
+    hoverY: '-0.5rem',
+    parallax: 4,
   },
   {
     key: 'guest-systems',
@@ -22,6 +24,8 @@ const layers = [
     src: guestSystemsSrc,
     y: '-5.25rem',
     mobileY: '-3.75rem',
+    hoverY: '-0.3125rem',
+    parallax: 3,
   },
   {
     key: 'xen-hypervisor',
@@ -30,6 +34,8 @@ const layers = [
     src: xenHypervisorSrc,
     y: '3.75rem',
     mobileY: '2.7rem',
+    hoverY: '-0.1875rem',
+    parallax: 2,
   },
   {
     key: 'hardware',
@@ -38,6 +44,8 @@ const layers = [
     src: hardwareSrc,
     y: '13rem',
     mobileY: '9.25rem',
+    hoverY: '0rem',
+    parallax: 1,
   },
 ];
 
@@ -70,7 +78,7 @@ const paintedLayers = [...layers].reverse();
             'hero-layered-platform__layer',
             `hero-layered-platform__layer--${layer.key}`,
           ]}
-          style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY};`}
+          style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY}; --layer-hover-y: ${layer.hoverY}; --layer-parallax-strength: ${layer.parallax};`}
           data-platform-layer={layer.key}
           data-platform-layer-asset="image"
         >
@@ -84,8 +92,12 @@ const paintedLayers = [...layers].reverse();
         <div class:list={[
           'hero-layered-platform__label',
           `hero-layered-platform__label--${layer.key}`,
-        ]}>
-          <span class="hero-layered-platform__connector" aria-hidden="true"></span>
+        ]} style={`--layer-y: ${layer.y}; --layer-mobile-y: ${layer.mobileY};`}>
+          <svg class="hero-layered-platform__connector" viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true">
+            <line x1="1" y1="6" x2="119" y2="6"></line>
+            <circle cx="1" cy="6" r="2.7"></circle>
+            <circle cx="119" cy="6" r="1.8"></circle>
+          </svg>
           <span class="hero-layered-platform__icon" aria-hidden="true">
             {layer.key === 'xen-hypervisor' ? 'X' : ''}
           </span>
@@ -99,14 +111,59 @@ const paintedLayers = [...layers].reverse();
   </div>
 </figure>
 
+<script>
+  const mediaQuery = globalThis.matchMedia('(prefers-reduced-motion: reduce)');
+  const finePointerQuery = globalThis.matchMedia('(pointer: fine)');
+  const stage = document.querySelector<HTMLElement>('[data-hero-layered-platform]');
+
+  if (stage && !mediaQuery.matches && finePointerQuery.matches) {
+    const layers = [...stage.querySelectorAll<HTMLElement>('[data-platform-layer]')];
+    let frame = 0;
+    let targetX = 0;
+    let targetY = 0;
+
+    const updateParallax = () => {
+      frame = 0;
+      for (const layer of layers) {
+        const strength = Number(layer.style.getPropertyValue('--layer-parallax-strength')) || 0;
+        layer.style.setProperty('--layer-pointer-x', `${(targetX * strength).toFixed(3)}px`);
+        layer.style.setProperty('--layer-pointer-y', `${(targetY * strength * -0.45).toFixed(3)}px`);
+      }
+    };
+
+    stage.addEventListener('pointermove', event => {
+      const rect = stage.getBoundingClientRect();
+      targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+      targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+
+      if (frame === 0) {
+        frame = globalThis.requestAnimationFrame(updateParallax);
+      }
+    });
+
+    stage.addEventListener('pointerleave', () => {
+      targetX = 0;
+      targetY = 0;
+
+      if (frame === 0) {
+        frame = globalThis.requestAnimationFrame(updateParallax);
+      }
+    });
+  }
+</script>
+
 <style>
   .hero-layered-platform {
     position: relative;
-    width: min(100%, 58rem);
+    --stage-label-width: clamp(8.75rem, 12vw, 10.25rem);
+    --stage-connector-width: clamp(3.5rem, 7vw, 5.75rem);
+    --stage-label-gap: clamp(1.15rem, 2vw, 1.75rem);
+    --stage-label-zone: calc(var(--stage-label-width) + var(--stage-connector-width) + var(--stage-label-gap));
+    --stage-artwork-width: min(100%, 46rem);
+    width: min(100%, 62rem);
     margin: 0;
     margin-inline: auto;
-    overflow-x: clip;
-    overflow-y: visible;
+    overflow: visible;
   }
 
   .hero-layered-platform__description {
@@ -123,25 +180,52 @@ const paintedLayers = [...layers].reverse();
 
   .hero-layered-platform__stage {
     position: relative;
-    min-height: clamp(31rem, 54vw, 45rem);
+    min-height: clamp(32rem, 55vw, 45rem);
     overflow: visible;
     isolation: isolate;
+    contain: layout;
   }
 
   .hero-layered-platform__aura,
-  .hero-layered-platform__grid {
+  .hero-layered-platform__grid,
+  .hero-layered-platform__lighting,
+  .hero-layered-platform__stage::before,
+  .hero-layered-platform__stage::after {
     position: absolute;
     pointer-events: none;
-    inset: 8% 4% 3% -4%;
+    inset: 8% var(--stage-label-zone) 3% 0;
     z-index: 0;
   }
 
   .hero-layered-platform__aura {
     background:
-      radial-gradient(circle at 45% 58%, rgb(140 255 0 / 0.22), transparent 21rem),
-      radial-gradient(circle at 64% 32%, rgb(58 152 255 / 0.22), transparent 22rem),
-      radial-gradient(circle at 42% 74%, rgb(0 0 0 / 0.72), transparent 26rem);
-    filter: blur(16px);
+      radial-gradient(circle at 48% 58%, rgb(140 255 0 / 0.2), transparent 20rem),
+      radial-gradient(circle at 62% 31%, rgb(58 152 255 / 0.18), transparent 22rem),
+      radial-gradient(circle at 47% 78%, rgb(0 0 0 / 0.7), transparent 26rem);
+    filter: blur(18px);
+  }
+
+  .hero-layered-platform__stage::before,
+  .hero-layered-platform__stage::after {
+    content: "";
+  }
+
+  .hero-layered-platform__stage::before {
+    z-index: 1;
+    background:
+      linear-gradient(105deg, transparent 12%, rgb(255 255 255 / 0.1) 31%, transparent 46%),
+      radial-gradient(ellipse at 45% 52%, transparent 0 42%, rgb(1 5 12 / 0.22) 74%, rgb(1 5 12 / 0.42));
+    mix-blend-mode: screen;
+    opacity: 0.28;
+    mask-image: radial-gradient(ellipse at center, black 0 48%, transparent 76%);
+    animation: hero-platform-specular 18s linear infinite;
+  }
+
+  .hero-layered-platform__stage::after {
+    z-index: 2;
+    background: radial-gradient(ellipse at 45% 54%, transparent 0 48%, rgb(2 6 14 / 0.32) 82%);
+    opacity: 0.7;
+    mix-blend-mode: multiply;
   }
 
   .hero-layered-platform__grid {
@@ -157,7 +241,7 @@ const paintedLayers = [...layers].reverse();
 
   .hero-layered-platform__guides {
     position: absolute;
-    inset: 13% 16% 17% 0;
+    inset: 13% var(--stage-label-zone) 17% 0;
     z-index: 2;
     pointer-events: none;
   }
@@ -182,20 +266,28 @@ const paintedLayers = [...layers].reverse();
   .hero-layered-platform__stack {
     position: absolute;
     z-index: 3;
-    inset: 0 18% 0 -14%;
+    inset: 0 var(--stage-label-zone) 0 0;
     animation: hero-platform-float 8s var(--xp-ease-standard) infinite;
   }
 
   .hero-layered-platform__layer {
     position: absolute;
+    --layer-hover-shift: 0rem;
+    --layer-pointer-x: 0px;
+    --layer-pointer-y: 0px;
     top: 50%;
     left: 50%;
-    width: min(100%, 46rem);
-    transform: translate3d(-50%, calc(-50% + var(--layer-y)), 0);
+    width: var(--stage-artwork-width);
+    transform: translate3d(
+        calc(-50% + var(--layer-pointer-x)),
+        calc(-50% + var(--layer-y) + var(--layer-hover-shift) + var(--layer-pointer-y)),
+        0
+      )
+      scale(var(--layer-scale, 1));
     transition:
-      transform var(--xp-motion-slow) var(--xp-ease-standard),
-      filter var(--xp-motion-slow) var(--xp-ease-standard),
-      opacity var(--xp-motion-slow) var(--xp-ease-standard);
+      transform 620ms cubic-bezier(0.16, 1, 0.3, 1),
+      filter 620ms cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 620ms cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
   }
 
@@ -209,30 +301,71 @@ const paintedLayers = [...layers].reverse();
       drop-shadow(0 0 1.2rem rgb(79 179 255 / 0.14));
   }
 
+  .hero-layered-platform__layer--applications {
+    --layer-scale: 0.985;
+    z-index: 4;
+  }
+
+  .hero-layered-platform__layer--applications img {
+    filter:
+      brightness(1.025)
+      contrast(1.015)
+      drop-shadow(0 1.8rem 1.7rem rgb(0 0 0 / 0.3))
+      drop-shadow(0 0 1.1rem rgb(79 179 255 / 0.15));
+  }
+
+  .hero-layered-platform__layer--guest-systems {
+    --layer-scale: 0.995;
+    z-index: 3;
+  }
+
+  .hero-layered-platform__layer--guest-systems img {
+    filter:
+      brightness(1.01)
+      contrast(1.01)
+      drop-shadow(0 2.1rem 1.85rem rgb(0 0 0 / 0.34))
+      drop-shadow(0 0 1.2rem rgb(79 179 255 / 0.13));
+  }
+
+  .hero-layered-platform__layer--xen-hypervisor {
+    z-index: 2;
+  }
+
   .hero-layered-platform__layer--xen-hypervisor img {
     filter:
+      brightness(1.035)
+      contrast(1.04)
+      saturate(1.04)
       drop-shadow(0 1.3rem 1.2rem rgb(0 0 0 / 0.38))
-      drop-shadow(0 0 1.35rem rgb(140 255 0 / 0.40));
+      drop-shadow(0 0 1.3rem rgb(140 255 0 / 0.34));
+  }
+
+  .hero-layered-platform__layer--hardware {
+    z-index: 1;
   }
 
   .hero-layered-platform__layer--hardware img {
     filter:
+      brightness(0.98)
+      contrast(1.025)
       drop-shadow(0 3rem 2.6rem rgb(0 0 0 / 0.56))
-      drop-shadow(0 0 1rem rgb(140 255 0 / 0.16));
+      drop-shadow(0 0 1rem rgb(140 255 0 / 0.14));
   }
 
   .hero-layered-platform__labels {
     position: absolute;
     z-index: 4;
-    top: 11%;
+    top: 0;
     right: 0;
-    bottom: 11%;
-    width: clamp(8.25rem, 13vw, 9rem);
+    bottom: 0;
+    width: var(--stage-label-width);
     pointer-events: none;
+    animation: hero-platform-float 8s var(--xp-ease-standard) infinite;
   }
 
   .hero-layered-platform__label {
     position: absolute;
+    top: calc(50% + var(--layer-y));
     left: 0;
     display: grid;
     grid-template-columns: 1.75rem minmax(0, 1fr);
@@ -241,55 +374,30 @@ const paintedLayers = [...layers].reverse();
     max-width: 100%;
     color: var(--xp-text-secondary);
     opacity: 0.88;
-  }
-
-  .hero-layered-platform__label--applications {
-    top: 4%;
-  }
-
-  .hero-layered-platform__label--guest-systems {
-    top: 30%;
-  }
-
-  .hero-layered-platform__label--xen-hypervisor {
-    top: 55%;
-  }
-
-  .hero-layered-platform__label--hardware {
-    top: 80%;
+    transform: translateY(-50%);
   }
 
   .hero-layered-platform__connector {
     position: absolute;
     top: 50%;
-    right: calc(100% + 0.55rem);
-    width: clamp(4.5rem, 9vw, 7rem);
-    height: 1px;
-    background: linear-gradient(90deg, transparent, currentColor 84%, currentColor);
-    opacity: 0.38;
-  }
-
-  .hero-layered-platform__connector::before,
-  .hero-layered-platform__connector::after {
-    position: absolute;
-    top: 50%;
-    width: 0.34rem;
-    height: 0.34rem;
-    content: "";
-    border-radius: 999px;
-    background: currentColor;
+    right: calc(100% + var(--stage-label-gap));
+    width: var(--stage-connector-width);
+    height: 0.75rem;
+    overflow: visible;
+    opacity: 0.34;
     transform: translateY(-50%);
-    box-shadow: 0 0 8px currentColor;
   }
 
-  .hero-layered-platform__connector::before {
-    left: 0;
+  .hero-layered-platform__connector line {
+    stroke: currentColor;
+    stroke-linecap: round;
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
   }
 
-  .hero-layered-platform__connector::after {
-    right: 0;
-    width: 0.24rem;
-    height: 0.24rem;
+  .hero-layered-platform__connector circle {
+    fill: currentColor;
+    filter: drop-shadow(0 0 0.28rem currentColor);
   }
 
   .hero-layered-platform__icon {
@@ -365,23 +473,66 @@ const paintedLayers = [...layers].reverse();
     }
   }
 
+  @keyframes hero-platform-specular {
+    0% {
+      transform: translate3d(-10%, -2%, 0);
+      opacity: 0.06;
+    }
+
+    36%,
+    70% {
+      opacity: 0.28;
+    }
+
+    100% {
+      transform: translate3d(10%, 2%, 0);
+      opacity: 0.08;
+    }
+  }
+
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-    .hero-layered-platform__stack:hover .hero-layered-platform__layer--applications {
-      transform: translate3d(-50%, calc(-50% + var(--layer-y) - 0.45rem), 0);
+    .hero-layered-platform:hover .hero-layered-platform__layer {
+      --layer-hover-shift: var(--layer-hover-y);
     }
 
-    .hero-layered-platform__stack:hover .hero-layered-platform__layer--guest-systems {
-      transform: translate3d(-50%, calc(-50% + var(--layer-y) - 0.3rem), 0);
+    .hero-layered-platform:hover .hero-layered-platform__layer:not(.hero-layered-platform__layer--xen-hypervisor) img {
+      filter:
+        brightness(0.965)
+        contrast(1.01)
+        drop-shadow(0 2.1rem 1.9rem rgb(0 0 0 / 0.37))
+        drop-shadow(0 0 1rem rgb(79 179 255 / 0.1));
     }
 
-    .hero-layered-platform__stack:hover .hero-layered-platform__layer--xen-hypervisor {
-      transform: translate3d(-50%, calc(-50% + var(--layer-y) - 0.18rem), 0);
-      filter: brightness(1.1) saturate(1.12);
+    .hero-layered-platform:hover .hero-layered-platform__layer--hardware img {
+      filter:
+        brightness(0.955)
+        contrast(1.025)
+        drop-shadow(0 3rem 2.6rem rgb(0 0 0 / 0.58))
+        drop-shadow(0 0 0.95rem rgb(140 255 0 / 0.12));
+    }
+
+    .hero-layered-platform:hover .hero-layered-platform__layer--xen-hypervisor img {
+      filter:
+        brightness(1.11)
+        contrast(1.1)
+        saturate(1.08)
+        drop-shadow(0 1.35rem 1.2rem rgb(0 0 0 / 0.4))
+        drop-shadow(0 0 1.45rem rgb(140 255 0 / 0.42));
+    }
+
+    .hero-layered-platform:hover .hero-layered-platform__label:not(.hero-layered-platform__label--xen-hypervisor) {
+      opacity: 0.8;
+    }
+
+    .hero-layered-platform:hover .hero-layered-platform__label--xen-hypervisor {
+      opacity: 1;
     }
   }
 
   @media (max-width: 63.9375rem) {
     .hero-layered-platform {
+      --stage-label-zone: 0rem;
+      --stage-artwork-width: min(100%, 38rem);
       width: min(100%, 42rem);
     }
 
@@ -389,13 +540,15 @@ const paintedLayers = [...layers].reverse();
       min-height: clamp(25rem, 74vw, 34rem);
     }
 
-    .hero-layered-platform__stack {
-      inset: 0;
-    }
-
     .hero-layered-platform__layer {
-      width: min(100%, 38rem);
-      transform: translate3d(-50%, calc(-50% + var(--layer-mobile-y)), 0);
+      transform: translate3d(
+          calc(-50% + var(--layer-pointer-x)),
+          calc(
+            -50% + var(--layer-mobile-y) + var(--layer-hover-shift) + var(--layer-pointer-y)
+          ),
+          0
+        )
+        scale(var(--layer-scale, 1));
     }
 
     .hero-layered-platform__labels {
@@ -408,13 +561,12 @@ const paintedLayers = [...layers].reverse();
   }
 
   @media (max-width: 39.9375rem) {
-    .hero-layered-platform__stage {
-      min-height: clamp(21rem, 90vw, 27rem);
+    .hero-layered-platform {
+      --stage-artwork-width: min(100%, 33rem);
     }
 
-    .hero-layered-platform__layer {
-      width: 33rem;
-      max-width: 118vw;
+    .hero-layered-platform__stage {
+      min-height: clamp(21rem, 90vw, 27rem);
     }
 
     .hero-layered-platform__aura,
@@ -424,7 +576,15 @@ const paintedLayers = [...layers].reverse();
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .hero-layered-platform__stage::before {
+      animation: none;
+    }
+
     .hero-layered-platform__stack {
+      animation: none;
+    }
+
+    .hero-layered-platform__labels {
       animation: none;
     }
 
