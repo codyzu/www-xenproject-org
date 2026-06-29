@@ -42,6 +42,8 @@ const sectionSurface = isLight ? '0' : surface;
 const headingTone = isLight ? 'on-light' : 'primary';
 const textTone = isLight ? 'on-light-muted' : 'secondary';
 const logoGridClasses = 'uno-grid uno-grid-cols-2 uno-gap-4 md:uno-grid-cols-3 lg:uno-grid-cols-5';
+const logoTileClasses = 'xen-focus uno-flex uno-min-h-24 uno-w-full uno-items-center uno-justify-center uno-rounded-xp-lg uno-border uno-border-solid uno-border-[rgb(17_24_39_/_0.12)] uno-bg-[#f5f7fb] uno-p-5 uno-shadow-[inset_0_1px_0_rgb(255_255_255_/_0.82),0_10px_26px_rgb(0_0_0_/_0.18)] uno-transition uno-duration-[var(--xp-motion-base)] uno-ease-[var(--xp-ease-standard)] hover:uno--translate-y-0.5 hover:uno-border-[rgb(133_194_65_/_0.34)] hover:uno-bg-[#fbfcff]';
+const logoImageClasses = 'uno-max-h-10 uno-w-auto uno-max-w-full uno-object-contain';
 ---
 
 <Section id={id} surface={sectionSurface} class={className}>
@@ -60,21 +62,21 @@ const logoGridClasses = 'uno-grid uno-grid-cols-2 uno-gap-4 md:uno-grid-cols-3 l
             {logos.map(logo => {
               const content = (
                 <>
-                  <img src={logo.src} width={logo.width} height={logo.height} alt={logo.label} loading="lazy" class="uno-max-h-10 uno-w-auto uno-max-w-full uno-object-contain" />
+                  <img src={logo.src} width={logo.width} height={logo.height} alt={logo.label} loading="lazy" class={logoImageClasses} />
                 </>
               );
               return (
-                <Surface tone="light-raised" border="light" shadow="sm" padding="sm" class="uno-flex uno-min-h-24 uno-items-center uno-justify-center">
+                <>
                   {logo.href ? (
-                    <a href={logo.href} aria-label={`Visit ${logo.label}`} class="xen-focus uno-flex uno-min-h-14 uno-w-full uno-items-center uno-justify-center uno-rounded-xp-md uno-p-2">
+                    <a href={logo.href} aria-label={`Visit ${logo.label}`} class={logoTileClasses}>
                       {content}
                     </a>
                   ) : (
-                    <div class="uno-flex uno-min-h-14 uno-w-full uno-items-center uno-justify-center uno-p-2">
+                    <div class={logoTileClasses}>
                       {content}
                     </div>
                   )}
-                </Surface>
+                </>
               );
             })}
           </div>
@@ -93,21 +95,21 @@ const logoGridClasses = 'uno-grid uno-grid-cols-2 uno-gap-4 md:uno-grid-cols-3 l
           {logos.map(logo => {
             const content = (
               <>
-                <img src={logo.src} width={logo.width} height={logo.height} alt={logo.label} loading="lazy" class="uno-max-h-10 uno-w-auto uno-max-w-full uno-object-contain" />
+                <img src={logo.src} width={logo.width} height={logo.height} alt={logo.label} loading="lazy" class={logoImageClasses} />
               </>
             );
             return (
-              <Surface tone="light-raised" border="light" shadow="sm" padding="sm" class="uno-flex uno-min-h-24 uno-items-center uno-justify-center">
+              <>
                 {logo.href ? (
-                  <a href={logo.href} aria-label={`Visit ${logo.label}`} class="xen-focus uno-flex uno-min-h-14 uno-w-full uno-items-center uno-justify-center uno-rounded-xp-md uno-p-2">
+                  <a href={logo.href} aria-label={`Visit ${logo.label}`} class={logoTileClasses}>
                     {content}
                   </a>
                 ) : (
-                  <div class="uno-flex uno-min-h-14 uno-w-full uno-items-center uno-justify-center uno-p-2">
+                  <div class={logoTileClasses}>
                     {content}
                   </div>
                 )}
-              </Surface>
+              </>
             );
           })}
         </div>
