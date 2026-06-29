@@ -175,36 +175,58 @@ const resources = [
     ]}
     layout="balanced"
   >
-    <Surface slot="media" tone="2" border="strong" radius="lg" shadow="md" padding="lg" class="uno-overflow-hidden lg:uno-ml-auto lg:uno-max-w-[32rem]">
-      <Stack gap="5">
-        <div class="uno-flex uno-items-center uno-justify-between uno-gap-4">
+    <Surface
+      slot="media"
+      tone="2"
+      border="strong"
+      radius="lg"
+      shadow="md"
+      padding="lg"
+      class="xp-platform-diagram lg:uno-ml-auto lg:uno-max-w-[38rem]"
+    >
+      <Stack gap="5" class="xp-platform-diagram__content">
+        <div class="xp-platform-diagram__header uno-flex uno-items-center uno-justify-between uno-gap-4">
           <Text size="eyebrow" tone="accent-primary">Platform layers</Text>
           <span class="i-carbon-car uno-text-3xl uno-text-xp-accent-primary" aria-hidden="true"></span>
         </div>
-        <Stack gap="3">
-          <Surface tone="3" border="strong" radius="md" shadow="sm" padding="md">
-            <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Guest domains</Text>
-            <div class="uno-mt-4 uno-grid uno-grid-cols-1 uno-gap-3 sm:uno-grid-cols-3">
+        <div class="xp-platform-stack">
+          <div class="xp-platform-plate xp-platform-plate--guests">
+            <span class="xp-platform-plate__front" aria-hidden="true"></span>
+            <span class="xp-platform-plate__side" aria-hidden="true"></span>
+            <Text size="mono-small" tone="accent-primary" class="xp-platform-plate__title">Guest domains</Text>
+            <div class="xp-domain-list">
               <span class="xp-layer-chip">Linux</span>
               <span class="xp-layer-chip">RTOS</span>
               <span class="xp-layer-chip">Services</span>
             </div>
-          </Surface>
-          <div class="uno-flex uno-justify-center" aria-hidden="true">
-            <span class="i-carbon-arrow-down uno-text-2xl uno-text-xp-text-muted"></span>
           </div>
-          <Surface tone="3" border="strong" radius="md" shadow="sm" padding="md">
-            <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Xen hypervisor boundary</Text>
-            <Text size="caption" class="uno-mt-2">Isolation, scheduling, device assignment, and platform control decisions stay visible.</Text>
-          </Surface>
-          <div class="uno-flex uno-justify-center" aria-hidden="true">
-            <span class="i-carbon-arrow-down uno-text-2xl uno-text-xp-text-muted"></span>
+          <div class="xp-platform-connector" aria-hidden="true">
+            <span class="xp-platform-connector__rail"></span>
+            <span class="xp-platform-connector__marker"></span>
           </div>
-          <Surface tone="3" border="muted" radius="md" shadow="sm" padding="md">
-            <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Hardware platform</Text>
-            <Text size="caption" class="uno-mt-2">Compute, memory, interrupts, devices, and long-lived product integration.</Text>
-          </Surface>
-        </Stack>
+          <div class="xp-platform-plate xp-platform-plate--hypervisor">
+            <span class="xp-platform-plate__front" aria-hidden="true"></span>
+            <span class="xp-platform-plate__side" aria-hidden="true"></span>
+            <Text size="mono-small" tone="accent-primary" class="xp-platform-plate__title">Xen hypervisor boundary</Text>
+            <Text size="caption" class="xp-platform-plate__copy">Isolation, scheduling, device assignment, and platform control decisions stay visible.</Text>
+          </div>
+          <div class="xp-platform-connector" aria-hidden="true">
+            <span class="xp-platform-connector__rail"></span>
+            <span class="xp-platform-connector__marker"></span>
+          </div>
+          <div class="xp-platform-plate xp-platform-plate--hardware">
+            <span class="xp-platform-plate__front" aria-hidden="true"></span>
+            <span class="xp-platform-plate__side" aria-hidden="true"></span>
+            <Text size="mono-small" tone="accent-primary" class="xp-platform-plate__title">Hardware platform</Text>
+            <Text size="caption" class="xp-platform-plate__copy">Compute, memory, interrupts, devices, and long-lived product integration.</Text>
+            <span class="xp-hardware-leds" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+          </div>
+        </div>
       </Stack>
     </Surface>
   </Hero>
@@ -414,6 +436,275 @@ const resources = [
 </BaseLayout>
 
 <style>
+  .xp-platform-diagram {
+    --plate-blue: rgb(42 153 255);
+    --plate-cyan: rgb(65 218 255);
+    --plate-green: rgb(133 194 65);
+    position: relative;
+    isolation: isolate;
+    min-height: 26rem;
+    overflow: visible;
+    border-color: rgb(92 145 209 / 0.28);
+    background:
+      radial-gradient(circle at 78% 18%, rgb(42 153 255 / 0.1), transparent 32%),
+      radial-gradient(circle at 12% 82%, rgb(133 194 65 / 0.08), transparent 36%),
+      linear-gradient(145deg, rgb(255 255 255 / 0.035), transparent 42%),
+      rgb(13 25 42 / 0.72);
+    box-shadow:
+      0 0 0 1px rgb(255 255 255 / 0.035) inset,
+      0 1.2rem 2.2rem -1.45rem rgb(0 0 0 / 0.5);
+  }
+
+  .xp-platform-diagram::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.018) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.016) 1px, transparent 1px);
+    background-size: 2.7rem 2.7rem;
+    mask-image: linear-gradient(135deg, transparent 4%, black 32%, transparent 86%);
+  }
+
+  .xp-platform-diagram::after {
+    content: '';
+    position: absolute;
+    inset: auto 4% 2.25rem;
+    z-index: -1;
+    height: 6rem;
+    border-radius: 50%;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgb(42 153 255 / 0.12), transparent 65%),
+      radial-gradient(ellipse at 50% 60%, rgb(133 194 65 / 0.08), transparent 68%);
+    opacity: 0.55;
+  }
+
+  .xp-platform-diagram__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .xp-platform-diagram__header {
+    padding-bottom: 0.25rem;
+    border-bottom: 1px solid rgb(255 255 255 / 0.055);
+  }
+
+  .xp-platform-stack {
+    display: grid;
+    gap: 1.9rem;
+    padding: 1.1rem 0.35rem 1rem;
+    perspective: 44rem;
+    transform-style: preserve-3d;
+  }
+
+  .xp-platform-plate {
+    --plate-edge: rgb(8 18 36);
+    --plate-edge-light: rgb(37 121 201 / 0.86);
+    --plate-highlight: rgb(122 221 255 / 0.58);
+    --plate-shadow: rgb(0 0 0 / 0.42);
+    --plate-depth: 0.72rem;
+    --plate-side-width: 0.62rem;
+    position: relative;
+    z-index: 1;
+    min-width: 0;
+    padding: 1.05rem 1.1rem;
+    border: 1px solid rgb(102 190 255 / 0.2);
+    border-radius: 1rem;
+    background:
+      radial-gradient(circle at 18% 9%, rgb(95 165 255 / 0.18), transparent 35%),
+      linear-gradient(145deg, rgb(255 255 255 / 0.1), transparent 38%),
+      linear-gradient(180deg, rgb(27 48 82 / 0.98), rgb(10 25 52 / 0.99));
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.18) inset,
+      0 -1px 0 rgb(0 0 0 / 0.28) inset,
+      0 0 0 1px rgb(42 153 255 / 0.07) inset,
+      0 1.8rem 2.2rem -1.2rem var(--plate-shadow);
+    transform: rotateX(10deg) rotateZ(-2deg);
+    transform-origin: 50% 100%;
+    transform-style: preserve-3d;
+  }
+
+  .xp-platform-plate::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .xp-platform-plate::after {
+    inset: 0.52rem 1rem auto;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--plate-highlight), transparent);
+    box-shadow: 0 0 0.38rem rgb(42 153 255 / 0.2);
+    opacity: 0.68;
+  }
+
+  .xp-platform-plate__front,
+  .xp-platform-plate__side {
+    position: absolute;
+    display: block;
+    pointer-events: none;
+  }
+
+  .xp-platform-plate__front {
+    right: 0;
+    bottom: calc((var(--plate-depth) - 0.03rem) * -1);
+    left: 0;
+    height: var(--plate-depth);
+    border: 1px solid rgb(83 172 255 / 0.15);
+    border-top: 0;
+    border-radius: 0 0 1rem 1rem;
+    background:
+      linear-gradient(90deg, rgb(12 71 135 / 0.44), rgb(99 210 255 / 0.42) 50%, rgb(10 41 91 / 0.5)),
+      linear-gradient(180deg, var(--plate-edge-light), var(--plate-edge));
+    box-shadow:
+      0 1px 0 rgb(123 224 255 / 0.32) inset,
+      0 0.45rem 0.75rem rgb(15 106 255 / 0.12);
+    opacity: 0.92;
+  }
+
+  .xp-platform-plate__side {
+    top: 0.42rem;
+    right: calc((var(--plate-side-width) - 0.03rem) * -1);
+    bottom: calc(var(--plate-depth) * -0.42);
+    width: var(--plate-side-width);
+    border-radius: 0 1rem 1rem 0;
+    background:
+      linear-gradient(180deg, rgb(108 211 255 / 0.24), transparent 42%),
+      linear-gradient(90deg, var(--plate-edge-light), var(--plate-edge));
+    clip-path: polygon(0 0, 100% 0.55rem, 100% calc(100% - 0.45rem), 0 100%);
+    box-shadow:
+      -1px 0 0 rgb(111 218 255 / 0.26) inset,
+      0.28rem 0.55rem 0.7rem rgb(0 0 0 / 0.22);
+    opacity: 0.86;
+  }
+
+  .xp-platform-plate--guests {
+    z-index: 3;
+    transform: translateY(-0.2rem) translateZ(2.1rem) scale(0.96) rotateX(11deg) rotateZ(-2.2deg);
+    background:
+      radial-gradient(circle at 18% 11%, rgb(73 172 255 / 0.2), transparent 34%),
+      linear-gradient(145deg, rgb(255 255 255 / 0.105), transparent 36%),
+      linear-gradient(180deg, rgb(32 55 94 / 0.98), rgb(13 31 65 / 0.99));
+  }
+
+  .xp-platform-plate--hypervisor {
+    z-index: 2;
+    transform: translateX(0.28rem) translateZ(1rem) scale(0.985) rotateX(9.5deg) rotateZ(-1.55deg);
+    border-color: rgb(80 178 255 / 0.26);
+    background:
+      radial-gradient(circle at 22% 8%, rgb(42 153 255 / 0.13), transparent 38%),
+      linear-gradient(145deg, rgb(255 255 255 / 0.07), transparent 34%),
+      linear-gradient(180deg, rgb(19 42 68 / 0.98), rgb(10 27 48 / 0.99));
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.15) inset,
+      0 0 0 1px rgb(42 153 255 / 0.1) inset,
+      0 1.15rem 1.7rem -0.95rem rgb(0 0 0 / 0.4);
+  }
+
+  .xp-platform-plate--hardware {
+    --plate-edge: rgb(17 25 19);
+    --plate-edge-light: rgb(103 148 58 / 0.74);
+    --plate-highlight: rgb(179 255 93 / 0.44);
+    --plate-depth: 0.82rem;
+    --plate-side-width: 0.7rem;
+    z-index: 1;
+    padding-bottom: 1.55rem;
+    transform: translateX(-0.18rem) translateY(0.12rem) scale(1.015) rotateX(8deg) rotateZ(-1deg);
+    border-color: rgb(133 194 65 / 0.26);
+    background:
+      radial-gradient(circle at 84% 72%, rgb(133 194 65 / 0.13), transparent 28%),
+      linear-gradient(90deg, rgb(133 194 65 / 0.08) 1px, transparent 1px),
+      linear-gradient(rgb(133 194 65 / 0.055) 1px, transparent 1px),
+      linear-gradient(135deg, transparent 18%, rgb(133 194 65 / 0.065) 18% 19%, transparent 19% 39%, rgb(42 153 255 / 0.045) 39% 40%, transparent 40%),
+      linear-gradient(180deg, rgb(24 42 33 / 0.98), rgb(10 25 30 / 0.99));
+    background-size: auto, 2.1rem 2.1rem, 2.1rem 2.1rem, 4.8rem 4.8rem, auto;
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.14) inset,
+      0 0 0 1px rgb(133 194 65 / 0.08) inset,
+      0 1.25rem 1.7rem -0.95rem rgb(0 0 0 / 0.42);
+  }
+
+  .xp-platform-plate--hardware::before {
+    content: none;
+  }
+
+  .xp-platform-plate--hardware .xp-platform-plate__front {
+    border-color: rgb(145 210 89 / 0.14);
+    background:
+      linear-gradient(90deg, rgb(79 104 47 / 0.45), rgb(173 230 89 / 0.38) 50%, rgb(36 58 36 / 0.55)),
+      linear-gradient(180deg, var(--plate-edge-light), var(--plate-edge));
+    box-shadow:
+      0 1px 0 rgb(183 255 99 / 0.32) inset,
+      0 0.38rem 0.65rem rgb(133 194 65 / 0.1);
+  }
+
+  .xp-platform-plate--hardware .xp-platform-plate__side {
+    background:
+      linear-gradient(180deg, rgb(183 255 99 / 0.2), transparent 44%),
+      linear-gradient(90deg, var(--plate-edge-light), var(--plate-edge));
+    box-shadow:
+      -1px 0 0 rgb(183 255 99 / 0.18) inset,
+      0.28rem 0.55rem 0.7rem rgb(0 0 0 / 0.2);
+  }
+
+  .xp-platform-plate__title {
+    margin: 0;
+    color: var(--xp-accent-primary);
+    font-family: var(--xp-font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.25;
+  }
+
+  .xp-platform-plate__copy {
+    margin-top: 0.5rem;
+    color: var(--xp-text-secondary);
+  }
+
+  .xp-domain-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    margin: 1rem 0 0.05rem;
+  }
+
+  .xp-platform-connector {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    min-height: 2.8rem;
+    margin: -0.65rem 0 -0.55rem;
+    transform: rotateX(6deg) rotateZ(-1.3deg);
+    transform-style: preserve-3d;
+  }
+
+  .xp-platform-connector__rail {
+    width: 2px;
+    min-height: 2.95rem;
+    background: linear-gradient(180deg, transparent, rgb(91 205 255 / 0.5) 18% 82%, transparent);
+    box-shadow:
+      -8rem 0 0 rgb(42 153 255 / 0.16),
+      8rem 0 0 rgb(42 153 255 / 0.16),
+      0 0 0.42rem rgb(42 153 255 / 0.48),
+      -8rem 0 0.35rem rgb(42 153 255 / 0.22),
+      8rem 0 0.35rem rgb(42 153 255 / 0.22);
+  }
+
+  .xp-platform-connector__marker {
+    position: absolute;
+    top: 50%;
+    width: 0.42rem;
+    height: 0.42rem;
+    border-right: 1px solid rgb(139 199 255 / 0.58);
+    border-bottom: 1px solid rgb(139 199 255 / 0.58);
+    background: transparent;
+    box-shadow: 0.16rem 0.16rem 0.32rem rgb(42 153 255 / 0.2);
+    transform: translateY(-42%) rotate(45deg);
+  }
+
   .xp-layer-chip,
   .xp-tag {
     display: inline-flex;
@@ -429,12 +720,163 @@ const resources = [
   }
 
   .xp-layer-chip {
+    position: relative;
     justify-content: center;
-    padding: 0.75rem 0.65rem;
+    padding: 0.72rem 0.65rem;
     text-align: center;
+    border-color: rgb(91 187 255 / 0.22);
+    border-radius: 0.65rem;
+    background:
+      linear-gradient(145deg, rgb(255 255 255 / 0.13), transparent 40%),
+      linear-gradient(180deg, rgb(31 61 101 / 0.96), rgb(15 36 72 / 0.98));
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.16) inset,
+      0 -1px 0 rgb(0 0 0 / 0.22) inset,
+      0 0.48rem 0.8rem -0.42rem rgb(0 0 0 / 0.58);
+    transform: translateY(-0.2rem) translateZ(0.3rem);
+  }
+
+  .xp-layer-chip::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -0.32rem;
+    left: 0;
+    height: 0.34rem;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgb(46 141 255 / 0.54), rgb(8 27 65 / 0.72));
+    clip-path: inset(48% 0 0 round 0 0 0.65rem 0.65rem);
+    pointer-events: none;
+  }
+
+  .xp-hardware-leds {
+    position: absolute;
+    right: 1.1rem;
+    bottom: 0.54rem;
+    display: inline-flex;
+    gap: 0.48rem;
+    pointer-events: none;
+  }
+
+  .xp-hardware-leds span {
+    width: 0.28rem;
+    height: 0.28rem;
+    border-radius: 999px;
+    background: var(--plate-green);
+    box-shadow:
+      0 0 0.28rem rgb(133 194 65 / 0.72),
+      0 0.5rem 0.55rem rgb(133 194 65 / 0.15);
   }
 
   .xp-tag {
     padding: 0.5rem 0.65rem;
+  }
+
+  @media (min-width: 640px) {
+    .xp-domain-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .xp-platform-plate {
+      animation: xp-platform-plate-enter 480ms var(--xp-ease-standard) backwards;
+    }
+
+    .xp-platform-plate--hypervisor {
+      animation-delay: 70ms;
+    }
+
+    .xp-platform-plate--hardware {
+      animation-delay: 120ms;
+    }
+  }
+
+  @keyframes xp-platform-plate-enter {
+    from {
+      opacity: 0;
+      translate: 0 0.55rem;
+    }
+  }
+
+  @media (max-width: 639px) {
+    .xp-platform-stack {
+      perspective: none;
+      gap: 1rem;
+      padding-inline: 0;
+    }
+
+    .xp-platform-plate,
+    .xp-platform-plate--guests,
+    .xp-platform-plate--hardware {
+      transform: none;
+    }
+
+    .xp-platform-plate__front {
+      bottom: -0.46rem;
+      height: 0.46rem;
+    }
+
+    .xp-platform-plate__side {
+      display: none;
+    }
+
+    .xp-platform-connector {
+      min-height: 1.2rem;
+      margin: -0.18rem 0 -0.08rem;
+      transform: none;
+    }
+
+    .xp-platform-connector__rail {
+      min-height: 1.3rem;
+      box-shadow:
+        0 0 0.45rem rgb(42 153 255 / 0.58);
+    }
+
+    .xp-hardware-leds {
+      right: 0.9rem;
+    }
+  }
+
+  @media (max-width: 479px) {
+    .xp-platform-diagram {
+      min-height: auto;
+    }
+
+    .xp-layer-chip {
+      transform: none;
+    }
+
+    .xp-layer-chip::after {
+      display: none;
+    }
+  }
+
+  @media print {
+    .xp-platform-diagram {
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .xp-platform-diagram::before,
+    .xp-platform-plate::before,
+    .xp-platform-plate::after,
+    .xp-platform-connector {
+      display: none;
+    }
+
+    .xp-platform-stack {
+      gap: 0.75rem;
+      perspective: none;
+    }
+
+    .xp-platform-plate,
+    .xp-platform-plate--guests,
+    .xp-platform-plate--hardware {
+      border: 1px solid #9ca3af;
+      background: transparent;
+      box-shadow: none;
+      transform: none;
+    }
   }
 </style>
