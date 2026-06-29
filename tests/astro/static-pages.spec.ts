@@ -7,7 +7,12 @@ const routes = [
   ['/projects/hvmi/', 'HVMI', 'What is HVMI?'],
   ['/projects/hypervisor/', 'Hypervisor', 'Versatile Open-Source Virtualization'],
   ['/projects/hypervisor/openpgp-keys/', 'OpenPGP Keys', 'The Hypervisor Team’s OpenPGP Keys'],
-  ['/projects/embedded-and-automotive/', 'Embedded & Automotive', 'Embedded systems redefined'],
+  [
+    '/projects/embedded-and-automotive/',
+    'Embedded & Automotive',
+    'Embedded platforms need consolidation and separation at the same time.',
+    'Open source virtualization for embedded and automotive systems.',
+  ],
   ['/projects/mirage-os/', 'Mirage OS', 'Our architecture'],
   ['/projects/unikraft/', 'Unikraft', 'Basic concepts'],
   ['/projects/windows-pv-drivers/', 'Windows PV Drivers', 'About Windows PV Drivers'],
@@ -17,11 +22,11 @@ const routes = [
 ] as const;
 
 test.describe('Phase 5 static routes', () => {
-  for (const [path, title, heading] of routes) {
+  for (const [path, title, heading, customH1] of routes) {
     test(`renders ${path}`, async ({page}) => {
       await page.goto(path);
       await expect(page).toHaveTitle(new RegExp(title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'));
-      await expect(page.getByRole('heading', {level: 1, name: title})).toBeVisible();
+      await expect(page.getByRole('heading', {level: 1, name: customH1 ?? title})).toBeVisible();
       await expect(page.getByRole('heading', {name: heading, exact: false}).first()).toBeVisible();
       await expect(page.locator('header')).toBeVisible();
       await expect(page.locator('footer')).toBeVisible();

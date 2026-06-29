@@ -90,7 +90,7 @@
   - paragraph: Key project areas are available through direct links so teams can scan capabilities and go deeper where relevant.
   - article:
     - heading "Embedded & Automotive" [level=3]
-    - paragraph: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automotive systems.
+    - paragraph: Open source virtualization for embedded and automotive systems that need isolation, mixed workloads, hardware-aware boundaries, and long-term platform control.
     - link "Open project":
       - /url: /projects/embedded-and-automotive
   - article:

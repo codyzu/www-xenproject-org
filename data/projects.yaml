@@ -3,7 +3,7 @@
   route: /projects/hypervisor/openpgp-keys/
   order: 10
 - title: Embedded & Automotive
-  description: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automotive systems.
+  description: Open source virtualization for embedded and automotive systems that need isolation, mixed workloads, hardware-aware boundaries, and long-term platform control.
   route: /projects/embedded-and-automotive/
   order: 20
 - title: HVMI

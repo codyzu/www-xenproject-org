@@ -1,47 +1,160 @@
 - main:
+  - paragraph: Solution Area
+  - heading "Open source virtualization for embedded and automotive systems." [level=1]
+  - paragraph: Use Xen to separate workloads, consolidate platforms, and keep control boundaries visible in systems where hardware, operating systems, and long-lived product requirements meet.
+  - link "Explore Xen architecture":
+    - /url: /technology/architecture
+  - link "Start contributing":
+    - /url: /contribute/get-started
+  - paragraph: Platform layers
+  - paragraph: Guest domains
+  - text: Linux RTOS Services
+  - paragraph: Xen hypervisor boundary
+  - paragraph: Isolation, scheduling, device assignment, and platform control decisions stay visible.
+  - paragraph: Hardware platform
+  - paragraph: Compute, memory, interrupts, devices, and long-lived product integration.
+  - paragraph: Why virtualization matters here
+  - heading "Embedded platforms need consolidation and separation at the same time." [level=2]
+  - paragraph: Automotive and embedded teams are often asked to combine workloads on constrained hardware without losing the system boundaries that make engineering, validation, and maintenance possible.
   - article:
-    - heading "Embedded & Automotive" [level=1]
-    - text: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automotive systems.
-    - heading "Embedded systems redefined" [level=2]
-    - paragraph: At the core of every modern embedded system is software meticulously crafted and seamlessly integrated with hardware, dedicated to fulfilling a specific, vital function. This is where our journey begins.
-    - paragraph: Since 2011, following the groundbreaking announcement of the Xen port to ARMv7 with Virtualization Extensions, our community has been relentlessly advancing Xen for embedded deployments.
-    - paragraph: Our focus extends beyond ARMv7 to encompass ARMv8, x86-64, and RISC-V, catering to both embedded and automotive applications. We’re not just part of the evolution; we’re leading it.
-    - img "ARM logo"
-    - img "AMD logo"
-    - heading "What does this mean?" [level=2]
-    - list:
-      - listitem: Xen revolutionizes embedded systems, enabling fully-featured operating systems like Linux to coexist with smaller and faster RTOSes such as Zephyr.
-      - listitem: Xen’s ability to allocate hardware resources with precision and support multiple communication paradigms between VMs has made it indispensable in diverse applications, from 5G antennas and industrial robots to medical devices and automobiles.
-      - listitem: A significant amount of work has been completed in this area since the team started in 2014. Most work has occurred in Linux, Xen, and OP-TEE.
-    - img "Illustration of a database icon with gears and a wrench, representing data management and configuration tools."
-    - list:
-      - listitem:
-        - heading " Real-Time and Cache Coloring" [level=2]
-        - paragraph: Xen excels in handling hard real-time workloads. Our innovative cache coloring technique ensures low and predictable interrupt latencies, with real-time benchmarks as impressive as less than 4 microseconds interrupt latencies on AMD/Xilinx Ultrascale+ under heavy interference.
-      - listitem:
-        - heading " Dom0less and parallel booting" [level=2]
-        - paragraph: Embrace the efficiency of parallel VM booting with Dom0less Xen. This feature drastically reduces boot times to under a second for an RTOS like Zephyr, bypassing the need for Dom0 (Linux) boot-up. Dom0less also opens the door to fully static configurations, positioning Dom0 as an optional component, not a necessity.
-      - listitem:
-        - heading " Cortex-R52 and R82 Support" [level=2]
-        - paragraph: An active collaboration between ARM and AMD/Xilinx is expanding Xen’s capabilities to microcontrollers and MMU-less embedded processors. This innovation soon to be upstreamed, marks a significant leap for virtualization in embedded systems.
-    - heading "Why Xen Project?" [level=2]
-    - paragraph: The Xen Project Hypervisor is uniquely placed to support a new range of use cases, building on top of 14 years of usage within the data center. In particular, its isolation and security features, flexible virtualization mode and architecture, driver disaggregation, and ARM support (only 47K lines of code) make it a perfect fit for embedded applications.
-    - iframe
-    - heading "Functional safety" [level=2]
-    - paragraph: With sponsorships from the likes of AMD, we’re on a mission to align Xen with top safety standards, including ISO 26262 ASIL D and IEC 61508 SIL 3.
-    - paragraph: Initiatives like the MISRA C course for community members and striving for MISRA C compliance in the Xen upstream codebase underscore our dedication to ensuring Xen’s role in safety-critical environments.
-    - paragraph: Xen is not just a technology; it’s a vision coming to life, shaping the future of embedded systems, and redefining what’s possible.
-    - img "Slide titled 'Xen Project's Progress Toward Safety Certification' by Stefano Stabellini and team members from AMD and BUGSENG."
-    - heading "Functional safety" [level=2]
-    - paragraph:
-      - text: Licenses Code will be upstreamed to projects under the license of the respective upstream project. For code that is hosted by the subproject, e.g. for a
-      - link "QNX base-ports":
-        - /url: https://wiki.xenproject.org/wiki/Embedded_and_Automotive/Archived/PV_Drivers/Project_Proposal#QNX_and_other_OSes
-      - text: ", an appropriate"
-      - link "OSI approved":
-        - /url: https://opensource.org/licenses
-      - text: license will be used. For PV drivers contributed to the Linux kernel or for Linux user space drivers hosted by the subproject a
-      - link "dual-use license":
-        - /url: https://wiki.xenproject.org/wiki/Embedded_and_Automotive/Archived/PV_Drivers/Project_Proposal#Linux
-      - text: will be used to enable easy sharing of driver code with FreeBSD and other open source operating systems.
-    - img "Illustration of a person typing code on a computer, symbolizing software development and programming."
+    - heading "Consolidate without hiding boundaries" [level=3]
+    - paragraph: Embedded teams often need to run more software on fewer boards while keeping ownership, privilege, and failure domains visible.
+  - article:
+    - heading "Separate mixed workloads" [level=3]
+    - paragraph: A shared platform may need Linux, RTOS workloads, service domains, and specialized systems to coexist with clear separation.
+  - article:
+    - heading "Keep hardware control visible" [level=3]
+    - paragraph: Virtualization should help platform teams reason about devices, interrupts, boot flow, and integration boundaries.
+  - article:
+    - heading "Support long-lived product platforms" [level=3]
+    - paragraph: Automotive and embedded products need maintainable architectures that can evolve across hardware and software lifecycles.
+  - paragraph: Automotive focus
+  - heading "A virtualization layer for software-defined vehicle platforms." [level=2]
+  - paragraph: Automotive platforms increasingly combine Linux systems, RTOS workloads, service domains, and hardware-specific functions on shared compute. Xen gives platform teams a thin virtualization layer for reasoning about isolation, ownership, and system boundaries without treating one operating system as the whole platform.
+  - article:
+    - heading "ECU consolidation" [level=3]
+    - paragraph: Keep platform boundaries explicit as vehicle functions move from many controllers toward shared compute.
+  - article:
+    - heading "Mixed workloads" [level=3]
+    - paragraph: Evaluate how IVI, service domains, Linux, RTOS workloads, and hardware-facing functions can coexist.
+  - complementary:
+    - text: Important
+    - heading "Safety claims require evidence." [level=2]
+    - paragraph: Xen is relevant to safety-conscious platform evaluation, but this page should not present Xen as carrying a product safety certification. Teams with certification requirements should evaluate the relevant code, processes, evidence, and integration context for their product.
+  - paragraph: Evaluation concerns
+  - text: mixed-criticality workloads supplier coordination long-term maintenance hardware validation certification-aware work
+  - paragraph: Embedded systems
+  - heading "The automotive story builds on broader embedded virtualization foundations." [level=2]
+  - paragraph: Xen can be evaluated anywhere teams need to combine hardware-facing software, guest operating systems, and long-lived platform requirements while keeping separation visible.
+  - paragraph: Industrial systems
+  - paragraph: Robotics
+  - paragraph: Medical and regulated devices
+  - paragraph: Edge appliances
+  - paragraph: Networking equipment
+  - paragraph: Specialized hardware platforms
+  - paragraph: Why Xen fits
+  - heading "Built for engineers working close to the platform." [level=2]
+  - paragraph: Xen is strongest where teams need to reason carefully about virtual machines, hardware, operating systems, and trust boundaries.
+  - article:
+    - heading "Thin hypervisor boundary" [level=3]
+    - paragraph: Xen sits close to the hardware, giving teams a focused layer for separation and platform control.
+    - link "Explore the hypervisor":
+      - /url: /projects/hypervisor
+  - article:
+    - heading "Hardware-aware isolation" [level=3]
+    - paragraph: Xen is designed around guest isolation and hardware-facing platform work rather than treating one operating system as the whole boundary.
+    - link "Read isolation overview":
+      - /url: /technology/isolation-and-security
+  - article:
+    - heading "Flexible guest model" [level=3]
+    - paragraph: Xen supports systems where different operating environments need to share a platform while retaining separate responsibilities.
+    - link "Read architecture overview":
+      - /url: /technology/architecture
+  - article:
+    - heading "Open engineering model" [level=3]
+    - paragraph: Governance, contribution paths, security handling, and testing resources are visible to teams evaluating the platform.
+    - link "Read governance":
+      - /url: /about/governance
+  - paragraph: Relevant technologies and concepts
+  - heading "Start with the concepts before choosing an integration path." [level=2]
+  - paragraph: These concepts are useful starting points for an embedded or automotive evaluation. Detailed product claims should be checked against current upstream documentation and project evidence.
+  - article:
+    - paragraph: Dom0less
+    - paragraph: A Xen configuration path for systems that benefit from starting guest domains without waiting for a traditional control domain boot path.
+  - article:
+    - paragraph: Device passthrough
+    - paragraph: A platform integration tool for assigning selected hardware resources to guests when the system design calls for direct device access.
+  - article:
+    - paragraph: Hardware CI
+    - paragraph: Xen CI includes real hardware validation, including Dom0, DomU, Dom0less, PCI passthrough, and suspend/resume scenarios.
+  - article:
+    - paragraph: Arm and platform support
+    - paragraph: Existing Xen site content references Arm, ARM64, x86, RISC-V, and PowerPC work across project and CI material.
+  - article:
+    - paragraph: Safety-conscious process
+    - paragraph: Existing project content references MISRA C work and safety-standard alignment efforts; product certification still requires separate evaluation.
+  - article:
+    - paragraph: Open source integration
+    - paragraph: The embedded project has referenced work across Xen, Linux, OP-TEE, and RTOS environments such as Zephyr.
+  - complementary:
+    - heading "Treat detailed safety and real-time claims as verification work." [level=2]
+    - paragraph: RTDS scheduling, IOMMU behavior, static partitioning, memory and interrupt separation, AGL ties, exact performance numbers, and formal certification status should be linked only after they are verified from current authoritative project material.
+    - link "Review safety entry point":
+      - /url: /technology/safety
+  - paragraph: Related resources
+  - heading "Follow the evaluation path from architecture to participation." [level=2]
+  - paragraph: These resources connect the solution page to existing Xen project, technology, testing, download, and documentation entry points.
+  - article:
+    - heading "Hypervisor" [level=3]
+    - paragraph: Start with the core Xen hypervisor project and its architecture-oriented project resources.
+    - link "Open project":
+      - /url: /projects/hypervisor
+  - article:
+    - heading "Architecture" [level=3]
+    - paragraph: A technology entry point for how Xen fits between hardware, guests, and platform control.
+    - link "Read overview":
+      - /url: /technology/architecture
+  - article:
+    - heading "Isolation & Security" [level=3]
+    - paragraph: Review the site entry point for isolation and security resources in the redesigned technology area.
+    - link "Review resources":
+      - /url: /technology/isolation-and-security
+  - article:
+    - heading "Safety-Critical Systems" [level=3]
+    - paragraph: A starting point for safety-oriented evaluation resources as they are organized for the redesigned site.
+    - link "Review safety entry point":
+      - /url: /technology/safety
+  - article:
+    - heading "Continuous Integration" [level=3]
+    - paragraph: Explore Xen hardware CI, test coverage, and bring-your-own-hardware validation resources.
+    - link "View CI resources":
+      - /url: /contribute/ci
+  - article:
+    - heading "Downloads" [level=3]
+    - paragraph: Find Xen releases and download resources for evaluation and development work.
+    - link "Get downloads":
+      - /url: /resources/downloads
+  - paragraph: Ecosystem and trust signals
+  - heading "Sustained by organizations working across open virtualization." [level=2]
+  - paragraph: Xen is sustained by organizations working across infrastructure, hardware, embedded, automotive, and security-sensitive systems. Membership supports shared project infrastructure, events, trademark stewardship, and ecosystem coordination.
+  - link "View project members":
+    - /url: /about/project-members
+  - link "Become a member":
+    - /url: /about/become-a-member
+  - complementary:
+    - heading "Open engineering model" [level=2]
+    - paragraph: Xen is developed in the open, with public governance, security process, CI resources, and contribution paths that organizations can inspect before depending on the platform.
+    - link "Read governance":
+      - /url: /about/governance
+  - complementary:
+    - heading "Security response process" [level=2]
+    - paragraph: Security reporting and response expectations are documented for users, vendors, and contributors.
+    - link "Review security policy":
+      - /url: /about/security-policy
+  - paragraph: Next step
+  - heading "Evaluate Xen for your platform, or help shape the work." [level=2]
+  - paragraph: Engineers can start with architecture, CI, and contribution resources. Organizations can support the project through membership and deeper ecosystem participation.
+  - link "Start contributing":
+    - /url: /contribute/get-started
+  - link "Become a member":
+    - /url: /about/become-a-member

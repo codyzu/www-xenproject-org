@@ -1,0 +1,410 @@
+---
+import CTA from '../../components/blocks/CTA.astro';
+import Callout from '../../components/blocks/Callout.astro';
+import FeatureGrid from '../../components/blocks/FeatureGrid.astro';
+import Hero from '../../components/blocks/Hero.astro';
+import Button from '../../components/primitives/Button.astro';
+import Card from '../../components/primitives/Card.astro';
+import Cluster from '../../components/primitives/Cluster.astro';
+import Container from '../../components/primitives/Container.astro';
+import Grid from '../../components/primitives/Grid.astro';
+import Heading from '../../components/primitives/Heading.astro';
+import Section from '../../components/primitives/Section.astro';
+import Split from '../../components/primitives/Split.astro';
+import Stack from '../../components/primitives/Stack.astro';
+import Surface from '../../components/primitives/Surface.astro';
+import Text from '../../components/primitives/Text.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Embedded & Automotive';
+const description = 'Open source virtualization for embedded and automotive systems that need isolation, mixed workloads, hardware-aware boundaries, and long-term platform control.';
+const keywords = [
+  'Xen Project',
+  'embedded systems',
+  'automotive virtualization',
+  'software-defined vehicles',
+  'mixed-criticality workloads',
+  'Dom0less',
+  'device passthrough',
+  'Arm virtualization',
+  'open source hypervisor',
+];
+
+const virtualizationChallenges = [
+  {
+    icon: 'i-carbon-chip',
+    title: 'Consolidate without hiding boundaries',
+    description: 'Embedded teams often need to run more software on fewer boards while keeping ownership, privilege, and failure domains visible.',
+  },
+  {
+    icon: 'i-carbon-container-services',
+    title: 'Separate mixed workloads',
+    description: 'A shared platform may need Linux, RTOS workloads, service domains, and specialized systems to coexist with clear separation.',
+  },
+  {
+    icon: 'i-carbon-data-base-alt',
+    title: 'Keep hardware control visible',
+    description: 'Virtualization should help platform teams reason about devices, interrupts, boot flow, and integration boundaries.',
+  },
+  {
+    icon: 'i-carbon-time',
+    title: 'Support long-lived product platforms',
+    description: 'Automotive and embedded products need maintainable architectures that can evolve across hardware and software lifecycles.',
+  },
+];
+
+const xenFit = [
+  {
+    icon: 'i-carbon-layers',
+    title: 'Thin hypervisor boundary',
+    description: 'Xen sits close to the hardware, giving teams a focused layer for separation and platform control.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Explore the hypervisor',
+  },
+  {
+    icon: 'i-carbon-security',
+    title: 'Hardware-aware isolation',
+    description: 'Xen is designed around guest isolation and hardware-facing platform work rather than treating one operating system as the whole boundary.',
+    href: '/technology/isolation-and-security/',
+    linkLabel: 'Read isolation overview',
+  },
+  {
+    icon: 'i-carbon-virtual-machine',
+    title: 'Flexible guest model',
+    description: 'Xen supports systems where different operating environments need to share a platform while retaining separate responsibilities.',
+    href: '/technology/architecture/',
+    linkLabel: 'Read architecture overview',
+  },
+  {
+    icon: 'i-carbon-branch',
+    title: 'Open engineering model',
+    description: 'Governance, contribution paths, security handling, and testing resources are visible to teams evaluating the platform.',
+    href: '/about/governance/',
+    linkLabel: 'Read governance',
+  },
+];
+
+const concepts = [
+  {
+    label: 'Dom0less',
+    description: 'A Xen configuration path for systems that benefit from starting guest domains without waiting for a traditional control domain boot path.',
+  },
+  {
+    label: 'Device passthrough',
+    description: 'A platform integration tool for assigning selected hardware resources to guests when the system design calls for direct device access.',
+  },
+  {
+    label: 'Hardware CI',
+    description: 'Xen CI includes real hardware validation, including Dom0, DomU, Dom0less, PCI passthrough, and suspend/resume scenarios.',
+  },
+  {
+    label: 'Arm and platform support',
+    description: 'Existing Xen site content references Arm, ARM64, x86, RISC-V, and PowerPC work across project and CI material.',
+  },
+  {
+    label: 'Safety-conscious process',
+    description: 'Existing project content references MISRA C work and safety-standard alignment efforts; product certification still requires separate evaluation.',
+  },
+  {
+    label: 'Open source integration',
+    description: 'The embedded project has referenced work across Xen, Linux, OP-TEE, and RTOS environments such as Zephyr.',
+  },
+];
+
+const resources = [
+  {
+    icon: 'i-carbon-layers',
+    title: 'Hypervisor',
+    description: 'Start with the core Xen hypervisor project and its architecture-oriented project resources.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Open project',
+  },
+  {
+    icon: 'i-carbon-diagram',
+    title: 'Architecture',
+    description: 'A technology entry point for how Xen fits between hardware, guests, and platform control.',
+    href: '/technology/architecture/',
+    linkLabel: 'Read overview',
+  },
+  {
+    icon: 'i-carbon-security',
+    title: 'Isolation & Security',
+    description: 'Review the site entry point for isolation and security resources in the redesigned technology area.',
+    href: '/technology/isolation-and-security/',
+    linkLabel: 'Review resources',
+  },
+  {
+    icon: 'i-carbon-checkmark-outline',
+    title: 'Safety-Critical Systems',
+    description: 'A starting point for safety-oriented evaluation resources as they are organized for the redesigned site.',
+    href: '/technology/safety/',
+    linkLabel: 'Review safety entry point',
+  },
+  {
+    icon: 'i-carbon-test-tool',
+    title: 'Continuous Integration',
+    description: 'Explore Xen hardware CI, test coverage, and bring-your-own-hardware validation resources.',
+    href: '/contribute/ci/',
+    linkLabel: 'View CI resources',
+  },
+  {
+    icon: 'i-carbon-download',
+    title: 'Downloads',
+    description: 'Find Xen releases and download resources for evaluation and development work.',
+    href: '/resources/downloads/',
+    linkLabel: 'Get downloads',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} keywords={keywords} publicShell bodyClass="xp-solution-embedded-automotive">
+  <Hero
+    eyebrow="Solution Area"
+    title="Open source virtualization for embedded and automotive systems."
+    description="Use Xen to separate workloads, consolidate platforms, and keep control boundaries visible in systems where hardware, operating systems, and long-lived product requirements meet."
+    actions={[
+      {label: 'Explore Xen architecture', href: '/technology/architecture/'},
+      {label: 'Start contributing', href: '/contribute/get-started/', variant: 'secondary'},
+    ]}
+    layout="media-dominant"
+  >
+    <Surface slot="media" tone="2" border="strong" radius="lg" shadow="md" padding="lg" class="uno-overflow-hidden">
+      <Stack gap="5">
+        <div class="uno-flex uno-items-center uno-justify-between uno-gap-4">
+          <Text size="eyebrow" tone="accent-primary">Platform layers</Text>
+          <span class="i-carbon-car uno-text-3xl uno-text-xp-accent-primary" aria-hidden="true"></span>
+        </div>
+        <Stack gap="3">
+          <Surface tone="3" border="strong" radius="md" shadow="sm" padding="md">
+            <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Guest domains</Text>
+            <div class="uno-mt-4 uno-grid uno-grid-cols-1 uno-gap-3 sm:uno-grid-cols-3">
+              <span class="xp-layer-chip">Linux</span>
+              <span class="xp-layer-chip">RTOS</span>
+              <span class="xp-layer-chip">Services</span>
+            </div>
+          </Surface>
+          <div class="uno-flex uno-justify-center" aria-hidden="true">
+            <span class="i-carbon-arrow-down uno-text-2xl uno-text-xp-text-muted"></span>
+          </div>
+          <Surface tone="3" border="strong" radius="md" shadow="sm" padding="md">
+            <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Xen hypervisor boundary</Text>
+            <Text size="caption" class="uno-mt-2">Isolation, scheduling, device assignment, and platform control decisions stay visible.</Text>
+          </Surface>
+          <div class="uno-flex uno-justify-center" aria-hidden="true">
+            <span class="i-carbon-arrow-down uno-text-2xl uno-text-xp-text-muted"></span>
+          </div>
+          <Surface tone="3" border="muted" radius="md" shadow="sm" padding="md">
+            <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Hardware platform</Text>
+            <Text size="caption" class="uno-mt-2">Compute, memory, interrupts, devices, and long-lived product integration.</Text>
+          </Surface>
+        </Stack>
+      </Stack>
+    </Surface>
+  </Hero>
+
+  <FeatureGrid
+    id="why-virtualization"
+    eyebrow="Why virtualization matters here"
+    title="Embedded platforms need consolidation and separation at the same time."
+    description="Automotive and embedded teams are often asked to combine workloads on constrained hardware without losing the system boundaries that make engineering, validation, and maintenance possible."
+    features={virtualizationChallenges}
+    columns="4"
+  />
+
+  <Section id="automotive" surface="1">
+    <Container>
+      <Split align="center">
+        <Stack gap="5">
+          <Stack gap="3">
+            <Text size="eyebrow" tone="muted">Automotive focus</Text>
+            <Heading size="heading-xl">A virtualization layer for software-defined vehicle platforms.</Heading>
+            <Text>
+              Automotive platforms increasingly combine Linux systems, RTOS workloads, service domains, and hardware-specific functions on shared compute. Xen gives platform teams a thin virtualization layer for reasoning about isolation, ownership, and system boundaries without treating one operating system as the whole platform.
+            </Text>
+          </Stack>
+          <Grid columns="2" gap="4">
+            <Card>
+              <Stack gap="3">
+                <span class="i-carbon-car uno-text-2xl uno-text-xp-accent-primary" aria-hidden="true"></span>
+                <Heading as="h3" size="heading-m">ECU consolidation</Heading>
+                <Text size="caption">Keep platform boundaries explicit as vehicle functions move from many controllers toward shared compute.</Text>
+              </Stack>
+            </Card>
+            <Card>
+              <Stack gap="3">
+                <span class="i-carbon-ibm-watsonx-code-assistant-for-z-refactor uno-text-2xl uno-text-xp-accent-primary" aria-hidden="true"></span>
+                <Heading as="h3" size="heading-m">Mixed workloads</Heading>
+                <Text size="caption">Evaluate how IVI, service domains, Linux, RTOS workloads, and hardware-facing functions can coexist.</Text>
+              </Stack>
+            </Card>
+          </Grid>
+        </Stack>
+        <Stack gap="4">
+          <Callout
+            variant="warning"
+            title="Safety claims require evidence."
+            description="Xen is relevant to safety-conscious platform evaluation, but this page should not present Xen as carrying a product safety certification. Teams with certification requirements should evaluate the relevant code, processes, evidence, and integration context for their product."
+          >
+            <span slot="icon" class="i-carbon-warning"></span>
+          </Callout>
+          <Surface tone="2" border="muted" radius="lg" shadow="sm" padding="lg">
+            <Stack gap="3">
+              <Text size="eyebrow" tone="accent-primary">Evaluation concerns</Text>
+              <div class="uno-flex uno-flex-wrap uno-gap-2">
+                {['mixed-criticality workloads', 'supplier coordination', 'long-term maintenance', 'hardware validation', 'certification-aware work'].map(item => (
+                  <span class="xp-tag">{item}</span>
+                ))}
+              </div>
+            </Stack>
+          </Surface>
+        </Stack>
+      </Split>
+    </Container>
+  </Section>
+
+  <Section id="embedded-systems">
+    <Container>
+      <Split>
+        <Stack gap="3">
+          <Text size="eyebrow" tone="muted">Embedded systems</Text>
+          <Heading size="heading-xl">The automotive story builds on broader embedded virtualization foundations.</Heading>
+          <Text>
+            Xen can be evaluated anywhere teams need to combine hardware-facing software, guest operating systems, and long-lived platform requirements while keeping separation visible.
+          </Text>
+        </Stack>
+        <Grid columns="2" gap="4">
+          {['Industrial systems', 'Robotics', 'Medical and regulated devices', 'Edge appliances', 'Networking equipment', 'Specialized hardware platforms'].map(example => (
+            <Surface tone="2" border="muted" radius="md" shadow="sm" padding="md">
+              <Text size="caption" tone="primary" class="uno-font-semibold">{example}</Text>
+            </Surface>
+          ))}
+        </Grid>
+      </Split>
+    </Container>
+  </Section>
+
+  <FeatureGrid
+    id="why-xen-fits"
+    eyebrow="Why Xen fits"
+    title="Built for engineers working close to the platform."
+    description="Xen is strongest where teams need to reason carefully about virtual machines, hardware, operating systems, and trust boundaries."
+    surface="1"
+    columns="4"
+    features={xenFit}
+  />
+
+  <Section id="concepts">
+    <Container>
+      <Stack gap="6">
+        <Stack gap="3" class="uno-max-w-xp-content">
+          <Text size="eyebrow" tone="muted">Relevant technologies and concepts</Text>
+          <Heading size="heading-xl">Start with the concepts before choosing an integration path.</Heading>
+          <Text>
+            These concepts are useful starting points for an embedded or automotive evaluation. Detailed product claims should be checked against current upstream documentation and project evidence.
+          </Text>
+        </Stack>
+        <Grid columns="3" gap="5">
+          {concepts.map(concept => (
+            <Card>
+              <Stack gap="3">
+                <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">{concept.label}</Text>
+                <Text size="caption">{concept.description}</Text>
+              </Stack>
+            </Card>
+          ))}
+        </Grid>
+        <Callout
+          title="Treat detailed safety and real-time claims as verification work."
+          description="RTDS scheduling, IOMMU behavior, static partitioning, memory and interrupt separation, AGL ties, exact performance numbers, and formal certification status should be linked only after they are verified from current authoritative project material."
+          action={{label: 'Review safety entry point', href: '/technology/safety/', variant: 'secondary'}}
+        >
+          <span slot="icon" class="i-carbon-document-requirements"></span>
+        </Callout>
+      </Stack>
+    </Container>
+  </Section>
+
+  <FeatureGrid
+    id="resources"
+    eyebrow="Related resources"
+    title="Follow the evaluation path from architecture to participation."
+    description="These resources connect the solution page to existing Xen project, technology, testing, download, and documentation entry points."
+    surface="1"
+    columns="3"
+    features={resources}
+  />
+
+  <Section id="ecosystem">
+    <Container>
+      <Split align="center">
+        <Stack gap="4">
+          <Text size="eyebrow" tone="muted">Ecosystem and trust signals</Text>
+          <Heading size="heading-xl">Sustained by organizations working across open virtualization.</Heading>
+          <Text>
+            Xen is sustained by organizations working across infrastructure, hardware, embedded, automotive, and security-sensitive systems. Membership supports shared project infrastructure, events, trademark stewardship, and ecosystem coordination.
+          </Text>
+          <Cluster>
+            <Button href="/about/project-members/" variant="secondary">View project members</Button>
+            <Button href="/about/become-a-member/" variant="text">Become a member</Button>
+          </Cluster>
+        </Stack>
+        <Surface tone="2" border="strong" radius="lg" shadow="md" padding="lg">
+          <Stack gap="4">
+            <Callout
+              title="Open engineering model"
+              description="Xen is developed in the open, with public governance, security process, CI resources, and contribution paths that organizations can inspect before depending on the platform."
+              action={{label: 'Read governance', href: '/about/governance/', variant: 'text'}}
+            >
+              <span slot="icon" class="i-carbon-branch"></span>
+            </Callout>
+            <Callout
+              title="Security response process"
+              description="Security reporting and response expectations are documented for users, vendors, and contributors."
+              action={{label: 'Review security policy', href: '/about/security-policy/', variant: 'text'}}
+            >
+              <span slot="icon" class="i-carbon-security"></span>
+            </Callout>
+          </Stack>
+        </Surface>
+      </Split>
+    </Container>
+  </Section>
+
+  <CTA
+    id="next-step"
+    eyebrow="Next step"
+    title="Evaluate Xen for your platform, or help shape the work."
+    description="Engineers can start with architecture, CI, and contribution resources. Organizations can support the project through membership and deeper ecosystem participation."
+    actions={[
+      {label: 'Start contributing', href: '/contribute/get-started/'},
+      {label: 'Become a member', href: '/about/become-a-member/', variant: 'secondary'},
+    ]}
+    align="center"
+  />
+</BaseLayout>
+
+<style>
+  .xp-layer-chip,
+  .xp-tag {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+    border: 1px solid var(--xp-border-muted);
+    border-radius: var(--xp-radius-md);
+    background: rgb(133 194 65 / 0.1);
+    color: var(--xp-text-primary);
+    font-size: 0.8125rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .xp-layer-chip {
+    justify-content: center;
+    padding: 0.75rem 0.65rem;
+    text-align: center;
+  }
+
+  .xp-tag {
+    padding: 0.5rem 0.65rem;
+  }
+</style>

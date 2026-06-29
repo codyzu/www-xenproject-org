@@ -36,7 +36,7 @@
     - paragraph: Conservative estimates show that Xen has an active user base of 10+ million; these are users, not merely hypervisor installations which are an order of magnitude higher. Amazon Web Services alone runs many virtualized Xen Project instances according to a recent study and other cloud providers such as Rackspace and hosting companies use the hypervisor at an extremely large scale. Our software is the basis of successful commercial virtualization products from Citrix, Huawei, Inspur, and Oracle. It is clear that many major industry players regard our software as a safe virtualization platform for even the largest clouds.
     - region "Xen Project technologies":
       - heading "Embedded & Automotive" [level=3]
-      - paragraph: Maturity, isolation, security features, real-time support, fault-tolerance, and a flexible architecture make the Xen Project Hypervisor a perfect match for embedded and automotive systems.
+      - paragraph: Open source virtualization for embedded and automotive systems that need isolation, mixed workloads, hardware-aware boundaries, and long-term platform control.
       - link "Discover ":
         - /url: /projects/embedded-and-automotive
       - heading "HVMI" [level=3]

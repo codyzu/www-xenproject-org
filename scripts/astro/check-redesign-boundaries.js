@@ -110,6 +110,7 @@ for (const filePath of publicPageFiles) {
     'src/pages/technology/index.astro',
     'src/pages/technology/isolation-and-security.astro',
     'src/pages/technology/safety.astro',
+    'src/pages/projects/embedded-and-automotive.astro',
   ].includes(file);
 
   if (!isInternalDesignSystem && !isApprovedPublicRedesign && contents.includes('BaseLayout')) {
