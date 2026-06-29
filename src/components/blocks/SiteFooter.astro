@@ -5,6 +5,7 @@ import Grid from '../primitives/Grid.astro';
 import Heading from '../primitives/Heading.astro';
 import Stack from '../primitives/Stack.astro';
 import Text from '../primitives/Text.astro';
+import linuxFoundationLogo from '../../assets/logos/lf-horizontal-white.svg?url';
 
 type Props = {
   currentPath: string;
@@ -31,7 +32,26 @@ const linkRel = (link: NavigationV2Link) => link.target === '_blank' ? 'noopener
           <Text class="uno-max-w-xp-content">
             The Xen Project advances open source virtualization across commercial and open source domains.
           </Text>
-          <Text size="caption" tone="muted">A Linux Foundation Project.</Text>
+          <div class="uno-flex uno-flex-col uno-items-start uno-gap-1 uno-pt-2">
+            <Text size="caption" tone="muted" class="uno-font-semibold uno-uppercase uno-tracking-[0.12em]">
+              Project Stewardship
+            </Text>
+            <Text size="caption" tone="muted">A Linux Foundation Project</Text>
+            <a
+              href="https://www.linuxfoundation.org/"
+              class="xen-focus uno--ml-2 uno-inline-flex uno-rounded-xp-sm uno-p-2"
+              aria-label="Linux Foundation"
+            >
+              <img
+                src={linuxFoundationLogo}
+                alt="Linux Foundation"
+                width="1000"
+                height="60"
+                class="uno-h-auto uno-w-[11rem] uno-max-w-full uno-opacity-85"
+                loading="lazy"
+              />
+            </a>
+          </div>
         </Stack>
         <nav aria-label="Footer navigation">
           <Grid columns="3" gap="5">

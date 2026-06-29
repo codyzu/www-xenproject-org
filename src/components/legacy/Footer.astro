@@ -2,6 +2,7 @@
 import {navigationItems} from '../../data/navigation';
 import Menu from './Menu.astro';
 import Socials from './Socials.astro';
+import linuxFoundationLogo from '../../assets/logos/lf-horizontal-white.svg?url';
 
 type Props = {
   currentPath: string;
@@ -23,7 +24,11 @@ const {currentPath} = Astro.props;
       </div>
 
       <div class="footer__col">
-        <h3>A Linux Foundation Project</h3>
+        <h3>Project Stewardship</h3>
+        <p class="p1-book footer__stewardship-text">A Linux Foundation Project</p>
+        <a class="footer__lf-logo-link" href="https://www.linuxfoundation.org/" aria-label="Linux Foundation">
+          <img src={linuxFoundationLogo} alt="Linux Foundation" width="1000" height="60" loading="lazy" />
+        </a>
         <p class="p1-book">
           The Linux Foundation provides a neutral, trusted hub for developers to code, manage, and scale open technology
           projects.
