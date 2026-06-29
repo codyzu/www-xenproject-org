@@ -33,23 +33,23 @@ const keywords = [
 const virtualizationChallenges = [
   {
     icon: 'i-carbon-chip',
-    title: 'Consolidate without hiding boundaries',
-    description: 'Embedded teams often need to run more software on fewer boards while keeping ownership, privilege, and failure domains visible.',
+    title: 'Shared hardware',
+    description: 'Run more platform software on fewer boards while keeping ownership and failure domains visible.',
   },
   {
     icon: 'i-carbon-container-services',
-    title: 'Separate mixed workloads',
-    description: 'A shared platform may need Linux, RTOS workloads, service domains, and specialized systems to coexist with clear separation.',
+    title: 'Mixed workloads',
+    description: 'Give Linux, RTOS workloads, service domains, and specialized systems a clearer place to coexist.',
   },
   {
     icon: 'i-carbon-data-base-alt',
-    title: 'Keep hardware control visible',
-    description: 'Virtualization should help platform teams reason about devices, interrupts, boot flow, and integration boundaries.',
+    title: 'Explicit boundaries',
+    description: 'Keep devices, boot flow, interrupts, and integration responsibilities visible to platform teams.',
   },
   {
     icon: 'i-carbon-time',
-    title: 'Support long-lived product platforms',
-    description: 'Automotive and embedded products need maintainable architectures that can evolve across hardware and software lifecycles.',
+    title: 'Maintainable platforms',
+    description: 'Support architectures that can evolve across long hardware, software, and product lifecycles.',
   },
 ];
 
@@ -57,30 +57,37 @@ const xenFit = [
   {
     icon: 'i-carbon-layers',
     title: 'Thin hypervisor boundary',
-    description: 'Xen sits close to the hardware, giving teams a focused layer for separation and platform control.',
+    description: 'Xen gives platform teams a focused layer for separation decisions close to the hardware boundary.',
     href: '/projects/hypervisor/',
     linkLabel: 'Explore the hypervisor',
   },
   {
     icon: 'i-carbon-security',
     title: 'Hardware-aware isolation',
-    description: 'Xen is designed around guest isolation and hardware-facing platform work rather than treating one operating system as the whole boundary.',
+    description: 'Guest isolation and hardware-facing platform work stay visible instead of disappearing inside one operating system.',
     href: '/technology/isolation-and-security/',
     linkLabel: 'Read isolation overview',
   },
   {
     icon: 'i-carbon-virtual-machine',
     title: 'Flexible guest model',
-    description: 'Xen supports systems where different operating environments need to share a platform while retaining separate responsibilities.',
+    description: 'Different operating environments can share a platform while retaining separate roles and responsibilities.',
     href: '/technology/architecture/',
     linkLabel: 'Read architecture overview',
   },
   {
     icon: 'i-carbon-branch',
     title: 'Open engineering model',
-    description: 'Governance, contribution paths, security handling, and testing resources are visible to teams evaluating the platform.',
+    description: 'Governance, contribution paths, security handling, and public testing resources are available for evaluation.',
     href: '/about/governance/',
     linkLabel: 'Read governance',
+  },
+  {
+    icon: 'i-carbon-time',
+    title: 'Long-lived maintainability',
+    description: 'An open platform boundary helps teams plan for products that must be inspected, updated, and supported over time.',
+    href: '/contribute/ci/',
+    linkLabel: 'Review CI resources',
   },
 ];
 
@@ -161,14 +168,14 @@ const resources = [
   <Hero
     eyebrow="Solution Area"
     title="Open source virtualization for embedded and automotive systems."
-    description="Use Xen to separate workloads, consolidate platforms, and keep control boundaries visible in systems where hardware, operating systems, and long-lived product requirements meet."
+    description="Build mixed-workload platforms on shared hardware while keeping system boundaries explicit, inspectable, and maintainable across long product lifecycles."
     actions={[
       {label: 'Explore Xen architecture', href: '/technology/architecture/'},
       {label: 'Start contributing', href: '/contribute/get-started/', variant: 'secondary'},
     ]}
-    layout="media-dominant"
+    layout="balanced"
   >
-    <Surface slot="media" tone="2" border="strong" radius="lg" shadow="md" padding="lg" class="uno-overflow-hidden">
+    <Surface slot="media" tone="2" border="strong" radius="lg" shadow="md" padding="lg" class="uno-overflow-hidden lg:uno-ml-auto lg:uno-max-w-[32rem]">
       <Stack gap="5">
         <div class="uno-flex uno-items-center uno-justify-between uno-gap-4">
           <Text size="eyebrow" tone="accent-primary">Platform layers</Text>
@@ -202,14 +209,32 @@ const resources = [
     </Surface>
   </Hero>
 
-  <FeatureGrid
-    id="why-virtualization"
-    eyebrow="Why virtualization matters here"
-    title="Embedded platforms need consolidation and separation at the same time."
-    description="Automotive and embedded teams are often asked to combine workloads on constrained hardware without losing the system boundaries that make engineering, validation, and maintenance possible."
-    features={virtualizationChallenges}
-    columns="4"
-  />
+  <Section id="why-virtualization">
+    <Container>
+      <Stack gap="6">
+        <Stack gap="3" class="uno-max-w-xp-content">
+          <Text size="eyebrow" tone="muted">Why virtualization matters here</Text>
+          <Heading size="heading-xl">Consolidate the platform without blurring the boundaries.</Heading>
+          <Text>
+            Embedded and automotive teams are asked to combine more software on shared compute while preserving the boundaries that make engineering, validation, and maintenance practical.
+          </Text>
+        </Stack>
+        <Grid columns="2" gap="5" class="uno-max-w-xp-page">
+          {virtualizationChallenges.map(challenge => (
+            <Card>
+              <Stack gap="4">
+                <span class:list={[challenge.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
+                <Stack gap="3">
+                  <Heading as="h3" size="heading-m">{challenge.title}</Heading>
+                  <Text size="caption">{challenge.description}</Text>
+                </Stack>
+              </Stack>
+            </Card>
+          ))}
+        </Grid>
+      </Stack>
+    </Container>
+  </Section>
 
   <Section id="automotive" surface="1">
     <Container>
@@ -240,13 +265,18 @@ const resources = [
           </Grid>
         </Stack>
         <Stack gap="4">
-          <Callout
-            variant="warning"
-            title="Safety claims require evidence."
-            description="Xen is relevant to safety-conscious platform evaluation, but this page should not present Xen as carrying a product safety certification. Teams with certification requirements should evaluate the relevant code, processes, evidence, and integration context for their product."
-          >
-            <span slot="icon" class="i-carbon-warning"></span>
-          </Callout>
+          <Surface as="aside" tone="2" border="strong" radius="lg" shadow="sm" padding="lg">
+            <div class="uno-flex uno-min-w-0 uno-flex-col uno-gap-3 sm:uno-flex-row sm:uno-items-start sm:uno-gap-4">
+              <span class="i-carbon-document-requirements uno-mt-1 uno-inline-flex uno-shrink-0 uno-text-2xl uno-text-xp-accent-primary" aria-hidden="true"></span>
+              <Stack gap="3" class="uno-min-w-0">
+                <Text as="span" size="eyebrow" tone="accent-primary">Evaluation note</Text>
+                <Heading as="h3" size="heading-m">Certification work depends on product evidence.</Heading>
+                <Text size="caption">
+                  Xen is relevant to safety-conscious platform evaluation, but this page does not claim product safety certification. Teams with certification requirements should evaluate code, process, evidence, and integration context for their product.
+                </Text>
+              </Stack>
+            </div>
+          </Surface>
           <Surface tone="2" border="muted" radius="lg" shadow="sm" padding="lg">
             <Stack gap="3">
               <Text size="eyebrow" tone="accent-primary">Evaluation concerns</Text>
@@ -286,10 +316,10 @@ const resources = [
   <FeatureGrid
     id="why-xen-fits"
     eyebrow="Why Xen fits"
-    title="Built for engineers working close to the platform."
-    description="Xen is strongest where teams need to reason carefully about virtual machines, hardware, operating systems, and trust boundaries."
+    title="A practical boundary for mixed-workload platform engineering."
+    description="Xen is relevant when teams need a thin virtualization layer, hardware-aware isolation, flexible guest placement, and an open engineering model they can inspect over the life of a product."
     surface="1"
-    columns="4"
+    columns="3"
     features={xenFit}
   />
 

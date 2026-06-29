@@ -1,7 +1,7 @@
 - main:
   - paragraph: Solution Area
   - heading "Open source virtualization for embedded and automotive systems." [level=1]
-  - paragraph: Use Xen to separate workloads, consolidate platforms, and keep control boundaries visible in systems where hardware, operating systems, and long-lived product requirements meet.
+  - paragraph: Build mixed-workload platforms on shared hardware while keeping system boundaries explicit, inspectable, and maintainable across long product lifecycles.
   - link "Explore Xen architecture":
     - /url: /technology/architecture
   - link "Start contributing":
@@ -14,20 +14,20 @@
   - paragraph: Hardware platform
   - paragraph: Compute, memory, interrupts, devices, and long-lived product integration.
   - paragraph: Why virtualization matters here
-  - heading "Embedded platforms need consolidation and separation at the same time." [level=2]
-  - paragraph: Automotive and embedded teams are often asked to combine workloads on constrained hardware without losing the system boundaries that make engineering, validation, and maintenance possible.
+  - heading "Consolidate the platform without blurring the boundaries." [level=2]
+  - paragraph: Embedded and automotive teams are asked to combine more software on shared compute while preserving the boundaries that make engineering, validation, and maintenance practical.
   - article:
-    - heading "Consolidate without hiding boundaries" [level=3]
-    - paragraph: Embedded teams often need to run more software on fewer boards while keeping ownership, privilege, and failure domains visible.
+    - heading "Shared hardware" [level=3]
+    - paragraph: Run more platform software on fewer boards while keeping ownership and failure domains visible.
   - article:
-    - heading "Separate mixed workloads" [level=3]
-    - paragraph: A shared platform may need Linux, RTOS workloads, service domains, and specialized systems to coexist with clear separation.
+    - heading "Mixed workloads" [level=3]
+    - paragraph: Give Linux, RTOS workloads, service domains, and specialized systems a clearer place to coexist.
   - article:
-    - heading "Keep hardware control visible" [level=3]
-    - paragraph: Virtualization should help platform teams reason about devices, interrupts, boot flow, and integration boundaries.
+    - heading "Explicit boundaries" [level=3]
+    - paragraph: Keep devices, boot flow, interrupts, and integration responsibilities visible to platform teams.
   - article:
-    - heading "Support long-lived product platforms" [level=3]
-    - paragraph: Automotive and embedded products need maintainable architectures that can evolve across hardware and software lifecycles.
+    - heading "Maintainable platforms" [level=3]
+    - paragraph: Support architectures that can evolve across long hardware, software, and product lifecycles.
   - paragraph: Automotive focus
   - heading "A virtualization layer for software-defined vehicle platforms." [level=2]
   - paragraph: Automotive platforms increasingly combine Linux systems, RTOS workloads, service domains, and hardware-specific functions on shared compute. Xen gives platform teams a thin virtualization layer for reasoning about isolation, ownership, and system boundaries without treating one operating system as the whole platform.
@@ -38,9 +38,9 @@
     - heading "Mixed workloads" [level=3]
     - paragraph: Evaluate how IVI, service domains, Linux, RTOS workloads, and hardware-facing functions can coexist.
   - complementary:
-    - text: Important
-    - heading "Safety claims require evidence." [level=2]
-    - paragraph: Xen is relevant to safety-conscious platform evaluation, but this page should not present Xen as carrying a product safety certification. Teams with certification requirements should evaluate the relevant code, processes, evidence, and integration context for their product.
+    - text: Evaluation note
+    - heading "Certification work depends on product evidence." [level=3]
+    - paragraph: Xen is relevant to safety-conscious platform evaluation, but this page does not claim product safety certification. Teams with certification requirements should evaluate code, process, evidence, and integration context for their product.
   - paragraph: Evaluation concerns
   - text: mixed-criticality workloads supplier coordination long-term maintenance hardware validation certification-aware work
   - paragraph: Embedded systems
@@ -53,28 +53,33 @@
   - paragraph: Networking equipment
   - paragraph: Specialized hardware platforms
   - paragraph: Why Xen fits
-  - heading "Built for engineers working close to the platform." [level=2]
-  - paragraph: Xen is strongest where teams need to reason carefully about virtual machines, hardware, operating systems, and trust boundaries.
+  - heading "A practical boundary for mixed-workload platform engineering." [level=2]
+  - paragraph: Xen is relevant when teams need a thin virtualization layer, hardware-aware isolation, flexible guest placement, and an open engineering model they can inspect over the life of a product.
   - article:
     - heading "Thin hypervisor boundary" [level=3]
-    - paragraph: Xen sits close to the hardware, giving teams a focused layer for separation and platform control.
+    - paragraph: Xen gives platform teams a focused layer for separation decisions close to the hardware boundary.
     - link "Explore the hypervisor":
       - /url: /projects/hypervisor
   - article:
     - heading "Hardware-aware isolation" [level=3]
-    - paragraph: Xen is designed around guest isolation and hardware-facing platform work rather than treating one operating system as the whole boundary.
+    - paragraph: Guest isolation and hardware-facing platform work stay visible instead of disappearing inside one operating system.
     - link "Read isolation overview":
       - /url: /technology/isolation-and-security
   - article:
     - heading "Flexible guest model" [level=3]
-    - paragraph: Xen supports systems where different operating environments need to share a platform while retaining separate responsibilities.
+    - paragraph: Different operating environments can share a platform while retaining separate roles and responsibilities.
     - link "Read architecture overview":
       - /url: /technology/architecture
   - article:
     - heading "Open engineering model" [level=3]
-    - paragraph: Governance, contribution paths, security handling, and testing resources are visible to teams evaluating the platform.
+    - paragraph: Governance, contribution paths, security handling, and public testing resources are available for evaluation.
     - link "Read governance":
       - /url: /about/governance
+  - article:
+    - heading "Long-lived maintainability" [level=3]
+    - paragraph: An open platform boundary helps teams plan for products that must be inspected, updated, and supported over time.
+    - link "Review CI resources":
+      - /url: /contribute/ci
   - paragraph: Relevant technologies and concepts
   - heading "Start with the concepts before choosing an integration path." [level=2]
   - paragraph: These concepts are useful starting points for an embedded or automotive evaluation. Detailed product claims should be checked against current upstream documentation and project evidence.
@@ -141,6 +146,7 @@
     - /url: /about/project-members
   - link "Become a member":
     - /url: /about/become-a-member
+
   - complementary:
     - heading "Open engineering model" [level=2]
     - paragraph: Xen is developed in the open, with public governance, security process, CI resources, and contribution paths that organizations can inspect before depending on the platform.

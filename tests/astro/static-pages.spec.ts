@@ -10,7 +10,7 @@ const routes = [
   [
     '/projects/embedded-and-automotive/',
     'Embedded & Automotive',
-    'Embedded platforms need consolidation and separation at the same time.',
+    'Consolidate the platform without blurring the boundaries.',
     'Open source virtualization for embedded and automotive systems.',
   ],
   ['/projects/mirage-os/', 'Mirage OS', 'Our architecture'],
