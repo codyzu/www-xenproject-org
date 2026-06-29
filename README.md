@@ -63,10 +63,11 @@ Playwright starts `serve public`, snapshots representative routes, verifies
 navigation behavior, exercises React islands, and checks redirect metadata.
 
 To validate a deployed beta artifact manually, run `npm run test:astro:staging`.
-For a faster homepage Story check, run `npm run test:astro:staging:story`.
-Run `npm run test:astro:staging:ghost` for the focused, unmocked production
-Ghost integration check. These commands do not start a local server; deploy the
-commit under test first.
+For a faster homepage guardrail check, run
+`npm run test:astro:staging:homepage-guardrails`. Run
+`npm run test:astro:staging:ghost` for the focused, unmocked production Ghost
+integration check. These commands do not start a local server; deploy the commit
+under test first.
 
 ## Ghost Integration
 
