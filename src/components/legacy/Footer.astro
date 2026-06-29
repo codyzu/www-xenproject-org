@@ -23,11 +23,22 @@ const {currentPath} = Astro.props;
         <Socials class="socials-footer" />
       </div>
 
-      <div class="footer__col">
+      <div class="footer__col uno-pt-4">
         <h3>Project Stewardship</h3>
-        <p class="p1-book footer__stewardship-text">A Linux Foundation Project</p>
-        <a class="footer__lf-logo-link" href="https://www.linuxfoundation.org/" aria-label="Linux Foundation">
-          <img src={linuxFoundationLogo} alt="Linux Foundation" width="1000" height="60" loading="lazy" />
+        <p class="p1-book uno-font-medium uno-text-[var(--footer-links-color)]">A Linux Foundation Project</p>
+        <a
+          class="uno--ml-2 uno-mt-1 uno-inline-flex uno-self-start uno-rounded-[4px] uno-p-2"
+          href="https://www.linuxfoundation.org/"
+          aria-label="Linux Foundation"
+        >
+          <img
+            src={linuxFoundationLogo}
+            alt="Linux Foundation"
+            width="1000"
+            height="60"
+            class="uno-h-auto uno-w-[13rem] uno-max-w-full uno-opacity-85"
+            loading="lazy"
+          />
         </a>
         <p class="p1-book">
           The Linux Foundation provides a neutral, trusted hub for developers to code, manage, and scale open technology

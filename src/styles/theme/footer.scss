@@ -71,26 +71,6 @@
   }
 }
 
-.footer__stewardship-text {
-  color: var(--footer-links-color);
-  font-weight: 500;
-}
-
-.footer__lf-logo-link {
-  display: inline-flex;
-  align-self: flex-start;
-  padding: var(--sp-xs);
-  margin-left: calc(var(--sp-xs) * -1);
-  border-radius: 4px;
-
-  img {
-    width: 176px;
-    max-width: 100%;
-    height: auto;
-    opacity: 0.85;
-  }
-}
-
 .footer__menu {
   margin-top: var(--sp-lg);
   ul,
