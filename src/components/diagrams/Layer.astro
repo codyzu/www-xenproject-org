@@ -7,6 +7,7 @@ interface Props {
   shift?: string;
   offset?: string;
   zIndex?: number;
+  receivesShadow?: boolean;
 }
 
 const {
@@ -17,6 +18,7 @@ const {
   shift = '0rem',
   offset = '0rem',
   zIndex = 1,
+  receivesShadow = false,
 } = Astro.props;
 ---
 
@@ -25,7 +27,7 @@ const {
   style={`--layer-width: ${width}; --layer-shift: ${shift}; --layer-offset: ${offset}; --layer-z: ${zIndex};`}
 >
   <div class="xp-diagram-layer__surface">
-    <div class:list={["uno-absolute uno-w-full uno-h-full uno-bg-black/30 uno-rounded-xl uno-left-6 uno-bottom-20"]}></div>
+    {receivesShadow && <div class="xp-diagram-layer__receiver" aria-hidden="true"></div>}
     <div class="xp-diagram-layer__content">
       {eyebrow && <p class="xp-diagram-layer__eyebrow">{eyebrow}</p>}
       <p class="xp-diagram-layer__title">{title}</p>
@@ -111,6 +113,22 @@ const {
     height: 1px;
     background: repeating-linear-gradient(90deg, var(--layer-accent) 0 0.2rem, transparent 0.2rem 0.65rem);
     opacity: 0.62;
+  }
+
+  .xp-diagram-layer__receiver {
+    position: absolute;
+    left: clamp(1.15rem, 3vw, 1.5rem);
+    bottom: clamp(2.75rem, 5vw, 3.35rem);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    border-radius: inherit;
+    background: rgb(0 0 0 / 0.34);
+    box-shadow:
+      0 0.7rem 1.15rem rgb(0 0 0 / 0.34),
+      inset 0 0 2rem rgb(0 0 0 / 0.18);
+    opacity: 0.92;
+    transform: translateZ(0);
   }
 
   .xp-diagram-layer__content {
@@ -210,6 +228,10 @@ const {
     .xp-diagram-layer__content {
       height: auto;
       padding: 1rem;
+    }
+
+    .xp-diagram-layer__receiver {
+      display: none;
     }
   }
 </style>

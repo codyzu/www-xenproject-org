@@ -14,7 +14,7 @@ import Layer from '../../diagrams/Layer.astro';
         <p>Application software sits above platform-owned boundaries instead of defining them.</p>
       </Layer>
 
-      <Layer title="Guest systems" eyebrow="Domains" tone="guests" offset="calc(var(--platform-layer-gap) * -0.5)" zIndex={3}>
+      <Layer title="Guest systems" eyebrow="Domains" tone="guests" offset="calc(var(--platform-layer-gap) * -0.5)" zIndex={3} receivesShadow>
         <p>Linux, RTOS workloads, and service domains can keep separate runtime and hardware assumptions.</p>
         <div class="xp-domain-strip" aria-label="Example guest domains">
           <span>
@@ -32,11 +32,11 @@ import Layer from '../../diagrams/Layer.astro';
         </div>
       </Layer>
 
-      <Layer title="Xen hypervisor" eyebrow="Isolation boundary" tone="xen" offset="calc(var(--platform-layer-gap) * 0.5)" zIndex={2}>
+      <Layer title="Xen hypervisor" eyebrow="Isolation boundary" tone="xen" offset="calc(var(--platform-layer-gap) * 0.5)" zIndex={2} receivesShadow>
         <p>Scheduling, isolation, device assignment, and platform control stay visible close to hardware.</p>
       </Layer>
 
-      <Layer title="Hardware platform" eyebrow="Shared compute" tone="hardware" offset="calc(var(--platform-layer-gap) * 1.5)" zIndex={1}>
+      <Layer title="Hardware platform" eyebrow="Shared compute" tone="hardware" offset="calc(var(--platform-layer-gap) * 1.5)" zIndex={1} receivesShadow>
         <p>Compute, memory, interrupts, peripherals, and SoC integration remain explicit system design inputs.</p>
       </Layer>
     </div>
