@@ -1,110 +1,85 @@
 ---
-import Layer from "../../diagrams/Layer.astro";
-
+import Layer from '../../diagrams/Layer.astro';
 ---
 
-<div class="xp-platform-diagram lg:uno-ml-auto lg:uno-max-w-[40rem]">
-  <div class="xp-platform-diagram__header">
-    <p class="xp-platform-diagram__eyebrow">Platform layers</p>
-    <span class="xp-platform-diagram__scale" aria-hidden="true">01 / 03</span>
+<figure class="xp-platform-diagram lg:uno-ml-auto lg:uno-max-w-[40rem]" aria-labelledby="platform-layers-title">
+  <figcaption class="xp-platform-diagram__header">
+    <p class="xp-platform-diagram__eyebrow" id="platform-layers-title">Platform layers</p>
+    <span class="xp-platform-diagram__scale" aria-hidden="true">CSS layer model</span>
+  </figcaption>
+
+  <div class="xp-platform-stack" aria-describedby="platform-layers-summary">
+    <div class="xp-platform-stack__axis" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <Layer title="Applications" eyebrow="User space" tone="applications" width="min(25rem, 78%)" shift="-1.2rem" zIndex={4}>
+      <p>Application software sits above platform-owned boundaries instead of defining them.</p>
+      <div class="xp-layer-chips" aria-label="Example application workloads">
+        <span>UX</span>
+        <span>Telemetry</span>
+        <span>Services</span>
+      </div>
+    </Layer>
+
+    <Layer title="Guest systems" eyebrow="Domains" tone="guests" width="min(29rem, 88%)" shift="0.3rem" zIndex={3}>
+      <p>Linux, RTOS workloads, and service domains can keep separate runtime and hardware assumptions.</p>
+      <div class="xp-domain-strip" aria-label="Example guest domains">
+        <span>
+          <i class="xp-domain-glyph xp-domain-glyph--linux" aria-hidden="true"></i>
+          Linux
+        </span>
+        <span>
+          <i class="xp-domain-glyph xp-domain-glyph--rtos" aria-hidden="true"></i>
+          RTOS
+        </span>
+        <span>
+          <i class="xp-domain-glyph xp-domain-glyph--services" aria-hidden="true"></i>
+          Services
+        </span>
+      </div>
+    </Layer>
+
+    <Layer title="Xen hypervisor" eyebrow="Isolation boundary" tone="xen" width="min(31rem, 94%)" shift="-0.2rem" zIndex={2}>
+      <p>Scheduling, isolation, device assignment, and platform control stay visible close to hardware.</p>
+      <div class="xp-boundary-meter" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </Layer>
+
+    <Layer title="Hardware platform" eyebrow="Shared compute" tone="hardware" width="min(33rem, 100%)" shift="0.6rem" zIndex={1}>
+      <p>Compute, memory, interrupts, peripherals, and SoC integration remain explicit system design inputs.</p>
+      <div class="xp-hardware-row" aria-label="Hardware resources">
+        <span>CPU</span>
+        <span>Memory</span>
+        <span>I/O</span>
+      </div>
+    </Layer>
   </div>
 
-  <div class="xp-platform-stack">
-    <Layer title="Applications">
-      <p class="uno-font-bold">Applications running in user space</p>
-    </Layer>
-    <Layer title="Guest Systems">
-      <p>Domains running operating systems with different hardware requirements</p>
-    </Layer>
-    <Layer title="Xen Hypervisor">
-      <p>Isolation, scheduling, device assignment, and platform control decisions stay visible.</p>
-    </Layer>
-    <Layer title="Hardware">
-      <p>Multi-core device specific SoC with hardware peripherals</p>
-    </Layer>
-    <div class="xp-plane xp-plane--guests">
-      <div class="xp-plane__drafting" aria-hidden="true">
-        <span></span>
-        <span></span>
-      </div>
-      <div class="xp-plane__content">
-        <p class="xp-plane__title">Guest domains</p>
-        <div class="xp-domain-list">
-          <span>
-            <span class="xp-domain-module xp-domain-module--linux" aria-hidden="true"></span>
-            <span>Linux</span>
-          </span>
-          <span>
-            <span class="xp-domain-module xp-domain-module--rtos" aria-hidden="true"></span>
-            <span>RTOS</span>
-          </span>
-          <span>
-            <span class="xp-domain-module xp-domain-module--services" aria-hidden="true"></span>
-            <span>Services</span>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <div class="xp-connector xp-connector--upper" aria-hidden="true">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <div class="xp-plane xp-plane--xen">
-      <div class="xp-plane__drafting" aria-hidden="true">
-        <span></span>
-        <span></span>
-      </div>
-      <div class="xp-plane__content xp-plane__content--split">
-        <span class="xp-boundary-symbol" aria-hidden="true"></span>
-        <div>
-          <p class="xp-plane__title">Xen hypervisor boundary</p>
-          <p class="xp-plane__description">Isolation, scheduling, device assignment, and platform control decisions stay visible.</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="xp-connector xp-connector--lower" aria-hidden="true">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
-    <div class="xp-plane xp-plane--hardware">
-      <div class="xp-plane__drafting" aria-hidden="true">
-        <span></span>
-        <span></span>
-      </div>
-      <div class="xp-hardware-grid" aria-hidden="true"></div>
-      <div class="xp-plane__content xp-plane__content--split">
-        <span class="xp-hardware-symbol" aria-hidden="true"></span>
-        <div>
-          <p class="xp-plane__title">Hardware platform</p>
-          <p class="xp-plane__description">Compute, memory, interrupts, devices, and long-lived product integration.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <p class="xp-platform-diagram__summary" id="platform-layers-summary">
+    Xen separates application workloads, guest domains, hypervisor control, and shared hardware into visible platform layers.
+  </p>
+</figure>
 
 <style>
   .xp-platform-diagram {
-    --diagram-blue: var(--xp-accent-secondary);
-    --diagram-cyan: #67d9df;
-    --diagram-green: var(--xp-accent-primary);
-    --plane-skew: -8deg;
-    --plane-cut: 12%;
     position: relative;
     min-width: 0;
+    margin: 0;
     padding: clamp(1rem, 2.2vw, 1.35rem);
+    overflow: hidden;
     border: 1px solid rgb(198 214 235 / 0.12);
     border-radius: var(--xp-radius-lg);
     background:
+      radial-gradient(circle at 74% 18%, rgb(133 194 65 / 0.16), transparent 32%),
       linear-gradient(145deg, rgb(255 255 255 / 0.03), transparent 38%),
-      linear-gradient(180deg, rgb(11 19 32 / 0.74), rgb(5 8 14 / 0.2));
-    overflow: hidden;
+      linear-gradient(180deg, rgb(11 19 32 / 0.82), rgb(5 8 14 / 0.22));
   }
 
   .xp-platform-diagram::before {
@@ -121,12 +96,12 @@ import Layer from "../../diagrams/Layer.astro";
 
   .xp-platform-diagram__header {
     position: relative;
-    z-index: 1;
+    z-index: 2;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: clamp(1.2rem, 3vw, 1.8rem);
+    margin: 0 0 clamp(1.35rem, 3vw, 2rem);
   }
 
   .xp-platform-diagram__eyebrow,
@@ -151,403 +126,162 @@ import Layer from "../../diagrams/Layer.astro";
     z-index: 1;
     display: grid;
     min-width: 0;
-    padding: 0.15rem 0 1.35rem;
+    min-height: clamp(30rem, 58vw, 39rem);
+    align-content: center;
+    padding: clamp(1rem, 3vw, 1.6rem) 0 clamp(2.1rem, 4vw, 2.8rem);
   }
 
-  .xp-layer-card {
-    position: relative;
-    width: min(16rem, 68%);
-    min-height: 7rem;
-    margin-bottom: 1.1rem;
-    background:
-      linear-gradient(145deg, rgb(79 179 255 / 0.98), rgb(31 68 122 / 0.9));
-    box-shadow:
-      0 1.9rem 3.2rem -1.2rem rgb(0 0 0 / 0.78),
-      inset 0 1px 0 rgb(255 255 255 / 0.3);
-    transform: perspective(1100px) rotateX(54deg) rotateZ(-18deg) translateY(0.3rem);
-    transform-style: preserve-3d;
-  }
-
-  .xp-layer-card::before {
-    content: '';
+  .xp-platform-stack__axis {
     position: absolute;
-    inset: 0.8rem;
-    border: 1px solid rgb(255 255 255 / 0.16);
-    border-radius: 0.8rem;
+    inset: 7% 12% 5% 12%;
+    z-index: 0;
+    display: flex;
+    justify-content: space-between;
     pointer-events: none;
+    transform: perspective(58rem) rotateX(54deg) rotateZ(-24deg);
   }
 
-  .xp-layer-card::after {
-    content: '';
-    position: absolute;
-    inset: auto -0.8rem -0.95rem auto;
-    width: 3.4rem;
-    height: 1.1rem;
-    border-radius: 999px;
-    background: rgb(0 0 0 / 0.28);
-    filter: blur(0.5rem);
-    transform: skewX(-36deg);
+  .xp-platform-stack__axis span {
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgb(133 194 65 / 0.34), rgb(103 217 223 / 0.28), transparent);
   }
 
-  .xp-layer-card__label {
-    position: relative;
-    z-index: 1;
-    margin: 0;
-    color: rgb(255 255 255 / 0.96);
-    font-family: var(--xp-font-mono);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-shadow: 0 0.2rem 0.5rem rgb(0 0 0 / 0.25);
+  .xp-layer-chips,
+  .xp-domain-strip,
+  .xp-hardware-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
   }
 
-  .xp-plane {
-    position: relative;
-    min-width: 0;
-    clip-path: polygon(var(--plane-cut) 0, 100% 0, calc(100% - var(--plane-cut)) 100%, 0 100%);
-    border: 1px solid rgb(79 179 255 / 0.48);
-    background:
-      linear-gradient(115deg, rgb(79 179 255 / 0.16), transparent 42%),
-      rgb(15 30 51 / 0.78);
-    box-shadow:
-      0 1.15rem 2.1rem -1.8rem rgb(0 0 0 / 0.74),
-      inset 0 1px 0 rgb(255 255 255 / 0.07);
-    transform: skewY(var(--plane-skew));
-  }
-
-  .xp-plane::before,
-  .xp-plane::after {
-    content: '';
-    position: absolute;
-    pointer-events: none;
-  }
-
-  .xp-plane::before {
-    inset: 0.85rem 10% auto;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, currentColor, transparent);
-    color: rgb(117 201 255 / 0.42);
-  }
-
-  .xp-plane::after {
-    right: 12%;
-    bottom: 0.95rem;
-    width: 4.75rem;
-    height: 1px;
-    background: repeating-linear-gradient(90deg, currentColor 0 2px, transparent 2px 10px);
-    color: rgb(117 201 255 / 0.48);
-  }
-
-  .xp-plane--guests {
-    z-index: 3;
-    width: 91%;
-    margin-inline: auto 2%;
-  }
-
-  .xp-plane--xen {
-    z-index: 2;
-    width: 96%;
-    margin-inline: 2% auto;
-    border-color: rgb(103 217 223 / 0.58);
-    background:
-      linear-gradient(120deg, rgb(103 217 223 / 0.12), transparent 46%),
-      rgb(12 36 48 / 0.84);
-  }
-
-  .xp-plane--xen::before,
-  .xp-plane--xen::after {
-    color: rgb(103 217 223 / 0.46);
-  }
-
-  .xp-plane--hardware {
-    z-index: 1;
-    width: 100%;
-    border-color: rgb(133 194 65 / 0.62);
-    background:
-      linear-gradient(130deg, rgb(133 194 65 / 0.16), transparent 44%),
-      rgb(20 42 36 / 0.86);
-  }
-
-  .xp-plane--hardware::before,
-  .xp-plane--hardware::after {
-    color: rgb(133 194 65 / 0.46);
-  }
-
-  .xp-plane__content {
-    position: relative;
-    z-index: 2;
-    min-width: 0;
-    padding: clamp(1rem, 2.2vw, 1.35rem) clamp(2.6rem, 6vw, 4.8rem);
-    transform: skewY(calc(var(--plane-skew) * -1));
-  }
-
-  .xp-plane__content--split {
-    display: grid;
-    grid-template-columns: auto minmax(0, 1fr);
+  .xp-layer-chips span,
+  .xp-hardware-row span {
+    display: inline-flex;
     align-items: center;
-    gap: 1rem;
-  }
-
-  .xp-plane__title {
-    margin: 0;
-    color: var(--xp-accent-primary);
+    min-height: 1.5rem;
+    padding: 0.22rem 0.52rem;
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.06);
+    color: var(--xp-text-primary);
     font-family: var(--xp-font-mono);
-    font-size: clamp(0.72rem, 1.6vw, 0.82rem);
+    font-size: 0.68rem;
     font-weight: 800;
-    letter-spacing: 0.08em;
-    line-height: 1.3;
+    line-height: 1.1;
     text-transform: uppercase;
   }
 
-  .xp-plane--guests .xp-plane__title {
-    color: var(--diagram-blue);
-  }
-
-  .xp-plane--xen .xp-plane__title {
-    color: var(--diagram-cyan);
-  }
-
-  .xp-plane__description {
-    max-width: 24rem;
-    margin: 0.45rem 0 0;
-    color: var(--xp-text-secondary);
-    font-size: 0.9rem;
-    line-height: 1.55;
-  }
-
-  .xp-plane__drafting {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  .xp-plane__drafting span {
-    position: absolute;
-    width: 0.65rem;
-    height: 0.65rem;
-    border-color: currentColor;
-    color: rgb(117 201 255 / 0.62);
-  }
-
-  .xp-plane__drafting span:first-child {
-    top: 0.75rem;
-    left: 8%;
-    border-top: 1px solid;
-    border-left: 1px solid;
-  }
-
-  .xp-plane__drafting span:last-child {
-    right: 8%;
-    bottom: 0.75rem;
-    border-right: 1px solid;
-    border-bottom: 1px solid;
-  }
-
-  .xp-plane--xen .xp-plane__drafting span {
-    color: rgb(103 217 223 / 0.66);
-  }
-
-  .xp-plane--hardware .xp-plane__drafting span {
-    color: rgb(133 194 65 / 0.66);
-  }
-
-  .xp-domain-list {
+  .xp-domain-strip {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(0.65rem, 2vw, 1rem);
-    margin: 1rem 0 0;
+    max-width: 20rem;
+    gap: 0.6rem;
   }
 
-  .xp-domain-list > span {
+  .xp-domain-strip span {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.45rem;
     min-width: 0;
-    padding-block: 0.2rem;
     color: var(--xp-text-primary);
-    font-size: 0.9rem;
-    font-weight: 650;
-    line-height: 1.25;
+    font-size: 0.78rem;
+    font-weight: 750;
+    line-height: 1.2;
   }
 
-  .xp-domain-module,
-  .xp-boundary-symbol,
-  .xp-hardware-symbol {
+  .xp-domain-glyph {
     position: relative;
     display: inline-block;
-    width: 2rem;
-    height: 2rem;
-    flex: 0 0 auto;
+    width: 1.45rem;
+    height: 1.45rem;
+    border: 1px solid rgb(103 217 223 / 0.72);
+    background: rgb(103 217 223 / 0.08);
   }
 
-  .xp-domain-module {
-    border: 1px solid rgb(117 201 255 / 0.76);
-    background: rgb(79 179 255 / 0.07);
-  }
-
-  .xp-domain-module--linux::after {
+  .xp-domain-glyph--linux::after {
     content: '';
     position: absolute;
-    inset: 0.48rem;
-    border: 1px solid rgb(117 201 255 / 0.58);
+    inset: 0.36rem;
+    border: 1px solid rgb(103 217 223 / 0.54);
   }
 
-  .xp-domain-module--rtos {
+  .xp-domain-glyph--rtos {
     border-style: dashed;
   }
 
-  .xp-domain-module--rtos::before,
-  .xp-domain-module--rtos::after {
+  .xp-domain-glyph--rtos::before,
+  .xp-domain-glyph--rtos::after {
     content: '';
     position: absolute;
-    background: rgb(117 201 255 / 0.78);
+    background: rgb(103 217 223 / 0.72);
   }
 
-  .xp-domain-module--rtos::before {
-    inset: 0.58rem;
+  .xp-domain-glyph--rtos::before {
+    inset: 0.45rem;
   }
 
-  .xp-domain-module--rtos::after {
-    inset: -0.35rem 0.88rem;
+  .xp-domain-glyph--rtos::after {
+    inset: -0.22rem 0.62rem;
     box-shadow:
-      -0.54rem 0.54rem 0 -0.16rem rgb(117 201 255 / 0.78),
-      0.54rem 0.54rem 0 -0.16rem rgb(117 201 255 / 0.78),
-      -0.54rem 1.08rem 0 -0.16rem rgb(117 201 255 / 0.78),
-      0.54rem 1.08rem 0 -0.16rem rgb(117 201 255 / 0.78),
-      -0.54rem 1.62rem 0 -0.16rem rgb(117 201 255 / 0.78),
-      0.54rem 1.62rem 0 -0.16rem rgb(117 201 255 / 0.78);
+      -0.42rem 0.44rem 0 -0.13rem rgb(103 217 223 / 0.72),
+      0.42rem 0.44rem 0 -0.13rem rgb(103 217 223 / 0.72),
+      -0.42rem 0.88rem 0 -0.13rem rgb(103 217 223 / 0.72),
+      0.42rem 0.88rem 0 -0.13rem rgb(103 217 223 / 0.72);
   }
 
-  .xp-domain-module--services {
+  .xp-domain-glyph--services {
     border: 0;
     background:
-      linear-gradient(150deg, transparent 42%, rgb(117 201 255 / 0.72) 42% 47%, transparent 47%) 0 0 / 100% 100%,
-      linear-gradient(30deg, transparent 42%, rgb(117 201 255 / 0.72) 42% 47%, transparent 47%) 0 0 / 100% 100%;
+      linear-gradient(150deg, transparent 42%, rgb(103 217 223 / 0.72) 42% 48%, transparent 48%),
+      linear-gradient(30deg, transparent 42%, rgb(103 217 223 / 0.72) 42% 48%, transparent 48%);
   }
 
-  .xp-domain-module--services::before,
-  .xp-domain-module--services::after {
+  .xp-domain-glyph--services::before,
+  .xp-domain-glyph--services::after {
     content: '';
     position: absolute;
-    inset: 0.35rem 0.18rem;
-    border-top: 1px solid rgb(117 201 255 / 0.7);
-    border-bottom: 1px solid rgb(117 201 255 / 0.7);
+    inset: 0.25rem 0.12rem;
+    border-top: 1px solid rgb(103 217 223 / 0.68);
+    border-bottom: 1px solid rgb(103 217 223 / 0.68);
     transform: skewY(-25deg);
   }
 
-  .xp-domain-module--services::after {
-    inset: 0.75rem 0.18rem -0.05rem;
+  .xp-domain-glyph--services::after {
+    inset: 0.58rem 0.12rem -0.04rem;
   }
 
-  .xp-boundary-symbol {
-    width: 2.35rem;
-    height: 2.75rem;
-    border: 1px solid rgb(103 217 223 / 0.78);
-    border-top: 0;
-    clip-path: polygon(50% 0, 100% 16%, 100% 55%, 50% 100%, 0 55%, 0 16%);
-    background: rgb(103 217 223 / 0.06);
-  }
-
-  .xp-boundary-symbol::after {
-    content: '';
-    position: absolute;
-    inset: 0.55rem 0.72rem;
-    border-left: 1px solid rgb(103 217 223 / 0.48);
-    border-right: 1px solid rgb(103 217 223 / 0.48);
-  }
-
-  .xp-hardware-symbol {
-    border: 1px solid rgb(133 194 65 / 0.8);
-    background: rgb(133 194 65 / 0.08);
-  }
-
-  .xp-hardware-symbol::before {
-    content: '';
-    position: absolute;
-    inset: 0.52rem;
-    border: 1px solid rgb(133 194 65 / 0.62);
-    background: rgb(133 194 65 / 0.1);
-  }
-
-  .xp-hardware-symbol::after {
-    content: '';
-    position: absolute;
-    inset: -0.38rem;
-    background:
-      linear-gradient(90deg, transparent 0 0.2rem, rgb(133 194 65 / 0.72) 0.2rem 0.3rem, transparent 0.3rem 0.56rem) 50% 0 / 1.1rem 0.25rem repeat-x,
-      linear-gradient(90deg, transparent 0 0.2rem, rgb(133 194 65 / 0.72) 0.2rem 0.3rem, transparent 0.3rem 0.56rem) 50% 100% / 1.1rem 0.25rem repeat-x,
-      linear-gradient(0deg, transparent 0 0.2rem, rgb(133 194 65 / 0.72) 0.2rem 0.3rem, transparent 0.3rem 0.56rem) 0 50% / 0.25rem 1.1rem repeat-y,
-      linear-gradient(0deg, transparent 0 0.2rem, rgb(133 194 65 / 0.72) 0.2rem 0.3rem, transparent 0.3rem 0.56rem) 100% 50% / 0.25rem 1.1rem repeat-y;
-    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
-  }
-
-  .xp-hardware-grid {
-    position: absolute;
-    inset: 0.55rem 9%;
-    z-index: 1;
-    background-image:
-      linear-gradient(90deg, rgb(133 194 65 / 0.1) 1px, transparent 1px),
-      linear-gradient(rgb(133 194 65 / 0.085) 1px, transparent 1px);
-    background-size: 1.8rem 1.8rem;
-    mask-image: linear-gradient(90deg, black, transparent 74%);
-    pointer-events: none;
-  }
-
-  .xp-connector {
+  .xp-boundary-meter {
     display: grid;
-    grid-template-columns: repeat(3, 1px);
-    justify-content: center;
-    gap: clamp(3.2rem, 15vw, 7.8rem);
-    min-height: clamp(2rem, 5vw, 3rem);
-    transform: skewY(var(--plane-skew));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 17rem;
+    gap: 0.42rem;
   }
 
-  .xp-connector span {
-    position: relative;
-    display: block;
-    width: 1px;
-    background: linear-gradient(180deg, transparent, rgb(117 201 255 / 0.56), transparent);
+  .xp-boundary-meter span {
+    height: 0.5rem;
+    border: 1px solid rgb(133 194 65 / 0.62);
+    border-radius: 999px;
+    background: linear-gradient(90deg, rgb(133 194 65 / 0.45), rgb(133 194 65 / 0.1));
   }
 
-  .xp-connector--lower span {
-    background: linear-gradient(180deg, transparent, rgb(133 194 65 / 0.5), transparent);
+  .xp-hardware-row span {
+    border-color: rgb(208 223 122 / 0.2);
   }
 
-  .xp-connector span::before,
-  .xp-connector span::after {
-    content: '';
+  .xp-platform-diagram__summary {
     position: absolute;
-    left: 50%;
-    width: 0.34rem;
-    height: 0.34rem;
-    border: 1px solid currentColor;
-    background: var(--xp-surface-1);
-    transform: translateX(-50%) rotate(45deg);
-  }
-
-  .xp-connector span::before {
-    top: 0.18rem;
-  }
-
-  .xp-connector span::after {
-    bottom: 0.18rem;
-  }
-
-  .xp-connector--upper span {
-    color: rgb(117 201 255 / 0.68);
-  }
-
-  .xp-connector--lower span {
-    color: rgb(133 194 65 / 0.68);
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
   }
 
   @media (max-width: 639px) {
     .xp-platform-diagram {
-      --plane-skew: -2deg;
-      --plane-cut: 4%;
       padding: 1rem;
       border-radius: var(--xp-radius-md);
     }
@@ -562,50 +296,21 @@ import Layer from "../../diagrams/Layer.astro";
       margin-bottom: 1rem;
     }
 
-    .xp-plane,
-    .xp-plane--guests,
-    .xp-plane--xen,
-    .xp-plane--hardware {
-      width: 100%;
-      margin-inline: 0;
-    }
-
-    .xp-plane__content {
-      padding: 1rem 0.95rem;
-    }
-
-    .xp-plane__content--split {
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-
-    .xp-domain-list {
-      grid-template-columns: 1fr;
-      gap: 0.75rem;
-    }
-
-    .xp-domain-list > span {
-      grid-template-columns: auto minmax(0, 1fr);
-    }
-
-    .xp-connector {
-      gap: clamp(2.1rem, 22vw, 4.3rem);
-      min-height: 1.7rem;
-      transform: none;
-    }
-
-    .xp-plane__description {
-      font-size: 0.85rem;
-    }
-  }
-
-  @media (max-width: 419px) {
     .xp-platform-diagram__scale {
       display: none;
     }
 
-    .xp-plane::after {
-      width: 3rem;
+    .xp-platform-stack {
+      min-height: auto;
+      padding: 0;
+    }
+
+    .xp-platform-stack__axis {
+      display: none;
+    }
+
+    .xp-domain-strip {
+      grid-template-columns: 1fr;
     }
   }
 
@@ -616,29 +321,8 @@ import Layer from "../../diagrams/Layer.astro";
     }
 
     .xp-platform-diagram::before,
-    .xp-plane::before,
-    .xp-plane::after,
-    .xp-plane__drafting,
-    .xp-connector,
-    .xp-hardware-grid {
+    .xp-platform-stack__axis {
       display: none;
-    }
-
-    .xp-platform-stack {
-      gap: 0.75rem;
-    }
-
-    .xp-plane,
-    .xp-plane--guests,
-    .xp-plane--xen,
-    .xp-plane--hardware,
-    .xp-plane__content {
-      width: 100%;
-      margin-inline: 0;
-      clip-path: none;
-      background: transparent;
-      box-shadow: none;
-      transform: none;
     }
   }
 </style>
