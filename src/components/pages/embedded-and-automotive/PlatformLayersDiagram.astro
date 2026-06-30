@@ -15,51 +15,53 @@ import Layer from '../../diagrams/Layer.astro';
       <span></span>
     </div>
 
-    <Layer title="Applications" eyebrow="User space" tone="applications" width="min(25rem, 78%)" shift="-1.2rem" zIndex={4}>
-      <p>Application software sits above platform-owned boundaries instead of defining them.</p>
-      <div class="xp-layer-chips" aria-label="Example application workloads">
-        <span>UX</span>
-        <span>Telemetry</span>
-        <span>Services</span>
-      </div>
-    </Layer>
+    <div class="xp-platform-stack__plates">
+      <Layer title="Applications" eyebrow="User space" tone="applications" offset="calc(var(--platform-layer-gap) * -1.5)" zIndex={4}>
+        <p>Application software sits above platform-owned boundaries instead of defining them.</p>
+        <div class="xp-layer-chips" aria-label="Example application workloads">
+          <span>UX</span>
+          <span>Telemetry</span>
+          <span>Services</span>
+        </div>
+      </Layer>
 
-    <Layer title="Guest systems" eyebrow="Domains" tone="guests" width="min(29rem, 88%)" shift="0.3rem" zIndex={3}>
-      <p>Linux, RTOS workloads, and service domains can keep separate runtime and hardware assumptions.</p>
-      <div class="xp-domain-strip" aria-label="Example guest domains">
-        <span>
-          <i class="xp-domain-glyph xp-domain-glyph--linux" aria-hidden="true"></i>
-          Linux
-        </span>
-        <span>
-          <i class="xp-domain-glyph xp-domain-glyph--rtos" aria-hidden="true"></i>
-          RTOS
-        </span>
-        <span>
-          <i class="xp-domain-glyph xp-domain-glyph--services" aria-hidden="true"></i>
-          Services
-        </span>
-      </div>
-    </Layer>
+      <Layer title="Guest systems" eyebrow="Domains" tone="guests" offset="calc(var(--platform-layer-gap) * -0.5)" zIndex={3}>
+        <p>Linux, RTOS workloads, and service domains can keep separate runtime and hardware assumptions.</p>
+        <div class="xp-domain-strip" aria-label="Example guest domains">
+          <span>
+            <i class="xp-domain-glyph xp-domain-glyph--linux" aria-hidden="true"></i>
+            Linux
+          </span>
+          <span>
+            <i class="xp-domain-glyph xp-domain-glyph--rtos" aria-hidden="true"></i>
+            RTOS
+          </span>
+          <span>
+            <i class="xp-domain-glyph xp-domain-glyph--services" aria-hidden="true"></i>
+            Services
+          </span>
+        </div>
+      </Layer>
 
-    <Layer title="Xen hypervisor" eyebrow="Isolation boundary" tone="xen" width="min(31rem, 94%)" shift="-0.2rem" zIndex={2}>
-      <p>Scheduling, isolation, device assignment, and platform control stay visible close to hardware.</p>
-      <div class="xp-boundary-meter" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </Layer>
+      <Layer title="Xen hypervisor" eyebrow="Isolation boundary" tone="xen" offset="calc(var(--platform-layer-gap) * 0.5)" zIndex={2}>
+        <p>Scheduling, isolation, device assignment, and platform control stay visible close to hardware.</p>
+        <div class="xp-boundary-meter" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </Layer>
 
-    <Layer title="Hardware platform" eyebrow="Shared compute" tone="hardware" width="min(33rem, 100%)" shift="0.6rem" zIndex={1}>
-      <p>Compute, memory, interrupts, peripherals, and SoC integration remain explicit system design inputs.</p>
-      <div class="xp-hardware-row" aria-label="Hardware resources">
-        <span>CPU</span>
-        <span>Memory</span>
-        <span>I/O</span>
-      </div>
-    </Layer>
+      <Layer title="Hardware platform" eyebrow="Shared compute" tone="hardware" offset="calc(var(--platform-layer-gap) * 1.5)" zIndex={1}>
+        <p>Compute, memory, interrupts, peripherals, and SoC integration remain explicit system design inputs.</p>
+        <div class="xp-hardware-row" aria-label="Hardware resources">
+          <span>CPU</span>
+          <span>Memory</span>
+          <span>I/O</span>
+        </div>
+      </Layer>
+    </div>
   </div>
 
   <p class="xp-platform-diagram__summary" id="platform-layers-summary">
@@ -122,6 +124,9 @@ import Layer from '../../diagrams/Layer.astro';
   }
 
   .xp-platform-stack {
+    --platform-plate-width: min(32rem, 94%);
+    --platform-plate-height: clamp(8.8rem, 17vw, 10.4rem);
+    --platform-layer-gap: clamp(6.6rem, 12vw, 8rem);
     position: relative;
     z-index: 1;
     display: grid;
@@ -129,6 +134,17 @@ import Layer from '../../diagrams/Layer.astro';
     min-height: clamp(30rem, 58vw, 39rem);
     align-content: center;
     padding: clamp(1rem, 3vw, 1.6rem) 0 clamp(2.1rem, 4vw, 2.8rem);
+  }
+
+  .xp-platform-stack__plates {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: var(--platform-plate-width);
+    min-width: 0;
+    height: var(--platform-plate-height);
+    margin-inline: auto;
+    transform-style: preserve-3d;
   }
 
   .xp-platform-stack__axis {
@@ -303,6 +319,15 @@ import Layer from '../../diagrams/Layer.astro';
     .xp-platform-stack {
       min-height: auto;
       padding: 0;
+    }
+
+    .xp-platform-stack__plates {
+      display: grid;
+      width: 100%;
+      height: auto;
+      min-height: auto;
+      gap: 0.85rem;
+      transform: none;
     }
 
     .xp-platform-stack__axis {
