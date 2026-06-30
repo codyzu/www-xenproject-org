@@ -1,4 +1,6 @@
 ---
+import Layer from "../../diagrams/Layer.astro";
+
 ---
 
 <div class="xp-platform-diagram lg:uno-ml-auto lg:uno-max-w-[40rem]">
@@ -8,6 +10,18 @@
   </div>
 
   <div class="xp-platform-stack">
+    <Layer title="Applications">
+      <p class="uno-font-bold">Applications running in user space</p>
+    </Layer>
+    <Layer title="Guest Systems">
+      <p>Domains running operating systems with different hardware requirements</p>
+    </Layer>
+    <Layer title="Xen Hypervisor">
+      <p>Isolation, scheduling, device assignment, and platform control decisions stay visible.</p>
+    </Layer>
+    <Layer title="Hardware">
+      <p>Multi-core device specific SoC with hardware peripherals</p>
+    </Layer>
     <div class="xp-plane xp-plane--guests">
       <div class="xp-plane__drafting" aria-hidden="true">
         <span></span>
@@ -138,6 +152,54 @@
     display: grid;
     min-width: 0;
     padding: 0.15rem 0 1.35rem;
+  }
+
+  .xp-layer-card {
+    position: relative;
+    width: min(16rem, 68%);
+    min-height: 7rem;
+    margin-bottom: 1.1rem;
+    background:
+      linear-gradient(145deg, rgb(79 179 255 / 0.98), rgb(31 68 122 / 0.9));
+    box-shadow:
+      0 1.9rem 3.2rem -1.2rem rgb(0 0 0 / 0.78),
+      inset 0 1px 0 rgb(255 255 255 / 0.3);
+    transform: perspective(1100px) rotateX(54deg) rotateZ(-18deg) translateY(0.3rem);
+    transform-style: preserve-3d;
+  }
+
+  .xp-layer-card::before {
+    content: '';
+    position: absolute;
+    inset: 0.8rem;
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: 0.8rem;
+    pointer-events: none;
+  }
+
+  .xp-layer-card::after {
+    content: '';
+    position: absolute;
+    inset: auto -0.8rem -0.95rem auto;
+    width: 3.4rem;
+    height: 1.1rem;
+    border-radius: 999px;
+    background: rgb(0 0 0 / 0.28);
+    filter: blur(0.5rem);
+    transform: skewX(-36deg);
+  }
+
+  .xp-layer-card__label {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: rgb(255 255 255 / 0.96);
+    font-family: var(--xp-font-mono);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-shadow: 0 0.2rem 0.5rem rgb(0 0 0 / 0.25);
   }
 
   .xp-plane {

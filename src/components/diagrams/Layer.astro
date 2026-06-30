@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+}
+
+const {title} = Astro.props;
+---
+<div class:list={[
+  "uno-h-60 uno-w-60 uno-p-4 uno-align-bottom uno-m-b--4",
+  "uno-bg-[linear-gradient(130deg,rgba(133,194,65,0.16),transparent_44%)] uno-bg-[rgba(20,42,36,0.86)]",
+  "uno-bg-blue-bak uno-rounded-lg uno-shadow-blue-800 uno-shadow-lg uno-opacity-[80%]",
+  "uno-perspective-[110px] uno-rotate-x-[54deg] uno-rotate-z-[-28deg] uno-translate-y-[0.3rem] uno-translate-x-[4rem]",
+  ]}>
+  <p class="uno-font-mono uno-font-bold uno-text-xl">{title}</p>
+  <slot />
+</div>
