@@ -25,7 +25,6 @@ const {
   style={`--layer-width: ${width}; --layer-shift: ${shift}; --layer-offset: ${offset}; --layer-z: ${zIndex};`}
 >
   <div class="xp-diagram-layer__surface">
-    <div class="xp-diagram-layer__grid" aria-hidden="true"></div>
     <div class="xp-diagram-layer__content">
       {eyebrow && <p class="xp-diagram-layer__eyebrow">{eyebrow}</p>}
       <p class="xp-diagram-layer__title">{title}</p>
@@ -42,7 +41,14 @@ const {
     --layer-accent-soft: rgb(79 179 255 / 0.18);
     --layer-fill: rgb(14 31 55 / 0.9);
     --layer-edge: rgb(79 179 255 / 0.62);
-    --layer-glow: rgb(79 179 255 / 0.32);
+    --assembly-highlight: rgb(255 255 255 / 0.11);
+    --assembly-highlight-soft: rgb(255 255 255 / 0.045);
+    --assembly-shade: rgb(0 0 0 / 0.18);
+    --assembly-border-light: rgb(255 255 255 / 0.13);
+    --assembly-border-soft: rgb(255 255 255 / 0.09);
+    --assembly-shadow-key: rgb(0 0 0 / 0.58);
+    --assembly-shadow-soft: rgb(0 0 0 / 0.32);
+    --assembly-accent-glow: color-mix(in srgb, var(--layer-accent) 24%, transparent);
     position: relative;
     z-index: var(--layer-z);
     width: var(--layer-width);
@@ -70,13 +76,17 @@ const {
     border: 1px solid var(--layer-edge);
     border-radius: 0.9rem;
     background:
-      linear-gradient(135deg, rgb(255 255 255 / 0.12), transparent 32%),
+      linear-gradient(135deg, var(--assembly-highlight), var(--assembly-highlight-soft) 20%, transparent 42%),
+      linear-gradient(315deg, var(--assembly-shade), transparent 48%),
       linear-gradient(130deg, var(--layer-accent-soft), transparent 50%),
       var(--layer-fill);
     box-shadow:
-      0 2.2rem 3.8rem -2.2rem rgb(0 0 0 / 0.82),
-      0 0 2.1rem -1rem var(--layer-glow),
-      inset 0 1px 0 rgb(255 255 255 / 0.18);
+      0.85rem 1.1rem 2.2rem -1.35rem var(--assembly-shadow-key),
+      0.22rem 0.36rem 0.9rem -0.7rem var(--assembly-shadow-soft),
+      0 0 1.35rem -1rem var(--assembly-accent-glow),
+      inset 0 1px 0 var(--assembly-border-light),
+      inset 1px 0 0 var(--assembly-border-soft),
+      inset -1px -1px 0 rgb(0 0 0 / 0.18);
     transform-style: preserve-3d;
   }
 
@@ -89,7 +99,7 @@ const {
 
   .xp-diagram-layer__surface::before {
     inset: 0.7rem;
-    border: 1px solid rgb(255 255 255 / 0.12);
+    border: 1px solid var(--assembly-border-soft);
     border-radius: 0.65rem;
   }
 
@@ -100,17 +110,6 @@ const {
     height: 1px;
     background: repeating-linear-gradient(90deg, var(--layer-accent) 0 0.2rem, transparent 0.2rem 0.65rem);
     opacity: 0.62;
-  }
-
-  .xp-diagram-layer__grid {
-    position: absolute;
-    inset: 0;
-    background-image:
-      linear-gradient(90deg, color-mix(in srgb, var(--layer-accent) 20%, transparent) 1px, transparent 1px),
-      linear-gradient(color-mix(in srgb, var(--layer-accent) 16%, transparent) 1px, transparent 1px);
-    background-size: 2rem 2rem;
-    mask-image: linear-gradient(90deg, transparent, black 22%, black 74%, transparent);
-    opacity: 0.5;
   }
 
   .xp-diagram-layer__content {
@@ -163,34 +162,30 @@ const {
 
   .xp-diagram-layer--applications {
     --layer-accent: var(--xp-accent-secondary);
-    --layer-accent-soft: rgb(79 179 255 / 0.2);
+    --layer-accent-soft: rgb(79 179 255 / 0.16);
     --layer-fill: rgb(14 32 58 / 0.92);
-    --layer-edge: rgb(79 179 255 / 0.68);
-    --layer-glow: rgb(79 179 255 / 0.36);
+    --layer-edge: rgb(79 179 255 / 0.62);
   }
 
   .xp-diagram-layer--guests {
     --layer-accent: #67d9df;
-    --layer-accent-soft: rgb(103 217 223 / 0.18);
+    --layer-accent-soft: rgb(103 217 223 / 0.15);
     --layer-fill: rgb(14 41 54 / 0.92);
-    --layer-edge: rgb(103 217 223 / 0.66);
-    --layer-glow: rgb(103 217 223 / 0.28);
+    --layer-edge: rgb(103 217 223 / 0.62);
   }
 
   .xp-diagram-layer--xen {
     --layer-accent: var(--xp-accent-primary);
-    --layer-accent-soft: rgb(133 194 65 / 0.2);
+    --layer-accent-soft: rgb(133 194 65 / 0.16);
     --layer-fill: rgb(20 44 35 / 0.94);
-    --layer-edge: rgb(133 194 65 / 0.72);
-    --layer-glow: rgb(133 194 65 / 0.32);
+    --layer-edge: rgb(133 194 65 / 0.62);
   }
 
   .xp-diagram-layer--hardware {
     --layer-accent: #d0df7a;
-    --layer-accent-soft: rgb(208 223 122 / 0.16);
+    --layer-accent-soft: rgb(208 223 122 / 0.13);
     --layer-fill: rgb(43 48 31 / 0.94);
-    --layer-edge: rgb(208 223 122 / 0.58);
-    --layer-glow: rgb(208 223 122 / 0.22);
+    --layer-edge: rgb(208 223 122 / 0.54);
   }
 
   @media (max-width: 639px) {

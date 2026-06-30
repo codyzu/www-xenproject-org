@@ -9,12 +9,6 @@ import Layer from '../../diagrams/Layer.astro';
   </figcaption>
 
   <div class="xp-platform-stack" aria-describedby="platform-layers-summary">
-    <div class="xp-platform-stack__axis" aria-hidden="true">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
     <div class="xp-platform-stack__plates">
       <Layer title="Applications" eyebrow="User space" tone="applications" offset="calc(var(--platform-layer-gap) * -1.5)" zIndex={4}>
         <p>Application software sits above platform-owned boundaries instead of defining them.</p>
@@ -144,22 +138,8 @@ import Layer from '../../diagrams/Layer.astro';
     min-width: 0;
     height: var(--platform-plate-height);
     margin-inline: auto;
+    translate: clamp(-1.35rem, -2vw, -0.75rem) clamp(0.75rem, 1.8vw, 1.25rem);
     transform-style: preserve-3d;
-  }
-
-  .xp-platform-stack__axis {
-    position: absolute;
-    inset: 7% 12% 5% 12%;
-    z-index: 0;
-    display: flex;
-    justify-content: space-between;
-    pointer-events: none;
-    transform: perspective(58rem) rotateX(54deg) rotateZ(-24deg);
-  }
-
-  .xp-platform-stack__axis span {
-    width: 1px;
-    background: linear-gradient(180deg, transparent, rgb(133 194 65 / 0.34), rgb(103 217 223 / 0.28), transparent);
   }
 
   .xp-layer-chips,
@@ -327,11 +307,8 @@ import Layer from '../../diagrams/Layer.astro';
       height: auto;
       min-height: auto;
       gap: 0.85rem;
+      translate: none;
       transform: none;
-    }
-
-    .xp-platform-stack__axis {
-      display: none;
     }
 
     .xp-domain-strip {
@@ -345,8 +322,7 @@ import Layer from '../../diagrams/Layer.astro';
       background: transparent;
     }
 
-    .xp-platform-diagram::before,
-    .xp-platform-stack__axis {
+    .xp-platform-diagram::before {
       display: none;
     }
   }
