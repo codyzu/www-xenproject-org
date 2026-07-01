@@ -36,6 +36,21 @@ trust. The visual direction should feel like layered systems sliding into
 place: structured, precise, calm, and strong. It should communicate depth,
 clarity, motion, and infrastructure-grade reliability.
 
+The Xen website is built around layered systems. Layers are not only
+illustrations; they are reusable interface elements that represent
+architecture, separation, ownership, explicit boundaries, and inspectable
+systems. Solution pages should reuse this visual language instead of inventing
+unrelated metaphors for each domain.
+
+Layered diagrams currently have two canonical states:
+
+- **Exploded:** use for hero sections, architecture teaching, and
+  separation-focused explanations. The purpose is to show separation,
+  ownership, and inspectable boundaries.
+- **Assembled:** use for ecosystem, deployment, platform-composition, and
+  reference-architecture sections. The purpose is to show composition and how
+  technologies fit together.
+
 The Xen Project's primary visual identity uses a dark, infrastructure-inspired
 palette. Dark surfaces are the default brand canvas for new high-impact pages
 because they can communicate depth, focus, technical sophistication,
@@ -65,9 +80,60 @@ transitions, or system structure. It should not distract from the content or
 make the site feel like a product demo detached from the seriousness of the
 project.
 
+Motion should communicate engineering, not entertainment. It should reinforce
+depth, hierarchy, layering, and focus. Preferred motion includes subtle lift,
+gentle brightening, slow breathing, and restrained depth or parallax. Avoid
+bouncing, spinning, elastic motion, flashy looping, and motion that distracts
+from technical content. Any motion used for layered diagrams or related
+technical UI must respect `prefers-reduced-motion`.
+
 Avoid making mascot-driven or overly playful visuals the main homepage
 identity. Those assets can still have a place in community or historical
 contexts, but they should not carry the primary brand impression.
+
+## Solution Page Principles
+
+Solution pages should teach architecture before products. They should show
+boundaries before features. They should emphasize engineering over marketing.
+They should use layered diagrams as the primary visual language. They should
+introduce ecosystem projects only where they naturally support the technical
+story. They should end with participation and evaluation paths rather than
+sales language.
+
+Preferred editorial vocabulary for Xen solution pages includes:
+
+- explicit
+- visible
+- inspectable
+- ownership
+- isolation
+- architecture
+- maintainable
+- platform
+- deterministic
+- long-lived
+- mixed-criticality
+
+Avoid language that makes Xen sound magical, frictionless, or generic. In
+particular, avoid:
+
+- magic
+- seamless
+- effortless
+- revolutionary
+- futuristic
+- generic cyber or cloud language
+
+Ecosystem sections should show how Xen complements other projects rather than
+replacing them. The Embedded & Automotive page is the current reference:
+
+- Xen provides the virtualization and isolation boundary.
+- Linux provides rich operating systems and services.
+- Yocto Project supports embedded Linux build and distribution construction.
+- Zephyr supports RTOS-style embedded workloads.
+- AGL provides an automotive Linux platform.
+- Hardware and SoC platforms provide shared compute, memory, interrupts,
+  devices, and peripherals.
 
 ## Component Strategy
 
