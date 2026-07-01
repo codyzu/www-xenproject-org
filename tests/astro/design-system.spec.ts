@@ -15,7 +15,11 @@ test.describe('Internal design system', () => {
     await expect(main.getByRole('heading', {name: 'Proof that reads as content.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'A standard next step for redesigned pages.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Compact highlights for important context.'})).toBeVisible();
-    await expect(main.getByRole('heading', {name: 'Reusable scenes, not one-off artwork.'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Layered architecture is the primary visual language.'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Exploded'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Assembled'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Pages should feel related, not templated.'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Solution-page arc'})).toBeVisible();
     await expect(main.locator('#internal-layered-platform[data-illustration-scene="layered-platform"]')).toBeVisible();
     await expect(main.locator('#illustrations [data-illustration-overlay="glow"]')).toHaveAttribute('aria-hidden', 'true');
     await expect(main.locator('#internal-layered-platform [data-platform-layer="hypervisor"]')).toHaveAttribute('data-platform-layer-asset', 'image');

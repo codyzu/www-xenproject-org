@@ -116,6 +116,27 @@ Xen illustrations should feel calm, premium, technical, architectural, and
 timeless. They should feel closer to industrial design visualization than
 cyberpunk marketing graphics.
 
+The Xen Project visual identity is built around layered platform architecture.
+Layer diagrams are not illustrations added after page design. They are
+first-class design components that communicate architecture, isolation,
+ownership, explicit boundaries, and inspectable systems. Future solution pages
+should reuse this language before inventing unrelated visual metaphors.
+
+There are two canonical diagram states:
+
+- **Exploded:** teaches architecture, reveals ownership, explains separation,
+  and shows boundaries. Use it for hero sections, architecture explanations,
+  and educational content.
+- **Assembled:** shows composition, complete systems, ecosystem projects, and
+  deployment or reference architecture stories. Use it for ecosystem sections,
+  deployment patterns, and reference architecture summaries.
+
+Every layer should represent a meaningful architectural boundary. The typical
+stack is applications, guest systems, Xen Hypervisor, and hardware. Future
+pages may change layer labels, but should preserve the mental model of
+explicit boundaries and ownership. Avoid decorative layers and layers that do
+not map to a real architectural concept.
+
 Persistent traits:
 
 - layered dark surfaces
@@ -134,6 +155,53 @@ Avoid:
 - particles and abstract technology wallpaper
 - text baked into images
 - decorative marks that do not represent a system relationship
+
+Motion must support the same technical language. Preferred motion includes
+slight lift, subtle brightening, restrained depth, gentle breathing, and a
+reduced-motion fallback. Avoid bouncing, spinning, elastic easing, continuous
+attention-grabbing loops, and motion that distracts from technical content.
+
+## Editorial Vocabulary
+
+Preferred language for solution-page visuals and supporting copy:
+
+- explicit
+- visible
+- inspectable
+- ownership
+- isolation
+- architecture
+- maintainable
+- platform
+- deterministic
+- long-lived
+- mixed-criticality
+- composable
+- open engineering
+
+Avoid language that makes Xen sound magical, frictionless, generic, or driven
+by hype:
+
+- magic
+- seamless
+- effortless
+- revolutionary
+- futuristic
+- generic cyber or cloud language
+- hype-driven AI language
+
+## Solution Page Storytelling
+
+Layered diagrams work best when the page teaches a system instead of presenting
+isolated features. A useful solution-page arc is:
+
+```text
+Hero -> problem -> architecture principles -> technical capabilities ->
+domain example -> ecosystem -> evaluation -> participation -> CTA
+```
+
+This is guidance, not a rigid template. Use it to make future pages feel like
+siblings while still fitting the subject, audience, and available proof.
 
 ## Production Workflow
 

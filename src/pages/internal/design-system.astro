@@ -48,6 +48,9 @@ type TextCard = {
   title: string;
   description: string;
 };
+type ListCard = TextCard & {
+  items: string[];
+};
 type MotionSample = {
   name: string;
   duration: string;
@@ -279,6 +282,60 @@ const futureIllustrationScenes: TextCard[] = [
     description: 'Reuse layer index, connector paths, and proof callouts to explain releases, artifacts, verification, and docs.',
   },
 ];
+
+const diagramStates: ListCard[] = [
+  {
+    title: 'Exploded',
+    description: 'Teach architecture, reveal ownership, explain separation, and show boundaries.',
+    items: ['Hero sections', 'Architecture explanations', 'Educational content'],
+  },
+  {
+    title: 'Assembled',
+    description: 'Show composition, complete systems, ecosystem projects, and deployment or reference architecture stories.',
+    items: ['Ecosystem sections', 'Deployment patterns', 'Reference architecture summaries'],
+  },
+];
+
+const layerSemantics: ListCard[] = [
+  {
+    title: 'Typical stack',
+    description: 'Each layer should represent a meaningful architectural boundary.',
+    items: ['Applications', 'Guest systems', 'Xen Hypervisor', 'Hardware'],
+  },
+  {
+    title: 'Authoring rule',
+    description: 'Labels may change for a domain, but the mental model should stay explicit.',
+    items: ['Avoid decorative layers', 'Avoid non-architectural layers', 'Preserve boundaries and ownership'],
+  },
+];
+
+const diagramMotionGuidance: ListCard[] = [
+  {
+    title: 'Preferred',
+    description: 'Motion should communicate engineering, not entertainment.',
+    items: ['Slight lift', 'Subtle brightening', 'Restrained depth', 'Gentle breathing', 'Reduced-motion fallback'],
+  },
+  {
+    title: 'Avoid',
+    description: 'Movement should never compete with technical content.',
+    items: ['Bouncing', 'Spinning', 'Elastic easing', 'Continuous attention-grabbing loops', 'Distracting motion'],
+  },
+];
+
+const vocabularyGuidance: ListCard[] = [
+  {
+    title: 'Prefer',
+    description: 'Use language that makes architecture visible and testable.',
+    items: ['explicit', 'visible', 'inspectable', 'ownership', 'isolation', 'architecture', 'maintainable', 'platform', 'deterministic', 'long-lived', 'mixed-criticality', 'composable', 'open engineering'],
+  },
+  {
+    title: 'Avoid',
+    description: 'Keep the voice technical and concrete.',
+    items: ['magic', 'seamless', 'effortless', 'revolutionary', 'futuristic', 'generic cyber/cloud language', 'hype-driven AI language'],
+  },
+];
+
+const solutionPageArc = ['Hero', 'Problem', 'Architecture principles', 'Technical capabilities', 'Domain example', 'Ecosystem', 'Evaluation', 'Participation', 'CTA'];
 
 const blockActions = [
   {label: 'Primary action', href: '#blocks'},
@@ -553,9 +610,12 @@ const blockStats = [
         <Stack gap="6">
           <Stack gap="3" class="uno-max-w-xp-content">
             <Text size="eyebrow" tone="muted">Illustration system</Text>
-            <Heading size="heading-xl">Reusable scenes, not one-off artwork.</Heading>
+            <Heading size="heading-xl">Layered architecture is the primary visual language.</Heading>
             <Text>
-              Xen illustrations use Astro composition, HTML labels, SVG connectors, reusable overlays, and optional transparent assets so future pages inherit the same visual language.
+              The Xen Project visual identity is built around layered platform architecture. Layer diagrams are not illustrations added after page design. They are first-class design components that communicate architecture, isolation, ownership, explicit boundaries, and inspectable systems.
+            </Text>
+            <Text>
+              Future solution pages should reuse this language before inventing unrelated visual metaphors.
             </Text>
           </Stack>
           <Split align="center">
@@ -574,6 +634,39 @@ const blockStats = [
               </Grid>
             </Stack>
           </Split>
+          <Grid columns="2">
+            {diagramStates.map(state => (
+              <Card>
+                <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Canonical state</Text>
+                <Heading as="h3" size="heading-m" class="uno-mt-2">{state.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{state.description}</Text>
+                <ul class="uno-mt-4 uno-grid uno-gap-2 uno-pl-4 uno-text-sm uno-text-xp-text-muted">
+                  {state.items.map(item => <li>{item}</li>)}
+                </ul>
+              </Card>
+            ))}
+          </Grid>
+          <Grid columns="2">
+            {layerSemantics.map(rule => (
+              <Surface tone="2" border="muted" padding="md" radius="md" shadow="sm">
+                <Heading as="h3" size="heading-m">{rule.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{rule.description}</Text>
+                <Cluster gap="2" class="uno-mt-4">
+                  {rule.items.map(item => <Badge variant="muted">{item}</Badge>)}
+                </Cluster>
+              </Surface>
+            ))}
+          </Grid>
+          <Grid columns="2">
+            {diagramMotionGuidance.map(rule => (
+              <Stack gap="3">
+                <Divider />
+                <Heading as="h3" size="heading-m">{rule.title}</Heading>
+                <Text size="caption">{rule.description}</Text>
+                <Text size="caption" tone="muted">{rule.items.join(' · ')}</Text>
+              </Stack>
+            ))}
+          </Grid>
           <Grid columns="4">
             {futureIllustrationScenes.map(scene => (
               <Card>
@@ -582,6 +675,44 @@ const blockStats = [
               </Card>
             ))}
           </Grid>
+        </Stack>
+      </Container>
+    </Section>
+
+    <Section id="experience-guidance">
+      <Container>
+        <Stack gap="6">
+          <Stack gap="3" class="uno-max-w-xp-content">
+            <Text size="eyebrow" tone="muted">Experience guidance</Text>
+            <Heading size="heading-xl">Pages should feel related, not templated.</Heading>
+            <Text>
+              Solution pages should teach the system before marketing the outcome. Use the same architectural vocabulary and narrative rhythm, then adapt the emphasis to the domain.
+            </Text>
+          </Stack>
+          <Grid columns="2">
+            {vocabularyGuidance.map(rule => (
+              <Card>
+                <Heading as="h3" size="heading-m">{rule.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{rule.description}</Text>
+                <Cluster gap="2" class="uno-mt-4">
+                  {rule.items.map(item => <Badge variant={rule.title === 'Prefer' ? 'info' : 'muted'}>{item}</Badge>)}
+                </Cluster>
+              </Card>
+            ))}
+          </Grid>
+          <Surface tone="2" border="muted" padding="lg" radius="md" shadow="sm">
+            <Stack gap="4">
+              <Stack gap="2" class="uno-max-w-xp-content">
+                <Heading as="h3" size="heading-m">Solution-page arc</Heading>
+                <Text size="caption">
+                  This is guidance, not a rigid template. It helps future pages feel like siblings while still fitting their subject.
+                </Text>
+              </Stack>
+              <Cluster gap="2">
+                {solutionPageArc.map(step => <Badge>{step}</Badge>)}
+              </Cluster>
+            </Stack>
+          </Surface>
         </Stack>
       </Container>
     </Section>

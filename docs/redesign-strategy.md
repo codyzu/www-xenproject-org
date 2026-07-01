@@ -42,6 +42,11 @@ architecture, separation, ownership, explicit boundaries, and inspectable
 systems. Solution pages should reuse this visual language instead of inventing
 unrelated metaphors for each domain.
 
+Layer diagrams are first-class design components, not artwork added after the
+page is otherwise designed. They should carry technical meaning: what owns
+what, where isolation begins, which boundaries are explicit, and how a system
+can be inspected or reasoned about.
+
 Layered diagrams currently have two canonical states:
 
 - **Exploded:** use for hero sections, architecture teaching, and
@@ -50,6 +55,12 @@ Layered diagrams currently have two canonical states:
 - **Assembled:** use for ecosystem, deployment, platform-composition, and
   reference-architecture sections. The purpose is to show composition and how
   technologies fit together.
+
+Every diagram layer should map to a real architectural boundary. The default
+mental model is applications, guest systems, the Xen hypervisor, and hardware.
+Future pages may change the labels for their domain, but they should preserve
+the model of explicit boundaries and ownership. Avoid decorative layers or
+layers that do not represent a meaningful technical concept.
 
 The Xen Project's primary visual identity uses a dark, infrastructure-inspired
 palette. Dark surfaces are the default brand canvas for new high-impact pages
@@ -113,6 +124,8 @@ Preferred editorial vocabulary for Xen solution pages includes:
 - deterministic
 - long-lived
 - mixed-criticality
+- composable
+- open engineering
 
 Avoid language that makes Xen sound magical, frictionless, or generic. In
 particular, avoid:
@@ -123,6 +136,18 @@ particular, avoid:
 - revolutionary
 - futuristic
 - generic cyber or cloud language
+- hype-driven AI language
+
+A typical solution page arc is:
+
+```text
+Hero -> problem -> architecture principles -> technical capabilities ->
+domain example -> ecosystem -> evaluation -> participation -> CTA
+```
+
+This is guidance rather than a rigid template. The goal is for solution pages
+to feel like siblings while still fitting the subject, audience, and proof
+available for each domain.
 
 Ecosystem sections should show how Xen complements other projects rather than
 replacing them. The Embedded & Automotive page is the current reference:

@@ -160,118 +160,71 @@ cannot be expressed clearly with utilities.
 
 ## Layered Diagram Components
 
-The current reusable diagram abstraction comes from the Embedded & Automotive
-implementation:
+The reusable layered diagram language emerged from the Embedded & Automotive
+page. It is part of the Astro-first redesign foundation because it expresses
+Xen's core architectural promise: explicit boundaries, visible ownership,
+isolation, and inspectable platform structure.
 
-- `src/components/diagrams/PlatformLayersDiagram.astro` composes a full
-  labelled platform diagram.
-- `src/components/diagrams/Layer.astro` renders a single tilted layer surface.
-- `src/components/diagrams/platform-layers.ts` defines the shared TypeScript
-  data shape.
-- `src/data/embedded-and-automotive-platform-layers.ts` is the current page
-  data source for both the hero diagram and ecosystem diagram.
+Layer diagrams are not decorative illustrations added after a page is designed.
+They are first-class design components. Future solution pages should reuse this
+language before inventing unrelated visual metaphors.
 
-These components are part of the emerging Astro-first redesign language. They
-should be reused for solution pages that need to explain architecture,
-separation, ownership, platform composition, or inspectable technical
-boundaries.
-
-`PlatformLayersDiagram` currently accepts the following props:
-
-| Prop | Type | Current behavior |
-| --- | --- | --- |
-| `id` | `string` | Optional DOM id seed for accessible title and summary ids. Defaults to `platform-layers`. |
-| `title` | `string` | Required diagram title from `PlatformLayersDiagramData`; used as the default eyebrow when no eyebrow is provided. |
-| `eyebrow` | `string` | Optional visible diagram label. |
-| `metaLabel` | `string` | Optional visible technical label in the header. Defaults to `CSS layer model`. |
-| `summary` | `string` | Required screen-reader summary describing the diagram's meaning. |
-| `layers` | `PlatformLayerData[]` | Required ordered layer data. |
-| `variant` | `'standard' \| 'hero'` | Optional visual variant. Defaults to `standard`. |
-| `defaultShadowReceivers` | `boolean` | Optional default for whether layers after the first receive projected shadow surfaces. Defaults to `true`. |
-| `interactive` | `boolean` | Optional opt-in interaction flag. Defaults to `true` only for `variant="hero"`. |
-| `class` | `string` | Optional class list hook for page-local layout adjustment. |
-
-The shared layer data shape is:
-
-| Field | Type | Current behavior |
-| --- | --- | --- |
-| `title` | `string` | Required layer title. |
-| `eyebrow` | `string` | Optional layer category label. |
-| `tone` | `'applications' \| 'guests' \| 'xen' \| 'hardware'` | Optional color treatment. Defaults to `guests` in `Layer`. |
-| `description` | `string` | Required explanatory copy. |
-| `items` | `{label: string; icon?: string}[]` | Optional domain strip items rendered inside the layer. Icons use existing icon utility classes. |
-| `itemsLabel` | `string` | Optional accessible label for the domain strip. |
-| `receivesShadow` | `boolean` | Optional per-layer override for projected shadow rendering. |
-
-The lower-level `Layer` component also accepts layout props used by
-`PlatformLayersDiagram`: `width`, `shift`, `offset`, `bodyWidth`, `hoverX`,
-`hoverY`, `zIndex`, and `receivesShadow`. These are implementation controls,
-not a public page-authoring API. Pages should normally pass diagram data to
-`PlatformLayersDiagram` instead of instantiating `Layer` directly.
+Use layered diagrams when a page needs to explain architecture, separation,
+ownership, platform composition, deployment patterns, ecosystem fit, or
+reference architectures. Keep the surrounding layout and copy concise so the
+diagram teaches the system rather than becoming decoration.
 
 ### Diagram States
 
-`variant="hero"` is the current exploded state. It uses wider spacing, larger
-plates, hero-specific text width, visible separation between layers, and
-interaction by default. Use it for hero sections, architecture teaching, and
-separation-focused explanations where the diagram needs to make ownership and
-boundaries obvious.
+There are two canonical states:
 
-The default `variant="standard"` is the current assembled state. It uses a
-more compact composition and does not enable interaction by default. Use it for
-ecosystem, deployment, platform-composition, and reference-architecture
-sections where the goal is to show how technologies fit together.
+- **Exploded:** use for hero sections, architecture explanations, and
+  educational content. Its purpose is to teach architecture, reveal ownership,
+  explain separation, and show boundaries.
+- **Assembled:** use for ecosystem sections, deployment patterns, and reference
+  architecture summaries. Its purpose is to show composition, complete systems,
+  and how ecosystem projects fit together.
 
-Embedded & Automotive uses both states from the same data contract:
+These states are conceptual authoring guidance, not a page-author API catalog.
+Component props can evolve as more real pages require them.
 
-- The hero diagram uses `embeddedAutomotivePlatformLayersDiagram` with
-  `variant: 'hero'`, `metaLabel: 'Exploded Architecture'`, and shorter layer
-  descriptions focused on separation.
-- The ecosystem diagram uses `embeddedAutomotiveEcosystemLayersDiagram` with
-  the default standard variant, `metaLabel: 'Open stack'`, and richer layer
-  `items` showing applications, Linux/Yocto, Zephyr/RTOS, Xen responsibilities,
-  and hardware resources.
+### Layer Semantics
+
+Every layer should represent a meaningful architectural boundary. The typical
+stack is:
+
+- Applications
+- Guest systems
+- Xen Hypervisor
+- Hardware
+
+Future pages may change these labels for a specific domain, but should
+preserve the mental model of explicit boundaries and ownership. Avoid
+decorative layers and layers that do not map to a real architectural concept.
+
+### Motion
+
+Motion should communicate engineering, not entertainment. Preferred diagram
+motion includes slight lift, subtle brightening, restrained depth, gentle
+breathing, and a reduced-motion fallback. Avoid bouncing, spinning, elastic
+easing, continuous attention-grabbing loops, and motion that distracts from
+technical content.
 
 ### Accessibility and Interaction
 
-`PlatformLayersDiagram` renders a `<figure>` with an accessible title wired by
-`aria-labelledby`. The visible header label provides the title, while the
-`summary` prop renders as visually hidden text referenced by
-`aria-describedby` on the stack. Every diagram data object must include a
-concise summary that explains the technical relationship the diagram is
-communicating, not just the visual appearance.
-
-Interactivity should be opt-in unless the diagram is acting as the primary hero
-visual. The current component defaults `interactive` to `true` for the hero
-variant and `false` for the standard variant. Interactive diagrams receive
-keyboard focus, subtle lift, gentle brightening, and small layer offsets on
-hover or focus. Keep this interaction informative and restrained; do not add
-interaction to dense ecosystem diagrams unless it improves comprehension.
-
-The component already handles `prefers-reduced-motion` by disabling animation,
-reducing transition duration, removing hover lift, and suppressing extra layer
-offsets. Future diagram work must preserve that behavior.
+Every diagram must include an accessible summary that explains the technical
+relationship being communicated, not just the visual appearance. Interactivity
+should be opt-in unless the diagram is acting as the primary hero visual. Keep
+interactive behavior informative and restrained, and preserve
+`prefers-reduced-motion` support.
 
 ### CSS Boundary
 
-The diagram uses component-scoped custom CSS because its core behavior depends
-on 3D transforms, stacked grid placement, generated shadow receivers, masked
-grid texture, hover-state CSS variables, responsive deconstruction on mobile,
-print handling, and reduced-motion overrides. Those concerns are clearer as
-local CSS than as long chains of utilities.
-
-Continue to use UnoCSS utilities and token-backed primitives for ordinary page
-layout around the diagram. Custom CSS is justified for diagram geometry,
+Use UnoCSS utilities and token-backed primitives for ordinary page layout
+around diagrams. Component-scoped custom CSS is acceptable for diagram geometry,
 state-specific motion, generated surfaces, and responsive behavior that cannot
-be expressed clearly with utilities.
-
-### Future Extension Points
-
-The current API is intentionally small. Likely future extension points, if
-multiple pages need them, include named assembled/exploded modes beyond the
-existing `variant` values, alternate layer counts, richer item grouping,
-diagram legends, or page-author controls for scale and density. Do not treat
-those as finalized APIs until at least two real pages require the behavior.
+be expressed clearly with utilities. Avoid broad component refactors or new
+diagram APIs until at least two real pages require the behavior.
 
 ## Design Playground
 
