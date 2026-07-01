@@ -15,7 +15,10 @@ import Stack from '../../components/primitives/Stack.astro';
 import Surface from '../../components/primitives/Surface.astro';
 import Text from '../../components/primitives/Text.astro';
 import PlatformLayersDiagram from '../../components/diagrams/PlatformLayersDiagram.astro';
-import {embeddedAutomotivePlatformLayersDiagram} from '../../data/embedded-and-automotive-platform-layers';
+import {
+  embeddedAutomotiveEcosystemLayersDiagram,
+  embeddedAutomotivePlatformLayersDiagram,
+} from '../../data/embedded-and-automotive-platform-layers';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'Embedded & Automotive';
@@ -221,15 +224,6 @@ const ecosystemRoles = [
     title: 'Hardware and SoC platform',
     description: 'Supplies the shared compute, devices, interrupts, memory, and peripherals that the full platform must compose.',
   },
-];
-
-const platformComposition = [
-  'Applications and services',
-  'AGL, Linux applications, and custom platform software',
-  'Linux guests built with Yocto Project',
-  'Zephyr or RTOS guests for real-time domains',
-  'Xen virtualization and isolation layer',
-  'Hardware, devices, interrupts, and automotive SoC',
 ];
 
 const resources = [
@@ -501,23 +495,13 @@ const resources = [
             Xen complements the rest of the embedded and automotive stack. It does not replace Linux, Yocto Project, Zephyr, Automotive Grade Linux, or the hardware platform; it gives teams a virtualization boundary where those pieces can be composed with clearer isolation and ownership.
           </Text>
         </Stack>
-        <Split align="start">
+        <Split align="start" class="xp-ecosystem-layout">
           <Stack gap="4">
-            <Surface tone="2" border="strong" radius="lg" shadow="sm" padding="lg">
-              <Stack gap="4">
-                <Text size="eyebrow" tone="accent-primary">Platform composition</Text>
-                <div class="xp-platform-stack" aria-label="Embedded platform stack from applications to hardware">
-                  {platformComposition.map((layer, index) => (
-                    <div class="xp-platform-layer">
-                      <Text size="caption" tone="primary" class="uno-font-semibold">{layer}</Text>
-                      {index < platformComposition.length - 1 && (
-                        <span class="i-carbon-arrow-down xp-platform-arrow" aria-hidden="true"></span>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              </Stack>
-            </Surface>
+            <PlatformLayersDiagram
+              id="open-platform-ecosystem-diagram"
+              class="xp-ecosystem-diagram"
+              {...embeddedAutomotiveEcosystemLayersDiagram}
+            />
             <Callout
               title="AGL Software Defined Vehicle reference architecture"
               description="AGL's Software Defined Vehicle work includes a reference architecture that shows how Linux Foundation projects such as Xen and Zephyr can participate in a broader open automotive platform stack."
@@ -533,7 +517,7 @@ const resources = [
                   <span class:list={[role.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
                   <Stack gap="3">
                     <Heading as="h3" size="heading-m">{role.title}</Heading>
-                    <Text size="caption">{role.description}</Text>
+                    <Text size="small">{role.description}</Text>
                   </Stack>
                   {role.href && (
                     <Button href={role.href} variant="text" class="uno-self-start">
@@ -638,28 +622,13 @@ const resources = [
     padding: 0.5rem 0.65rem;
   }
 
-  .xp-platform-stack {
-    display: grid;
-    gap: 0.625rem;
+  :global(.xp-ecosystem-layout) {
+    align-items: stretch;
   }
 
-  .xp-platform-layer {
-    display: grid;
-    min-width: 0;
-    gap: 0.5rem;
-  }
-
-  .xp-platform-layer > :first-child {
-    min-width: 0;
-    border: 1px solid var(--xp-border-muted);
-    border-radius: var(--xp-radius-md);
-    background: var(--xp-surface-3);
-    padding: 0.75rem 0.875rem;
-  }
-
-  .xp-platform-arrow {
-    justify-self: center;
-    color: var(--xp-accent-primary);
-    font-size: 1rem;
+  @media (min-width: 1024px) {
+    :global(.xp-ecosystem-layout) {
+      grid-template-columns: minmax(0, 1.08fr) minmax(36rem, 0.92fr);
+    }
   }
 </style>

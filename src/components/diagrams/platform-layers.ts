@@ -15,10 +15,13 @@ export type PlatformLayerData = {
   receivesShadow?: boolean;
 };
 
+export type PlatformLayersDiagramVariant = 'standard' | 'hero';
+
 export type PlatformLayersDiagramData = {
   title: string;
   eyebrow?: string;
   metaLabel?: string;
   summary: string;
   layers: PlatformLayerData[];
+  variant?: PlatformLayersDiagramVariant;
 };
