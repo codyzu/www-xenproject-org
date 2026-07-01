@@ -186,23 +186,50 @@ const xenFit = [
   },
 ];
 
-const concepts = [
+const ecosystemRoles = [
   {
-    label: 'Hardware CI',
-    description: 'Xen CI includes real hardware validation, including Dom0, DomU, Dom0less, PCI passthrough, and suspend/resume scenarios.',
+    icon: 'i-carbon-layers',
+    title: 'Xen',
+    description: 'Provides the virtualization and isolation boundary where platform teams decide how guest systems share hardware.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Explore Xen hypervisor',
   },
   {
-    label: 'Arm and platform support',
-    description: 'Existing Xen site content references Arm, ARM64, x86, RISC-V, and PowerPC work across project and CI material.',
+    icon: 'i-carbon-logo-linux',
+    title: 'Linux',
+    description: 'Runs rich operating-system services, platform middleware, application environments, and integration tooling.',
+    href: '/technology/architecture/',
+    linkLabel: 'Read architecture overview',
   },
   {
-    label: 'Safety-conscious process',
-    description: 'Existing project content references MISRA C work and safety-standard alignment efforts; product certification still requires separate evaluation.',
+    icon: 'i-carbon-package',
+    title: 'Yocto Project',
+    description: 'Helps teams construct embedded Linux distributions and repeatable system images for Linux guest environments.',
   },
   {
-    label: 'Open source integration',
-    description: 'The embedded project has referenced work across Xen, Linux, OP-TEE, and RTOS environments such as Zephyr.',
+    icon: 'i-carbon-memory',
+    title: 'Zephyr',
+    description: 'Can support RTOS-style workloads and embedded real-time domains alongside Linux-based systems.',
   },
+  {
+    icon: 'i-carbon-car',
+    title: 'Automotive Grade Linux',
+    description: 'Provides an open automotive Linux platform for IVI and software-defined vehicle oriented software stacks.',
+  },
+  {
+    icon: 'i-carbon-chip',
+    title: 'Hardware and SoC platform',
+    description: 'Supplies the shared compute, devices, interrupts, memory, and peripherals that the full platform must compose.',
+  },
+];
+
+const platformComposition = [
+  'Applications and services',
+  'AGL, Linux applications, and custom platform software',
+  'Linux guests built with Yocto Project',
+  'Zephyr or RTOS guests for real-time domains',
+  'Xen virtualization and isolation layer',
+  'Hardware, devices, interrupts, and automotive SoC',
 ];
 
 const resources = [
@@ -464,33 +491,72 @@ const resources = [
     features={xenFit}
   />
 
-  <Section id="concepts">
+  <Section id="open-platform-ecosystem">
     <Container>
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
-          <Text size="eyebrow" tone="muted">Relevant technologies and concepts</Text>
-          <Heading size="heading-xl">Start with the concepts before choosing an integration path.</Heading>
+          <Text size="eyebrow" tone="muted">Open platform ecosystem</Text>
+          <Heading size="heading-xl">Building complete embedded platforms</Heading>
           <Text>
-            These concepts are useful starting points for an embedded or automotive evaluation. Detailed product claims should be checked against current upstream documentation and project evidence.
+            Xen complements the rest of the embedded and automotive stack. It does not replace Linux, Yocto Project, Zephyr, Automotive Grade Linux, or the hardware platform; it gives teams a virtualization boundary where those pieces can be composed with clearer isolation and ownership.
           </Text>
         </Stack>
-        <Grid columns="3" gap="5">
-          {concepts.map(concept => (
-            <Card>
-              <Stack gap="3">
-                <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">{concept.label}</Text>
-                <Text size="caption">{concept.description}</Text>
+        <Split align="start">
+          <Stack gap="4">
+            <Surface tone="2" border="strong" radius="lg" shadow="sm" padding="lg">
+              <Stack gap="4">
+                <Text size="eyebrow" tone="accent-primary">Platform composition</Text>
+                <div class="xp-platform-stack" aria-label="Embedded platform stack from applications to hardware">
+                  {platformComposition.map((layer, index) => (
+                    <div class="xp-platform-layer">
+                      <Text size="caption" tone="primary" class="uno-font-semibold">{layer}</Text>
+                      {index < platformComposition.length - 1 && (
+                        <span class="i-carbon-arrow-down xp-platform-arrow" aria-hidden="true"></span>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </Stack>
-            </Card>
-          ))}
-        </Grid>
-        <Callout
-          title="Treat detailed safety and real-time claims as verification work."
-          description="RTDS scheduling, IOMMU behavior, static partitioning, memory and interrupt separation, AGL ties, exact performance numbers, and formal certification status should be linked only after they are verified from current authoritative project material."
-          action={{label: 'Review safety entry point', href: '/technology/safety/', variant: 'secondary'}}
-        >
-          <span slot="icon" class="i-carbon-document-requirements"></span>
-        </Callout>
+            </Surface>
+            <Callout
+              title="AGL Software Defined Vehicle reference architecture"
+              description="AGL's Software Defined Vehicle work includes a reference architecture that shows how Linux Foundation projects such as Xen and Zephyr can participate in a broader open automotive platform stack."
+              action={{label: 'Read the AGL SDV announcement', href: 'https://www.automotivelinux.org/announcements/sodev/', variant: 'secondary'}}
+            >
+              <span slot="icon" class="i-carbon-document"></span>
+            </Callout>
+          </Stack>
+          <Grid columns="2" gap="4">
+            {ecosystemRoles.map(role => (
+              <Card>
+                <Stack gap="4">
+                  <span class:list={[role.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
+                  <Stack gap="3">
+                    <Heading as="h3" size="heading-m">{role.title}</Heading>
+                    <Text size="caption">{role.description}</Text>
+                  </Stack>
+                  {role.href && (
+                    <Button href={role.href} variant="text" class="uno-self-start">
+                      {role.linkLabel ?? 'Learn more'}
+                    </Button>
+                  )}
+                </Stack>
+              </Card>
+            ))}
+          </Grid>
+        </Split>
+        <Surface as="aside" tone="2" border="muted" radius="lg" shadow="sm" padding="lg">
+          <div class="uno-flex uno-min-w-0 uno-flex-col uno-gap-3 sm:uno-flex-row sm:uno-items-start sm:uno-gap-4">
+            <span class="i-carbon-document-requirements uno-mt-1 uno-inline-flex uno-shrink-0 uno-text-2xl uno-text-xp-accent-primary" aria-hidden="true"></span>
+            <Stack gap="3" class="uno-min-w-0">
+              <Text as="span" size="eyebrow" tone="accent-primary">Evaluation note</Text>
+              <Heading as="h3" size="heading-m">Verify detailed product claims against current project material.</Heading>
+              <Text size="caption">
+                Ecosystem diagrams and architecture notes are useful starting points, but safety, real-time, performance, certification, and deployment-specific claims should be checked against current authoritative documentation and product evidence.
+              </Text>
+            </Stack>
+          </div>
+        </Surface>
       </Stack>
     </Container>
   </Section>
@@ -570,5 +636,30 @@ const resources = [
 
   .xp-tag {
     padding: 0.5rem 0.65rem;
+  }
+
+  .xp-platform-stack {
+    display: grid;
+    gap: 0.625rem;
+  }
+
+  .xp-platform-layer {
+    display: grid;
+    min-width: 0;
+    gap: 0.5rem;
+  }
+
+  .xp-platform-layer > :first-child {
+    min-width: 0;
+    border: 1px solid var(--xp-border-muted);
+    border-radius: var(--xp-radius-md);
+    background: var(--xp-surface-3);
+    padding: 0.75rem 0.875rem;
+  }
+
+  .xp-platform-arrow {
+    justify-self: center;
+    color: var(--xp-accent-primary);
+    font-size: 1rem;
   }
 </style>
