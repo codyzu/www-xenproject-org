@@ -193,36 +193,36 @@ const ecosystemRoles = [
   {
     icon: 'i-carbon-layers',
     title: 'Xen',
-    description: 'Provides the virtualization and isolation boundary where platform teams decide how guest systems share hardware.',
+    description: 'Provides the virtualization and isolation boundary between guest systems and shared hardware.',
     href: '/projects/hypervisor/',
     linkLabel: 'Explore Xen hypervisor',
   },
   {
     icon: 'i-carbon-logo-linux',
     title: 'Linux',
-    description: 'Runs rich operating-system services, platform middleware, application environments, and integration tooling.',
+    description: 'Runs rich operating-system services, middleware, application environments, and integration tooling.',
     href: '/technology/architecture/',
     linkLabel: 'Read architecture overview',
   },
   {
     icon: 'i-carbon-package',
     title: 'Yocto Project',
-    description: 'Helps teams construct embedded Linux distributions and repeatable system images for Linux guest environments.',
+    description: 'Helps teams construct embedded Linux distributions and repeatable images for Linux guests.',
   },
   {
     icon: 'i-carbon-memory',
     title: 'Zephyr',
-    description: 'Can support RTOS-style workloads and embedded real-time domains alongside Linux-based systems.',
+    description: 'Supports RTOS-style embedded workloads that may need a smaller runtime than Linux.',
   },
   {
     icon: 'i-carbon-car',
     title: 'Automotive Grade Linux',
-    description: 'Provides an open automotive Linux platform for IVI and software-defined vehicle oriented software stacks.',
+    description: 'Provides an open automotive Linux platform for IVI and software-defined vehicle software stacks.',
   },
   {
     icon: 'i-carbon-chip',
     title: 'Hardware and SoC platform',
-    description: 'Supplies the shared compute, devices, interrupts, memory, and peripherals that the full platform must compose.',
+    description: 'Supplies the compute, memory, interrupts, devices, and peripherals the platform composes around.',
   },
 ];
 
@@ -492,7 +492,7 @@ const resources = [
           <Text size="eyebrow" tone="muted">Open platform ecosystem</Text>
           <Heading size="heading-xl">Building complete embedded platforms</Heading>
           <Text>
-            Xen complements the rest of the embedded and automotive stack. It does not replace Linux, Yocto Project, Zephyr, Automotive Grade Linux, or the hardware platform; it gives teams a virtualization boundary where those pieces can be composed with clearer isolation and ownership.
+            Embedded and automotive platforms are usually composed from several open technologies, not one runtime. Xen sits at the virtualization boundary, complementing Linux, Yocto Project, Zephyr, Automotive Grade Linux, and the underlying hardware platform without replacing them.
           </Text>
         </Stack>
         <Split align="start" class="xp-ecosystem-layout">
@@ -504,7 +504,7 @@ const resources = [
             />
             <Callout
               title="AGL Software Defined Vehicle reference architecture"
-              description="AGL's Software Defined Vehicle work includes a reference architecture that shows how Linux Foundation projects such as Xen and Zephyr can participate in a broader open automotive platform stack."
+              description="AGL's Software Defined Vehicle reference architecture is useful because it shows how Xen, Zephyr, Linux, and automotive application layers can fit into a broader open platform model."
               action={{label: 'Read the AGL SDV announcement', href: 'https://www.automotivelinux.org/announcements/sodev/', variant: 'secondary'}}
             >
               <span slot="icon" class="i-carbon-document"></span>
@@ -529,18 +529,6 @@ const resources = [
             ))}
           </Grid>
         </Split>
-        <Surface as="aside" tone="2" border="muted" radius="lg" shadow="sm" padding="lg">
-          <div class="uno-flex uno-min-w-0 uno-flex-col uno-gap-3 sm:uno-flex-row sm:uno-items-start sm:uno-gap-4">
-            <span class="i-carbon-document-requirements uno-mt-1 uno-inline-flex uno-shrink-0 uno-text-2xl uno-text-xp-accent-primary" aria-hidden="true"></span>
-            <Stack gap="3" class="uno-min-w-0">
-              <Text as="span" size="eyebrow" tone="accent-primary">Evaluation note</Text>
-              <Heading as="h3" size="heading-m">Verify detailed product claims against current project material.</Heading>
-              <Text size="caption">
-                Ecosystem diagrams and architecture notes are useful starting points, but safety, real-time, performance, certification, and deployment-specific claims should be checked against current authoritative documentation and product evidence.
-              </Text>
-            </Stack>
-          </div>
-        </Surface>
       </Stack>
     </Container>
   </Section>

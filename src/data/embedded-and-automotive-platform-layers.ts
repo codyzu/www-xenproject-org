@@ -54,7 +54,7 @@ export const embeddedAutomotiveEcosystemLayersDiagram: PlatformLayersDiagramData
       title: 'Applications and services',
       eyebrow: 'Software layer',
       tone: 'applications',
-      description: 'AGL, IVI, custom apps, telemetry, diagnostics, and OTA services run above guest environments.',
+      description: 'Application and service layers sit above guest operating environments.',
       receivesShadow: false,
       itemsLabel: 'Example application and service workloads',
       items: [
@@ -67,8 +67,7 @@ export const embeddedAutomotiveEcosystemLayersDiagram: PlatformLayersDiagramData
       title: 'Guest systems',
       eyebrow: 'Operating environments',
       tone: 'guests',
-      description:
-        'Linux built with Yocto Project, Zephyr or RTOS workloads, and service domains retain distinct roles.',
+      description: 'Linux, Zephyr or RTOS workloads, and service domains keep separate runtime roles.',
       itemsLabel: 'Example guest systems',
       items: [
         {label: 'Yocto Linux', icon: 'i-carbon-linux'},
@@ -80,7 +79,7 @@ export const embeddedAutomotiveEcosystemLayersDiagram: PlatformLayersDiagramData
       title: 'Xen virtualization',
       eyebrow: 'Isolation boundary',
       tone: 'xen',
-      description: 'Xen supplies the hypervisor boundary for isolation, ownership, and resource-control decisions.',
+      description: 'The hypervisor boundary separates guests and resource ownership.',
       itemsLabel: 'Xen platform responsibilities',
       items: [
         {label: 'Hypervisor', icon: 'i-carbon-layers'},
@@ -92,7 +91,7 @@ export const embeddedAutomotiveEcosystemLayersDiagram: PlatformLayersDiagramData
       title: 'Hardware / SoC platform',
       eyebrow: 'Shared compute',
       tone: 'hardware',
-      description: 'CPU, memory, interrupts, devices, and peripherals come from the embedded or automotive SoC.',
+      description: 'Shared compute, memory, interrupts, devices, and peripherals.',
       itemsLabel: 'Shared platform resources',
       items: [
         {label: 'CPU', icon: 'i-carbon-chip'},
