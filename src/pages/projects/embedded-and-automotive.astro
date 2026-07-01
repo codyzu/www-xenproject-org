@@ -193,6 +193,7 @@ const ecosystemRoles = [
   {
     icon: 'i-carbon-layers',
     title: 'Xen',
+    group: 'Core platform',
     description: 'Provides the virtualization and isolation boundary between guest systems and shared hardware.',
     href: '/projects/hypervisor/',
     linkLabel: 'Visit project',
@@ -200,27 +201,31 @@ const ecosystemRoles = [
   {
     icon: 'i-carbon-logo-linux',
     title: 'Linux',
+    group: 'Core platform',
     description: 'Runs rich operating-system services, middleware, application environments, and integration tooling.',
     href: '/technology/architecture/',
     linkLabel: 'Explore architecture',
   },
   {
-    icon: 'i-carbon-package',
-    title: 'Yocto Project',
-    description: 'Helps teams construct embedded Linux distributions and repeatable images for Linux guests.',
-    href: 'https://www.yoctoproject.org/',
-    linkLabel: 'Visit Yocto Project',
-  },
-  {
     icon: 'i-carbon-memory',
     title: 'Zephyr',
+    group: 'Core platform',
     description: 'Supports RTOS-style embedded workloads that may need a smaller runtime than Linux.',
     href: 'https://www.zephyrproject.org/',
     linkLabel: 'Visit Zephyr Project',
   },
   {
+    icon: 'i-carbon-package',
+    title: 'Yocto Project',
+    group: 'Build and domain ecosystem',
+    description: 'Helps teams construct embedded Linux distributions and repeatable images for Linux guests.',
+    href: 'https://www.yoctoproject.org/',
+    linkLabel: 'Visit Yocto Project',
+  },
+  {
     icon: 'i-carbon-car',
     title: 'Automotive Grade Linux',
+    group: 'Build and domain ecosystem',
     description: 'Provides an open automotive Linux platform for IVI and software-defined vehicle software stacks.',
     href: 'https://www.automotivelinux.org/',
     linkLabel: 'Visit AGL',
@@ -228,6 +233,7 @@ const ecosystemRoles = [
   {
     icon: 'i-carbon-chip',
     title: 'Hardware and SoC platform',
+    group: 'Build and domain ecosystem',
     description: 'Supplies the compute, memory, interrupts, devices, and peripherals the platform composes around.',
   },
 ];
@@ -319,7 +325,7 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="mixed-criticality" surface="1" class="xp-related-section">
+  <Section id="mixed-criticality" surface="1" class="xp-related-section xp-technical-chapter-section">
     <Container>
       <Stack gap="6">
         <Split align="start">
@@ -345,7 +351,7 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="platform-separation" class="xp-related-section">
+  <Section id="platform-separation" class="xp-related-section xp-technical-chapter-section">
     <Container>
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
@@ -372,7 +378,7 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="technical-capabilities" surface="1" class="xp-related-section">
+  <Section id="technical-capabilities" surface="1" class="xp-related-section xp-technical-chapter-section">
     <Container>
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
@@ -516,6 +522,7 @@ const resources = [
                 <Stack gap="4">
                   <span class:list={[role.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
                   <Stack gap="3">
+                    <span class="xp-role-group">{role.group}</span>
                     <Heading as="h3" size="heading-m">{role.title}</Heading>
                     <Text size="small">{role.description}</Text>
                   </Stack>
@@ -584,7 +591,7 @@ const resources = [
     id="next-step"
     eyebrow="Next step"
     title="Evaluate Xen for your platform, or help shape the work."
-    description="Engineers can start with architecture, CI, and contribution resources. Organizations can support the project through membership."
+    description="Start with architecture resources, documentation, CI, and community contribution paths, or support the project through membership."
     actions={[
       {label: 'Start contributing', href: '/contribute/get-started/'},
       {label: 'Become a member', href: '/about/become-a-member/', variant: 'secondary'},
@@ -594,25 +601,20 @@ const resources = [
 </BaseLayout>
 
 <style>
-  .xp-tag {
-    display: inline-flex;
-    align-items: center;
-    min-width: 0;
-    border: 1px solid var(--xp-border-muted);
-    border-radius: var(--xp-radius-md);
-    background: rgb(133 194 65 / 0.1);
-    color: var(--xp-text-primary);
-    font-size: 0.8125rem;
-    font-weight: 700;
-    line-height: 1.2;
-  }
-
-  .xp-tag {
-    padding: 0.5rem 0.65rem;
-  }
-
   :global(.xp-ecosystem-layout) {
     align-items: stretch;
+  }
+
+  .xp-role-group {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    color: var(--xp-text-muted);
+    font-size: 0.7rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    text-transform: uppercase;
   }
 
   :global(.xp-automotive-layout) {
@@ -627,6 +629,10 @@ const resources = [
 
   :global(.xp-related-section) {
     padding-block: clamp(4rem, 7vw, 5.5rem);
+  }
+
+  :global(.xp-technical-chapter-section) {
+    padding-block: clamp(3.25rem, 5.6vw, 4.35rem);
   }
 
   @media (min-width: 1024px) {
