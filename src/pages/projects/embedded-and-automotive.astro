@@ -55,6 +55,54 @@ const virtualizationChallenges = [
   },
 ];
 
+const mixedCriticalityExamples: {title: string; description: string}[] = [
+  {
+    title: 'Different operating profiles',
+    description: 'Safety-conscious control workloads, RTOS workloads, Linux services, infotainment, telemetry, diagnostics, and OTA services can have different timing, reliability, update, and validation needs.',
+  },
+  {
+    title: 'Shared compute pressure',
+    description: 'As platforms consolidate onto fewer processors and boards, workloads that once lived on separate controllers increasingly share memory, devices, interrupts, and boot dependencies.',
+  },
+  {
+    title: 'Separation as an engineering concern',
+    description: 'The hard problem is sharing hardware without blurring ownership, validation scope, fault-containment expectations, or lifecycle boundaries between platform responsibilities.',
+  },
+];
+
+const platformSeparation: {icon: string; title: string; description: string}[] = [
+  {
+    icon: 'i-carbon-security',
+    title: 'Isolation boundaries',
+    description: 'Reason about where guest systems are separated and where platform integration must be reviewed explicitly.',
+  },
+  {
+    icon: 'i-carbon-user-multiple',
+    title: 'Guest ownership',
+    description: 'Keep the responsibilities of Linux guests, RTOS guests, service domains, and hardware-facing components visible.',
+  },
+  {
+    icon: 'i-carbon-chip',
+    title: 'Resource assignment',
+    description: 'Make CPU, memory, interrupt, and device assignment part of the platform design instead of implicit operating-system behavior.',
+  },
+  {
+    icon: 'i-carbon-diagram',
+    title: 'Boot and integration',
+    description: 'Track startup order, control-domain choices, device setup, and integration responsibilities as first-class architecture decisions.',
+  },
+  {
+    icon: 'i-carbon-settings-adjust',
+    title: 'Platform control',
+    description: 'Separate hardware-facing platform control from guest application environments where the system design calls for that boundary.',
+  },
+  {
+    icon: 'i-carbon-time',
+    title: 'Long-term maintainability',
+    description: 'Support product lifecycles where guest systems, platform software, and hardware assumptions may need to evolve at different rates.',
+  },
+];
+
 const xenFit = [
   {
     icon: 'i-carbon-layers',
@@ -207,6 +255,59 @@ const resources = [
     </Container>
   </Section>
 
+  <Section id="mixed-criticality" surface="1">
+    <Container>
+      <Stack gap="6">
+        <Split align="start">
+          <Stack gap="3">
+            <Text size="eyebrow" tone="muted">Mixed-criticality systems</Text>
+            <Heading size="heading-xl">Why mixed-criticality matters</Heading>
+          </Stack>
+          <Text>
+            Modern embedded and automotive platforms increasingly combine workloads with different safety, timing, reliability, and maintenance requirements on shared compute. The term mixed-criticality is useful because it keeps attention on the engineering boundaries between those workloads, not just the fact that they run on the same hardware.
+          </Text>
+        </Split>
+        <Grid columns="3" gap="5">
+          {mixedCriticalityExamples.map(example => (
+            <Card>
+              <Stack gap="3">
+                <Heading as="h3" size="heading-m">{example.title}</Heading>
+                <Text size="caption">{example.description}</Text>
+              </Stack>
+            </Card>
+          ))}
+        </Grid>
+      </Stack>
+    </Container>
+  </Section>
+
+  <Section id="platform-separation">
+    <Container>
+      <Stack gap="6">
+        <Stack gap="3" class="uno-max-w-xp-content">
+          <Text size="eyebrow" tone="muted">Design principles</Text>
+          <Heading size="heading-xl">Designed for platform separation</Heading>
+          <Text>
+            Xen gives platform teams a clear boundary between shared hardware and guest systems, making separation decisions visible instead of burying them inside one operating system.
+          </Text>
+        </Stack>
+        <Grid columns="3" gap="5">
+          {platformSeparation.map(item => (
+            <Card>
+              <Stack gap="4">
+                <span class:list={[item.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
+                <Stack gap="3">
+                  <Heading as="h3" size="heading-m">{item.title}</Heading>
+                  <Text size="caption">{item.description}</Text>
+                </Stack>
+              </Stack>
+            </Card>
+          ))}
+        </Grid>
+      </Stack>
+    </Container>
+  </Section>
+
   <Section id="automotive" surface="1">
     <Container>
       <Split align="center">
@@ -287,8 +388,8 @@ const resources = [
   <FeatureGrid
     id="why-xen-fits"
     eyebrow="Why Xen fits"
-    title="A practical boundary for mixed-workload platform engineering."
-    description="Xen is relevant when teams need a thin virtualization layer, hardware-aware isolation, flexible guest placement, and an open engineering model they can inspect over the life of a product."
+    title="Evaluation starts with architecture, evidence, and integration context."
+    description="After the separation model is clear, teams can evaluate Xen through its hypervisor architecture, isolation resources, guest model, governance, and public engineering process."
     surface="1"
     columns="3"
     features={xenFit}
