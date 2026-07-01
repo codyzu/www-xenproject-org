@@ -3,7 +3,7 @@ import type {PlatformLayersDiagramData} from '../components/diagrams/platform-la
 export const embeddedAutomotivePlatformLayersDiagram: PlatformLayersDiagramData = {
   title: 'Platform layers',
   eyebrow: 'Platform layers',
-  metaLabel: 'CSS layer model',
+  metaLabel: 'Exploded Architecture',
   summary:
     'Xen separates application workloads, guest domains, hypervisor control, and shared hardware into visible platform layers.',
   layers: [
