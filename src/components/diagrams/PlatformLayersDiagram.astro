@@ -5,6 +5,7 @@ import type {PlatformLayersDiagramData} from './platform-layers';
 type Props = PlatformLayersDiagramData & {
   id?: string;
   defaultShadowReceivers?: boolean;
+  interactive?: boolean;
   class?: string;
 };
 
@@ -17,21 +18,30 @@ const {
   layers,
   variant = 'standard',
   defaultShadowReceivers = true,
+  interactive = variant === 'hero',
   class: className = '',
 } = Astro.props;
 
 const titleId = `${id}-title`;
 const summaryId = `${id}-summary`;
 const midpoint = (layers.length - 1) / 2;
+const heroHoverOffsets = [
+  {x: '0.18rem', y: '-0.24rem'},
+  {x: '0.12rem', y: '-0.16rem'},
+  {x: '0.06rem', y: '-0.08rem'},
+  {x: '0.02rem', y: '-0.03rem'},
+];
 ---
 
 <figure
   class:list={[
     'xp-platform-diagram',
     `xp-platform-diagram--${variant}`,
+    interactive && 'xp-platform-diagram--interactive',
     className,
   ]}
   aria-labelledby={titleId}
+  tabindex={interactive ? '0' : undefined}
 >
   <figcaption class="xp-platform-diagram__header">
     <p class="xp-platform-diagram__eyebrow" id={titleId}>{eyebrow}</p>
@@ -43,6 +53,7 @@ const midpoint = (layers.length - 1) / 2;
       {layers.map((layer, index) => {
         const offsetStep = index - midpoint;
         const receivesShadow = layer.receivesShadow ?? (defaultShadowReceivers && index > 0);
+        const hoverOffset = interactive ? (heroHoverOffsets[index] ?? heroHoverOffsets[heroHoverOffsets.length - 1]) : undefined;
 
         return (
           <Layer
@@ -51,6 +62,8 @@ const midpoint = (layers.length - 1) / 2;
             tone={layer.tone}
             offset={`calc(var(--platform-layer-gap) * ${offsetStep})`}
             bodyWidth={variant === 'hero' ? '22rem' : '28rem'}
+            hoverX={hoverOffset?.x}
+            hoverY={hoverOffset?.y}
             zIndex={layers.length - index}
             receivesShadow={receivesShadow}
           >
@@ -91,6 +104,11 @@ const midpoint = (layers.length - 1) / 2;
       radial-gradient(circle at 74% 18%, rgb(133 194 65 / 0.16), transparent 32%),
       linear-gradient(145deg, rgb(255 255 255 / 0.03), transparent 38%),
       linear-gradient(180deg, rgb(11 19 32 / 0.82), rgb(5 8 14 / 0.22));
+    transform: translateY(0);
+    transition:
+      border-color 560ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 560ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .xp-platform-diagram::before {
@@ -103,6 +121,8 @@ const midpoint = (layers.length - 1) / 2;
       linear-gradient(rgb(198 214 235 / 0.045) 1px, transparent 1px);
     background-size: 2.75rem 2.75rem;
     mask-image: linear-gradient(130deg, transparent 0%, black 26%, black 70%, transparent 100%);
+    opacity: 0.92;
+    transition: opacity 560ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .xp-platform-diagram__header {
@@ -148,6 +168,48 @@ const midpoint = (layers.length - 1) / 2;
   .xp-platform-diagram--hero {
     max-width: 45rem;
     padding: clamp(1rem, 2.2vw, 1.35rem);
+  }
+
+  .xp-platform-diagram--interactive {
+    outline-offset: 0.45rem;
+  }
+
+  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) {
+    border-color: rgb(198 214 235 / 0.2);
+    filter: brightness(1.055);
+    transform: translateY(-0.28rem);
+  }
+
+  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within)::before {
+    opacity: 1;
+  }
+
+  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer) {
+    --layer-extra-x: var(--layer-hover-x);
+    --layer-extra-y: var(--layer-hover-y);
+  }
+
+  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer__surface) {
+    filter: brightness(1.035);
+    border-color: color-mix(in srgb, var(--layer-edge) 88%, white);
+    box-shadow:
+      1rem 1.35rem 2.7rem -1.25rem rgb(0 0 0 / 0.68),
+      0.3rem 0.48rem 1.15rem -0.72rem rgb(0 0 0 / 0.46),
+      0 0 1.65rem -0.9rem color-mix(in srgb, var(--layer-accent) 38%, transparent),
+      inset 0 1px 0 rgb(255 255 255 / 0.18),
+      inset 1px 0 0 rgb(255 255 255 / 0.12),
+      inset -1px -1px 0 rgb(0 0 0 / 0.16);
+  }
+
+  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer__surface)::after {
+    opacity: 0.78;
+  }
+
+  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer__receiver) {
+    opacity: 0.98;
+    box-shadow:
+      0 0.86rem 1.35rem rgb(0 0 0 / 0.4),
+      inset 0 0 2.2rem rgb(0 0 0 / 0.2);
   }
 
   .xp-platform-diagram--hero .xp-platform-diagram__header {
@@ -275,6 +337,32 @@ const midpoint = (layers.length - 1) / 2;
       margin-left: auto;
       overflow: visible;
     }
+
+    .xp-platform-diagram--interactive .xp-platform-stack__plates {
+      animation: xp-platform-breathe 8s ease-in-out infinite;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .xp-platform-diagram,
+    .xp-platform-diagram::before,
+    :global(.xp-diagram-layer),
+    :global(.xp-diagram-layer__surface),
+    :global(.xp-diagram-layer__surface)::after,
+    :global(.xp-diagram-layer__receiver),
+    .xp-platform-stack__plates {
+      animation: none !important;
+      transition-duration: 1ms !important;
+    }
+
+    .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) {
+      transform: none;
+    }
+
+    .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer) {
+      --layer-extra-x: 0rem;
+      --layer-extra-y: 0rem;
+    }
   }
 
   @media print {
@@ -285,6 +373,17 @@ const midpoint = (layers.length - 1) / 2;
 
     .xp-platform-diagram::before {
       display: none;
+    }
+  }
+
+  @keyframes xp-platform-breathe {
+    0%,
+    100% {
+      filter: brightness(1);
+    }
+
+    50% {
+      filter: brightness(1.025);
     }
   }
 </style>

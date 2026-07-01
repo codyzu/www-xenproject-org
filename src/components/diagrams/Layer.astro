@@ -7,6 +7,8 @@ interface Props {
   shift?: string;
   offset?: string;
   bodyWidth?: string;
+  hoverX?: string;
+  hoverY?: string;
   zIndex?: number;
   receivesShadow?: boolean;
 }
@@ -19,6 +21,8 @@ const {
   shift = '0rem',
   offset = '0rem',
   bodyWidth = '22rem',
+  hoverX = '0rem',
+  hoverY = '0rem',
   zIndex = 1,
   receivesShadow = false,
 } = Astro.props;
@@ -26,7 +30,7 @@ const {
 
 <section
   class:list={['xp-diagram-layer', `xp-diagram-layer--${tone}`]}
-  style={`--layer-width: ${width}; --layer-shift: ${shift}; --layer-offset: ${offset}; --layer-body-width: ${bodyWidth}; --layer-z: ${zIndex};`}
+  style={`--layer-width: ${width}; --layer-shift: ${shift}; --layer-offset: ${offset}; --layer-body-width: ${bodyWidth}; --layer-hover-x: ${hoverX}; --layer-hover-y: ${hoverY}; --layer-z: ${zIndex};`}
 >
   <div class="xp-diagram-layer__surface">
     {receivesShadow && <div class="xp-diagram-layer__receiver" aria-hidden="true"></div>}
@@ -54,6 +58,8 @@ const {
     --assembly-shadow-key: rgb(0 0 0 / 0.58);
     --assembly-shadow-soft: rgb(0 0 0 / 0.32);
     --assembly-accent-glow: color-mix(in srgb, var(--layer-accent) 24%, transparent);
+    --layer-extra-x: 0rem;
+    --layer-extra-y: 0rem;
     position: relative;
     z-index: var(--layer-z);
     width: var(--layer-width);
@@ -62,11 +68,12 @@ const {
     margin-inline: auto;
     grid-area: 1 / 1;
     transform:
-      translate3d(var(--layer-shift), var(--layer-offset), 0)
+      translate3d(calc(var(--layer-shift) + var(--layer-extra-x)), calc(var(--layer-offset) + var(--layer-extra-y)), 0)
       perspective(58rem)
       rotateX(54deg)
       rotateZ(-24deg);
     transform-style: preserve-3d;
+    transition: transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .xp-diagram-layer + .xp-diagram-layer {
@@ -93,6 +100,10 @@ const {
       inset 1px 0 0 var(--assembly-border-soft),
       inset -1px -1px 0 rgb(0 0 0 / 0.18);
     transform-style: preserve-3d;
+    transition:
+      border-color 560ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 560ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 560ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .xp-diagram-layer__surface::before,
@@ -115,6 +126,7 @@ const {
     height: 1px;
     background: repeating-linear-gradient(90deg, var(--layer-accent) 0 0.2rem, transparent 0.2rem 0.65rem);
     opacity: 0.62;
+    transition: opacity 560ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .xp-diagram-layer__receiver {
@@ -131,6 +143,9 @@ const {
       inset 0 0 2rem rgb(0 0 0 / 0.18);
     opacity: 0.92;
     transform: translateZ(0);
+    transition:
+      opacity 560ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 560ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .xp-diagram-layer__content {
