@@ -103,6 +103,51 @@ const platformSeparation: {icon: string; title: string; description: string}[] =
   },
 ];
 
+const technicalCapabilities: {icon: string; title: string; description: string; href?: string; linkLabel?: string}[] = [
+  {
+    icon: 'i-carbon-chip',
+    title: 'CPU pinning',
+    description: 'Assign CPU resources deliberately so latency-sensitive guests and platform services have explicit execution ownership.',
+    href: '/technology/architecture/',
+    linkLabel: 'Read architecture overview',
+  },
+  {
+    icon: 'i-carbon-time',
+    title: 'Deterministic interrupt latencies',
+    description: 'Design systems where interrupt routing, CPU assignment, and device ownership support deterministic interrupt latencies.',
+    href: '/technology/safety/',
+    linkLabel: 'Review safety resources',
+  },
+  {
+    icon: 'i-carbon-connect',
+    title: 'Device passthrough',
+    description: 'Assign selected hardware devices directly to guests when the system design calls for direct device ownership.',
+    href: '/technology/isolation-and-security/',
+    linkLabel: 'Review isolation overview',
+  },
+  {
+    icon: 'i-carbon-boot',
+    title: 'Dom0less boot',
+    description: 'Start selected guest domains without waiting for a traditional control domain boot path where the platform design calls for it.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Explore the hypervisor',
+  },
+  {
+    icon: 'i-carbon-data-structured',
+    title: 'Static resource partitioning',
+    description: 'Make CPU, memory, device, and interrupt ownership part of the platform design instead of implicit runtime behavior.',
+    href: '/technology/isolation-and-security/',
+    linkLabel: 'Review isolation overview',
+  },
+  {
+    icon: 'i-carbon-diagram',
+    title: 'Flexible control domains',
+    description: 'Choose a control-domain model that fits the product architecture instead of assuming a single management pattern.',
+    href: '/technology/architecture/',
+    linkLabel: 'Read architecture overview',
+  },
+];
+
 const xenFit = [
   {
     icon: 'i-carbon-layers',
@@ -142,14 +187,6 @@ const xenFit = [
 ];
 
 const concepts = [
-  {
-    label: 'Dom0less',
-    description: 'A Xen configuration path for systems that benefit from starting guest domains without waiting for a traditional control domain boot path.',
-  },
-  {
-    label: 'Device passthrough',
-    description: 'A platform integration tool for assigning selected hardware resources to guests when the system design calls for direct device access.',
-  },
   {
     label: 'Hardware CI',
     description: 'Xen CI includes real hardware validation, including Dom0, DomU, Dom0less, PCI passthrough, and suspend/resume scenarios.',
@@ -308,15 +345,68 @@ const resources = [
     </Container>
   </Section>
 
+  <Section id="technical-capabilities" surface="1">
+    <Container>
+      <Stack gap="6">
+        <Stack gap="3" class="uno-max-w-xp-content">
+          <Text size="eyebrow" tone="muted">Technical capabilities</Text>
+          <Heading size="heading-xl">Capabilities for mixed-criticality platform design</Heading>
+          <Text>
+            Once the separation model is clear, platform teams can evaluate the Xen capabilities that make ownership, timing, device access, and boot architecture explicit.
+          </Text>
+        </Stack>
+        <Grid columns="3" gap="5">
+          {technicalCapabilities.map(capability => (
+            <Card>
+              <Stack gap="4">
+                <span class:list={[capability.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
+                <Stack gap="3">
+                  <Heading as="h3" size="heading-m">{capability.title}</Heading>
+                  <Text size="caption">{capability.description}</Text>
+                </Stack>
+                {capability.href && (
+                  <Button href={capability.href} variant="text" class="uno-self-start">
+                    {capability.linkLabel ?? 'Learn more'}
+                  </Button>
+                )}
+              </Stack>
+            </Card>
+          ))}
+        </Grid>
+      </Stack>
+    </Container>
+  </Section>
+
+  <Section id="embedded-systems">
+    <Container>
+      <Split>
+        <Stack gap="3">
+          <Text size="eyebrow" tone="muted">Embedded platform breadth</Text>
+          <Heading size="heading-xl">The same separation model applies across embedded domains.</Heading>
+          <Text>
+            Xen can be evaluated wherever teams need to combine hardware-facing software, guest operating systems, and long-lived platform requirements while keeping ownership, timing, and integration boundaries visible.
+          </Text>
+        </Stack>
+        <Grid columns="2" gap="4">
+          {['Industrial systems', 'Robotics', 'Medical and regulated devices', 'Edge appliances', 'Networking equipment', 'Specialized hardware platforms'].map(example => (
+            <Surface tone="2" border="muted" radius="md" shadow="sm" padding="md">
+              <Text size="caption" tone="primary" class="uno-font-semibold">{example}</Text>
+            </Surface>
+          ))}
+        </Grid>
+      </Split>
+    </Container>
+  </Section>
+
   <Section id="automotive" surface="1">
     <Container>
       <Split align="center">
         <Stack gap="5">
           <Stack gap="3">
-            <Text size="eyebrow" tone="muted">Automotive focus</Text>
-            <Heading size="heading-xl">A virtualization layer for software-defined vehicle platforms.</Heading>
+            <Text size="eyebrow" tone="muted">Flagship embedded example</Text>
+            <Heading size="heading-xl">Software-defined vehicles make the separation challenge concrete.</Heading>
             <Text>
-              Automotive platforms increasingly combine Linux systems, RTOS workloads, service domains, and hardware-specific functions on shared compute. Xen gives platform teams a thin virtualization layer for reasoning about isolation, ownership, and system boundaries without treating one operating system as the whole platform.
+              Automotive platforms are a prominent example of the broader embedded challenge: Linux systems, RTOS workloads, service domains, and hardware-specific functions increasingly share compute. Xen gives platform teams a thin virtualization layer for reasoning about isolation, ownership, and system boundaries without treating one operating system as the whole platform.
             </Text>
           </Stack>
           <Grid columns="2" gap="4">
@@ -364,30 +454,9 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="embedded-systems">
-    <Container>
-      <Split>
-        <Stack gap="3">
-          <Text size="eyebrow" tone="muted">Embedded systems</Text>
-          <Heading size="heading-xl">The automotive story builds on broader embedded virtualization foundations.</Heading>
-          <Text>
-            Xen can be evaluated anywhere teams need to combine hardware-facing software, guest operating systems, and long-lived platform requirements while keeping separation visible.
-          </Text>
-        </Stack>
-        <Grid columns="2" gap="4">
-          {['Industrial systems', 'Robotics', 'Medical and regulated devices', 'Edge appliances', 'Networking equipment', 'Specialized hardware platforms'].map(example => (
-            <Surface tone="2" border="muted" radius="md" shadow="sm" padding="md">
-              <Text size="caption" tone="primary" class="uno-font-semibold">{example}</Text>
-            </Surface>
-          ))}
-        </Grid>
-      </Split>
-    </Container>
-  </Section>
-
   <FeatureGrid
     id="why-xen-fits"
-    eyebrow="Why Xen fits"
+    eyebrow="Why architects choose Xen"
     title="Evaluation starts with architecture, evidence, and integration context."
     description="After the separation model is clear, teams can evaluate Xen through its hypervisor architecture, isolation resources, guest model, governance, and public engineering process."
     surface="1"
