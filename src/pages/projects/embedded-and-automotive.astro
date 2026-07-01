@@ -14,7 +14,8 @@ import Split from '../../components/primitives/Split.astro';
 import Stack from '../../components/primitives/Stack.astro';
 import Surface from '../../components/primitives/Surface.astro';
 import Text from '../../components/primitives/Text.astro';
-import PlatformLayersDiagram from '../../components/pages/embedded-and-automotive/PlatformLayersDiagram.astro';
+import PlatformLayersDiagram from '../../components/diagrams/PlatformLayersDiagram.astro';
+import {embeddedAutomotivePlatformLayersDiagram} from '../../data/embedded-and-automotive-platform-layers';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'Embedded & Automotive';
@@ -176,7 +177,7 @@ const resources = [
     ]}
     layout="balanced"
   >
-    <PlatformLayersDiagram slot="media" />
+    <PlatformLayersDiagram slot="media" {...embeddedAutomotivePlatformLayersDiagram} />
   </Hero>
 
   <Section id="why-virtualization">

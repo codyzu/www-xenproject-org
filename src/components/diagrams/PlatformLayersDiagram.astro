@@ -1,49 +1,67 @@
 ---
-import Layer from '../../diagrams/Layer.astro';
+import Layer from './Layer.astro';
+import type {PlatformLayersDiagramData} from './platform-layers';
+
+type Props = PlatformLayersDiagramData & {
+  id?: string;
+  defaultShadowReceivers?: boolean;
+};
+
+const {
+  id = 'platform-layers',
+  title,
+  eyebrow = title,
+  metaLabel = 'CSS layer model',
+  summary,
+  layers,
+  defaultShadowReceivers = true,
+} = Astro.props;
+
+const titleId = `${id}-title`;
+const summaryId = `${id}-summary`;
+const midpoint = (layers.length - 1) / 2;
 ---
 
-<figure class="xp-platform-diagram lg:uno-ml-auto lg:uno-max-w-[40rem]" aria-labelledby="platform-layers-title">
+<figure class="xp-platform-diagram lg:uno-ml-auto lg:uno-max-w-[40rem]" aria-labelledby={titleId}>
   <figcaption class="xp-platform-diagram__header">
-    <p class="xp-platform-diagram__eyebrow" id="platform-layers-title">Platform layers</p>
-    <span class="xp-platform-diagram__scale" aria-hidden="true">CSS layer model</span>
+    <p class="xp-platform-diagram__eyebrow" id={titleId}>{eyebrow}</p>
+    {metaLabel && <span class="xp-platform-diagram__scale" aria-hidden="true">{metaLabel}</span>}
   </figcaption>
 
-  <div class="xp-platform-stack" aria-describedby="platform-layers-summary">
+  <div class="xp-platform-stack" aria-describedby={summaryId}>
     <div class="xp-platform-stack__plates">
-      <Layer title="Applications" eyebrow="User space" tone="applications" offset="calc(var(--platform-layer-gap) * -1.5)" zIndex={4}>
-        <p>Application software sits above platform-owned boundaries instead of defining them.</p>
-      </Layer>
+      {layers.map((layer, index) => {
+        const offsetStep = index - midpoint;
+        const receivesShadow = layer.receivesShadow ?? (defaultShadowReceivers && index > 0);
 
-      <Layer title="Guest systems" eyebrow="Domains" tone="guests" offset="calc(var(--platform-layer-gap) * -0.5)" zIndex={3} receivesShadow>
-        <p>Linux, RTOS workloads, and service domains can keep separate runtime and hardware assumptions.</p>
-        <div class="xp-domain-strip" aria-label="Example guest domains">
-          <span>
-            <i class="xp-domain-icon i-carbon-linux" aria-hidden="true"></i>
-            Linux
-          </span>
-          <span>
-            <i class="xp-domain-icon i-carbon-chip" aria-hidden="true"></i>
-            RTOS
-          </span>
-          <span>
-            <i class="xp-domain-icon i-carbon-container-services" aria-hidden="true"></i>
-            Services
-          </span>
-        </div>
-      </Layer>
-
-      <Layer title="Xen hypervisor" eyebrow="Isolation boundary" tone="xen" offset="calc(var(--platform-layer-gap) * 0.5)" zIndex={2} receivesShadow>
-        <p>Scheduling, isolation, device assignment, and platform control stay visible close to hardware.</p>
-      </Layer>
-
-      <Layer title="Hardware platform" eyebrow="Shared compute" tone="hardware" offset="calc(var(--platform-layer-gap) * 1.5)" zIndex={1} receivesShadow>
-        <p>Compute, memory, interrupts, peripherals, and SoC integration remain explicit system design inputs.</p>
-      </Layer>
+        return (
+          <Layer
+            title={layer.title}
+            eyebrow={layer.eyebrow}
+            tone={layer.tone}
+            offset={`calc(var(--platform-layer-gap) * ${offsetStep})`}
+            zIndex={layers.length - index}
+            receivesShadow={receivesShadow}
+          >
+            <p>{layer.description}</p>
+            {layer.items && layer.items.length > 0 && (
+              <div class="xp-domain-strip" aria-label={layer.itemsLabel}>
+                {layer.items.map(item => (
+                  <span>
+                    {item.icon && <i class:list={['xp-domain-icon', item.icon]} aria-hidden="true"></i>}
+                    {item.label}
+                  </span>
+                ))}
+              </div>
+            )}
+          </Layer>
+        );
+      })}
     </div>
   </div>
 
-  <p class="xp-platform-diagram__summary" id="platform-layers-summary">
-    Xen separates application workloads, guest domains, hypervisor control, and shared hardware into visible platform layers.
+  <p class="xp-platform-diagram__summary" id={summaryId}>
+    {summary}
   </p>
 </figure>
 
