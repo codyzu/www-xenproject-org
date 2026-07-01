@@ -96,7 +96,7 @@ export const embeddedAutomotiveEcosystemLayersDiagram: PlatformLayersDiagramData
       itemsLabel: 'Shared platform resources',
       items: [
         {label: 'CPU', icon: 'i-carbon-chip'},
-        {label: 'Memory', icon: 'i-carbon-memory'},
+        {label: 'Memory', icon: 'i-carbon-data-base-alt'},
         {label: 'Devices', icon: 'i-carbon-connect'},
         {label: 'Interrupts', icon: 'i-carbon-time'},
       ],

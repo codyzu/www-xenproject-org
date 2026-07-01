@@ -44,12 +44,12 @@ const virtualizationChallenges = [
   {
     icon: 'i-carbon-container-services',
     title: 'Mixed workloads',
-    description: 'Give Linux, RTOS workloads, service domains, and specialized systems a clearer place to coexist.',
+    description: 'Give Linux, RTOS workloads, service domains, and specialized systems clear places to coexist.',
   },
   {
     icon: 'i-carbon-data-base-alt',
     title: 'Explicit boundaries',
-    description: 'Keep devices, boot flow, interrupts, and integration responsibilities visible to platform teams.',
+    description: 'Keep devices, boot flow, interrupts, and integration responsibilities visible.',
   },
   {
     icon: 'i-carbon-time',
@@ -61,15 +61,15 @@ const virtualizationChallenges = [
 const mixedCriticalityExamples: {title: string; description: string}[] = [
   {
     title: 'Different operating profiles',
-    description: 'Safety-conscious control workloads, RTOS workloads, Linux services, infotainment, telemetry, diagnostics, and OTA services can have different timing, reliability, update, and validation needs.',
+    description: 'Control workloads, RTOS workloads, Linux services, infotainment, diagnostics, and OTA services can have different timing, reliability, update, and validation needs.',
   },
   {
     title: 'Shared compute pressure',
-    description: 'As platforms consolidate onto fewer processors and boards, workloads that once lived on separate controllers increasingly share memory, devices, interrupts, and boot dependencies.',
+    description: 'As platforms consolidate onto fewer processors, workloads that once lived on separate controllers increasingly share memory, devices, interrupts, and boot paths.',
   },
   {
     title: 'Separation as an engineering concern',
-    description: 'The hard problem is sharing hardware without blurring ownership, validation scope, fault-containment expectations, or lifecycle boundaries between platform responsibilities.',
+    description: 'The hard problem is sharing hardware without blurring ownership, validation scope, fault containment, or lifecycle boundaries.',
   },
 ];
 
@@ -77,32 +77,32 @@ const platformSeparation: {icon: string; title: string; description: string}[] =
   {
     icon: 'i-carbon-security',
     title: 'Isolation boundaries',
-    description: 'Reason about where guest systems are separated and where platform integration must be reviewed explicitly.',
+    description: 'Reason about where guests are separated and where integration must be reviewed explicitly.',
   },
   {
     icon: 'i-carbon-user-multiple',
     title: 'Guest ownership',
-    description: 'Keep the responsibilities of Linux guests, RTOS guests, service domains, and hardware-facing components visible.',
+    description: 'Keep Linux guests, RTOS guests, service domains, and hardware-facing components accountable.',
   },
   {
     icon: 'i-carbon-chip',
     title: 'Resource assignment',
-    description: 'Make CPU, memory, interrupt, and device assignment part of the platform design instead of implicit operating-system behavior.',
+    description: 'Make CPU, memory, interrupt, and device assignment explicit platform design choices.',
   },
   {
     icon: 'i-carbon-diagram',
     title: 'Boot and integration',
-    description: 'Track startup order, control-domain choices, device setup, and integration responsibilities as first-class architecture decisions.',
+    description: 'Track startup order, control-domain choices, device setup, and integration responsibilities.',
   },
   {
     icon: 'i-carbon-settings-adjust',
     title: 'Platform control',
-    description: 'Separate hardware-facing platform control from guest application environments where the system design calls for that boundary.',
+    description: 'Separate hardware-facing control from guest application environments where needed.',
   },
   {
     icon: 'i-carbon-time',
     title: 'Long-term maintainability',
-    description: 'Support product lifecycles where guest systems, platform software, and hardware assumptions may need to evolve at different rates.',
+    description: 'Support lifecycles where guests, platform software, and hardware assumptions evolve at different rates.',
   },
 ];
 
@@ -110,9 +110,9 @@ const technicalCapabilities: {icon: string; title: string; description: string; 
   {
     icon: 'i-carbon-chip',
     title: 'CPU pinning',
-    description: 'Assign CPU resources deliberately so latency-sensitive guests and platform services have explicit execution ownership.',
+    description: 'Assign CPU resources deliberately so latency-sensitive guests have explicit execution ownership.',
     href: '/technology/architecture/',
-    linkLabel: 'Read architecture overview',
+    linkLabel: 'Explore architecture',
   },
   {
     icon: 'i-carbon-time',
@@ -124,30 +124,30 @@ const technicalCapabilities: {icon: string; title: string; description: string; 
   {
     icon: 'i-carbon-connect',
     title: 'Device passthrough',
-    description: 'Assign selected hardware devices directly to guests when the system design calls for direct device ownership.',
+    description: 'Assign selected hardware devices directly to guests when the design calls for direct ownership.',
     href: '/technology/isolation-and-security/',
-    linkLabel: 'Review isolation overview',
+    linkLabel: 'Review isolation resources',
   },
   {
     icon: 'i-carbon-boot',
     title: 'Dom0less boot',
-    description: 'Start selected guest domains without waiting for a traditional control domain boot path where the platform design calls for it.',
+    description: 'Start selected guest domains without waiting for a traditional control-domain boot path.',
     href: '/projects/hypervisor/',
-    linkLabel: 'Explore the hypervisor',
+    linkLabel: 'Visit project',
   },
   {
     icon: 'i-carbon-data-structured',
     title: 'Static resource partitioning',
-    description: 'Make CPU, memory, device, and interrupt ownership part of the platform design instead of implicit runtime behavior.',
+    description: 'Make CPU, memory, device, and interrupt ownership part of the platform design.',
     href: '/technology/isolation-and-security/',
-    linkLabel: 'Review isolation overview',
+    linkLabel: 'Review isolation resources',
   },
   {
     icon: 'i-carbon-diagram',
     title: 'Flexible control domains',
-    description: 'Choose a control-domain model that fits the product architecture instead of assuming a single management pattern.',
+    description: 'Choose a control-domain model that fits the architecture instead of assuming one pattern.',
     href: '/technology/architecture/',
-    linkLabel: 'Read architecture overview',
+    linkLabel: 'Explore architecture',
   },
 ];
 
@@ -155,23 +155,23 @@ const xenFit = [
   {
     icon: 'i-carbon-layers',
     title: 'Thin hypervisor boundary',
-    description: 'Xen gives platform teams a focused layer for separation decisions close to the hardware boundary.',
+    description: 'Xen gives platform teams a focused layer for separation decisions near hardware.',
     href: '/projects/hypervisor/',
-    linkLabel: 'Explore the hypervisor',
+    linkLabel: 'Visit project',
   },
   {
     icon: 'i-carbon-security',
     title: 'Hardware-aware isolation',
-    description: 'Guest isolation and hardware-facing platform work stay visible instead of disappearing inside one operating system.',
+    description: 'Guest isolation and hardware-facing work stay visible instead of disappearing inside one OS.',
     href: '/technology/isolation-and-security/',
-    linkLabel: 'Read isolation overview',
+    linkLabel: 'Review isolation resources',
   },
   {
     icon: 'i-carbon-virtual-machine',
     title: 'Flexible guest model',
-    description: 'Different operating environments can share a platform while retaining separate roles and responsibilities.',
+    description: 'Different operating environments can share a platform while retaining separate roles.',
     href: '/technology/architecture/',
-    linkLabel: 'Read architecture overview',
+    linkLabel: 'Explore architecture',
   },
   {
     icon: 'i-carbon-branch',
@@ -183,9 +183,9 @@ const xenFit = [
   {
     icon: 'i-carbon-time',
     title: 'Long-lived maintainability',
-    description: 'An open platform boundary helps teams plan for products that must be inspected, updated, and supported over time.',
+    description: 'An open boundary helps teams plan products that must be inspected and updated over time.',
     href: '/contribute/ci/',
-    linkLabel: 'Review CI resources',
+    linkLabel: 'View CI resources',
   },
 ];
 
@@ -195,29 +195,35 @@ const ecosystemRoles = [
     title: 'Xen',
     description: 'Provides the virtualization and isolation boundary between guest systems and shared hardware.',
     href: '/projects/hypervisor/',
-    linkLabel: 'Explore Xen hypervisor',
+    linkLabel: 'Visit project',
   },
   {
     icon: 'i-carbon-logo-linux',
     title: 'Linux',
     description: 'Runs rich operating-system services, middleware, application environments, and integration tooling.',
     href: '/technology/architecture/',
-    linkLabel: 'Read architecture overview',
+    linkLabel: 'Explore architecture',
   },
   {
     icon: 'i-carbon-package',
     title: 'Yocto Project',
     description: 'Helps teams construct embedded Linux distributions and repeatable images for Linux guests.',
+    href: 'https://www.yoctoproject.org/',
+    linkLabel: 'Visit Yocto Project',
   },
   {
     icon: 'i-carbon-memory',
     title: 'Zephyr',
     description: 'Supports RTOS-style embedded workloads that may need a smaller runtime than Linux.',
+    href: 'https://www.zephyrproject.org/',
+    linkLabel: 'Visit Zephyr Project',
   },
   {
     icon: 'i-carbon-car',
     title: 'Automotive Grade Linux',
     description: 'Provides an open automotive Linux platform for IVI and software-defined vehicle software stacks.',
+    href: 'https://www.automotivelinux.org/',
+    linkLabel: 'Visit AGL',
   },
   {
     icon: 'i-carbon-chip',
@@ -230,44 +236,44 @@ const resources = [
   {
     icon: 'i-carbon-layers',
     title: 'Hypervisor',
-    description: 'Start with the core Xen hypervisor project and its architecture-oriented project resources.',
+    description: 'Start with the core Xen hypervisor project and architecture resources.',
     href: '/projects/hypervisor/',
-    linkLabel: 'Open project',
+    linkLabel: 'Visit project',
   },
   {
     icon: 'i-carbon-diagram',
     title: 'Architecture',
-    description: 'A technology entry point for how Xen fits between hardware, guests, and platform control.',
+    description: 'See how Xen fits between hardware, guests, and platform control.',
     href: '/technology/architecture/',
-    linkLabel: 'Read overview',
+    linkLabel: 'Explore architecture',
   },
   {
     icon: 'i-carbon-security',
     title: 'Isolation & Security',
-    description: 'Review the site entry point for isolation and security resources in the redesigned technology area.',
+    description: 'Review isolation and security resources for Xen-based platforms.',
     href: '/technology/isolation-and-security/',
-    linkLabel: 'Review resources',
+    linkLabel: 'Review isolation resources',
   },
   {
     icon: 'i-carbon-checkmark-outline',
     title: 'Safety-Critical Systems',
-    description: 'A starting point for safety-oriented evaluation resources as they are organized for the redesigned site.',
+    description: 'Start with safety-oriented evaluation resources for Xen.',
     href: '/technology/safety/',
-    linkLabel: 'Review safety entry point',
+    linkLabel: 'Review safety resources',
   },
   {
     icon: 'i-carbon-test-tool',
     title: 'Continuous Integration',
-    description: 'Explore Xen hardware CI, test coverage, and bring-your-own-hardware validation resources.',
+    description: 'Explore hardware CI, test coverage, and bring-your-own-hardware resources.',
     href: '/contribute/ci/',
     linkLabel: 'View CI resources',
   },
   {
     icon: 'i-carbon-download',
     title: 'Downloads',
-    description: 'Find Xen releases and download resources for evaluation and development work.',
+    description: 'Find Xen releases for evaluation and development.',
     href: '/resources/downloads/',
-    linkLabel: 'Get downloads',
+    linkLabel: 'View downloads',
   },
 ];
 ---
@@ -293,7 +299,7 @@ const resources = [
           <Text size="eyebrow" tone="muted">Why virtualization matters here</Text>
           <Heading size="heading-xl">Consolidate the platform without blurring the boundaries.</Heading>
           <Text>
-            Embedded and automotive teams are asked to combine more software on shared compute while preserving the boundaries that make engineering, validation, and maintenance practical.
+            Embedded and automotive teams need to combine more software on shared compute while preserving engineering, validation, and maintenance boundaries.
           </Text>
         </Stack>
         <Grid columns="2" gap="5" class="uno-max-w-xp-page">
@@ -313,7 +319,7 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="mixed-criticality" surface="1">
+  <Section id="mixed-criticality" surface="1" class="xp-related-section">
     <Container>
       <Stack gap="6">
         <Split align="start">
@@ -322,7 +328,7 @@ const resources = [
             <Heading size="heading-xl">Why mixed-criticality matters</Heading>
           </Stack>
           <Text>
-            Modern embedded and automotive platforms increasingly combine workloads with different safety, timing, reliability, and maintenance requirements on shared compute. The term mixed-criticality is useful because it keeps attention on the engineering boundaries between those workloads, not just the fact that they run on the same hardware.
+            Modern platforms combine workloads with different safety, timing, reliability, and maintenance needs. Mixed-criticality keeps attention on the boundaries between them, not just the shared hardware.
           </Text>
         </Split>
         <Grid columns="3" gap="5">
@@ -339,14 +345,14 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="platform-separation">
+  <Section id="platform-separation" class="xp-related-section">
     <Container>
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
           <Text size="eyebrow" tone="muted">Design principles</Text>
           <Heading size="heading-xl">Designed for platform separation</Heading>
           <Text>
-            Xen gives platform teams a clear boundary between shared hardware and guest systems, making separation decisions visible instead of burying them inside one operating system.
+            Xen gives platform teams a clear boundary between shared hardware and guest systems, keeping separation decisions visible.
           </Text>
         </Stack>
         <Grid columns="3" gap="5">
@@ -366,14 +372,14 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="technical-capabilities" surface="1">
+  <Section id="technical-capabilities" surface="1" class="xp-related-section">
     <Container>
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
           <Text size="eyebrow" tone="muted">Technical capabilities</Text>
           <Heading size="heading-xl">Capabilities for mixed-criticality platform design</Heading>
           <Text>
-            Once the separation model is clear, platform teams can evaluate the Xen capabilities that make ownership, timing, device access, and boot architecture explicit.
+            Once the separation model is clear, teams can evaluate Xen capabilities for ownership, timing, device access, and boot architecture.
           </Text>
         </Stack>
         <Grid columns="3" gap="5">
@@ -405,7 +411,7 @@ const resources = [
           <Text size="eyebrow" tone="muted">Embedded platform breadth</Text>
           <Heading size="heading-xl">The same separation model applies across embedded domains.</Heading>
           <Text>
-            Xen can be evaluated wherever teams need to combine hardware-facing software, guest operating systems, and long-lived platform requirements while keeping ownership, timing, and integration boundaries visible.
+            Xen can be evaluated wherever hardware-facing software, guest operating systems, and long-lived platform requirements share compute.
           </Text>
         </Stack>
         <Grid columns="2" gap="4">
@@ -421,57 +427,51 @@ const resources = [
 
   <Section id="automotive" surface="1">
     <Container>
-      <Split align="center">
-        <Stack gap="5">
+      <div class="xp-automotive-layout">
+        <Stack gap="3" class="xp-automotive-intro">
+          <Text size="eyebrow" tone="muted">Flagship embedded example</Text>
+          <Heading size="heading-xl">Software-defined vehicles make the separation challenge concrete.</Heading>
+          <Text>
+            Automotive platforms make the embedded challenge concrete: Linux systems, RTOS workloads, service domains, and hardware-specific functions increasingly share compute. Xen gives teams a thin layer for reasoning about isolation and ownership without treating one operating system as the whole platform.
+          </Text>
+        </Stack>
+        <Grid columns="2" gap="4" class="xp-automotive-cards">
+          <Card>
+            <Stack gap="3">
+              <span class="i-carbon-car uno-text-2xl uno-text-xp-accent-primary" aria-hidden="true"></span>
+              <Heading as="h3" size="heading-m">ECU consolidation</Heading>
+              <Text size="caption">Keep boundaries explicit as vehicle functions move toward shared compute.</Text>
+            </Stack>
+          </Card>
+          <Card>
+            <Stack gap="3">
+              <span class="i-carbon-ibm-watsonx-code-assistant-for-z-refactor uno-text-2xl uno-text-xp-accent-primary" aria-hidden="true"></span>
+              <Heading as="h3" size="heading-m">Mixed workloads</Heading>
+              <Text size="caption">Evaluate how IVI, service domains, Linux, RTOS workloads, and hardware-facing functions coexist.</Text>
+            </Stack>
+          </Card>
+        </Grid>
+        <Surface as="aside" tone="2" border="strong" radius="lg" shadow="sm" padding="lg" class="xp-automotive-safety">
+          <div class="uno-flex uno-min-w-0 uno-flex-col uno-gap-3 sm:uno-flex-row sm:uno-items-start sm:uno-gap-4">
+            <span class="i-carbon-document-requirements uno-mt-1 uno-inline-flex uno-shrink-0 uno-text-2xl uno-text-xp-accent-primary" aria-hidden="true"></span>
+            <Stack gap="3" class="uno-min-w-0">
+              <Text as="span" size="eyebrow" tone="accent-primary">Safety engineering</Text>
+              <Heading as="h3" size="heading-m">Safety work depends on system evidence.</Heading>
+              <Text size="caption">
+                Xen source code is not itself safety certified. Through the Xen Safety Committee, project participants collaborate on engineering practices, documentation, tooling, evidence, and supporting artifacts for safety-conscious and certification-oriented development. Product certification still depends on the complete system, process, integration context, and safety case.
+              </Text>
+            </Stack>
+          </div>
+        </Surface>
+        <Surface tone="2" border="muted" radius="lg" shadow="sm" padding="lg" class="xp-automotive-tooling">
           <Stack gap="3">
-            <Text size="eyebrow" tone="muted">Flagship embedded example</Text>
-            <Heading size="heading-xl">Software-defined vehicles make the separation challenge concrete.</Heading>
-            <Text>
-              Automotive platforms are a prominent example of the broader embedded challenge: Linux systems, RTOS workloads, service domains, and hardware-specific functions increasingly share compute. Xen gives platform teams a thin virtualization layer for reasoning about isolation, ownership, and system boundaries without treating one operating system as the whole platform.
+            <Text size="eyebrow" tone="accent-primary">Process tooling</Text>
+            <Text size="caption">
+              The project also collaborates with BUGSENG on static analysis with ECLAIR, supporting MISRA C compliance efforts and ongoing code quality improvement.
             </Text>
           </Stack>
-          <Grid columns="2" gap="4">
-            <Card>
-              <Stack gap="3">
-                <span class="i-carbon-car uno-text-2xl uno-text-xp-accent-primary" aria-hidden="true"></span>
-                <Heading as="h3" size="heading-m">ECU consolidation</Heading>
-                <Text size="caption">Keep platform boundaries explicit as vehicle functions move from many controllers toward shared compute.</Text>
-              </Stack>
-            </Card>
-            <Card>
-              <Stack gap="3">
-                <span class="i-carbon-ibm-watsonx-code-assistant-for-z-refactor uno-text-2xl uno-text-xp-accent-primary" aria-hidden="true"></span>
-                <Heading as="h3" size="heading-m">Mixed workloads</Heading>
-                <Text size="caption">Evaluate how IVI, service domains, Linux, RTOS workloads, and hardware-facing functions can coexist.</Text>
-              </Stack>
-            </Card>
-          </Grid>
-        </Stack>
-        <Stack gap="4">
-          <Surface as="aside" tone="2" border="strong" radius="lg" shadow="sm" padding="lg">
-            <div class="uno-flex uno-min-w-0 uno-flex-col uno-gap-3 sm:uno-flex-row sm:uno-items-start sm:uno-gap-4">
-              <span class="i-carbon-document-requirements uno-mt-1 uno-inline-flex uno-shrink-0 uno-text-2xl uno-text-xp-accent-primary" aria-hidden="true"></span>
-              <Stack gap="3" class="uno-min-w-0">
-                <Text as="span" size="eyebrow" tone="accent-primary">Evaluation note</Text>
-                <Heading as="h3" size="heading-m">Certification work depends on product evidence.</Heading>
-                <Text size="caption">
-                  Xen is relevant to safety-conscious platform evaluation, but this page does not claim product safety certification. Teams with certification requirements should evaluate code, process, evidence, and integration context for their product.
-                </Text>
-              </Stack>
-            </div>
-          </Surface>
-          <Surface tone="2" border="muted" radius="lg" shadow="sm" padding="lg">
-            <Stack gap="3">
-              <Text size="eyebrow" tone="accent-primary">Evaluation concerns</Text>
-              <div class="uno-flex uno-flex-wrap uno-gap-2">
-                {['mixed-criticality workloads', 'supplier coordination', 'long-term maintenance', 'hardware validation', 'certification-aware work'].map(item => (
-                  <span class="xp-tag">{item}</span>
-                ))}
-              </div>
-            </Stack>
-          </Surface>
-        </Stack>
-      </Split>
+        </Surface>
+      </div>
     </Container>
   </Section>
 
@@ -479,20 +479,20 @@ const resources = [
     id="why-xen-fits"
     eyebrow="Why architects choose Xen"
     title="Evaluation starts with architecture, evidence, and integration context."
-    description="After the separation model is clear, teams can evaluate Xen through its hypervisor architecture, isolation resources, guest model, governance, and public engineering process."
+    description="After the separation model is clear, teams can evaluate Xen through architecture, isolation resources, guest model, governance, and public engineering process."
     surface="1"
     columns="3"
     features={xenFit}
   />
 
-  <Section id="open-platform-ecosystem">
+  <Section id="open-platform-ecosystem" class="xp-related-section">
     <Container>
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
           <Text size="eyebrow" tone="muted">Open platform ecosystem</Text>
           <Heading size="heading-xl">Building complete embedded platforms</Heading>
           <Text>
-            Most embedded products are built from multiple open source projects, not a single operating system. Xen provides the virtualization boundary that allows Linux, Zephyr, and platform software to coexist without hiding ownership or integration decisions.
+            Most embedded products are built from multiple open source projects, not one operating system. Xen provides the virtualization and isolation boundary that lets Linux, Yocto Project, Zephyr, AGL, and platform software play complementary roles without hiding ownership or integration decisions.
           </Text>
         </Stack>
         <Split align="start" class="xp-ecosystem-layout">
@@ -537,9 +537,10 @@ const resources = [
     id="resources"
     eyebrow="Related resources"
     title="Follow the evaluation path from architecture to participation."
-    description="These resources connect the solution page to existing Xen project, technology, testing, download, and documentation entry points."
+    description="Use these project, technology, testing, and download entry points to continue evaluation."
     surface="1"
     columns="3"
+    class="xp-related-section"
     features={resources}
   />
 
@@ -550,7 +551,7 @@ const resources = [
           <Text size="eyebrow" tone="muted">Ecosystem</Text>
           <Heading size="heading-xl">Sustained by organizations working across open virtualization.</Heading>
           <Text>
-            Xen is sustained by organizations working across infrastructure, hardware, embedded, automotive, and security-sensitive systems. Membership supports shared project infrastructure, events, trademark stewardship, and ecosystem coordination.
+            Xen is sustained by organizations working across infrastructure, hardware, embedded, automotive, and security-sensitive systems. Membership supports infrastructure, events, trademark stewardship, and ecosystem coordination.
           </Text>
           <Cluster>
             <Button href="/about/project-members/" variant="secondary">View project members</Button>
@@ -583,7 +584,7 @@ const resources = [
     id="next-step"
     eyebrow="Next step"
     title="Evaluate Xen for your platform, or help shape the work."
-    description="Engineers can start with architecture, CI, and contribution resources. Organizations can support the project through membership and deeper ecosystem participation."
+    description="Engineers can start with architecture, CI, and contribution resources. Organizations can support the project through membership."
     actions={[
       {label: 'Start contributing', href: '/contribute/get-started/'},
       {label: 'Become a member', href: '/about/become-a-member/', variant: 'secondary'},
@@ -614,7 +615,45 @@ const resources = [
     align-items: stretch;
   }
 
+  :global(.xp-automotive-layout) {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  :global(.xp-automotive-safety) {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  :global(.xp-related-section) {
+    padding-block: clamp(4rem, 7vw, 5.5rem);
+  }
+
   @media (min-width: 1024px) {
+    :global(.xp-automotive-layout) {
+      grid-template-columns: minmax(0, 1fr) minmax(22rem, 0.72fr);
+      grid-template-areas:
+        'intro safety'
+        'cards tooling';
+      align-items: stretch;
+    }
+
+    :global(.xp-automotive-intro) {
+      grid-area: intro;
+    }
+
+    :global(.xp-automotive-cards) {
+      grid-area: cards;
+    }
+
+    :global(.xp-automotive-safety) {
+      grid-area: safety;
+    }
+
+    :global(.xp-automotive-tooling) {
+      grid-area: tooling;
+    }
+
     :global(.xp-ecosystem-layout) {
       grid-template-columns: minmax(0, 1.08fr) minmax(36rem, 0.92fr);
     }
