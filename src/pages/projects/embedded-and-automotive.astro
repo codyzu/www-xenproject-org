@@ -492,7 +492,7 @@ const resources = [
           <Text size="eyebrow" tone="muted">Open platform ecosystem</Text>
           <Heading size="heading-xl">Building complete embedded platforms</Heading>
           <Text>
-            Embedded and automotive platforms are usually composed from several open technologies, not one runtime. Xen sits at the virtualization boundary, complementing Linux, Yocto Project, Zephyr, Automotive Grade Linux, and the underlying hardware platform without replacing them.
+            Most embedded products are built from multiple open source projects, not a single operating system. Xen provides the virtualization boundary that allows Linux, Zephyr, and platform software to coexist without hiding ownership or integration decisions.
           </Text>
         </Stack>
         <Split align="start" class="xp-ecosystem-layout">
@@ -503,9 +503,9 @@ const resources = [
               {...embeddedAutomotiveEcosystemLayersDiagram}
             />
             <Callout
-              title="AGL Software Defined Vehicle reference architecture"
+              title="Reference architecture"
               description="AGL's Software Defined Vehicle reference architecture is useful because it shows how Xen, Zephyr, Linux, and automotive application layers can fit into a broader open platform model."
-              action={{label: 'Read the AGL SDV announcement', href: 'https://www.automotivelinux.org/announcements/sodev/', variant: 'secondary'}}
+              action={{label: 'See the AGL SDV reference architecture', href: 'https://www.automotivelinux.org/announcements/sodev/', variant: 'secondary'}}
             >
               <span slot="icon" class="i-carbon-document"></span>
             </Callout>
