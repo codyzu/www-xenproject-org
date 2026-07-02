@@ -45,7 +45,7 @@ const infrastructureContexts = [
   {
     icon: 'i-carbon-data-center',
     title: 'Private and public cloud',
-    description: 'Choose a foundation that can be inspected, governed, and sustained in the open.',
+    description: 'Choose a foundation teams can inspect, govern, and sustain in the open.',
   },
   {
     icon: 'i-carbon-server-dns',
@@ -62,7 +62,7 @@ const infrastructureContexts = [
 const hypervisorReasons = [
   {
     title: 'A visible boundary',
-    description: 'Xen gives infrastructure teams an explicit place to reason about isolation and control.',
+    description: 'Xen gives operators an explicit place to reason about isolation and control.',
   },
   {
     title: 'Control domains',
@@ -92,9 +92,9 @@ const capabilities = [
   {
     icon: 'i-carbon-data-center',
     title: 'NUMA awareness',
-    description: 'Evaluate placement and resource locality as platform design choices.',
+    description: 'Treat placement and resource locality as platform design choices.',
     href: '/projects/hypervisor/',
-    linkLabel: 'Visit project',
+    linkLabel: 'Explore the hypervisor',
   },
   {
     icon: 'i-carbon-migrate',
@@ -106,7 +106,7 @@ const capabilities = [
   {
     icon: 'i-carbon-settings-adjust',
     title: 'Control domains',
-    description: 'Choose how management, device, and platform-control responsibilities are represented in the system.',
+    description: 'Represent management, device, and platform-control responsibilities explicitly.',
     href: '/technology/architecture/',
     linkLabel: 'Explore architecture',
   },
@@ -134,7 +134,7 @@ const capabilities = [
   {
     icon: 'i-carbon-virtual-machine',
     title: 'Scalable VM management',
-    description: 'Use XAPI and XCP-ng for management APIs, host pools, and VM lifecycle operations above Xen.',
+    description: 'Use XAPI and XCP-ng for APIs, host pools, and VM lifecycle operations above Xen.',
     href: '/projects/xcp-ng/',
     linkLabel: 'Explore XCP-ng',
   },
@@ -171,7 +171,7 @@ const ecosystemRoles = [
     icon: 'i-carbon-cube',
     title: 'XCP-ng',
     group: 'Complete platform',
-    description: 'A complete open virtualization platform built on Xen and XAPI for VM infrastructure operations.',
+    description: 'A complete open virtualization platform built on Xen and XAPI.',
     href: '/projects/xcp-ng/',
     linkLabel: 'Explore XCP-ng',
   },
@@ -215,12 +215,12 @@ const architectReasons = [
   {
     icon: 'i-carbon-time',
     title: 'Long-lived maintainability',
-    description: 'An open project model helps teams plan platforms with long review and update cycles.',
+    description: 'An open project model supports long review and update cycles.',
   },
   {
     icon: 'i-carbon-group',
     title: 'Member-funded ecosystem',
-    description: 'Project membership helps sustain shared infrastructure, events, trademark stewardship, and coordination.',
+    description: 'Membership helps sustain shared infrastructure, events, trademarks, and coordination.',
     href: '/about/become-a-member/',
     linkLabel: 'Become a member',
   },
@@ -261,9 +261,9 @@ const resources = [
   {
     icon: 'i-carbon-layers',
     title: 'Hypervisor',
-    description: 'Start with the core Xen hypervisor project and architecture resources.',
+    description: 'Start with the core Xen hypervisor project.',
     href: '/projects/hypervisor/',
-    linkLabel: 'Visit project',
+    linkLabel: 'Explore the hypervisor',
   },
   {
     icon: 'i-carbon-api',
@@ -310,7 +310,7 @@ const resources = [
   {
     icon: 'i-carbon-branch',
     title: 'Governance',
-    description: 'Understand the project model, roles, and public governance process.',
+    description: 'Understand the project model, roles, and governance process.',
     href: '/about/governance/',
     linkLabel: 'Read governance',
   },
@@ -328,7 +328,7 @@ const resources = [
   <Hero
     eyebrow="Solution Area"
     title="Open virtualization for cloud and infrastructure platforms."
-    description="Xen provides an open, inspectable hypervisor layer for teams reasoning about guest isolation, hardware ownership, control domains, and long-term infrastructure sustainability."
+    description="Open infrastructure starts with an open virtualization layer. Xen gives operators an inspectable hypervisor for guest isolation, hardware ownership, control domains, and long-term platform sustainability."
     actions={[
       {label: 'Explore the hypervisor', href: '/projects/hypervisor/'},
       {label: 'Explore XCP-ng', href: '/projects/xcp-ng/', variant: 'secondary'},
@@ -348,11 +348,6 @@ const resources = [
             Public clouds, private clouds, hosting providers, edge sites, enterprise estates, and research clusters all need a place where hardware, guests, tenants, and operators can be reasoned about separately.
           </Text>
         </Stack>
-        <Surface tone="2" border="strong" radius="md" shadow="sm" padding="md" class="uno-max-w-xp-content">
-          <Text tone="primary" class="uno-font-semibold">
-            Own the platform, not just the workloads.
-          </Text>
-        </Surface>
         <Grid columns="2" gap="5">
           {infrastructureContexts.map(context => (
             <Card>
@@ -379,7 +374,7 @@ const resources = [
             <Heading size="heading-xl">A focused layer for isolation, ownership, and platform control.</Heading>
           </Stack>
           <Text>
-            Xen gives infrastructure teams an explicit hypervisor layer for guest isolation, hardware ownership, and platform control without treating one guest operating system as the whole platform.
+            Xen gives operators a hypervisor layer for guest isolation, hardware ownership, and platform control without treating one guest operating system as the whole platform.
           </Text>
         </Split>
         <Grid columns="3" gap="5">
@@ -433,7 +428,7 @@ const resources = [
           <Text size="eyebrow" tone="muted">Open Xen infrastructure ecosystem</Text>
           <Heading size="heading-xl">A Xen-centered ecosystem for infrastructure platforms.</Heading>
           <Text>
-            Xen is the open virtualization foundation for an ecosystem of infrastructure platforms. XAPI is the Xen Project toolstack and management layer for Xen-based platforms. XCP-ng packages Xen and XAPI into a complete open virtualization platform, while commercial offerings and services can build on the same foundation.
+            Xen is the open foundation. XAPI is the Xen Project toolstack and management layer for Xen-based platforms. XCP-ng packages Xen and XAPI into a complete open platform, while commercial offerings and services can build on the same foundation.
           </Text>
         </Stack>
         <Split align="start" class="xp-cloud-ecosystem-layout">
@@ -501,7 +496,7 @@ const resources = [
           <Text size="eyebrow" tone="muted">Next step</Text>
           <Heading size="heading-xl">Evaluate the boundary, then choose the platform path.</Heading>
           <Text>
-            Start with the hypervisor to understand the foundation. Start with XCP-ng when you want a complete open platform built on Xen and XAPI.
+            Start with Xen architecture, review XCP-ng for a complete platform path, or join the public project work.
           </Text>
           <Cluster>
             <Button href="/projects/hypervisor/">Explore the hypervisor</Button>
@@ -534,10 +529,12 @@ const resources = [
     id="final-cta"
     eyebrow="Infrastructure ownership"
     title="Build infrastructure on a virtualization boundary you can inspect."
-    description="Explore Xen architecture, evaluate XCP-ng as a complete platform, or support the open foundation."
+    description="Use architecture resources, XCP-ng, documentation, contribution paths, and membership to evaluate and support the open foundation."
     actions={[
-      {label: 'Explore Xen architecture', href: '/technology/architecture/'},
-      {label: 'Become a member', href: '/about/become-a-member/', variant: 'secondary'},
+      {label: 'Explore architecture', href: '/technology/architecture/'},
+      {label: 'Explore XCP-ng', href: '/projects/xcp-ng/', variant: 'secondary'},
+      {label: 'Start contributing', href: '/contribute/get-started/', variant: 'text'},
+      {label: 'Become a member', href: '/about/become-a-member/', variant: 'text'},
     ]}
     align="center"
   />

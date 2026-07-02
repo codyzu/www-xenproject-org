@@ -61,19 +61,18 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
   title: 'Xen-centered infrastructure stack',
   eyebrow: 'Ecosystem layers',
   metaLabel: 'Layered stack',
-  summary:
-    'Infrastructure platforms can build above XAPI and platform tooling while Xen remains the open foundation on owned hardware.',
+  summary: 'Infrastructure platforms can build above XAPI while Xen remains the open foundation on owned hardware.',
   layers: [
     {
       title: 'Platforms and services',
       eyebrow: 'Built on Xen',
       tone: 'applications',
-      description: 'XCP-ng, operations tooling, and commercial services can build around the same foundation.',
+      description: 'XCP-ng, operations tooling, and commercial services build around the same foundation.',
       receivesShadow: false,
       itemsLabel: 'Example platform and service layers',
       items: [
         {label: 'XCP-ng', icon: 'i-carbon-cube'},
-        {label: 'Xen Orchestra', icon: 'i-carbon-dashboard'},
+        {label: 'Operations tooling', icon: 'i-carbon-dashboard'},
         {label: 'Commercial services', icon: 'i-carbon-enterprise'},
       ],
     },
@@ -81,7 +80,7 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
       title: 'XAPI management toolstack',
       eyebrow: 'Xen Project tooling',
       tone: 'guests',
-      description: 'XAPI is a Xen Project toolstack and management layer for Xen-based platforms.',
+      description: 'XAPI is the Xen Project toolstack and management layer for Xen-based platforms.',
       itemsLabel: 'XAPI platform responsibilities',
       items: [
         {label: 'VM lifecycle', icon: 'i-carbon-virtual-machine'},
@@ -105,7 +104,7 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
       title: 'Hardware',
       eyebrow: 'Infrastructure estate',
       tone: 'hardware',
-      description: 'Servers, storage, networks, and accelerators remain operator-owned design inputs.',
+      description: 'Servers, storage, networks, and accelerators remain operator-owned inputs.',
       itemsLabel: 'Infrastructure resources',
       items: [
         {label: 'CPU', icon: 'i-carbon-chip'},
