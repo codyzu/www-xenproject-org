@@ -49,33 +49,33 @@ export const cloudInfrastructurePlatformLayersDiagram: PlatformLayersDiagramData
 };
 
 export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramData = {
-  title: 'Open infrastructure stack',
-  eyebrow: 'Platform composition',
-  metaLabel: 'Assembled stack',
+  title: 'Xen-centered infrastructure stack',
+  eyebrow: 'Ecosystem layers',
+  metaLabel: 'Layered stack',
   summary:
-    'Infrastructure teams can compose management and operations tooling with XAPI, XCP-ng, the Xen hypervisor, and owned hardware.',
+    'Infrastructure platforms and services can build above XAPI and other platform tooling, while Xen remains the open virtualization foundation on owned hardware.',
   layers: [
     {
-      title: 'Management and operations',
-      eyebrow: 'Operations layer',
+      title: 'Platforms and services',
+      eyebrow: 'Built on Xen',
       tone: 'applications',
       description:
-        'Provisioning, monitoring, backup, orchestration, and policy tools sit above the virtualization platform.',
+        'XCP-ng, operations tooling, and commercial services can build complete platform experiences around the same open foundation.',
       receivesShadow: false,
-      itemsLabel: 'Example operations concerns',
+      itemsLabel: 'Example platform and service layers',
       items: [
-        {label: 'Provisioning', icon: 'i-carbon-deployment-pattern'},
-        {label: 'Monitoring', icon: 'i-carbon-chart-line'},
-        {label: 'Backup', icon: 'i-carbon-data-backup'},
+        {label: 'XCP-ng', icon: 'i-carbon-cube'},
+        {label: 'Xen Orchestra', icon: 'i-carbon-dashboard'},
+        {label: 'Commercial services', icon: 'i-carbon-enterprise'},
       ],
     },
     {
-      title: 'XAPI / XCP-ng platform layer',
-      eyebrow: 'Platform tooling',
+      title: 'XAPI management toolstack',
+      eyebrow: 'Xen Project tooling',
       tone: 'guests',
       description:
-        'XAPI exposes management capabilities, while XCP-ng packages a complete open virtualization platform.',
-      itemsLabel: 'Platform capabilities',
+        'XAPI is a Xen Project toolstack and management layer for configuring and controlling Xen-based platforms.',
+      itemsLabel: 'XAPI platform responsibilities',
       items: [
         {label: 'VM lifecycle', icon: 'i-carbon-virtual-machine'},
         {label: 'Pools', icon: 'i-carbon-data-center'},
@@ -86,7 +86,7 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
       title: 'Xen hypervisor',
       eyebrow: 'Virtualization foundation',
       tone: 'xen',
-      description: 'Xen provides the open hypervisor boundary that infrastructure platforms build on.',
+      description: 'Xen provides the open hypervisor boundary that the surrounding ecosystem builds on.',
       itemsLabel: 'Hypervisor responsibilities',
       items: [
         {label: 'Isolation', icon: 'i-carbon-security'},

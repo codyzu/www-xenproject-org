@@ -155,15 +155,15 @@ const ecosystemRoles = [
     icon: 'i-carbon-layers',
     title: 'Xen Hypervisor',
     group: 'Foundation',
-    description: 'Provides the open virtualization layer between guest systems and hardware.',
+    description: 'The open virtualization foundation that defines the boundary between guests, control domains, and hardware.',
     href: '/projects/hypervisor/',
     linkLabel: 'Explore the hypervisor',
   },
   {
     icon: 'i-carbon-api',
     title: 'XAPI',
-    group: 'Management',
-    description: 'Exposes a management interface and toolstack for configuring and controlling virtualized guests.',
+    group: 'Xen Project toolstack',
+    description: 'A management layer and toolstack for configuring, controlling, and operating Xen-based platforms.',
     href: '/projects/xapi/',
     linkLabel: 'Explore XAPI',
   },
@@ -171,17 +171,17 @@ const ecosystemRoles = [
     icon: 'i-carbon-cube',
     title: 'XCP-ng',
     group: 'Complete platform',
-    description: 'Packages Xen and XAPI into a complete open virtualization platform for VM infrastructure.',
+    description: 'A complete open virtualization platform built on Xen and XAPI for VM infrastructure operations.',
     href: '/projects/xcp-ng/',
     linkLabel: 'Explore XCP-ng',
   },
   {
     icon: 'i-carbon-dashboard',
-    title: 'Xen Orchestra',
-    group: 'Operations',
-    description: 'Provides management, monitoring, and backup capabilities for XCP-ng and XAPI-based environments.',
-    href: '/projects/xcp-ng/',
-    linkLabel: 'Review XCP-ng',
+    title: 'Commercial ecosystem',
+    group: 'Support options',
+    description: 'Products, operations tools, and services from ecosystem members can build on the same open Xen foundation.',
+    href: '/about/project-members/',
+    linkLabel: 'View members',
   },
 ];
 
@@ -426,9 +426,9 @@ const resources = [
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
           <Text size="eyebrow" tone="muted">Open Xen infrastructure ecosystem</Text>
-          <Heading size="heading-xl">From hypervisor boundary to complete virtualization platform.</Heading>
+          <Heading size="heading-xl">A Xen-centered ecosystem for infrastructure platforms.</Heading>
           <Text>
-            Xen provides the virtualization foundation. XAPI exposes management capabilities above that foundation. XCP-ng brings those pieces together as a complete open virtualization platform, commonly managed with Xen Orchestra.
+            Xen is the open virtualization foundation. XAPI is a Xen Project toolstack and management layer for Xen-based platforms. XCP-ng packages Xen and XAPI into a complete open virtualization platform, while commercial offerings and services can build on the same open foundation.
           </Text>
         </Stack>
         <Split align="start" class="xp-cloud-ecosystem-layout">
@@ -439,16 +439,16 @@ const resources = [
               {...cloudInfrastructureEcosystemLayersDiagram}
             />
             <Callout
-              title="Commercial support without closing the project"
-              description="Commercial offerings and services from ecosystem members also build on Xen, giving organizations support options while keeping the project itself open source."
-              action={{label: 'View project members', href: '/about/project-members/', variant: 'secondary'}}
+              title="The foundation stays open"
+              description="The surrounding ecosystem can include complete platforms, operations tooling, and commercial services, but the Xen Project remains an open source virtualization foundation with public governance and engineering."
+              action={{label: 'Read governance', href: '/about/governance/', variant: 'secondary'}}
             >
-              <span slot="icon" class="i-carbon-enterprise"></span>
+              <span slot="icon" class="i-carbon-layers"></span>
             </Callout>
           </Stack>
           <Grid columns="2" gap="4">
             {ecosystemRoles.map(role => (
-              <Card active={role.title === 'XCP-ng'}>
+              <Card active={role.title === 'Xen Hypervisor'}>
                 <Stack gap="4">
                   <span class:list={[role.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
                   <Stack gap="3">
