@@ -14,12 +14,12 @@ test.describe('Phase 7A cutover-readiness routes', () => {
     }
   });
 
-  test('renders use cases with preserved primary actions', async ({page}) => {
+  test('renders cloud and infrastructure with primary evaluation actions', async ({page}) => {
     await page.goto('/resources/use-cases/');
-    await expect(page.getByRole('heading', {level: 1, name: 'Use cases'})).toBeVisible();
-    await expect(page.getByRole('heading', {name: 'Qubes OS & Xen Project'})).toBeVisible();
-    await expect(page.getByRole('link', {name: /Complete Case Study/})).toHaveAttribute('href', '/pdf/Qubes-OS-and-Xen-Project.pdf');
-    await expect(page.getByRole('link', {name: /Discover all projects/})).toHaveAttribute('href', '/projects/all-projects/');
+    await expect(page.getByRole('heading', {level: 1, name: 'Open virtualization for cloud and infrastructure platforms.'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Capabilities for infrastructure platforms'})).toBeVisible();
+    await expect(page.getByRole('link', {name: 'Explore the hypervisor'}).first()).toHaveAttribute('href', '/projects/hypervisor/');
+    await expect(page.getByRole('link', {name: 'Explore XCP-ng'}).first()).toHaveAttribute('href', '/projects/xcp-ng/');
   });
 
   for (const sectionName of ['Contribute', 'Resources', 'More']) {

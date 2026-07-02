@@ -43,7 +43,7 @@
 - name: Resources
   href: /resources/
   children:
-    - name: Use cases
+    - name: Cloud & Infrastructure
       href: /resources/use-cases/
     - name: Xen Summit 2026
       href: /resources/summit-2026/

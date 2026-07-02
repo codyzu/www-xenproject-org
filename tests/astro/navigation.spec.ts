@@ -33,7 +33,7 @@ const menuSections = [
     name: 'Resources',
     href: '/resources/',
     children: [
-      ['Use cases', '/resources/use-cases/'],
+      ['Cloud & Infrastructure', '/resources/use-cases/'],
       ['Xen Summit 2026', '/resources/summit-2026/'],
       ['Academic Research', '/research/'],
       ['Downloads', '/resources/downloads/'],

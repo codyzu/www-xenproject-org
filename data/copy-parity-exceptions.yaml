@@ -30,6 +30,11 @@ exceptions:
     kind: redesigned-index
     scope: section index cards
     reason: The Astro section index intentionally links to resource routes instead of embedding downloads, events, mailing lists, and use cases.
+  - id: cloud-infrastructure-redesign
+    route: /resources/use-cases/
+    kind: redesigned-page
+    scope: full solution-page narrative and section structure
+    reason: The route intentionally replaces the legacy generic use-cases page with the Cloud & Infrastructure solution page while preserving the public URL.
   - id: projects-astro-index
     route: /projects/all-projects/
     kind: redesigned-index

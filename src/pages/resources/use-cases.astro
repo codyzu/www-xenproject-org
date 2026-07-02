@@ -1,27 +1,570 @@
 ---
-import MediaBlock from '../../components/legacy/MediaBlock.astro';
-import ProjectCarousel from '../../components/legacy/ProjectCarousel.astro';
-import Section from '../../components/legacy/Section.astro';
-import {projects} from '../../data/projects';
-import LegacyLayout from '../../layouts/LegacyLayout.astro';
+import CTA from '../../components/blocks/CTA.astro';
+import Callout from '../../components/blocks/Callout.astro';
+import FeatureGrid from '../../components/blocks/FeatureGrid.astro';
+import Hero from '../../components/blocks/Hero.astro';
+import PlatformLayersDiagram from '../../components/diagrams/PlatformLayersDiagram.astro';
+import Button from '../../components/primitives/Button.astro';
+import Card from '../../components/primitives/Card.astro';
+import Cluster from '../../components/primitives/Cluster.astro';
+import Container from '../../components/primitives/Container.astro';
+import Grid from '../../components/primitives/Grid.astro';
+import Heading from '../../components/primitives/Heading.astro';
+import Section from '../../components/primitives/Section.astro';
+import Split from '../../components/primitives/Split.astro';
+import Stack from '../../components/primitives/Stack.astro';
+import Surface from '../../components/primitives/Surface.astro';
+import Text from '../../components/primitives/Text.astro';
+import {
+  cloudInfrastructureEcosystemLayersDiagram,
+  cloudInfrastructurePlatformLayersDiagram,
+} from '../../data/cloud-infrastructure-platform-layers';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
-const title = 'Use cases';
-const description = 'See how the Xen Project operates in real life.';
-const keywords = ['Xen Project', 'use cases', 'hypervisor applications', 'cloud computing', 'enterprise virtualization', 'embedded systems', 'automotive applications', 'security features', 'live migration', 'resource utilization'];
-const useCaseProjects = projects.filter(project => project.route !== '/projects/hypervisor/openpgp-keys/');
+const title = 'Cloud & Infrastructure';
+const description = 'Open virtualization for cloud and infrastructure platforms that need guest isolation, hardware ownership, open governance, and long-lived platform control.';
+const keywords = [
+  'Xen Project',
+  'cloud infrastructure',
+  'open source virtualization',
+  'hypervisor',
+  'private cloud',
+  'public cloud',
+  'hosting providers',
+  'enterprise virtualization',
+  'XAPI',
+  'XCP-ng',
+];
+
+const infrastructureContexts = [
+  {
+    icon: 'i-carbon-ibm-cloud-vpc',
+    title: 'Multi-tenant infrastructure',
+    description: 'Keep tenant, service, and operator responsibilities visible when many workloads share the same estate.',
+  },
+  {
+    icon: 'i-carbon-data-center',
+    title: 'Private and public cloud',
+    description: 'Use a virtualization boundary that can be inspected, governed, and sustained independently of one vendor stack.',
+  },
+  {
+    icon: 'i-carbon-server-dns',
+    title: 'Hosting and edge platforms',
+    description: 'Build platforms where lifecycle, hardware, network, and guest ownership choices remain explicit.',
+  },
+  {
+    icon: 'i-carbon-research-hinton-plot',
+    title: 'Long-lived estates',
+    description: 'Support research clusters, enterprise virtualization, and infrastructure platforms that evolve over years.',
+  },
+];
+
+const hypervisorReasons = [
+  {
+    title: 'A visible boundary',
+    description: 'Xen places virtualization in a dedicated hypervisor layer so infrastructure teams have an explicit place to reason about isolation and control.',
+  },
+  {
+    title: 'Control domains',
+    description: 'Platform operators can make hardware-facing control and management responsibilities part of the architecture instead of hiding them inside every guest.',
+  },
+  {
+    title: 'Inspectable architecture',
+    description: 'Source, governance, development process, and project infrastructure are public evaluation inputs for teams building long-lived platforms.',
+  },
+];
+
+const capabilities = [
+  {
+    icon: 'i-carbon-connect',
+    title: 'PCI passthrough',
+    description: 'Assign selected devices directly to guests when infrastructure design requires clear hardware ownership.',
+    href: '/technology/isolation-and-security/',
+    linkLabel: 'Review isolation resources',
+  },
+  {
+    icon: 'i-carbon-network-4',
+    title: 'SR-IOV',
+    description: 'Support network and I/O designs that expose virtual functions while keeping ownership decisions visible.',
+    href: '/technology/architecture/',
+    linkLabel: 'Explore architecture',
+  },
+  {
+    icon: 'i-carbon-data-center',
+    title: 'NUMA awareness',
+    description: 'Evaluate placement and resource locality as part of the platform model for larger hosts.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Visit project',
+  },
+  {
+    icon: 'i-carbon-migrate',
+    title: 'VM migration through platform tooling',
+    description: 'XAPI-based systems document VM migration and pool capabilities for managed infrastructure environments.',
+    href: '/projects/xapi/',
+    linkLabel: 'Explore XAPI',
+  },
+  {
+    icon: 'i-carbon-settings-adjust',
+    title: 'Control domains',
+    description: 'Choose how management, device, and platform-control responsibilities are represented in the system.',
+    href: '/technology/architecture/',
+    linkLabel: 'Explore architecture',
+  },
+  {
+    icon: 'i-carbon-chip',
+    title: 'Hardware virtualization support',
+    description: 'Run guest systems on hardware virtualization features while keeping the hypervisor boundary explicit.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Explore the hypervisor',
+  },
+  {
+    icon: 'i-carbon-time',
+    title: 'Flexible scheduling',
+    description: 'Treat CPU allocation and scheduling policy as infrastructure design concerns.',
+    href: '/technology/architecture/',
+    linkLabel: 'Explore architecture',
+  },
+  {
+    icon: 'i-carbon-security',
+    title: 'Guest isolation',
+    description: 'Separate guests from each other and from hardware-facing responsibilities through the virtualization layer.',
+    href: '/technology/isolation-and-security/',
+    linkLabel: 'Review isolation resources',
+  },
+  {
+    icon: 'i-carbon-virtual-machine',
+    title: 'Scalable VM management',
+    description: 'Use XAPI and XCP-ng when teams need management APIs, host pools, and VM lifecycle operations above Xen.',
+    href: '/projects/xcp-ng/',
+    linkLabel: 'Explore XCP-ng',
+  },
+];
+
+const deploymentModels = [
+  'Public cloud foundations',
+  'Private cloud',
+  'Enterprise virtualization',
+  'Hosting providers',
+  'Edge infrastructure',
+  'Research and lab infrastructure',
+  'Network appliances',
+];
+
+const ecosystemRoles = [
+  {
+    icon: 'i-carbon-layers',
+    title: 'Xen Hypervisor',
+    group: 'Foundation',
+    description: 'Provides the open virtualization layer between guest systems and hardware.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Explore the hypervisor',
+  },
+  {
+    icon: 'i-carbon-api',
+    title: 'XAPI',
+    group: 'Management',
+    description: 'Exposes a management interface and toolstack for configuring and controlling virtualized guests.',
+    href: '/projects/xapi/',
+    linkLabel: 'Explore XAPI',
+  },
+  {
+    icon: 'i-carbon-cube',
+    title: 'XCP-ng',
+    group: 'Complete platform',
+    description: 'Packages Xen and XAPI into a complete open virtualization platform for VM infrastructure.',
+    href: '/projects/xcp-ng/',
+    linkLabel: 'Explore XCP-ng',
+  },
+  {
+    icon: 'i-carbon-dashboard',
+    title: 'Xen Orchestra',
+    group: 'Operations',
+    description: 'Provides management, monitoring, and backup capabilities for XCP-ng and XAPI-based environments.',
+    href: '/projects/xcp-ng/',
+    linkLabel: 'Review XCP-ng',
+  },
+];
+
+const architectReasons = [
+  {
+    icon: 'i-carbon-enterprise',
+    title: 'Infrastructure ownership',
+    description: 'Operators can evaluate the boundary between guest systems, management domains, and owned hardware.',
+  },
+  {
+    icon: 'i-carbon-branch',
+    title: 'Open governance',
+    description: 'Project governance and contribution paths are public, giving organizations a visible project model.',
+    href: '/about/governance/',
+    linkLabel: 'Read governance',
+  },
+  {
+    icon: 'i-carbon-code',
+    title: 'Inspectable source',
+    description: 'Infrastructure teams can review source, releases, and public engineering activity as part of evaluation.',
+    href: '/resources/downloads/',
+    linkLabel: 'View downloads',
+  },
+  {
+    icon: 'i-carbon-security',
+    title: 'Security response process',
+    description: 'Security reporting and response expectations are documented for users, vendors, and contributors.',
+    href: '/about/security-policy/',
+    linkLabel: 'Review security policy',
+  },
+  {
+    icon: 'i-carbon-time',
+    title: 'Long-lived maintainability',
+    description: 'An open project model helps teams plan platforms that must be reviewed and updated over long lifecycles.',
+  },
+  {
+    icon: 'i-carbon-group',
+    title: 'Member-funded ecosystem',
+    description: 'Project membership helps sustain shared infrastructure, events, trademark stewardship, and coordination.',
+    href: '/about/become-a-member/',
+    linkLabel: 'Become a member',
+  },
+];
+
+const projectHealth = [
+  {
+    icon: 'i-carbon-wikis',
+    title: 'Linux Foundation stewardship',
+    description: 'Xen is organized as a Linux Foundation project with visible governance and member participation.',
+    href: '/about/governance/',
+    linkLabel: 'Read governance',
+  },
+  {
+    icon: 'i-carbon-test-tool',
+    title: 'Public CI resources',
+    description: 'Testing resources and CI status give contributors and evaluators visibility into project infrastructure.',
+    href: '/contribute/ci/',
+    linkLabel: 'View CI resources',
+  },
+  {
+    icon: 'i-carbon-download',
+    title: 'Releases and downloads',
+    description: 'Release artifacts and download links are available for evaluation, development, and operations planning.',
+    href: '/resources/downloads/',
+    linkLabel: 'View downloads',
+  },
+  {
+    icon: 'i-carbon-code-reference',
+    title: 'Documentation and contribution',
+    description: 'Documentation, mailing lists, and contribution paths are available for teams that need to go deeper.',
+    href: '/contribute/get-started/',
+    linkLabel: 'Start contributing',
+  },
+];
+
+const resources = [
+  {
+    icon: 'i-carbon-layers',
+    title: 'Hypervisor',
+    description: 'Start with the core Xen hypervisor project and architecture resources.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Visit project',
+  },
+  {
+    icon: 'i-carbon-api',
+    title: 'XAPI',
+    description: 'Explore the management API and toolstack used by XAPI-based products.',
+    href: '/projects/xapi/',
+    linkLabel: 'Explore XAPI',
+  },
+  {
+    icon: 'i-carbon-cube',
+    title: 'XCP-ng',
+    description: 'Review the complete open virtualization platform built on Xen and XAPI.',
+    href: '/projects/xcp-ng/',
+    linkLabel: 'Explore XCP-ng',
+  },
+  {
+    icon: 'i-carbon-download',
+    title: 'Downloads',
+    description: 'Find Xen releases for evaluation and development.',
+    href: '/resources/downloads/',
+    linkLabel: 'View downloads',
+  },
+  {
+    icon: 'i-carbon-document',
+    title: 'Documentation and wiki',
+    description: 'Use the project wiki for deeper technical and operational documentation.',
+    href: 'https://wiki.xenproject.org/',
+    linkLabel: 'Open wiki',
+  },
+  {
+    icon: 'i-carbon-diagram',
+    title: 'Architecture',
+    description: 'See how Xen fits between hardware, guests, and platform control.',
+    href: '/technology/architecture/',
+    linkLabel: 'Explore architecture',
+  },
+  {
+    icon: 'i-carbon-security',
+    title: 'Isolation & security',
+    description: 'Review isolation and security resources for Xen-based platforms.',
+    href: '/technology/isolation-and-security/',
+    linkLabel: 'Review resources',
+  },
+  {
+    icon: 'i-carbon-branch',
+    title: 'Governance',
+    description: 'Understand the project model, roles, and public governance process.',
+    href: '/about/governance/',
+    linkLabel: 'Read governance',
+  },
+  {
+    icon: 'i-carbon-enterprise',
+    title: 'Become a member',
+    description: 'Support the shared project infrastructure and ecosystem coordination.',
+    href: '/about/become-a-member/',
+    linkLabel: 'Explore membership',
+  },
+];
 ---
 
-<LegacyLayout title={title} description={description} keywords={keywords}>
-  <article class="article page-single">
-    <div class="container page-top"><h1>{title}</h1><div class="description">{description}</div></div>
-    <div class="single-content">
-      <Section><MediaBlock title="Qubes OS & Xen Project" media="/img/flatline/data-storage.svg" mediaPosition="right" alt="Illustration of a data storage concept with various elements representing data protection, cloud storage, and secure data management." animate>Qubes OS is a security-focused operating system based on Xen. The goal of Qubes OS is to create a reasonably secure environment that is also practical and usable, capable of playing the role of a daily driver rather than a highly situational solution - and Xen is a major reason why we can confidently say that Qubes OS succeeds.<p class="mg-t-md"><a href="/pdf/Qubes-OS-and-Xen-Project.pdf" class="btn btn-secondary">Read the Complete Case Study <i class="fas fa-arrow-up-right-from-square"></i></a></p></MediaBlock></Section>
-      <Section><MediaBlock title="Xen Server case study" media="/img/flatline/data-process.svg" alt="Illustration of a laptop displaying 3D bar charts, connected to cloud and file management icons, representing data integration and synchronization." animate>Xen Server, powered by the Xen Project hypervisor, offers a robust virtualization platform for enterprise environments. It enables efficient resource utilization, simplified management, and enhanced security for organizations of all sizes. With features like live migration and dynamic memory allocation, Xen Server optimizes datacenter operations and reduces downtime.</MediaBlock></Section>
-      <Section><MediaBlock title="Amazon case study" media="/img/flatline/data-hosting.svg" mediaPosition="right" alt="Illustration of servers surrounded by cloud icons with upload and download arrows, representing cloud computing and data storage." animate>Amazon Web Services (AWS) leverages the Xen Project hypervisor to power its Elastic Compute Cloud (EC2) service. This implementation demonstrates the scalability and reliability of Xen in large-scale cloud environments. AWS's success with Xen has revolutionized cloud computing, offering flexible and cost-effective solutions for businesses worldwide.</MediaBlock></Section>
-      <Section><MediaBlock title="Security" media="/img/flatline/security.svg" alt="Illustration of a laptop displaying 3D bar charts, connected to cloud and file management icons, representing data integration and synchronization." animate>The Xen Project hypervisor prioritizes security through its unique architecture and ongoing development efforts. Its small codebase and isolation features minimize the attack surface, while regular security updates address emerging threats. Xen's security-first approach makes it an ideal choice for organizations with stringent data protection requirements.<p class="mg-t-md"><a href="https://wiki.xenproject.org/wiki/Xen_Project_4.18_Release_Notes" class="btn btn-secondary">Read Xen Project Releases Version 4.18 <i class="fas fa-arrow-up-right-from-square"></i></a></p></MediaBlock></Section>
-      <Section><MediaBlock title="Embedded & Automotive" media="/img/flatline/data_and_settings.svg" mediaPosition="right" alt="Illustration of a database icon with gears and a wrench, representing data management and configuration tools." animate>Xen Project's virtualization technology is increasingly adopted in embedded systems and automotive applications. It enables the consolidation of multiple systems onto a single hardware platform, reducing costs and complexity. In automotive, Xen supports the development of advanced infotainment systems and autonomous driving technologies while ensuring critical safety features remain isolated.<p class="mg-t-md"><a href="/projects/embedded-and-automotive/" class="btn btn-secondary">Read Automotive Virtualization by Xen <i class="fas fa-arrow-right"></i></a></p></MediaBlock></Section>
-      <Section class="section-square-primary content-markdown"><h2>Did you know?</h2><p>There are several virtualization technologies available in the world today. Our Xen Project virtualization and cloud software includes many powerful features that make it an excellent choice for many organizations.</p><h3>Supports multiple guest operating systems: Linux, Windows, NetBSD, FreeBSD</h3><p>A virtualization technology that only supports a few guest operating systems essentially locks the organization into those choices for years to come. With our hypervisor, you have the flexibility to use what you need and add other operating system platforms as your needs dictate. You are in control.</p><h3>Supports multiple Cloud platforms: CloudStack, OpenStack</h3><p>Supports multiple Cloud platforms: CloudStack, OpenStack A virtualization technology that only supports one Cloud technology locks you into that technology. With the world of the Cloud moving so quickly, it could be a mistake to commit to one Cloud platform too soon. Our software keeps your choices open as Cloud solutions continue to improve and mature.</p><h3>Reliable technology with a solid track record</h3><p>Conservative estimates show that Xen has an active user base of 10+ million; these are users, not merely hypervisor installations which are an order of magnitude higher. Amazon Web Services alone runs many virtualized Xen Project instances according to a recent study and other cloud providers such as Rackspace and hosting companies use the hypervisor at an extremely large scale. Our software is the basis of successful commercial virtualization products from Citrix, Huawei, Inspur, and Oracle. It is clear that many major industry players regard our software as a safe virtualization platform for even the largest clouds.</p></Section>
-      <Section container="full"><ProjectCarousel projects={useCaseProjects} /><p class="mg-t-xl txt-c"><a href="/projects/all-projects/" class="btn btn-primary">Discover all projects <i class="fas fa-arrow-right"></i></a></p></Section>
-    </div>
-  </article>
-</LegacyLayout>
+<BaseLayout title={title} description={description} keywords={keywords} publicShell bodyClass="xp-solution-cloud-infrastructure">
+  <Hero
+    eyebrow="Solution Area"
+    title="Open virtualization for cloud and infrastructure platforms."
+    description="Infrastructure still needs a clear virtualization boundary. Xen provides an open, inspectable hypervisor layer for teams reasoning about guest isolation, hardware ownership, control domains, platform lifecycle, and long-term infrastructure sustainability."
+    actions={[
+      {label: 'Explore the hypervisor', href: '/projects/hypervisor/'},
+      {label: 'Explore XCP-ng', href: '/projects/xcp-ng/', variant: 'secondary'},
+    ]}
+    layout="balanced"
+  >
+    <PlatformLayersDiagram slot="media" {...cloudInfrastructurePlatformLayersDiagram} />
+  </Hero>
+
+  <Section id="infrastructure-virtualization">
+    <Container>
+      <Stack gap="6">
+        <Stack gap="3" class="uno-max-w-xp-content">
+          <Text size="eyebrow" tone="muted">Infrastructure ownership</Text>
+          <Heading size="heading-xl">Modern infrastructure still depends on a well-defined virtualization layer.</Heading>
+          <Text>
+            Public clouds, private clouds, hosting providers, edge sites, enterprise virtualization estates, and research clusters all need a place where hardware, guests, tenants, and platform operators can be reasoned about separately.
+          </Text>
+        </Stack>
+        <Grid columns="2" gap="5">
+          {infrastructureContexts.map(context => (
+            <Card>
+              <Stack gap="4">
+                <span class:list={[context.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
+                <Stack gap="3">
+                  <Heading as="h3" size="heading-m">{context.title}</Heading>
+                  <Text size="caption">{context.description}</Text>
+                </Stack>
+              </Stack>
+            </Card>
+          ))}
+        </Grid>
+      </Stack>
+    </Container>
+  </Section>
+
+  <Section id="dedicated-hypervisor" surface="1" class="xp-related-section xp-technical-chapter-section">
+    <Container>
+      <Stack gap="6">
+        <Split align="start">
+          <Stack gap="3">
+            <Text size="eyebrow" tone="muted">Why a dedicated hypervisor?</Text>
+            <Heading size="heading-xl">A focused layer for isolation, ownership, and platform control.</Heading>
+          </Stack>
+          <Text>
+            Xen places the virtualization boundary in a dedicated hypervisor layer, giving infrastructure teams an explicit place to reason about guest isolation, hardware ownership, and platform control without treating one guest operating system as the whole platform.
+          </Text>
+        </Split>
+        <Grid columns="3" gap="5">
+          {hypervisorReasons.map(reason => (
+            <Card>
+              <Stack gap="3">
+                <Heading as="h3" size="heading-m">{reason.title}</Heading>
+                <Text size="caption">{reason.description}</Text>
+              </Stack>
+            </Card>
+          ))}
+        </Grid>
+      </Stack>
+    </Container>
+  </Section>
+
+  <FeatureGrid
+    id="technical-capabilities"
+    eyebrow="Technical capabilities"
+    title="Capabilities for infrastructure platforms"
+    description="After the virtualization boundary is clear, teams can evaluate Xen and the surrounding platform tooling for hardware ownership, guest lifecycle, and operational control."
+    columns="3"
+    features={capabilities}
+  />
+
+  <Section id="where-xen-fits" surface="1">
+    <Container>
+      <Split>
+        <Stack gap="3">
+          <Text size="eyebrow" tone="muted">Where Xen fits</Text>
+          <Heading size="heading-xl">A virtualization foundation for operators and platform builders.</Heading>
+          <Text>
+            Xen is relevant when teams need to own the boundary between guests, infrastructure hardware, and management responsibilities across different deployment models.
+          </Text>
+        </Stack>
+        <Grid columns="2" gap="4">
+          {deploymentModels.map(model => (
+            <Surface tone="2" border="muted" radius="md" shadow="sm" padding="md">
+              <Text size="caption" tone="primary" class="uno-font-semibold">{model}</Text>
+            </Surface>
+          ))}
+        </Grid>
+      </Split>
+    </Container>
+  </Section>
+
+  <Section id="open-infrastructure-ecosystem" class="xp-related-section">
+    <Container>
+      <Stack gap="6">
+        <Stack gap="3" class="uno-max-w-xp-content">
+          <Text size="eyebrow" tone="muted">Open Xen infrastructure ecosystem</Text>
+          <Heading size="heading-xl">From hypervisor boundary to complete virtualization platform.</Heading>
+          <Text>
+            Xen provides the virtualization foundation. XAPI exposes management capabilities above that foundation. XCP-ng brings those pieces together as a complete open virtualization platform, commonly managed with Xen Orchestra.
+          </Text>
+        </Stack>
+        <Split align="start" class="xp-cloud-ecosystem-layout">
+          <Stack gap="4">
+            <PlatformLayersDiagram
+              id="open-infrastructure-ecosystem-diagram"
+              class="xp-cloud-ecosystem-diagram"
+              {...cloudInfrastructureEcosystemLayersDiagram}
+            />
+            <Callout
+              title="Commercial support without closing the project"
+              description="Commercial offerings and services from ecosystem members also build on Xen, giving organizations support options while keeping the project itself open source."
+              action={{label: 'View project members', href: '/about/project-members/', variant: 'secondary'}}
+            >
+              <span slot="icon" class="i-carbon-enterprise"></span>
+            </Callout>
+          </Stack>
+          <Grid columns="2" gap="4">
+            {ecosystemRoles.map(role => (
+              <Card active={role.title === 'XCP-ng'}>
+                <Stack gap="4">
+                  <span class:list={[role.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
+                  <Stack gap="3">
+                    <span class="xp-role-group">{role.group}</span>
+                    <Heading as="h3" size="heading-m">{role.title}</Heading>
+                    <Text size="small">{role.description}</Text>
+                  </Stack>
+                  <Button href={role.href} variant="text" class="uno-self-start">
+                    {role.linkLabel}
+                  </Button>
+                </Stack>
+              </Card>
+            ))}
+          </Grid>
+        </Split>
+      </Stack>
+    </Container>
+  </Section>
+
+  <FeatureGrid
+    id="why-architects-choose-xen"
+    eyebrow="Why architects choose Xen"
+    title="Evaluation starts with ownership, openness, and maintainability."
+    description="Infrastructure teams evaluating a virtualization foundation need more than a feature checklist. They need a project model they can inspect, sustain, and build around."
+    surface="1"
+    columns="3"
+    features={architectReasons}
+  />
+
+  <FeatureGrid
+    id="project-health"
+    eyebrow="Open engineering and project health"
+    title="A project process infrastructure teams can inspect."
+    description="Governance, security handling, CI resources, releases, downloads, and contribution paths are public evaluation inputs for teams building on Xen."
+    columns="4"
+    features={projectHealth}
+  />
+
+  <FeatureGrid
+    id="resources"
+    eyebrow="Related resources"
+    title="Follow the evaluation path from architecture to participation."
+    description="Use these project, technology, testing, documentation, and membership entry points to continue evaluating Xen for infrastructure platforms."
+    surface="1"
+    columns="3"
+    class="xp-related-section"
+    features={resources}
+  />
+
+  <Section id="next-step-open-infrastructure">
+    <Container>
+      <Split align="center">
+        <Stack gap="4">
+          <Text size="eyebrow" tone="muted">Next step</Text>
+          <Heading size="heading-xl">Evaluate the boundary, then choose the platform path.</Heading>
+          <Text>
+            Start with the hypervisor when you need to understand the virtualization foundation. Start with XCP-ng when you want a complete open virtualization platform built on Xen and XAPI.
+          </Text>
+          <Cluster>
+            <Button href="/projects/hypervisor/">Explore the hypervisor</Button>
+            <Button href="/projects/xcp-ng/" variant="secondary">Explore XCP-ng</Button>
+          </Cluster>
+        </Stack>
+        <Surface tone="2" border="strong" radius="lg" shadow="md" padding="lg">
+          <Stack gap="4">
+            <Callout
+              title="Built in the open"
+              description="Xen is always open source, free to use, governed in public, and sustained by a member-funded ecosystem with commercial support options through partners."
+              action={{label: 'Read governance', href: '/about/governance/', variant: 'text'}}
+            >
+              <span slot="icon" class="i-carbon-branch"></span>
+            </Callout>
+            <Callout
+              title="Contribute to the infrastructure foundation"
+              description="Engineers and organizations can evaluate, use, contribute to, and support the project through documented public paths."
+              action={{label: 'Start contributing', href: '/contribute/get-started/', variant: 'text'}}
+            >
+              <span slot="icon" class="i-carbon-code"></span>
+            </Callout>
+          </Stack>
+        </Surface>
+      </Split>
+    </Container>
+  </Section>
+
+  <CTA
+    id="final-cta"
+    eyebrow="Infrastructure ownership"
+    title="Build infrastructure on a virtualization boundary you can inspect."
+    description="Explore Xen architecture, evaluate XCP-ng as a complete platform, or support the open project that keeps the foundation available."
+    actions={[
+      {label: 'Explore Xen architecture', href: '/technology/architecture/'},
+      {label: 'Become a member', href: '/about/become-a-member/', variant: 'secondary'},
+    ]}
+    align="center"
+  />
+</BaseLayout>
+
+<style>
+  :global(.xp-cloud-ecosystem-layout) {
+    align-items: stretch;
+  }
+
+  .xp-role-group {
+    display: inline-flex;
+    width: fit-content;
+    max-width: 100%;
+    color: var(--xp-text-muted);
+    font-size: 0.7rem;
+    font-weight: 650;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+
+  :global(.xp-cloud-ecosystem-diagram .xp-platform-stack) {
+    min-height: clamp(30rem, 46vw, 34rem);
+  }
+</style>

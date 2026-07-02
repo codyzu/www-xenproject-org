@@ -46,10 +46,10 @@ const highValuePages = [
     screenshot: 'downloads-page.png',
   },
   {
-    name: 'use cases',
+    name: 'cloud infrastructure',
     path: '/resources/use-cases/',
-    title: /Use cases/i,
-    heading: /Use cases/i,
+    title: /Cloud & Infrastructure/i,
+    heading: /Open virtualization for cloud and infrastructure platforms/i,
     screenshot: 'use-cases-page.png',
   },
   {

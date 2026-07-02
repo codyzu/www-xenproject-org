@@ -2,8 +2,8 @@
   - article:
     - heading "Resources" [level=1]
     - paragraph: Browse technical resources, community channels, events, downloads, and examples of Xen Project technology in practice.
-    - heading "Use cases" [level=2]
-    - text: Explore Use cases.
+    - heading "Cloud & Infrastructure" [level=2]
+    - text: Explore Cloud & Infrastructure.
     - link "Explore ":
       - /url: /resources/use-cases
     - heading "Xen Summit 2026" [level=2]
