@@ -8,7 +8,7 @@
       - paragraph: Hybrid event · 2 days of talks + 1 day of design sessions
       - list "Event status":
         - listitem: Registration Open
-        - listitem: CFP Open Until June 30, 2026
+        - listitem: 📣 CFP Extended Until July 7, 2026
         - listitem: Early Bird Until July 31, 2026
       - link "Register Now":
         - /url: https://register.linuxfoundation.org/xen-summit-2026
@@ -17,6 +17,11 @@
       - link "Become a Sponsor":
         - /url: /assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf
       - img "Xen Project panda in Bavarian festival clothing"
+    - paragraph:
+      - strong: Good news!
+      - text: We’ve extended the Call for Proposals by one week. If you were still polishing your idea, now’s your chance. Submit by
+      - strong: July 7, 2026
+      - text: .
     - heading "About Xen Summit" [level=2]
     - paragraph: Xen Summit is the annual gathering for Xen developers, users, researchers, vendors, and ecosystem partners.
     - paragraph: The 2026 summit will bring the community together in Munich for engineering updates, project planning, design sessions, and hallway-track collaboration across the Xen ecosystem.
@@ -134,13 +139,9 @@
     - paragraph: There is no official hotel block yet. Attendees may want to stay either near the venue in Aschheim for a shorter local commute, or in central Munich with convenient transit access to the eastern side of the city.
     - heading "Call for Proposals" [level=3]
     - paragraph:
-      - text: The Call for Proposals is open.
-      - link "Submit your talk":
-        - /url: https://sessionize.com/XenSummit2026/
-      - text: by
-      - strong: June 30, 2026
-      - text: at 11:59 PM W. Europe Daylight Time to share your work with the Xen Project community in Munich or online.
-    - paragraph: New speakers are welcome.
+      - text: The Call for Proposals has been extended until
+      - strong: July 7, 2026
+      - text: at 11:59 PM Western Europe Summer Time. If you were still refining your proposal, we’ve added one more week. New speakers are especially welcome.
     - paragraph: "We welcome proposals from across the Xen ecosystem, including:"
     - list:
       - listitem: Xen development and architecture
@@ -267,11 +268,11 @@
     - paragraph:
       - link "Register for Xen Summit 2026":
         - /url: https://register.linuxfoundation.org/xen-summit-2026
-      - text: and submit a talk while the
-      - link "Call for Proposals":
+      - text: and submit your proposal while the extended
+      - link "CFP":
         - /url: https://sessionize.com/XenSummit2026/
       - text: remains open until
-      - strong: June 30, 2026
+      - strong: July 7, 2026
       - text: .
     - heading "Join the conversation" [level=2]:
       - text: Join the
@@ -281,4 +282,4 @@
       - link "Join Matrix ":
         - /url: https://matrix.to/#/#xenproject:matrix.org
     - paragraph:
-      - emphasis: "Last updated: June 26, 2026"
+      - emphasis: "Last updated: July 2, 2026"

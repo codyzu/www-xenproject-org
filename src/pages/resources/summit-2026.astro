@@ -20,7 +20,7 @@ const cfpUrl = 'https://sessionize.com/XenSummit2026/';
         title={title}
         locationDate="HEADS office, Munich, Germany · September 15–17, 2026"
         format="Hybrid event · 2 days of talks + 1 day of design sessions"
-        badges={['Registration Open', 'CFP Open Until June 30, 2026', 'Early Bird Until July 31, 2026']}
+        badges={['Registration Open', '📣 CFP Extended Until July 7, 2026', 'Early Bird Until July 31, 2026']}
         backgroundSrc="/assets/summit-2026/hero.webp"
         backgroundMobileSrc="/assets/summit-2026/hero-mobile.webp"
         backgroundAlt="Munich cityscape hero artwork for Xen Summit 2026"
@@ -32,6 +32,12 @@ const cfpUrl = 'https://sessionize.com/XenSummit2026/';
           {label: 'Become a Sponsor', href: '/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf', variant: 'tertiary'},
         ]}
       />
+
+      <Section class="content-markdown">
+        <div class="uno-rounded-lg uno-border uno-border-brand-fill/30 uno-bg-brand-fill/8 uno-p-5 dark:uno-bg-brand-fill/15">
+          <p class="uno-m-0"><strong>Good news!</strong> We’ve extended the Call for Proposals by one week. If you were still polishing your idea, now’s your chance. Submit by <strong>July 7, 2026</strong>.</p>
+        </div>
+      </Section>
 
       <Section class="content-markdown">
         <h2>About Xen Summit</h2>
@@ -53,7 +59,7 @@ const cfpUrl = 'https://sessionize.com/XenSummit2026/';
           <div class="uno-card"><h3 id="venue">Venue</h3><h4>Hosted by Renesas</h4><p>Xen Summit 2026 is proudly hosted by Renesas in Munich, Germany. The event will take place at the HEADS office in Aschheim, located directly across from the Renesas Munich office.</p><div class="uno-flex uno-justify-center uno-my-6"><a href="https://www.renesas.com/" class="uno-block uno-w-full uno-max-w-[240px]"><img src="/img/logos/renesas-logo-cropped.svg" alt="Renesas logo" class="uno-w-full uno-h-auto" /></a></div><p><strong>Address:</strong> Einsteinring 30, 85609 Aschheim, Germany<br /><strong>Map:</strong> <a href="https://maps.app.goo.gl/4h4E7zzcBjJuiecK9">Google Maps</a></p></div>
           <div class="uno-card"><h3>Registration</h3><p>Registration is open for Xen Summit 2026.</p><p>Early Bird pricing is available until <strong>July 31, 2026</strong>, with standard in-person registration now reduced to <strong>$200</strong>.</p><p><a href={registrationUrl} class="btn btn-primary">Register now <i class="fas fa-arrow-up-right-from-square"></i></a></p></div>
           <div class="uno-card"><h3>Travel</h3><p>Munich is well connected by air, rail, and public transit. The HEADS office is in Aschheim, east of central Munich, at Einsteinring 30, 85609 Aschheim, Germany.</p><ul><li><strong>Venue map:</strong> <a href="https://maps.app.goo.gl/4h4E7zzcBjJuiecK9">HEADS office on Google Maps</a></li><li><strong>Airport:</strong> <a href="https://www.munich-airport.com/">Munich Airport (MUC)</a> is the closest major international airport.</li><li><strong>Rail:</strong> Munich Hauptbahnhof is the main long-distance rail station for arrivals from Germany and across Europe.</li><li><strong>Public transit:</strong> Use <a href="https://www.mvv-muenchen.de/en/">MVV Munich public transit</a> to plan S-Bahn, U-Bahn, tram, and bus connections toward Aschheim.</li><li><strong>Taxi and rideshare:</strong> Taxis are available at the airport, major rail stations, and throughout Munich. Rideshare availability may vary by provider and pickup location.</li></ul><h4>Lodging</h4><p>There is no official hotel block yet. Attendees may want to stay either near the venue in Aschheim for a shorter local commute, or in central Munich with convenient transit access to the eastern side of the city.</p></div>
-          <div class="uno-card"><h3 id="call-for-proposals">Call for Proposals</h3><p>The Call for Proposals is open. <a href={cfpUrl}>Submit your talk</a> by <strong>June 30, 2026</strong> at 11:59 PM W. Europe Daylight Time to share your work with the Xen Project community in Munich or online.</p><p>New speakers are welcome.</p><p>We welcome proposals from across the Xen ecosystem, including:</p><ul><li>Xen development and architecture</li><li>Embedded and automotive virtualization</li><li>Security, isolation, and safety-related use cases</li><li>Safety and certification-related work</li><li>Performance, scalability, and reliability</li><li>Cloud, datacenter, and infrastructure deployments</li><li>Tooling, testing, CI, and developer experience</li><li>Open source collaboration and community process</li><li>Xen on Arm and other platform work</li><li>Real-world deployments, case studies, and lessons learned</li></ul><p><a href={cfpUrl} class="btn btn-secondary">Submit a Proposal <i class="fas fa-arrow-up-right-from-square"></i></a></p></div>
+          <div class="uno-card"><h3 id="call-for-proposals">Call for Proposals</h3><p>The Call for Proposals has been extended until <strong>July 7, 2026</strong> at 11:59 PM Western Europe Summer Time. If you were still refining your proposal, we’ve added one more week. New speakers are especially welcome.</p><p>We welcome proposals from across the Xen ecosystem, including:</p><ul><li>Xen development and architecture</li><li>Embedded and automotive virtualization</li><li>Security, isolation, and safety-related use cases</li><li>Safety and certification-related work</li><li>Performance, scalability, and reliability</li><li>Cloud, datacenter, and infrastructure deployments</li><li>Tooling, testing, CI, and developer experience</li><li>Open source collaboration and community process</li><li>Xen on Arm and other platform work</li><li>Real-world deployments, case studies, and lessons learned</li></ul><p><a href={cfpUrl} class="btn btn-secondary">Submit a Proposal <i class="fas fa-arrow-up-right-from-square"></i></a></p></div>
         </div>
       </Section>
 
@@ -92,9 +98,9 @@ const cfpUrl = 'https://sessionize.com/XenSummit2026/';
       </Section>
 
       <Section class="content-markdown"><h2>Code of Conduct</h2><p>Xen Summit 2026 follows the <a href="/contribute/code-of-conduct/">Xen Project Code of Conduct</a> to help ensure a welcoming, respectful, and productive environment for all attendees.</p></Section>
-      <Section class="content-markdown"><h2 id="stay-informed">Stay Informed</h2><p>Follow Xen Project channels, join the community on <a href="/resources/matrix/">Matrix</a>, subscribe to the <a href="/resources/mailing-lists/">mailing lists</a>, or follow Xen Project on <a href="https://www.linkedin.com/company/the-xen-project/">LinkedIn</a>. Revisit this page for updates on the CFP, registration, the schedule, travel guidance, and sponsorship opportunities.</p><p><a href={registrationUrl}>Register for Xen Summit 2026</a> and submit a talk while the <a href={cfpUrl}>Call for Proposals</a> remains open until <strong>June 30, 2026</strong>.</p></Section>
+      <Section class="content-markdown"><h2 id="stay-informed">Stay Informed</h2><p>Follow Xen Project channels, join the community on <a href="/resources/matrix/">Matrix</a>, subscribe to the <a href="/resources/mailing-lists/">mailing lists</a>, or follow Xen Project on <a href="https://www.linkedin.com/company/the-xen-project/">LinkedIn</a>. Revisit this page for updates on the CFP, registration, the schedule, travel guidance, and sponsorship opportunities.</p><p><a href={registrationUrl}>Register for Xen Summit 2026</a> and submit your proposal while the extended <a href={cfpUrl}>CFP</a> remains open until <strong>July 7, 2026</strong>.</p></Section>
       <Section class="section-square-primary txt-c content-markdown"><h2>Join the <strong>conversation</strong></h2><p>Connect with the Xen Project community and follow event updates as planning continues.</p><p class="mg-t-md"><a href="https://matrix.to/#/#xenproject:matrix.org" class="btn btn-primary">Join Matrix <i class="fas fa-arrow-right"></i></a></p></Section>
-      <Section class="txt-c"><p class="content-markdown"><em>Last updated: June 26, 2026</em></p></Section>
+      <Section class="txt-c"><p class="content-markdown"><em>Last updated: July 2, 2026</em></p></Section>
     </div>
   </article>
 </BaseLayout>

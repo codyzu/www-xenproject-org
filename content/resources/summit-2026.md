@@ -11,6 +11,7 @@ keywords:
   - hypervisor technology
   - community event
 date: 2026-05-18T00:00:00+02:00
+lastmod: 2026-07-02T00:00:00+02:00
 eventDates: "September 15–17, 2026"
 eventEnd: 2026-09-17
 eventLocation: "HEADS office, Einsteinring 30, 85609 Aschheim, Germany"
@@ -29,7 +30,7 @@ aliases:
   title="Xen Summit 2026"
   locationDate="HEADS office, Munich, Germany · September 15–17, 2026"
   format="Hybrid event · 2 days of talks + 1 day of design sessions"
-  badges="Registration Open|CFP Open Until June 30, 2026|Early Bird Until July 31, 2026"
+  badges="Registration Open|📣 CFP Extended Until July 7, 2026|Early Bird Until July 31, 2026"
   backgroundSrc="/assets/summit-2026/hero.webp"
   backgroundMobileSrc="/assets/summit-2026/hero-mobile.webp"
   backgroundAlt="Munich cityscape hero artwork for Xen Summit 2026"
@@ -46,6 +47,12 @@ aliases:
   tertiaryLabel="Become a Sponsor"
   tertiaryHref="/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf"
 >}}
+
+{{<section>}}
+<div class="content-markdown uno-rounded-lg uno-border uno-border-brand-fill/30 uno-bg-brand-fill/8 uno-p-5 dark:uno-bg-brand-fill/15">
+<p class="uno-m-0"><strong>Good news!</strong> We’ve extended the Call for Proposals by one week. If you were still polishing your idea, now’s your chance. Submit by <strong>July 7, 2026</strong>.</p>
+</div>
+{{</section>}}
 
 {{<section>}}
 {{<md class="content-markdown">}}
@@ -162,9 +169,7 @@ There is no official hotel block yet. Attendees may want to stay either near the
 {{<md class="content-markdown">}}
 ### Call for Proposals
 
-The Call for Proposals is open. [Submit your talk](https://sessionize.com/XenSummit2026/) by **June 30, 2026** at 11:59 PM W. Europe Daylight Time to share your work with the Xen Project community in Munich or online.
-
-New speakers are welcome.
+The Call for Proposals has been extended until **July 7, 2026** at 11:59 PM Western Europe Summer Time. If you were still refining your proposal, we’ve added one more week. New speakers are especially welcome.
 
 We welcome proposals from across the Xen ecosystem, including:
 
@@ -296,7 +301,7 @@ Xen Summit 2026 follows the [Xen Project Code of Conduct](/contribute/code-of-co
 
 Follow Xen Project channels, join the community on [Matrix](/resources/matrix/), subscribe to the [mailing lists](/resources/mailing-lists/), or follow Xen Project on [LinkedIn](https://www.linkedin.com/company/the-xen-project/). Revisit this page for updates on the CFP, registration, the schedule, travel guidance, and sponsorship opportunities.
 
-[Register for Xen Summit 2026](https://register.linuxfoundation.org/xen-summit-2026) and submit a talk while the [Call for Proposals](https://sessionize.com/XenSummit2026/) remains open until **June 30, 2026**.
+[Register for Xen Summit 2026](https://register.linuxfoundation.org/xen-summit-2026) and submit your proposal while the extended [CFP](https://sessionize.com/XenSummit2026/) remains open until **July 7, 2026**.
 {{</section>}}
 
 {{<section class="section-square-primary txt-c">}}
