@@ -1,58 +1,60 @@
 - main:
   - paragraph: Solution Area
   - heading "Open virtualization for cloud and infrastructure platforms." [level=1]
-  - paragraph: Infrastructure still needs a clear virtualization boundary. Xen provides an open, inspectable hypervisor layer for teams reasoning about guest isolation, hardware ownership, control domains, platform lifecycle, and long-term infrastructure sustainability.
+  - paragraph: Xen provides an open, inspectable hypervisor layer for teams reasoning about guest isolation, hardware ownership, control domains, and long-term infrastructure sustainability.
   - link "Explore the hypervisor":
     - /url: /projects/hypervisor
   - link "Explore XCP-ng":
     - /url: /projects/xcp-ng
   - figure "Infrastructure layers":
     - paragraph: Infrastructure layers
-    - paragraph: Workloads
-    - paragraph: Applications and services
-    - paragraph: Application software runs above infrastructure-owned virtualization and lifecycle boundaries.
-    - text: Services Databases Networks
+    - paragraph: Services
+    - paragraph: Cloud workloads
+    - paragraph: Infrastructure workloads run above platform-owned control and lifecycle decisions.
+    - text: Web services Databases AI workers Network functions
     - paragraph: Guests
     - paragraph: Virtual machines
-    - paragraph: Guest operating systems keep tenant, service, and platform responsibilities separated.
-    - text: Linux Windows BSD
+    - paragraph: VMs keep tenant, service, appliance, and build environments accountable.
+    - text: Linux VM Windows VM Appliance VM Build agents
     - paragraph: Virtualization boundary
     - paragraph: Xen hypervisor
-    - paragraph: Guest isolation, scheduling, device ownership, and control-domain choices stay explicit.
+    - paragraph: Guest isolation, scheduling, device ownership, and control domains stay explicit.
     - paragraph: Owned infrastructure
     - paragraph: Hardware
-    - paragraph: Compute, memory, storage, networking, and accelerator resources remain platform design inputs.
-    - paragraph: Xen gives cloud and infrastructure platforms a visible boundary between applications, virtual machines, the hypervisor, and hardware.
+    - paragraph: Compute, memory, storage, networking, and accelerators remain operator decisions.
+    - text: Compute Storage Networking Accelerators
+    - paragraph: Xen gives infrastructure teams a visible boundary between cloud workloads, virtual machines, the hypervisor, and owned hardware.
   - paragraph: Infrastructure ownership
   - heading "Modern infrastructure still depends on a well-defined virtualization layer." [level=2]
-  - paragraph: Public clouds, private clouds, hosting providers, edge sites, enterprise virtualization estates, and research clusters all need a place where hardware, guests, tenants, and platform operators can be reasoned about separately.
+  - paragraph: Public clouds, private clouds, hosting providers, edge sites, enterprise estates, and research clusters all need a place where hardware, guests, tenants, and operators can be reasoned about separately.
+  - paragraph: Own the platform, not just the workloads.
   - article:
     - heading "Multi-tenant infrastructure" [level=3]
-    - paragraph: Keep tenant, service, and operator responsibilities visible when many workloads share the same estate.
+    - paragraph: Keep tenant, service, and operator responsibilities visible on shared estates.
   - article:
     - heading "Private and public cloud" [level=3]
-    - paragraph: Use a virtualization boundary that can be inspected, governed, and sustained independently of one vendor stack.
+    - paragraph: Choose a foundation that can be inspected, governed, and sustained in the open.
   - article:
     - heading "Hosting and edge platforms" [level=3]
-    - paragraph: Build platforms where lifecycle, hardware, network, and guest ownership choices remain explicit.
+    - paragraph: Keep lifecycle, hardware, network, and guest ownership choices explicit.
   - article:
     - heading "Long-lived estates" [level=3]
-    - paragraph: Support research clusters, enterprise virtualization, and infrastructure platforms that evolve over years.
+    - paragraph: Evaluate a foundation for platforms that evolve over years.
   - paragraph: Why a dedicated hypervisor?
   - heading "A focused layer for isolation, ownership, and platform control." [level=2]
-  - paragraph: Xen places the virtualization boundary in a dedicated hypervisor layer, giving infrastructure teams an explicit place to reason about guest isolation, hardware ownership, and platform control without treating one guest operating system as the whole platform.
+  - paragraph: Xen gives infrastructure teams an explicit hypervisor layer for guest isolation, hardware ownership, and platform control without treating one guest operating system as the whole platform.
   - article:
     - heading "A visible boundary" [level=3]
-    - paragraph: Xen places virtualization in a dedicated hypervisor layer so infrastructure teams have an explicit place to reason about isolation and control.
+    - paragraph: Xen gives infrastructure teams an explicit place to reason about isolation and control.
   - article:
     - heading "Control domains" [level=3]
-    - paragraph: Platform operators can make hardware-facing control and management responsibilities part of the architecture instead of hiding them inside every guest.
+    - paragraph: Hardware-facing control and management responsibilities stay part of the platform architecture.
   - article:
     - heading "Inspectable architecture" [level=3]
-    - paragraph: Source, governance, development process, and project infrastructure are public evaluation inputs for teams building long-lived platforms.
+    - paragraph: Source, governance, development process, and project infrastructure are public evaluation inputs.
   - paragraph: Technical capabilities
-  - heading "Capabilities for infrastructure platforms" [level=2]
-  - paragraph: After the virtualization boundary is clear, teams can evaluate Xen and the surrounding platform tooling for hardware ownership, guest lifecycle, and operational control.
+  - heading "Capabilities for owning the platform boundary" [level=2]
+  - paragraph: Evaluate Xen and surrounding tooling for hardware ownership, guest lifecycle, and operational control.
   - article:
     - heading "PCI passthrough" [level=3]
     - paragraph: Assign selected devices directly to guests when infrastructure design requires clear hardware ownership.
@@ -60,17 +62,17 @@
       - /url: /technology/isolation-and-security
   - article:
     - heading "SR-IOV" [level=3]
-    - paragraph: Support network and I/O designs that expose virtual functions while keeping ownership decisions visible.
+    - paragraph: Support I/O designs that expose virtual functions while keeping ownership visible.
     - link "Explore architecture":
       - /url: /technology/architecture
   - article:
     - heading "NUMA awareness" [level=3]
-    - paragraph: Evaluate placement and resource locality as part of the platform model for larger hosts.
+    - paragraph: Evaluate placement and resource locality as platform design choices.
     - link "Visit project":
       - /url: /projects/hypervisor
   - article:
     - heading "VM migration through platform tooling" [level=3]
-    - paragraph: XAPI-based systems document VM migration and pool capabilities for managed infrastructure environments.
+    - paragraph: XAPI-based systems document VM migration and pool capabilities.
     - link "Explore XAPI":
       - /url: /projects/xapi
   - article:
@@ -80,7 +82,7 @@
       - /url: /technology/architecture
   - article:
     - heading "Hardware virtualization support" [level=3]
-    - paragraph: Run guest systems on hardware virtualization features while keeping the hypervisor boundary explicit.
+    - paragraph: Run guest systems on hardware virtualization features while preserving platform control.
     - link "Explore the hypervisor":
       - /url: /projects/hypervisor
   - article:
@@ -90,17 +92,17 @@
       - /url: /technology/architecture
   - article:
     - heading "Guest isolation" [level=3]
-    - paragraph: Separate guests from each other and from hardware-facing responsibilities through the virtualization layer.
+    - paragraph: Separate guests from each other and from hardware-facing responsibilities.
     - link "Review isolation resources":
       - /url: /technology/isolation-and-security
   - article:
     - heading "Scalable VM management" [level=3]
-    - paragraph: Use XAPI and XCP-ng when teams need management APIs, host pools, and VM lifecycle operations above Xen.
+    - paragraph: Use XAPI and XCP-ng for management APIs, host pools, and VM lifecycle operations above Xen.
     - link "Explore XCP-ng":
       - /url: /projects/xcp-ng
   - paragraph: Where Xen fits
   - heading "A virtualization foundation for operators and platform builders." [level=2]
-  - paragraph: Xen is relevant when teams need to own the boundary between guests, infrastructure hardware, and management responsibilities across different deployment models.
+  - paragraph: Xen fits where teams need to keep guests, infrastructure hardware, and management responsibilities under a visible platform model.
   - paragraph: Public cloud foundations
   - paragraph: Private cloud
   - paragraph: Enterprise virtualization
@@ -110,41 +112,36 @@
   - paragraph: Network appliances
   - paragraph: Open Xen infrastructure ecosystem
   - heading "A Xen-centered ecosystem for infrastructure platforms." [level=2]
-  - paragraph: Xen is the open virtualization foundation. XAPI is a Xen Project toolstack and management layer for Xen-based platforms. XCP-ng packages Xen and XAPI into a complete open virtualization platform, while commercial offerings and services can build on the same open foundation.
+  - paragraph: Xen is the open virtualization foundation for an ecosystem of infrastructure platforms. XAPI is the Xen Project toolstack and management layer for Xen-based platforms. XCP-ng packages Xen and XAPI into a complete open virtualization platform, while commercial offerings and services can build on the same foundation.
   - figure "Ecosystem layers":
     - paragraph: Ecosystem layers
     - paragraph: Built on Xen
     - paragraph: Platforms and services
-    - paragraph: XCP-ng, operations tooling, and commercial services can build complete platform experiences around the same open foundation.
+    - paragraph: XCP-ng, operations tooling, and commercial services can build around the same foundation.
     - text: XCP-ng Xen Orchestra Commercial services
     - paragraph: Xen Project tooling
     - paragraph: XAPI management toolstack
-    - paragraph: XAPI is a Xen Project toolstack and management layer for configuring and controlling Xen-based platforms.
+    - paragraph: XAPI is a Xen Project toolstack and management layer for Xen-based platforms.
     - text: VM lifecycle Pools Migration
     - paragraph: Virtualization foundation
     - paragraph: Xen hypervisor
-    - paragraph: Xen provides the open hypervisor boundary that the surrounding ecosystem builds on.
+    - paragraph: Xen provides the open hypervisor boundary the ecosystem builds on.
     - text: Isolation Scheduling Device ownership
     - paragraph: Infrastructure estate
     - paragraph: Hardware
-    - paragraph: Servers, storage, networks, and accelerators remain under the operator platform model.
+    - paragraph: Servers, storage, networks, and accelerators remain operator-owned design inputs.
     - text: CPU Memory I/O
-    - paragraph: Infrastructure platforms and services can build above XAPI and other platform tooling, while Xen remains the open virtualization foundation on owned hardware.
-  - complementary:
-    - heading "The foundation stays open" [level=2]
-    - paragraph: The surrounding ecosystem can include complete platforms, operations tooling, and commercial services, but the Xen Project remains an open source virtualization foundation with public governance and engineering.
-    - link "Read governance":
-      - /url: /about/governance
+    - paragraph: Infrastructure platforms can build above XAPI and platform tooling while Xen remains the open foundation on owned hardware.
   - article:
     - text: Foundation
     - heading "Xen Hypervisor" [level=3]
-    - paragraph: The open virtualization foundation that defines the boundary between guests, control domains, and hardware.
+    - paragraph: The open foundation that defines the boundary between guests, control domains, and hardware.
     - link "Explore the hypervisor":
       - /url: /projects/hypervisor
   - article:
     - text: Xen Project toolstack
     - heading "XAPI" [level=3]
-    - paragraph: A management layer and toolstack for configuring, controlling, and operating Xen-based platforms.
+    - paragraph: A management layer and toolstack for Xen-based platforms.
     - link "Explore XAPI":
       - /url: /projects/xapi
   - article:
@@ -156,23 +153,23 @@
   - article:
     - text: Support options
     - heading "Commercial ecosystem" [level=3]
-    - paragraph: Products, operations tools, and services from ecosystem members can build on the same open Xen foundation.
+    - paragraph: Products and services from ecosystem members can build on the same open foundation.
     - link "View members":
       - /url: /about/project-members
   - paragraph: Why architects choose Xen
   - heading "Evaluation starts with ownership, openness, and maintainability." [level=2]
-  - paragraph: Infrastructure teams evaluating a virtualization foundation need more than a feature checklist. They need a project model they can inspect, sustain, and build around.
+  - paragraph: Infrastructure teams need a project model they can inspect, sustain, and build around.
   - article:
     - heading "Infrastructure ownership" [level=3]
-    - paragraph: Operators can evaluate the boundary between guest systems, management domains, and owned hardware.
+    - paragraph: Operators can evaluate guests, management domains, and owned hardware together.
   - article:
     - heading "Open governance" [level=3]
-    - paragraph: Project governance and contribution paths are public, giving organizations a visible project model.
+    - paragraph: Public governance and contribution paths reduce single-vendor dependency.
     - link "Read governance":
       - /url: /about/governance
   - article:
     - heading "Inspectable source" [level=3]
-    - paragraph: Infrastructure teams can review source, releases, and public engineering activity as part of evaluation.
+    - paragraph: Review source, releases, and public engineering activity before depending on the foundation.
     - link "View downloads":
       - /url: /resources/downloads
   - article:
@@ -182,7 +179,7 @@
       - /url: /about/security-policy
   - article:
     - heading "Long-lived maintainability" [level=3]
-    - paragraph: An open project model helps teams plan platforms that must be reviewed and updated over long lifecycles.
+    - paragraph: An open project model helps teams plan platforms with long review and update cycles.
   - article:
     - heading "Member-funded ecosystem" [level=3]
     - paragraph: Project membership helps sustain shared infrastructure, events, trademark stewardship, and coordination.
@@ -190,30 +187,30 @@
       - /url: /about/become-a-member
   - paragraph: Open engineering and project health
   - heading "A project process infrastructure teams can inspect." [level=2]
-  - paragraph: Governance, security handling, CI resources, releases, downloads, and contribution paths are public evaluation inputs for teams building on Xen.
+  - paragraph: Governance, security handling, CI resources, releases, and contribution paths are public evaluation inputs.
   - article:
     - heading "Linux Foundation stewardship" [level=3]
-    - paragraph: Xen is organized as a Linux Foundation project with visible governance and member participation.
+    - paragraph: Xen is organized as a Linux Foundation project with visible governance.
     - link "Read governance":
       - /url: /about/governance
   - article:
     - heading "Public CI resources" [level=3]
-    - paragraph: Testing resources and CI status give contributors and evaluators visibility into project infrastructure.
+    - paragraph: Testing resources and CI status make project infrastructure visible.
     - link "View CI resources":
       - /url: /contribute/ci
   - article:
     - heading "Releases and downloads" [level=3]
-    - paragraph: Release artifacts and download links are available for evaluation, development, and operations planning.
+    - paragraph: Release artifacts and download links support evaluation and development.
     - link "View downloads":
       - /url: /resources/downloads
   - article:
     - heading "Documentation and contribution" [level=3]
-    - paragraph: Documentation, mailing lists, and contribution paths are available for teams that need to go deeper.
+    - paragraph: Documentation, mailing lists, and contribution paths are available for deeper review.
     - link "Start contributing":
       - /url: /contribute/get-started
   - paragraph: Related resources
   - heading "Follow the evaluation path from architecture to participation." [level=2]
-  - paragraph: Use these project, technology, testing, documentation, and membership entry points to continue evaluating Xen for infrastructure platforms.
+  - paragraph: Use these project, technology, documentation, and membership entry points to continue evaluating Xen.
   - article:
     - heading "Hypervisor" [level=3]
     - paragraph: Start with the core Xen hypervisor project and architecture resources.
@@ -221,12 +218,12 @@
       - /url: /projects/hypervisor
   - article:
     - heading "XAPI" [level=3]
-    - paragraph: Explore the management API and toolstack used by XAPI-based products.
+    - paragraph: Explore the Xen Project management toolstack.
     - link "Explore XAPI":
       - /url: /projects/xapi
   - article:
     - heading "XCP-ng" [level=3]
-    - paragraph: Review the complete open virtualization platform built on Xen and XAPI.
+    - paragraph: Review the complete open platform built on Xen and XAPI.
     - link "Explore XCP-ng":
       - /url: /projects/xcp-ng
   - article:
@@ -236,12 +233,12 @@
       - /url: /resources/downloads
   - article:
     - heading "Documentation and wiki" [level=3]
-    - paragraph: Use the project wiki for deeper technical and operational documentation.
+    - paragraph: Use the project wiki for deeper technical documentation.
     - link "Open wiki":
       - /url: https://wiki.xenproject.org/
   - article:
     - heading "Architecture" [level=3]
-    - paragraph: See how Xen fits between hardware, guests, and platform control.
+    - paragraph: See how Xen fits between hardware, guests, and control.
     - link "Explore architecture":
       - /url: /technology/architecture
   - article:
@@ -256,29 +253,29 @@
       - /url: /about/governance
   - article:
     - heading "Become a member" [level=3]
-    - paragraph: Support the shared project infrastructure and ecosystem coordination.
+    - paragraph: Support shared project infrastructure and ecosystem coordination.
     - link "Explore membership":
       - /url: /about/become-a-member
   - paragraph: Next step
   - heading "Evaluate the boundary, then choose the platform path." [level=2]
-  - paragraph: Start with the hypervisor when you need to understand the virtualization foundation. Start with XCP-ng when you want a complete open virtualization platform built on Xen and XAPI.
+  - paragraph: Start with the hypervisor to understand the foundation. Start with XCP-ng when you want a complete open platform built on Xen and XAPI.
   - link "Explore the hypervisor":
     - /url: /projects/hypervisor
   - link "Explore XCP-ng":
     - /url: /projects/xcp-ng
   - complementary:
     - heading "Built in the open" [level=2]
-    - paragraph: Xen is always open source, free to use, governed in public, and sustained by a member-funded ecosystem with commercial support options through partners.
+    - paragraph: Xen is open source, free to use, governed in public, and sustained by a member-funded ecosystem.
     - link "Read governance":
       - /url: /about/governance
   - complementary:
     - heading "Contribute to the infrastructure foundation" [level=2]
-    - paragraph: Engineers and organizations can evaluate, use, contribute to, and support the project through documented public paths.
+    - paragraph: Engineers and organizations can evaluate, contribute to, and support the project through public paths.
     - link "Start contributing":
       - /url: /contribute/get-started
   - paragraph: Infrastructure ownership
   - heading "Build infrastructure on a virtualization boundary you can inspect." [level=2]
-  - paragraph: Explore Xen architecture, evaluate XCP-ng as a complete platform, or support the open project that keeps the foundation available.
+  - paragraph: Explore Xen architecture, evaluate XCP-ng as a complete platform, or support the open foundation.
   - link "Explore Xen architecture":
     - /url: /technology/architecture
   - link "Become a member":

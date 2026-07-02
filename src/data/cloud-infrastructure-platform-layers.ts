@@ -6,44 +6,53 @@ export const cloudInfrastructurePlatformLayersDiagram: PlatformLayersDiagramData
   metaLabel: 'Exploded Architecture',
   variant: 'hero',
   summary:
-    'Xen gives cloud and infrastructure platforms a visible boundary between applications, virtual machines, the hypervisor, and hardware.',
+    'Xen gives infrastructure teams a visible boundary between cloud workloads, virtual machines, the hypervisor, and owned hardware.',
   layers: [
     {
-      title: 'Applications and services',
-      eyebrow: 'Workloads',
+      title: 'Cloud workloads',
+      eyebrow: 'Services',
       tone: 'applications',
-      description: 'Application software runs above infrastructure-owned virtualization and lifecycle boundaries.',
+      description: 'Infrastructure workloads run above platform-owned control and lifecycle decisions.',
       receivesShadow: false,
-      itemsLabel: 'Example infrastructure workloads',
+      itemsLabel: 'Example cloud workloads',
       items: [
-        {label: 'Services', icon: 'i-carbon-container-services'},
+        {label: 'Web services', icon: 'i-carbon-container-services'},
         {label: 'Databases', icon: 'i-carbon-data-base-alt'},
-        {label: 'Networks', icon: 'i-carbon-network-4'},
+        {label: 'AI workers', icon: 'i-carbon-machine-learning-model'},
+        {label: 'Network functions', icon: 'i-carbon-network-4'},
       ],
     },
     {
       title: 'Virtual machines',
       eyebrow: 'Guests',
       tone: 'guests',
-      description: 'Guest operating systems keep tenant, service, and platform responsibilities separated.',
-      itemsLabel: 'Example guest environments',
+      description: 'VMs keep tenant, service, appliance, and build environments accountable.',
+      itemsLabel: 'Example virtual machines',
       items: [
-        {label: 'Linux', icon: 'i-carbon-linux'},
-        {label: 'Windows', icon: 'i-carbon-logo-windows'},
-        {label: 'BSD', icon: 'i-carbon-virtual-machine'},
+        {label: 'Linux VM', icon: 'i-carbon-linux'},
+        {label: 'Windows VM', icon: 'i-carbon-logo-windows'},
+        {label: 'Appliance VM', icon: 'i-carbon-virtual-machine'},
+        {label: 'Build agents', icon: 'i-carbon-code'},
       ],
     },
     {
       title: 'Xen hypervisor',
       eyebrow: 'Virtualization boundary',
       tone: 'xen',
-      description: 'Guest isolation, scheduling, device ownership, and control-domain choices stay explicit.',
+      description: 'Guest isolation, scheduling, device ownership, and control domains stay explicit.',
     },
     {
       title: 'Hardware',
       eyebrow: 'Owned infrastructure',
       tone: 'hardware',
-      description: 'Compute, memory, storage, networking, and accelerator resources remain platform design inputs.',
+      description: 'Compute, memory, storage, networking, and accelerators remain operator decisions.',
+      itemsLabel: 'Infrastructure resources',
+      items: [
+        {label: 'Compute', icon: 'i-carbon-chip'},
+        {label: 'Storage', icon: 'i-carbon-data-base-alt'},
+        {label: 'Networking', icon: 'i-carbon-network-4'},
+        {label: 'Accelerators', icon: 'i-carbon-chip'},
+      ],
     },
   ],
 };
@@ -53,14 +62,13 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
   eyebrow: 'Ecosystem layers',
   metaLabel: 'Layered stack',
   summary:
-    'Infrastructure platforms and services can build above XAPI and other platform tooling, while Xen remains the open virtualization foundation on owned hardware.',
+    'Infrastructure platforms can build above XAPI and platform tooling while Xen remains the open foundation on owned hardware.',
   layers: [
     {
       title: 'Platforms and services',
       eyebrow: 'Built on Xen',
       tone: 'applications',
-      description:
-        'XCP-ng, operations tooling, and commercial services can build complete platform experiences around the same open foundation.',
+      description: 'XCP-ng, operations tooling, and commercial services can build around the same foundation.',
       receivesShadow: false,
       itemsLabel: 'Example platform and service layers',
       items: [
@@ -73,8 +81,7 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
       title: 'XAPI management toolstack',
       eyebrow: 'Xen Project tooling',
       tone: 'guests',
-      description:
-        'XAPI is a Xen Project toolstack and management layer for configuring and controlling Xen-based platforms.',
+      description: 'XAPI is a Xen Project toolstack and management layer for Xen-based platforms.',
       itemsLabel: 'XAPI platform responsibilities',
       items: [
         {label: 'VM lifecycle', icon: 'i-carbon-virtual-machine'},
@@ -86,7 +93,7 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
       title: 'Xen hypervisor',
       eyebrow: 'Virtualization foundation',
       tone: 'xen',
-      description: 'Xen provides the open hypervisor boundary that the surrounding ecosystem builds on.',
+      description: 'Xen provides the open hypervisor boundary the ecosystem builds on.',
       itemsLabel: 'Hypervisor responsibilities',
       items: [
         {label: 'Isolation', icon: 'i-carbon-security'},
@@ -98,7 +105,7 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
       title: 'Hardware',
       eyebrow: 'Infrastructure estate',
       tone: 'hardware',
-      description: 'Servers, storage, networks, and accelerators remain under the operator platform model.',
+      description: 'Servers, storage, networks, and accelerators remain operator-owned design inputs.',
       itemsLabel: 'Infrastructure resources',
       items: [
         {label: 'CPU', icon: 'i-carbon-chip'},
