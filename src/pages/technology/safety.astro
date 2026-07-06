@@ -1,19 +1,648 @@
 ---
 import CTA from '../../components/blocks/CTA.astro';
+import Callout from '../../components/blocks/Callout.astro';
+import FeatureGrid from '../../components/blocks/FeatureGrid.astro';
+import Hero from '../../components/blocks/Hero.astro';
+import PlatformLayersDiagram from '../../components/diagrams/PlatformLayersDiagram.astro';
+import Button from '../../components/primitives/Button.astro';
+import Card from '../../components/primitives/Card.astro';
+import Cluster from '../../components/primitives/Cluster.astro';
+import Container from '../../components/primitives/Container.astro';
+import Grid from '../../components/primitives/Grid.astro';
+import Heading from '../../components/primitives/Heading.astro';
+import Section from '../../components/primitives/Section.astro';
+import Split from '../../components/primitives/Split.astro';
+import Stack from '../../components/primitives/Stack.astro';
+import Surface from '../../components/primitives/Surface.astro';
+import Text from '../../components/primitives/Text.astro';
+import {safetyCriticalPlatformLayersDiagram} from '../../data/safety-critical-platform-layers';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'Safety-Critical Systems';
-const description = 'A starting point for Xen safety-critical systems resources.';
+const description = 'Open virtualization for safety-conscious systems that need inspectable boundaries, certification-oriented engineering practices, evidence, tooling, and long-term platform control.';
+const keywords = [
+  'Xen Project',
+  'safety-critical systems',
+  'safety-conscious virtualization',
+  'certification-oriented engineering',
+  'mixed-criticality systems',
+  'Dom0less',
+  'static partitioning',
+  'MISRA C',
+  'ECLAIR static analysis',
+  'BUGSENG',
+];
+
+const architectureFactors = [
+  {
+    icon: 'i-carbon-layers',
+    title: 'Architecture boundaries',
+    description: 'A hypervisor can give teams an explicit place to reason about isolation, ownership, and platform responsibilities.',
+  },
+  {
+    icon: 'i-carbon-document-requirements',
+    title: 'Evidence and traceability',
+    description: 'Certification-oriented work depends on reviewable evidence, documented assumptions, and traceable engineering decisions.',
+  },
+  {
+    icon: 'i-carbon-data-structured',
+    title: 'Integration context',
+    description: 'The safety case belongs to the complete product, including hardware, guests, tooling, validation, and deployment context.',
+  },
+  {
+    icon: 'i-carbon-time',
+    title: 'Long-term maintenance',
+    description: 'Regulated systems need engineering practices that can be sustained across long product and platform lifecycles.',
+  },
+];
+
+const mixedCriticalityExamples = [
+  {
+    title: 'Different criticality levels',
+    description: 'Control, monitoring, diagnostics, HMI, telemetry, and update services may have different safety, timing, and validation expectations.',
+  },
+  {
+    title: 'Different update paths',
+    description: 'Linux services and non-critical workloads often need a different maintenance rhythm than safety-conscious functions.',
+  },
+  {
+    title: 'Different evidence needs',
+    description: 'The hard problem is keeping ownership, assumptions, dependencies, and validation scope clear as workloads share compute.',
+  },
+];
+
+const safetyCapabilities = [
+  {
+    icon: 'i-carbon-security',
+    title: 'Strong isolation boundary',
+    description: 'Use Xen as an explicit hypervisor boundary between guest systems and shared hardware responsibilities.',
+    href: '/technology/isolation-and-security/',
+    linkLabel: 'Review isolation resources',
+  },
+  {
+    icon: 'i-carbon-data-structured',
+    title: 'Static partitioning',
+    description: 'Make CPU, memory, interrupt, and device ownership deliberate platform design choices.',
+    href: '/technology/architecture/',
+    linkLabel: 'Explore architecture',
+  },
+  {
+    icon: 'i-carbon-chip',
+    title: 'CPU assignment',
+    description: 'Use CPU pinning and dedicated CPU assignment where the system architecture calls for explicit execution ownership.',
+    href: '/technology/architecture/',
+    linkLabel: 'Explore architecture',
+  },
+  {
+    icon: 'i-carbon-time',
+    title: 'Deterministic interrupt latencies',
+    description: 'Evaluate interrupt routing, CPU assignment, and device ownership when designing for deterministic interrupt latencies.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Explore the hypervisor',
+  },
+  {
+    icon: 'i-carbon-connect',
+    title: 'Device ownership',
+    description: 'Use device passthrough and platform device assignment when a design needs clear hardware ownership by a guest or service domain.',
+    href: '/technology/isolation-and-security/',
+    linkLabel: 'Review isolation resources',
+  },
+  {
+    icon: 'i-carbon-boot',
+    title: 'Dom0less boot',
+    description: 'Start selected guest domains without waiting for a traditional control-domain boot path when that fits the system design.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Explore the hypervisor',
+  },
+  {
+    icon: 'i-carbon-settings-adjust',
+    title: 'Control-domain choices',
+    description: 'Choose how platform control, device setup, and management responsibilities are represented instead of assuming one model.',
+    href: '/technology/architecture/',
+    linkLabel: 'Explore architecture',
+  },
+  {
+    icon: 'i-carbon-minimize',
+    title: 'Focused hypervisor boundary',
+    description: 'Keep the virtualization and isolation layer focused so teams can reason about the trusted computing base they evaluate.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Explore the hypervisor',
+  },
+  {
+    icon: 'i-carbon-roadmap',
+    title: 'Long-lived integration',
+    description: 'Support platform designs where guests, hardware assumptions, testing, and maintenance evidence evolve over time.',
+    href: '/contribute/ci/',
+    linkLabel: 'View CI resources',
+  },
+];
+
+const committeeWork = [
+  {
+    icon: 'i-carbon-document',
+    title: 'Documentation and evidence',
+    description: 'Coordinate documentation, assumptions, supporting artifacts, and evidence-oriented material that evaluators can review.',
+  },
+  {
+    icon: 'i-carbon-tools',
+    title: 'Tooling and analysis',
+    description: 'Support shared work around static analysis, tooling, testing practices, and code-quality improvement.',
+  },
+  {
+    icon: 'i-carbon-rule',
+    title: 'Engineering practices',
+    description: 'Develop safety-conscious practices that help contributors and member companies work toward certification-oriented goals.',
+  },
+  {
+    icon: 'i-carbon-group',
+    title: 'Participant collaboration',
+    description: 'Give member companies, contributors, and organizations building regulated systems a place to coordinate the safety work.',
+  },
+];
+
+const evidenceTooling = [
+  {
+    title: 'Process',
+    description: 'Safety-conscious work starts with visible engineering practices and reviewable development decisions.',
+  },
+  {
+    title: 'Analysis',
+    description: 'Static analysis and coding-rule efforts help turn code quality work into inspectable engineering inputs.',
+  },
+  {
+    title: 'CI',
+    description: 'Public testing and continuous integration resources make more of the project process visible to evaluators.',
+  },
+  {
+    title: 'Documentation',
+    description: 'Documented assumptions, limitations, and integration responsibilities help teams build their own safety case.',
+  },
+  {
+    title: 'Safety case input',
+    description: 'Xen project artifacts can support evaluation, but the product safety case remains system-specific.',
+  },
+];
+
+const evaluationChecklist = [
+  {
+    icon: 'i-carbon-diagram',
+    title: 'Architecture fit',
+    description: 'Where are the guest, control, device, interrupt, and hardware boundaries, and who owns each one?',
+  },
+  {
+    icon: 'i-carbon-checkmark-outline',
+    title: 'Process fit',
+    description: 'Which project practices, reviews, and maintenance expectations can your organization evaluate and adopt?',
+  },
+  {
+    icon: 'i-carbon-test-tool',
+    title: 'Tooling and analysis',
+    description: 'Which static analysis, testing, and code-quality signals are relevant to your system and process?',
+  },
+  {
+    icon: 'i-carbon-document-requirements',
+    title: 'Evidence needs',
+    description: 'What evidence does your safety case require, and which parts must be created by your product team?',
+  },
+  {
+    icon: 'i-carbon-data-reference',
+    title: 'Integration responsibilities',
+    description: 'How will hardware setup, boot flow, guest configuration, devices, and updates be validated in context?',
+  },
+  {
+    icon: 'i-carbon-time',
+    title: 'Long-term maintenance',
+    description: 'How will security response, releases, CI, and platform updates be handled over the product lifecycle?',
+  },
+  {
+    icon: 'i-carbon-branch',
+    title: 'Governance and participation',
+    description: 'How will your team inspect, influence, and contribute to the open project process?',
+  },
+  {
+    icon: 'i-carbon-enterprise',
+    title: 'Supplier and member collaboration',
+    description: 'Which members, suppliers, and internal teams need to coordinate on certification-oriented engineering work?',
+  },
+];
+
+const projectHealth = [
+  {
+    icon: 'i-carbon-wikis',
+    title: 'Linux Foundation stewardship',
+    description: 'Xen is organized as a Linux Foundation project with public governance resources.',
+    href: '/about/governance/',
+    linkLabel: 'Read governance',
+  },
+  {
+    icon: 'i-carbon-security',
+    title: 'Security policy',
+    description: 'Security reporting and response expectations are documented for users, vendors, and contributors.',
+    href: '/about/security-policy/',
+    linkLabel: 'Review security policy',
+  },
+  {
+    icon: 'i-carbon-test-tool',
+    title: 'Public CI resources',
+    description: 'Continuous integration resources and test infrastructure give evaluators more project process to inspect.',
+    href: '/contribute/ci/',
+    linkLabel: 'View CI resources',
+  },
+  {
+    icon: 'i-carbon-download',
+    title: 'Releases and downloads',
+    description: 'Release artifacts and downloads support evaluation, development, and lifecycle planning.',
+    href: '/resources/downloads/',
+    linkLabel: 'View downloads',
+  },
+];
+
+const resources = [
+  {
+    icon: 'i-carbon-layers',
+    title: 'Hypervisor',
+    description: 'Start with the core Xen hypervisor project.',
+    href: '/projects/hypervisor/',
+    linkLabel: 'Explore the hypervisor',
+  },
+  {
+    icon: 'i-carbon-diagram',
+    title: 'Architecture',
+    description: 'See how Xen fits between hardware, guest domains, and platform control.',
+    href: '/technology/architecture/',
+    linkLabel: 'Explore architecture',
+  },
+  {
+    icon: 'i-carbon-security',
+    title: 'Isolation & Security',
+    description: 'Review isolation and security resources for Xen-based platforms.',
+    href: '/technology/isolation-and-security/',
+    linkLabel: 'Review resources',
+  },
+  {
+    icon: 'i-carbon-car',
+    title: 'Embedded & Automotive',
+    description: 'Review the sibling solution page for mixed-criticality embedded and automotive systems.',
+    href: '/projects/embedded-and-automotive/',
+    linkLabel: 'Explore embedded',
+  },
+  {
+    icon: 'i-carbon-test-tool',
+    title: 'Continuous Integration',
+    description: 'Explore public CI resources, hardware testing, and project testing infrastructure.',
+    href: '/contribute/ci/',
+    linkLabel: 'View CI resources',
+  },
+  {
+    icon: 'i-carbon-download',
+    title: 'Downloads',
+    description: 'Find Xen releases for evaluation and development.',
+    href: '/resources/downloads/',
+    linkLabel: 'View downloads',
+  },
+  {
+    icon: 'i-carbon-branch',
+    title: 'Governance',
+    description: 'Understand the project model, roles, and governance process.',
+    href: '/about/governance/',
+    linkLabel: 'Read governance',
+  },
+  {
+    icon: 'i-carbon-document-security',
+    title: 'Security policy',
+    description: 'Review the public security reporting and response policy.',
+    href: '/about/security-policy/',
+    linkLabel: 'Review policy',
+  },
+  {
+    icon: 'i-carbon-code-reference',
+    title: 'Start contributing',
+    description: 'Find public contribution paths for engineers who want to participate in Xen development.',
+    href: '/contribute/get-started/',
+    linkLabel: 'Start contributing',
+  },
+  {
+    icon: 'i-carbon-enterprise',
+    title: 'Become a member',
+    description: 'Support shared project infrastructure, coordination, events, and long-term sustainability.',
+    href: '/about/become-a-member/',
+    linkLabel: 'Explore membership',
+  },
+  {
+    icon: 'i-carbon-document',
+    title: 'Documentation and wiki',
+    description: 'Use the project wiki for deeper technical documentation.',
+    href: 'https://wiki.xenproject.org/',
+    linkLabel: 'Open wiki',
+  },
+];
 ---
 
-<BaseLayout title={title} description={description} publicShell>
-  <CTA
-    eyebrow="Technology"
-    title="Safety-critical systems resources are being organized."
-    description="This page will collect material for safety-oriented evaluation. The embedded and automotive project page currently has the most relevant detail."
+<BaseLayout title={title} description={description} keywords={keywords} publicShell bodyClass="xp-solution-safety-critical">
+  <Hero
+    eyebrow="Solution Area"
+    title="Open virtualization for safety-conscious systems."
+    description="Certification-oriented systems need inspectable engineering. Xen helps teams design platforms where isolation, resource ownership, guest roles, and hardware responsibilities stay visible while the surrounding process, evidence, tooling, and integration discipline can be evaluated."
     actions={[
-      {label: 'Explore embedded and automotive', href: '/projects/embedded-and-automotive/'},
-      {label: 'Read use cases', href: '/resources/use-cases/', variant: 'secondary'},
+      {label: 'Explore safety resources', href: '#resources'},
+      {label: 'Become a member', href: '/about/become-a-member/', variant: 'secondary'},
     ]}
+    layout="balanced"
+  >
+    <PlatformLayersDiagram slot="media" class="xp-safety-hero-diagram" {...safetyCriticalPlatformLayersDiagram} />
+    <Surface slot="proof" tone="2" border="strong" radius="lg" shadow="sm" padding="md">
+      <div class="uno-flex uno-min-w-0 uno-gap-3">
+        <span class="i-carbon-warning-alt uno-mt-1 uno-inline-flex uno-shrink-0 uno-text-xl uno-text-xp-accent-primary" aria-hidden="true"></span>
+        <Text size="caption">
+          Xen source code is not itself safety certified. Certification depends on the complete product, integration context, process, evidence, tooling, and safety case.
+        </Text>
+      </div>
+    </Surface>
+  </Hero>
+
+  <Section id="architecture-and-evidence">
+    <Container>
+      <Stack gap="6">
+        <Stack gap="3" class="uno-max-w-xp-content">
+          <Text size="eyebrow" tone="muted">Architecture and evidence</Text>
+          <Heading size="heading-xl">Safety starts with architecture, but it does not end there.</Heading>
+          <Text>
+            A hypervisor can help create explicit technical boundaries. Certification-oriented engineering also depends on the system safety case, integration evidence, documented process, tooling, validation, and product-specific review.
+          </Text>
+        </Stack>
+        <Grid columns="4" gap="5">
+          {architectureFactors.map(factor => (
+            <Card>
+              <Stack gap="4">
+                <span class:list={[factor.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
+                <Stack gap="3">
+                  <Heading as="h3" size="heading-m">{factor.title}</Heading>
+                  <Text size="caption">{factor.description}</Text>
+                </Stack>
+              </Stack>
+            </Card>
+          ))}
+        </Grid>
+      </Stack>
+    </Container>
+  </Section>
+
+  <Section id="mixed-criticality" surface="1" class="xp-related-section xp-technical-chapter-section">
+    <Container>
+      <Stack gap="6">
+        <Split align="start">
+          <Stack gap="3">
+            <Text size="eyebrow" tone="muted">Mixed-criticality systems</Text>
+            <Heading size="heading-xl">Mixed-criticality is a safety engineering problem, not just a consolidation pattern.</Heading>
+          </Stack>
+          <Text>
+            Safety-conscious platforms often combine workloads with different criticality, timing, update, and validation needs. The design challenge is keeping boundaries, ownership, dependencies, and evidence clear while functions share hardware.
+          </Text>
+        </Split>
+        <Grid columns="3" gap="5">
+          {mixedCriticalityExamples.map(example => (
+            <Card>
+              <Stack gap="3">
+                <Heading as="h3" size="heading-m">{example.title}</Heading>
+                <Text size="caption">{example.description}</Text>
+              </Stack>
+            </Card>
+          ))}
+        </Grid>
+        <Surface tone="2" border="muted" radius="lg" shadow="sm" padding="lg">
+          <Split align="center">
+            <Stack gap="3">
+              <Text size="eyebrow" tone="accent-primary">Example workload mix</Text>
+              <Heading as="h3" size="heading-m">Separation needs to remain visible after consolidation.</Heading>
+            </Stack>
+            <Grid columns="3" gap="4">
+              {['Control workload', 'Monitoring', 'Diagnostics', 'HMI', 'OTA/update service', 'Service domains'].map(example => (
+                <Surface tone="3" border="muted" radius="md" shadow="sm" padding="md">
+                  <Text size="caption" tone="primary" class="uno-font-semibold">{example}</Text>
+                </Surface>
+              ))}
+            </Grid>
+          </Split>
+        </Surface>
+      </Stack>
+    </Container>
+  </Section>
+
+  <FeatureGrid
+    id="architecture-capabilities"
+    eyebrow="Architecture capabilities"
+    title="Capabilities engineers evaluate when building safety-conscious platforms."
+    description="Xen capabilities are evaluated in the context of a complete system design, not as standalone certification claims."
+    columns="3"
+    features={safetyCapabilities}
+  />
+
+  <Section id="safety-committee" surface="1" class="xp-related-section xp-technical-chapter-section">
+    <Container>
+      <Stack gap="6">
+        <Split align="start">
+          <Stack gap="3">
+            <Text size="eyebrow" tone="muted">Project coordination</Text>
+            <Heading size="heading-xl">The Xen Safety Committee coordinates the safety work.</Heading>
+          </Stack>
+          <Stack gap="4">
+            <Text>
+              The Xen Safety Committee gives member companies, contributors, and organizations building safety-conscious systems a place to coordinate certification-oriented engineering work in the project.
+            </Text>
+            <Text>
+              The committee focuses on engineering practices, documentation, evidence, testing, static analysis, tooling, safety-oriented development process, and collaboration around requirements that matter to regulated systems.
+            </Text>
+          </Stack>
+        </Split>
+        <Grid columns="4" gap="5">
+          {committeeWork.map(work => (
+            <Card>
+              <Stack gap="4">
+                <span class:list={[work.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
+                <Stack gap="3">
+                  <Heading as="h3" size="heading-m">{work.title}</Heading>
+                  <Text size="caption">{work.description}</Text>
+                </Stack>
+              </Stack>
+            </Card>
+          ))}
+        </Grid>
+        <Callout
+          title="Participation supports shared engineering work."
+          description="The Safety Committee does not turn Xen into a certified product or provide a complete certification kit. Product certification still depends on the complete system, integration context, process, evidence, tooling, validation, and safety case."
+          action={{label: 'Become a member', href: '/about/become-a-member/', variant: 'text'}}
+        >
+          <span slot="icon" class="i-carbon-group"></span>
+        </Callout>
+      </Stack>
+    </Container>
+  </Section>
+
+  <Section id="evidence-tooling">
+    <Container>
+      <Stack gap="6">
+        <Split align="start">
+          <Stack gap="3">
+            <Text size="eyebrow" tone="muted">Evidence, tooling, and code quality</Text>
+            <Heading size="heading-xl">Safety work is evidence work.</Heading>
+          </Stack>
+          <Stack gap="4">
+            <Text>
+              Certification-oriented systems need more than isolation. They need engineering practices and project artifacts that can be inspected, reviewed, and connected to a product-specific safety case.
+            </Text>
+            <Text>
+              BUGSENG supports the Xen Project's safety-oriented work by providing access to ECLAIR static analysis on reduced-price terms, helping the project advance MISRA C compliance efforts and ongoing code quality improvement.
+            </Text>
+          </Stack>
+        </Split>
+        <div class="xp-evidence-trail" aria-label="Evidence work flow">
+          {evidenceTooling.map((item, index) => (
+            <Surface tone="2" border="muted" radius="md" shadow="sm" padding="md" class="xp-evidence-step">
+              <Text size="caption" tone="accent-primary" class="uno-font-mono uno-font-bold">{String(index + 1).padStart(2, '0')}</Text>
+              <Stack gap="2">
+                <Heading as="h3" size="heading-m">{item.title}</Heading>
+                <Text size="caption">{item.description}</Text>
+              </Stack>
+            </Surface>
+          ))}
+        </div>
+        <Callout
+          title="Static analysis is one engineering signal."
+          description="ECLAIR, MISRA C compliance efforts, CI, testing resources, documentation, and review all support engineering maturity. They should be evaluated as part of the complete system process, not as a standalone safety claim."
+          action={{label: 'View CI resources', href: '/contribute/ci/', variant: 'text'}}
+        >
+          <span slot="icon" class="i-carbon-test-tool"></span>
+        </Callout>
+      </Stack>
+    </Container>
+  </Section>
+
+  <FeatureGrid
+    id="what-teams-evaluate"
+    eyebrow="Evaluation checklist"
+    title="What teams should evaluate before building on Xen."
+    description="Safety-conscious evaluation should include architecture, process, tooling, integration, maintenance, governance, and collaboration responsibilities."
+    surface="1"
+    columns="4"
+    class="xp-related-section"
+    features={evaluationChecklist}
+  />
+
+  <FeatureGrid
+    id="project-health"
+    eyebrow="Open governance and project health"
+    title="A project model teams can inspect."
+    description="Governance, security handling, CI resources, releases, contribution paths, and member-funded sustainability are part of the evaluation story."
+    columns="4"
+    features={projectHealth}
+  />
+
+  <FeatureGrid
+    id="resources"
+    eyebrow="Related resources"
+    title="Follow the evaluation path from architecture to participation."
+    description="Use these project, technology, testing, documentation, and membership entry points to continue evaluating Xen for safety-conscious systems."
+    surface="1"
+    columns="3"
+    class="xp-related-section"
+    features={resources}
+  />
+
+  <Section id="participation">
+    <Container>
+      <Split align="center">
+        <Stack gap="4">
+          <Text size="eyebrow" tone="muted">Membership and participation</Text>
+          <Heading size="heading-xl">Safety-oriented work benefits from sustained collaboration.</Heading>
+          <Text>
+            Certification-oriented engineering is long-running work. Member participation helps fund shared infrastructure, coordination, events, and project work, while engineers can also contribute through public development paths.
+          </Text>
+          <Cluster>
+            <Button href="/about/become-a-member/">Become a member</Button>
+            <Button href="/contribute/get-started/" variant="secondary">Start contributing</Button>
+          </Cluster>
+        </Stack>
+        <Surface tone="2" border="strong" radius="lg" shadow="md" padding="lg">
+          <Stack gap="4">
+            <Callout
+              title="Open engineering model"
+              description="Xen is developed in the open, with governance, security process, CI resources, and contribution paths that organizations can inspect."
+              action={{label: 'Read governance', href: '/about/governance/', variant: 'text'}}
+            >
+              <span slot="icon" class="i-carbon-branch"></span>
+            </Callout>
+            <Callout
+              title="Build with the right boundary."
+              description="Xen provides the boundary. The safety case belongs to the system."
+              action={{label: 'Explore architecture', href: '/technology/architecture/', variant: 'text'}}
+            >
+              <span slot="icon" class="i-carbon-layers"></span>
+            </Callout>
+          </Stack>
+        </Surface>
+      </Split>
+    </Container>
+  </Section>
+
+  <CTA
+    id="final-cta"
+    eyebrow="Certification-oriented engineering"
+    title="Help build the safety engineering foundation for Xen."
+    description="Evaluate Xen through architecture, evidence, tooling, governance, and project participation, or support shared safety-oriented work through membership."
+    actions={[
+      {label: 'Explore safety resources', href: '#resources'},
+      {label: 'Become a member', href: '/about/become-a-member/', variant: 'secondary'},
+      {label: 'Start contributing', href: '/contribute/get-started/', variant: 'text'},
+    ]}
+    align="center"
   />
 </BaseLayout>
+
+<style>
+  :global(.xp-safety-hero-diagram .xp-platform-stack) {
+    min-height: clamp(42rem, 70vw, 51rem);
+  }
+
+  .xp-evidence-trail {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  :global(.xp-evidence-step) {
+    position: relative;
+    min-width: 0;
+  }
+
+  :global(.xp-evidence-step:not(:last-child)::after) {
+    content: '';
+    position: absolute;
+    top: 2.1rem;
+    right: -0.72rem;
+    width: 0.44rem;
+    height: 0.44rem;
+    border-top: 1px solid var(--xp-border-strong);
+    border-right: 1px solid var(--xp-border-strong);
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 64rem) {
+    .xp-evidence-trail {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    :global(.xp-evidence-step:not(:last-child)::after) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .xp-evidence-trail {
+      grid-template-columns: 1fr;
+    }
+
+    :global(.xp-safety-hero-diagram .xp-platform-stack) {
+      min-height: clamp(43rem, 155vw, 48rem);
+    }
+  }
+</style>
