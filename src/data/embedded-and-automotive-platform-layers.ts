@@ -31,6 +31,7 @@ export const embeddedAutomotivePlatformLayersDiagram: PlatformLayersDiagramData 
       title: 'Xen hypervisor',
       eyebrow: 'Isolation boundary',
       tone: 'xen',
+      emphasis: 'primary',
       description: 'Scheduling, isolation, device assignment, and platform control stay visible close to hardware.',
     },
     {
@@ -80,6 +81,7 @@ export const embeddedAutomotiveEcosystemLayersDiagram: PlatformLayersDiagramData
       title: 'Xen virtualization',
       eyebrow: 'Isolation boundary',
       tone: 'xen',
+      emphasis: 'primary',
       description: 'Xen makes isolation and hardware ownership explicit.',
       itemsLabel: 'Xen platform responsibilities',
       items: [

@@ -3,6 +3,7 @@ interface Props {
   title: string;
   eyebrow?: string;
   tone?: 'applications' | 'guests' | 'xen' | 'hardware';
+  emphasis?: 'primary';
   width?: string;
   shift?: string;
   offset?: string;
@@ -17,6 +18,7 @@ const {
   title,
   eyebrow,
   tone = 'guests',
+  emphasis,
   width = '100%',
   shift = '0rem',
   offset = '0rem',
@@ -29,7 +31,7 @@ const {
 ---
 
 <section
-  class:list={['xp-diagram-layer', `xp-diagram-layer--${tone}`]}
+  class:list={['xp-diagram-layer', `xp-diagram-layer--${tone}`, emphasis && `xp-diagram-layer--emphasis-${emphasis}`]}
   style={`--layer-width: ${width}; --layer-shift: ${shift}; --layer-offset: ${offset}; --layer-body-width: ${bodyWidth}; --layer-hover-x: ${hoverX}; --layer-hover-y: ${hoverY}; --layer-z: ${zIndex};`}
 >
   <div class="xp-diagram-layer__surface">
@@ -222,6 +224,32 @@ const {
     --layer-accent-soft: rgb(208 223 122 / 0.13);
     --layer-fill: rgb(43 48 31 / 0.94);
     --layer-edge: rgb(208 223 122 / 0.54);
+  }
+
+  .xp-diagram-layer--emphasis-primary {
+    --layer-accent: var(--xp-accent-primary);
+    --layer-accent-soft: rgb(133 194 65 / 0.24);
+    --layer-fill: rgb(23 54 40 / 0.98);
+    --layer-edge: rgb(161 221 91 / 0.82);
+    --assembly-highlight: rgb(255 255 255 / 0.16);
+    --assembly-highlight-soft: rgb(255 255 255 / 0.065);
+    --assembly-shadow-key: rgb(0 0 0 / 0.66);
+    --assembly-shadow-soft: rgb(0 0 0 / 0.4);
+    --assembly-accent-glow: rgb(133 194 65 / 0.34);
+  }
+
+  .xp-diagram-layer--emphasis-primary .xp-diagram-layer__surface {
+    box-shadow:
+      1.02rem 1.38rem 2.75rem -1.28rem var(--assembly-shadow-key),
+      0.32rem 0.48rem 1.08rem -0.66rem var(--assembly-shadow-soft),
+      0 0 2rem -0.82rem var(--assembly-accent-glow),
+      inset 0 1px 0 rgb(255 255 255 / 0.2),
+      inset 1px 0 0 rgb(255 255 255 / 0.14),
+      inset -1px -1px 0 rgb(0 0 0 / 0.14);
+  }
+
+  .xp-diagram-layer--emphasis-primary .xp-diagram-layer__surface::after {
+    opacity: 0.76;
   }
 
   @media (max-width: 639px) {

@@ -16,6 +16,7 @@ type Props = {
   id?: string;
   eyebrow?: string;
   title: string;
+  statement?: string;
   description?: string;
   actions?: Action[];
   headingLevel?: HeadingLevel;
@@ -30,6 +31,7 @@ const {
   id,
   eyebrow,
   title,
+  statement,
   description,
   actions = [],
   headingLevel = 'h1',
@@ -65,6 +67,7 @@ const descriptionClasses = {
       <Stack gap="5" class="uno-mx-auto uno-max-w-xp-page uno-items-start uno-text-left md:uno-items-center md:uno-text-center">
         {eyebrow && <Text size="eyebrow" tone="accent-primary">{eyebrow}</Text>}
         <Heading as={headingLevel} size="display-xl" class="uno-max-w-5xl">{title}</Heading>
+        {statement && <Text size="lead" tone="primary" class="uno-max-w-3xl uno-font-semibold">{statement}</Text>}
         {description && <Text size="lead" class="uno-max-w-xp-content">{description}</Text>}
         {hasActions && (
           <div class="uno-flex uno-w-full uno-flex-col uno-gap-3 uno-pt-2 sm:uno-w-auto sm:uno-flex-row sm:uno-flex-wrap sm:uno-justify-center">
@@ -82,6 +85,7 @@ const descriptionClasses = {
         <Stack gap="5" class={contentClasses[layout]}>
           {eyebrow && <Text size="eyebrow" tone="accent-primary">{eyebrow}</Text>}
           <Heading as={headingLevel} size="display-xl" class={headingClasses[layout]}>{title}</Heading>
+          {statement && <Text size="lead" tone="primary" class={descriptionClasses[layout] + ' uno-font-semibold'}>{statement}</Text>}
           {description && <Text size="lead" class={descriptionClasses[layout]}>{description}</Text>}
           {hasActions && (
             <div class="uno-flex uno-w-full uno-flex-col uno-gap-3 uno-pt-2 sm:uno-w-auto sm:uno-flex-row sm:uno-flex-wrap">

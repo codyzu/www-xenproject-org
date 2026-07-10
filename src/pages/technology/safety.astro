@@ -342,7 +342,8 @@ const resources = [
   <Hero
     eyebrow="Solution Area"
     title="Open virtualization for safety-conscious systems."
-    description="Certification-oriented systems need inspectable engineering. Xen helps teams design platforms where isolation, resource ownership, guest roles, and hardware responsibilities stay visible while the surrounding process, evidence, tooling, and integration discipline can be evaluated."
+    statement="Certification-oriented systems need inspectable engineering."
+    description="Xen helps teams design platforms where isolation, resource ownership, guest roles, and hardware responsibilities stay visible while the surrounding process, evidence, tooling, and integration discipline can be evaluated."
     actions={[
       {label: 'Explore safety resources', href: '#resources'},
       {label: 'Become a member', href: '/about/become-a-member/', variant: 'secondary'},
@@ -370,6 +371,11 @@ const resources = [
             A hypervisor can help create explicit technical boundaries. Certification-oriented engineering also depends on the system safety case, integration evidence, documented process, tooling, validation, and product-specific review.
           </Text>
         </Stack>
+        <Surface tone="2" border="strong" radius="lg" shadow="sm" padding="lg" class="xp-safety-principle">
+          <Text size="lead" tone="primary" class="uno-font-semibold">
+            The architecture creates the boundary. The engineering process creates the evidence.
+          </Text>
+        </Surface>
         <Grid columns="4" gap="5">
           {architectureFactors.map(factor => (
             <Card>
@@ -439,21 +445,23 @@ const resources = [
 
   <Section id="safety-committee" surface="1" class="xp-related-section xp-technical-chapter-section">
     <Container>
-      <Stack gap="6">
-        <Split align="start">
-          <Stack gap="3">
-            <Text size="eyebrow" tone="muted">Project coordination</Text>
-            <Heading size="heading-xl">The Xen Safety Committee coordinates the safety work.</Heading>
-          </Stack>
-          <Stack gap="4">
-            <Text>
-              The Xen Safety Committee gives member companies, contributors, and organizations building safety-conscious systems a place to coordinate certification-oriented engineering work in the project.
-            </Text>
-            <Text>
-              The committee focuses on engineering practices, documentation, evidence, testing, static analysis, tooling, safety-oriented development process, and collaboration around requirements that matter to regulated systems.
-            </Text>
-          </Stack>
-        </Split>
+      <Stack gap="7" class="xp-safety-committee-chapter">
+        <Surface tone="2" border="strong" radius="lg" shadow="md" padding="lg">
+          <Split align="start" class="xp-safety-committee-intro">
+            <Stack gap="3">
+              <Text size="eyebrow" tone="accent-primary">Project coordination</Text>
+              <Heading size="heading-xl">The Xen Safety Committee coordinates the safety work.</Heading>
+            </Stack>
+            <Stack gap="3">
+              <Text>
+                The Xen Safety Committee gives member companies, contributors, and organizations building safety-conscious systems a place to coordinate certification-oriented engineering work inside the project.
+              </Text>
+              <Text>
+                Its work focuses on engineering practices, documentation, evidence, testing, static analysis, tooling, safety-oriented development process, and requirements that matter to regulated systems.
+              </Text>
+            </Stack>
+          </Split>
+        </Surface>
         <Grid columns="4" gap="5">
           {committeeWork.map(work => (
             <Card>
@@ -470,6 +478,8 @@ const resources = [
         <Callout
           title="Participation supports shared engineering work."
           description="The Safety Committee does not turn Xen into a certified product or provide a complete certification kit. Product certification still depends on the complete system, integration context, process, evidence, tooling, validation, and safety case."
+          variant="accent"
+          class="xp-safety-committee-callout"
           action={{label: 'Become a member', href: '/about/become-a-member/', variant: 'text'}}
         >
           <span slot="icon" class="i-carbon-group"></span>
@@ -500,7 +510,7 @@ const resources = [
             <Surface tone="2" border="muted" radius="md" shadow="sm" padding="md" class="xp-evidence-step">
               <Text size="caption" tone="accent-primary" class="uno-font-mono uno-font-bold">{String(index + 1).padStart(2, '0')}</Text>
               <Stack gap="2">
-                <Heading as="h3" size="heading-m">{item.title}</Heading>
+                <Heading as="h3" size="card" class="xp-compact-card-title">{item.title}</Heading>
                 <Text size="caption">{item.description}</Text>
               </Stack>
             </Surface>
@@ -605,13 +615,42 @@ const resources = [
 
   .xp-evidence-trail {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.75rem), 1fr));
     gap: 1rem;
+    overflow-x: clip;
+    padding-inline: 1px;
+  }
+
+  :global(.xp-safety-principle) {
+    max-width: var(--xp-container-content);
+  }
+
+  :global(.xp-safety-committee-intro) {
+    align-items: center;
+  }
+
+  :global(.xp-safety-committee-callout) {
+    box-shadow: var(--xp-shadow-md);
   }
 
   :global(.xp-evidence-step) {
     position: relative;
+    display: flex;
+    min-height: 13.25rem;
     min-width: 0;
+  }
+
+  :global(.xp-evidence-step > *) {
+    width: 100%;
+  }
+
+  :global(.xp-compact-card-title) {
+    width: 100% !important;
+    line-height: 1.18;
+    hyphens: none;
+    overflow-wrap: normal !important;
+    text-wrap: balance;
+    word-break: normal !important;
   }
 
   :global(.xp-evidence-step:not(:last-child)::after) {
@@ -627,22 +666,18 @@ const resources = [
   }
 
   @media (max-width: 64rem) {
-    .xp-evidence-trail {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
     :global(.xp-evidence-step:not(:last-child)::after) {
       display: none;
     }
   }
 
   @media (max-width: 40rem) {
-    .xp-evidence-trail {
-      grid-template-columns: 1fr;
-    }
-
     :global(.xp-safety-hero-diagram .xp-platform-stack) {
       min-height: clamp(43rem, 155vw, 48rem);
+    }
+
+    :global(.xp-evidence-step) {
+      min-height: auto;
     }
   }
 </style>

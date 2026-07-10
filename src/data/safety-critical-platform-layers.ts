@@ -51,6 +51,7 @@ export const safetyCriticalPlatformLayersDiagram: PlatformLayersDiagramData = {
       title: 'Xen hypervisor boundary',
       eyebrow: 'Controlled boundary',
       tone: 'xen',
+      emphasis: 'primary',
       description: 'Isolation, CPU assignment, device ownership, and interrupt routing are platform design inputs.',
       itemsLabel: 'Xen platform responsibilities',
       items: [

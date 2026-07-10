@@ -9,6 +9,7 @@ export type PlatformLayerData = {
   title: string;
   eyebrow?: string;
   tone?: PlatformLayerTone;
+  emphasis?: 'primary';
   description: string;
   items?: PlatformLayerItem[];
   itemsLabel?: string;

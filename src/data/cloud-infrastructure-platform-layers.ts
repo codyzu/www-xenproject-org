@@ -39,6 +39,7 @@ export const cloudInfrastructurePlatformLayersDiagram: PlatformLayersDiagramData
       title: 'Xen hypervisor',
       eyebrow: 'Virtualization boundary',
       tone: 'xen',
+      emphasis: 'primary',
       description: 'Guest isolation, scheduling, device ownership, and control domains stay explicit.',
     },
     {
@@ -92,6 +93,7 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
       title: 'Xen hypervisor',
       eyebrow: 'Virtualization foundation',
       tone: 'xen',
+      emphasis: 'primary',
       description: 'Xen provides the open hypervisor boundary the ecosystem builds on.',
       itemsLabel: 'Hypervisor responsibilities',
       items: [
