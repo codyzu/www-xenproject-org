@@ -62,12 +62,12 @@ const mixedCriticalityExamples = [
     description: 'Control, monitoring, diagnostics, HMI, telemetry, and update services may have different safety, timing, and validation expectations.',
   },
   {
-    title: 'Different update paths',
-    description: 'Linux services and non-critical workloads often need a different maintenance rhythm than safety-conscious functions.',
+    title: 'Independent validation cadence',
+    description: 'Linux services and non-critical workloads may need a different validation and maintenance cadence than safety-conscious functions.',
   },
   {
-    title: 'Different evidence needs',
-    description: 'The hard problem is keeping ownership, assumptions, dependencies, and validation scope clear as workloads share compute.',
+    title: 'Different assurance needs',
+    description: 'The hard problem is keeping ownership, assumptions, dependencies, assurance scope, and validation evidence clear as workloads share compute.',
   },
 ];
 
@@ -355,7 +355,7 @@ const resources = [
       <div class="uno-flex uno-min-w-0 uno-gap-3">
         <span class="i-carbon-warning-alt uno-mt-1 uno-inline-flex uno-shrink-0 uno-text-xl uno-text-xp-accent-primary" aria-hidden="true"></span>
         <Text size="caption">
-          Xen source code is not itself safety certified. Certification depends on the complete product, integration context, process, evidence, tooling, and safety case.
+          Xen source code is not itself safety certified. Certification depends on the complete system, integration context, process, evidence, tooling, and safety case.
         </Text>
       </div>
     </Surface>
@@ -508,9 +508,11 @@ const resources = [
         <div class="xp-evidence-trail" aria-label="Evidence work flow">
           {evidenceTooling.map((item, index) => (
             <Surface tone="2" border="muted" radius="md" shadow="sm" padding="md" class="xp-evidence-step">
-              <Text size="caption" tone="accent-primary" class="uno-font-mono uno-font-bold">{String(index + 1).padStart(2, '0')}</Text>
-              <Stack gap="2">
-                <Heading as="h3" size="card" class="xp-compact-card-title">{item.title}</Heading>
+              <div class="xp-evidence-step__index" aria-hidden="true">
+                <Text size="caption" tone="accent-primary" class="uno-font-mono uno-font-bold">{String(index + 1).padStart(2, '0')}</Text>
+              </div>
+              <Stack gap="2" class="xp-evidence-step__content">
+                <Heading as="h3" size="card" class="xp-evidence-step__title">{item.title}</Heading>
                 <Text size="caption">{item.description}</Text>
               </Stack>
             </Surface>
@@ -615,8 +617,8 @@ const resources = [
 
   .xp-evidence-trail {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13.75rem), 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 1.15rem;
     overflow-x: clip;
     padding-inline: 1px;
   }
@@ -635,16 +637,29 @@ const resources = [
 
   :global(.xp-evidence-step) {
     position: relative;
+    display: grid;
+    min-height: 14rem;
+    min-width: 0;
+    align-content: start;
+  }
+
+  :global(.xp-evidence-step__index) {
     display: flex;
-    min-height: 13.25rem;
+    width: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border: 1px solid var(--xp-border-strong);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--xp-accent-primary) 10%, transparent);
+  }
+
+  :global(.xp-evidence-step__content) {
     min-width: 0;
   }
 
-  :global(.xp-evidence-step > *) {
-    width: 100%;
-  }
-
-  :global(.xp-compact-card-title) {
+  :global(.xp-evidence-step__title) {
     width: 100% !important;
     line-height: 1.18;
     hyphens: none;
@@ -656,28 +671,65 @@ const resources = [
   :global(.xp-evidence-step:not(:last-child)::after) {
     content: '';
     position: absolute;
-    top: 2.1rem;
-    right: -0.72rem;
-    width: 0.44rem;
-    height: 0.44rem;
+    top: 2rem;
+    right: -0.8rem;
+    width: 0.5rem;
+    height: 0.5rem;
     border-top: 1px solid var(--xp-border-strong);
     border-right: 1px solid var(--xp-border-strong);
     transform: rotate(45deg);
   }
 
   @media (max-width: 64rem) {
-    :global(.xp-evidence-step:not(:last-child)::after) {
+    .xp-evidence-trail {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    :global(.xp-evidence-step) {
+      min-height: 12.5rem;
+    }
+
+    :global(.xp-evidence-step:nth-child(-n + 3)) {
+      grid-column: span 2;
+    }
+
+    :global(.xp-evidence-step:nth-child(n + 4)) {
+      grid-column: span 3;
+    }
+
+    :global(.xp-evidence-step:nth-child(3)::after) {
       display: none;
     }
   }
 
   @media (max-width: 40rem) {
+    .xp-evidence-trail {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+
     :global(.xp-safety-hero-diagram .xp-platform-stack) {
       min-height: clamp(43rem, 155vw, 48rem);
     }
 
     :global(.xp-evidence-step) {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 0.9rem;
       min-height: auto;
+    }
+
+    :global(.xp-evidence-step__index) {
+      margin-bottom: 0;
+    }
+
+    :global(.xp-evidence-step:not(:last-child)::after) {
+      top: auto;
+      right: auto;
+      bottom: -0.72rem;
+      left: 1.08rem;
+      display: block;
+      transform: rotate(135deg);
     }
   }
 </style>
