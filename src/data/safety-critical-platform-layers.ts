@@ -5,6 +5,7 @@ export const safetyCriticalPlatformLayersDiagram: PlatformLayersDiagramData = {
   eyebrow: 'Inspectable boundaries',
   metaLabel: 'Certification-oriented architecture',
   variant: 'hero',
+  frameBleed: 'subtle',
   summary:
     'Xen helps separate safety-conscious workloads, non-critical services, guest domains, the hypervisor boundary, and hardware resources so architecture and evidence responsibilities stay visible.',
   layers: [

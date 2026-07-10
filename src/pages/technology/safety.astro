@@ -351,14 +351,6 @@ const resources = [
     layout="balanced"
   >
     <PlatformLayersDiagram slot="media" class="xp-safety-hero-diagram" {...safetyCriticalPlatformLayersDiagram} />
-    <Surface slot="proof" tone="2" border="strong" radius="lg" shadow="sm" padding="md">
-      <div class="uno-flex uno-min-w-0 uno-gap-3">
-        <span class="i-carbon-warning-alt uno-mt-1 uno-inline-flex uno-shrink-0 uno-text-xl uno-text-xp-accent-primary" aria-hidden="true"></span>
-        <Text size="caption">
-          Xen source code is not itself safety certified. Certification depends on the complete system, integration context, process, evidence, tooling, and safety case.
-        </Text>
-      </div>
-    </Surface>
   </Hero>
 
   <Section id="architecture-and-evidence">
@@ -374,6 +366,11 @@ const resources = [
         <Surface tone="2" border="strong" radius="lg" shadow="sm" padding="lg" class="xp-safety-principle">
           <Text size="lead" tone="primary" class="uno-font-semibold">
             The architecture creates the boundary. The engineering process creates the evidence.
+          </Text>
+        </Surface>
+        <Surface tone="2" border="muted" radius="md" shadow="sm" padding="md" class="xp-safety-certification-note">
+          <Text size="caption" tone="primary" class="uno-font-semibold">
+            Xen source code is not itself safety certified. Certification depends on the complete system, integration context, process, evidence, tooling, validation, and safety case.
           </Text>
         </Surface>
         <Grid columns="4" gap="5">
@@ -611,10 +608,6 @@ const resources = [
 </BaseLayout>
 
 <style>
-  :global(.xp-safety-hero-diagram .xp-platform-stack) {
-    min-height: clamp(42rem, 70vw, 51rem);
-  }
-
   :global(.xp-solution-safety-critical h1),
   :global(.xp-solution-safety-critical h2),
   :global(.xp-solution-safety-critical h3) {
@@ -631,6 +624,11 @@ const resources = [
 
   :global(.xp-safety-principle) {
     max-width: var(--xp-container-content);
+  }
+
+  :global(.xp-safety-certification-note) {
+    max-width: var(--xp-container-content);
+    border-color: color-mix(in srgb, var(--xp-border-muted) 82%, var(--xp-accent-primary));
   }
 
   :global(.xp-safety-committee-intro) {
@@ -708,10 +706,6 @@ const resources = [
     .xp-evidence-trail {
       grid-template-columns: 1fr;
       gap: 0.85rem;
-    }
-
-    :global(.xp-safety-hero-diagram .xp-platform-stack) {
-      min-height: clamp(43rem, 155vw, 48rem);
     }
 
     :global(.xp-evidence-step) {

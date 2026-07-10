@@ -17,6 +17,7 @@ const {
   summary,
   layers,
   variant = 'standard',
+  frameBleed = 'none',
   defaultShadowReceivers = true,
   interactive = variant === 'hero',
   class: className = '',
@@ -25,6 +26,10 @@ const {
 const titleId = `${id}-title`;
 const summaryId = `${id}-summary`;
 const midpoint = (layers.length - 1) / 2;
+const layerDepth = [
+  'var(--platform-plate-height)',
+  ...Array.from({length: Math.max(layers.length - 1, 0)}, () => 'var(--platform-layer-gap)'),
+].join(' + ');
 const heroHoverOffsets = [
   {x: '0.18rem', y: '-0.24rem'},
   {x: '0.12rem', y: '-0.16rem'},
@@ -37,9 +42,12 @@ const heroHoverOffsets = [
   class:list={[
     'xp-platform-diagram',
     `xp-platform-diagram--${variant}`,
+    `xp-platform-diagram--layers-${Math.min(Math.max(layers.length, 3), 6)}`,
+    `xp-platform-diagram--bleed-${frameBleed}`,
     interactive && 'xp-platform-diagram--interactive',
     className,
   ]}
+  style={`--platform-layer-count: ${layers.length};`}
   aria-labelledby={titleId}
   tabindex={interactive ? '0' : undefined}
 >
@@ -48,7 +56,7 @@ const heroHoverOffsets = [
     {metaLabel && <span class="xp-platform-diagram__scale" aria-hidden="true">{metaLabel}</span>}
   </figcaption>
 
-  <div class="xp-platform-stack" aria-describedby={summaryId}>
+  <div class="xp-platform-stack" style={`--platform-stack-depth: calc(${layerDepth});`} aria-describedby={summaryId}>
     <div class="xp-platform-stack__plates">
       {layers.map((layer, index) => {
         const offsetStep = index - midpoint;
@@ -157,11 +165,13 @@ const heroHoverOffsets = [
     --platform-plate-width: min(34rem, 94%);
     --platform-plate-height: clamp(9rem, 14.5vw, 10.4rem);
     --platform-layer-gap: clamp(6.25rem, 9.8vw, 7.35rem);
+    --platform-frame-padding-block: clamp(2.35rem, 4.6vw, 3.2rem);
+    --platform-overflow-bottom: 0rem;
     position: relative;
     z-index: 1;
     display: grid;
     min-width: 0;
-    min-height: clamp(32.5rem, 52vw, 37rem);
+    min-height: calc(var(--platform-stack-depth) + var(--platform-frame-padding-block) - var(--platform-overflow-bottom));
     align-content: center;
     padding: clamp(0.65rem, 1.6vw, 0.95rem) 0 clamp(1.7rem, 3vw, 2.25rem);
   }
@@ -221,12 +231,27 @@ const heroHoverOffsets = [
     --platform-plate-width: min(36rem, 96%);
     --platform-plate-height: clamp(9.65rem, 18.5vw, 11.85rem);
     --platform-layer-gap: clamp(7.25rem, 13vw, 8.85rem);
-    min-height: clamp(33rem, 64vw, 43rem);
+    --platform-frame-padding-block: clamp(1.6rem, 4vw, 4.45rem);
     padding-block: clamp(1rem, 3vw, 1.6rem) clamp(2.1rem, 4vw, 2.8rem);
+  }
+
+  .xp-platform-diagram--hero.xp-platform-diagram--layers-5 .xp-platform-stack,
+  .xp-platform-diagram--hero.xp-platform-diagram--layers-6 .xp-platform-stack {
+    --platform-plate-height: clamp(8.7rem, 16vw, 10.65rem);
+    --platform-layer-gap: clamp(6.25rem, 10.5vw, 7.75rem);
+    --platform-frame-padding-block: clamp(1.55rem, 3vw, 3rem);
   }
 
   .xp-platform-diagram--hero .xp-platform-stack__plates {
     translate: clamp(-1.35rem, -2vw, -0.75rem) clamp(0.75rem, 1.8vw, 1.25rem);
+  }
+
+  .xp-platform-diagram--hero.xp-platform-diagram--bleed-subtle .xp-platform-stack {
+    --platform-overflow-bottom: clamp(0.55rem, 1.6vw, 1.05rem);
+  }
+
+  .xp-platform-diagram--hero.xp-platform-diagram--bleed-subtle {
+    overflow: visible;
   }
 
   .xp-platform-diagram--hero .xp-domain-strip {
@@ -334,13 +359,18 @@ const heroHoverOffsets = [
   }
 
   @media (min-width: 1024px) {
-    .xp-platform-diagram--hero {
+    .xp-platform-diagram--hero.xp-platform-diagram--bleed-subtle {
       margin-left: auto;
-      overflow: visible;
     }
 
     .xp-platform-diagram--interactive .xp-platform-stack__plates {
       animation: xp-platform-breathe 8s ease-in-out infinite;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 1023px) {
+    .xp-platform-diagram--hero.xp-platform-diagram--bleed-subtle .xp-platform-stack {
+      --platform-overflow-bottom: 0rem;
     }
   }
 

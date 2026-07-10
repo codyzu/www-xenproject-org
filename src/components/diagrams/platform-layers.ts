@@ -17,6 +17,7 @@ export type PlatformLayerData = {
 };
 
 export type PlatformLayersDiagramVariant = 'standard' | 'hero';
+export type PlatformLayersFrameBleed = 'none' | 'subtle';
 
 export type PlatformLayersDiagramData = {
   title: string;
@@ -25,4 +26,9 @@ export type PlatformLayersDiagramData = {
   summary: string;
   layers: PlatformLayerData[];
   variant?: PlatformLayersDiagramVariant;
+  /**
+   * Allows a restrained inline-start and bottom bleed when the diagram is used
+   * as a primary architectural visual.
+   */
+  frameBleed?: PlatformLayersFrameBleed;
 };
