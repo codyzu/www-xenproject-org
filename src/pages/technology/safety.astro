@@ -47,7 +47,7 @@ const architectureFactors = [
   {
     icon: 'i-carbon-data-structured',
     title: 'Integration context',
-    description: 'The safety case belongs to the complete product, including hardware, guests, tooling, validation, and deployment context.',
+    description: 'The safety case belongs to the complete system, including hardware, guests, tooling, validation, and deployment context.',
   },
   {
     icon: 'i-carbon-time',
@@ -343,7 +343,7 @@ const resources = [
     eyebrow="Solution Area"
     title="Open virtualization for safety-conscious systems."
     statement="Certification-oriented systems need inspectable engineering."
-    description="Xen helps teams design platforms where isolation, resource ownership, guest roles, and hardware responsibilities stay visible while the surrounding process, evidence, tooling, and integration discipline can be evaluated."
+    description="Xen keeps isolation boundaries, resource ownership, guest roles, and hardware responsibilities visible while evidence, tooling, and engineering discipline remain explicit evaluation inputs."
     actions={[
       {label: 'Explore safety resources', href: '#resources'},
       {label: 'Become a member', href: '/about/become-a-member/', variant: 'secondary'},
@@ -438,7 +438,7 @@ const resources = [
     id="architecture-capabilities"
     eyebrow="Architecture capabilities"
     title="Capabilities engineers evaluate when building safety-conscious platforms."
-    description="Xen capabilities are evaluated in the context of a complete system design, not as standalone certification claims."
+    description="Xen capabilities are evaluated in the context of a complete system design, not as standalone certification claims. The mechanisms matter most when paired with shared engineering practice, review, and evidence work."
     columns="3"
     features={safetyCapabilities}
   />
@@ -457,7 +457,7 @@ const resources = [
                 The Xen Safety Committee gives member companies, contributors, and organizations building safety-conscious systems a place to coordinate certification-oriented engineering work inside the project.
               </Text>
               <Text>
-                Its work focuses on engineering practices, documentation, evidence, testing, static analysis, tooling, safety-oriented development process, and requirements that matter to regulated systems.
+                Its work connects engineering practices, documentation, evidence, testing, static analysis, tooling, safety-oriented development process, and requirements that matter to regulated systems.
               </Text>
             </Stack>
           </Split>
@@ -477,7 +477,7 @@ const resources = [
         </Grid>
         <Callout
           title="Participation supports shared engineering work."
-          description="The Safety Committee does not turn Xen into a certified product or provide a complete certification kit. Product certification still depends on the complete system, integration context, process, evidence, tooling, validation, and safety case."
+          description="The Safety Committee does not turn Xen into a certified product or provide a complete certification kit. Certification still depends on the complete system, integration context, process, evidence, tooling, validation, and safety case."
           variant="accent"
           class="xp-safety-committee-callout"
           action={{label: 'Become a member', href: '/about/become-a-member/', variant: 'text'}}
@@ -498,7 +498,7 @@ const resources = [
           </Stack>
           <Stack gap="4">
             <Text>
-              Certification-oriented systems need more than isolation. They need engineering practices and project artifacts that can be inspected, reviewed, and connected to a product-specific safety case.
+              Committee coordination becomes useful when it produces engineering signals teams can inspect. Certification-oriented systems need practices and project artifacts that can be reviewed and connected to a product-specific safety case.
             </Text>
             <Text>
               BUGSENG supports the Xen Project's safety-oriented work by providing access to ECLAIR static analysis on reduced-price terms, helping the project advance MISRA C compliance efforts and ongoing code quality improvement.
@@ -533,7 +533,7 @@ const resources = [
     id="what-teams-evaluate"
     eyebrow="Evaluation checklist"
     title="What teams should evaluate before building on Xen."
-    description="Safety-conscious evaluation should include architecture, process, tooling, integration, maintenance, governance, and collaboration responsibilities."
+    description="After the architecture and evidence signals are clear, teams still need to evaluate process, tooling, integration, maintenance, governance, and collaboration responsibilities."
     surface="1"
     columns="4"
     class="xp-related-section"
@@ -599,8 +599,8 @@ const resources = [
   <CTA
     id="final-cta"
     eyebrow="Certification-oriented engineering"
-    title="Help build the safety engineering foundation for Xen."
-    description="Evaluate Xen through architecture, evidence, tooling, governance, and project participation, or support shared safety-oriented work through membership."
+    title="Help advance open safety engineering for Xen."
+    description="Evaluate Xen through architecture, evidence, tooling, governance, and project participation, or support long-term safety-oriented work through membership."
     actions={[
       {label: 'Explore safety resources', href: '#resources'},
       {label: 'Become a member', href: '/about/become-a-member/', variant: 'secondary'},
@@ -615,10 +615,16 @@ const resources = [
     min-height: clamp(42rem, 70vw, 51rem);
   }
 
+  :global(.xp-solution-safety-critical h1),
+  :global(.xp-solution-safety-critical h2),
+  :global(.xp-solution-safety-critical h3) {
+    text-wrap: balance;
+  }
+
   .xp-evidence-trail {
     display: grid;
     grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 1.15rem;
+    gap: 1.25rem;
     overflow-x: clip;
     padding-inline: 1px;
   }
@@ -638,21 +644,33 @@ const resources = [
   :global(.xp-evidence-step) {
     position: relative;
     display: grid;
-    min-height: 14rem;
+    min-height: 14.25rem;
     min-width: 0;
     align-content: start;
+    border-color: color-mix(in srgb, var(--xp-border-muted) 80%, var(--xp-accent-primary));
   }
 
   :global(.xp-evidence-step__index) {
     display: flex;
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.75rem;
+    height: 2.75rem;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.1rem;
     border: 1px solid var(--xp-border-strong);
     border-radius: 999px;
-    background: color-mix(in srgb, var(--xp-accent-primary) 10%, transparent);
+    background:
+      radial-gradient(circle at 35% 28%, rgb(255 255 255 / 0.16), transparent 34%),
+      color-mix(in srgb, var(--xp-accent-primary) 13%, var(--xp-surface-3));
+    box-shadow:
+      0 0 1.1rem -0.55rem rgb(133 194 65 / 0.54),
+      inset 0 1px 0 rgb(255 255 255 / 0.12);
+  }
+
+  :global(.xp-evidence-step__index p) {
+    color: var(--xp-accent-primary);
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
   }
 
   :global(.xp-evidence-step__content) {
@@ -666,18 +684,6 @@ const resources = [
     overflow-wrap: normal !important;
     text-wrap: balance;
     word-break: normal !important;
-  }
-
-  :global(.xp-evidence-step:not(:last-child)::after) {
-    content: '';
-    position: absolute;
-    top: 2rem;
-    right: -0.8rem;
-    width: 0.5rem;
-    height: 0.5rem;
-    border-top: 1px solid var(--xp-border-strong);
-    border-right: 1px solid var(--xp-border-strong);
-    transform: rotate(45deg);
   }
 
   @media (max-width: 64rem) {
@@ -695,10 +701,6 @@ const resources = [
 
     :global(.xp-evidence-step:nth-child(n + 4)) {
       grid-column: span 3;
-    }
-
-    :global(.xp-evidence-step:nth-child(3)::after) {
-      display: none;
     }
   }
 
@@ -721,15 +723,6 @@ const resources = [
 
     :global(.xp-evidence-step__index) {
       margin-bottom: 0;
-    }
-
-    :global(.xp-evidence-step:not(:last-child)::after) {
-      top: auto;
-      right: auto;
-      bottom: -0.72rem;
-      left: 1.08rem;
-      display: block;
-      transform: rotate(135deg);
     }
   }
 </style>
