@@ -10,6 +10,7 @@ import FeatureGrid from '../../components/blocks/FeatureGrid.astro';
 import Hero from '../../components/blocks/Hero.astro';
 import LogoCloud from '../../components/blocks/LogoCloud.astro';
 import Stats from '../../components/blocks/Stats.astro';
+import PlatformLayersDiagram from '../../components/diagrams/PlatformLayersDiagram.astro';
 import LayeredPlatform from '../../components/illustrations/scenes/LayeredPlatform.astro';
 import Badge from '../../components/primitives/Badge.astro';
 import Button from '../../components/primitives/Button.astro';
@@ -24,8 +25,10 @@ import Split from '../../components/primitives/Split.astro';
 import Stack from '../../components/primitives/Stack.astro';
 import Surface from '../../components/primitives/Surface.astro';
 import Text from '../../components/primitives/Text.astro';
+import {embeddedAutomotivePlatformLayersDiagram} from '../../data/embedded-and-automotive-platform-layers';
 import {layeredPlatformScene} from '../../data/illustrations/layered-platform';
 import {memberLogos} from '../../data/member-logos';
+import {safetyCriticalPlatformLayersDiagram} from '../../data/safety-critical-platform-layers';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 type TypeScale = 'display-xl' | 'display-l' | 'heading-xl' | 'heading-l' | 'heading-m';
@@ -59,16 +62,16 @@ type MotionSample = {
 
 const principles: Principle[] = [
   {
-    title: 'Dark-first identity',
-    description: 'Use deep infrastructure surfaces as the default brand canvas for high-impact pages.',
+    title: 'Engineering communication',
+    description: 'Design choices should make architecture, boundaries, ownership, evidence, governance, and participation easier to understand.',
   },
   {
-    title: 'Layers create trust',
-    description: 'Surface steps, borders, and elevation should imply isolation, virtualization, and safety.',
+    title: 'Architecture before promotion',
+    description: 'Explain the engineering problem and system model before presenting capabilities or asking for action.',
   },
   {
-    title: 'Reusable foundations',
-    description: 'Prefer tokens, layout primitives, and small components over page-specific visual inventions.',
+    title: 'Reusable when proven',
+    description: 'Prefer page-local composition until a pattern has multiple real uses and a stable authoring contract.',
   },
 ];
 
@@ -322,20 +325,225 @@ const diagramMotionGuidance: ListCard[] = [
   },
 ];
 
+const designFeeling: ListCard[] = [
+  {
+    title: 'Should feel',
+    description: 'Premium but restrained, with technical confidence rather than spectacle.',
+    items: ['technical', 'calm', 'inspectable', 'precise', 'open', 'infrastructure-grade'],
+  },
+  {
+    title: 'Avoid',
+    description: 'Anything that makes Xen sound generic, magical, or decorative.',
+    items: ['hype-first marketing', 'generic SaaS language', 'cyberpunk decoration', 'excessive neon', 'novelty motion', 'unsupported superiority claims'],
+  },
+];
+
 const vocabularyGuidance: ListCard[] = [
   {
     title: 'Prefer',
     description: 'Use language that makes architecture visible and testable.',
-    items: ['explicit', 'visible', 'inspectable', 'ownership', 'isolation', 'architecture', 'maintainable', 'platform', 'deterministic', 'long-lived', 'mixed-criticality', 'composable', 'open engineering'],
+    items: ['explicit', 'visible', 'inspectable', 'boundaries', 'ownership', 'isolation', 'architecture', 'evidence', 'maintainable', 'long-lived', 'platform', 'deterministic', 'mixed-criticality', 'governance', 'participation', 'open engineering', 'certification-oriented', 'safety-conscious'],
   },
   {
     title: 'Avoid',
     description: 'Keep the voice technical and concrete.',
-    items: ['magic', 'seamless', 'effortless', 'revolutionary', 'futuristic', 'generic cyber/cloud language', 'hype-driven AI language'],
+    items: ['magic', 'seamless', 'effortless', 'revolutionary', 'next-generation', 'futuristic', 'best-in-class', 'unsupported enterprise-grade claims', 'generic cloud-native wording', 'generic cyber language'],
   },
 ];
 
-const solutionPageArc = ['Hero', 'Problem', 'Architecture principles', 'Technical capabilities', 'Domain example', 'Ecosystem', 'Evaluation', 'Participation', 'CTA'];
+const solutionPageArc = ['Hero and primary idea', 'Problem framing', 'Engineering principle', 'Technical capabilities', 'Domain example or process', 'Evaluation path', 'Governance and health', 'Participation', 'Final CTA'];
+
+const pageQuestions: TextCard[] = [
+  {
+    title: 'Homepage',
+    description: 'What is Xen, and why should engineers and organizations trust the project?',
+  },
+  {
+    title: 'Embedded & Automotive',
+    description: 'How can teams consolidate mixed-criticality workloads without blurring boundaries?',
+  },
+  {
+    title: 'Cloud & Infrastructure',
+    description: 'Why should infrastructure ownership remain explicit and inspectable?',
+  },
+  {
+    title: 'Safety-Critical Systems',
+    description: 'What does certification-oriented engineering require beyond architecture?',
+  },
+];
+
+const memorableSentences = [
+  'Safety work is evidence work.',
+  'The architecture creates the boundary. The engineering process creates the evidence.',
+  'Open infrastructure starts with an open virtualization layer.',
+  'Consolidate the platform without blurring the boundaries.',
+  'A project you can evaluate in the open.',
+];
+
+const signatureSections: TextCard[] = [
+  {
+    title: 'Homepage',
+    description: 'Layered Xen architecture hero.',
+  },
+  {
+    title: 'Embedded & Automotive',
+    description: 'Mixed-criticality and platform composition story.',
+  },
+  {
+    title: 'Cloud & Infrastructure',
+    description: 'Xen-centered infrastructure ecosystem.',
+  },
+  {
+    title: 'Safety-Critical Systems',
+    description: 'Safety Committee and evidence trail.',
+  },
+];
+
+const headingGuidance: ListCard[] = [
+  {
+    title: 'Eyebrows',
+    description: 'Short category labels, usually styled uppercase by the system.',
+    items: ['Use noun phrases', 'Orient the reader', 'Do not repeat the heading'],
+  },
+  {
+    title: 'Headings',
+    description: 'One main idea per heading, sentence case in authored text.',
+    items: ['Keep concise', 'Use active language where possible', 'Avoid four-line wraps at ordinary desktop widths'],
+  },
+  {
+    title: 'Introductions',
+    description: 'Usually one short paragraph explaining why the section matters.',
+    items: ['Do not restate every card', 'Avoid front-loaded caveats unless accuracy requires them', 'Connect the section to the page question'],
+  },
+];
+
+const ctaGuidance: ListCard[] = [
+  {
+    title: 'Prefer',
+    description: 'CTA labels should describe the destination or action.',
+    items: ['Explore the hypervisor', 'Explore architecture', 'Review isolation resources', 'Explore XCP-ng', 'View CI resources', 'View downloads', 'Read governance', 'Review security policy', 'Start contributing', 'Become a member', 'Explore membership', 'View reference architecture'],
+  },
+  {
+    title: 'Avoid',
+    description: 'Vague labels make repeated cards harder to scan.',
+    items: ['Learn more', 'Click here', 'Find out more', 'Open page', 'Repeated Explore labels without an object'],
+  },
+];
+
+const diagramApi = [
+  'title and eyebrow identify the diagram.',
+  'metaLabel provides a compact visual scale label.',
+  'summary is required and becomes the accessible description.',
+  'variant supports standard and hero.',
+  'frameBleed supports none and subtle.',
+  'layers accept title, eyebrow, tone, emphasis, description, items, itemsLabel, and receivesShadow.',
+  'layer emphasis currently supports primary.',
+  'layer tones currently support applications, guests, xen, and hardware.',
+];
+
+const layerCountGuidance: ListCard[] = [
+  {
+    title: 'Proven counts',
+    description: 'Current solution pages demonstrate variable layer counts.',
+    items: ['4-layer Embedded & Automotive', '4-layer Cloud & Infrastructure', '5-layer Safety-Critical Systems'],
+  },
+  {
+    title: 'Authoring range',
+    description: 'Use enough layers to teach the architecture, not to decorate the frame.',
+    items: ['Aim for 3-6 meaningful layers', 'Map each layer to a real concept', 'Use another format if the story needs many more layers'],
+  },
+];
+
+const diagramRules: ListCard[] = [
+  {
+    title: 'Xen emphasis',
+    description: 'When Xen appears, the Xen boundary should generally be the visual anchor.',
+    items: ['Use emphasis: primary', 'Keep the glow restrained', 'Do not add page-local glow CSS', 'Keep other layers readable'],
+  },
+  {
+    title: 'Frame bleed',
+    description: 'Subtle bleed adds depth for high-emphasis diagrams without clipping text.',
+    items: ['Use frameBleed: subtle', 'Most useful in hero diagrams', 'Avoid collision with neighboring content', 'Standard diagrams may remain contained'],
+  },
+  {
+    title: 'Content',
+    description: 'The diagram teaches structure; surrounding prose explains details.',
+    items: ['Short eyebrow', 'Clear title', 'Brief description', '2-4 chips when useful', 'Avoid paragraphs on plates'],
+  },
+  {
+    title: 'Accessibility',
+    description: 'The page must remain understandable without the visual geometry.',
+    items: ['Match visual order to semantic order', 'Write a concise summary', 'Hide decorative geometry', 'Do not require hover or motion'],
+  },
+];
+
+const deferredDiagramFeatures = ['connectors', 'overlays', 'annotations', 'generic badges', 'arbitrary per-layer geometry', 'universal diagram plugins', 'interactive diagram builders'];
+
+const blockSelectionGuidance: ListCard[] = [
+  {
+    title: 'FeatureGrid',
+    description: 'Use for similarly weighted items.',
+    items: ['Parallel capabilities', 'Evaluation criteria', 'Related resources', 'Project-health signals', 'Avoid for sequences or signature sections'],
+  },
+  {
+    title: 'Local Grid + Card',
+    description: 'Use when the content structure belongs to one narrative.',
+    items: ['Different card roles', 'Distinct hierarchy', 'Unique layout', 'Sections that break normal rhythm'],
+  },
+  {
+    title: 'Callout',
+    description: 'Use for bounded context that needs more weight than body copy.',
+    items: ['Engineering statement', 'Caution or scope clarification', 'Reference architecture context', 'Participation note', 'Evidence/process clarification'],
+  },
+  {
+    title: 'CTA',
+    description: 'Use for a genuine next step, not to fill space.',
+    items: ['End-of-page action', 'Focused mid-page decision point', 'Participation or evaluation path'],
+  },
+  {
+    title: 'Stats and LogoCloud',
+    description: 'Use only where the proof is meaningful and sourced.',
+    items: ['Stats for quantitative context', 'LogoCloud for member or ecosystem trust', 'Do not imply endorsement beyond known relationships'],
+  },
+];
+
+const recurringPatterns: ListCard[] = [
+  {
+    title: 'Related resources',
+    description: 'Help evaluators continue from architecture to docs, downloads, governance, or contribution.',
+    items: ['Use FeatureGrid when links are equal weight', 'Avoid if the links duplicate primary navigation'],
+  },
+  {
+    title: 'Open governance / project health',
+    description: 'Show why the project can be inspected and sustained.',
+    items: ['Governance', 'Security process', 'CI', 'Releases', 'Contribution paths'],
+  },
+  {
+    title: 'Ecosystem roles',
+    description: 'Explain how Xen complements surrounding projects and tooling.',
+    items: ['Prefer local Grid + Card when roles differ', 'Avoid implying replacement or endorsement'],
+  },
+  {
+    title: 'Participation / membership',
+    description: 'Connect engineering work to public contribution and member support.',
+    items: ['Use Callout or CTA', 'Use participation language instead of sales language'],
+  },
+  {
+    title: 'Technical capabilities',
+    description: 'Present mechanisms after the engineering problem is clear.',
+    items: ['FeatureGrid works for parallel capabilities', 'Capabilities should support the primary answer'],
+  },
+  {
+    title: 'Evaluation checklist',
+    description: 'Turn architecture into practical review questions.',
+    items: ['FeatureGrid works for equal criteria', 'Avoid exhaustive feature catalogs'],
+  },
+  {
+    title: 'Engineering caution note',
+    description: 'Clarify scope near the relevant technical claim.',
+    items: ['Use Callout or compact Surface', 'Be educational and specific', 'Say what Xen supports, not only what it does not'],
+  },
+];
 
 const blockActions = [
   {label: 'Primary action', href: '#blocks'},
@@ -418,9 +626,9 @@ const blockStats = [
         <Stack gap="6">
           <Stack gap="3" class="uno-max-w-xp-content">
             <Text size="eyebrow" tone="muted">Principles</Text>
-            <Heading size="heading-xl">Small, dark-first, composable.</Heading>
+            <Heading size="heading-xl">Engineering communication before marketing polish.</Heading>
             <Text>
-              The system should define the homepage, not the other way around. Add only foundations and primitives that will serve multiple future pages.
+              The Xen Project design system is an engineering communication system. Components and visual patterns exist to make architecture, isolation, ownership, evidence, governance, and participation easier to understand. Pages should teach before they promote.
             </Text>
           </Stack>
           <Grid columns="3">
@@ -428,6 +636,17 @@ const blockStats = [
               <Card>
                 <Heading as="h3" size="heading-m">{principle.title}</Heading>
                 <Text size="caption" class="uno-mt-3">{principle.description}</Text>
+              </Card>
+            ))}
+          </Grid>
+          <Grid columns="2">
+            {designFeeling.map(rule => (
+              <Card>
+                <Heading as="h3" size="heading-m">{rule.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{rule.description}</Text>
+                <Cluster gap="2" class="uno-mt-4">
+                  {rule.items.map(item => <Badge variant={rule.title === 'Should feel' ? 'info' : 'muted'}>{item}</Badge>)}
+                </Cluster>
               </Card>
             ))}
           </Grid>
@@ -634,6 +853,23 @@ const blockStats = [
               </Grid>
             </Stack>
           </Split>
+          <Surface tone="2" border="strong" padding="lg" radius="lg" shadow="sm">
+            <Stack gap="4">
+              <Stack gap="2" class="uno-max-w-xp-content">
+                <Heading as="h3" size="heading-m">Layered diagram authoring contract</Heading>
+                <Text size="caption">
+                  The reusable component is <code>PlatformLayersDiagram</code>. Each plate represents a meaningful system boundary, responsibility, or layer. The diagram is not decorative artwork.
+                </Text>
+              </Stack>
+              <Grid columns="2">
+                {diagramApi.map(item => (
+                  <Surface tone="3" border="muted" padding="md" radius="md" shadow="sm">
+                    <Text size="caption">{item}</Text>
+                  </Surface>
+                ))}
+              </Grid>
+            </Stack>
+          </Surface>
           <Grid columns="2">
             {diagramStates.map(state => (
               <Card>
@@ -658,6 +894,38 @@ const blockStats = [
             ))}
           </Grid>
           <Grid columns="2">
+            {layerCountGuidance.map(rule => (
+              <Card>
+                <Heading as="h3" size="heading-m">{rule.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{rule.description}</Text>
+                <Cluster gap="2" class="uno-mt-4">
+                  {rule.items.map(item => <Badge variant="muted">{item}</Badge>)}
+                </Cluster>
+              </Card>
+            ))}
+          </Grid>
+          <Grid columns="2">
+            <Stack gap="3">
+              <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">4-layer example</Text>
+              <PlatformLayersDiagram id="internal-diagram-four-layer" {...embeddedAutomotivePlatformLayersDiagram} interactive={false} />
+            </Stack>
+            <Stack gap="3">
+              <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">5-layer example with subtle bleed</Text>
+              <PlatformLayersDiagram id="internal-diagram-five-layer" {...safetyCriticalPlatformLayersDiagram} interactive={false} />
+            </Stack>
+          </Grid>
+          <Grid columns="2">
+            {diagramRules.map(rule => (
+              <Card>
+                <Heading as="h3" size="heading-m">{rule.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{rule.description}</Text>
+                <ul class="uno-mt-4 uno-grid uno-gap-2 uno-pl-4 uno-text-sm uno-text-xp-text-muted">
+                  {rule.items.map(item => <li>{item}</li>)}
+                </ul>
+              </Card>
+            ))}
+          </Grid>
+          <Grid columns="2">
             {diagramMotionGuidance.map(rule => (
               <Stack gap="3">
                 <Divider />
@@ -667,10 +935,22 @@ const blockStats = [
               </Stack>
             ))}
           </Grid>
+          <Surface tone="2" border="muted" padding="lg" radius="md" shadow="sm">
+            <Stack gap="3">
+              <Heading as="h3" size="heading-m">Not yet part of the system</Heading>
+              <Text size="caption">
+                Do not extend the diagram API speculatively. Add new capabilities only when a real page cannot communicate its story clearly without them.
+              </Text>
+              <Cluster gap="2">
+                {deferredDiagramFeatures.map(feature => <Badge variant="muted">{feature}</Badge>)}
+              </Cluster>
+            </Stack>
+          </Surface>
           <Grid columns="4">
             {futureIllustrationScenes.map(scene => (
               <Card>
-                <Heading as="h3" size="heading-m">{scene.title}</Heading>
+                <Text size="mono-small" tone="muted" class="uno-font-semibold">Provisional</Text>
+                <Heading as="h3" size="heading-m" class="uno-mt-2">{scene.title}</Heading>
                 <Text size="caption" class="uno-mt-2">{scene.description}</Text>
               </Card>
             ))}
@@ -689,6 +969,72 @@ const blockStats = [
               Solution pages should teach the system before marketing the outcome. Use the same architectural vocabulary and narrative rhythm, then adapt the emphasis to the domain.
             </Text>
           </Stack>
+          <Surface tone="2" border="muted" padding="lg" radius="md" shadow="sm">
+            <Stack gap="4">
+              <Stack gap="2" class="uno-max-w-xp-content">
+                <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Architecture-first storytelling</Text>
+                <Heading as="h3" size="heading-m">Solution-page arc</Heading>
+                <Text size="caption">
+                  Teach architecture before features. Explain the engineering problem before presenting capabilities. Show how Xen fits into a system before asking the reader to participate.
+                </Text>
+              </Stack>
+              <Cluster gap="2">
+                {solutionPageArc.map(step => <Badge>{step}</Badge>)}
+              </Cluster>
+              <Text size="caption" tone="muted">
+                This is a starting point, not a rigid template. Section order should follow the narrative, and pages should not include sections merely because another page has them.
+              </Text>
+            </Stack>
+          </Surface>
+          <Grid columns="2">
+            <Surface tone="2" border="muted" padding="lg" radius="md" shadow="sm">
+              <Stack gap="4">
+                <Stack gap="2">
+                  <Heading as="h3" size="heading-m">Primary Question</Heading>
+                  <Text size="caption">
+                    Every major page should answer one primary engineering question. If the page cannot be summarized as a question, its narrative may be too broad.
+                  </Text>
+                </Stack>
+                {pageQuestions.map(question => (
+                  <Stack gap="1">
+                    <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">{question.title}</Text>
+                    <Text size="caption">{question.description}</Text>
+                  </Stack>
+                ))}
+              </Stack>
+            </Surface>
+            <Surface tone="2" border="muted" padding="lg" radius="md" shadow="sm">
+              <Stack gap="4">
+                <Stack gap="2">
+                  <Heading as="h3" size="heading-m">One Memorable Sentence</Heading>
+                  <Text size="caption">
+                    Use one concise sentence that expresses the page's point of view. It should sound like engineering judgment, not a slogan, and it should not be repeated.
+                  </Text>
+                </Stack>
+                {memorableSentences.map(sentence => (
+                  <Text size="caption" tone="primary" class="uno-font-semibold">{sentence}</Text>
+                ))}
+              </Stack>
+            </Surface>
+          </Grid>
+          <Surface tone="2" border="strong" padding="lg" radius="lg" shadow="sm">
+            <Stack gap="4">
+              <Stack gap="2" class="uno-max-w-xp-content">
+                <Heading as="h3" size="heading-m">One signature section per major page</Heading>
+                <Text size="caption">
+                  Each solution page should contain one memorable section that breaks the normal page rhythm and belongs specifically to that subject. This prevents repeated card grids and gives readers one visual or editorial moment to remember.
+                </Text>
+              </Stack>
+              <Grid columns="4">
+                {signatureSections.map(section => (
+                  <Card>
+                    <Heading as="h4" size="heading-m">{section.title}</Heading>
+                    <Text size="caption" class="uno-mt-2">{section.description}</Text>
+                  </Card>
+                ))}
+              </Grid>
+            </Stack>
+          </Surface>
           <Grid columns="2">
             {vocabularyGuidance.map(rule => (
               <Card>
@@ -700,18 +1046,39 @@ const blockStats = [
               </Card>
             ))}
           </Grid>
-          <Surface tone="2" border="muted" padding="lg" radius="md" shadow="sm">
-            <Stack gap="4">
-              <Stack gap="2" class="uno-max-w-xp-content">
-                <Heading as="h3" size="heading-m">Solution-page arc</Heading>
-                <Text size="caption">
-                  This is guidance, not a rigid template. It helps future pages feel like siblings while still fitting their subject.
-                </Text>
-              </Stack>
-              <Cluster gap="2">
-                {solutionPageArc.map(step => <Badge>{step}</Badge>)}
-              </Cluster>
-            </Stack>
+          <Grid columns="3">
+            {headingGuidance.map(rule => (
+              <Card>
+                <Heading as="h3" size="heading-m">{rule.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{rule.description}</Text>
+                <ul class="uno-mt-4 uno-grid uno-gap-2 uno-pl-4 uno-text-sm uno-text-xp-text-muted">
+                  {rule.items.map(item => <li>{item}</li>)}
+                </ul>
+              </Card>
+            ))}
+          </Grid>
+          <Grid columns="2">
+            {ctaGuidance.map(rule => (
+              <Card>
+                <Heading as="h3" size="heading-m">CTA labels: {rule.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{rule.description}</Text>
+                <Cluster gap="2" class="uno-mt-4">
+                  {rule.items.map(item => <Badge variant={rule.title === 'Prefer' ? 'info' : 'muted'}>{item}</Badge>)}
+                </Cluster>
+              </Card>
+            ))}
+          </Grid>
+          <Callout
+            title="Caution and qualification callouts"
+            description="Use cautionary content when certification context needs clarification, a capability depends on system design, a project artifact is an input rather than a guarantee, or a reference architecture is illustrative. Keep the tone educational, concise, and specific."
+            variant="warning"
+          >
+            <span slot="icon" class="i-carbon-warning-alt"></span>
+          </Callout>
+          <Surface tone="2" border="muted" padding="md" radius="md" shadow="sm">
+            <Text size="caption" tone="primary" class="uno-font-semibold">
+              Example: Xen source code is not itself safety certified. Certification depends on the complete system, integration context, process, evidence, tooling, validation, and safety case.
+            </Text>
           </Surface>
         </Stack>
       </Container>
@@ -727,6 +1094,36 @@ const blockStats = [
               Blocks compose primitives into repeatable content patterns. These examples show the component APIs without defining a future homepage.
             </Text>
           </Stack>
+          <Grid columns="2">
+            {blockSelectionGuidance.map(rule => (
+              <Card>
+                <Heading as="h3" size="heading-m">{rule.title}</Heading>
+                <Text size="caption" class="uno-mt-2">{rule.description}</Text>
+                <ul class="uno-mt-4 uno-grid uno-gap-2 uno-pl-4 uno-text-sm uno-text-xp-text-muted">
+                  {rule.items.map(item => <li>{item}</li>)}
+                </ul>
+              </Card>
+            ))}
+          </Grid>
+          <Surface tone="2" border="muted" padding="lg" radius="md" shadow="sm">
+            <Stack gap="4">
+              <Stack gap="2" class="uno-max-w-xp-content">
+                <Heading as="h3" size="heading-m">Recurring patterns, no extraction yet</Heading>
+                <Text size="caption">
+                  These patterns are documented for authoring consistency. Do not create new shared components until real future pages prove a stable repeated need.
+                </Text>
+              </Stack>
+              <Grid columns="3">
+                {recurringPatterns.map(pattern => (
+                  <Card>
+                    <Heading as="h4" size="heading-m">{pattern.title}</Heading>
+                    <Text size="caption" class="uno-mt-2">{pattern.description}</Text>
+                    <Text size="caption" tone="muted" class="uno-mt-3">{pattern.items.join(' · ')}</Text>
+                  </Card>
+                ))}
+              </Grid>
+            </Stack>
+          </Surface>
         </Stack>
       </Container>
     </Section>

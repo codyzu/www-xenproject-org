@@ -3,6 +3,65 @@
 This document defines the boundary between the migrated site and the new
 Astro-first redesign foundation.
 
+## Design Purpose
+
+The Xen Project design system is an engineering communication system, not a
+generic marketing design system. Its purpose is to explain architecture,
+boundaries, ownership, isolation, evidence, maintainability, governance, and
+participation clearly. Pages should teach before they promote.
+
+The redesign should feel technical, calm, inspectable, precise, open, premium
+but restrained, and infrastructure-grade. Avoid hype-first marketing, generic
+SaaS visual language, cyberpunk decoration, excessive neon, novelty motion,
+and unsupported superiority claims. Trust should come from clarity,
+inspectability, and visible engineering context.
+
+## Page Authoring
+
+Every major page should answer one primary engineering question. Write that
+question before outlining the page, then use it to decide what content does
+not belong. Capabilities, ecosystem references, governance notes, and calls to
+action should support the answer rather than turning the page into an
+exhaustive feature catalog.
+
+Current examples:
+
+- Homepage: What is Xen, and why should engineers and organizations trust the
+  project?
+- Embedded & Automotive: How can teams consolidate mixed-criticality workloads
+  without blurring boundaries?
+- Cloud & Infrastructure: Why should infrastructure ownership remain explicit
+  and inspectable?
+- Safety-Critical Systems: What does certification-oriented engineering
+  require beyond architecture?
+
+Each major page may also carry one memorable sentence that expresses its point
+of view. Use it once as a heading, statement, callout, or section anchor. It
+should sound like engineering judgment, not a slogan. Examples in current
+work include "Safety work is evidence work", "Open infrastructure starts with
+an open virtualization layer", and "Consolidate the platform without blurring
+the boundaries".
+
+Each solution page should contain one signature section that breaks the normal
+page rhythm and belongs specifically to that subject. This can be page-local
+composition; do not prescribe a new component. Current examples are the
+homepage layered architecture hero, the Embedded & Automotive
+mixed-criticality/platform composition story, the Cloud & Infrastructure
+Xen-centered ecosystem, and the Safety-Critical Systems Safety Committee and
+evidence trail.
+
+The common narrative arc is:
+
+```text
+Hero and primary idea -> problem framing -> engineering principle ->
+technical capabilities -> domain-specific example, ecosystem, or process ->
+evaluation path -> governance and project health -> participation -> final CTA
+```
+
+This is a starting point, not a universal template. Section order should
+follow the narrative. Pages should not include sections merely because another
+page has them. Shared language is desirable; identical pages are not.
+
 ## Component Folders
 
 - `src/components/legacy/` contains migrated compatibility components. These
@@ -36,6 +95,39 @@ A reusable block should:
 - be documented or demonstrated in `/internal/design-system`
 - have at least two realistic use cases
 - avoid homepage-specific naming or assumptions
+
+Prefer stability over abstraction. Extract shared components only after two or
+three genuine uses demonstrate that the authoring contract is stable. Page-
+local composition is healthy when a section has a unique narrative role, when
+groups need different hierarchy, or when a page needs one signature visual
+treatment. Shared primitives are preferable to mega-components, and readable
+code matters more than reducing file length.
+
+Use `FeatureGrid` for parallel capabilities, evaluation criteria, related
+resources, project-health signals, and similarly weighted facts. Avoid it when
+items represent a sequence, one item needs much stronger emphasis, the content
+is really a narrative or process, or the page needs a signature visual
+treatment.
+
+Use local `Grid` plus `Card` composition when groups have different roles,
+cards need distinct hierarchy, the layout is unique to one narrative, or the
+content structure is not repeated elsewhere.
+
+Use `Callout` for strong engineering statements, caution or scope
+clarification, reference architecture context, participation notes, and
+evidence/process clarification. Use `CTA` for genuine next steps, focused
+mid-page decision points, and end-of-page participation or evaluation actions.
+Do not use CTA blocks merely to fill space.
+
+Use `Stats` for meaningful proof or quantitative context. Use `LogoCloud` for
+member or ecosystem trust, not decoration. Do not invent numbers or imply
+endorsement beyond known relationships.
+
+Recurring content patterns should be documented before they are extracted:
+related resources, open governance and project health, ecosystem roles,
+participation and membership, technical capabilities, evaluation checklists,
+and engineering caution notes. These patterns can use existing blocks or
+page-local composition depending on the content hierarchy.
 
 ## Layout And CSS Boundary
 
@@ -158,6 +250,59 @@ navigation; avoid decorative icon use in the foundation system.
 Use token-backed utilities first. Add custom CSS only when a behavior or layout
 cannot be expressed clearly with utilities.
 
+## Editorial Tone
+
+The written voice should be cautious but confident, technically specific, and
+respectful of system context. Explain Xen's architecture positively and let
+informed readers make comparisons. Do not attack competitors directly.
+
+Preferred vocabulary includes explicit, visible, inspectable, boundaries,
+ownership, isolation, architecture, evidence, maintainable, long-lived,
+platform, deterministic, mixed-criticality, governance, participation, open
+engineering, certification-oriented, and safety-conscious. Use these carefully
+instead of repeating the same word in every section.
+
+Avoid or strongly limit magic, seamless, effortless, revolutionary,
+next-generation, futuristic, best-in-class, generic cloud-native language,
+generic cyber imagery or language, and enterprise-grade claims without
+evidence. Do not make unsupported security, scale, latency, performance,
+certification, or compliance claims.
+
+Eyebrows should be short category labels, usually styled uppercase by the
+visual system. Prefer noun phrases that orient the reader without repeating
+the heading. Headings should be concise, active where possible, sentence case
+in authored text, and focused on one main idea. Avoid headings that wrap into
+four or more lines at ordinary desktop widths. Section introductions should
+usually be one short paragraph that explains why the section matters without
+repeating the heading or every card.
+
+CTA labels should describe the destination or action. Prefer labels such as
+Explore the hypervisor, Explore architecture, Review isolation resources,
+Explore XCP-ng, View CI resources, View downloads, Read governance, Review
+security policy, Start contributing, Become a member, Explore membership, and
+View reference architecture. Avoid Learn more, Click here, Find out more, Open
+page, and repeated Explore labels with no object. Primary and secondary
+actions should reflect the page's actual next steps; not every card needs a
+CTA.
+
+Cautionary content belongs near the relevant engineering discussion. Use it
+when certification context needs clarification, a capability depends on system
+design, a project artifact is an input rather than a guarantee, or a reference
+architecture is illustrative rather than universal. The tone should be
+educational, concise, and specific about scope. Say what the project supports,
+not only what it does not. For safety pages, keep this principle explicit:
+Xen source code is not itself safety certified. Certification depends on the
+complete system, integration context, process, evidence, tooling, validation,
+and safety case.
+
+## Responsive Philosophy
+
+Design for desktop, laptop, tablet, and mobile. Intermediate tablet widths are
+first-class, especially for diagrams, split layouts, and dense card grids.
+Avoid one-off content hacks for wrapping. Prefer systemic responsive
+strategies in primitives, blocks, and shared CSS: stable grid tracks,
+container-aware widths, safe heading wrapping, and reduced-motion behavior.
+
 ## Layered Diagram Components
 
 The reusable layered diagram language emerged from the Embedded & Automotive
@@ -188,6 +333,27 @@ There are two canonical states:
 These states are conceptual authoring guidance, not a page-author API catalog.
 Component props can evolve as more real pages require them.
 
+The current concrete component is
+`src/components/diagrams/PlatformLayersDiagram.astro`, backed by
+`src/components/diagrams/platform-layers.ts`. Its current authoring contract
+includes:
+
+- `title`, optional `eyebrow`, optional `metaLabel`, and required `summary`
+- `variant: 'standard' | 'hero'`
+- `frameBleed: 'none' | 'subtle'`
+- `layers`
+- per-layer `title`, optional `eyebrow`, optional `tone`, optional
+  `emphasis`, `description`, optional `items`, optional `itemsLabel`, and
+  optional `receivesShadow`
+- layer tones: `applications`, `guests`, `xen`, and `hardware`
+- layer emphasis: `primary`
+
+The `summary` is the accessible description for the diagram. Decorative
+geometry is hidden from assistive technology. Mobile behavior collapses the
+3D stack into readable stacked plates, hides the compact `metaLabel`, and
+keeps labels and item chips readable. Hero diagrams are interactive by default;
+standard diagrams are not.
+
 ### Layer Semantics
 
 Every layer should represent a meaningful architectural boundary. The typical
@@ -201,6 +367,31 @@ stack is:
 Future pages may change these labels for a specific domain, but should
 preserve the mental model of explicit boundaries and ownership. Avoid
 decorative layers and layers that do not map to a real architectural concept.
+
+Variable layer counts are supported. Current proven examples include the
+4-layer Embedded & Automotive diagram, the 4-layer Cloud & Infrastructure
+diagram, and the 5-layer Safety-Critical Systems diagram. Use approximately
+three to six meaningful layers. Do not add layers only for decoration. If the
+story requires many more layers, reconsider whether one diagram is the right
+format.
+
+When Xen appears in a layered architecture diagram, the Xen boundary should
+generally be the visual anchor. Use the shared `emphasis: 'primary'` API for
+this. Stronger edge treatment, restrained glow, and elevation are appropriate,
+but do not create page-local glow CSS. Emphasis does not mean other
+technologies are unimportant; it clarifies the subject of the site.
+
+`frameBleed: 'subtle'` allows a restrained inline-start and bottom bleed when
+the diagram is used as a primary architectural visual. The purpose is depth
+and dimensionality. No text may be clipped, overflow must not collide with
+neighboring content, and standard diagrams may remain fully contained.
+
+Layer content should be concise: short eyebrow, clear title, one brief
+description, and two to four chips where useful. Avoid paragraphs on plates,
+tiny text, decorative technical jargon, repeated copy already present beside
+the diagram, logos inside every layer, and unsupported architecture claims.
+The diagram should teach structure; surrounding cards and prose should explain
+details.
 
 ### Motion
 
@@ -218,6 +409,10 @@ should be opt-in unless the diagram is acting as the primary hero visual. Keep
 interactive behavior informative and restrained, and preserve
 `prefers-reduced-motion` support.
 
+The meaningful diagram order should match semantic order. Motion and hover
+states are never required to understand content. Focus-within behavior should
+match hover where the diagram is interactive.
+
 ### CSS Boundary
 
 Use UnoCSS utilities and token-backed primitives for ordinary page layout
@@ -225,6 +420,12 @@ around diagrams. Component-scoped custom CSS is acceptable for diagram geometry,
 state-specific motion, generated surfaces, and responsive behavior that cannot
 be expressed clearly with utilities. Avoid broad component refactors or new
 diagram APIs until at least two real pages require the behavior.
+
+Deferred diagram features are not yet part of the system: connectors,
+overlays, annotations, generic badges, arbitrary per-layer geometry,
+universal diagram plugins, and interactive diagram builders. Do not extend the
+diagram API speculatively. Add new capabilities only when a real page cannot
+communicate its story clearly without them.
 
 ## Design Playground
 
