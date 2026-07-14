@@ -270,32 +270,32 @@ const foundationDetails: TextCard[] = [
 const futureIllustrationScenes: TextCard[] = [
   {
     title: 'Safety boundary',
-    description: 'Reuse layer planes, connector brackets, and HTML callouts to explain isolation, containment, and assurance.',
+    description: 'Could extend the current layer language to explain isolation, containment, and assurance when a real page needs that story.',
   },
   {
     title: 'Automotive stack',
-    description: 'Reuse the platform scene with hardware emphasis, domain labels, and restrained generated interiors.',
+    description: 'Could adapt platform layers to show hardware domains, specialized guests, and mixed-criticality responsibilities.',
   },
   {
     title: 'Community network',
-    description: 'Reuse SVG topology lines, labels, and muted node surfaces to show governance and ecosystem relationships.',
+    description: 'Could use related visual principles to clarify maintainers, contributors, members, projects, and governance relationships.',
   },
   {
     title: 'Downloads flow',
-    description: 'Reuse layer index, connector paths, and proof callouts to explain releases, artifacts, verification, and docs.',
+    description: 'Could turn release artifacts, verification, documentation, and upgrade paths into an inspectable evaluation flow.',
   },
 ];
 
-const diagramStates: ListCard[] = [
+const diagramArrangements: ListCard[] = [
   {
-    title: 'Exploded',
-    description: 'Teach architecture, reveal ownership, explain separation, and show boundaries.',
-    items: ['Hero sections', 'Architecture explanations', 'Educational content'],
+    title: 'Separated layers',
+    description: 'Use when the page needs to teach how a system is constructed. Physical separation helps readers see architecture, ownership, isolation, explicit boundaries, and layered responsibilities.',
+    items: ['Architecture teaching', 'Ownership boundaries', 'Isolation stories', 'Layered responsibilities'],
   },
   {
-    title: 'Assembled',
-    description: 'Show composition, complete systems, ecosystem projects, and deployment or reference architecture stories.',
-    items: ['Ecosystem sections', 'Deployment patterns', 'Reference architecture summaries'],
+    title: 'Compact stack',
+    description: 'Use when the page needs to communicate the complete platform. Compact composition emphasizes integrated systems, deployment views, ecosystem relationships, and reference architectures.',
+    items: ['Composed platforms', 'Integrated systems', 'Deployment views', 'Ecosystem relationships'],
   },
 ];
 
@@ -341,12 +341,12 @@ const designFeeling: ListCard[] = [
 const vocabularyGuidance: ListCard[] = [
   {
     title: 'Prefer',
-    description: 'Use language that makes architecture visible and testable.',
+    description: 'Use words because they clarify architecture, not because they sound technical. These are examples, not required terms.',
     items: ['explicit', 'visible', 'inspectable', 'boundaries', 'ownership', 'isolation', 'architecture', 'evidence', 'maintainable', 'long-lived', 'platform', 'deterministic', 'mixed-criticality', 'governance', 'participation', 'open engineering', 'certification-oriented', 'safety-conscious'],
   },
   {
     title: 'Avoid',
-    description: 'Keep the voice technical and concrete.',
+    description: 'Avoid vague marketing language when it hides the engineering claim. Context matters; this is judgment, not a banned-word list.',
     items: ['magic', 'seamless', 'effortless', 'revolutionary', 'next-generation', 'futuristic', 'best-in-class', 'unsupported enterprise-grade claims', 'generic cloud-native wording', 'generic cyber language'],
   },
 ];
@@ -834,7 +834,7 @@ const blockStats = [
               The Xen Project visual identity is built around layered platform architecture. Layer diagrams are not illustrations added after page design. They are first-class design components that communicate architecture, isolation, ownership, explicit boundaries, and inspectable systems.
             </Text>
             <Text>
-              Future solution pages should reuse this language before inventing unrelated visual metaphors.
+              Future solution pages should start from this language when it clarifies the engineering story, while allowing new arrangements to emerge from real page needs.
             </Text>
           </Stack>
           <Split align="center">
@@ -871,9 +871,9 @@ const blockStats = [
             </Stack>
           </Surface>
           <Grid columns="2">
-            {diagramStates.map(state => (
+            {diagramArrangements.map(state => (
               <Card>
-                <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Canonical state</Text>
+                <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">Common arrangement</Text>
                 <Heading as="h3" size="heading-m" class="uno-mt-2">{state.title}</Heading>
                 <Text size="caption" class="uno-mt-2">{state.description}</Text>
                 <ul class="uno-mt-4 uno-grid uno-gap-2 uno-pl-4 uno-text-sm uno-text-xp-text-muted">
@@ -882,6 +882,9 @@ const blockStats = [
               </Card>
             ))}
           </Grid>
+          <Text size="caption" tone="muted" class="uno-max-w-xp-content">
+            Neither arrangement is better. Choose the one that best supports the engineering story, and do not freeze the visual language around only these two forms.
+          </Text>
           <Grid columns="2">
             {layerSemantics.map(rule => (
               <Surface tone="2" border="muted" padding="md" radius="md" shadow="sm">
@@ -939,17 +942,23 @@ const blockStats = [
             <Stack gap="3">
               <Heading as="h3" size="heading-m">Not yet part of the system</Heading>
               <Text size="caption">
-                Do not extend the diagram API speculatively. Add new capabilities only when a real page cannot communicate its story clearly without them.
+                Do not extend the diagram API speculatively. Add new capabilities only when a real page demonstrates that the current language cannot communicate its story clearly.
               </Text>
               <Cluster gap="2">
                 {deferredDiagramFeatures.map(feature => <Badge variant="muted">{feature}</Badge>)}
               </Cluster>
             </Stack>
           </Surface>
+          <Stack gap="2" class="uno-max-w-xp-content">
+            <Heading as="h3" size="heading-m">Future applications (illustrative)</Heading>
+            <Text size="caption">
+              These examples show where the existing visual language could naturally extend if future pages require it. They are not approved components, planned APIs, or implementation commitments.
+            </Text>
+          </Stack>
           <Grid columns="4">
             {futureIllustrationScenes.map(scene => (
               <Card>
-                <Text size="mono-small" tone="muted" class="uno-font-semibold">Provisional</Text>
+                <Text size="mono-small" tone="muted" class="uno-font-semibold">Illustrative</Text>
                 <Heading as="h3" size="heading-m" class="uno-mt-2">{scene.title}</Heading>
                 <Text size="caption" class="uno-mt-2">{scene.description}</Text>
               </Card>
@@ -1035,6 +1044,9 @@ const blockStats = [
               </Grid>
             </Stack>
           </Surface>
+          <Text size="caption" tone="muted" class="uno-max-w-xp-content">
+            Prefer language that makes engineering decisions, responsibilities, ownership, and evidence visible. The goal is editorial clarity, not technical-sounding density.
+          </Text>
           <Grid columns="2">
             {vocabularyGuidance.map(rule => (
               <Card>

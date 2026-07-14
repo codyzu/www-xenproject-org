@@ -47,14 +47,18 @@ page is otherwise designed. They should carry technical meaning: what owns
 what, where isolation begins, which boundaries are explicit, and how a system
 can be inspected or reasoned about.
 
-Layered diagrams currently have two canonical states:
+Layered diagrams currently use common arrangements, not fixed presets:
 
-- **Exploded:** use for hero sections, architecture teaching, and
-  separation-focused explanations. The purpose is to show separation,
-  ownership, and inspectable boundaries.
-- **Assembled:** use for ecosystem, deployment, platform-composition, and
-  reference-architecture sections. The purpose is to show composition and how
-  technologies fit together.
+- **Separated layers:** use when a page needs to teach architecture,
+  ownership, isolation, explicit boundaries, or layered responsibilities. The
+  physical separation helps readers understand how the system is constructed.
+- **Compact stack:** use when a page needs to communicate composed platforms,
+  integrated systems, deployment views, ecosystem relationships, or reference
+  architectures. The compact arrangement emphasizes the complete platform.
+
+Neither arrangement is better. Choose the arrangement that best supports the
+engineering story, and allow additional arrangements to emerge naturally from
+future pages rather than freezing the language around only these two forms.
 
 Every diagram layer should map to a real architectural boundary. The default
 mental model is applications, guest systems, the Xen hypervisor, and hardware.
@@ -111,7 +115,9 @@ introduce ecosystem projects only where they naturally support the technical
 story. They should end with participation and evaluation paths rather than
 sales language.
 
-Preferred editorial vocabulary for Xen solution pages includes:
+Prefer language that makes engineering decisions, responsibilities, ownership,
+and evidence visible. Choose words because they clarify architecture, not
+because they sound technical. Useful examples include:
 
 - explicit
 - visible
@@ -127,8 +133,9 @@ Preferred editorial vocabulary for Xen solution pages includes:
 - composable
 - open engineering
 
-Avoid language that makes Xen sound magical, frictionless, or generic. In
-particular, avoid:
+Avoid language that makes Xen sound magical, frictionless, or generic. This is
+editorial guidance meant to prevent vague marketing language, not a banned-word
+list for every possible context. In particular, avoid:
 
 - magic
 - seamless

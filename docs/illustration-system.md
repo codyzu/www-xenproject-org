@@ -122,14 +122,17 @@ first-class design components that communicate architecture, isolation,
 ownership, explicit boundaries, and inspectable systems. Future solution pages
 should reuse this language before inventing unrelated visual metaphors.
 
-There are two canonical diagram states:
+Layered diagrams use common arrangements, not fixed presets:
 
-- **Exploded:** teaches architecture, reveals ownership, explains separation,
-  and shows boundaries. Use it for hero sections, architecture explanations,
-  and educational content.
-- **Assembled:** shows composition, complete systems, ecosystem projects, and
-  deployment or reference architecture stories. Use it for ecosystem sections,
-  deployment patterns, and reference architecture summaries.
+- **Separated layers:** teaches architecture, ownership, isolation, explicit
+  boundaries, and layered responsibilities. Use it when physical separation
+  helps readers understand how the system is constructed.
+- **Compact stack:** shows composed platforms, integrated systems, deployment
+  views, ecosystem relationships, and reference architectures. Use it when the
+  complete platform matters more than each individual boundary.
+
+Neither arrangement is better. Choose the arrangement that best supports the
+engineering story, and let future pages reveal additional useful arrangements.
 
 Every layer should represent a meaningful architectural boundary. The typical
 stack is applications, guest systems, Xen Hypervisor, and hardware. Future
@@ -264,7 +267,11 @@ Labels, callouts, and captions remain HTML. Static scenes do not receive
 keyboard focus. Motion must be disabled by `prefers-reduced-motion: reduce`.
 Use only documented token contrast pairings for text and labels.
 
-## Future Roadmap
+## Possible Future Applications
+
+These examples illustrate where the current visual language could naturally
+extend if future pages require it. They are not planned APIs, approved
+components, or implementation commitments.
 
 - Safety boundary scene: isolation, containment, and assurance.
 - Automotive stack scene: hardware domains, specialized guests, and safety

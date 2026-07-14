@@ -256,17 +256,21 @@ The written voice should be cautious but confident, technically specific, and
 respectful of system context. Explain Xen's architecture positively and let
 informed readers make comparisons. Do not attack competitors directly.
 
-Preferred vocabulary includes explicit, visible, inspectable, boundaries,
-ownership, isolation, architecture, evidence, maintainable, long-lived,
-platform, deterministic, mixed-criticality, governance, participation, open
-engineering, certification-oriented, and safety-conscious. Use these carefully
-instead of repeating the same word in every section.
+Prefer language that makes engineering decisions, responsibilities, ownership,
+and evidence visible. Choose words because they clarify architecture, not
+because they sound technical. Useful examples include explicit, visible,
+inspectable, boundaries, ownership, isolation, architecture, evidence,
+maintainable, long-lived, platform, deterministic, mixed-criticality,
+governance, participation, open engineering, certification-oriented, and
+safety-conscious. Use these carefully instead of repeating the same word in
+every section.
 
 Avoid or strongly limit magic, seamless, effortless, revolutionary,
 next-generation, futuristic, best-in-class, generic cloud-native language,
 generic cyber imagery or language, and enterprise-grade claims without
-evidence. Do not make unsupported security, scale, latency, performance,
-certification, or compliance claims.
+evidence. This guidance exists to prevent vague marketing language, not to ban
+individual words in every circumstance. Do not make unsupported security,
+scale, latency, performance, certification, or compliance claims.
 
 Eyebrows should be short category labels, usually styled uppercase by the
 visual system. Prefer noun phrases that orient the reader without repeating
@@ -319,19 +323,20 @@ ownership, platform composition, deployment patterns, ecosystem fit, or
 reference architectures. Keep the surrounding layout and copy concise so the
 diagram teaches the system rather than becoming decoration.
 
-### Diagram States
+### Diagram Arrangements
 
-There are two canonical states:
+Layered diagrams use common arrangements, not fixed presets:
 
-- **Exploded:** use for hero sections, architecture explanations, and
-  educational content. Its purpose is to teach architecture, reveal ownership,
-  explain separation, and show boundaries.
-- **Assembled:** use for ecosystem sections, deployment patterns, and reference
-  architecture summaries. Its purpose is to show composition, complete systems,
-  and how ecosystem projects fit together.
+- **Separated layers:** use when a page needs to teach architecture,
+  ownership, isolation, explicit boundaries, or layered responsibilities. The
+  physical separation helps readers understand how the system is constructed.
+- **Compact stack:** use when a page needs to communicate composed platforms,
+  integrated systems, deployment views, ecosystem relationships, or reference
+  architectures. The compact arrangement emphasizes the complete platform.
 
-These states are conceptual authoring guidance, not a page-author API catalog.
-Component props can evolve as more real pages require them.
+Neither arrangement is better. Choose the arrangement that best supports the
+engineering story. Additional arrangements may emerge naturally through future
+pages, so do not freeze the visual language around only these two forms.
 
 The current concrete component is
 `src/components/diagrams/PlatformLayersDiagram.astro`, backed by
