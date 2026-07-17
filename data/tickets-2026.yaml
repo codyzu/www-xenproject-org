@@ -28,9 +28,7 @@ tickets:
       price: "Free"
       description: |
         - Complimentary registration for accepted speakers
-        - Speaker registration details will be provided after acceptance
-      link: "https://sessionize.com/XenSummit2026/"
-      linkText: "Submit a talk"
+        - Speaker registration details will be provided directly
 
   virtual:
     - title: "Virtual $20"

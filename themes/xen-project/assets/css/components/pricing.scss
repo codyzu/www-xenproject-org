@@ -7,8 +7,8 @@
     --cols: 2;
   }
 
-  @include tablet {
-    --cols: 3;
+  @include desktop {
+    --cols: 4;
   }
 
   padding-top: var(--sp-xxl);

@@ -83,5 +83,5 @@ exceptions:
   - id: summit-2026-current-event-info
     route: /resources/summit-2026/
     kind: event-update
-    scope: call for proposals, sponsorship, travel, and current status sections
+    scope: program, registration, sponsorship, travel, and current status sections
     reason: The Astro page contains current event information intentionally updated after the Hugo migration baseline.

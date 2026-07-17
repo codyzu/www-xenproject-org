@@ -68,13 +68,35 @@ test.describe('Phase 6 data-driven routes', () => {
     await page.goto('/resources/summit-2026/');
     await expect(page.getByRole('heading', {level: 1, name: 'Xen Summit 2026'})).toBeVisible();
     await expect(page.getByRole('link', {name: 'Register Now'}).first()).toHaveAttribute('href', 'https://register.linuxfoundation.org/xen-summit-2026');
-    await expect(page.getByRole('link', {name: 'Submit a Proposal'}).first()).toHaveAttribute('target', '_blank');
+    await expect(page.getByRole('link', {name: 'Become a Sponsor'}).first()).toHaveAttribute('href', '/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf');
+    await expect(page.getByText(/call for proposals|submit a proposal|submit a talk|july 7, 2026/i)).toHaveCount(0);
     await expect(page.locator('#registration-pricing .ticket-card')).toHaveCount(5);
-    await expect(page.locator('#registration-pricing .card__actions')).toHaveCount(5);
+    await expect(page.locator('#registration-pricing .card__actions')).toHaveCount(4);
     const speakerCard = page.locator('#registration-pricing .ticket-card').filter({has: page.getByRole('heading', {name: 'Speaker Free'})});
-    await expect(speakerCard.getByRole('link', {name: 'Submit a talk'})).toHaveAttribute('href', 'https://sessionize.com/XenSummit2026/');
+    await expect(speakerCard.getByRole('link')).toHaveCount(0);
+    const jumpLinks = page.getByText('Jump to:').getByRole('link');
+    for (const jumpLink of await jumpLinks.all()) {
+      const target = await jumpLink.getAttribute('href');
+      expect(target).toMatch(/^#[a-z-]+$/);
+      await expect(page.locator(target!)).toHaveCount(1);
+    }
+    const inPersonGroup = page.locator('.ticket-group-in-person');
+    const columnCount = async () => inPersonGroup.evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
+    expect(await columnCount()).toBe(4);
+    await page.setViewportSize({width: 900, height: 900});
+    expect(await columnCount()).toBe(2);
+    await page.setViewportSize({width: 390, height: 844});
+    expect(await columnCount()).toBe(1);
+    const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+    expect(hasHorizontalOverflow).toBe(false);
     await page.locator('label[for^="virtual-"]').click();
     await expect(page.locator('.ticket-group-virtual')).toBeVisible();
+    for (const sponsorName of ['Renesas', 'XenServer', 'Vates']) {
+      const sponsorLogo = page.getByRole('img', {name: `${sponsorName} logo`}).last();
+      await expect(sponsorLogo).toBeVisible();
+      expect(await sponsorLogo.evaluate((image) => ({width: image.clientWidth, height: image.clientHeight}))).toEqual(expect.objectContaining({width: expect.any(Number), height: expect.any(Number)}));
+      expect(await sponsorLogo.evaluate((image) => image.clientWidth > 0 && image.clientHeight > 0)).toBe(true);
+    }
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${siteUrl}/resources/summit-2026/`);
   });
 });
