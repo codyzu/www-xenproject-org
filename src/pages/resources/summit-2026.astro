@@ -8,6 +8,8 @@ import LegacyLayout from '../../layouts/LegacyLayout.astro';
 const title = 'Xen Summit 2026';
 const description = 'Join the Xen Project community in Munich, Germany, September 15–17, 2026, for technical talks, design sessions, and collaboration.';
 const keywords = ['Xen Project', 'Xen Summit', 'Munich', 'virtualization conference', 'hypervisor technology', 'community event'];
+const registrationUrl = 'https://register.linuxfoundation.org/xen-summit-2026';
+const sponsorshipUrl = '/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf';
 ---
 
 <LegacyLayout title={title} description={description} keywords={keywords} socialImage="/assets/summit-2026/social-card.jpg">
@@ -18,16 +20,15 @@ const keywords = ['Xen Project', 'Xen Summit', 'Munich', 'virtualization confere
         title={title}
         locationDate="HEADS office, Munich, Germany · September 15–17, 2026"
         format="Hybrid event · 2 days of talks + 1 day of design sessions"
-        badges={['CFP Open Until June 30, 2026', 'Venue Confirmed', 'Registration Opening Soon']}
+        badges={['Registration Open', 'Early Bird Until July 31, 2026', 'Schedule Coming Soon']}
         backgroundSrc="/assets/summit-2026/hero.webp"
         backgroundMobileSrc="/assets/summit-2026/hero-mobile.webp"
         backgroundAlt="Munich cityscape hero artwork for Xen Summit 2026"
         accentSrc="/assets/summit-2026/panda-munich.webp"
         accentAlt="Xen Project panda in Bavarian festival clothing"
         ctas={[
-          {label: 'Submit a Proposal', href: 'https://sessionize.com/XenSummit2026/', variant: 'primary'},
-          {label: 'Become a Sponsor', href: '/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf', variant: 'secondary'},
-          {label: 'Stay Informed', href: '#stay-informed', variant: 'tertiary'},
+          {label: 'Register Now', href: registrationUrl, variant: 'primary'},
+          {label: 'Become a Sponsor', href: sponsorshipUrl, variant: 'secondary'},
         ]}
       />
 
@@ -35,7 +36,7 @@ const keywords = ['Xen Project', 'Xen Summit', 'Munich', 'virtualization confere
         <h2>About Xen Summit</h2>
         <p>Xen Summit is the annual gathering for Xen developers, users, researchers, vendors, and ecosystem partners.</p>
         <p>The 2026 summit will bring the community together in Munich for engineering updates, project planning, design sessions, and hallway-track collaboration across the Xen ecosystem.</p>
-        <p class="uno-text-sm uno-mt-4 uno-text-gray-600 dark:uno-text-gray-400">Jump to: <a href="#why-attend">Why attend?</a> · <a href="#event-details">Event details</a> · <a href="#call-for-proposals">Call for Proposals</a> · <a href="#venue">Venue</a> · <a href="#registration">Registration</a> · <a href="#schedule">Schedule</a> · <a href="#design-sessions">Design sessions</a> · <a href="#sponsors">Sponsors</a> · <a href="#stay-informed">Stay informed</a></p>
+        <p class="uno-text-sm uno-mt-4 uno-text-gray-600 dark:uno-text-gray-400">Jump to: <a href="#why-attend">Why attend?</a> · <a href="#who-should-attend">Who should attend?</a> · <a href="#registration">Registration</a> · <a href="#program">Program</a> · <a href="#event-details">Event details</a> · <a href="#venue">Venue</a> · <a href="#travel">Travel</a> · <a href="#lodging">Lodging</a> · <a href="#schedule">Schedule</a> · <a href="#community-social">Community social</a> · <a href="#design-sessions">Design sessions</a> · <a href="#sponsors">Sponsors</a> · <a href="#stay-informed">Stay informed</a></p>
       </Section>
 
       <Section class="content-markdown">
@@ -45,53 +46,69 @@ const keywords = ['Xen Project', 'Xen Summit', 'Munich', 'virtualization confere
       </Section>
 
       <Section class="content-markdown">
+        <h2 id="who-should-attend">Who should attend?</h2>
+        <ul><li>Xen developers and maintainers</li><li>Embedded and automotive engineers</li><li>Cloud and infrastructure practitioners</li><li>Researchers and students</li><li>Open source contributors and Xen users</li></ul>
+      </Section>
+
+      <Section class="content-markdown">
         <h2 id="event-details">Event details</h2>
         <div class="uno-grid uno-grid-cols-1 md:uno-grid-cols-2 uno-gap-6">
           <div class="uno-card"><h3>Key info</h3><ul><li><strong>Dates:</strong> September 15–17, 2026</li><li><strong>City:</strong> Munich, Germany</li><li><strong>Venue:</strong> HEADS office</li><li><strong>Address:</strong> Einsteinring 30, 85609 Aschheim, Germany</li><li><strong>Map:</strong> <a href="https://maps.app.goo.gl/4h4E7zzcBjJuiecK9">Google Maps</a></li><li><strong>Format:</strong> Hybrid</li><li><strong>Program:</strong> Two days of talks, followed by one day of design sessions</li><li><strong>Audience:</strong> Developers, users, researchers, vendors, and ecosystem partners</li></ul></div>
           <div class="uno-card"><h3 id="venue">Venue</h3><h4>Hosted by Renesas</h4><p>Xen Summit 2026 is proudly hosted by Renesas in Munich, Germany. The event will take place at the HEADS office in Aschheim, located directly across from the Renesas Munich office.</p><div class="uno-flex uno-justify-center uno-my-6"><a href="https://www.renesas.com/" class="uno-block uno-w-full uno-max-w-[240px]"><img src="/img/logos/renesas-logo-cropped.svg" alt="Renesas logo" class="uno-w-full uno-h-auto" /></a></div><p><strong>Address:</strong> Einsteinring 30, 85609 Aschheim, Germany<br /><strong>Map:</strong> <a href="https://maps.app.goo.gl/4h4E7zzcBjJuiecK9">Google Maps</a></p></div>
-          <div class="uno-card"><h3>Registration status</h3><p>Registration is not open yet.</p><p>Pricing is available now so attendees, organizations, and sponsors can plan ahead before registration opens.</p><p>Early Bird pricing runs until June 30, 2026.</p></div>
-          <div class="uno-card"><h3>Travel</h3><p>Munich is well connected by air, rail, and public transit. The HEADS office is in Aschheim, east of central Munich, at Einsteinring 30, 85609 Aschheim, Germany.</p><ul><li><strong>Venue map:</strong> <a href="https://maps.app.goo.gl/4h4E7zzcBjJuiecK9">HEADS office on Google Maps</a></li><li><strong>Airport:</strong> <a href="https://www.munich-airport.com/">Munich Airport (MUC)</a> is the closest major international airport.</li><li><strong>Rail:</strong> Munich Hauptbahnhof is the main long-distance rail station for arrivals from Germany and across Europe.</li><li><strong>Public transit:</strong> Use <a href="https://www.mvv-muenchen.de/en/">MVV Munich public transit</a> to plan S-Bahn, U-Bahn, tram, and bus connections toward Aschheim.</li><li><strong>Taxi and rideshare:</strong> Taxis are available at the airport, major rail stations, and throughout Munich. Rideshare availability may vary by provider and pickup location.</li></ul><h4>Lodging</h4><p>There is no official hotel block yet. Attendees may want to stay either near the venue in Aschheim for a shorter local commute, or in central Munich with convenient transit access to the eastern side of the city.</p></div>
-          <div class="uno-card"><h3 id="call-for-proposals">Call for Proposals</h3><p>The Call for Proposals is open. <a href="https://sessionize.com/XenSummit2026/">Submit your talk</a> by <strong>June 30, 2026</strong> at 11:59 PM W. Europe Daylight Time to share your work with the Xen Project community in Munich or online.</p><p>New speakers are welcome.</p><p>We welcome proposals from across the Xen ecosystem, including:</p><ul><li>Xen development and architecture</li><li>Embedded and automotive virtualization</li><li>Security, isolation, and safety-related use cases</li><li>Safety and certification-related work</li><li>Performance, scalability, and reliability</li><li>Cloud, datacenter, and infrastructure deployments</li><li>Tooling, testing, CI, and developer experience</li><li>Open source collaboration and community process</li><li>Xen on Arm and other platform work</li><li>Real-world deployments, case studies, and lessons learned</li></ul></div>
+          <div class="uno-card"><h3>Registration</h3><p>Registration is open.</p><p>Early Bird pricing is available until <strong>July 31, 2026</strong>.</p><p><a href={registrationUrl}>Register now <i class="fas fa-arrow-right"></i></a></p></div>
+          <div class="uno-card"><h3 id="travel">Travel</h3><p>Munich is well connected by air, rail, and public transit. The HEADS office is in Aschheim, east of central Munich, at Einsteinring 30, 85609 Aschheim, Germany.</p><ul><li><strong>Venue map:</strong> <a href="https://maps.app.goo.gl/4h4E7zzcBjJuiecK9">HEADS office on Google Maps</a></li><li><strong>Airport:</strong> <a href="https://www.munich-airport.com/">Munich Airport (MUC)</a> is the closest major international airport.</li><li><strong>Rail:</strong> Munich Hauptbahnhof is the main long-distance rail station for arrivals from Germany and across Europe.</li><li><strong>Public transit:</strong> Use <a href="https://www.mvv-muenchen.de/en/">MVV Munich public transit</a> to plan S-Bahn, U-Bahn, tram, and bus connections toward Aschheim.</li><li><strong>Taxi and rideshare:</strong> Taxis are available at the airport, major rail stations, and throughout Munich. Rideshare availability may vary by provider and pickup location.</li></ul><h4 id="lodging">Lodging</h4><div class="uno-rounded-lg uno-border uno-border-brand-fill/30 uno-bg-brand-fill/8 uno-p-5 uno-my-5 dark:uno-bg-brand-fill/15"><p class="uno-m-0"><strong>Hotel recommendations and discounted attendee rates are currently being arranged and will be published soon.</strong></p></div><p>Options near the venue in Aschheim offer a shorter local commute, while central Munich offers convenient transit access to the eastern side of the city.</p></div>
+          <div class="uno-card"><h3 id="program">Program</h3><p>The Xen Summit 2026 program is currently being finalized. The full schedule will be published soon.</p><p>Sessions will cover Xen development, embedded and automotive virtualization, safety, security, cloud infrastructure, Arm platforms, tooling, testing, and real-world deployments.</p></div>
         </div>
       </Section>
 
       <Section class="content-markdown">
         <h2 id="registration">Registration</h2>
-        <p>Registration is opening soon. Pricing is now available so attendees, organizations, and sponsors can plan ahead for Xen Summit 2026.</p>
-        <p>Early Bird pricing runs until <strong>June 30, 2026</strong>. Registration links are not yet available.</p>
+        <div class="uno-rounded-lg uno-border uno-border-brand-fill/30 uno-bg-brand-fill/8 uno-p-5 uno-mb-6 dark:uno-bg-brand-fill/15"><p class="uno-m-0"><strong>Early Bird registration ends July 31, 2026.</strong></p></div>
+        <p>Registration is open for Xen Summit 2026. Register now to attend in Munich or online.</p>
+        <p>Early Bird pricing runs until <strong>July 31, 2026</strong>. The standard in-person attendee price has been reduced to <strong>$200</strong>.</p>
+        <p class="uno-mt-6"><a href={registrationUrl} class="btn btn-primary">Register now <i class="fas fa-arrow-up-right-from-square"></i></a></p>
         <Pricing ticketSet={ticketSets['tickets-2026']} id="registration-pricing" />
       </Section>
 
       <Section class="content-markdown">
         <h2 id="schedule">Schedule</h2>
-        <p>The detailed Xen Summit 2026 schedule is not published yet and will be announced after the CFP and review process are complete.</p>
+        <p>The detailed Xen Summit 2026 schedule is coming soon.</p>
         <p>The high-level event timeline is:</p>
         <ul><li><strong>September 15:</strong> Technical talks</li><li><strong>September 16:</strong> Technical talks</li><li><strong>September 17:</strong> Design sessions, project planning, and collaboration</li></ul>
       </Section>
 
       <Section class="content-markdown">
+        <h2 id="community-social">Community Social</h2>
+        <p>A Xen Summit community social event is planned for the evening of September 16. Additional details will be announced soon.</p>
+      </Section>
+
+      <Section class="content-markdown">
         <h2 id="design-sessions">Design Sessions</h2>
         <p>Design sessions are a central part of Xen Summit. They give contributors and users time to work through project direction, architecture, implementation plans, and community process face to face.</p>
-        <p>Design sessions are expected to take place on the third day of the summit. The 2026 design-session schedule and submission details will be announced closer to the event.</p>
+        <p>Design sessions are expected to take place on the third day of the summit. The 2026 design-session schedule and details will be announced closer to the event.</p>
         <h3>Suggested Topics for Design and Problem Solving Sessions</h3>
         <p>Design and problem-solving sessions are intended to help developers:</p>
         <ul><li>Coordinate and plan upcoming features</li><li>Discuss best practices and changes to how the community works</li><li>Agree on the design and architecture of future functionality</li><li>Share lessons learned from contributors, users, and vendors</li></ul>
-        <h3>Design Session Submission Tips</h3><p>If you propose a design or planning session, please clearly state:</p><ul><li>The problem you are trying to solve</li><li>How attendees can contribute to solving it</li><li>Whether any preparation work is useful, including links to existing material</li></ul><p>Design sessions are working sessions, not standard presentations. Moderators may introduce the topic briefly, but most of the time should be reserved for discussion, planning, and decisions.</p>
+        <p>Design sessions are working sessions, not standard presentations. Moderators may introduce the topic briefly, but most of the time should be reserved for discussion, planning, and decisions.</p>
       </Section>
 
       <Section class="section-square-rounded content-markdown">
         <h2 id="sponsors">Sponsors</h2>
         <p>Xen Summit wouldn’t be possible without the support of our sponsors.</p>
         <h2 class="txt-c">Platinum Sponsors</h2>
-        <div class="uno-grid uno-grid-cols-1 uno-items-center uno-justify-items-center uno-gap-10 uno-my-16"><a href="https://www.renesas.com/" class="uno-block uno-w-full uno-max-w-[340px] uno-text-center"><img src="/img/logos/renesas-logo-cropped.svg" alt="Renesas logo" class="uno-w-full uno-h-auto" /><span class="uno-mt-4 uno-block uno-text-base uno-font-semibold">Platinum Sponsor and Local Host</span></a></div>
+        <div class="uno-grid uno-grid-cols-1 uno-items-center uno-justify-items-center uno-gap-10 uno-my-16"><a href="https://www.renesas.com/" class="uno-block uno-w-full uno-max-w-[340px] uno-text-center"><img src="/img/logos/renesas-logo-cropped.svg" alt="Renesas logo" class="uno-w-full uno-h-auto" /></a></div>
+        <h2 class="txt-c">Gold Sponsors</h2>
+        <div class="uno-grid uno-grid-cols-1 uno-items-center uno-justify-items-center uno-gap-10 uno-my-12"><a href="https://www.xenserver.com/" class="uno-block uno-w-full uno-max-w-[320px] uno-text-center"><img src="/img/logos/xenserver-logo.svg" alt="XenServer logo" class="uno-w-full uno-h-auto" /></a></div>
+        <h2 class="txt-c">Silver Sponsors</h2>
+        <div class="uno-grid uno-grid-cols-1 uno-items-center uno-justify-items-center uno-gap-10 uno-my-12"><a href="https://vates.tech/" class="uno-block uno-w-full uno-max-w-[280px] uno-text-center"><img src="/img/logos/vates-logo.svg" alt="Vates logo" class="uno-w-full uno-h-auto" /></a></div>
         <p>Organizations interested in sponsoring can review the Xen Summit 2026 sponsor prospectus or contact <a href="mailto:community.manager@xenproject.org">community.manager@xenproject.org</a>.</p>
         <p class="uno-mt-6 uno-flex uno-flex-wrap uno-gap-3"><a href="/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf" class="btn btn-primary">Download sponsor prospectus</a><a href="mailto:community.manager@xenproject.org?subject=Xen%20Summit%202026%20sponsorship" class="btn btn-secondary">Become a sponsor</a></p>
       </Section>
 
       <Section class="content-markdown"><h2>Code of Conduct</h2><p>Xen Summit 2026 follows the <a href="/contribute/code-of-conduct/">Xen Project Code of Conduct</a> to help ensure a welcoming, respectful, and productive environment for all attendees.</p></Section>
-      <Section class="content-markdown"><h2 id="stay-informed">Stay Informed</h2><p>Follow Xen Project channels, join the community on <a href="/resources/matrix/">Matrix</a>, subscribe to the <a href="/resources/mailing-lists/">mailing lists</a>, or follow Xen Project on <a href="https://www.linkedin.com/company/the-xen-project/">LinkedIn</a>. Revisit this page for updates on registration, the CFP, the schedule, travel guidance, and sponsorship opportunities.</p><p>The Call for Proposals is open until <strong>June 30, 2026</strong>. <a href="https://sessionize.com/XenSummit2026/">Submit a Proposal</a> to share your Xen Project work in Munich or online.</p></Section>
-      <Section class="section-square-primary txt-c content-markdown"><h2>Join the <strong>conversation</strong></h2><p>Connect with the Xen Project community and follow event updates as planning continues.</p><p class="mg-t-md"><a href="https://matrix.to/#/#xenproject:matrix.org" class="btn btn-primary">Join Matrix <i class="fas fa-arrow-right"></i></a></p></Section>
-      <Section class="txt-c"><p class="content-markdown"><em>Last updated: June 12, 2026</em></p></Section>
+      <Section class="content-markdown"><h2 id="stay-informed">Stay Informed</h2><p>Follow Xen Project channels for schedule announcements, hotel information, social event details, and other Xen Summit updates. Join the community on <a href="/resources/matrix/">Matrix</a>, subscribe to the <a href="/resources/mailing-lists/">mailing lists</a>, or follow Xen Project on <a href="https://www.linkedin.com/company/the-xen-project/">LinkedIn</a>.</p></Section>
+      <Section class="section-square-primary txt-c content-markdown"><h2>Ready to <strong>join us?</strong></h2><p>Register to attend in Munich or online and connect with the Xen Project community.</p><p class="mg-t-md"><a href={registrationUrl} class="btn btn-primary">Register Now <i class="fas fa-arrow-right"></i></a></p></Section>
+      <Section class="txt-c"><p class="content-markdown"><em>Last updated: July 17, 2026</em></p></Section>
     </div>
   </article>
 </LegacyLayout>

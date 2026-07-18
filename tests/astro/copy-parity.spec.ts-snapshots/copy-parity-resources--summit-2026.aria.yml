@@ -7,15 +7,13 @@
       - paragraph: HEADS office, Munich, Germany · September 15–17, 2026
       - paragraph: Hybrid event · 2 days of talks + 1 day of design sessions
       - list "Event status":
-        - listitem: CFP Open Until June 30, 2026
-        - listitem: Venue Confirmed
-        - listitem: Registration Opening Soon
-      - link "Submit a Proposal":
-        - /url: https://sessionize.com/XenSummit2026/
+        - listitem: Registration Open
+        - listitem: Early Bird Until July 31, 2026
+        - listitem: Schedule Coming Soon
+      - link "Register Now":
+        - /url: https://register.linuxfoundation.org/xen-summit-2026
       - link "Become a Sponsor":
         - /url: /assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf
-      - link "Stay Informed":
-        - /url: /#stay-informed
       - img "Xen Project panda in Bavarian festival clothing"
     - heading "About Xen Summit" [level=2]
     - paragraph: Xen Summit is the annual gathering for Xen developers, users, researchers, vendors, and ecosystem partners.
@@ -25,20 +23,32 @@
       - link "Why attend?":
         - /url: /#why-attend
       - text: ·
-      - link "Event details":
-        - /url: /#event-details
-      - text: ·
-      - link "Call for Proposals":
-        - /url: /#call-for-proposals
-      - text: ·
-      - link "Venue":
-        - /url: /#venue
+      - link "Who should attend?":
+        - /url: /#who-should-attend
       - text: ·
       - link "Registration":
         - /url: /#registration
       - text: ·
+      - link "Program":
+        - /url: /#program
+      - text: ·
+      - link "Event details":
+        - /url: /#event-details
+      - text: ·
+      - link "Venue":
+        - /url: /#venue
+      - text: ·
+      - link "Travel":
+        - /url: /#travel
+      - text: ·
+      - link "Lodging":
+        - /url: /#lodging
+      - text: ·
       - link "Schedule":
         - /url: /#schedule
+      - text: ·
+      - link "Community social":
+        - /url: /#community-social
       - text: ·
       - link "Design sessions":
         - /url: /#design-sessions
@@ -55,6 +65,13 @@
       - listitem: Meet maintainers, contributors, users, vendors, and ecosystem partners
       - listitem: Take part in design discussions that shape future Xen development
       - listitem: Share deployment experiences, lessons learned, and technical challenges with the community
+    - heading "Who should attend?" [level=2]
+    - list:
+      - listitem: Xen developers and maintainers
+      - listitem: Embedded and automotive engineers
+      - listitem: Cloud and infrastructure practitioners
+      - listitem: Researchers and students
+      - listitem: Open source contributors and Xen users
     - heading "Event details" [level=2]
     - heading "Key info" [level=3]
     - list:
@@ -95,10 +112,15 @@
       - strong: "Map:"
       - link "Google Maps":
         - /url: https://maps.app.goo.gl/4h4E7zzcBjJuiecK9
-    - heading "Registration status" [level=3]
-    - paragraph: Registration is not open yet.
-    - paragraph: Pricing is available now so attendees, organizations, and sponsors can plan ahead before registration opens.
-    - paragraph: Early Bird pricing runs until June 30, 2026.
+    - heading "Registration" [level=3]
+    - paragraph: Registration is open.
+    - paragraph:
+      - text: Early Bird pricing is available until
+      - strong: July 31, 2026
+      - text: .
+    - paragraph:
+      - link "Register now ":
+        - /url: https://register.linuxfoundation.org/xen-summit-2026
     - heading "Travel" [level=3]
     - paragraph: Munich is well connected by air, rail, and public transit. The HEADS office is in Aschheim, east of central Munich, at Einsteinring 30, 85609 Aschheim, Germany.
     - list:
@@ -124,62 +146,55 @@
         - strong: "Taxi and rideshare:"
         - text: Taxis are available at the airport, major rail stations, and throughout Munich. Rideshare availability may vary by provider and pickup location.
     - heading "Lodging" [level=4]
-    - paragraph: There is no official hotel block yet. Attendees may want to stay either near the venue in Aschheim for a shorter local commute, or in central Munich with convenient transit access to the eastern side of the city.
-    - heading "Call for Proposals" [level=3]
     - paragraph:
-      - text: The Call for Proposals is open.
-      - link "Submit your talk":
-        - /url: https://sessionize.com/XenSummit2026/
-      - text: by
-      - strong: June 30, 2026
-      - text: at 11:59 PM W. Europe Daylight Time to share your work with the Xen Project community in Munich or online.
-    - paragraph: New speakers are welcome.
-    - paragraph: "We welcome proposals from across the Xen ecosystem, including:"
-    - list:
-      - listitem: Xen development and architecture
-      - listitem: Embedded and automotive virtualization
-      - listitem: Security, isolation, and safety-related use cases
-      - listitem: Safety and certification-related work
-      - listitem: Performance, scalability, and reliability
-      - listitem: Cloud, datacenter, and infrastructure deployments
-      - listitem: Tooling, testing, CI, and developer experience
-      - listitem: Open source collaboration and community process
-      - listitem: Xen on Arm and other platform work
-      - listitem: Real-world deployments, case studies, and lessons learned
+      - strong: Hotel recommendations and discounted attendee rates are currently being arranged and will be published soon.
+    - paragraph: Options near the venue in Aschheim offer a shorter local commute, while central Munich offers convenient transit access to the eastern side of the city.
+    - heading "Program" [level=3]
+    - paragraph: The Xen Summit 2026 program is currently being finalized. The full schedule will be published soon.
+    - paragraph: Sessions will cover Xen development, embedded and automotive virtualization, safety, security, cloud infrastructure, Arm platforms, tooling, testing, and real-world deployments.
     - heading "Registration" [level=2]
-    - paragraph: Registration is opening soon. Pricing is now available so attendees, organizations, and sponsors can plan ahead for Xen Summit 2026.
+    - paragraph:
+      - strong: Early Bird registration ends July 31, 2026.
+    - paragraph: Registration is open for Xen Summit 2026. Register now to attend in Munich or online.
     - paragraph:
       - text: Early Bird pricing runs until
-      - strong: June 30, 2026
-      - text: . Registration links are not yet available.
+      - strong: July 31, 2026
+      - text: . The standard in-person attendee price has been reduced to
+      - strong: $200
+      - text: .
+    - paragraph:
+      - link "Register now ":
+        - /url: https://register.linuxfoundation.org/xen-summit-2026
     - radio "In-Person" [checked]
     - text: In-Person
     - radio "Virtual"
     - text: Virtual
-    - heading "In-Person Early Bird $150" [level=3]
+    - heading "In-Person Early Bird $140" [level=3]
     - list:
       - listitem:
         - text: Available until
-        - strong: June 30, 2026
-      - listitem: Registration opening soon
+        - strong: July 31, 2026
       - listitem: Access to the in-person talks and design sessions
-    - heading "In-Person Standard $300" [level=3]
+    - link "Register now ":
+      - /url: https://register.linuxfoundation.org/xen-summit-2026
+    - heading "In-Person Standard $200" [level=3]
     - list:
       - listitem: Standard in-person rate after Early Bird pricing ends
-      - listitem: Registration opening soon
       - listitem: Access to the in-person talks and design sessions
-    - heading "Academic $50" [level=3]
+    - link "Register now ":
+      - /url: https://register.linuxfoundation.org/xen-summit-2026
+    - heading "Academic $20" [level=3]
     - list:
       - listitem: Discounted in-person rate for academic attendees
-      - listitem: Registration opening soon
       - listitem: Access to the in-person talks and design sessions
-    - heading "Student $20" [level=3]
+    - link "Register now ":
+      - /url: https://register.linuxfoundation.org/xen-summit-2026
+    - heading "Speaker Free" [level=3]
     - list:
-      - listitem: Discounted in-person student rate
-      - listitem: Registration opening soon
-      - listitem: Access to the in-person talks and design sessions
+      - listitem: Complimentary registration for accepted speakers
+      - listitem: Speaker registration details will be provided directly
     - heading "Schedule" [level=2]
-    - paragraph: The detailed Xen Summit 2026 schedule is not published yet and will be announced after the CFP and review process are complete.
+    - paragraph: The detailed Xen Summit 2026 schedule is coming soon.
     - paragraph: "The high-level event timeline is:"
     - list:
       - listitem:
@@ -191,9 +206,11 @@
       - listitem:
         - strong: "September 17:"
         - text: Design sessions, project planning, and collaboration
+    - heading "Community Social" [level=2]
+    - paragraph: A Xen Summit community social event is planned for the evening of September 16. Additional details will be announced soon.
     - heading "Design Sessions" [level=2]
     - paragraph: Design sessions are a central part of Xen Summit. They give contributors and users time to work through project direction, architecture, implementation plans, and community process face to face.
-    - paragraph: Design sessions are expected to take place on the third day of the summit. The 2026 design-session schedule and submission details will be announced closer to the event.
+    - paragraph: Design sessions are expected to take place on the third day of the summit. The 2026 design-session schedule and details will be announced closer to the event.
     - heading "Suggested Topics for Design and Problem Solving Sessions" [level=3]
     - paragraph: "Design and problem-solving sessions are intended to help developers:"
     - list:
@@ -201,20 +218,21 @@
       - listitem: Discuss best practices and changes to how the community works
       - listitem: Agree on the design and architecture of future functionality
       - listitem: Share lessons learned from contributors, users, and vendors
-    - heading "Design Session Submission Tips" [level=3]
-    - paragraph: "If you propose a design or planning session, please clearly state:"
-    - list:
-      - listitem: The problem you are trying to solve
-      - listitem: How attendees can contribute to solving it
-      - listitem: Whether any preparation work is useful, including links to existing material
     - paragraph: Design sessions are working sessions, not standard presentations. Moderators may introduce the topic briefly, but most of the time should be reserved for discussion, planning, and decisions.
     - heading "Sponsors" [level=2]
     - paragraph: Xen Summit wouldn’t be possible without the support of our sponsors.
     - heading "Platinum Sponsors" [level=2]
-    - link "Renesas logo Platinum Sponsor and Local Host":
+    - link "Renesas logo":
       - /url: https://www.renesas.com/
       - img "Renesas logo"
-      - text: Platinum Sponsor and Local Host
+    - heading "Gold Sponsors" [level=2]
+    - link "XenServer logo":
+      - /url: https://www.xenserver.com/
+      - img "XenServer logo"
+    - heading "Silver Sponsors" [level=2]
+    - link "Vates logo":
+      - /url: https://vates.tech/
+      - img "Vates logo"
     - paragraph:
       - text: Organizations interested in sponsoring can review the Xen Summit 2026 sponsor prospectus or contact
       - link "community.manager@xenproject.org":
@@ -233,7 +251,7 @@
       - text: to help ensure a welcoming, respectful, and productive environment for all attendees.
     - heading "Stay Informed" [level=2]
     - paragraph:
-      - text: Follow Xen Project channels, join the community on
+      - text: Follow Xen Project channels for schedule announcements, hotel information, social event details, and other Xen Summit updates. Join the community on
       - link "Matrix":
         - /url: /resources/matrix
       - text: ", subscribe to the"
@@ -242,20 +260,13 @@
       - text: ", or follow Xen Project on"
       - link "LinkedIn":
         - /url: https://www.linkedin.com/company/the-xen-project/
-      - text: . Revisit this page for updates on registration, the CFP, the schedule, travel guidance, and sponsorship opportunities.
-    - paragraph:
-      - text: The Call for Proposals is open until
-      - strong: June 30, 2026
       - text: .
-      - link "Submit a Proposal":
-        - /url: https://sessionize.com/XenSummit2026/
-      - text: to share your Xen Project work in Munich or online.
-    - heading "Join the conversation" [level=2]:
-      - text: Join the
-      - strong: conversation
-    - paragraph: Connect with the Xen Project community and follow event updates as planning continues.
+    - heading "Ready to join us?" [level=2]:
+      - text: Ready to
+      - strong: join us?
+    - paragraph: Register to attend in Munich or online and connect with the Xen Project community.
     - paragraph:
-      - link "Join Matrix ":
-        - /url: https://matrix.to/#/#xenproject:matrix.org
+      - link "Register Now ":
+        - /url: https://register.linuxfoundation.org/xen-summit-2026
     - paragraph:
-      - emphasis: "Last updated: June 12, 2026"
+      - emphasis: "Last updated: July 17, 2026"
