@@ -17,7 +17,7 @@ test.describe('Phase 7A cutover-readiness routes', () => {
   test('renders cloud and infrastructure with primary evaluation actions', async ({page}) => {
     await page.goto('/resources/use-cases/');
     await expect(page.getByRole('heading', {level: 1, name: 'Open virtualization for cloud and infrastructure platforms.'})).toBeVisible();
-    await expect(page.getByRole('heading', {name: 'Capabilities for infrastructure platforms'})).toBeVisible();
+    await expect(page.getByRole('heading', {name: 'Capabilities for owning the platform boundary'})).toBeVisible();
     await expect(page.getByRole('link', {name: 'Explore the hypervisor'}).first()).toHaveAttribute('href', '/projects/hypervisor/');
     await expect(page.getByRole('link', {name: 'Explore XCP-ng'}).first()).toHaveAttribute('href', '/projects/xcp-ng/');
   });
