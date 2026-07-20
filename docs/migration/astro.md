@@ -3,13 +3,15 @@
 ## Current State
 
 The migration is complete. Astro is the only local and production static-site
-generator, and `npm run build` writes the complete artifact to `public/`.
+generator, and `npm run build` writes the complete artifact to `dist/`.
 
 The active source layout is:
 
 - `src/pages` for routes.
 - `src/components` for Astro and React components.
 - `src/content` for content collections.
+- `public` for URL-stable static source assets copied into the generated
+  artifact.
 - `src/styles/theme` for the carried-forward Sass styles.
 - `data/navigation.yaml` and `data/redirects.yaml` for shared navigation and
   redirect data.
@@ -40,7 +42,7 @@ npm run test:astro:links
 ```
 
 Use `npm run test:astro:smoke:public` for screenshot and navigation smoke
-testing against `public/`. The Playwright config starts `serve public`
+testing against `dist/`. The Playwright config starts `serve dist`
 automatically on `http://127.0.0.1:4321`.
 
 ## Ghost Header/Footer Contract

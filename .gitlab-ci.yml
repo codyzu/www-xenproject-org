@@ -26,7 +26,7 @@ test:
     - npm run lint
     - npm run downloads
     - npm run build
-    - node scripts/astro/check-public-artifact.js public --standalone
+    - node scripts/astro/check-public-artifact.js dist --standalone
   rules:
     - if: $CI_COMMIT_BRANCH != $CI_DEFAULT_BRANCH && $CI_PIPELINE_SOURCE != "merge_request_event"
   cache:
@@ -45,8 +45,8 @@ deploy:
     - npm run lint
     - npm run downloads
     - npm run build
-    - node scripts/astro/check-public-artifact.js public --standalone
-    - tar caf site.tar.gz public
+    - node scripts/astro/check-public-artifact.js dist --standalone
+    - tar caf site.tar.gz dist
   artifacts:
     paths:
       - site.tar.gz
@@ -73,8 +73,8 @@ publish:
     - npm run lint
     - npm run downloads
     - npm run build
-    - node scripts/astro/check-public-artifact.js public --standalone
-    - tar caf site.tar.gz public
+    - node scripts/astro/check-public-artifact.js dist --standalone
+    - tar caf site.tar.gz dist
   artifacts:
     paths:
       - site.tar.gz

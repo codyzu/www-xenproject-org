@@ -22,7 +22,8 @@ Set `SITE_URL` when generated absolute URLs should use an origin other than
 ## Production Build
 
 Astro is the only site generator. It writes the complete static artifact to
-`public/`. The route inventory lives in
+`dist/`, and `public/` contains URL-stable static source assets. The route
+inventory lives in
 [`scripts/astro/content-routes.ts`](scripts/astro/content-routes.ts), and
 aliases and redirects live in [`data/redirects.yaml`](data/redirects.yaml).
 
@@ -59,7 +60,7 @@ For visual smoke testing, make sure nothing else is running on
 npm run test:astro:smoke:public
 ```
 
-Playwright starts `serve public`, snapshots representative routes, verifies
+Playwright starts `serve dist`, snapshots representative routes, verifies
 navigation behavior, exercises React islands, and checks redirect metadata.
 
 To validate a deployed beta artifact manually, run `npm run test:astro:staging`.

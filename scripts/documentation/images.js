@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import sharp from "sharp";
 
-const IMAGES_DIR = "static/img";
+const IMAGES_DIR = "public/img";
 const DOCS_FILE = "docs/images.md";
 const THUMBNAIL_SIZE = 320;
 
@@ -33,7 +33,7 @@ async function generateImageDoc() {
 
     for (const filePath of imageFiles) {
       const file = path.basename(filePath);
-      const relativePath = filePath.replace(/^static\//, "/");
+      const relativePath = filePath.replace(/^public\//, "/");
 
       // Generate thumbnail
       const thumbnailPath = path.join("docs", "thumbnails", file);

@@ -96,8 +96,6 @@ const ghostMockApi = {
 
 export default defineConfig({
   integrations: [mdx(), react(), sitemap({filter: isPublicSitemapPage}), headerFooterOutput, ghostHeaderFooterAssets],
-  outDir: 'public',
-  publicDir: 'static',
   site,
   vite: {
     plugins: [unoCSS(), ghostMockApi],

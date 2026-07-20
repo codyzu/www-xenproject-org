@@ -21,13 +21,13 @@
     "test:astro:staging:ghost": "GHOST_LIVE_TEST=1 PLAYWRIGHT_BASE_URL=https://beta.xenproject.org playwright test tests/astro/ghost-live.spec.ts --config playwright.astro.config.ts",
     "test:astro:dev:ghost": "GHOST_DEV_TEST=1 PLAYWRIGHT_START_SERVER=1 PLAYWRIGHT_DEV_SERVER=1 PLAYWRIGHT_PORT=4322 playwright test tests/astro/ghost-development.spec.ts --config playwright.astro.config.ts",
     "test:astro:links": "node scripts/astro/check-public-artifact.js && node scripts/astro/check-redesign-boundaries.js",
-    "test:astro:standalone": "npm run build && node scripts/astro/check-public-artifact.js public --standalone",
+    "test:astro:standalone": "npm run build && node scripts/astro/check-public-artifact.js dist --standalone",
     "test:astro:copy-parity": "PLAYWRIGHT_START_SERVER=1 playwright test tests/astro/copy-parity.spec.ts tests/astro/copy-parity-guardrails.spec.ts --config playwright.astro.config.ts",
     "test:astro:copy-parity:update": "PLAYWRIGHT_START_SERVER=1 playwright test tests/astro/copy-parity.spec.ts --config playwright.astro.config.ts --update-snapshots=all --update-source-method=overwrite",
     "test:astro:smoke:update": "playwright test --config playwright.astro.config.ts --grep-invert @copy-parity --update-snapshots",
     "lint": "xo",
-    "clean": "rm -rf public",
-    "serve": "serve public"
+    "clean": "rm -rf dist",
+    "serve": "serve dist"
   },
   "author": "",
   "license": "ISC",

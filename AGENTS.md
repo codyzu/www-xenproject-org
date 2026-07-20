@@ -4,7 +4,9 @@ This repo uses Astro as its static-site generator.
 
 ## Site Rules
 
-- `npm run build` must produce the complete Astro artifact in `public/`.
+- `npm run build` must produce the complete Astro artifact in `dist/`.
+- `public/` contains URL-stable static source assets that Astro copies into the
+  generated artifact.
 - Preserve existing public URLs.
 - Prefer shared data sources over duplicating configuration.
 - Navigation data lives in `data/navigation.yaml`, with
@@ -63,7 +65,7 @@ npm run build
 npm run test:astro:smoke:public
 ```
 
-`test:astro:smoke:public` starts `serve public` through Playwright's `webServer`
+`test:astro:smoke:public` starts `serve dist` through Playwright's `webServer`
 configuration on `http://127.0.0.1:4321`. Stop any other local server on that
 port before running the public smoke test.
 

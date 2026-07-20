@@ -6,8 +6,8 @@ import {contentRoutes, ownedRedirectRoutes, standaloneContentRoutes} from './con
 
 const outputArgument = process.argv.find((argument) => !argument.startsWith('--') && argument !== process.argv[0] && argument !== process.argv[1]);
 const standalone = process.argv.includes('--standalone');
-const publicDirectory = path.resolve(outputArgument ?? 'public');
-const staticSourceDirectory = path.resolve('static');
+const artifactDirectory = path.resolve(outputArgument ?? 'dist');
+const publicSourceDirectory = path.resolve('public');
 const expectedSite = new URL(process.env.SITE_URL ?? 'https://beta.xenproject.org');
 const internalHosts = new Set([expectedSite.host]);
 const delegatedInternalPaths = [
@@ -90,7 +90,7 @@ const normalizeUrl = (rawValue, filePath) => {
 };
 
 const routePathForFile = filePath => {
-  const relative = path.relative(publicDirectory, filePath);
+  const relative = path.relative(artifactDirectory, filePath);
 
   if (relative === 'index.html') {
     return '/';
@@ -106,7 +106,7 @@ const routePathForFile = filePath => {
 const localPathCandidates = pathname => {
   const decodedPathname = decodeURIComponent(pathname);
   const normalizedPathname = decodedPathname.replace(/^\/+/, '');
-  const directPath = path.join(publicDirectory, normalizedPathname);
+  const directPath = path.join(artifactDirectory, normalizedPathname);
 
   if (path.extname(normalizedPathname)) {
     return [directPath];
@@ -123,10 +123,10 @@ const localPathExists = pathname =>
   localPathCandidates(pathname).some(candidate => fs.existsSync(candidate));
 
 const staticSourceFileToUrlPath = filePath =>
-  `/${path.relative(staticSourceDirectory, filePath).split(path.sep).join('/')}`;
+  `/${path.relative(publicSourceDirectory, filePath).split(path.sep).join('/')}`;
 
 const isDotfilePath = filePath =>
-  path.relative(staticSourceDirectory, filePath).split(path.sep).some(part => part.startsWith('.'));
+  path.relative(publicSourceDirectory, filePath).split(path.sep).some(part => part.startsWith('.'));
 
 const assertLegacyUrlContract = () => {
   for (const route of [...contentRoutes, ...ownedRedirectRoutes]) {
@@ -135,12 +135,12 @@ const assertLegacyUrlContract = () => {
     }
   }
 
-  if (!fs.existsSync(staticSourceDirectory)) {
-    errors.push('static/: missing static source directory for legacy public URL contract');
+  if (!fs.existsSync(publicSourceDirectory)) {
+    errors.push('public/: missing public source directory for legacy public URL contract');
     return;
   }
 
-  for (const staticFile of walk(staticSourceDirectory).filter(filePath => !isDotfilePath(filePath))) {
+  for (const staticFile of walk(publicSourceDirectory).filter(filePath => !isDotfilePath(filePath))) {
     const urlPath = staticSourceFileToUrlPath(staticFile);
 
     if (!localPathExists(urlPath)) {
@@ -221,7 +221,7 @@ const assertRedirect = (filePath, $) => {
 };
 
 const assertSitemap = () => {
-  const sitemapIndexPath = path.join(publicDirectory, 'sitemap-index.xml');
+  const sitemapIndexPath = path.join(artifactDirectory, 'sitemap-index.xml');
   if (!fs.existsSync(sitemapIndexPath)) {
     errors.push('sitemap-index.xml: missing sitemap index output');
     return;
@@ -251,7 +251,7 @@ const assertSitemap = () => {
       continue;
     }
 
-    const sitemapPath = path.join(publicDirectory, decodeURIComponent(sitemapUrl.pathname).replace(/^\/+/, ''));
+    const sitemapPath = path.join(artifactDirectory, decodeURIComponent(sitemapUrl.pathname).replace(/^\/+/, ''));
     if (!fs.existsSync(sitemapPath)) {
       errors.push(`${path.relative(process.cwd(), sitemapPath)}: missing sitemap file listed by sitemap-index.xml`);
       continue;
@@ -294,15 +294,15 @@ const assertSitemap = () => {
   }
 };
 
-if (!fs.existsSync(publicDirectory)) {
-  throw new Error(`${path.relative(process.cwd(), publicDirectory)}/ does not exist. Build the target artifact first.`);
+if (!fs.existsSync(artifactDirectory)) {
+  throw new Error(`${path.relative(process.cwd(), artifactDirectory)}/ does not exist. Build the target artifact first.`);
 }
 
-if (!fs.existsSync(path.join(publicDirectory, '404.html'))) {
-  errors.push(`${path.relative(process.cwd(), path.join(publicDirectory, '404.html'))}: missing generated 404 page`);
+if (!fs.existsSync(path.join(artifactDirectory, '404.html'))) {
+  errors.push(`${path.relative(process.cwd(), path.join(artifactDirectory, '404.html'))}: missing generated 404 page`);
 }
 
-const htmlFiles = walk(publicDirectory).filter(isHtmlFile);
+const htmlFiles = walk(artifactDirectory).filter(isHtmlFile);
 
 assertLegacyUrlContract();
 
@@ -316,7 +316,7 @@ if (standalone) {
     'headerfooter.html',
     'internal/design-system/index.html',
   ]);
-  const actualHtml = new Set(htmlFiles.map(filePath => path.relative(publicDirectory, filePath)));
+  const actualHtml = new Set(htmlFiles.map(filePath => path.relative(artifactDirectory, filePath)));
 
   for (const expected of expectedHtml) {
     if (!actualHtml.has(expected)) {
@@ -336,7 +336,7 @@ if (standalone) {
     }
   }
 
-  const headerFooterPath = path.join(publicDirectory, 'headerfooter.html');
+  const headerFooterPath = path.join(artifactDirectory, 'headerfooter.html');
   if (fs.existsSync(headerFooterPath)) {
     const fragment = fs.readFileSync(headerFooterPath, 'utf8');
     const $fragment = load(fragment, null, false);
@@ -359,7 +359,7 @@ if (standalone) {
     }
   }
 
-  const rssPath = path.join(publicDirectory, 'index.xml');
+  const rssPath = path.join(artifactDirectory, 'index.xml');
   if (!fs.existsSync(rssPath)) {
     errors.push('index.xml: missing RSS output');
   } else {
@@ -425,7 +425,7 @@ for (const filePath of htmlFiles) {
 }
 
 if (errors.length > 0) {
-  console.error(`Public artifact check failed with ${errors.length} issue(s):`);
+  console.error(`Static artifact check failed with ${errors.length} issue(s):`);
 
   for (const error of errors) {
     console.error(`- ${error}`);
@@ -433,5 +433,5 @@ if (errors.length > 0) {
 
   process.exitCode = 1;
 } else {
-  console.log(`${path.relative(process.cwd(), publicDirectory)}/ artifact check passed for ${htmlFiles.length} HTML file(s).`);
+  console.log(`${path.relative(process.cwd(), artifactDirectory)}/ artifact check passed for ${htmlFiles.length} HTML file(s).`);
 }

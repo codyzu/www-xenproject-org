@@ -7,7 +7,7 @@ import path from "path";
 const params = { logErrors: true };
 const providers = [new XenProvider(), new WindowPVDrivers(), new MirageOSProvider()];
 const OUTPUT_FILE = "assets/data/downloads.json";
-const OUTPUT_FILE_STATIC = "static/data/downloads.json";
+const OUTPUT_FILE_PUBLIC = "public/data/downloads.json";
 
 async function getVersions(provider, existingVersionMap) {
   try {
@@ -69,8 +69,8 @@ async function main() {
 
   const output_json = JSON.stringify(output, null, 2) + "\n";
   await fs.writeFile(OUTPUT_FILE, output_json);
-  await fs.mkdir(path.dirname(OUTPUT_FILE_STATIC), { recursive: true });
-  await fs.writeFile(OUTPUT_FILE_STATIC, output_json);
+  await fs.mkdir(path.dirname(OUTPUT_FILE_PUBLIC), { recursive: true });
+  await fs.writeFile(OUTPUT_FILE_PUBLIC, output_json);
 }
 
 main().catch((error) => {
