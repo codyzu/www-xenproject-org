@@ -1,6 +1,6 @@
 # Hugo-to-Astro copy parity
 
-`tests/astro/copy-parity.spec.ts` uses Playwright's native ARIA snapshots with global `deep-equal` child matching to protect the authored content under `<main>` on every route in `scripts/astro/migrated-routes.ts`. Hugo supplied the initial migration baseline. Each route was audited, accidental losses were restored, and the resulting Astro accessibility tree is now the approved baseline enforced by CI.
+`tests/astro/copy-parity.spec.ts` uses Playwright's native ARIA snapshots with global `deep-equal` child matching to protect the authored content under `<main>` on every route in `scripts/astro/content-routes.ts`. Hugo supplied the initial migration baseline. Each route was audited, accidental losses were restored, and the resulting Astro accessibility tree is now available as a manual regression baseline. Default CI now relies on the static artifact contract, route smoke tests, and explicit legacy URL preservation checks.
 
 The audit complements screenshot tests: screenshots protect layout, while ARIA snapshots protect paragraphs, headings, lists, links and destinations, controls, and image alt text. Snapshots use Playwright's accessibility tree without rewriting text or flattening semantic structure. The only preprocessing is:
 

@@ -8,9 +8,9 @@ To refresh the data locally:
 npm run downloads
 ```
 
-Review the generated changes in `assets/data/downloads.json`,
-`assets/data/downloads-latest.json`, and `static/data/downloads.json` before
-committing them.
+Review the generated changes in `assets/data/downloads.json` and
+`static/data/downloads.json` before committing them. The downloads page derives
+its latest-release view from the checked-in archive at build time.
 
 The download scripts may need provider credentials or network access depending
 on the upstream source being refreshed.

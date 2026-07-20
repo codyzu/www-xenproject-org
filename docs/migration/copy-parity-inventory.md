@@ -1,6 +1,6 @@
 # Copy parity inventory
 
-This inventory records the initial audit of every route in `migratedRoutes` before CI enforcement. “Restored” means shortened Hugo copy was put back into the existing Astro component structure. “Approved” refers to a reviewed entry in `data/copy-parity-exceptions.yaml` and the corresponding ARIA snapshot diff.
+This inventory records the initial audit of every route in `contentRoutes` before CI enforcement. “Restored” means shortened Hugo copy was put back into the existing Astro component structure. “Approved” refers to a reviewed entry in `data/copy-parity-exceptions.yaml` and the corresponding ARIA snapshot diff.
 
 | Route | Result |
 | --- | --- |

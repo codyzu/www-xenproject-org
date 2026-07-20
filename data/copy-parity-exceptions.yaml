@@ -9,7 +9,7 @@ exceptions:
     route: /all/
     kind: redesigned-index
     scope: generated page inventory
-    reason: Astro lists canonical migrated routes and redirects instead of retired legacy taxonomy and generated section pages.
+    reason: Astro lists canonical content routes and redirects instead of retired legacy taxonomy and generated section pages.
   - id: contribute-astro-index
     route: /contribute/
     kind: redesigned-index

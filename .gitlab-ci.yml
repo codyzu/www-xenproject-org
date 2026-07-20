@@ -15,12 +15,9 @@ default:
   image: node:24.16.0-bookworm
 
 variables:
-  GIT_SUBMODULE_STRATEGY: recursive
-  HUGO_ENV: production
   SITE_URL: https://beta.xenproject.org
   # Shallow clones are sufficient for the Astro build and validation jobs.
   GIT_DEPTH: 1
-  GIT_SUBMODULE_DEPTH: 1
 
 test:
   script:
@@ -55,29 +52,6 @@ deploy:
       - site.tar.gz
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-  cache:
-    - key: npm-cache-$CI_COMMIT_REF_SLUG
-      fallback_keys:
-        - npm-cache-$CI_DEFAULT_BRANCH
-        - npm-cache-default
-      paths:
-        - .npm/
-
-copy-parity:
-  script:
-    - node --version
-    - npm ci --cache .npm --prefer-offline
-    - npx playwright install --with-deps chromium
-    - npm run build
-    - npm run test:astro:copy-parity
-  artifacts:
-    when: always
-    paths:
-      - playwright-report/
-      - tests/astro-results/
-  rules:
-    - if: $CI_COMMIT_BRANCH
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   cache:
     - key: npm-cache-$CI_COMMIT_REF_SLUG

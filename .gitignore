@@ -1,9 +1,7 @@
 /public
-/resources
+/resources/_gen
 node_modules
-*storybook.log
 mockups
-storybook-static
 .astro
 dist-astro
 playwright-report
@@ -15,13 +13,6 @@ tests/astro-results
 .env.local
 .env.*.local
 thumbs.db
-
-hugo_stats.json
-hugo_build.lock
-.hugo_build.lock
-
-# unocss and vite bundle output
-themes/xen-project/static
 
 # Research papers generated files
 content/research/*.md

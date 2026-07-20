@@ -1,5 +1,5 @@
 ---
-import {migratedRoutes} from '../../../scripts/astro/migrated-routes';
+import {contentRoutes} from '../../../scripts/astro/content-routes';
 import {redirects} from '../../data/redirects';
 import LegacyLayout from '../../layouts/LegacyLayout.astro';
 
@@ -7,7 +7,7 @@ const routeLabel = (route: string) => route === '/'
   ? 'Xen Project'
   : route.split('/').filter(Boolean).at(-1)?.split('-').map((part) => `${part[0].toUpperCase()}${part.slice(1)}`).join(' ') ?? route;
 const entries = [
-  ...migratedRoutes.map((route) => ({route, label: routeLabel(route), type: 'Page'})),
+  ...contentRoutes.map((route) => ({route, label: routeLabel(route), type: 'Page'})),
   ...redirects.map(({source, target}) => ({route: source, label: `${routeLabel(source)} → ${target}`, type: 'Redirect'})),
 ].toSorted((a, b) => a.route.localeCompare(b.route));
 ---

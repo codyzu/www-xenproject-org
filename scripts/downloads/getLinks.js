@@ -8,7 +8,6 @@ const params = { logErrors: true };
 const providers = [new XenProvider(), new WindowPVDrivers(), new MirageOSProvider()];
 const OUTPUT_FILE = "assets/data/downloads.json";
 const OUTPUT_FILE_STATIC = "static/data/downloads.json";
-const LATEST_OUTPUT_FILE = "assets/data/downloads-latest.json";
 
 async function getVersions(provider, existingVersionMap) {
   try {
@@ -50,56 +49,6 @@ async function getProviderData(provider, existingVersions = []) {
   return { name: provider.name, key: provider.key, versions: allVersions };
 }
 
-function createLatestVersionsData(providerData) {
-  const downloadLatest = [];
-
-  providerData.forEach((provider) => {
-    const defaultVersion = provider.versions.find((version) => version.name === "default");
-    let latestVersions = [];
-
-    if (defaultVersion) {
-      latestVersions = [defaultVersion];
-    } else {
-      const versionGroups = {};
-
-      provider.versions.forEach((version) => {
-        if (!version.name.includes("beta") && !version.name.includes("rc")) {
-          const [major, minor] = version.name.split(".");
-          const groupKey = `${major}.${minor}`;
-
-          if (!versionGroups[groupKey]) {
-            versionGroups[groupKey] = {
-              name: groupKey,
-              subversions: [],
-            };
-          }
-          versionGroups[groupKey].subversions.push(version);
-        }
-      });
-
-      const sortedGroups = Object.keys(versionGroups).sort((a, b) =>
-        b.localeCompare(a, undefined, { numeric: true, sensitivity: "base" }),
-      );
-      const latestTwoGroups = sortedGroups.slice(0, 2);
-
-      latestVersions = latestTwoGroups.map((group) => ({
-        name: versionGroups[group].name,
-        subversions: versionGroups[group].subversions.sort((a, b) =>
-          b.name.localeCompare(a.name, undefined, { numeric: true, sensitivity: "base" }),
-        ),
-      }));
-    }
-
-    downloadLatest.push({
-      name: provider.name,
-      key: provider.key,
-      versions: latestVersions,
-    });
-  });
-
-  return downloadLatest;
-}
-
 async function main() {
   let existingData = [];
   try {
@@ -122,9 +71,6 @@ async function main() {
   await fs.writeFile(OUTPUT_FILE, output_json);
   await fs.mkdir(path.dirname(OUTPUT_FILE_STATIC), { recursive: true });
   await fs.writeFile(OUTPUT_FILE_STATIC, output_json);
-
-  const latest_json = JSON.stringify(createLatestVersionsData(output), null, 2) + "\n";
-  await fs.writeFile(LATEST_OUTPUT_FILE, latest_json);
 }
 
 main().catch((error) => {

@@ -60,7 +60,6 @@
     "js-yaml": "^4.2.0",
     "marked": "^18.0.5",
     "prettier": "^3.3.3",
-    "prettier-plugin-go-template": "^0.0.15",
     "serve": "^14.2.4",
     "typescript": "^6.0.3",
     "unocss": "^66.1.0-beta.12",
@@ -76,7 +75,6 @@
     "react-dom": "^19.1.0",
     "react-globe.gl": "^2.33.2",
     "recharts": "^2.15.3",
-    "remark-gfm": "^4.0.0",
     "sass": "^1.80.6",
     "sharp": "^0.33.2"
   }

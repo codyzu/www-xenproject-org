@@ -2,11 +2,12 @@ import fs from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
 import {load} from 'cheerio';
-import {migratedRedirectRoutes, standaloneContentRoutes} from './migrated-routes.ts';
+import {contentRoutes, ownedRedirectRoutes, standaloneContentRoutes} from './content-routes.ts';
 
 const outputArgument = process.argv.find((argument) => !argument.startsWith('--') && argument !== process.argv[0] && argument !== process.argv[1]);
 const standalone = process.argv.includes('--standalone');
 const publicDirectory = path.resolve(outputArgument ?? 'public');
+const staticSourceDirectory = path.resolve('static');
 const expectedSite = new URL(process.env.SITE_URL ?? 'https://beta.xenproject.org');
 const internalHosts = new Set([expectedSite.host]);
 const delegatedInternalPaths = [
@@ -120,6 +121,33 @@ const localPathCandidates = pathname => {
 
 const localPathExists = pathname =>
   localPathCandidates(pathname).some(candidate => fs.existsSync(candidate));
+
+const staticSourceFileToUrlPath = filePath =>
+  `/${path.relative(staticSourceDirectory, filePath).split(path.sep).join('/')}`;
+
+const isDotfilePath = filePath =>
+  path.relative(staticSourceDirectory, filePath).split(path.sep).some(part => part.startsWith('.'));
+
+const assertLegacyUrlContract = () => {
+  for (const route of [...contentRoutes, ...ownedRedirectRoutes]) {
+    if (!localPathExists(route)) {
+      errors.push(`${route}: missing legacy route or redirect output`);
+    }
+  }
+
+  if (!fs.existsSync(staticSourceDirectory)) {
+    errors.push('static/: missing static source directory for legacy public URL contract');
+    return;
+  }
+
+  for (const staticFile of walk(staticSourceDirectory).filter(filePath => !isDotfilePath(filePath))) {
+    const urlPath = staticSourceFileToUrlPath(staticFile);
+
+    if (!localPathExists(urlPath)) {
+      errors.push(`${urlPath}: missing legacy static asset output`);
+    }
+  }
+};
 
 const assertLocalTargetExists = (filePath, rawValue, kind) => {
   const pathname = normalizeUrl(rawValue, filePath);
@@ -260,7 +288,7 @@ const assertSitemap = () => {
       errors.push(`sitemap: hidden route must not be listed: "${url.pathname}"`);
     }
 
-    if (migratedRedirectRoutes.includes(url.pathname)) {
+    if (ownedRedirectRoutes.includes(url.pathname)) {
       errors.push(`sitemap: redirect source must not be listed: "${url.pathname}"`);
     }
   }
@@ -276,11 +304,13 @@ if (!fs.existsSync(path.join(publicDirectory, '404.html'))) {
 
 const htmlFiles = walk(publicDirectory).filter(isHtmlFile);
 
+assertLegacyUrlContract();
+
 if (standalone) {
   const routeFile = route => route === '/' ? 'index.html' : `${route.replace(/^\//, '')}index.html`;
   const expectedHtml = new Set([
     ...standaloneContentRoutes.map(routeFile),
-    ...migratedRedirectRoutes.map(routeFile),
+    ...ownedRedirectRoutes.map(routeFile),
     '404.html',
     'all/index.html',
     'headerfooter.html',

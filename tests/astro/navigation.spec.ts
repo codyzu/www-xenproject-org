@@ -1,5 +1,5 @@
 import {expect, type Locator, type Page, test} from '@playwright/test';
-import {migratedRoutes} from '../../scripts/astro/migrated-routes.ts';
+import {contentRoutes} from '../../scripts/astro/content-routes.ts';
 import {mockGhostApi} from './fixtures/ghost-posts';
 
 const menuSections = [
@@ -152,8 +152,8 @@ test.describe('Astro spike navigation shell', () => {
     }
   });
 
-  for (const route of migratedRoutes) {
-    test(`renders migrated route shell for ${route}`, async ({page}) => {
+  for (const route of contentRoutes) {
+    test(`renders content route shell for ${route}`, async ({page}) => {
       await page.goto(route);
 
       await expect(page.locator('header')).toBeVisible();

@@ -25,8 +25,8 @@ const downloadReleaseSchema = z.object({
 const downloadVersionSchema = z.union([
   downloadReleaseSchema,
   z.object({
-    name: z.literal('default'),
     link: z.literal(''),
+    name: z.literal('default'),
     files: z.array(downloadFileSchema),
   }),
   z.object({
@@ -44,10 +44,49 @@ const downloadGroupSchema = z.object({
 const downloadsSchema = z.array(downloadGroupSchema);
 
 export type DownloadGroup = z.infer<typeof downloadGroupSchema>;
+type DownloadRelease = z.infer<typeof downloadReleaseSchema>;
+
 const allDownloadsJson = JSON.parse(readFileSync(path.resolve('assets/data/downloads.json'), 'utf8')) as unknown;
-const latestDownloadsJson = JSON.parse(
-  readFileSync(path.resolve('assets/data/downloads-latest.json'), 'utf8'),
-) as unknown;
 
 export const allDownloads = downloadsSchema.parse(allDownloadsJson);
-export const latestDownloads = downloadsSchema.parse(latestDownloadsJson);
+
+const isDownloadRelease = (version: DownloadGroup['versions'][number]): version is DownloadRelease =>
+  'link' in version && version.link !== '';
+
+const compareVersionsDescending = (a: string, b: string) =>
+  b.localeCompare(a, undefined, {numeric: true, sensitivity: 'base'});
+
+const latestVersionsForGroup = (group: DownloadGroup): DownloadGroup['versions'] => {
+  const defaultVersion = group.versions.find((version) => version.name === 'default');
+
+  if (defaultVersion) {
+    return [defaultVersion];
+  }
+
+  const versionGroups = new Map<string, DownloadRelease[]>();
+
+  for (const version of group.versions) {
+    if (!isDownloadRelease(version) || version.name.includes('beta') || version.name.includes('rc')) {
+      continue;
+    }
+
+    const [major, minor] = version.name.split('.');
+    const groupName = `${major}.${minor}`;
+    versionGroups.set(groupName, [...(versionGroups.get(groupName) ?? []), version]);
+  }
+
+  return [...versionGroups]
+    .sort(([a], [b]) => compareVersionsDescending(a, b))
+    .slice(0, 2)
+    .map(([name, subversions]) => ({
+      name,
+      subversions: subversions.toSorted((a, b) => compareVersionsDescending(a.name, b.name)),
+    }));
+};
+
+export const latestDownloads = downloadsSchema.parse(
+  allDownloads.map((group) => ({
+    ...group,
+    versions: latestVersionsForGroup(group),
+  })),
+);

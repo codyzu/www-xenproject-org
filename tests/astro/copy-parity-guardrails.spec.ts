@@ -22,7 +22,7 @@ test.describe('copy-parity guardrails', () => {
     expect((failure as Error).message).toContain('toMatchAriaSnapshot');
   });
 
-  test('removing copy from a migrated route fails its committed baseline', async ({page}) => {
+  test('removing copy from a content route fails its committed baseline', async ({page}) => {
     await page.goto('/about/', {waitUntil: 'domcontentloaded'});
     const main = page.getByRole('main');
     await prepareCopyParitySnapshot(main);

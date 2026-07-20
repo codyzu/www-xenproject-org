@@ -23,7 +23,7 @@ Set `SITE_URL` when generated absolute URLs should use an origin other than
 
 Astro is the only site generator. It writes the complete static artifact to
 `public/`. The route inventory lives in
-[`scripts/astro/migrated-routes.ts`](scripts/astro/migrated-routes.ts), and
+[`scripts/astro/content-routes.ts`](scripts/astro/content-routes.ts), and
 aliases and redirects live in [`data/redirects.yaml`](data/redirects.yaml).
 
 To build and validate the artifact:

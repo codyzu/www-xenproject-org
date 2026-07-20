@@ -1,7 +1,7 @@
 import {getOwnedRedirects} from '../../src/data/redirects.ts';
 
-// Routes Astro owns in the integrated spike artifact.
-export const migratedRoutes = [
+// Astro-owned content routes included in the standalone static artifact.
+export const contentRoutes = [
   '/',
   '/all/',
   '/about/',
@@ -51,5 +51,5 @@ export const redesignRoutes = [
   '/technology/safety/',
 ] as const satisfies readonly string[];
 
-export const migratedRedirectRoutes = getOwnedRedirects(migratedRoutes).map((redirect) => redirect.source);
-export const standaloneContentRoutes = [...migratedRoutes, ...redesignRoutes] as const satisfies readonly string[];
+export const ownedRedirectRoutes = getOwnedRedirects(contentRoutes).map((redirect) => redirect.source);
+export const standaloneContentRoutes = [...contentRoutes, ...redesignRoutes] as const satisfies readonly string[];
