@@ -16,8 +16,8 @@ test.describe('Internal design system', () => {
     await expect(main.getByRole('heading', {name: 'A standard next step for redesigned pages.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Compact highlights for important context.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Layered architecture is the primary visual language.'})).toBeVisible();
-    await expect(main.getByRole('heading', {name: 'Exploded'})).toBeVisible();
-    await expect(main.getByRole('heading', {name: 'Assembled'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Separated layers'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Compact stack'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Pages should feel related, not templated.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Solution-page arc'})).toBeVisible();
     await expect(main.locator('#internal-layered-platform[data-illustration-scene="layered-platform"]')).toBeVisible();
