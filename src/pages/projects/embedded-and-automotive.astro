@@ -478,6 +478,31 @@ const resources = [
           </Stack>
         </Surface>
       </div>
+      <Surface
+        as="aside"
+        tone="2"
+        border="strong"
+        radius="lg"
+        shadow="sm"
+        padding="lg"
+        class="xp-agl-spotlight"
+      >
+        <div class="xp-agl-spotlight__layout">
+          <Stack gap="3" class="uno-min-w-0">
+            <div class="uno-flex uno-items-center uno-gap-2">
+              <span class="i-carbon-document uno-shrink-0 uno-text-xl uno-text-xp-accent-primary" aria-hidden="true"></span>
+              <Text as="span" size="eyebrow" tone="accent-primary">Reference architecture spotlight</Text>
+            </div>
+            <Heading as="h2" size="heading-m">Automotive Grade Linux shows the stack in practice.</Heading>
+            <Text size="caption">
+              Automotive Grade Linux's Software Defined Vehicle reference architecture shows how Xen, Linux, Zephyr, platform services, and vehicle applications can fit together in a broader open automotive stack. It offers a concrete industry example of these separation and platform-composition concepts without prescribing a single Xen architecture.
+            </Text>
+          </Stack>
+          <Button href="https://www.automotivelinux.org/announcements/sodev/" variant="secondary" class="uno-w-full sm:uno-w-auto sm:uno-shrink-0 sm:uno-justify-self-start">
+            Explore the AGL SDV architecture
+          </Button>
+        </div>
+      </Surface>
     </Container>
   </Section>
 
@@ -502,36 +527,31 @@ const resources = [
           </Text>
         </Stack>
         <Split align="start" class="xp-ecosystem-layout">
-          <Stack gap="4">
-            <PlatformLayersDiagram
-              id="open-platform-ecosystem-diagram"
-              {...embeddedAutomotiveEcosystemLayersDiagram}
-            />
-            <Callout
-              title="Reference architecture"
-              description="AGL's Software Defined Vehicle reference architecture is useful because it shows how Xen, Zephyr, Linux, and automotive application layers can fit into a broader open platform model."
-              action={{label: 'See the AGL SDV reference architecture', href: 'https://www.automotivelinux.org/announcements/sodev/', variant: 'secondary'}}
-            >
-              <span slot="icon" class="i-carbon-document"></span>
-            </Callout>
-          </Stack>
-          <Grid columns="2" gap="4">
-            {ecosystemRoles.map(role => (
-              <Card>
-                <Stack gap="4">
-                  <span class:list={[role.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
-                  <Stack gap="3">
-                    <span class="xp-role-group">{role.group}</span>
-                    <Heading as="h3" size="heading-m">{role.title}</Heading>
-                    <Text size="small">{role.description}</Text>
-                  </Stack>
-                  {role.href && (
-                    <Button href={role.href} variant="text" class="uno-self-start">
-                      {role.linkLabel ?? 'Learn more'}
-                    </Button>
-                  )}
-                </Stack>
-              </Card>
+          <PlatformLayersDiagram
+            id="open-platform-ecosystem-diagram"
+            {...embeddedAutomotiveEcosystemLayersDiagram}
+          />
+          <Grid columns="2" gap="4" class="xp-ecosystem-role-groups">
+            {['Core platform', 'Build and domain ecosystem'].map(group => (
+              <Stack gap="2" class="xp-ecosystem-role-group">
+                <Heading as="h3" size="heading-m" tone="muted">{group}</Heading>
+                {ecosystemRoles.filter(role => role.group === group).map(role => (
+                  <Card>
+                    <Stack gap="3">
+                      <span class:list={[role.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
+                      <Stack gap="3">
+                        <Heading as="h4" size="heading-m">{role.title}</Heading>
+                        <Text size="small">{role.description}</Text>
+                      </Stack>
+                      {role.href && (
+                        <Button href={role.href} variant="text" class="uno-self-start">
+                          {role.linkLabel ?? 'Learn more'}
+                        </Button>
+                      )}
+                    </Stack>
+                  </Card>
+                ))}
+              </Stack>
             ))}
           </Grid>
         </Split>
@@ -601,19 +621,21 @@ const resources = [
 
 <style>
   :global(.xp-ecosystem-layout) {
-    align-items: stretch;
+    grid-template-columns: minmax(0, 1fr) !important;
+    align-items: start;
   }
 
-  .xp-role-group {
-    display: inline-flex;
-    width: fit-content;
-    max-width: 100%;
-    color: var(--xp-text-muted);
-    font-size: 0.7rem;
-    font-weight: 650;
-    letter-spacing: 0.04em;
-    line-height: 1.2;
-    text-transform: uppercase;
+  :global(.xp-ecosystem-role-groups),
+  :global(.xp-ecosystem-role-group) {
+    align-items: start;
+  }
+
+  :global(.xp-ecosystem-role-group > *) {
+    width: 100%;
+  }
+
+  :global(.xp-ecosystem-role-group > :first-child) {
+    margin-bottom: 0.25rem;
   }
 
   :global(.xp-automotive-layout) {
@@ -624,6 +646,19 @@ const resources = [
   :global(.xp-automotive-safety) {
     display: flex;
     align-items: flex-start;
+  }
+
+  :global(.xp-agl-spotlight) {
+    margin-top: clamp(1.5rem, 3vw, 2.25rem);
+  }
+
+  .xp-agl-spotlight__layout {
+    display: grid;
+    width: 100%;
+    max-width: 66rem;
+    min-width: 0;
+    margin-inline: auto;
+    gap: 1.25rem;
   }
 
   :global(.xp-related-section) {
@@ -658,9 +693,18 @@ const resources = [
     :global(.xp-automotive-tooling) {
       grid-area: tooling;
     }
+  }
+
+  @media (min-width: 1280px) {
+    .xp-agl-spotlight__layout {
+      grid-template-columns: minmax(0, 46rem) auto;
+      align-items: end;
+      justify-content: start;
+      column-gap: clamp(1.25rem, 2vw, 1.75rem);
+    }
 
     :global(.xp-ecosystem-layout) {
-      grid-template-columns: minmax(0, 1.08fr) minmax(36rem, 0.92fr);
+      grid-template-columns: minmax(0, 0.98fr) minmax(39rem, 1.02fr) !important;
     }
   }
 </style>

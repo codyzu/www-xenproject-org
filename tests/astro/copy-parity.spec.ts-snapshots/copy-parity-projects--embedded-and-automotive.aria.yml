@@ -6,21 +6,24 @@
     - /url: /technology/architecture
   - link "Start contributing":
     - /url: /contribute/get-started
-  - figure "Platform layers":
-    - paragraph: Platform layers
+  - figure "Mixed-criticality platform":
+    - paragraph: Mixed-criticality platform
     - paragraph: User space
     - paragraph: Applications
-    - paragraph: Application software sits above platform-owned boundaries instead of defining them.
+    - paragraph: Mixed workloads stay above platform-owned boundaries, with responsibilities kept explicit.
     - paragraph: Domains
     - paragraph: Guest systems
-    - paragraph: Linux, RTOS workloads, and service domains can keep separate runtime and hardware assumptions.
-    - text: Linux RTOS Services
+    - paragraph: Linux, RTOS workloads, and service domains retain separate runtime and ownership assumptions.
+    - list:
+      - listitem: Linux
+      - listitem: RTOS
+      - listitem: Services
     - paragraph: Isolation boundary
     - paragraph: Xen hypervisor
-    - paragraph: Scheduling, isolation, device assignment, and platform control stay visible close to hardware.
+    - paragraph: Scheduling, runtime separation, device assignment, and platform control stay visible.
     - paragraph: Shared compute
     - paragraph: Hardware platform
-    - paragraph: Compute, memory, interrupts, peripherals, and SoC integration remain explicit system design inputs.
+    - paragraph: Compute, memory, interrupts, and SoC integration remain explicit inputs for long-lived platforms.
     - paragraph: Xen separates application workloads, guest domains, hypervisor control, and shared hardware into visible platform layers.
   - paragraph: Why virtualization matters here
   - heading "Consolidate the platform without blurring the boundaries." [level=2]
@@ -127,6 +130,12 @@
     - paragraph: Xen source code is not itself safety certified. Through the Xen Safety Committee, project participants collaborate on engineering practices, documentation, tooling, evidence, and supporting artifacts for safety-conscious and certification-oriented development. Product certification still depends on the complete system, process, integration context, and safety case.
   - paragraph: Process tooling
   - paragraph: The project also collaborates with BUGSENG on static analysis with ECLAIR, supporting MISRA C compliance efforts and ongoing code quality improvement.
+  - complementary:
+    - text: Reference architecture spotlight
+    - heading "Automotive Grade Linux shows the stack in practice." [level=2]
+    - paragraph: Automotive Grade Linux's Software Defined Vehicle reference architecture shows how Xen, Linux, Zephyr, platform services, and vehicle applications can fit together in a broader open automotive stack. It offers a concrete industry example of these separation and platform-composition concepts without prescribing a single Xen architecture.
+    - link "Explore the AGL SDV architecture":
+      - /url: https://www.automotivelinux.org/announcements/sodev/
   - paragraph: Why architects choose Xen
   - heading "Evaluation starts with architecture, evidence, and integration context." [level=2]
   - paragraph: After the separation model is clear, teams can evaluate Xen through architecture, isolation resources, guest model, governance, and public engineering process.
@@ -158,63 +167,67 @@
   - paragraph: Open platform ecosystem
   - heading "Building complete embedded platforms" [level=2]
   - paragraph: Most embedded products are built from multiple open source projects, not one operating system. Xen provides the virtualization and isolation boundary that lets Linux, Yocto Project, Zephyr, AGL, and platform software play complementary roles without hiding ownership or integration decisions.
-  - figure "Platform composition":
-    - paragraph: Platform composition
+  - figure "Open platform composition":
+    - paragraph: Open platform composition
     - paragraph: Software layer
-    - paragraph: Applications and services
-    - paragraph: Vehicle and platform services run above guest operating environments.
-    - text: IVI Diagnostics OTA Fleet mgmt
+    - paragraph: Vehicle applications and services
+    - paragraph: Vehicle applications and platform services run above distinct guest environments.
+    - list:
+      - listitem: IVI
+      - listitem: Diagnostics
+      - listitem: OTA
+      - listitem: Fleet mgmt
     - paragraph: Operating environments
     - paragraph: Guest systems
     - paragraph: Guest operating environments keep runtime and integration roles separate.
-    - text: Linux built with Yocto Zephyr / RTOS Service domains
+    - list:
+      - listitem: Linux built with Yocto
+      - listitem: Zephyr / RTOS
+      - listitem: Service domains
     - paragraph: Isolation boundary
     - paragraph: Xen virtualization
     - paragraph: Xen makes isolation and hardware ownership explicit.
-    - text: Isolation CPU scheduling Device ownership
+    - list:
+      - listitem: Isolation
+      - listitem: CPU scheduling
+      - listitem: Device ownership
     - paragraph: Shared compute
     - paragraph: Hardware / SoC platform
     - paragraph: The SoC supplies the resources every layer composes around.
-    - text: CPU Memory Devices Interrupts
+    - list:
+      - listitem: CPU
+      - listitem: Memory
+      - listitem: Devices
     - paragraph: A complete embedded or automotive platform can place applications and services above guest systems, use Xen as the virtualization and isolation layer, and run on shared hardware or SoC resources.
-  - complementary:
-    - heading "Reference architecture" [level=2]
-    - paragraph: AGL's Software Defined Vehicle reference architecture is useful because it shows how Xen, Zephyr, Linux, and automotive application layers can fit into a broader open platform model.
-    - link "See the AGL SDV reference architecture":
-      - /url: https://www.automotivelinux.org/announcements/sodev/
+  - heading "Core platform" [level=3]
   - article:
-    - text: Core platform
-    - heading "Xen" [level=3]
+    - heading "Xen" [level=4]
     - paragraph: Provides the virtualization and isolation boundary between guest systems and shared hardware.
     - link "Visit project":
       - /url: /projects/hypervisor
   - article:
-    - text: Core platform
-    - heading "Linux" [level=3]
+    - heading "Linux" [level=4]
     - paragraph: Runs rich operating-system services, middleware, application environments, and integration tooling.
     - link "Explore architecture":
       - /url: /technology/architecture
   - article:
-    - text: Core platform
-    - heading "Zephyr" [level=3]
+    - heading "Zephyr" [level=4]
     - paragraph: Supports RTOS-style embedded workloads that may need a smaller runtime than Linux.
     - link "Visit Zephyr Project":
       - /url: https://www.zephyrproject.org/
+  - heading "Build and domain ecosystem" [level=3]
   - article:
-    - text: Build and domain ecosystem
-    - heading "Yocto Project" [level=3]
+    - heading "Yocto Project" [level=4]
     - paragraph: Helps teams construct embedded Linux distributions and repeatable images for Linux guests.
     - link "Visit Yocto Project":
       - /url: https://www.yoctoproject.org/
   - article:
-    - text: Build and domain ecosystem
-    - heading "Automotive Grade Linux" [level=3]
+    - heading "Automotive Grade Linux" [level=4]
     - paragraph: Provides an open automotive Linux platform for IVI and software-defined vehicle software stacks.
     - link "Visit AGL":
       - /url: https://www.automotivelinux.org/
   - article:
-    - text: Build and domain ecosystem
-    - heading "Hardware and SoC platform" [level=3]
+    - heading "Hardware and SoC platform" [level=4]
     - paragraph: Supplies the compute, memory, interrupts, devices, and peripherals the platform composes around.
   - paragraph: Related resources
   - heading "Follow the evaluation path from architecture to participation." [level=2]
