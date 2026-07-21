@@ -461,6 +461,20 @@ universal diagram plugins, and interactive diagram builders. Do not extend the
 diagram API speculatively. Add new capabilities only when a real page cannot
 communicate its story clearly without them.
 
+## Primary Navigation Interaction
+
+The shared desktop/tablet header uses disclosure navigation. Each complete
+top-level item (label, padding, and chevron) is one button that controls its
+mega-menu; the chevron is only a visual state indicator. Hover opens a menu
+only when the device reports both hover support and a fine pointer. Click,
+Enter, or Space toggles it for every input type, so touch and coarse-pointer
+users never have to target a separate icon. Each panel begins with a clearly
+named section overview link that provides the top-level landing-page route.
+
+Only one mega-menu is open at a time. Escape closes it and restores focus to
+its trigger, while an outside pointer press closes it without moving focus.
+The narrow mobile header continues to use its details-based accordion.
+
 ## Design Playground
 
 The internal page at `/internal/design-system/` is the lightweight Astro-native

@@ -57,32 +57,19 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
         <ul class="uno-m-0 uno-flex uno-list-none uno-items-center uno-gap-1 uno-p-0">
           {visibleNavigationItems.map((item, index) => (
             <li class="xp-nav-item uno-relative" data-nav-item data-popover-id={popoverId(index)}>
-              <div class="xp-nav-trigger uno-flex uno-items-center uno-rounded-xp-md">
-                <a
-                  href={item.href}
-                  target={item.target}
-                  rel={linkRel(item)}
-                  data-nav-link
-                  class:list={[
-                    'xen-focus xp-nav-link uno-inline-flex uno-rounded-xp-md uno-px-3 uno-py-2 uno-text-sm uno-font-semibold uno-text-xp-text-secondary uno-no-underline',
-                    (isActiveLink(item) || hasActiveChild(item)) && 'uno-bg-xp-surface-2 uno-text-xp-text-primary',
-                  ]}
-                  aria-current={isActiveLink(item) ? 'page' : hasActiveChild(item) ? 'true' : undefined}
-                >
-                  {item.name}
-                </a>
-                {hasPopover(item) && (
-                  <button
-                    type="button"
-                    data-nav-toggle
-                    class="xen-focus xp-nav-disclosure uno-ml-[-0.375rem] uno-inline-flex uno-h-9 uno-w-7 uno-items-center uno-justify-center uno-rounded-xp-md uno-border-0 uno-bg-transparent uno-p-0 uno-text-xp-text-muted"
-                    aria-label={`Open ${item.name} navigation`}
-                    aria-expanded="false"
-                  >
-                    <span class="i-carbon-chevron-down xp-nav-chevron uno-h-4 uno-w-4" aria-hidden="true"></span>
-                  </button>
-                )}
-              </div>
+              <button
+                type="button"
+                data-nav-trigger
+                class:list={[
+                  'xen-focus xp-nav-trigger uno-inline-flex uno-min-h-11 uno-items-center uno-gap-1 uno-rounded-xp-md uno-border-0 uno-bg-transparent uno-px-3 uno-py-2 uno-text-sm uno-font-semibold uno-text-xp-text-secondary',
+                  (isActiveLink(item) || hasActiveChild(item)) && 'uno-bg-xp-surface-2 uno-text-xp-text-primary',
+                ]}
+                aria-expanded="false"
+                aria-controls={popoverId(index)}
+              >
+                <span>{item.name}</span>
+                <span class="i-carbon-chevron-down xp-nav-chevron uno-h-4 uno-w-4" aria-hidden="true"></span>
+              </button>
               {hasPopover(item) && (
                 <div id={popoverId(index)} popover="manual" data-nav-popover class="xp-nav-popover xen-layered-popover uno-m-0 uno-w-[min(64rem,calc(100vw-2rem))] uno-p-0 uno-text-xp-text-primary">
                   <div class="uno-grid uno-gap-6 uno-p-6 lg:uno-grid-cols-[minmax(14rem,0.8fr)_minmax(0,2fr)]">
@@ -92,8 +79,9 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
                         target={item.target}
                         rel={linkRel(item)}
                         class="xen-popover-title"
+                        aria-current={isActiveLink(item) ? 'page' : undefined}
                       >
-                        {item.name}
+                        {item.name} overview
                       </a>
                       {item.description && (
                         <p class="xen-popover-description">{item.description}</p>
@@ -261,17 +249,16 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
     const popover = popoverId ? document.getElementById(popoverId) : null;
 
     return {
-      link: item.querySelector<HTMLElement>('[data-nav-link]'),
       popover,
-      toggle: item.querySelector<HTMLButtonElement>('[data-nav-toggle]'),
+      trigger: item.querySelector<HTMLButtonElement>('[data-nav-trigger]'),
     };
   };
 
   const isOpen = (popover: HTMLElement | null) => popover?.matches(':popover-open') ?? false;
 
   const setExpanded = (item: HTMLElement, expanded: boolean) => {
-    const {toggle} = getParts(item);
-    toggle?.setAttribute('aria-expanded', String(expanded));
+    const {trigger} = getParts(item);
+    trigger?.setAttribute('aria-expanded', String(expanded));
     item.toggleAttribute('data-nav-open', expanded);
   };
 
@@ -279,7 +266,7 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
     popover?.querySelector<HTMLElement>('a[href], button:not([disabled])');
 
   const closeItem = (item: HTMLElement, options: {returnFocus?: boolean} = {}) => {
-    const {popover, toggle} = getParts(item);
+    const {popover, trigger} = getParts(item);
 
     if (!popover || !isOpen(popover)) {
       setExpanded(item, false);
@@ -290,7 +277,7 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
     setExpanded(item, false);
 
     if (options.returnFocus) {
-      (returnFocusTargets.get(item) ?? toggle)?.focus();
+      (returnFocusTargets.get(item) ?? trigger)?.focus();
     }
 
     if (activeItem === item) {
@@ -339,8 +326,8 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
   };
 
   for (const item of navItems) {
-    const {link, popover, toggle} = getParts(item);
-    if (!popover || !toggle) continue;
+    const {popover, trigger} = getParts(item);
+    if (!popover || !trigger) continue;
 
     const openForHover = () => {
       if (!hoverQuery?.matches) return;
@@ -360,25 +347,22 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
     popover.addEventListener('pointerenter', () => cancelClose(item));
     popover.addEventListener('pointerleave', closeForHover);
 
-    toggle.addEventListener('click', (event) => {
-      event.preventDefault();
+    trigger.addEventListener('click', () => {
       if (isOpen(popover)) {
         item.dataset.navHoverSuppressed = 'true';
         closeItem(item, {returnFocus: true});
       } else {
         delete item.dataset.navHoverSuppressed;
-        openItem(item, {trigger: toggle});
+        openItem(item, {trigger});
       }
     });
 
-    for (const trigger of [link, toggle]) {
-      trigger?.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowDown') {
-          event.preventDefault();
-          openItem(item, {focusFirst: true, trigger});
-        }
-      });
-    }
+    trigger.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        openItem(item, {focusFirst: true, trigger});
+      }
+    });
 
     popover.addEventListener('toggle', () => {
       const expanded = isOpen(popover);
@@ -488,12 +472,9 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
     background: var(--xp-surface-2);
   }
 
-  .xp-nav-item:hover .xp-nav-link,
-  .xp-nav-item:hover .xp-nav-disclosure,
-  .xp-nav-item:focus-within .xp-nav-link,
-  .xp-nav-item:focus-within .xp-nav-disclosure,
-  .xp-nav-item[data-nav-open] .xp-nav-link,
-  .xp-nav-item[data-nav-open] .xp-nav-disclosure {
+  .xp-nav-item:hover .xp-nav-trigger,
+  .xp-nav-item:focus-within .xp-nav-trigger,
+  .xp-nav-item[data-nav-open] .xp-nav-trigger {
     color: var(--xp-text-primary);
   }
 

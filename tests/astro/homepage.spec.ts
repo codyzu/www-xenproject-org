@@ -120,10 +120,14 @@ test.describe('redesigned homepage', () => {
 
     const primaryNav = page.getByRole('navigation', {name: 'Primary navigation'});
     for (const [index, item] of navigationV2Sections.entries()) {
-      await expect(primaryNav.getByRole('link', {name: item.name, exact: true})).toHaveAttribute('href', item.href);
-      await primaryNav.getByRole('link', {name: item.name, exact: true}).hover();
+      const trigger = primaryNav.getByRole('button', {name: item.name, exact: true});
+      await expect(trigger).toHaveAttribute('aria-controls', `xp-nav-popover-${index}`);
+      await expect(trigger).toHaveAttribute('aria-expanded', 'false');
+      await trigger.hover();
       const popover = page.locator(`#xp-nav-popover-${index}`);
       await expect(popover).toBeVisible();
+      await expect(trigger).toHaveAttribute('aria-expanded', 'true');
+      await expect(popover.getByRole('link', {name: `${item.name} overview`, exact: true})).toHaveAttribute('href', item.href);
 
       for (const group of item.groups ?? []) {
         for (const link of group.links) {
@@ -132,13 +136,15 @@ test.describe('redesigned homepage', () => {
       }
     }
 
-    await primaryNav.getByRole('link', {name: 'Technology', exact: true}).hover();
-    await expect(page.locator('#xp-nav-popover-0')).toBeVisible();
-    await page.mouse.move(20, 500);
+    await primaryNav.getByRole('button', {name: 'Technology', exact: true}).hover();
     const technologyPopover = page.locator('#xp-nav-popover-0');
+    await technologyPopover.hover();
+    await page.waitForTimeout(200);
+    await expect(technologyPopover).toBeVisible();
+    await page.mouse.move(20, 500);
     await expect(technologyPopover).not.toBeVisible();
 
-    await page.getByRole('button', {name: 'Open Developers navigation'}).click();
+    await page.getByRole('button', {name: 'Developers', exact: true}).click();
     const developersPopover = page.locator('#xp-nav-popover-2');
     await expect(developersPopover).toBeVisible();
     const documentationLink = developersPopover.getByRole('link', {name: 'Documentation'});
@@ -150,53 +156,113 @@ test.describe('redesigned homepage', () => {
     await expect(developersPopover).not.toBeVisible();
   });
 
-  test('keeps desktop labels as landing links and chevrons as disclosure controls', async ({page}) => {
+  test('uses one complete desktop disclosure trigger for each label and chevron', async ({page}) => {
     await page.setViewportSize({width: 1280, height: 900});
     await prepareHomepage(page);
 
-    await page.getByRole('navigation', {name: 'Primary navigation'}).getByRole('link', {name: 'Technology', exact: true}).click();
-    await expect(page).toHaveURL(/\/technology\/$/);
+    const primaryNav = page.getByRole('navigation', {name: 'Primary navigation'});
+    const technologyTrigger = primaryNav.getByRole('button', {name: 'Technology', exact: true});
+    await expect(primaryNav.getByRole('link', {name: 'Technology', exact: true})).toHaveCount(0);
+    await expect(technologyTrigger.locator('.xp-nav-chevron')).toHaveAttribute('aria-hidden', 'true');
 
-    await prepareHomepage(page);
-    const technologyToggle = page.getByRole('button', {name: 'Open Technology navigation'});
-    await technologyToggle.hover();
-    await expect(page.locator('#xp-nav-popover-0')).toBeVisible();
-
-    await technologyToggle.click();
-    await expect(page.locator('#xp-nav-popover-0')).not.toBeVisible();
-    await expect(page).toHaveURL(/\/$/);
+    const targetSize = await technologyTrigger.evaluate(element => {
+      const {width, height} = element.getBoundingClientRect();
+      return {width, height};
+    });
+    expect(targetSize.width).toBeGreaterThanOrEqual(44);
+    expect(targetSize.height).toBeGreaterThanOrEqual(44);
 
     await page.mouse.move(20, 500);
-    await technologyToggle.dispatchEvent('click');
-    await expect(page).toHaveURL(/\/$/);
+    await technologyTrigger.dispatchEvent('click');
     await expect(page.locator('#xp-nav-popover-0')).toBeVisible();
+    await expect(page).toHaveURL(/\/$/);
+
+    await technologyTrigger.dispatchEvent('click');
+    await expect(page.locator('#xp-nav-popover-0')).not.toBeVisible();
   });
 
   test('supports desktop keyboard disclosure and focus return', async ({page}) => {
     await page.setViewportSize({width: 1280, height: 900});
     await prepareHomepage(page);
 
-    const technologyLink = page.getByRole('navigation', {name: 'Primary navigation'}).getByRole('link', {name: 'Technology', exact: true});
-    await technologyLink.focus();
-    await page.keyboard.press('ArrowDown');
+    const technologyTrigger = page.getByRole('navigation', {name: 'Primary navigation'}).getByRole('button', {name: 'Technology', exact: true});
+    await technologyTrigger.focus();
+    await page.keyboard.press('Enter');
 
     const technologyPopover = page.locator('#xp-nav-popover-0');
     await expect(technologyPopover).toBeVisible();
-    await expect(technologyPopover.getByRole('link', {name: 'Technology', exact: true})).toBeFocused();
+    await expect(technologyTrigger).toHaveAttribute('aria-expanded', 'true');
+    await page.keyboard.press('Tab');
+    await expect(technologyPopover.getByRole('link', {name: 'Technology overview', exact: true})).toBeFocused();
 
     await page.keyboard.press('Escape');
     await expect(technologyPopover).not.toBeVisible();
-    await expect(technologyLink).toBeFocused();
+    await expect(technologyTrigger).toBeFocused();
+    await expect(technologyTrigger).toHaveAttribute('aria-expanded', 'false');
 
-    const developersToggle = page.getByRole('button', {name: 'Open Developers navigation'});
-    await developersToggle.focus();
+    const developersTrigger = page.getByRole('button', {name: 'Developers', exact: true});
+    await developersTrigger.focus();
     await page.keyboard.press(' ');
     const developersPopover = page.locator('#xp-nav-popover-2');
     await expect(developersPopover).toBeVisible();
 
     await page.keyboard.press('Escape');
     await expect(developersPopover).not.toBeVisible();
-    await expect(developersToggle).toBeFocused();
+    await expect(developersTrigger).toBeFocused();
+  });
+
+  test('supports full-item disclosure on an iPad-like coarse touch pointer', async ({browser}) => {
+    const context = await browser.newContext({
+      baseURL: test.info().project.use.baseURL,
+      hasTouch: true,
+      isMobile: false,
+      viewport: {width: 1024, height: 768},
+    });
+    const page = await context.newPage();
+
+    try {
+      await prepareHomepage(page);
+      const interactionCapabilities = await page.evaluate(() => ({
+        coarse: globalThis.matchMedia('(pointer: coarse)').matches,
+        noHover: globalThis.matchMedia('(hover: none)').matches,
+      }));
+      expect(interactionCapabilities).toEqual({coarse: true, noHover: true});
+
+      const primaryNav = page.getByRole('navigation', {name: 'Primary navigation'});
+      const technologyTrigger = primaryNav.getByRole('button', {name: 'Technology', exact: true});
+      const projectsTrigger = primaryNav.getByRole('button', {name: 'Projects', exact: true});
+
+      await technologyTrigger.click();
+      await expect(page).toHaveURL(/\/$/);
+      await expect(technologyTrigger).toHaveAttribute('aria-expanded', 'true');
+      await expect(page.locator('[data-nav-popover]:popover-open')).toHaveCount(1);
+
+      await technologyTrigger.locator('.xp-nav-chevron').click();
+      await expect(technologyTrigger).toHaveAttribute('aria-expanded', 'false');
+      await expect(page.locator('[data-nav-popover]:popover-open')).toHaveCount(0);
+
+      await technologyTrigger.click();
+      await projectsTrigger.click();
+      await expect(technologyTrigger).toHaveAttribute('aria-expanded', 'false');
+      await expect(projectsTrigger).toHaveAttribute('aria-expanded', 'true');
+      await expect(page.locator('[data-nav-popover]:popover-open')).toHaveCount(1);
+
+      await page.mouse.click(8, 740);
+      await expect(projectsTrigger).toHaveAttribute('aria-expanded', 'false');
+      await expect(page.locator('[data-nav-popover]:popover-open')).toHaveCount(0);
+
+      await technologyTrigger.click();
+      await page.locator('#xp-nav-popover-0').getByRole('link', {name: 'Technology overview', exact: true}).click();
+      await expect(page).toHaveURL(/\/technology\/$/);
+
+      const currentTechnologyTrigger = page.getByRole('navigation', {name: 'Primary navigation'}).getByRole('button', {name: 'Technology', exact: true});
+      expect(await currentTechnologyTrigger.evaluate(element => element.hasAttribute('aria-current'))).toBe(false);
+      await expect(currentTechnologyTrigger).toHaveClass(/uno-bg-xp-surface-2/);
+      await currentTechnologyTrigger.click();
+      await expect(page.locator('#xp-nav-popover-0').getByRole('link', {name: 'Technology overview', exact: true})).toHaveAttribute('aria-current', 'page');
+    } finally {
+      await context.close();
+    }
   });
 
   test('exposes v2 mobile navigation through details accordions', async ({page}) => {
