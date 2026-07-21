@@ -6,6 +6,7 @@ mockups
 dist-astro
 playwright-report
 tests/astro-results
+screenshots/
 .copy-parity
 
 .DS_Store

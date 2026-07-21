@@ -13,6 +13,7 @@
     "astro:build": "astro build",
     "astro:preview": "astro preview --host 127.0.0.1",
     "astro:check": "astro check --tsconfig tsconfig.astro.json",
+    "screenshots": "node scripts/astro/screenshots.ts",
     "research": "node scripts/research/parse-research-papers.js",
     "test:astro:smoke": "playwright test --config playwright.astro.config.ts",
     "test:astro:smoke:public": "PLAYWRIGHT_START_SERVER=1 playwright test --config playwright.astro.config.ts",

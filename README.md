@@ -63,6 +63,27 @@ npm run test:astro:smoke:public
 Playwright starts `serve dist`, snapshots representative routes, verifies
 navigation behavior, exercises React islands, and checks redirect metadata.
 
+### Review Screenshots
+
+Generate disposable full-page screenshots for visual review with:
+
+```sh
+# All routes listed in redesignRoutes
+npm run screenshots
+
+# One route from a temporary local Astro development server
+npm run screenshots -- /technology/safety/
+
+# One page from an existing deployment or server
+npm run screenshots -- https://beta.xenproject.org/technology/safety/
+```
+
+Each run writes desktop and mobile PNGs to a timestamped directory under
+`screenshots/`. Desktop images are 1440 pixels wide, mobile images are 390
+pixels wide, and both extend vertically to capture the full page. The output is
+ignored by Git and is intended for attaching to Codex, ChatGPT, or other review
+conversations rather than for committed visual-test baselines.
+
 To validate a deployed beta artifact manually, run `npm run test:astro:staging`.
 For a faster homepage guardrail check, run
 `npm run test:astro:staging:homepage-guardrails`. Run
