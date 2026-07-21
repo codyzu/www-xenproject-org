@@ -16,16 +16,12 @@ export type PlatformLayerData = {
   emphasis?: 'primary';
   description: string;
   items?: PlatformLayerItem[];
-  itemsLabel?: string;
-  receivesShadow?: boolean;
 };
 
 export type PlatformLayersDiagramVariant = 'standard' | 'hero';
-export type PlatformLayersFrameBleed = 'none' | 'subtle';
 
 export type PlatformLayersDiagramData = {
   title: string;
-  eyebrow?: string;
   metaLabel?: string;
   /**
    * Concise accessible summary of the architecture. The visual layer order
@@ -38,9 +34,4 @@ export type PlatformLayersDiagramData = {
    */
   layers: PlatformLayerData[];
   variant?: PlatformLayersDiagramVariant;
-  /**
-   * Allows a restrained inline-start and bottom bleed when the diagram is used
-   * as a primary architectural visual.
-   */
-  frameBleed?: PlatformLayersFrameBleed;
 };

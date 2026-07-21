@@ -4,28 +4,27 @@ import type {PlatformLayersDiagramData} from './platform-layers';
 
 type Props = PlatformLayersDiagramData & {
   id?: string;
-  defaultShadowReceivers?: boolean;
-  interactive?: boolean;
-  class?: string;
 };
 
 const {
   id = 'platform-layers',
   title,
-  eyebrow = title,
-  metaLabel = 'CSS layer model',
+  metaLabel,
   summary,
   layers,
   variant = 'standard',
-  frameBleed = 'none',
-  defaultShadowReceivers = true,
-  interactive = variant === 'hero',
-  class: className = '',
 } = Astro.props;
 
 const titleId = `${id}-title`;
 const summaryId = `${id}-summary`;
 const midpoint = (layers.length - 1) / 2;
+const itemCounts = layers.map(layer => layer.items?.length ?? 0);
+const maximumItemCount = Math.max(0, ...itemCounts);
+// Conservative input heuristics reserve space before rendering; geometry never
+// depends on viewport-time DOM measurement or page-specific offsets.
+const hasDenseLayer = layers.some((layer, index) =>
+  itemCounts[index] >= 4 || layer.title.length > 30 || layer.description.length > 110,
+);
 const layerDepth = [
   'var(--platform-plate-height)',
   ...Array.from({length: Math.max(layers.length - 1, 0)}, () => 'var(--platform-layer-gap)'),
@@ -43,16 +42,15 @@ const heroHoverOffsets = [
     'xp-platform-diagram',
     `xp-platform-diagram--${variant}`,
     `xp-platform-diagram--layers-${Math.min(Math.max(layers.length, 3), 6)}`,
-    `xp-platform-diagram--bleed-${frameBleed}`,
-    interactive && 'xp-platform-diagram--interactive',
-    className,
+    `xp-platform-diagram--max-items-${Math.min(maximumItemCount, 4)}`,
+    hasDenseLayer && 'xp-platform-diagram--density-dense',
   ]}
-  style={`--platform-layer-count: ${layers.length};`}
+  style={`--platform-layer-count: ${layers.length}; --platform-max-item-count: ${maximumItemCount};`}
   aria-labelledby={titleId}
-  tabindex={interactive ? '0' : undefined}
+  tabindex="0"
 >
   <figcaption class="xp-platform-diagram__header">
-    <p class="xp-platform-diagram__eyebrow" id={titleId}>{eyebrow}</p>
+    <p class="xp-platform-diagram__eyebrow" id={titleId}>{title}</p>
     {metaLabel && <span class="xp-platform-diagram__scale" aria-hidden="true">{metaLabel}</span>}
   </figcaption>
 
@@ -60,8 +58,8 @@ const heroHoverOffsets = [
     <div class="xp-platform-stack__plates">
       {layers.map((layer, index) => {
         const offsetStep = index - midpoint;
-        const receivesShadow = layer.receivesShadow ?? (defaultShadowReceivers && index > 0);
-        const hoverOffset = interactive ? (heroHoverOffsets[index] ?? heroHoverOffsets[heroHoverOffsets.length - 1]) : undefined;
+        const receivesShadow = index > 0;
+        const hoverOffset = variant === 'hero' ? (heroHoverOffsets[index] ?? heroHoverOffsets[heroHoverOffsets.length - 1]) : undefined;
 
         return (
           <Layer
@@ -78,14 +76,16 @@ const heroHoverOffsets = [
           >
             <p>{layer.description}</p>
             {layer.items && layer.items.length > 0 && (
-              <div class="xp-domain-strip" aria-label={layer.itemsLabel}>
+              <ul
+                class:list={['xp-domain-strip', `xp-domain-strip--items-${Math.min(layer.items.length, 5)}`]}
+              >
                 {layer.items.map(item => (
-                  <span>
+                  <li>
                     {item.icon && <i class:list={['xp-domain-icon', item.icon]} aria-hidden="true"></i>}
                     {item.label}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
             )}
           </Layer>
         );
@@ -100,6 +100,9 @@ const heroHoverOffsets = [
 
 <style>
   .xp-platform-diagram {
+    --platform-perspective: 88rem;
+    --platform-rotate-x: 32deg;
+    --platform-rotate-z: -10deg;
     position: relative;
     width: 100%;
     max-width: none;
@@ -177,30 +180,33 @@ const heroHoverOffsets = [
   }
 
   .xp-platform-diagram--hero {
+    --platform-perspective: 58rem;
+    --platform-rotate-x: 54deg;
+    --platform-rotate-z: -24deg;
     max-width: 45rem;
     padding: clamp(1rem, 2.2vw, 1.35rem);
   }
 
-  .xp-platform-diagram--interactive {
+  .xp-platform-diagram {
     outline-offset: 0.45rem;
   }
 
-  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) {
+  .xp-platform-diagram:is(:hover, :focus-visible, :focus-within) {
     border-color: rgb(198 214 235 / 0.2);
     filter: brightness(1.055);
     transform: translateY(-0.28rem);
   }
 
-  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within)::before {
+  .xp-platform-diagram:is(:hover, :focus-visible, :focus-within)::before {
     opacity: 1;
   }
 
-  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer) {
+  .xp-platform-diagram--hero:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer) {
     --layer-extra-x: var(--layer-hover-x);
     --layer-extra-y: var(--layer-hover-y);
   }
 
-  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer__surface) {
+  .xp-platform-diagram:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer__surface) {
     filter: brightness(1.035);
     border-color: color-mix(in srgb, var(--layer-edge) 88%, white);
     box-shadow:
@@ -212,11 +218,11 @@ const heroHoverOffsets = [
       inset -1px -1px 0 rgb(0 0 0 / 0.16);
   }
 
-  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer__surface)::after {
+  .xp-platform-diagram:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer__surface)::after {
     opacity: 0.78;
   }
 
-  .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer__receiver) {
+  .xp-platform-diagram:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer__receiver) {
     opacity: 0.98;
     box-shadow:
       0 0.86rem 1.35rem rgb(0 0 0 / 0.4),
@@ -235,22 +241,45 @@ const heroHoverOffsets = [
     padding-block: clamp(1rem, 3vw, 1.6rem) clamp(2.1rem, 4vw, 2.8rem);
   }
 
+  .xp-platform-diagram--standard .xp-platform-stack {
+    --platform-plate-width: min(39rem, 96%);
+    --platform-plate-height: clamp(11.5rem, 18vw, 12.5rem);
+    --platform-layer-gap: clamp(9.4rem, 14vw, 10.5rem);
+    --platform-frame-padding-block: clamp(3rem, 4.5vw, 3.75rem);
+    padding-block: clamp(1rem, 2vw, 1.35rem) clamp(2.25rem, 3.5vw, 3rem);
+  }
+
+  .xp-platform-diagram--standard.xp-platform-diagram--density-dense .xp-platform-stack {
+    --platform-plate-height: clamp(12.5rem, 20vw, 13.25rem);
+    --platform-layer-gap: clamp(11.25rem, 17vw, 12.25rem);
+  }
+
+  .xp-platform-diagram--standard.xp-platform-diagram--layers-5 .xp-platform-stack,
+  .xp-platform-diagram--standard.xp-platform-diagram--layers-6 .xp-platform-stack {
+    --platform-layer-gap: clamp(9.8rem, 15vw, 11rem);
+  }
+
   .xp-platform-diagram--hero.xp-platform-diagram--layers-5 .xp-platform-stack,
   .xp-platform-diagram--hero.xp-platform-diagram--layers-6 .xp-platform-stack {
-    --platform-plate-height: clamp(8.7rem, 16vw, 10.65rem);
-    --platform-layer-gap: clamp(6.25rem, 10.5vw, 7.75rem);
-    --platform-frame-padding-block: clamp(1.55rem, 3vw, 3rem);
+    --platform-plate-height: clamp(11.75rem, 20vw, 12.75rem);
+    --platform-layer-gap: clamp(7.5rem, 12vw, 8.4rem);
+    --platform-frame-padding-block: clamp(3rem, 4.5vw, 4rem);
+    padding-bottom: clamp(2.8rem, 5vw, 3.8rem);
   }
 
   .xp-platform-diagram--hero .xp-platform-stack__plates {
     translate: clamp(-1.35rem, -2vw, -0.75rem) clamp(0.75rem, 1.8vw, 1.25rem);
   }
 
-  .xp-platform-diagram--hero.xp-platform-diagram--bleed-subtle .xp-platform-stack {
+  .xp-platform-diagram--standard .xp-platform-stack {
+    --platform-overflow-bottom: clamp(0.2rem, 0.7vw, 0.45rem);
+  }
+
+  .xp-platform-diagram--hero .xp-platform-stack {
     --platform-overflow-bottom: clamp(0.55rem, 1.6vw, 1.05rem);
   }
 
-  .xp-platform-diagram--hero.xp-platform-diagram--bleed-subtle {
+  .xp-platform-diagram {
     overflow: visible;
   }
 
@@ -259,7 +288,7 @@ const heroHoverOffsets = [
     gap: 0.6rem;
   }
 
-  .xp-platform-diagram--hero .xp-domain-strip span {
+  .xp-platform-diagram--hero .xp-domain-strip li {
     font-size: 0.72rem;
   }
 
@@ -275,14 +304,47 @@ const heroHoverOffsets = [
     transform-style: preserve-3d;
   }
 
+  .xp-platform-diagram--standard .xp-platform-stack__plates {
+    translate: clamp(-0.4rem, -0.6vw, -0.2rem) clamp(0.18rem, 0.45vw, 0.35rem);
+  }
+
+  .xp-platform-diagram--standard :global(.xp-diagram-layer__content) {
+    padding: clamp(1.2rem, 2.5vw, 1.7rem) clamp(1.35rem, 3.5vw, 2.15rem);
+  }
+
+  .xp-platform-diagram--standard :global(.xp-diagram-layer__title) {
+    font-size: clamp(1.08rem, 2.2vw, 1.34rem);
+  }
+
+  .xp-platform-diagram--standard :global(.xp-diagram-layer__body) {
+    gap: 0.82rem;
+    margin-top: 0.72rem;
+    font-size: clamp(0.84rem, 1.55vw, 0.96rem);
+    line-height: 1.42;
+  }
+
   .xp-domain-strip {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     max-width: 26rem;
+    margin: 0;
+    padding: 0;
     gap: 0.45rem;
   }
 
-  .xp-domain-strip span {
+  .xp-domain-strip--items-4 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 21rem;
+    column-gap: 0.8rem;
+    row-gap: 0.4rem;
+  }
+
+  .xp-domain-strip--items-1,
+  .xp-domain-strip--items-2 {
+    grid-template-columns: repeat(2, minmax(0, max-content));
+  }
+
+  .xp-domain-strip li {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
     align-items: center;
@@ -292,6 +354,7 @@ const heroHoverOffsets = [
     font-size: 0.68rem;
     font-weight: 650;
     line-height: 1.2;
+    list-style: none;
   }
 
   .xp-domain-icon {
@@ -348,28 +411,42 @@ const heroHoverOffsets = [
       transform: none;
     }
 
+    .xp-platform-diagram {
+      overflow: hidden;
+    }
+
     .xp-platform-diagram--hero,
     .xp-platform-diagram--standard {
       max-width: none;
     }
 
-    .xp-domain-strip {
-      grid-template-columns: 1fr;
+    .xp-domain-strip,
+    .xp-domain-strip--items-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: none;
     }
   }
 
   @media (min-width: 1024px) {
-    .xp-platform-diagram--hero.xp-platform-diagram--bleed-subtle {
+    .xp-platform-diagram--hero {
       margin-left: auto;
     }
 
-    .xp-platform-diagram--interactive .xp-platform-stack__plates {
-      animation: xp-platform-breathe 8s ease-in-out infinite;
+    .xp-platform-diagram--hero .xp-platform-stack__plates {
+      animation: xp-platform-breathe 12s ease-in-out infinite;
+    }
+
+    .xp-platform-diagram::before {
+      animation: xp-platform-glow-breathe 14s ease-in-out infinite;
+    }
+
+    .xp-platform-diagram :global(.xp-diagram-layer--emphasis-primary .xp-diagram-layer__surface)::after {
+      animation: xp-platform-primary-breathe 13s ease-in-out infinite;
     }
   }
 
   @media (min-width: 640px) and (max-width: 1023px) {
-    .xp-platform-diagram--hero.xp-platform-diagram--bleed-subtle .xp-platform-stack {
+    .xp-platform-diagram--hero .xp-platform-stack {
       --platform-overflow-bottom: 0rem;
     }
   }
@@ -386,11 +463,11 @@ const heroHoverOffsets = [
       transition-duration: 1ms !important;
     }
 
-    .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) {
+    .xp-platform-diagram:is(:hover, :focus-visible, :focus-within) {
       transform: none;
     }
 
-    .xp-platform-diagram--interactive:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer) {
+    .xp-platform-diagram:is(:hover, :focus-visible, :focus-within) :global(.xp-diagram-layer) {
       --layer-extra-x: 0rem;
       --layer-extra-y: 0rem;
     }
@@ -411,10 +488,34 @@ const heroHoverOffsets = [
     0%,
     100% {
       filter: brightness(1);
+      transform: translate3d(0, 0, 0);
     }
 
     50% {
       filter: brightness(1.025);
+      transform: translate3d(0.06rem, -0.1rem, 0);
+    }
+  }
+
+  @keyframes xp-platform-glow-breathe {
+    0%,
+    100% {
+      opacity: 0.82;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes xp-platform-primary-breathe {
+    0%,
+    100% {
+      opacity: 0.68;
+    }
+
+    50% {
+      opacity: 0.88;
     }
   }
 </style>

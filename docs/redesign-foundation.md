@@ -343,21 +343,38 @@ The current concrete component is
 `src/components/diagrams/platform-layers.ts`. Its current authoring contract
 includes:
 
-- `title`, optional `eyebrow`, optional `metaLabel`, and required `summary`
+- `title`, optional `metaLabel`, and required `summary`
 - `variant: 'standard' | 'hero'`
-- `frameBleed: 'none' | 'subtle'`
 - `layers`
 - per-layer `title`, optional `eyebrow`, optional `tone`, optional
-  `emphasis`, `description`, optional `items`, optional `itemsLabel`, and
-  optional `receivesShadow`
+  `emphasis`, `description`, and optional `items`
 - layer tones: `applications`, `guests`, `xen`, and `hardware`
 - layer emphasis: `primary`
+
+Authors provide semantic content and choose only whether the diagram is a
+`hero` or `standard` view. The component derives bleed, frame height, plate
+height, layer step, overlap, shadow receivers, item layout, and motion from the
+variant, layer count, and content density. These visual mechanics are not part
+of the public authoring API.
 
 The `summary` is the accessible description for the diagram. Decorative
 geometry is hidden from assistive technology. Mobile behavior collapses the
 3D stack into readable stacked plates, hides the compact `metaLabel`, and
-keeps labels and item chips readable. Hero diagrams are interactive by default;
-standard diagrams are not.
+keeps labels and item chips readable.
+
+Hero and standard variants have different jobs. Hero diagrams teach the
+high-level architectural model with stronger perspective, separation, depth,
+bleed, and ambient motion. Standard diagrams explain composition, ecosystem
+roles, and reference architectures with flatter perspective, larger readable
+surfaces, content-protected separation, quieter motion, and restrained bleed.
+Standard is a comprehension-first composition, not a smaller hero.
+
+Plate overlap is content-protected. A plate may cross a neighboring plate's
+quiet decorative margin, but it must not cover the neighboring eyebrow, title,
+description, icons, or item labels. Standard diagrams use a larger vertical
+step and content-driven scene height instead of shrinking copy to fit a fixed
+frame. Dense layers and five-layer stacks receive additional deterministic
+space from their input data; the component does not measure the rendered DOM.
 
 ### Layer Semantics
 
@@ -380,23 +397,32 @@ three to six meaningful layers. Do not add layers only for decoration. If the
 story requires many more layers, reconsider whether one diagram is the right
 format.
 
+Item rows are deliberate: one to three items use a compact row where space
+allows, while four items use a balanced 2-by-2 arrangement. Avoid more than
+four items on one plate unless a proven case shows that another shared content
+strategy is needed. Do not rely on accidental wrapping.
+
 When Xen appears in a layered architecture diagram, the Xen boundary should
 generally be the visual anchor. Use the shared `emphasis: 'primary'` API for
 this. Stronger edge treatment, restrained glow, and elevation are appropriate,
 but do not create page-local glow CSS. Emphasis does not mean other
 technologies are unimportant; it clarifies the subject of the site.
 
-`frameBleed: 'subtle'` allows a restrained inline-start and bottom bleed when
-the diagram is used as a primary architectural visual. The purpose is depth
-and dimensionality. No text may be clipped, overflow must not collide with
-neighboring content, and standard diagrams may remain fully contained.
+Restrained inline-start and bottom bleed is intrinsic to the diagram. Hero
+diagrams use a stronger amount; standard diagrams remain mostly contained but
+retain enough overflow to keep the frame from feeling flat. Authors normally
+do not configure bleed. No text may be clipped and overflow must not collide
+with neighboring content.
 
 Layer content should be concise: short eyebrow, clear title, one brief
 description, and two to four chips where useful. Avoid paragraphs on plates,
 tiny text, decorative technical jargon, repeated copy already present beside
 the diagram, logos inside every layer, and unsupported architecture claims.
 The diagram should teach structure; surrounding cards and prose should explain
-details.
+details. Diagram labels should name what the view teaches (for example,
+“Mixed-criticality platform” or “Complementary roles”). The secondary label is
+optional; omit it when it would only produce filler such as “Exploded
+architecture” or “Layered stack.”
 
 ### Motion
 
@@ -404,7 +430,10 @@ Motion should communicate engineering, not entertainment. Preferred diagram
 motion includes slight lift, subtle brightening, restrained depth, gentle
 breathing, and a reduced-motion fallback. Avoid bouncing, spinning, elastic
 easing, continuous attention-grabbing loops, and motion that distracts from
-technical content.
+technical content. Move the complete stack as a unit rather than making plates
+float independently. Hero stacks may move as one unit; standard diagrams keep
+their text stationary and use only very quiet lighting changes. Remove
+continuous motion when the user prefers reduced motion.
 
 ### Accessibility and Interaction
 

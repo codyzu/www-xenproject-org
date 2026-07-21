@@ -2,8 +2,7 @@ import type {PlatformLayersDiagramData} from '../components/diagrams/platform-la
 
 export const cloudInfrastructurePlatformLayersDiagram: PlatformLayersDiagramData = {
   title: 'Infrastructure layers',
-  eyebrow: 'Infrastructure layers',
-  metaLabel: 'Exploded Architecture',
+  metaLabel: 'Operator-controlled stack',
   variant: 'hero',
   summary:
     'Xen gives infrastructure teams a visible boundary between cloud workloads, virtual machines, the hypervisor, and owned hardware.',
@@ -12,9 +11,7 @@ export const cloudInfrastructurePlatformLayersDiagram: PlatformLayersDiagramData
       title: 'Cloud workloads',
       eyebrow: 'Services',
       tone: 'applications',
-      description: 'Infrastructure workloads run above platform-owned control and lifecycle decisions.',
-      receivesShadow: false,
-      itemsLabel: 'Example cloud workloads',
+      description: 'Infrastructure workloads remain subject to operator-owned control and lifecycle decisions.',
       items: [
         {label: 'Web services', icon: 'i-carbon-container-services'},
         {label: 'Databases', icon: 'i-carbon-data-base-alt'},
@@ -26,8 +23,7 @@ export const cloudInfrastructurePlatformLayersDiagram: PlatformLayersDiagramData
       title: 'Virtual machines',
       eyebrow: 'Guests',
       tone: 'guests',
-      description: 'VMs keep tenant, service, appliance, and build environments accountable.',
-      itemsLabel: 'Example virtual machines',
+      description: 'Diverse guest systems keep tenant, service, appliance, and build lifecycles distinct.',
       items: [
         {label: 'Linux VM', icon: 'i-carbon-linux'},
         {label: 'Windows VM', icon: 'i-carbon-logo-windows'},
@@ -46,8 +42,7 @@ export const cloudInfrastructurePlatformLayersDiagram: PlatformLayersDiagramData
       title: 'Hardware',
       eyebrow: 'Owned infrastructure',
       tone: 'hardware',
-      description: 'Compute, memory, storage, networking, and accelerators remain operator decisions.',
-      itemsLabel: 'Infrastructure resources',
+      description: 'Compute, memory, storage, networking, and accelerators remain operator-owned decisions.',
       items: [
         {label: 'Compute', icon: 'i-carbon-chip'},
         {label: 'Storage', icon: 'i-carbon-data-base-alt'},
@@ -59,18 +54,15 @@ export const cloudInfrastructurePlatformLayersDiagram: PlatformLayersDiagramData
 };
 
 export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramData = {
-  title: 'Xen-centered infrastructure stack',
-  eyebrow: 'Ecosystem layers',
-  metaLabel: 'Layered stack',
+  title: 'Xen-centered ecosystem',
+  metaLabel: 'One open foundation',
   summary: 'Infrastructure platforms can build above XAPI while Xen remains the open foundation on owned hardware.',
   layers: [
     {
       title: 'Platforms and services',
       eyebrow: 'Built on Xen',
       tone: 'applications',
-      description: 'XCP-ng, operations tooling, and commercial services build around the same foundation.',
-      receivesShadow: false,
-      itemsLabel: 'Example platform and service layers',
+      description: 'XCP-ng, operations tooling, and commercial services occupy distinct roles above one foundation.',
       items: [
         {label: 'XCP-ng', icon: 'i-carbon-cube'},
         {label: 'Operations tooling', icon: 'i-carbon-dashboard'},
@@ -81,8 +73,7 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
       title: 'XAPI management toolstack',
       eyebrow: 'Xen Project tooling',
       tone: 'guests',
-      description: 'XAPI is the Xen Project toolstack and management layer for Xen-based platforms.',
-      itemsLabel: 'XAPI platform responsibilities',
+      description: 'XAPI manages VM lifecycle, pools, and migration for Xen-based platforms.',
       items: [
         {label: 'VM lifecycle', icon: 'i-carbon-virtual-machine'},
         {label: 'Pools', icon: 'i-carbon-data-center'},
@@ -95,7 +86,6 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
       tone: 'xen',
       emphasis: 'primary',
       description: 'Xen provides the open hypervisor boundary the ecosystem builds on.',
-      itemsLabel: 'Hypervisor responsibilities',
       items: [
         {label: 'Isolation', icon: 'i-carbon-security'},
         {label: 'Scheduling', icon: 'i-carbon-time'},
@@ -107,7 +97,6 @@ export const cloudInfrastructureEcosystemLayersDiagram: PlatformLayersDiagramDat
       eyebrow: 'Infrastructure estate',
       tone: 'hardware',
       description: 'Servers, storage, networks, and accelerators remain operator-owned inputs.',
-      itemsLabel: 'Infrastructure resources',
       items: [
         {label: 'CPU', icon: 'i-carbon-chip'},
         {label: 'Memory', icon: 'i-carbon-data-base-alt'},

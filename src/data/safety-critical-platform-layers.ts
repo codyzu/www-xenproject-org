@@ -1,11 +1,9 @@
 import type {PlatformLayersDiagramData} from '../components/diagrams/platform-layers';
 
 export const safetyCriticalPlatformLayersDiagram: PlatformLayersDiagramData = {
-  title: 'Safety-conscious platform layers',
-  eyebrow: 'Inspectable boundaries',
+  title: 'Inspectable boundaries',
   metaLabel: 'Certification-oriented architecture',
   variant: 'hero',
-  frameBleed: 'subtle',
   summary:
     'Xen helps separate safety-conscious workloads, non-critical services, guest domains, the hypervisor boundary, and hardware resources so architecture and evidence responsibilities stay visible.',
   layers: [
@@ -14,8 +12,6 @@ export const safetyCriticalPlatformLayersDiagram: PlatformLayersDiagramData = {
       eyebrow: 'Functions',
       tone: 'applications',
       description: 'Control, monitoring, and supervision workloads need clear boundaries and reviewable assumptions.',
-      receivesShadow: false,
-      itemsLabel: 'Example safety-conscious functions',
       items: [
         {label: 'Control', icon: 'i-carbon-settings-adjust'},
         {label: 'Monitoring', icon: 'i-carbon-chart-line'},
@@ -28,7 +24,6 @@ export const safetyCriticalPlatformLayersDiagram: PlatformLayersDiagramData = {
       tone: 'applications',
       description:
         'Linux services, diagnostics, HMI, telemetry, and update agents can have different validation needs.',
-      itemsLabel: 'Example non-critical services',
       items: [
         {label: 'Diagnostics', icon: 'i-carbon-test-tool'},
         {label: 'HMI', icon: 'i-carbon-dashboard'},
@@ -41,7 +36,6 @@ export const safetyCriticalPlatformLayersDiagram: PlatformLayersDiagramData = {
       tone: 'guests',
       description:
         'Guest systems and service domains keep runtime, ownership, update, and validation boundaries explicit.',
-      itemsLabel: 'Example guest domains',
       items: [
         {label: 'RTOS', icon: 'i-carbon-chip'},
         {label: 'Linux', icon: 'i-carbon-linux'},
@@ -54,7 +48,6 @@ export const safetyCriticalPlatformLayersDiagram: PlatformLayersDiagramData = {
       tone: 'xen',
       emphasis: 'primary',
       description: 'Isolation, CPU assignment, device ownership, and interrupt routing are platform design inputs.',
-      itemsLabel: 'Xen platform responsibilities',
       items: [
         {label: 'Isolation', icon: 'i-carbon-security'},
         {label: 'CPU assignment', icon: 'i-carbon-chip'},
@@ -66,7 +59,6 @@ export const safetyCriticalPlatformLayersDiagram: PlatformLayersDiagramData = {
       eyebrow: 'Shared platform inputs',
       tone: 'hardware',
       description: 'Compute, memory, interrupts, devices, and peripherals remain part of the system evidence story.',
-      itemsLabel: 'Shared platform resources',
       items: [
         {label: 'CPU', icon: 'i-carbon-chip'},
         {label: 'Memory', icon: 'i-carbon-data-base-alt'},

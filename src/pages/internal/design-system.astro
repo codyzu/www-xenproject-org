@@ -431,12 +431,11 @@ const ctaGuidance: ListCard[] = [
 ];
 
 const diagramApi = [
-  'title and eyebrow identify the diagram.',
-  'metaLabel provides a compact visual scale label.',
+  'title identifies the diagram; metaLabel is optional.',
   'summary is required and becomes the accessible description.',
   'variant supports standard and hero.',
-  'frameBleed supports none and subtle.',
-  'layers accept title, eyebrow, tone, emphasis, description, items, itemsLabel, and receivesShadow.',
+  'bleed, frame sizing, overlap, shadows, item layout, and motion are derived internally.',
+  'layers accept title, eyebrow, tone, emphasis, description, and items.',
   'layer emphasis currently supports primary.',
   'layer tones currently support applications, guests, xen, and hardware.',
 ];
@@ -462,13 +461,18 @@ const diagramRules: ListCard[] = [
   },
   {
     title: 'Frame bleed',
-    description: 'Subtle bleed adds depth for high-emphasis diagrams without clipping text.',
-    items: ['Use frameBleed: subtle', 'Most useful in hero diagrams', 'Avoid collision with neighboring content', 'Standard diagrams may remain contained'],
+    description: 'Subtle inline-start and bottom bleed is part of the shared visual language.',
+    items: ['Derived internally', 'Stronger for hero', 'Restrained for standard', 'Never clip meaningful content'],
+  },
+  {
+    title: 'Protected content',
+    description: 'Overlap belongs in quiet plate margins, never across meaningful copy or item labels.',
+    items: ['Content-driven frame height', 'Density-aware layer step', 'Five-layer stacks get more space', 'No page-specific offsets'],
   },
   {
     title: 'Content',
     description: 'The diagram teaches structure; surrounding prose explains details.',
-    items: ['Short eyebrow', 'Clear title', 'Brief description', '2-4 chips when useful', 'Avoid paragraphs on plates'],
+    items: ['Short eyebrow', 'Clear title', 'Brief description', 'Up to 4 items', 'Four items form a 2-by-2 layout', 'Avoid paragraphs on plates'],
   },
   {
     title: 'Accessibility',
@@ -910,11 +914,11 @@ const blockStats = [
           <Grid columns="2">
             <Stack gap="3">
               <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">4-layer example</Text>
-              <PlatformLayersDiagram id="internal-diagram-four-layer" {...embeddedAutomotivePlatformLayersDiagram} interactive={false} />
+              <PlatformLayersDiagram id="internal-diagram-four-layer" {...embeddedAutomotivePlatformLayersDiagram} metaLabel={undefined} />
             </Stack>
             <Stack gap="3">
               <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">5-layer example with subtle bleed</Text>
-              <PlatformLayersDiagram id="internal-diagram-five-layer" {...safetyCriticalPlatformLayersDiagram} interactive={false} />
+              <PlatformLayersDiagram id="internal-diagram-five-layer" {...safetyCriticalPlatformLayersDiagram} />
             </Stack>
           </Grid>
           <Grid columns="2">

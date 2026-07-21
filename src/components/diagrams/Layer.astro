@@ -31,7 +31,11 @@ const {
 ---
 
 <section
-  class:list={['xp-diagram-layer', `xp-diagram-layer--${tone}`, emphasis && `xp-diagram-layer--emphasis-${emphasis}`]}
+  class:list={[
+    'xp-diagram-layer',
+    `xp-diagram-layer--${tone}`,
+    emphasis && `xp-diagram-layer--emphasis-${emphasis}`,
+  ]}
   style={`--layer-width: ${width}; --layer-shift: ${shift}; --layer-offset: ${offset}; --layer-body-width: ${bodyWidth}; --layer-hover-x: ${hoverX}; --layer-hover-y: ${hoverY}; --layer-z: ${zIndex};`}
 >
   <div class="xp-diagram-layer__surface">
@@ -71,9 +75,9 @@ const {
     grid-area: 1 / 1;
     transform:
       translate3d(calc(var(--layer-shift) + var(--layer-extra-x)), calc(var(--layer-offset) + var(--layer-extra-y)), 0)
-      perspective(58rem)
-      rotateX(54deg)
-      rotateZ(-24deg);
+      perspective(var(--platform-perspective, 58rem))
+      rotateX(var(--platform-rotate-x, 54deg))
+      rotateZ(var(--platform-rotate-z, -24deg));
     transform-style: preserve-3d;
     transition: transform 560ms cubic-bezier(0.22, 1, 0.36, 1);
   }
