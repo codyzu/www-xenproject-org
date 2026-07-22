@@ -17,6 +17,7 @@
     "research": "node scripts/research/parse-research-papers.js",
     "test:astro:smoke": "playwright test --config playwright.astro.config.ts",
     "test:astro:smoke:public": "PLAYWRIGHT_START_SERVER=1 playwright test --config playwright.astro.config.ts",
+    "test:astro:high-value": "PLAYWRIGHT_START_SERVER=1 playwright test tests/astro/high-value-responsive.spec.ts tests/astro/high-value-webkit-mobile.spec.ts --config playwright.astro.config.ts",
     "test:astro:staging": "PLAYWRIGHT_BASE_URL=https://beta.xenproject.org SITE_URL=https://beta.xenproject.org playwright test --config playwright.astro.config.ts",
     "test:astro:staging:homepage-guardrails": "PLAYWRIGHT_BASE_URL=https://beta.xenproject.org SITE_URL=https://beta.xenproject.org playwright test tests/astro/homepage-guardrails.spec.ts --config playwright.astro.config.ts",
     "test:astro:staging:ghost": "GHOST_LIVE_TEST=1 PLAYWRIGHT_BASE_URL=https://beta.xenproject.org playwright test tests/astro/ghost-live.spec.ts --config playwright.astro.config.ts",

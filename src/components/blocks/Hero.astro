@@ -81,25 +81,29 @@ const descriptionClasses = {
         {Astro.slots.has('media') && <slot name="media" />}
       </Stack>
     ) : (
-      <div class={splitLayoutClasses[layout]}>
-        <Stack gap="5" class={contentClasses[layout]}>
-          {eyebrow && <Text size="eyebrow" tone="accent-primary">{eyebrow}</Text>}
-          <Heading as={headingLevel} size="display-xl" class={headingClasses[layout]}>{title}</Heading>
-          {statement && <Text size="lead" tone="primary" class={descriptionClasses[layout] + ' uno-font-semibold'}>{statement}</Text>}
-          {description && <Text size="lead" class={descriptionClasses[layout]}>{description}</Text>}
-          {hasActions && (
-            <div class="uno-flex uno-w-full uno-flex-col uno-gap-3 uno-pt-2 sm:uno-w-auto sm:uno-flex-row sm:uno-flex-wrap">
-              {actions.map(action => (
-                <Button href={action.href} variant={action.variant ?? 'primary'} class="uno-w-full sm:uno-w-auto">{action.label}</Button>
-              ))}
-            </div>
-          )}
-          {Astro.slots.has('metadata') && <slot name="metadata" />}
-        </Stack>
-        <Stack gap="4" class="uno-min-w-0">
-          {Astro.slots.has('media') && <slot name="media" />}
-          {Astro.slots.has('proof') && <slot name="proof" />}
-        </Stack>
+      <div class={splitLayoutClasses[layout]} data-hero-layout={layout}>
+        <div class="uno-min-w-0" data-hero-content>
+          <Stack gap="5" class={contentClasses[layout]}>
+            {eyebrow && <Text size="eyebrow" tone="accent-primary">{eyebrow}</Text>}
+            <Heading as={headingLevel} size="display-xl" class={headingClasses[layout]}>{title}</Heading>
+            {statement && <Text size="lead" tone="primary" class={descriptionClasses[layout] + ' uno-font-semibold'}>{statement}</Text>}
+            {description && <Text size="lead" class={descriptionClasses[layout]}>{description}</Text>}
+            {hasActions && (
+              <div class="uno-flex uno-w-full uno-flex-col uno-gap-3 uno-pt-2 sm:uno-w-auto sm:uno-flex-row sm:uno-flex-wrap">
+                {actions.map(action => (
+                  <Button href={action.href} variant={action.variant ?? 'primary'} class="uno-w-full sm:uno-w-auto">{action.label}</Button>
+                ))}
+              </div>
+            )}
+            {Astro.slots.has('metadata') && <slot name="metadata" />}
+          </Stack>
+        </div>
+        <div class="uno-min-w-0" data-hero-media>
+          <Stack gap="4" class="uno-min-w-0">
+            {Astro.slots.has('media') && <slot name="media" />}
+            {Astro.slots.has('proof') && <slot name="proof" />}
+          </Stack>
+        </div>
       </div>
     )}
   </Container>

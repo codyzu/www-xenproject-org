@@ -397,21 +397,12 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
     isPageScrollLocked = false;
   };
 
-  mobileNavToggle?.addEventListener('click', () => {
-    globalThis.requestAnimationFrame(() => {
-      if (isPageScrollLocked) {
-        unlockPageScroll();
-      } else {
-        lockPageScroll();
-      }
-    });
-  });
-
   mobileNavPanel?.addEventListener('toggle', () => {
     if (mobileNavPanel.matches(':popover-open')) {
       lockPageScroll();
     } else {
       unlockPageScroll();
+      mobileNavToggle?.focus();
     }
   });
 

@@ -17,6 +17,7 @@ export default defineConfig({
   use: {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     baseURL: baseUrl,
+    screenshot: 'only-on-failure',
     trace: 'on-first-retry',
   },
   expect: {
@@ -40,12 +41,21 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium-desktop',
+      testIgnore: /high-value-webkit-mobile\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         viewport: {
           width: 1440,
           height: 1200,
         },
+      },
+    },
+    {
+      name: 'webkit-mobile',
+      testMatch: /high-value-webkit-mobile\.spec\.ts/,
+      use: {
+        ...devices['iPhone 13'],
+        reducedMotion: 'reduce',
       },
     },
   ],

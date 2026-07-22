@@ -10,19 +10,31 @@
     - paragraph: Infrastructure layers
     - paragraph: Services
     - paragraph: Cloud workloads
-    - paragraph: Infrastructure workloads run above platform-owned control and lifecycle decisions.
-    - text: Web services Databases AI workers Network functions
+    - paragraph: Infrastructure workloads remain subject to operator-owned control and lifecycle decisions.
+    - list:
+      - listitem: Web services
+      - listitem: Databases
+      - listitem: AI workers
+      - listitem: Network functions
     - paragraph: Guests
     - paragraph: Virtual machines
-    - paragraph: VMs keep tenant, service, appliance, and build environments accountable.
-    - text: Linux VM Windows VM Appliance VM Build agents
+    - paragraph: Diverse guest systems keep tenant, service, appliance, and build lifecycles distinct.
+    - list:
+      - listitem: Linux VM
+      - listitem: Windows VM
+      - listitem: Appliance VM
+      - listitem: Build agents
     - paragraph: Virtualization boundary
     - paragraph: Xen hypervisor
     - paragraph: Guest isolation, scheduling, device ownership, and control domains stay explicit.
     - paragraph: Owned infrastructure
     - paragraph: Hardware
-    - paragraph: Compute, memory, storage, networking, and accelerators remain operator decisions.
-    - text: Compute Storage Networking Accelerators
+    - paragraph: Compute, memory, storage, networking, and accelerators remain operator-owned decisions.
+    - list:
+      - listitem: Compute
+      - listitem: Storage
+      - listitem: Networking
+      - listitem: Accelerators
     - paragraph: Xen gives infrastructure teams a visible boundary between cloud workloads, virtual machines, the hypervisor, and owned hardware.
   - paragraph: Infrastructure ownership
   - heading "Modern infrastructure still depends on a well-defined virtualization layer." [level=2]
@@ -112,24 +124,36 @@
   - paragraph: Open Xen infrastructure ecosystem
   - heading "A Xen-centered ecosystem for infrastructure platforms." [level=2]
   - paragraph: Xen is the open foundation. XAPI is the Xen Project toolstack and management layer for Xen-based platforms. XCP-ng packages Xen and XAPI into a complete open platform, while commercial offerings and services can build on the same foundation.
-  - figure "Ecosystem layers":
-    - paragraph: Ecosystem layers
+  - figure "Xen-centered ecosystem":
+    - paragraph: Xen-centered ecosystem
     - paragraph: Built on Xen
     - paragraph: Platforms and services
-    - paragraph: XCP-ng, operations tooling, and commercial services build around the same foundation.
-    - text: XCP-ng Operations tooling Commercial services
+    - paragraph: XCP-ng, operations tooling, and commercial services occupy distinct roles above one foundation.
+    - list:
+      - listitem: XCP-ng
+      - listitem: Operations tooling
+      - listitem: Commercial services
     - paragraph: Xen Project tooling
     - paragraph: XAPI management toolstack
-    - paragraph: XAPI is the Xen Project toolstack and management layer for Xen-based platforms.
-    - text: VM lifecycle Pools Migration
+    - paragraph: XAPI manages VM lifecycle, pools, and migration for Xen-based platforms.
+    - list:
+      - listitem: VM lifecycle
+      - listitem: Pools
+      - listitem: Migration
     - paragraph: Virtualization foundation
     - paragraph: Xen hypervisor
     - paragraph: Xen provides the open hypervisor boundary the ecosystem builds on.
-    - text: Isolation Scheduling Device ownership
+    - list:
+      - listitem: Isolation
+      - listitem: Scheduling
+      - listitem: Device ownership
     - paragraph: Infrastructure estate
     - paragraph: Hardware
     - paragraph: Servers, storage, networks, and accelerators remain operator-owned inputs.
-    - text: CPU Memory I/O
+    - list:
+      - listitem: CPU
+      - listitem: Memory
+      - listitem: I/O
     - paragraph: Infrastructure platforms can build above XAPI while Xen remains the open foundation on owned hardware.
   - article:
     - text: Foundation

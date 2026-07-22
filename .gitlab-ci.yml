@@ -47,9 +47,15 @@ deploy:
     - npm run build
     - node scripts/astro/check-public-artifact.js dist --standalone
     - tar caf site.tar.gz dist
+    - npx playwright install --with-deps chromium webkit
+    - npm run test:astro:high-value
   artifacts:
+    when: always
+    expire_in: 14 days
     paths:
       - site.tar.gz
+      - playwright-report/
+      - tests/astro-results/
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"

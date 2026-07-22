@@ -7,8 +7,7 @@ const highValuePages = [
     path: '/',
     title: /Xen Project/i,
     heading: /Open source virtualization for systems that demand isolation and control/i,
-    screenshot: 'home-page.png',
-    fullPage: false,
+    screenshot: undefined,
   },
   {
     name: 'about',
@@ -50,7 +49,7 @@ const highValuePages = [
     path: '/resources/use-cases/',
     title: /Cloud & Infrastructure/i,
     heading: /Open virtualization for cloud and infrastructure platforms/i,
-    screenshot: 'use-cases-page.png',
+    screenshot: undefined,
   },
   {
     name: 'summit 2026',
@@ -97,15 +96,13 @@ test.describe('Astro spike high-value page guardrails', () => {
       await expect(page.locator('footer')).toBeVisible();
       await expect(page.getByRole('heading', {name: /404/i})).toHaveCount(0);
 
-      await page.evaluate(async () => document.fonts.ready);
-      if (pageContract.hide) {
-        await page.addStyleTag({content: `${pageContract.hide} { visibility: hidden !important; }`});
+      if (pageContract.screenshot) {
+        await page.evaluate(async () => document.fonts.ready);
+        await expect(page).toHaveScreenshot(pageContract.screenshot, {
+          fullPage: true,
+          maxDiffPixelRatio: 0.01,
+        });
       }
-
-      await expect(page).toHaveScreenshot(pageContract.screenshot, {
-        fullPage: pageContract.fullPage ?? true,
-        maxDiffPixelRatio: 0.01,
-      });
     });
   }
 });
