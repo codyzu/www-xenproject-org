@@ -20,6 +20,7 @@ export default defineConfig({
         [
           'junit',
           {
+            // Keep JUnit at the repository root so GitLab can resolve attachment paths.
             outputFile: 'junit.xml',
             includeProjectInTestName: true,
           },

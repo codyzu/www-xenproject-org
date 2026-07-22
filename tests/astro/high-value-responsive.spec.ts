@@ -47,9 +47,16 @@ test.describe('High-value responsive pages', {tag: '@high-value'}, () => {
               caret: 'hide',
               maxDiffPixelRatio: 0.005,
             });
+            // GitLab's JUnit integration requires file-backed attachments; in-memory attachments only reach the HTML report.
+            const attachmentPath = testInfo.outputPath(screenshotName);
+            await hero.screenshot({
+              animations: 'disabled',
+              caret: 'hide',
+              path: attachmentPath,
+            });
             await testInfo.attach(screenshotName, {
-              body: await hero.screenshot({animations: 'disabled', caret: 'hide'}),
               contentType: 'image/png',
+              path: attachmentPath,
             });
           }
         } finally {
