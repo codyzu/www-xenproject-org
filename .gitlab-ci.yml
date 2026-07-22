@@ -89,6 +89,8 @@ playwright:high-value:
     paths:
       - playwright-report/
       - tests/astro-results/
+    reports:
+      junit: tests/astro-results/junit.xml
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"

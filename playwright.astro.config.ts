@@ -13,7 +13,19 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI),
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: process.env.CI ? [['html', {open: 'never'}], ['list']] : 'list',
+  reporter: process.env.CI
+    ? [
+        ['html', {open: 'never'}],
+        ['list'],
+        [
+          'junit',
+          {
+            outputFile: 'tests/astro-results/junit.xml',
+            includeProjectInTestName: true,
+          },
+        ],
+      ]
+    : 'list',
   use: {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     baseURL: baseUrl,
