@@ -1,4 +1,5 @@
 import process from 'node:process';
+import AxeBuilder from '@axe-core/playwright';
 import {expect, type Browser, type BrowserContext, type BrowserContextOptions, type Locator, type Page} from '@playwright/test';
 
 type ActionContract = {
@@ -21,6 +22,7 @@ export type HighValuePageContract = {
   keyHeading: string;
   name: string;
   path: string;
+  title: string;
 };
 
 export type ViewportProfile = {
@@ -56,6 +58,7 @@ export const highValuePages: HighValuePageContract[] = [
   {
     name: 'homepage',
     path: '/',
+    title: 'Xen Project - Open Source Virtualization',
     heading: 'Open source virtualization for systems that demand isolation and control.',
     keyHeading: 'A project you can evaluate in the open.',
     finalCta: '#next-step',
@@ -72,6 +75,7 @@ export const highValuePages: HighValuePageContract[] = [
   {
     name: 'embedded',
     path: '/projects/embedded-and-automotive/',
+    title: 'Embedded & Automotive | Xen Project',
     heading: 'Open source virtualization for embedded and automotive systems.',
     keyHeading: 'Consolidate the platform without blurring the boundaries.',
     finalCta: '#next-step',
@@ -99,6 +103,7 @@ export const highValuePages: HighValuePageContract[] = [
   {
     name: 'cloud',
     path: '/resources/use-cases/',
+    title: 'Cloud & Infrastructure | Xen Project',
     heading: 'Open virtualization for cloud and infrastructure platforms.',
     keyHeading: 'Capabilities for owning the platform boundary',
     finalCta: '#final-cta',
@@ -128,6 +133,7 @@ export const highValuePages: HighValuePageContract[] = [
   {
     name: 'safety',
     path: '/technology/safety/',
+    title: 'Safety-Critical Systems | Xen Project',
     heading: 'Open virtualization for safety-conscious systems.',
     keyHeading: 'Capabilities engineers evaluate when building safety-conscious platforms.',
     finalCta: '#final-cta',
@@ -166,8 +172,10 @@ export const monitorPageRuntime = (page: Page, baseUrl: string): RuntimeMonitor 
   const errors: string[] = [];
 
   page.on('console', message => {
-    if (message.type() !== 'error') return;
-    errors.push(`console: ${message.text()}`);
+    const text = message.text();
+    if (message.type() === 'error' || /(?:failed to hydrate|hydration (?:error|failed|mismatch))/i.test(text)) {
+      errors.push(`console: ${text}`);
+    }
   });
   page.on('pageerror', error => errors.push(`pageerror: ${error.message}`));
   page.on('requestfailed', request => {
@@ -254,6 +262,80 @@ const expectActions = async (region: Locator, actions: ActionContract[], viewpor
   }
 };
 
+const expectBelow = async (upper: Locator, lower: Locator) => {
+  const upperBox = await upper.boundingBox();
+  const lowerBox = await lower.boundingBox();
+  expect(upperBox).not.toBeNull();
+  expect(lowerBox).not.toBeNull();
+  expect(lowerBox!.y).toBeGreaterThanOrEqual(upperBox!.y + upperBox!.height - 2);
+};
+
+const expectCardsInsideViewport = async (region: Locator, expectedCount: number, viewportWidth: number) => {
+  const cards = region.locator('article');
+  await expect(cards).toHaveCount(expectedCount);
+  for (let index = 0; index < expectedCount; index += 1) {
+    await expect(cards.nth(index)).toBeVisible();
+    await expectInsideViewport(cards.nth(index), viewportWidth);
+  }
+};
+
+async function expectPageSpecificLayout(page: Page, contract: HighValuePageContract, profile: ViewportProfile, viewportWidth: number) {
+  if (contract.name === 'homepage' && profile.name === 'mobile') {
+    const members = page.locator('#members');
+    await members.scrollIntoViewIfNeeded();
+    await expectInsideViewport(members, viewportWidth);
+    expect(await members.locator('img').count()).toBeGreaterThan(0);
+
+    const featuredCard = page.locator('#evidence-in-use article').first();
+    await expect(featuredCard).toBeVisible();
+    await expectInsideViewport(featuredCard, viewportWidth);
+  }
+
+  if (contract.name === 'embedded' && profile.name === 'ipad-portrait') {
+    const spotlight = page.locator('.xp-agl-spotlight');
+    await spotlight.scrollIntoViewIfNeeded();
+    await expectInsideViewport(spotlight, viewportWidth);
+    await expectInsideViewport(spotlight.getByRole('link', {name: 'Explore the AGL SDV architecture'}), viewportWidth);
+
+    const ecosystem = page.locator('#open-platform-ecosystem');
+    const diagram = ecosystem.locator('.xp-platform-diagram');
+    const roleGroups = ecosystem.locator('.xp-ecosystem-role-groups');
+    await expect(ecosystem.getByRole('heading', {name: 'Core platform', exact: true})).toBeVisible();
+    await expect(ecosystem.getByRole('heading', {name: 'Build and domain ecosystem', exact: true})).toBeVisible();
+    await expectBelow(diagram, roleGroups);
+  }
+
+  if (contract.name === 'cloud' && profile.name === 'ipad-portrait') {
+    const ecosystem = page.locator('#open-infrastructure-ecosystem');
+    const diagram = ecosystem.locator('.xp-platform-diagram');
+    const firstRoleCard = ecosystem.locator('article').first();
+    await expect(ecosystem.getByRole('heading', {name: 'XAPI', exact: true})).toBeVisible();
+    await expect(ecosystem.getByRole('heading', {name: 'XCP-ng', exact: true})).toBeVisible();
+    await expectInsideViewport(ecosystem.getByRole('link', {name: 'Explore XAPI', exact: true}), viewportWidth);
+    await expectInsideViewport(ecosystem.getByRole('link', {name: 'Explore XCP-ng', exact: true}), viewportWidth);
+    await expectBelow(diagram, firstRoleCard);
+  }
+
+  if (contract.name === 'safety' && profile.name === 'ipad-portrait') {
+    await expectCardsInsideViewport(page.locator('#architecture-and-evidence'), 4, viewportWidth);
+    await expectCardsInsideViewport(page.locator('#safety-committee'), 4, viewportWidth);
+  }
+}
+
+export async function assertNoSeriousAccessibilityViolations(page: Page) {
+  const results = await new AxeBuilder({page}).analyze();
+  const violations = results.violations
+    .filter(violation => violation.impact === 'serious' || violation.impact === 'critical')
+    .map(violation => ({
+      help: violation.help,
+      id: violation.id,
+      impact: violation.impact,
+      targets: violation.nodes.map(node => node.target),
+    }));
+
+  expect(violations, 'The page must not have serious or critical Axe violations').toEqual([]);
+}
+
 async function expectSharedDiagrams(page: Page, contract: HighValuePageContract, viewportWidth: number) {
   const diagrams = page.locator('.xp-platform-diagram');
   await expect(diagrams).toHaveCount(contract.diagrams.length);
@@ -329,6 +411,7 @@ export async function assertHighValuePage(page: Page, contract: HighValuePageCon
     'href',
     new URL(contract.path, process.env.SITE_URL ?? 'https://beta.xenproject.org').toString(),
   );
+  await expect(page).toHaveTitle(contract.title);
 
   const documentWidth = await page.evaluate(() => ({client: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth}));
   expect(documentWidth.scroll).toBeLessThanOrEqual(documentWidth.client + 1);
@@ -359,6 +442,8 @@ export async function assertHighValuePage(page: Page, contract: HighValuePageCon
   } else {
     await expectSharedDiagrams(page, contract, viewportWidth);
   }
+
+  await expectPageSpecificLayout(page, contract, profile, viewportWidth);
 
   await footer.scrollIntoViewIfNeeded();
   await expect(footer).toBeVisible();

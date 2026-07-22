@@ -2,6 +2,7 @@ import process from 'node:process';
 import {expect, test} from '@playwright/test';
 import {
   assertHighValuePage,
+  assertNoSeriousAccessibilityViolations,
   assertSafetyAnchor,
   chromiumProfiles,
   createProfilePage,
@@ -28,6 +29,10 @@ test.describe('High-value responsive pages', {tag: '@high-value'}, () => {
           await assertHighValuePage(page, pageContract, profile);
           if (pageContract.name === 'safety') {
             await assertSafetyAnchor(page);
+          }
+
+          if (profile.name === 'desktop') {
+            await assertNoSeriousAccessibilityViolations(page);
           }
 
           await runtime.assertHealthy();

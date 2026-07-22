@@ -1,6 +1,7 @@
 import {expect, test} from '@playwright/test';
 import {
   assertHighValuePage,
+  assertNoSeriousAccessibilityViolations,
   assertSafetyAnchor,
   highValuePages,
   monitorPageRuntime,
@@ -43,6 +44,8 @@ test.describe('High-value mobile WebKit pages', {tag: '@high-value'}, () => {
         await developers.click();
         await expect(mobileNav.locator('details[data-mobile-nav-section][open]')).toHaveCount(1);
         expect(await technology.evaluate(summary => summary.parentElement?.hasAttribute('open') ?? false)).toBe(false);
+
+        await assertNoSeriousAccessibilityViolations(page);
 
         await page.keyboard.press('Escape');
         await expect(mobileNav).not.toBeVisible();
