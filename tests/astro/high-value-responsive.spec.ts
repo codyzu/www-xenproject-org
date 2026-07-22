@@ -41,10 +41,15 @@ test.describe('High-value responsive pages', {tag: '@high-value'}, () => {
           if (screenshotName && process.platform === 'linux') {
             testInfo.snapshotSuffix = '';
             await prepareHeroScreenshot(page);
-            await expect(page.locator('#hero')).toHaveScreenshot(screenshotName, {
+            const hero = page.locator('#hero');
+            await expect(hero).toHaveScreenshot(screenshotName, {
               animations: 'disabled',
               caret: 'hide',
               maxDiffPixelRatio: 0.005,
+            });
+            await testInfo.attach(screenshotName, {
+              body: await hero.screenshot({animations: 'disabled', caret: 'hide'}),
+              contentType: 'image/png',
             });
           }
         } finally {

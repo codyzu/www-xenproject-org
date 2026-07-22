@@ -20,7 +20,7 @@ export default defineConfig({
         [
           'junit',
           {
-            outputFile: 'tests/astro-results/junit.xml',
+            outputFile: 'junit.xml',
             includeProjectInTestName: true,
           },
         ],
