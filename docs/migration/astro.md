@@ -5,6 +5,11 @@
 The migration is complete. Astro is the only local and production static-site
 generator, and `npm run build` writes the complete artifact to `dist/`.
 
+GitLab packages that output as `site.tar.gz` with a top-level `public/`
+directory for compatibility with the beta deployment hook and production
+downloader. The Playwright CI job maps that deployed directory back to `dist/`
+before starting `serve dist`.
+
 The active source layout is:
 
 - `src/pages` for routes.
