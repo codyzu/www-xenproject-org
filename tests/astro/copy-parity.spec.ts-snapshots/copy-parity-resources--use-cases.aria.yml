@@ -208,7 +208,7 @@
     - paragraph: Membership helps sustain shared infrastructure, events, trademarks, and coordination.
     - link "Become a member":
       - /url: /about/become-a-member
-  - paragraph: Open engineering and project health
+  - paragraph: Open governance and project health
   - heading "A project process infrastructure teams can inspect." [level=2]
   - paragraph: Governance, security handling, CI resources, releases, and contribution paths are public evaluation inputs.
   - article:
@@ -267,7 +267,7 @@
   - article:
     - heading "Isolation & security" [level=3]
     - paragraph: Review isolation and security resources for Xen-based platforms.
-    - link "Review resources":
+    - link "Review isolation resources":
       - /url: /technology/isolation-and-security
   - article:
     - heading "Governance" [level=3]

@@ -80,7 +80,7 @@ export const highValuePages: HighValuePageContract[] = [
     keyHeading: 'Consolidate the platform without blurring the boundaries.',
     finalCta: '#next-step',
     heroActions: [
-      {label: 'Explore Xen architecture', href: '/technology/architecture/'},
+      {label: 'Explore architecture', href: '/technology/architecture/'},
       {label: 'Start contributing', href: '/contribute/get-started/'},
     ],
     finalActions: [
@@ -319,6 +319,12 @@ async function expectPageSpecificLayout(page: Page, contract: HighValuePageContr
   if (contract.name === 'safety' && profile.name === 'ipad-portrait') {
     await expectCardsInsideViewport(page.locator('#architecture-and-evidence'), 4, viewportWidth);
     await expectCardsInsideViewport(page.locator('#safety-committee'), 4, viewportWidth);
+  }
+
+  if (contract.name === 'safety' && profile.name === 'ipad-landscape') {
+    const workloadMix = page.locator('.xp-safety-workload-mix');
+    const columnCount = await workloadMix.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
+    expect(columnCount, 'The dense workload mix should stack before its labels become cramped').toBe(1);
   }
 }
 

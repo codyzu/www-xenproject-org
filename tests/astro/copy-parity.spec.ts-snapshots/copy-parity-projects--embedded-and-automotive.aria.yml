@@ -2,7 +2,7 @@
   - paragraph: Solution Area
   - heading "Open source virtualization for embedded and automotive systems." [level=1]
   - paragraph: Build mixed-criticality platforms that consolidate Linux, RTOS, and specialized workloads onto shared hardware while keeping system boundaries explicit, inspectable, and maintainable throughout long product lifecycles.
-  - link "Explore Xen architecture":
+  - link "Explore architecture":
     - /url: /technology/architecture
   - link "Start contributing":
     - /url: /contribute/get-started
@@ -94,7 +94,7 @@
   - article:
     - heading "Dom0less boot" [level=3]
     - paragraph: Start selected guest domains without waiting for a traditional control-domain boot path.
-    - link "Visit project":
+    - link "Explore the hypervisor":
       - /url: /projects/hypervisor
   - article:
     - heading "Static resource partitioning" [level=3]
@@ -142,7 +142,7 @@
   - article:
     - heading "Thin hypervisor boundary" [level=3]
     - paragraph: Xen gives platform teams a focused layer for separation decisions near hardware.
-    - link "Visit project":
+    - link "Explore the hypervisor":
       - /url: /projects/hypervisor
   - article:
     - heading "Hardware-aware isolation" [level=3]
@@ -203,7 +203,7 @@
   - article:
     - heading "Xen" [level=4]
     - paragraph: Provides the virtualization and isolation boundary between guest systems and shared hardware.
-    - link "Visit project":
+    - link "Explore the hypervisor":
       - /url: /projects/hypervisor
   - article:
     - heading "Linux" [level=4]
@@ -235,7 +235,7 @@
   - article:
     - heading "Hypervisor" [level=3]
     - paragraph: Start with the core Xen hypervisor project and architecture resources.
-    - link "Visit project":
+    - link "Explore the hypervisor":
       - /url: /projects/hypervisor
   - article:
     - heading "Architecture" [level=3]

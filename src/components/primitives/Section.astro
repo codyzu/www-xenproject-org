@@ -1,11 +1,13 @@
 ---
 type SectionSurface = '0' | '1';
 type SectionVariant = 'default' | 'hero';
+type SectionSpacing = 'default' | 'related' | 'technical';
 
 type Props = {
   id?: string;
   surface?: SectionSurface;
   variant?: SectionVariant;
+  spacing?: SectionSpacing;
   class?: string;
 };
 
@@ -13,6 +15,7 @@ const {
   id,
   surface = '0',
   variant = 'default',
+  spacing = 'default',
   class: className = '',
 } = Astro.props as Props;
 
@@ -21,8 +24,13 @@ const surfaceClasses: Record<SectionSurface, string> = {
   '1': 'uno-bg-xp-surface-1',
 };
 const variantClasses: Record<SectionVariant, string> = {
-  default: 'uno-py-[var(--xp-space-section)]',
+  default: '',
   hero: 'uno-pt-[var(--xp-space-8)] uno-pb-[var(--xp-space-section)] uno-bg-[linear-gradient(180deg,rgb(133_194_65_/_0.10),transparent_34rem)]',
+};
+const spacingClasses: Record<SectionSpacing, string> = {
+  default: 'uno-py-[var(--xp-space-section)]',
+  related: 'uno-py-[clamp(4rem,7vw,5.5rem)]',
+  technical: 'uno-py-[clamp(3.25rem,5.6vw,4.35rem)]',
 };
 ---
 
@@ -30,6 +38,7 @@ const variantClasses: Record<SectionVariant, string> = {
   'uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-px-4 md:uno-px-6',
   surfaceClasses[surface],
   variantClasses[variant],
+  variant === 'default' && spacingClasses[spacing],
   className,
 ]}>
   <slot />

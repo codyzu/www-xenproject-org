@@ -305,7 +305,7 @@ const resources = [
     title: 'Isolation & security',
     description: 'Review isolation and security resources for Xen-based platforms.',
     href: '/technology/isolation-and-security/',
-    linkLabel: 'Review resources',
+    linkLabel: 'Review isolation resources',
   },
   {
     icon: 'i-carbon-branch',
@@ -366,7 +366,7 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="dedicated-hypervisor" surface="1" class="xp-related-section xp-technical-chapter-section">
+  <Section id="dedicated-hypervisor" surface="1" spacing="technical">
     <Container>
       <Stack gap="6">
         <Split align="start">
@@ -422,7 +422,7 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="open-infrastructure-ecosystem" class="xp-related-section">
+  <Section id="open-infrastructure-ecosystem" spacing="related">
     <Container>
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
@@ -471,7 +471,7 @@ const resources = [
 
   <FeatureGrid
     id="project-health"
-    eyebrow="Open engineering and project health"
+    eyebrow="Open governance and project health"
     title="A project process infrastructure teams can inspect."
     description="Governance, security handling, CI resources, releases, and contribution paths are public evaluation inputs."
     columns="4"
@@ -485,7 +485,7 @@ const resources = [
     description="Use these project, technology, documentation, and membership entry points to continue evaluating Xen."
     surface="1"
     columns="3"
-    class="xp-related-section"
+    spacing="related"
     features={resources}
   />
 

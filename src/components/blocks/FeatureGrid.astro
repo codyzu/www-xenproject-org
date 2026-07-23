@@ -23,6 +23,7 @@ type Props = {
   description?: string;
   headingLevel?: HeadingLevel;
   surface?: '0' | '1';
+  spacing?: 'default' | 'related' | 'technical';
   containerSize?: 'content' | 'page' | 'wide';
   columns?: '2' | '3' | '4';
   features: Feature[];
@@ -36,6 +37,7 @@ const {
   description,
   headingLevel = 'h2',
   surface = '0',
+  spacing = 'default',
   containerSize = 'wide',
   columns = '3',
   features,
@@ -44,7 +46,7 @@ const {
 const featureHeadingLevel = `h${Math.min(Number(headingLevel.slice(1)) + 1, 6)}` as HeadingLevel;
 ---
 
-<Section id={id} surface={surface} class={className}>
+<Section id={id} surface={surface} spacing={spacing} class={className}>
   <Container size={containerSize}>
     <Stack gap="6">
       {(eyebrow || title || description) && (

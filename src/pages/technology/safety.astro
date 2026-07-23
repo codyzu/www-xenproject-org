@@ -277,14 +277,14 @@ const resources = [
     title: 'Isolation & Security',
     description: 'Review isolation and security resources for Xen-based platforms.',
     href: '/technology/isolation-and-security/',
-    linkLabel: 'Review resources',
+    linkLabel: 'Review isolation resources',
   },
   {
     icon: 'i-carbon-car',
     title: 'Embedded & Automotive',
     description: 'Review the sibling solution page for mixed-criticality embedded and automotive systems.',
     href: '/projects/embedded-and-automotive/',
-    linkLabel: 'Explore embedded',
+    linkLabel: 'Explore Embedded & Automotive',
   },
   {
     icon: 'i-carbon-test-tool',
@@ -312,7 +312,7 @@ const resources = [
     title: 'Security policy',
     description: 'Review the public security reporting and response policy.',
     href: '/about/security-policy/',
-    linkLabel: 'Review policy',
+    linkLabel: 'Review security policy',
   },
   {
     icon: 'i-carbon-code-reference',
@@ -391,7 +391,7 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="mixed-criticality" surface="1" class="xp-related-section xp-technical-chapter-section">
+  <Section id="mixed-criticality" surface="1" spacing="technical">
     <Container>
       <Stack gap="6">
         <Split align="start">
@@ -414,7 +414,7 @@ const resources = [
           ))}
         </Grid>
         <Surface tone="2" border="muted" radius="lg" shadow="sm" padding="lg">
-          <Split align="center">
+          <Split align="center" breakpoint="xl" class="xp-safety-workload-mix">
             <Stack gap="3">
               <Text size="eyebrow" tone="accent-primary">Example workload mix</Text>
               <Heading as="h3" size="heading-m">Separation needs to remain visible after consolidation.</Heading>
@@ -441,7 +441,7 @@ const resources = [
     features={safetyCapabilities}
   />
 
-  <Section id="safety-committee" surface="1" class="xp-related-section xp-technical-chapter-section">
+  <Section id="safety-committee" surface="1" spacing="technical">
     <Container>
       <Stack gap="7" class="xp-safety-committee-chapter">
         <Surface tone="2" border="strong" radius="lg" shadow="md" padding="lg">
@@ -534,7 +534,7 @@ const resources = [
     description="After the architecture and evidence signals are clear, teams still need to evaluate process, tooling, integration, maintenance, governance, and collaboration responsibilities."
     surface="1"
     columns="4"
-    class="xp-related-section"
+    spacing="related"
     features={evaluationChecklist}
   />
 
@@ -554,7 +554,8 @@ const resources = [
     description="Use these project, technology, testing, documentation, and membership entry points to continue evaluating Xen for safety-conscious systems."
     surface="1"
     columns="3"
-    class="xp-related-section uno-scroll-mt-24"
+    spacing="related"
+    class="uno-scroll-mt-24"
     features={resources}
   />
 

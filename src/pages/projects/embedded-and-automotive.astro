@@ -133,7 +133,7 @@ const technicalCapabilities: {icon: string; title: string; description: string; 
     title: 'Dom0less boot',
     description: 'Start selected guest domains without waiting for a traditional control-domain boot path.',
     href: '/projects/hypervisor/',
-    linkLabel: 'Visit project',
+    linkLabel: 'Explore the hypervisor',
   },
   {
     icon: 'i-carbon-data-structured',
@@ -157,7 +157,7 @@ const xenFit = [
     title: 'Thin hypervisor boundary',
     description: 'Xen gives platform teams a focused layer for separation decisions near hardware.',
     href: '/projects/hypervisor/',
-    linkLabel: 'Visit project',
+    linkLabel: 'Explore the hypervisor',
   },
   {
     icon: 'i-carbon-security',
@@ -196,7 +196,7 @@ const ecosystemRoles = [
     group: 'Core platform',
     description: 'Provides the virtualization and isolation boundary between guest systems and shared hardware.',
     href: '/projects/hypervisor/',
-    linkLabel: 'Visit project',
+    linkLabel: 'Explore the hypervisor',
   },
   {
     icon: 'i-carbon-linux',
@@ -244,7 +244,7 @@ const resources = [
     title: 'Hypervisor',
     description: 'Start with the core Xen hypervisor project and architecture resources.',
     href: '/projects/hypervisor/',
-    linkLabel: 'Visit project',
+    linkLabel: 'Explore the hypervisor',
   },
   {
     icon: 'i-carbon-diagram',
@@ -291,7 +291,7 @@ const resources = [
     title="Open source virtualization for embedded and automotive systems."
     description="Build mixed-criticality platforms that consolidate Linux, RTOS, and specialized workloads onto shared hardware while keeping system boundaries explicit, inspectable, and maintainable throughout long product lifecycles."
     actions={[
-      {label: 'Explore Xen architecture', href: '/technology/architecture/'},
+      {label: 'Explore architecture', href: '/technology/architecture/'},
       {label: 'Start contributing', href: '/contribute/get-started/', variant: 'secondary'},
     ]}
     layout="balanced"
@@ -326,7 +326,7 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="mixed-criticality" surface="1" class="xp-related-section xp-technical-chapter-section">
+  <Section id="mixed-criticality" surface="1" spacing="technical">
     <Container>
       <Stack gap="6">
         <Split align="start">
@@ -352,7 +352,7 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="platform-separation" class="xp-related-section xp-technical-chapter-section">
+  <Section id="platform-separation" spacing="technical">
     <Container>
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
@@ -379,7 +379,7 @@ const resources = [
     </Container>
   </Section>
 
-  <Section id="technical-capabilities" surface="1" class="xp-related-section xp-technical-chapter-section">
+  <Section id="technical-capabilities" surface="1" spacing="technical">
     <Container>
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
@@ -517,7 +517,7 @@ const resources = [
     features={xenFit}
   />
 
-  <Section id="open-platform-ecosystem" class="xp-related-section">
+  <Section id="open-platform-ecosystem" spacing="related">
     <Container>
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
@@ -567,7 +567,7 @@ const resources = [
     description="Use these project, technology, testing, and download entry points to continue evaluation."
     surface="1"
     columns="3"
-    class="xp-related-section"
+    spacing="related"
     features={resources}
   />
 
@@ -660,14 +660,6 @@ const resources = [
     min-width: 0;
     margin-inline: auto;
     gap: 1.25rem;
-  }
-
-  :global(.xp-related-section) {
-    padding-block: clamp(4rem, 7vw, 5.5rem);
-  }
-
-  :global(.xp-technical-chapter-section) {
-    padding-block: clamp(3.25rem, 5.6vw, 4.35rem);
   }
 
   @media (min-width: 1024px) {
