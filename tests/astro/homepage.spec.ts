@@ -32,8 +32,8 @@ test.describe('redesigned homepage', () => {
       level: 1,
       name: 'Open source virtualization for systems that demand isolation and control.',
     })).toBeVisible();
-    await expect(main.getByText('Xen is a hypervisor and open source project')).toBeVisible();
-    await expect(main.getByRole('link', {name: 'Explore Xen'})).toHaveAttribute('href', '/projects/hypervisor/');
+    await expect(main.getByText('Xen is an open source hypervisor for infrastructure')).toBeVisible();
+    await expect(main.getByRole('link', {name: 'Explore the hypervisor'}).first()).toHaveAttribute('href', '/projects/hypervisor/');
     await expect(main.getByRole('link', {name: 'Explore membership'}).first()).toHaveAttribute('href', '/about/become-a-member/');
     await expect(main.getByRole('img', {
       name: 'Exploded Xen architecture scene showing applications above guest systems, a thin luminous Xen hypervisor layer, and a substantial hardware platform foundation.',
@@ -91,7 +91,10 @@ test.describe('redesigned homepage', () => {
     for (const project of featuredProjects) {
       const projectCard = main.getByRole('heading', {name: project.title}).locator('..').locator('..');
       await expect(projectCard.getByText(project.description)).toBeVisible();
-      await expect(projectCard.getByRole('link', {name: 'Open project'})).toHaveAttribute('href', project.route);
+      const linkLabel = project.title === 'Hypervisor'
+        ? 'Explore the hypervisor'
+        : `Explore ${project.title}`;
+      await expect(projectCard.getByRole('link', {name: linkLabel})).toHaveAttribute('href', project.route);
     }
   });
 
@@ -318,7 +321,7 @@ test.describe('redesigned homepage', () => {
   test('keeps keyboard focus visible on homepage actions', async ({page}) => {
     await prepareHomepage(page);
 
-    const action = page.getByRole('link', {name: 'Explore Xen'});
+    const action = page.getByRole('link', {name: 'Explore the hypervisor'}).first();
     await action.focus();
     await expect(action).toBeFocused();
 

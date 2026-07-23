@@ -21,7 +21,7 @@ import {projects} from '../data/projects';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 const title = 'Xen Project';
-const description = 'The Xen Project develops enterprise-grade open source virtualization solutions trusted by millions of users. Secure, flexible, and powerful hypervisor technology.';
+const description = 'The Xen Project develops an open source hypervisor for infrastructure, embedded, security-sensitive, and virtualization platforms that need clear separation and long-term control.';
 const keywords = ['Xen Project', 'open source virtualization', 'enterprise-grade hypervisor', 'secure virtualization', 'flexible hypervisor', 'virtualization solutions', 'Linux Foundation', 'community', 'technology'];
 
 const proofPoints = [
@@ -104,12 +104,20 @@ const excellenceFeatures = [
 ];
 
 const featuredProjects = projects.filter(project => ['Hypervisor', 'Embedded & Automotive', 'HVMI', 'XAPI', 'XCP-ng', 'Mirage OS'].includes(project.title));
+const projectLinkLabels: Record<string, string> = {
+  Hypervisor: 'Explore the hypervisor',
+  'Embedded & Automotive': 'Explore Embedded & Automotive',
+  HVMI: 'Explore HVMI',
+  XAPI: 'Explore XAPI',
+  'XCP-ng': 'Explore XCP-ng',
+  'Mirage OS': 'Explore Mirage OS',
+};
 const projectFeatures = featuredProjects.map(project => ({
   icon: project.title === 'Embedded & Automotive' ? 'i-carbon-car' : 'i-carbon-cube',
   title: project.title,
   description: project.description,
   href: project.route,
-  linkLabel: 'Open project',
+  linkLabel: projectLinkLabels[project.title] ?? `Explore ${project.title}`,
 }));
 ---
 
@@ -118,9 +126,9 @@ const projectFeatures = featuredProjects.map(project => ({
     id="hero"
     eyebrow="A Linux Foundation Project"
     title="Open source virtualization for systems that demand isolation and control."
-    description="Xen is a hypervisor and open source project for teams building infrastructure, embedded platforms, security-sensitive systems, and virtualization products that need a clear layer of separation."
+    description="Xen is an open source hypervisor for infrastructure, embedded, security-sensitive, and virtualization platforms that need clear separation and long-term control."
     actions={[
-      {label: 'Explore Xen', href: '/projects/hypervisor/'},
+      {label: 'Explore the hypervisor', href: '/projects/hypervisor/'},
       {label: 'Explore membership', href: '/about/become-a-member/', variant: 'secondary'},
     ]}
     layout="media-dominant"
@@ -146,7 +154,7 @@ const projectFeatures = featuredProjects.map(project => ({
 
   <FeatureGrid
     id="where-xen-excels"
-    eyebrow="Where Xen excels"
+    eyebrow="Where Xen fits"
     title="Built for engineers working close to the platform."
     description="Xen is strongest when teams need to reason carefully about virtual machines, hardware, operating systems, and trust boundaries."
     surface="1"
@@ -167,7 +175,7 @@ const projectFeatures = featuredProjects.map(project => ({
           </Stack>
           <Cluster>
             <Button href="/projects/hypervisor/">Explore the hypervisor</Button>
-            <Button href="/resources/use-cases/" variant="text">Read use cases</Button>
+            <Button href="/resources/use-cases/" variant="text">Explore cloud infrastructure</Button>
           </Cluster>
         </Stack>
         <Surface tone="2" border="strong" radius="lg" shadow="md" padding="lg">
@@ -175,7 +183,7 @@ const projectFeatures = featuredProjects.map(project => ({
             <Callout
               title="A focused virtualization layer"
               description="The hypervisor project page is the best place to start for architecture details, related resources, and project scope."
-              action={{label: 'Hypervisor details', href: '/projects/hypervisor/', variant: 'text'}}
+              action={{label: 'Explore the hypervisor', href: '/projects/hypervisor/', variant: 'text'}}
             >
               <span slot="icon" class="i-carbon-layers"></span>
             </Callout>

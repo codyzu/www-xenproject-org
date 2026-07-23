@@ -1,8 +1,8 @@
 - main:
   - paragraph: A Linux Foundation Project
   - heading "Open source virtualization for systems that demand isolation and control." [level=1]
-  - paragraph: Xen is a hypervisor and open source project for teams building infrastructure, embedded platforms, security-sensitive systems, and virtualization products that need a clear layer of separation.
-  - link "Explore Xen":
+  - paragraph: Xen is an open source hypervisor for infrastructure, embedded, security-sensitive, and virtualization platforms that need clear separation and long-term control.
+  - link "Explore the hypervisor":
     - /url: /projects/hypervisor
   - link "Explore membership":
     - /url: /about/become-a-member
@@ -46,7 +46,7 @@
     - paragraph: Security policy, vulnerability reporting, and related project work are part of the evaluation path.
     - link "Review security policy":
       - /url: /about/security-policy
-  - paragraph: Where Xen excels
+  - paragraph: Where Xen fits
   - heading "Built for engineers working close to the platform." [level=2]
   - paragraph: Xen is strongest when teams need to reason carefully about virtual machines, hardware, operating systems, and trust boundaries.
   - article:
@@ -74,12 +74,12 @@
   - paragraph: Xen sits between hardware and guest systems. That position gives platform teams a place to make virtualization, isolation, and control decisions without treating the operating system as the whole boundary.
   - link "Explore the hypervisor":
     - /url: /projects/hypervisor
-  - link "Read use cases":
+  - link "Explore cloud infrastructure":
     - /url: /resources/use-cases
   - complementary:
     - heading "A focused virtualization layer" [level=2]
     - paragraph: The hypervisor project page is the best place to start for architecture details, related resources, and project scope.
-    - link "Hypervisor details":
+    - link "Explore the hypervisor":
       - /url: /projects/hypervisor
   - paragraph: Guests
   - paragraph: Virtualized systems stay above the hypervisor boundary.
@@ -91,32 +91,32 @@
   - article:
     - heading "Embedded & Automotive" [level=3]
     - paragraph: Open source virtualization for embedded and automotive systems that need isolation, mixed workloads, hardware-aware boundaries, and long-term platform control.
-    - link "Open project":
+    - link "Explore Embedded & Automotive":
       - /url: /projects/embedded-and-automotive
   - article:
     - heading "HVMI" [level=3]
     - paragraph: Explore Xen Project's Hypervisor Memory Introspection (HVMI). Learn how HVMI enhances security by providing real-time monitoring and protection for virtualized environments.
-    - link "Open project":
+    - link "Explore HVMI":
       - /url: /projects/hvmi
   - article:
     - heading "Hypervisor" [level=3]
     - paragraph: Discover Xen Hypervisor, the open-source virtualization platform.
-    - link "Open project":
+    - link "Explore the hypervisor":
       - /url: /projects/hypervisor
   - article:
     - heading "Mirage OS" [level=3]
     - paragraph: MirageOS is a library operating system that constructs unikernels for secure, high-performance, low-energy footprint applications.
-    - link "Open project":
+    - link "Explore Mirage OS":
       - /url: /projects/mirage-os
   - article:
     - heading "XAPI" [level=3]
     - paragraph: The XAPI project is an enterprise-ready toolstack for use with the Xen Project hypervisor.
-    - link "Open project":
+    - link "Explore XAPI":
       - /url: /projects/xapi
   - article:
     - heading "XCP-ng" [level=3]
     - paragraph: XCP-ng (Xen Cloud Platform – new generation) is a turnkey virtualization platform built on the Xen Project Hypervisor and using the Xen API (XAPI). It is typically managed with Xen Orchestra, an agentless, multi-cluster web interface that provides management, monitoring, and backup capabilities.
-    - link "Open project":
+    - link "Explore XCP-ng":
       - /url: /projects/xcp-ng
   - paragraph: Members
   - heading "Sustained by organizations with a stake in open virtualization." [level=2]

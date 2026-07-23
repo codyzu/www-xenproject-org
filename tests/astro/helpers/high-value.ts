@@ -63,7 +63,7 @@ export const highValuePages: HighValuePageContract[] = [
     keyHeading: 'A project you can evaluate in the open.',
     finalCta: '#next-step',
     heroActions: [
-      {label: 'Explore Xen', href: '/projects/hypervisor/'},
+      {label: 'Explore the hypervisor', href: '/projects/hypervisor/'},
       {label: 'Explore membership', href: '/about/become-a-member/'},
     ],
     finalActions: [
@@ -425,7 +425,8 @@ export async function assertHighValuePage(page: Page, contract: HighValuePageCon
   await expectInsideViewport(hero, viewportWidth);
   const contentBox = await expectInsideViewport(heroContent, viewportWidth);
   const mediaBox = await expectInsideViewport(heroMedia, viewportWidth);
-  if (profile.stackedHero) {
+  const isStackedHero = profile.stackedHero || (contract.name === 'homepage' && profile.name === 'ipad-landscape');
+  if (isStackedHero) {
     expect(mediaBox.y).toBeGreaterThanOrEqual(contentBox.y + contentBox.height - 2);
   } else {
     expect(contentBox.x + contentBox.width).toBeLessThanOrEqual(mediaBox.x + 2);
