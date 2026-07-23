@@ -432,7 +432,7 @@ const resources = [
             Xen is the open foundation. XAPI is the Xen Project toolstack and management layer for Xen-based platforms. XCP-ng packages Xen and XAPI into a complete open platform, while commercial offerings and services can build on the same foundation.
           </Text>
         </Stack>
-        <Split align="start" class="xp-cloud-ecosystem-layout">
+        <Split align="start" breakpoint="xl" class="xp-cloud-ecosystem-layout">
           <PlatformLayersDiagram
             id="open-infrastructure-ecosystem-diagram"
             {...cloudInfrastructureEcosystemLayersDiagram}
@@ -440,7 +440,7 @@ const resources = [
           <Grid columns="2" gap="4">
             {ecosystemRoles.map(role => (
               <Card active={role.title === 'Xen Hypervisor'}>
-                <Stack gap="4">
+                <Stack gap="3">
                   <span class:list={[role.icon, 'uno-text-2xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
                   <Stack gap="3">
                     <span class="xp-role-group">{role.group}</span>
@@ -543,6 +543,12 @@ const resources = [
 <style>
   :global(.xp-cloud-ecosystem-layout) {
     align-items: stretch;
+  }
+
+  @media (min-width: 80rem) {
+    :global(.xp-solution-cloud-infrastructure .xp-cloud-ecosystem-layout) {
+      grid-template-columns: minmax(0, 1fr) minmax(36rem, 0.9fr);
+    }
   }
 
   .xp-role-group {

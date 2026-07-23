@@ -657,14 +657,10 @@ const resources = [
     align-items: center;
     justify-content: center;
     margin-bottom: 1.1rem;
-    border: 1px solid var(--xp-border-strong);
+    border: 1px solid var(--xp-accent-primary);
     border-radius: 999px;
-    background:
-      radial-gradient(circle at 35% 28%, rgb(255 255 255 / 0.16), transparent 34%),
-      color-mix(in srgb, var(--xp-accent-primary) 13%, var(--xp-surface-3));
-    box-shadow:
-      0 0 1.1rem -0.55rem rgb(133 194 65 / 0.54),
-      inset 0 1px 0 rgb(255 255 255 / 0.12);
+    background: var(--xp-surface-1);
+    box-shadow: none;
   }
 
   :global(.xp-evidence-step__index p) {
@@ -686,7 +682,7 @@ const resources = [
     word-break: normal !important;
   }
 
-  @media (max-width: 64rem) {
+  @media (max-width: 74rem) {
     .xp-evidence-trail {
       grid-template-columns: repeat(6, minmax(0, 1fr));
     }

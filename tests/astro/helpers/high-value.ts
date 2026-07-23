@@ -291,6 +291,17 @@ async function expectPageSpecificLayout(page: Page, contract: HighValuePageContr
     await expectInsideViewport(featuredCard, viewportWidth);
   }
 
+  if (contract.name === 'homepage' && profile.name === 'ipad-portrait') {
+    const projectGrid = page.locator('#evidence-in-use article').first().locator('..');
+    const projectColumnCount = await projectGrid.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
+    expect(projectColumnCount, 'Project cards should use two readable columns at tablet width').toBe(2);
+
+    const memberTile = page.locator('#members img').first().locator('..');
+    await memberTile.scrollIntoViewIfNeeded();
+    const memberTileHeight = await memberTile.evaluate(element => element.getBoundingClientRect().height);
+    expect(memberTileHeight, 'Member logo tiles should remain a restrained supporting band').toBeLessThanOrEqual(80);
+  }
+
   if (contract.name === 'embedded' && profile.name === 'ipad-portrait') {
     const spotlight = page.locator('.xp-agl-spotlight');
     await spotlight.scrollIntoViewIfNeeded();
@@ -305,7 +316,7 @@ async function expectPageSpecificLayout(page: Page, contract: HighValuePageContr
     await expectBelow(diagram, roleGroups);
   }
 
-  if (contract.name === 'cloud' && profile.name === 'ipad-portrait') {
+  if (contract.name === 'cloud' && (profile.name === 'ipad-landscape' || profile.name === 'ipad-portrait')) {
     const ecosystem = page.locator('#open-infrastructure-ecosystem');
     const diagram = ecosystem.locator('.xp-platform-diagram');
     const firstRoleCard = ecosystem.locator('article').first();
@@ -325,6 +336,21 @@ async function expectPageSpecificLayout(page: Page, contract: HighValuePageContr
     const workloadMix = page.locator('.xp-safety-workload-mix');
     const columnCount = await workloadMix.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
     expect(columnCount, 'The dense workload mix should stack before its labels become cramped').toBe(1);
+
+    const evidenceSteps = page.locator('#evidence-tooling .xp-evidence-step');
+    const evidenceRows = await evidenceSteps.evaluateAll(elements => elements.map(element => Math.round(element.getBoundingClientRect().y)));
+    expect(new Set(evidenceRows.slice(0, 3)).size, 'The first three evidence steps should share one row').toBe(1);
+    expect(new Set(evidenceRows.slice(3)).size, 'The last two evidence steps should share one row').toBe(1);
+    expect(evidenceRows[3], 'The final evidence row should follow the first three steps').toBeGreaterThan(evidenceRows[0]);
+  }
+
+  if (contract.name === 'safety' && profile.name === 'desktop') {
+    const markerTreatment = await page.locator('#evidence-tooling .xp-evidence-step__index').first().evaluate(element => {
+      const style = getComputedStyle(element);
+      return {backgroundImage: style.backgroundImage, boxShadow: style.boxShadow};
+    });
+    expect(markerTreatment.backgroundImage, 'Evidence markers should not use a gradient').toBe('none');
+    expect(markerTreatment.boxShadow, 'Evidence markers should not use a glow').toBe('none');
   }
 }
 

@@ -41,9 +41,9 @@ const isLight = surface === 'light';
 const sectionSurface = isLight ? '0' : surface;
 const headingTone = isLight ? 'on-light' : 'primary';
 const textTone = isLight ? 'on-light-muted' : 'secondary';
-const logoGridClasses = 'uno-grid uno-grid-cols-2 uno-gap-4 md:uno-grid-cols-3 lg:uno-grid-cols-5';
-const logoTileClasses = 'xen-focus uno-flex uno-min-h-24 uno-w-full uno-items-center uno-justify-center uno-rounded-xp-lg uno-border uno-border-solid uno-border-[rgb(17_24_39_/_0.12)] uno-bg-[#f5f7fb] uno-p-5 uno-shadow-[inset_0_1px_0_rgb(255_255_255_/_0.82),0_10px_26px_rgb(0_0_0_/_0.18)] uno-transition uno-duration-[var(--xp-motion-base)] uno-ease-[var(--xp-ease-standard)] hover:uno--translate-y-0.5 hover:uno-border-[rgb(133_194_65_/_0.34)] hover:uno-bg-[#fbfcff]';
-const logoImageClasses = 'uno-max-h-10 uno-w-auto uno-max-w-full uno-object-contain';
+const logoGridClasses = 'uno-grid uno-grid-cols-2 uno-gap-3 md:uno-grid-cols-3 lg:uno-grid-cols-5';
+const logoTileClasses = 'xen-focus uno-flex uno-min-h-20 uno-w-full uno-items-center uno-justify-center uno-rounded-xp-lg uno-border uno-border-solid uno-border-[rgb(17_24_39_/_0.12)] uno-bg-[#f5f7fb] uno-p-4 uno-shadow-[inset_0_1px_0_rgb(255_255_255_/_0.82),0_10px_26px_rgb(0_0_0_/_0.18)] uno-transition uno-duration-[var(--xp-motion-base)] uno-ease-[var(--xp-ease-standard)] hover:uno--translate-y-0.5 hover:uno-border-[rgb(133_194_65_/_0.34)] hover:uno-bg-[#fbfcff]';
+const logoImageClasses = 'uno-max-h-9 uno-w-auto uno-max-w-full uno-object-contain';
 ---
 
 <Section id={id} surface={sectionSurface} class={className}>

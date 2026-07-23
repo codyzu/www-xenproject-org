@@ -205,6 +205,7 @@ const projectFeatures = featuredProjects.map(project => ({
 
   <FeatureGrid
     id="evidence-in-use"
+    class="xp-home-project-grid"
     eyebrow="Project areas"
     title="Explore the Xen project ecosystem."
     description="Key project areas are available through direct links so teams can scan capabilities and go deeper where relevant."
@@ -263,3 +264,19 @@ const projectFeatures = featuredProjects.map(project => ({
     align="center"
   />
 </BaseLayout>
+
+<style>
+  :global(.xp-home-project-grid article) {
+    padding: var(--xp-space-4);
+  }
+
+  :global(.xp-home-project-grid article > div) {
+    gap: var(--xp-space-3);
+  }
+
+  @media (min-width: 48rem) and (max-width: 63.999rem) {
+    :global(.xp-home-project-grid .uno-grid) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>
