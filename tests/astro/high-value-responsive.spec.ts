@@ -38,8 +38,8 @@ test.describe('High-value responsive pages', {tag: '@high-value'}, () => {
           await runtime.assertHealthy();
 
           const screenshotName = screenshotNames.get(`${pageContract.name}:${profile.name}`);
-          if (screenshotName && process.platform === 'linux') {
-            testInfo.snapshotSuffix = '';
+          if (screenshotName) {
+            testInfo.snapshotSuffix = process.platform === 'linux' ? '' : process.platform;
             await prepareHeroScreenshot(page);
             const hero = page.locator('#hero');
             await expect(hero).toHaveScreenshot(screenshotName, {
