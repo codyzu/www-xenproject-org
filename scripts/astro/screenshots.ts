@@ -6,12 +6,17 @@ import net from 'node:net';
 import path from 'node:path';
 import process from 'node:process';
 import {chromium, type Browser, type BrowserContextOptions, type Page} from '@playwright/test';
-import {redesignRoutes} from './content-routes.ts';
 
 const host = '127.0.0.1';
 const navigationTimeout = 30_000;
 const serverStartupTimeout = 30_000;
 const root = process.cwd();
+const screenshotRoutes = [
+  '/',
+  '/projects/embedded-and-automotive/',
+  '/resources/use-cases/',
+  '/technology/safety/',
+] as const satisfies readonly string[];
 
 const profiles = [
   {
@@ -291,7 +296,7 @@ async function main(): Promise<void> {
     }
 
     baseUrl = await startAstro();
-    const routes = argument ? [argument] : [...redesignRoutes];
+    const routes = argument ? [argument] : [...screenshotRoutes];
     targets = routes.map((route) => ({
       name: screenshotName(new URL(route, baseUrl).pathname),
       url: new URL(route, baseUrl).toString(),
