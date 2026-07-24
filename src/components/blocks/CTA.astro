@@ -21,6 +21,7 @@ type Props = {
   eyebrow?: string;
   title: string;
   description?: string;
+  note?: string;
   actions?: Action[];
   headingLevel?: HeadingLevel;
   surface?: '1' | 'light';
@@ -34,6 +35,7 @@ const {
   eyebrow,
   title,
   description,
+  note,
   actions = [],
   headingLevel = 'h2',
   surface = '1',
@@ -54,6 +56,7 @@ const textTone = isLight ? 'on-light-muted' : 'secondary';
         {eyebrow && <Text size="eyebrow" tone={isLight ? 'on-light-muted' : 'accent-primary'}>{eyebrow}</Text>}
         <Heading as={headingLevel} size="heading-xl" tone={headingTone} class="uno-max-w-4xl">{title}</Heading>
         {description && <Text tone={textTone} class="uno-max-w-xp-content">{description}</Text>}
+        {note && <Text size="caption" tone={textTone} class="uno-max-w-xp-content">{note}</Text>}
         {actions.length > 0 && (
           <Cluster justify={align === 'center' ? 'center' : 'start'} class="uno-pt-2">
             {actions.map(action => (

@@ -1,8 +1,8 @@
 - main:
   - paragraph: Organizational membership
   - heading "Support the shared foundation behind Xen." [level=1]
-  - paragraph: Membership sustains project stewardship and coordination. Technical authority continues to be earned through open contribution.
-  - paragraph: Understand how your organization can support the Xen Project, then continue to the Linux Foundation-managed membership process.
+  - paragraph: Support the shared infrastructure, stewardship, and collaboration that keep Xen strong across industries.
+  - paragraph: Membership sustains shared project needs. Technical authority remains earned through open contribution.
   - link "Continue to the LF membership form":
     - /url: https://enrollment.lfx.linuxfoundation.org/?project=xen
   - link "View current members":
@@ -10,47 +10,51 @@
   - paragraph: How support flows
   - list:
     - listitem:
-      - text: Organizations provide sustained support
-      - paragraph: Membership funds and coordinates shared project needs.
+      - text: Members sustain shared project needs
+      - paragraph: Support funds infrastructure and operations.
     - listitem:
-      - text: The Advisory Board stewards non-technical work
-      - paragraph: Budgets, infrastructure, events, and trademarks remain visible responsibilities.
+      - text: The Advisory Board coordinates stewardship
+      - paragraph: It manages non-technical project responsibilities.
     - listitem:
-      - text: Technical decisions stay with the open project
-      - paragraph: Maintainers and committers review code through the project’s meritocratic process.
+      - text: Maintainers govern technical decisions
+      - paragraph: Responsibility is earned through open contribution.
   - paragraph: Why organizations join
   - heading "Support the work that keeps an open project healthy." [level=2]
-  - paragraph: Membership is an organizational participation path for the shared responsibilities around Xen. It complements—not replaces—technical contribution.
+  - paragraph: Organizational membership supports the shared responsibilities around Xen.
   - article:
     - heading "Sustain shared infrastructure" [level=3]
-    - paragraph: Membership dues support project operations, hosting, test environments, and other shared resources.
+    - paragraph: Support project operations, hosting, test environments, and shared resources.
   - article:
     - heading "Coordinate across organizations" [level=3]
-    - paragraph: The Advisory Board gives organizational stakeholders a forum for project funding, events, communications, and ecosystem coordination.
+    - paragraph: Give organizational stakeholders a forum for funding, events, communications, and ecosystem coordination.
   - article:
     - heading "Support project stewardship" [level=3]
-    - paragraph: Members help oversee non-technical responsibilities such as budgets, trademarks, and project-wide programs.
+    - paragraph: Help steward budgets, trademarks, and project-wide programs.
   - article:
     - heading "Strengthen an open ecosystem" [level=3]
-    - paragraph: Member support helps maintain a neutral project environment for infrastructure, embedded, automotive, and security-sensitive work.
+    - paragraph: Maintain a neutral home for infrastructure, embedded, automotive, and security-sensitive work.
   - paragraph: Clear responsibilities
   - heading "Membership and technical contribution are distinct." [level=2]
-  - paragraph: The Xen Project Advisory Board manages non-technical matters including funding for shared infrastructure, marketing and events, and the Xen Project trademark. Technical decisions remain with the open source meritocracy and the maintainers responsible for each project area.
+  - paragraph: The Advisory Board manages non-technical matters including shared infrastructure funding, events, communications, and the Xen Project trademark. Technical decisions remain with maintainers through the open project meritocracy.
   - link "Read project governance":
     - /url: /about/governance
   - link "Start contributing":
     - /url: /contribute/get-started
   - paragraph: Two participation paths
   - text: Organizational support
-  - paragraph: Membership, project stewardship, funding, and coordination.
+  - paragraph: Stewardship, funding, and coordination.
   - text: Technical contribution
-  - paragraph: Open review, demonstrated contribution, and merit-based responsibility.
+  - paragraph: Open review and merit-based responsibility.
   - complementary:
     - heading "Membership does not purchase technical authority" [level=3]
-    - paragraph: Organizations and engineers can contribute without becoming members, and membership does not bypass the project’s public technical process.
   - paragraph: Membership options
   - heading "Find the appropriate organizational path." [level=2]
-  - paragraph: The current program lists the options below. Pricing and final eligibility are not maintained on this page; the Linux Foundation enrollment process provides the current details.
+  - paragraph: Review the available paths below. The Linux Foundation enrollment process confirms current terms, pricing, and eligibility.
+  - article:
+    - paragraph: Premier Plus membership
+    - heading "Support Xen’s safety-oriented work at the highest membership level." [level=3]
+    - paragraph: Premier Plus is Xen’s highest organizational membership level. It helps sustain safety-oriented and certification-focused collaboration across shared evidence, tooling, documentation, engineering practices, and coordination. Technical decisions continue through Xen’s open project processes.
+    - paragraph: The Linux Foundation confirms current terms and eligibility through enrollment.
   - article:
     - heading "Premier Member" [level=3]
     - paragraph: A current option listed by the Xen Project membership program. The Linux Foundation confirms current terms through the enrollment process.
@@ -59,10 +63,14 @@
     - paragraph: For organizations participating in the Advisory Board’s non-technical governance and project stewardship responsibilities.
   - article:
     - heading "Startup Member" [level=3]
-    - paragraph: For organizations with fewer than 100 employees, subject to approval under the current membership requirements.
+    - paragraph: /For organizations with fewer than \d+ employees, subject to approval under the current membership requirements\./
   - article:
     - heading "Associate Member" [level=3]
     - paragraph: For eligible, pre-approved Linux Foundation associate organizations, including qualifying government or academic institutions.
+  - link "Continue to the LF membership form":
+    - /url: https://enrollment.lfx.linuxfoundation.org/?project=xen
+  - link "View current members":
+    - /url: /about/project-members
   - paragraph: Current members
   - heading "Supported across infrastructure, silicon, automotive, aerospace, and software." [level=2]
   - paragraph: These organizations provide a current trust signal for sustained, cross-industry participation. The full member page keeps the canonical organization listing.
@@ -96,30 +104,21 @@
   - link "Visit XenServer":
     - /url: https://www.xenserver.com/
     - img "XenServer"
+  - link "View all Xen Project members":
+    - /url: /about/project-members
   - paragraph: Safety-oriented work
   - heading "Support collaboration where evidence matters." [level=2]
-  - paragraph: Xen Project participants collaborate on engineering practices, documentation, tooling, and supporting artifacts for safety-conscious and certification-oriented systems. Membership can help sustain that shared work, while technical participation follows the project’s open processes.
+  - paragraph: Xen Project participants collaborate on engineering practices, documentation, tooling, and evidence for safety-conscious and certification-oriented systems.
   - link "Review safety-oriented work":
     - /url: /technology/safety
   - complementary:
     - text: Important
     - heading "Certification depends on the complete system" [level=3]
     - paragraph: Xen source code is not itself safety certified. Certification depends on integration context, process, evidence, tooling, validation, and the complete system safety case.
-  - paragraph: Linux Foundation handoff
-  - heading "Continue with the organization that manages enrollment." [level=2]
-  - paragraph: The next step leaves XenProject.org and opens the Linux Foundation’s LFX enrollment service. The Linux Foundation manages the form, validation, submission, membership workflow, and confirmation experience.
-  - text: What happens next
-  - paragraph: Use the LFX form to begin the Xen Project membership process. The existing project parameter is preserved in the destination URL.
-  - link "Continue to the LF membership form":
-    - /url: https://enrollment.lfx.linuxfoundation.org/?project=xen
-  - paragraph:
-    - text: Need project context before continuing? Email
-    - link "community.manager@xenproject.org":
-      - /url: mailto:community.manager@xenproject.org
-    - text: .
   - paragraph: Next step
-  - heading "Ready to discuss organizational membership?" [level=2]
-  - paragraph: Continue to the Linux Foundation-managed form or contact the Xen Project team if you need help choosing the appropriate path.
+  - heading "Ready to discuss Xen Project membership?" [level=2]
+  - paragraph: Continue to the enrollment form, or contact the Xen Project team for membership context.
+  - paragraph: XenProject.org does not host or manage the form. The Linux Foundation handles validation, submission, membership workflow, and confirmation.
   - link "Continue to the LF membership form":
     - /url: https://enrollment.lfx.linuxfoundation.org/?project=xen
   - link "Email the project team":

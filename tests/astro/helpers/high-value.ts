@@ -388,7 +388,29 @@ async function expectPageSpecificLayout(page: Page, contract: HighValuePageContr
   }
 
   if (contract.name === 'membership') {
-    await expectCardsInsideViewport(page.locator('#membership-options'), 4, viewportWidth);
+    const membershipOptions = page.locator('#membership-options');
+    const featuredOption = membershipOptions.locator('[data-featured-membership]');
+    const standardOptions = membershipOptions.locator('[data-standard-membership-option]');
+    await expect(featuredOption).toBeVisible();
+    await expectInsideViewport(featuredOption, viewportWidth);
+    await expect(standardOptions).toHaveCount(4);
+    for (let index = 0; index < 4; index += 1) {
+      await expect(standardOptions.nth(index)).toBeVisible();
+      await expectInsideViewport(standardOptions.nth(index), viewportWidth);
+    }
+
+    const standardGrid = standardOptions.first().locator('..');
+    const standardColumnCount = await standardGrid.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
+    if (profile.name === 'ipad-landscape' || profile.name === 'ipad-portrait') {
+      expect(standardColumnCount, 'Membership options should use two readable columns at tablet widths').toBe(2);
+    } else if (profile.name === 'mobile') {
+      expect(standardColumnCount, 'Membership options should stack at mobile widths').toBe(1);
+    }
+
+    await expectInsideViewport(
+      membershipOptions.getByRole('link', {name: 'Continue to the LF membership form'}),
+      viewportWidth,
+    );
     await expect(page.locator('#member-trust img')).toHaveCount(10);
   }
 
