@@ -1,6 +1,7 @@
 ---
 import CTA from '../components/blocks/CTA.astro';
 import Callout from '../components/blocks/Callout.astro';
+import CommandExample from '../components/blocks/CommandExample.astro';
 import FeatureGrid from '../components/blocks/FeatureGrid.astro';
 import Hero from '../components/blocks/Hero.astro';
 import LogoCloud from '../components/blocks/LogoCloud.astro';
@@ -119,6 +120,10 @@ const projectFeatures = featuredProjects.map(project => ({
   href: project.route,
   linkLabel: projectLinkLabels[project.title] ?? `Explore ${project.title}`,
 }));
+
+const tryXenWorkflow = `sudo apt install xen-system-amd64
+sudo xl create /etc/xen/guest.cfg
+sudo xl list`;
 ---
 
 <BaseLayout title={title} description={description} keywords={keywords} publicShell bodyClass="xp-home">
@@ -200,6 +205,30 @@ const projectFeatures = featuredProjects.map(project => ({
           </Stack>
         </Surface>
       </Split>
+    </Container>
+  </Section>
+
+  <Section id="try-xen" surface="1">
+    <Container>
+      <CommandExample
+        eyebrow="Try Xen"
+        title="Start a configured Xen guest"
+        description="On a Debian host, install Xen, start a prepared guest, and confirm that the domain is running."
+        code={tryXenWorkflow}
+        caption="Provisional Debian/AMD64 workflow. Reboot into Xen and provide a valid /etc/xen/guest.cfg before running xl create; maintainer review is still required."
+        highlightedLines={[2]}
+        headingLevel="h2"
+        class="xp-home-try-xen"
+      >
+        <Button
+          slot="action"
+          href="https://wiki.debian.org/Xen"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Review the Debian Xen guide
+        </Button>
+      </CommandExample>
     </Container>
   </Section>
 

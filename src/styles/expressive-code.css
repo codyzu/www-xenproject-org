@@ -1,0 +1,49 @@
+.xp-site .expressive-code {
+  margin-block: var(--xp-space-5);
+}
+
+.xp-site .expressive-code figure {
+  margin: 0;
+}
+
+.xp-site .expressive-code .frame {
+  overflow: clip;
+}
+
+.xp-site .expressive-code .header {
+  min-height: 2.75rem;
+}
+
+.xp-site .expressive-code .header,
+.xp-site .expressive-code .title {
+  letter-spacing: 0.01em;
+}
+
+.xp-site .expressive-code .copy button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+}
+
+.xp-site .expressive-code .copy button:focus-visible {
+  outline: var(--xp-focus-width) solid var(--xp-focus-ring);
+  outline-offset: calc(var(--xp-focus-offset) * -1);
+}
+
+.xp-site .expressive-code pre {
+  scrollbar-color: var(--xp-border-strong) var(--xp-surface-0);
+}
+
+.xp-site .expressive-code pre:focus-visible {
+  outline: var(--xp-focus-width) solid var(--xp-focus-ring);
+  outline-offset: calc(var(--xp-focus-offset) * -1);
+}
+
+@media (max-width: 40rem) {
+  .xp-site .expressive-code {
+    margin-block: var(--xp-space-4);
+  }
+
+  .xp-site .expressive-code .copy button {
+    opacity: 0.88;
+  }
+}

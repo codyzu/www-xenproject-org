@@ -6,6 +6,7 @@ import process from 'node:process';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
+import astroExpressiveCode from 'astro-expressive-code';
 import {defineConfig} from 'astro/config';
 import yaml from 'js-yaml';
 import unoCSS from 'unocss/vite';
@@ -95,7 +96,14 @@ const ghostMockApi = {
 };
 
 export default defineConfig({
-  integrations: [mdx(), react(), sitemap({filter: isPublicSitemapPage}), headerFooterOutput, ghostHeaderFooterAssets],
+  integrations: [
+    astroExpressiveCode(),
+    mdx(),
+    react(),
+    sitemap({filter: isPublicSitemapPage}),
+    headerFooterOutput,
+    ghostHeaderFooterAssets,
+  ],
   site,
   vite: {
     plugins: [unoCSS(), ghostMockApi],

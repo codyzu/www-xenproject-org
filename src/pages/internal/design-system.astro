@@ -6,6 +6,7 @@ import MotionDemoCard from '../../components/blocks/internal/MotionDemoCard.astr
 import TokenSwatch from '../../components/blocks/internal/TokenSwatch.astro';
 import CTA from '../../components/blocks/CTA.astro';
 import Callout from '../../components/blocks/Callout.astro';
+import CommandExample from '../../components/blocks/CommandExample.astro';
 import FeatureGrid from '../../components/blocks/FeatureGrid.astro';
 import Hero from '../../components/blocks/Hero.astro';
 import LogoCloud from '../../components/blocks/LogoCloud.astro';
@@ -593,6 +594,17 @@ const blockStats = [
     description: 'New blocks stay independent of the migrated Sass cascade.',
   },
 ];
+
+const xenXtfWorkflow = `git clone https://xenbits.xen.org/git-http/xen.git
+export XEN_TOP="$PWD/xen"
+cd "$XEN_TOP"
+./configure
+make world
+./automation/scripts/qemu-xtf.sh x86-64 pv64 example 2>&1 | tee "\${LOGFILE}"`;
+
+const compactXtfWorkflow = `# Run the same XTF example selected by Xen's x86 CI smoke job.
+export LOGFILE="$PWD/xtf-example.log"
+./automation/scripts/qemu-xtf.sh x86-64 pv64 example 2>&1 | tee "$LOGFILE"`;
 ---
 
 <BaseLayout title="Design System" description="Internal Xen Project design system reference." robots="noindex, nofollow" bodyClass="xp-design-system">
@@ -1140,6 +1152,43 @@ const blockStats = [
               </Grid>
             </Stack>
           </Surface>
+        </Stack>
+      </Container>
+    </Section>
+
+    <Section id="command-examples">
+      <Container>
+        <Stack gap="7">
+          <Stack gap="3" class="uno-max-w-xp-content">
+            <Text size="eyebrow" tone="muted">Command-line examples</Text>
+            <Heading size="heading-xl">Prominent workflows, rendered as engineering content.</Heading>
+            <Text>
+              CommandExample is for editorial workflows that need more hierarchy than an ordinary documentation fence. Expressive Code owns syntax rendering, line markers, scrolling, and copy behavior.
+            </Text>
+          </Stack>
+
+          <CommandExample
+            eyebrow="Try Xen"
+            title="Build Xen and exercise the XTF runner"
+            description="Clone Xen, build it, and run an XTF test from a clean checkout."
+            code={xenXtfWorkflow}
+            caption="Illustrative workflow. Local prerequisites and prepared artifacts are required."
+            highlightedLines={[6]}
+          />
+
+          <div class="uno-max-w-3xl">
+            <CommandExample
+              variant="documentation"
+              eyebrow="Documentation variant"
+              title="Capture an XTF smoke-test log"
+              description="A compact treatment for a focused command with one highlighted action."
+              code={compactXtfWorkflow}
+              terminalLabel="xtf-example.log"
+              caption="Comments remain in copied terminal examples so important operating context is preserved."
+              highlightedLines={[3]}
+              headingLevel="h3"
+            />
+          </div>
         </Stack>
       </Container>
     </Section>

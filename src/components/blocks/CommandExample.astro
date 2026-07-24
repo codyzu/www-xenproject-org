@@ -1,0 +1,321 @@
+---
+import {Code} from 'astro-expressive-code/components';
+import Heading from '../primitives/Heading.astro';
+import Text from '../primitives/Text.astro';
+
+type HeadingLevel = 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
+type Variant = 'featured' | 'documentation';
+
+type Props = {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  code: string;
+  language?: string;
+  terminalLabel?: string;
+  caption?: string;
+  highlightedLines?: Array<number | string>;
+  variant?: Variant;
+  showPrompts?: boolean;
+  headingLevel?: HeadingLevel;
+  class?: string;
+};
+
+const {
+  eyebrow,
+  title,
+  description,
+  code,
+  language = 'bash',
+  terminalLabel,
+  caption,
+  highlightedLines = [],
+  variant = 'featured',
+  showPrompts = variant === 'featured' && ['bash', 'sh', 'shell', 'zsh'].includes(language),
+  headingLevel = 'h3',
+  class: className = '',
+} = Astro.props as Props;
+
+const isFeatured = variant === 'featured';
+const hasAction = Astro.slots.has('action');
+---
+
+<article
+  class:list={[
+    'command-example',
+    `command-example--${variant}`,
+    showPrompts && 'command-example--prompts',
+    className,
+  ]}
+  data-command-example={variant}
+>
+  <div class="command-example__header">
+    {eyebrow && <Text size="eyebrow" tone="accent-primary">{eyebrow}</Text>}
+    <Heading as={headingLevel} size={isFeatured ? 'heading-l' : 'heading-m'}>{title}</Heading>
+    {description && <Text size={isFeatured ? 'body' : 'caption'}>{description}</Text>}
+    {hasAction && <div class="command-example__action"><slot name="action" /></div>}
+  </div>
+
+  <div class="command-example__code">
+    <Code
+      code={code}
+      lang={language}
+      frame={terminalLabel || !isFeatured ? 'terminal' : 'none'}
+      title={terminalLabel}
+      mark={highlightedLines}
+      wrap={false}
+    />
+  </div>
+
+  {caption && (
+    <div class="command-example__caption">
+      <span aria-hidden="true" class="command-example__caption-mark"></span>
+      <Text size="caption" tone="muted">{caption}</Text>
+    </div>
+  )}
+</article>
+
+<style is:global>
+  .command-example {
+    position: relative;
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--xp-border-strong);
+    border-radius: var(--xp-radius-lg);
+    background:
+      radial-gradient(circle at 82% 12%, rgb(79 179 255 / 0.11), transparent 24rem),
+      linear-gradient(145deg, rgb(133 194 65 / 0.07), transparent 32rem),
+      var(--xp-surface-1);
+    box-shadow: var(--xp-shadow-lg);
+  }
+
+  .command-example::before {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: min(22rem, 62%);
+    height: 2px;
+    background: linear-gradient(90deg, var(--xp-accent-primary), var(--xp-accent-secondary), transparent);
+    content: "";
+  }
+
+  .command-example__header {
+    display: grid;
+    gap: var(--xp-space-3);
+    max-width: var(--xp-container-content);
+    margin-inline: auto;
+  }
+
+  .command-example__code {
+    min-width: 0;
+    width: 100%;
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+
+  .command-example__code .expressive-code {
+    margin: 0;
+  }
+
+  .command-example__code .expressive-code .frame {
+    border-color: var(--xp-border-muted);
+    border-radius: var(--xp-radius-md);
+    background: var(--xp-surface-0);
+    box-shadow:
+      0 22px 54px rgb(0 0 0 / 0.36),
+      inset 0 1px 0 rgb(255 255 255 / 0.05);
+  }
+
+  .command-example__code .expressive-code .header {
+    background:
+      linear-gradient(90deg, rgb(133 194 65 / 0.07), transparent 20rem),
+      var(--xp-surface-2);
+  }
+
+  .command-example__caption {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--xp-space-3);
+    width: 100%;
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+
+  .command-example__caption-mark {
+    flex: 0 0 auto;
+    width: 1.75rem;
+    height: 1px;
+    margin-top: 0.72rem;
+    background: var(--xp-accent-primary);
+  }
+
+  .command-example__action {
+    justify-self: start;
+    padding-top: var(--xp-space-2);
+  }
+
+  .command-example--featured {
+    padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 3.5rem);
+  }
+
+  .command-example--featured .command-example__header {
+    gap: var(--xp-space-3);
+    padding-bottom: clamp(1.75rem, 4vw, 2.75rem);
+  }
+
+  .command-example--featured .command-example__header > :last-child {
+    max-width: 42rem;
+  }
+
+  .command-example--featured .command-example__code .expressive-code {
+    --ec-codeFontSize: 1.025rem;
+    --ec-codeLineHt: 1.8;
+    --ec-codePadBlk: 1.35rem;
+    --ec-codePadInl: 1.25rem;
+    --ec-frm-inlBtnBgIdleOpa: 0.36;
+  }
+
+  .command-example--featured.command-example--prompts .expressive-code .ec-line::before {
+    grid-area: gutter;
+    min-width: 1.7rem;
+    padding-inline-start: 1.2rem;
+    color: var(--xp-accent-primary);
+    font-weight: 700;
+    text-align: right;
+    content: "$";
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .command-example--featured.command-example--prompts .expressive-code .ec-line .code {
+    padding-inline-start: 0.85rem;
+  }
+
+  .command-example[data-command-example] .expressive-code .copy button {
+    opacity: 0.64;
+    transition: none;
+  }
+
+  .command-example[data-command-example] .expressive-code .copy button:hover,
+  .command-example[data-command-example] .expressive-code .copy button:focus-visible {
+    opacity: 1;
+  }
+
+  .command-example[data-command-example] .expressive-code .copy button::after {
+    margin: 0.72rem;
+  }
+
+  .command-example--featured .command-example__caption {
+    padding-top: var(--xp-space-5);
+  }
+
+  .command-example--documentation {
+    border-color: var(--xp-border-muted);
+    border-radius: var(--xp-radius-md);
+    background: var(--xp-surface-2);
+    box-shadow: var(--xp-shadow-sm);
+  }
+
+  .command-example--documentation::before {
+    width: 8rem;
+  }
+
+  .command-example--documentation .command-example__header {
+    gap: var(--xp-space-2);
+    padding: var(--xp-space-5);
+    padding-bottom: var(--xp-space-4);
+    margin-inline: 0;
+  }
+
+  .command-example--documentation .command-example__code {
+    max-width: none;
+    padding-inline: var(--xp-space-4);
+  }
+
+  .command-example--documentation .command-example__caption {
+    max-width: none;
+    padding: var(--xp-space-3) var(--xp-space-5) var(--xp-space-5);
+    margin-inline: 0;
+  }
+
+  @media (min-width: 64rem) {
+    .command-example--featured {
+      display: grid;
+      grid-template-columns: minmax(16rem, 20rem) minmax(0, 52rem);
+      grid-template-areas:
+        "header code"
+        ". caption";
+      column-gap: clamp(2.5rem, 4vw, 4rem);
+      align-items: center;
+      justify-content: start;
+    }
+
+    .command-example--featured .command-example__header {
+      grid-area: header;
+      max-width: none;
+      margin-inline: 0;
+      padding-bottom: 0;
+    }
+
+    .command-example--featured .command-example__code {
+      grid-area: code;
+      margin-inline: 0;
+    }
+
+    .command-example--featured .command-example__caption {
+      grid-area: caption;
+      margin-inline: 0;
+    }
+  }
+
+  @media (max-width: 40rem) {
+    .command-example--featured {
+      padding: var(--xp-space-6) var(--xp-space-3);
+    }
+
+    .command-example--featured .command-example__header {
+      padding-inline: var(--xp-space-2);
+      padding-bottom: var(--xp-space-5);
+    }
+
+    .command-example--featured .command-example__code .expressive-code {
+      --ec-codeFontSize: 0.925rem;
+      --ec-codeLineHt: 1.75;
+      --ec-codePadBlk: 3.75rem 1.15rem;
+      --ec-codePadInl: 1rem;
+    }
+
+    .command-example--featured.command-example--prompts .expressive-code .ec-line::before {
+      min-width: 1.35rem;
+      padding-inline-start: 0.8rem;
+    }
+
+    .command-example--featured.command-example--prompts .expressive-code .ec-line .code {
+      padding-inline-start: 0.65rem;
+    }
+
+    .command-example--featured .command-example__caption {
+      padding: var(--xp-space-4) var(--xp-space-2) 0;
+    }
+
+    .command-example--documentation .command-example__header {
+      padding: var(--xp-space-4);
+    }
+
+    .command-example--documentation .command-example__code {
+      padding-inline: var(--xp-space-3);
+    }
+
+    .command-example--documentation .command-example__caption {
+      padding: var(--xp-space-3) var(--xp-space-4) var(--xp-space-4);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .command-example *,
+    .command-example *::before,
+    .command-example *::after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+</style>

@@ -85,6 +85,16 @@
   - paragraph: Virtualized systems stay above the hypervisor boundary.
   - paragraph: Hardware
   - paragraph: Platform integration stays visible to teams that need control.
+  - article:
+    - paragraph: Try Xen
+    - heading "Start a configured Xen guest" [level=2]
+    - paragraph: On a Debian host, install Xen, start a prepared guest, and confirm that the domain is running.
+    - link "Review the Debian Xen guide":
+      - /url: https://wiki.debian.org/Xen
+    - figure:
+      - code: $ sudo apt install xen-system-amd64 $ sudo xl create /etc/xen/guest.cfg $ sudo xl list
+      - button "Copy to clipboard"
+    - paragraph: Provisional Debian/AMD64 workflow. Reboot into Xen and provide a valid /etc/xen/guest.cfg before running xl create; maintainer review is still required.
   - paragraph: Project areas
   - heading "Explore the Xen project ecosystem." [level=2]
   - paragraph: Key project areas are available through direct links so teams can scan capabilities and go deeper where relevant.
