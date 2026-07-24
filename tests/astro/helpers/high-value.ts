@@ -1,6 +1,7 @@
 import process from 'node:process';
 import AxeBuilder from '@axe-core/playwright';
 import {expect, type Browser, type BrowserContext, type BrowserContextOptions, type Locator, type Page} from '@playwright/test';
+import {memberOrganizations} from '../../../src/data/member-logos';
 
 type ActionContract = {
   href: string;
@@ -183,7 +184,7 @@ export const highValuePages: HighValuePageContract[] = [
       {label: 'Read project governance', href: '/about/governance/'},
     ],
     finalActions: [
-      {label: 'Explore membership', href: '/about/become-a-member/'},
+      {label: 'Explore Xen Project membership', href: '/about/become-a-member/'},
       {label: 'Read project governance', href: '/about/governance/'},
     ],
     diagrams: [],
@@ -415,10 +416,17 @@ async function expectPageSpecificLayout(page: Page, contract: HighValuePageContr
   }
 
   if (contract.name === 'members') {
+    const hero = page.locator('#hero');
+    await expect(hero).toContainText(String(memberOrganizations.length));
+    await expect(hero).toContainText('member organizations');
+    await expect(hero).toContainText('One open source virtualization project.');
+    await expectInsideViewport(hero.getByText('One open source virtualization project.'), viewportWidth);
+
     const memberSection = page.locator('#current-members');
     await memberSection.scrollIntoViewIfNeeded();
-    await expect(memberSection.locator('img')).toHaveCount(10);
+    await expect(memberSection.locator('img')).toHaveCount(memberOrganizations.length);
     await expectInsideViewport(memberSection, viewportWidth);
+    await expectCardsInsideViewport(page.locator('#what-support-enables'), 4, viewportWidth);
   }
 }
 

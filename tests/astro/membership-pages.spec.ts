@@ -1,5 +1,6 @@
 import {readFile} from 'node:fs/promises';
 import {expect, test} from '@playwright/test';
+import {memberOrganizations} from '../../src/data/member-logos';
 
 const enrollmentUrl = 'https://enrollment.lfx.linuxfoundation.org/?project=xen';
 
@@ -144,14 +145,75 @@ test.describe('membership launch pages', () => {
     });
   }
 
-  test('renders current members from the shared source with accessible names', async ({page}) => {
+  test('presents current member proof, support, governance, and membership paths', async ({page}) => {
     await page.goto('/about/project-members/');
 
     await expect(page.getByRole('heading', {level: 1, name: 'Organizations sustaining the Xen Project.'})).toBeVisible();
-    await expect(page.locator('#current-members img')).toHaveCount(10);
-    await expect(page.locator('#current-members img[alt="AMD"]')).toHaveCount(1);
-    await expect(page.locator('#current-members img[alt="Ford Motor Company"]')).toHaveCount(1);
-    await expect(page.locator('#final-cta').getByRole('link', {name: 'Explore membership'})).toHaveAttribute('href', '/about/become-a-member/');
+    const hero = page.locator('#hero');
+    await expect(hero.getByRole('link', {name: 'Explore membership'})).toHaveAttribute('href', '/about/become-a-member/');
+    await expect(hero.getByRole('link', {name: 'Read project governance'})).toHaveAttribute('href', '/about/governance/');
+    await expect(hero).toContainText(String(memberOrganizations.length));
+    await expect(hero).toContainText('member organizations');
+    await expect(hero).toContainText('One open source virtualization project.');
+
+    const main = page.getByRole('main');
+    await expect(main).not.toContainText(/shared data source|canonical source|database|dataset/i);
+
+    const currentMembers = page.locator('#current-members');
+    await expect(currentMembers.getByRole('heading', {level: 2, name: 'Current Xen Project members'})).toBeVisible();
+    await expect(currentMembers).toContainText('Organizations providing sustained support for the project.');
+    await expect(currentMembers.locator('img')).toHaveCount(memberOrganizations.length);
+
+    for (const member of memberOrganizations) {
+      const memberLink = currentMembers.getByRole('link', {name: `Visit ${member.name}`, exact: true});
+      await expect(memberLink).toHaveAttribute('href', member.href);
+      await expect(memberLink.locator('img')).toHaveAttribute('alt', member.name);
+    }
+
+    const support = page.locator('#what-support-enables');
+    await expect(support.locator('article')).toHaveCount(4);
+    for (const [title, description] of [
+      ['Shared project infrastructure', 'Membership helps fund hosting, test environments, and operational resources used across the project.'],
+      ['Events and coordination', 'Members support project events, communications, and collaboration across organizational boundaries.'],
+      ['Trademark stewardship', 'The Advisory Board manages the Xen Project trademark and related non-technical responsibilities.'],
+      ['Long-term project health', 'Sustained organizational participation supports shared programs and a neutral, open ecosystem.'],
+    ]) {
+      const card = support.locator('article').filter({hasText: title});
+      await expect(card.getByRole('heading', {level: 3, name: title})).toBeVisible();
+      await expect(card).toContainText(description);
+    }
+    await expect(support).not.toContainText(/pricing|enrollment|Premier Plus/i);
+
+    const governance = page.locator('#governance-boundary');
+    await expect(governance).toHaveCount(1);
+    await expect(governance.getByRole('heading', {name: 'Member support and technical contribution are distinct.'})).toBeVisible();
+    await expect(governance).toContainText('Membership supports the project; it does not buy code authority');
+    await expect(governance.getByRole('link', {name: 'Read the governance model'})).toHaveAttribute('href', '/about/governance/');
+    await expect(page.getByText('Membership supports the project; it does not buy code authority', {exact: true})).toHaveCount(1);
+
+    const finalCta = page.locator('#final-cta');
+    await expect(finalCta.getByRole('heading', {name: 'Add your organization to the project’s support network.'})).toBeVisible();
+    await expect(finalCta.getByRole('link', {name: 'Explore Xen Project membership'})).toHaveAttribute(
+      'href',
+      '/about/become-a-member/',
+    );
+    await expect(finalCta.getByRole('link', {name: 'Read project governance'})).toHaveAttribute('href', '/about/governance/');
+  });
+
+  test('keeps project member proof readable at ordinary laptop width', async ({page}) => {
+    await page.setViewportSize({width: 1280, height: 800});
+    await page.goto('/about/project-members/');
+
+    await expect(page.locator('#hero').getByText('One open source virtualization project.')).toBeVisible();
+    await expect(page.locator('#current-members img')).toHaveCount(memberOrganizations.length);
+    await expect(page.locator('#what-support-enables article')).toHaveCount(4);
+    await expect(page.locator('#final-cta').getByRole('link', {name: 'Explore Xen Project membership'})).toBeVisible();
+
+    const widths = await page.evaluate(() => ({
+      client: document.documentElement.clientWidth,
+      scroll: document.documentElement.scrollWidth,
+    }));
+    expect(widths.scroll).toBeLessThanOrEqual(widths.client + 1);
   });
 
   test('supports first visit, rejection, and persisted rejection', async ({page}) => {

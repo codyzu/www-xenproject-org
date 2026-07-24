@@ -1,18 +1,18 @@
 - main:
   - paragraph: Project members
   - heading "Organizations sustaining the Xen Project." [level=1]
-  - paragraph: Current members support the shared infrastructure and stewardship around an open technical community.
-  - paragraph: The Xen Project Advisory Board brings together organizations with a stake in open virtualization across infrastructure, silicon, automotive, aerospace, and software.
+  - paragraph: Current members sustain the shared infrastructure, stewardship, and coordination around an open technical community.
+  - paragraph: These organizations span infrastructure, silicon, automotive, aerospace, and software.
   - link "Explore membership":
     - /url: /about/become-a-member
   - link "Read project governance":
     - /url: /about/governance
-  - paragraph: Current member listing
-  - text: 10 member organizations in the shared data source
-  - paragraph: Membership provides an organizational support path. Technical roles remain merit-based and are earned through contribution.
-  - paragraph: Advisory Board members
-  - heading "Current organizations supporting the project." [level=2]
-  - paragraph: Each logo links to the member organization. All entries come from the same canonical source used by the homepage and membership page.
+  - paragraph: Shared project support
+  - text: /\d+ member organizations\./
+  - paragraph: One open source virtualization project.
+  - paragraph: Current members
+  - heading "Current Xen Project members" [level=2]
+  - paragraph: Organizations providing sustained support for the project.
   - link "Visit AMD":
     - /url: http://www.amd.com/
     - img "AMD"
@@ -45,31 +45,30 @@
     - img "XenServer"
   - paragraph: What support enables
   - heading "Member support keeps shared responsibilities visible and funded." [level=2]
-  - paragraph: The Advisory Board focuses on non-technical project needs that complement the work of maintainers, committers, contributors, and users.
   - article:
     - heading "Shared project infrastructure" [level=3]
-    - paragraph: Membership dues help fund hosting, test environments, and operational resources used across the project.
+    - paragraph: Membership helps fund hosting, test environments, and operational resources used across the project.
   - article:
     - heading "Events and coordination" [level=3]
     - paragraph: Members support project events, communications, and collaboration across organizational boundaries.
   - article:
     - heading "Trademark stewardship" [level=3]
-    - paragraph: The Advisory Board manages the Xen Project trademark and other non-technical project responsibilities.
+    - paragraph: The Advisory Board manages the Xen Project trademark and related non-technical responsibilities.
   - article:
     - heading "Long-term project health" [level=3]
-    - paragraph: Sustained organizational participation helps the project maintain shared programs and an open ecosystem.
+    - paragraph: Sustained organizational participation supports shared programs and a neutral, open ecosystem.
   - paragraph: Open governance
   - heading "Member support and technical contribution are distinct." [level=2]
-  - paragraph: The Advisory Board manages project funding, events, communications, and trademark responsibilities. Technical decisions remain with the project’s open source meritocracy, where responsibility is earned through public contribution and peer review.
+  - paragraph: The Advisory Board manages funding, events, communications, and trademark responsibilities. Technical decisions remain with the project’s open source meritocracy, where responsibility is earned through public contribution and peer review.
   - link "Read the governance model":
     - /url: /about/governance
   - complementary:
     - heading "Membership supports the project; it does not buy code authority" [level=3]
-    - paragraph: Organizations do not need to be members to contribute technically, and membership does not override maintainer review or project decision processes.
+    - paragraph: Organizations do not need to be members to contribute technically, and membership does not override maintainer review or public project processes.
   - paragraph: Organizational participation
   - heading "Add your organization to the project’s support network." [level=2]
   - paragraph: Review what membership enables and continue to the Linux Foundation-managed enrollment process when your organization is ready.
-  - link "Explore membership":
+  - link "Explore Xen Project membership":
     - /url: /about/become-a-member
   - link "Read project governance":
     - /url: /about/governance

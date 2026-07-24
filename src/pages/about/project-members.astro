@@ -23,7 +23,7 @@ const supportAreas = [
   {
     icon: 'i-carbon-infrastructure-classic',
     title: 'Shared project infrastructure',
-    description: 'Membership dues help fund hosting, test environments, and operational resources used across the project.',
+    description: 'Membership helps fund hosting, test environments, and operational resources used across the project.',
   },
   {
     icon: 'i-carbon-events',
@@ -33,12 +33,12 @@ const supportAreas = [
   {
     icon: 'i-carbon-license',
     title: 'Trademark stewardship',
-    description: 'The Advisory Board manages the Xen Project trademark and other non-technical project responsibilities.',
+    description: 'The Advisory Board manages the Xen Project trademark and related non-technical responsibilities.',
   },
   {
     icon: 'i-carbon-chart-network',
     title: 'Long-term project health',
-    description: 'Sustained organizational participation helps the project maintain shared programs and an open ecosystem.',
+    description: 'Sustained organizational participation supports shared programs and a neutral, open ecosystem.',
   },
 ];
 ---
@@ -48,8 +48,8 @@ const supportAreas = [
     id="hero"
     eyebrow="Project members"
     title="Organizations sustaining the Xen Project."
-    statement="Current members support the shared infrastructure and stewardship around an open technical community."
-    description="The Xen Project Advisory Board brings together organizations with a stake in open virtualization across infrastructure, silicon, automotive, aerospace, and software."
+    statement="Current members sustain the shared infrastructure, stewardship, and coordination around an open technical community."
+    description="These organizations span infrastructure, silicon, automotive, aerospace, and software."
     actions={[
       {label: 'Explore membership', href: '/about/become-a-member/'},
       {label: 'Read project governance', href: '/about/governance/', variant: 'secondary'},
@@ -57,13 +57,13 @@ const supportAreas = [
   >
     <Surface slot="media" tone="2" border="strong" padding="lg" radius="lg" shadow="md" class="uno-w-full">
       <Stack gap="5">
-        <Text size="eyebrow" tone="accent-primary">Current member listing</Text>
+        <Text size="eyebrow" tone="accent-primary">Shared project support</Text>
         <div class="uno-flex uno-items-end uno-gap-3">
           <span class="uno-font-mono uno-text-5xl uno-font-bold uno-leading-none uno-text-xp-text-primary">{memberOrganizations.length}</span>
-          <Text as="span" size="caption" class="uno-pb-1">member organizations in the shared data source</Text>
+          <Text as="span" size="caption" class="uno-pb-1">member organizations.</Text>
         </div>
         <div class="uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-pt-4">
-          <Text size="caption">Membership provides an organizational support path. Technical roles remain merit-based and are earned through contribution.</Text>
+          <Text tone="primary" class="uno-font-semibold">One open source virtualization project.</Text>
         </div>
       </Stack>
     </Surface>
@@ -71,9 +71,9 @@ const supportAreas = [
 
   <LogoCloud
     id="current-members"
-    eyebrow="Advisory Board members"
-    title="Current organizations supporting the project."
-    description="Each logo links to the member organization. All entries come from the same canonical source used by the homepage and membership page."
+    eyebrow="Current members"
+    title="Current Xen Project members"
+    description="Organizations providing sustained support for the project."
     logos={memberLogos}
   />
 
@@ -81,7 +81,6 @@ const supportAreas = [
     id="what-support-enables"
     eyebrow="What support enables"
     title="Member support keeps shared responsibilities visible and funded."
-    description="The Advisory Board focuses on non-technical project needs that complement the work of maintainers, committers, contributors, and users."
     surface="1"
     columns="4"
     features={supportAreas}
@@ -95,14 +94,14 @@ const supportAreas = [
             <Text size="eyebrow" tone="muted">Open governance</Text>
             <Heading size="heading-xl">Member support and technical contribution are distinct.</Heading>
             <Text>
-              The Advisory Board manages project funding, events, communications, and trademark responsibilities. Technical decisions remain with the project’s open source meritocracy, where responsibility is earned through public contribution and peer review.
+              The Advisory Board manages funding, events, communications, and trademark responsibilities. Technical decisions remain with the project’s open source meritocracy, where responsibility is earned through public contribution and peer review.
             </Text>
           </Stack>
           <Button href="/about/governance/" variant="text" class="uno-self-start">Read the governance model</Button>
         </Stack>
         <Callout
           title="Membership supports the project; it does not buy code authority"
-          description="Organizations do not need to be members to contribute technically, and membership does not override maintainer review or project decision processes."
+          description="Organizations do not need to be members to contribute technically, and membership does not override maintainer review or public project processes."
           headingLevel="h3"
         >
           <span slot="icon" class="i-carbon-collaborate"></span>
@@ -117,7 +116,7 @@ const supportAreas = [
     title="Add your organization to the project’s support network."
     description="Review what membership enables and continue to the Linux Foundation-managed enrollment process when your organization is ready."
     actions={[
-      {label: 'Explore membership', href: '/about/become-a-member/'},
+      {label: 'Explore Xen Project membership', href: '/about/become-a-member/'},
       {label: 'Read project governance', href: '/about/governance/', variant: 'secondary'},
     ]}
   />
