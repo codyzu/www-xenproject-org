@@ -66,18 +66,21 @@ test.describe('redesigned homepage', () => {
     await expect(main.getByRole('heading', {name: 'Modern platforms still need a strong virtualization layer.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Built for engineers working close to the platform.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'A clear boundary for platform control.'})).toBeVisible();
-    await expect(main.getByRole('heading', {name: 'Start a configured Xen guest'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Start a Xen guest'})).toBeVisible();
     const tryXen = main.locator('#try-xen');
+    await expect(
+      tryXen.getByText('Install Xen, start a guest, and verify it is running.'),
+    ).toBeVisible();
     await expect(tryXen.locator('[data-command-example="featured"]')).toHaveCount(1);
-    await expect(tryXen.locator('.ec-line.mark')).toHaveCount(1);
+    await expect(tryXen.locator('.ec-line.mark')).toHaveCount(0);
     await expect(tryXen.getByRole('button', {name: 'Copy to clipboard'})).toHaveAttribute(
       'data-code',
-      'sudo apt install xen-system-amd64\u007fsudo xl create /etc/xen/guest.cfg\u007fsudo xl list',
+      'sudo apt install xen-system-amd64\u007f# Reboot into Xen and prepare /etc/xen/guest.cfg\u007fsudo xl create /etc/xen/guest.cfg\u007fsudo xl list',
     );
-    await expect(tryXen.getByRole('link', {name: 'Review the Debian Xen guide'})).toHaveAttribute(
-      'href',
-      'https://wiki.debian.org/Xen',
-    );
+    await expect(tryXen.getByText('Debian AMD64 example.')).toBeVisible();
+    const debianGuide = tryXen.getByRole('link', {name: 'Review the Debian Xen guide'});
+    await expect(debianGuide).toHaveAttribute('href', 'https://wiki.debian.org/Xen');
+    await expect(debianGuide).toHaveClass(/xen-action-secondary/);
     await expect(main.getByRole('heading', {name: 'Explore the Xen project ecosystem.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Sustained by organizations with a stake in open virtualization.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Technical work happens in the open.'})).toBeVisible();

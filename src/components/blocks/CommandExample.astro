@@ -174,7 +174,7 @@ const hasAction = Astro.slots.has('action');
     --ec-frm-inlBtnBgIdleOpa: 0.36;
   }
 
-  .command-example--featured.command-example--prompts .expressive-code .ec-line::before {
+  .command-example--featured.command-example--prompts .expressive-code .ec-line:has(.code:not(:empty))::before {
     grid-area: gutter;
     min-width: 1.7rem;
     padding-inline-start: 1.2rem;
@@ -184,6 +184,18 @@ const hasAction = Astro.slots.has('action');
     content: "$";
     pointer-events: none;
     user-select: none;
+  }
+
+  .command-example--featured.command-example--prompts .expressive-code .ec-line:has(.code > span:only-child[style*="--0:#8B949E"])::before {
+    content: "";
+  }
+
+  .command-example--featured.command-example--prompts .expressive-code .ec-line:has(.code > span:only-child[style*="--0:#8B949E"]) {
+    margin-block: 0.4rem;
+  }
+
+  .command-example--featured.command-example--prompts .expressive-code .ec-line:has(.code > span:only-child[style*="--0:#8B949E"]) .code > span {
+    opacity: 0.88;
   }
 
   .command-example--featured.command-example--prompts .expressive-code .ec-line .code {
@@ -291,6 +303,14 @@ const hasAction = Astro.slots.has('action');
 
     .command-example--featured.command-example--prompts .expressive-code .ec-line .code {
       padding-inline-start: 0.65rem;
+    }
+
+    .command-example--featured.command-example--prompts .expressive-code .ec-line:has(.code > span:only-child[style*="--0:#8B949E"]) {
+      max-width: calc(100vw - 6.5rem);
+    }
+
+    .command-example--featured.command-example--prompts .expressive-code .ec-line:has(.code > span:only-child[style*="--0:#8B949E"]) .code {
+      white-space: normal;
     }
 
     .command-example--featured .command-example__caption {

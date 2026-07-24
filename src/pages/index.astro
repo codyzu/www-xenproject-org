@@ -122,6 +122,7 @@ const projectFeatures = featuredProjects.map(project => ({
 }));
 
 const tryXenWorkflow = `sudo apt install xen-system-amd64
+# Reboot into Xen and prepare /etc/xen/guest.cfg
 sudo xl create /etc/xen/guest.cfg
 sudo xl list`;
 ---
@@ -212,17 +213,17 @@ sudo xl list`;
     <Container>
       <CommandExample
         eyebrow="Try Xen"
-        title="Start a configured Xen guest"
-        description="On a Debian host, install Xen, start a prepared guest, and confirm that the domain is running."
+        title="Start a Xen guest"
+        description="Install Xen, start a guest, and verify it is running."
         code={tryXenWorkflow}
-        caption="Provisional Debian/AMD64 workflow. Reboot into Xen and provide a valid /etc/xen/guest.cfg before running xl create; maintainer review is still required."
-        highlightedLines={[2]}
+        caption="Debian AMD64 example."
         headingLevel="h2"
         class="xp-home-try-xen"
       >
         <Button
           slot="action"
           href="https://wiki.debian.org/Xen"
+          variant="secondary"
           target="_blank"
           rel="noreferrer"
         >
