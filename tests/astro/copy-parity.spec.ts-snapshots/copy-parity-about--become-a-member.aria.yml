@@ -49,18 +49,18 @@
     - heading "Membership does not purchase technical authority" [level=3]
   - paragraph: Membership options
   - heading "Find the appropriate organizational path." [level=2]
-  - paragraph: Review the available paths below. The Linux Foundation enrollment process confirms current terms, pricing, and eligibility.
+  - paragraph: Review the available paths below. Current pricing and enrollment details are managed by the Linux Foundation.
   - article:
     - paragraph: Premier Plus membership
     - heading "Support Xen’s safety-oriented work at the highest membership level." [level=3]
-    - paragraph: Premier Plus is Xen’s highest organizational membership level. It helps sustain safety-oriented and certification-focused collaboration across shared evidence, tooling, documentation, engineering practices, and coordination. Technical decisions continue through Xen’s open project processes.
-    - paragraph: The Linux Foundation confirms current terms and eligibility through enrollment.
+    - paragraph: Premier Plus is designed for organizations building safety-critical and mixed-criticality systems. It includes direct participation in the Xen Safety Committee, voting representation on both the Advisory Board and the Safety Committee, access to committee-managed safety artifacts, and a voice in priorities and roadmap.
+    - paragraph: Members can use shared requirements, architecture material, tests, DFMEA work, tooling, and process documentation in their own assessment, certification, and audit activities, and may share them with qualified safety assessors.
   - article:
     - heading "Premier Member" [level=3]
-    - paragraph: A current option listed by the Xen Project membership program. The Linux Foundation confirms current terms through the enrollment process.
+    - paragraph: Provides sustained support for Xen Project operations, shared infrastructure, events, communications, and community programs.
   - article:
     - heading "Advisory Board Governing Member" [level=3]
-    - paragraph: For organizations participating in the Advisory Board’s non-technical governance and project stewardship responsibilities.
+    - paragraph: Provides a voting representative on the Xen Project Advisory Board and participation in the project’s non-technical governance and stewardship.
   - article:
     - heading "Startup Member" [level=3]
     - paragraph: /For organizations with fewer than \d+ employees, subject to approval under the current membership requirements\./
@@ -73,7 +73,7 @@
     - /url: /about/project-members
   - paragraph: Current members
   - heading "Supported across infrastructure, silicon, automotive, aerospace, and software." [level=2]
-  - paragraph: These organizations provide a current trust signal for sustained, cross-industry participation. The full member page keeps the canonical organization listing.
+  - paragraph: Organizations from across the virtualization ecosystem help sustain the Xen Project together.
   - link "Visit AMD":
     - /url: http://www.amd.com/
     - img "AMD"
@@ -108,18 +108,14 @@
     - /url: /about/project-members
   - paragraph: Safety-oriented work
   - heading "Support collaboration where evidence matters." [level=2]
-  - paragraph: Xen Project participants collaborate on engineering practices, documentation, tooling, and evidence for safety-conscious and certification-oriented systems.
+  - paragraph: Premier Plus supports shared safety-oriented engineering and committee-managed artifacts. System certification remains the responsibility of each organization.
   - link "Review safety-oriented work":
     - /url: /technology/safety
-  - complementary:
-    - text: Important
-    - heading "Certification depends on the complete system" [level=3]
-    - paragraph: Xen source code is not itself safety certified. Certification depends on integration context, process, evidence, tooling, validation, and the complete system safety case.
   - paragraph: Next step
   - heading "Ready to discuss Xen Project membership?" [level=2]
-  - paragraph: Continue to the enrollment form, or contact the Xen Project team for membership context.
+  - paragraph: Continue to the Linux Foundation enrollment process, or contact the membership team to discuss Premier Plus and Xen Safety Committee participation.
   - paragraph: XenProject.org does not host or manage the form. The Linux Foundation handles validation, submission, membership workflow, and confirmation.
   - link "Continue to the LF membership form":
     - /url: https://enrollment.lfx.linuxfoundation.org/?project=xen
-  - link "Email the project team":
-    - /url: mailto:community.manager@xenproject.org
+  - link "Email the membership team":
+    - /url: mailto:membership@linuxfoundation.org

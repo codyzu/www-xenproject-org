@@ -167,7 +167,7 @@ export const highValuePages: HighValuePageContract[] = [
     ],
     finalActions: [
       {label: 'Continue to the LF membership form', href: 'https://enrollment.lfx.linuxfoundation.org/?project=xen'},
-      {label: 'Email the project team', href: 'mailto:community.manager@xenproject.org'},
+      {label: 'Email the membership team', href: 'mailto:membership@linuxfoundation.org'},
     ],
     diagrams: [],
   },

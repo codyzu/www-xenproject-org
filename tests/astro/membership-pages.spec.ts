@@ -34,11 +34,29 @@ test.describe('membership launch pages', () => {
     await expect(featured).toBeVisible();
     await expect(featured).toContainText('Premier Plus membership');
     await expect(featured.getByRole('heading', {level: 3})).toContainText('highest membership level');
+    await expect(featured).toContainText('direct participation in the Xen Safety Committee');
+    await expect(featured).toContainText('voting representation on both the Advisory Board and the Safety Committee');
+    await expect(featured).toContainText('access to committee-managed safety artifacts');
+    await expect(featured).toContainText('a voice in priorities and roadmap');
+    await expect(featured).toContainText('qualified safety assessors');
+    await expect(featured).not.toContainText('The Linux Foundation confirms current terms and eligibility through enrollment');
+    await expect(featured).not.toContainText(/coming soon|subject to approval|details to be determined/i);
+    await expect(membershipOptions).toContainText(
+      'Current pricing and enrollment details are managed by the Linux Foundation.',
+    );
     await expect(standardOptions).toHaveCount(4);
 
     for (const name of ['Premier Member', 'Advisory Board Governing Member', 'Startup Member', 'Associate Member']) {
       await expect(standardOptions.getByRole('heading', {level: 3, name})).toBeVisible();
     }
+    await expect(standardOptions.filter({hasText: 'Premier Member'})).toContainText(
+      'operations, shared infrastructure, events, communications, and community programs',
+    );
+    await expect(standardOptions.filter({hasText: 'Premier Member'})).not.toContainText('A current option listed');
+    const governingMember = standardOptions.filter({hasText: 'Advisory Board Governing Member'});
+    await expect(governingMember).toContainText('a voting representative on the Xen Project Advisory Board');
+    await expect(governingMember).toContainText('non-technical governance and stewardship');
+    await expect(governingMember).not.toContainText(/technical authority|upstream technical/i);
 
     const membershipOrder = await membershipOptions
       .locator('[data-featured-membership], [data-standard-membership-option]')
@@ -54,10 +72,15 @@ test.describe('membership launch pages', () => {
     );
 
     await expect(page.locator('#member-trust img')).toHaveCount(10);
+    await expect(page.locator('#member-trust')).toContainText(
+      'Organizations from across the virtualization ecosystem help sustain the Xen Project together.',
+    );
+    await expect(page.locator('#member-trust')).not.toContainText(/trust signal|canonical|shared data source/i);
     await expect(page.locator('#member-trust').getByRole('link', {name: 'View all Xen Project members'})).toHaveAttribute(
       'href',
       '/about/project-members/',
     );
+    await expect(membershipOptions.getByRole('link', {name: 'Compare membership options'})).toHaveCount(0);
   });
 
   test('keeps safety context and one consolidated final enrollment panel', async ({page}) => {
@@ -70,24 +93,30 @@ test.describe('membership launch pages', () => {
       'href',
       '/technology/safety/',
     );
-    await expect(safety).toContainText('Xen source code is not itself safety certified');
-    await expect(safety).toContainText('complete system safety case');
+    await expect(safety.getByRole('heading', {name: 'Certification depends on the complete system'})).toHaveCount(0);
+    await expect(safety).toContainText('Premier Plus supports shared safety-oriented engineering and committee-managed artifacts');
+    await expect(safety).toContainText('System certification remains the responsibility of each organization');
+    await expect(safety).not.toContainText(/membership delivers certification|Xen is safety certified/i);
 
     const finalCta = page.locator('#final-cta');
     await expect(finalCta).toHaveCount(1);
     await expect(page.locator('#linux-foundation-handoff')).toHaveCount(0);
     await expect(finalCta.getByRole('heading', {name: 'Ready to discuss Xen Project membership?'})).toBeVisible();
+    await expect(finalCta).toContainText(
+      'Continue to the Linux Foundation enrollment process, or contact the membership team to discuss Premier Plus and Xen Safety Committee participation.',
+    );
     await expect(finalCta).toContainText('The Linux Foundation handles validation, submission, membership workflow, and confirmation');
     await expect(finalCta.getByRole('link', {name: 'Continue to the LF membership form'})).toHaveAttribute(
       'href',
       enrollmentUrl,
     );
-    await expect(finalCta.getByRole('link', {name: 'Email the project team'})).toHaveAttribute(
+    await expect(finalCta.getByRole('link', {name: 'Email the membership team'})).toHaveAttribute(
       'href',
-      'mailto:community.manager@xenproject.org',
+      'mailto:membership@linuxfoundation.org',
     );
     await expect(page.getByText('Continue with the organization that manages enrollment.')).toHaveCount(0);
     await expect(page.getByText('Ready to discuss organizational membership?')).toHaveCount(0);
+    expect(await page.getByRole('main').innerText()).not.toContain('—');
   });
 
   for (const viewport of [
@@ -105,7 +134,7 @@ test.describe('membership launch pages', () => {
       await expect(page.locator('[data-featured-membership]')).toBeVisible();
       await expect(page.locator('[data-standard-membership-option]')).toHaveCount(4);
       await expect(page.locator('#membership-options').getByRole('link', {name: 'Continue to the LF membership form'})).toBeVisible();
-      await expect(page.locator('#final-cta').getByRole('link', {name: 'Email the project team'})).toBeVisible();
+      await expect(page.locator('#final-cta').getByRole('link', {name: 'Email the membership team'})).toBeVisible();
 
       const widths = await page.evaluate(() => ({
         client: document.documentElement.clientWidth,

@@ -19,8 +19,8 @@ import {memberLogos} from '../../data/member-logos';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'Become a member';
-const description = 'Explore organizational membership in the Xen Project, understand what member support enables, and continue to the Linux Foundation-managed enrollment process.';
-const keywords = ['Xen Project membership', 'Linux Foundation', 'Advisory Board', 'open source virtualization', 'project support'];
+const description = 'Explore Xen Project organizational membership, including Premier Plus participation in the Xen Safety Committee, and continue to Linux Foundation enrollment.';
+const keywords = ['Xen Project membership', 'Premier Plus', 'Xen Safety Committee', 'Linux Foundation', 'Advisory Board', 'functional safety'];
 const linuxFoundationEnrollmentUrl = 'https://enrollment.lfx.linuxfoundation.org/?project=xen';
 
 const membershipBenefits = [
@@ -49,11 +49,11 @@ const membershipBenefits = [
 const membershipOptions = [
   {
     name: 'Premier Member',
-    description: 'A current option listed by the Xen Project membership program. The Linux Foundation confirms current terms through the enrollment process.',
+    description: 'Provides sustained support for Xen Project operations, shared infrastructure, events, communications, and community programs.',
   },
   {
     name: 'Advisory Board Governing Member',
-    description: 'For organizations participating in the Advisory Board’s non-technical governance and project stewardship responsibilities.',
+    description: 'Provides a voting representative on the Xen Project Advisory Board and participation in the project’s non-technical governance and stewardship.',
   },
   {
     name: 'Startup Member',
@@ -86,14 +86,14 @@ const membershipOptions = [
             <span class="uno-flex uno-h-9 uno-w-9 uno-items-center uno-justify-center uno-rounded-full uno-bg-xp-accent-primary-soft uno-font-mono uno-text-sm uno-font-bold uno-text-xp-accent-primary-strong" aria-hidden="true">01</span>
             <div>
               <Text as="span" tone="primary" class="uno-font-semibold">Members sustain shared project needs</Text>
-              <Text size="caption" class="uno-mt-1">Support funds infrastructure and operations.</Text>
+              <Text size="caption" class="uno-mt-1">Membership supports shared infrastructure and project operations.</Text>
             </div>
           </li>
           <li class="uno-grid uno-grid-cols-[2.25rem_minmax(0,1fr)] uno-items-start uno-gap-3">
             <span class="uno-flex uno-h-9 uno-w-9 uno-items-center uno-justify-center uno-rounded-full uno-bg-xp-accent-primary-soft uno-font-mono uno-text-sm uno-font-bold uno-text-xp-accent-primary-strong" aria-hidden="true">02</span>
             <div>
               <Text as="span" tone="primary" class="uno-font-semibold">The Advisory Board coordinates stewardship</Text>
-              <Text size="caption" class="uno-mt-1">It manages non-technical project responsibilities.</Text>
+              <Text size="caption" class="uno-mt-1">It coordinates non-technical project stewardship.</Text>
             </div>
           </li>
           <li class="uno-grid uno-grid-cols-[2.25rem_minmax(0,1fr)] uno-items-start uno-gap-3">
@@ -165,7 +165,7 @@ const membershipOptions = [
           <Text size="eyebrow" tone="muted">Membership options</Text>
           <Heading size="heading-xl">Find the appropriate organizational path.</Heading>
           <Text>
-            Review the available paths below. The Linux Foundation enrollment process confirms current terms, pricing, and eligibility.
+            Review the available membership paths below. Pricing and enrollment are managed by the Linux Foundation.
           </Text>
         </Stack>
         <Surface
@@ -182,9 +182,11 @@ const membershipOptions = [
             <Text size="eyebrow" tone="accent-primary">Premier Plus membership</Text>
             <Heading as="h3" size="heading-l">Support Xen’s safety-oriented work at the highest membership level.</Heading>
             <Text>
-              Premier Plus is Xen’s highest organizational membership level. It helps sustain safety-oriented and certification-focused collaboration across shared evidence, tooling, documentation, engineering practices, and coordination. Technical decisions continue through Xen’s open project processes.
+              Premier Plus is designed for organizations building safety-critical and mixed-criticality systems. It includes direct participation in the Xen Safety Committee, voting representation on both the Advisory Board and the Safety Committee, access to committee-managed safety artifacts, and a voice in priorities and roadmap.
             </Text>
-            <Text size="caption">The Linux Foundation confirms current terms and eligibility through enrollment.</Text>
+            <Text>
+              Members can use shared requirements, architecture material, tests, DFMEA work, tooling, and process documentation in their own assessment, certification, and audit activities, and may share them with qualified safety assessors.
+            </Text>
           </Stack>
         </Surface>
         <div class="uno-grid uno-min-w-0 uno-grid-cols-1 uno-items-stretch uno-gap-5 md:uno-grid-cols-2 xl:uno-grid-cols-4">
@@ -209,7 +211,7 @@ const membershipOptions = [
     id="member-trust"
     eyebrow="Current members"
     title="Supported across infrastructure, silicon, automotive, aerospace, and software."
-    description="These organizations provide a current trust signal for sustained, cross-industry participation. The full member page keeps the canonical organization listing."
+    description="Xen Project members provide stewardship, funding, and long-term support for the project."
     surface="1"
     logos={memberLogos}
     action={{label: 'View all Xen Project members', href: '/about/project-members/'}}
@@ -217,24 +219,14 @@ const membershipOptions = [
 
   <Section id="safety-participation">
     <Container>
-      <Split align="center">
-        <Stack gap="4">
-          <Text size="eyebrow" tone="muted">Safety-oriented work</Text>
-          <Heading size="heading-xl">Support collaboration where evidence matters.</Heading>
-          <Text>
-            Xen Project participants collaborate on engineering practices, documentation, tooling, and evidence for safety-conscious and certification-oriented systems.
-          </Text>
-          <Button href="/technology/safety/" variant="text" class="uno-self-start">Review safety-oriented work</Button>
-        </Stack>
-        <Callout
-          title="Certification depends on the complete system"
-          description="Xen source code is not itself safety certified. Certification depends on integration context, process, evidence, tooling, validation, and the complete system safety case."
-          variant="warning"
-          headingLevel="h3"
-        >
-          <span slot="icon" class="i-carbon-warning-alt"></span>
-        </Callout>
-      </Split>
+      <Stack gap="4" class="uno-max-w-xp-content">
+        <Text size="eyebrow" tone="muted">Safety-oriented work</Text>
+        <Heading size="heading-xl">Support collaboration where evidence matters.</Heading>
+        <Text>
+          Premier Plus supports shared safety-oriented engineering and committee-managed artifacts. System certification remains the responsibility of each organization.
+        </Text>
+        <Button href="/technology/safety/" variant="text" class="uno-self-start">Review safety-oriented work</Button>
+      </Stack>
     </Container>
   </Section>
 
@@ -242,11 +234,11 @@ const membershipOptions = [
     id="final-cta"
     eyebrow="Next step"
     title="Ready to discuss Xen Project membership?"
-    description="Continue to the enrollment form, or contact the Xen Project team for membership context."
+    description="Continue to the Linux Foundation enrollment process, or contact the membership team to discuss Premier Plus and Xen Safety Committee participation."
     note="XenProject.org does not host or manage the form. The Linux Foundation handles validation, submission, membership workflow, and confirmation."
     actions={[
       {label: 'Continue to the LF membership form', href: linuxFoundationEnrollmentUrl, rel: 'external'},
-      {label: 'Email the project team', href: 'mailto:community.manager@xenproject.org', variant: 'secondary'},
+      {label: 'Email the membership team', href: 'mailto:membership@linuxfoundation.org', variant: 'secondary'},
     ]}
   />
 
