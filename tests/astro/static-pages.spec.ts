@@ -2,7 +2,12 @@ import {expect, test} from '@playwright/test';
 
 const routes = [
   ['/about/governance/', 'Governance', 'Goals'],
-  ['/about/project-members/', 'Xen Project members', 'AMD'],
+  [
+    '/about/project-members/',
+    'Project members',
+    'Current organizations supporting the project.',
+    'Organizations sustaining the Xen Project.',
+  ],
   ['/about/security-policy/', 'Security policy', 'Scope of this process'],
   ['/projects/hvmi/', 'HVMI', 'What is HVMI?'],
   ['/projects/hypervisor/', 'Hypervisor', 'Versatile Open-Source Virtualization'],

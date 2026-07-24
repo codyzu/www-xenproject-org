@@ -1,0 +1,88 @@
+<section
+  id="cookie-banner"
+  data-cookie-banner
+  hidden
+  role="region"
+  aria-label="Cookie consent banner"
+  aria-live="polite"
+  class="uno-fixed uno-inset-x-4 uno-bottom-4 uno-z-50 uno-mx-auto uno-max-w-[72rem] uno-rounded-xp-lg uno-border uno-border-solid uno-border-xp-border-strong uno-bg-xp-surface-2 uno-p-5 uno-text-xp-text-primary uno-shadow-xp-lg sm:uno-p-6"
+  style="padding-bottom: max(1.25rem, env(safe-area-inset-bottom));"
+>
+  <div class="uno-grid uno-min-w-0 uno-grid-cols-1 uno-gap-5 lg:uno-grid-cols-[minmax(0,1fr)_auto] lg:uno-items-center">
+    <div class="uno-flex uno-min-w-0 uno-items-start uno-gap-4">
+      <span
+        class="i-carbon-data-vis-1 uno-mt-1 uno-h-6 uno-w-6 uno-shrink-0 uno-text-xp-accent-primary"
+        aria-hidden="true"
+      ></span>
+      <div class="uno-min-w-0">
+        <p class="uno-m-0 uno-max-w-3xl uno-text-sm uno-leading-6 uno-text-xp-text-secondary">
+          We use a single tracking cookie to help the Linux Foundation understand interest in Xen Project. This helps
+          us follow up and improve your experience with our open source community.
+        </p>
+      </div>
+    </div>
+    <div class="uno-flex uno-w-full uno-flex-col uno-gap-3 sm:uno-w-auto sm:uno-flex-row">
+      <button
+        type="button"
+        data-cookie-reject
+        class="xen-action-secondary uno-w-full sm:uno-w-auto"
+      >
+        Continue without analytics
+      </button>
+      <button
+        type="button"
+        id="cookie-accept"
+        data-cookie-accept
+        class="xen-action-primary uno-w-full sm:uno-w-auto"
+      >
+        Allow analytics
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  import injectZoomInfo from '../../../scripts/cookie-consent/zoom-info.js';
+
+  const consentKey = 'cookieConsent';
+  const banner = document.querySelector<HTMLElement>('[data-cookie-banner]');
+
+  function readConsent() {
+    try {
+      const storedValue = localStorage.getItem(consentKey);
+      if (storedValue === 'true') return 'accepted';
+      if (storedValue === 'false') return 'rejected';
+    } catch {}
+
+    return 'unset';
+  }
+
+  function writeConsent(value: 'true' | 'false') {
+    try {
+      localStorage.setItem(consentKey, value);
+    } catch {}
+  }
+
+  if (banner) {
+    const forceInDevelopment =
+      import.meta.env.DEV && new URLSearchParams(globalThis.location.search).get('show-cookie-banner') === '1';
+    const consent = readConsent();
+
+    if (forceInDevelopment || consent === 'unset') {
+      banner.hidden = false;
+    } else if (consent === 'accepted') {
+      injectZoomInfo();
+    }
+
+    banner.querySelector<HTMLButtonElement>('[data-cookie-accept]')?.addEventListener('click', () => {
+      writeConsent('true');
+      banner.hidden = true;
+      injectZoomInfo();
+    });
+
+    banner.querySelector<HTMLButtonElement>('[data-cookie-reject]')?.addEventListener('click', () => {
+      writeConsent('false');
+      banner.hidden = true;
+    });
+  }
+</script>

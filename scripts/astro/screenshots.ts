@@ -16,6 +16,13 @@ const screenshotRoutes = [
   '/projects/embedded-and-automotive/',
   '/resources/use-cases/',
   '/technology/safety/',
+  '/about/become-a-member/',
+  '/about/project-members/',
+] as const satisfies readonly string[];
+const extendedScreenshotRoutes = [
+  '/internal/design-system/',
+  '/about/',
+  '/about/governance/',
 ] as const satisfies readonly string[];
 
 const profiles = [
@@ -25,6 +32,15 @@ const profiles = [
       viewport: {width: 1440, height: 1200},
       deviceScaleFactor: 1,
       reducedMotion: 'reduce',
+    },
+  },
+  {
+    name: 'tablet',
+    options: {
+      viewport: {width: 834, height: 1194},
+      deviceScaleFactor: 1,
+      reducedMotion: 'reduce',
+      hasTouch: true,
     },
   },
   {
@@ -282,11 +298,21 @@ function installSignalHandlers(): void {
 
 async function main(): Promise<void> {
   const arguments_ = process.argv.slice(2);
-  if (arguments_.length > 1) {
+  const supportedFlags = new Set(['--extended', '--cookie-banner']);
+  const flags = arguments_.filter((argument) => argument.startsWith('--'));
+  const unknownFlag = flags.find((flag) => !supportedFlags.has(flag));
+  if (unknownFlag) {
+    usage(`Unknown option: ${unknownFlag}`);
+  }
+
+  const positionalArguments = arguments_.filter((argument) => !argument.startsWith('--'));
+  if (positionalArguments.length > 1) {
     usage('Expected zero or one URL argument.');
   }
 
-  const argument = arguments_[0];
+  const argument = positionalArguments[0];
+  const captureExtendedSet = flags.includes('--extended');
+  const captureCookieBanner = flags.includes('--cookie-banner');
   let baseUrl: string | undefined;
   let targets: CaptureTarget[];
 
@@ -296,9 +322,17 @@ async function main(): Promise<void> {
     }
 
     baseUrl = await startAstro();
-    const routes = argument ? [argument] : [...screenshotRoutes];
+    const routes = argument
+      ? [argument]
+      : captureCookieBanner
+        ? ['/about/become-a-member/?show-cookie-banner=1']
+        : captureExtendedSet
+          ? [...screenshotRoutes, ...extendedScreenshotRoutes]
+          : [...screenshotRoutes];
     targets = routes.map((route) => ({
-      name: screenshotName(new URL(route, baseUrl).pathname),
+      name: captureCookieBanner
+        ? screenshotName(new URL(route, baseUrl).pathname).replace(/\.png$/, '--cookie-banner.png')
+        : screenshotName(new URL(route, baseUrl).pathname),
       url: new URL(route, baseUrl).toString(),
     }));
   } else {
@@ -325,6 +359,12 @@ async function main(): Promise<void> {
   for (const profile of profiles) {
     const context = await browser.newContext(profile.options);
     try {
+      await context.addInitScript(() => {
+        try {
+          localStorage.setItem('cookieConsent', 'false');
+        } catch {}
+      });
+
       for (const target of targets) {
         const page = await context.newPage();
         const outputPath = path.join(runDirectory, profile.name, target.name);
@@ -363,7 +403,9 @@ try {
       console.error(error.message);
     }
 
-    console.error('Usage: npm run screenshots -- [/route/ | https://example.com/route/]');
+    console.error(
+      'Usage: npm run screenshots -- [--extended | --cookie-banner] [/route/ | https://example.com/route/]',
+    );
     process.exitCode = 1;
   } else {
     throw error;

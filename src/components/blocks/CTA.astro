@@ -12,6 +12,8 @@ type Action = {
   label: string;
   href: string;
   variant?: 'primary' | 'secondary' | 'text';
+  target?: '_blank';
+  rel?: string;
 };
 type HeadingLevel = 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 type Props = {
@@ -55,7 +57,7 @@ const textTone = isLight ? 'on-light-muted' : 'secondary';
         {actions.length > 0 && (
           <Cluster justify={align === 'center' ? 'center' : 'start'} class="uno-pt-2">
             {actions.map(action => (
-              <Button href={action.href} variant={action.variant ?? 'primary'}>{action.label}</Button>
+              <Button href={action.href} variant={action.variant ?? 'primary'} target={action.target} rel={action.rel}>{action.label}</Button>
             ))}
           </Cluster>
         )}

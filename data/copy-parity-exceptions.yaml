@@ -5,6 +5,16 @@ exceptions:
     kind: redesigned-page
     scope: full homepage narrative and section structure
     reason: The homepage intentionally becomes the first public consumer of the Xen Design System and replaces the legacy Story, carousels, and news shell.
+  - id: membership-conversion-redesign
+    route: /about/become-a-member/
+    kind: redesigned-page
+    scope: membership narrative, options, trust signals, governance boundary, safety context, and Linux Foundation handoff
+    reason: The route intentionally replaces the legacy sales-oriented page with an Astro-first conversion page that clearly separates organizational support from technical contribution.
+  - id: project-members-trust-redesign
+    route: /about/project-members/
+    kind: redesigned-page
+    scope: current-member logo grid, support context, governance boundary, and membership call to action
+    reason: The route intentionally replaces long legacy organization profiles with a scan-friendly trust page sourced from the canonical member data.
   - id: all-pages-astro-inventory
     route: /all/
     kind: redesigned-index

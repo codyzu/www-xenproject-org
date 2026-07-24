@@ -154,6 +154,40 @@ export const highValuePages: HighValuePageContract[] = [
       },
     ],
   },
+  {
+    name: 'membership',
+    path: '/about/become-a-member/',
+    title: 'Become a member | Xen Project',
+    heading: 'Support the shared foundation behind Xen.',
+    keyHeading: 'Membership and technical contribution are distinct.',
+    finalCta: '#final-cta',
+    heroActions: [
+      {label: 'Continue to the LF membership form', href: 'https://enrollment.lfx.linuxfoundation.org/?project=xen'},
+      {label: 'View current members', href: '/about/project-members/'},
+    ],
+    finalActions: [
+      {label: 'Continue to the LF membership form', href: 'https://enrollment.lfx.linuxfoundation.org/?project=xen'},
+      {label: 'Email the project team', href: 'mailto:community.manager@xenproject.org'},
+    ],
+    diagrams: [],
+  },
+  {
+    name: 'members',
+    path: '/about/project-members/',
+    title: 'Project members | Xen Project',
+    heading: 'Organizations sustaining the Xen Project.',
+    keyHeading: 'Member support and technical contribution are distinct.',
+    finalCta: '#final-cta',
+    heroActions: [
+      {label: 'Explore membership', href: '/about/become-a-member/'},
+      {label: 'Read project governance', href: '/about/governance/'},
+    ],
+    finalActions: [
+      {label: 'Explore membership', href: '/about/become-a-member/'},
+      {label: 'Read project governance', href: '/about/governance/'},
+    ],
+    diagrams: [],
+  },
 ];
 
 type RuntimeMonitor = {
@@ -352,6 +386,18 @@ async function expectPageSpecificLayout(page: Page, contract: HighValuePageContr
     expect(markerTreatment.backgroundImage, 'Evidence markers should not use a gradient').toBe('none');
     expect(markerTreatment.boxShadow, 'Evidence markers should not use a glow').toBe('none');
   }
+
+  if (contract.name === 'membership') {
+    await expectCardsInsideViewport(page.locator('#membership-options'), 4, viewportWidth);
+    await expect(page.locator('#member-trust img')).toHaveCount(10);
+  }
+
+  if (contract.name === 'members') {
+    const memberSection = page.locator('#current-members');
+    await memberSection.scrollIntoViewIfNeeded();
+    await expect(memberSection.locator('img')).toHaveCount(10);
+    await expectInsideViewport(memberSection, viewportWidth);
+  }
 }
 
 export async function assertNoSeriousAccessibilityViolations(page: Page) {
@@ -417,6 +463,11 @@ async function expectHomepageDiagram(page: Page, viewportWidth: number) {
 }
 
 export async function assertHighValuePage(page: Page, contract: HighValuePageContract, profile: ViewportProfile) {
+  await page.addInitScript(() => {
+    try {
+      localStorage.setItem('cookieConsent', 'false');
+    } catch {}
+  });
   const response = await page.goto(contract.path, {waitUntil: 'domcontentloaded'});
   expect(response, 'Navigation must return a document response').not.toBeNull();
   expect(response!.ok(), `Navigation returned HTTP ${response!.status()}`).toBe(true);

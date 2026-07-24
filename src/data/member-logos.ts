@@ -1,58 +1,92 @@
+export type MemberOrganization = {
+  name: string;
+  logo: string;
+  href: string;
+  membershipLevel: 'Advisory Board member';
+  summary: string;
+};
+
 export type MemberLogo = {
   label: string;
   src: string;
   href: string;
 };
 
-export const memberLogos: MemberLogo[] = [
+export const memberOrganizations: MemberOrganization[] = [
   {
-    label: 'AMD',
-    src: '/img/logos/amd-logo.svg',
+    name: 'AMD',
+    logo: '/img/logos/amd-logo.svg',
     href: 'http://www.amd.com/',
+    membershipLevel: 'Advisory Board member',
+    summary: 'Semiconductor and computing platforms.',
   },
   {
-    label: 'ARM',
-    src: '/img/logos/arm-logo.svg',
+    name: 'ARM',
+    logo: '/img/logos/arm-logo.svg',
     href: 'https://www.arm.com/',
+    membershipLevel: 'Advisory Board member',
+    summary: 'Processor architecture and semiconductor IP.',
   },
   {
-    label: 'AWS',
-    src: '/img/logos/aws-logo.svg',
+    name: 'AWS',
+    logo: '/img/logos/aws-logo.svg',
     href: 'https://aws.amazon.com/',
+    membershipLevel: 'Advisory Board member',
+    summary: 'Cloud infrastructure and services.',
   },
   {
-    label: 'Boeing',
-    src: '/img/logos/boeing-logo.svg',
+    name: 'Boeing',
+    logo: '/img/logos/boeing-logo.svg',
     href: 'https://www.boeing.com/',
+    membershipLevel: 'Advisory Board member',
+    summary: 'Aerospace platforms and engineering.',
   },
   {
-    label: 'EPAM',
-    src: '/img/logos/epam-logo.svg',
+    name: 'EPAM',
+    logo: '/img/logos/epam-logo.svg',
     href: 'https://www.epam.com/',
+    membershipLevel: 'Advisory Board member',
+    summary: 'Digital platform and software engineering.',
   },
   {
-    label: 'Ford Motor Company',
-    src: '/img/logos/ford-logo.svg',
+    name: 'Ford Motor Company',
+    logo: '/img/logos/ford-logo.svg',
     href: 'https://ford.com/',
+    membershipLevel: 'Advisory Board member',
+    summary: 'Automotive platforms and mobility.',
   },
   {
-    label: 'Honda',
-    src: '/img/logos/honda-logo.svg',
+    name: 'Honda',
+    logo: '/img/logos/honda-logo.svg',
     href: 'https://www.honda.com/',
+    membershipLevel: 'Advisory Board member',
+    summary: 'Automotive and mobility technology.',
   },
   {
-    label: 'Renesas',
-    src: '/img/logos/renesas-logo-cropped.svg',
+    name: 'Renesas',
+    logo: '/img/logos/renesas-logo-cropped.svg',
     href: 'https://www.renesas.com/',
+    membershipLevel: 'Advisory Board member',
+    summary: 'Embedded and automotive semiconductors.',
   },
   {
-    label: 'Vates',
-    src: '/img/logos/vates-logo.svg',
+    name: 'Vates',
+    logo: '/img/logos/vates-logo.svg',
     href: 'https://vates.fr/',
+    membershipLevel: 'Advisory Board member',
+    summary: 'Open source virtualization platforms.',
   },
   {
-    label: 'XenServer',
-    src: '/img/logos/xenserver-logo.svg',
+    name: 'XenServer',
+    logo: '/img/logos/xenserver-logo.svg',
     href: 'https://www.xenserver.com/',
+    membershipLevel: 'Advisory Board member',
+    summary: 'Virtualization platform engineering.',
   },
 ];
+
+export const memberLogos: MemberLogo[] = memberOrganizations.map((member) => ({
+  label: member.name,
+  src: member.logo,
+  href: member.href,
+}));

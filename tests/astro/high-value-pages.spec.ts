@@ -20,8 +20,15 @@ const highValuePages = [
     name: 'become a member',
     path: '/about/become-a-member/',
     title: /Become a member/i,
-    heading: /Become a member/i,
-    screenshot: 'become-a-member-page.png',
+    heading: /Support the shared foundation behind Xen/i,
+    screenshot: undefined,
+  },
+  {
+    name: 'project members',
+    path: '/about/project-members/',
+    title: /Project members/i,
+    heading: /Organizations sustaining the Xen Project/i,
+    screenshot: undefined,
   },
   {
     name: 'all projects',

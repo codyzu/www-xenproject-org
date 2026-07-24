@@ -1,5 +1,7 @@
 # Documentation
 
+- [Screenshot comparison](screenshots.md)
+
 ## Maintainer Docs
 
 - [Download data](downloads.md)

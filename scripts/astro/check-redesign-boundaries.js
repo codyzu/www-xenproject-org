@@ -105,6 +105,8 @@ for (const filePath of publicPageFiles) {
   const isInternalDesignSystem = file === 'src/pages/internal/design-system.astro';
   const isApprovedPublicRedesign = [
     'src/pages/index.astro',
+    'src/pages/about/become-a-member.astro',
+    'src/pages/about/project-members.astro',
     'src/pages/community/index.astro',
     'src/pages/technology/architecture.astro',
     'src/pages/technology/index.astro',

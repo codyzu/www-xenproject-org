@@ -1,0 +1,124 @@
+---
+import CTA from '../../components/blocks/CTA.astro';
+import Callout from '../../components/blocks/Callout.astro';
+import FeatureGrid from '../../components/blocks/FeatureGrid.astro';
+import Hero from '../../components/blocks/Hero.astro';
+import LogoCloud from '../../components/blocks/LogoCloud.astro';
+import Button from '../../components/primitives/Button.astro';
+import Container from '../../components/primitives/Container.astro';
+import Heading from '../../components/primitives/Heading.astro';
+import Section from '../../components/primitives/Section.astro';
+import Split from '../../components/primitives/Split.astro';
+import Stack from '../../components/primitives/Stack.astro';
+import Surface from '../../components/primitives/Surface.astro';
+import Text from '../../components/primitives/Text.astro';
+import {memberLogos, memberOrganizations} from '../../data/member-logos';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Project members';
+const description = 'Meet the current organizations supporting Xen Project infrastructure, stewardship, events, and ecosystem coordination through membership.';
+const keywords = ['Xen Project members', 'Advisory Board', 'Linux Foundation', 'open source virtualization', 'member organizations'];
+
+const supportAreas = [
+  {
+    icon: 'i-carbon-infrastructure-classic',
+    title: 'Shared project infrastructure',
+    description: 'Membership dues help fund hosting, test environments, and operational resources used across the project.',
+  },
+  {
+    icon: 'i-carbon-events',
+    title: 'Events and coordination',
+    description: 'Members support project events, communications, and collaboration across organizational boundaries.',
+  },
+  {
+    icon: 'i-carbon-license',
+    title: 'Trademark stewardship',
+    description: 'The Advisory Board manages the Xen Project trademark and other non-technical project responsibilities.',
+  },
+  {
+    icon: 'i-carbon-chart-network',
+    title: 'Long-term project health',
+    description: 'Sustained organizational participation helps the project maintain shared programs and an open ecosystem.',
+  },
+];
+---
+
+<BaseLayout title={title} description={description} keywords={keywords} publicShell bodyClass="xp-project-members-page">
+  <Hero
+    id="hero"
+    eyebrow="Project members"
+    title="Organizations sustaining the Xen Project."
+    statement="Current members support the shared infrastructure and stewardship around an open technical community."
+    description="The Xen Project Advisory Board brings together organizations with a stake in open virtualization across infrastructure, silicon, automotive, aerospace, and software."
+    actions={[
+      {label: 'Explore membership', href: '/about/become-a-member/'},
+      {label: 'Read project governance', href: '/about/governance/', variant: 'secondary'},
+    ]}
+  >
+    <Surface slot="media" tone="2" border="strong" padding="lg" radius="lg" shadow="md" class="uno-w-full">
+      <Stack gap="5">
+        <Text size="eyebrow" tone="accent-primary">Current member listing</Text>
+        <div class="uno-flex uno-items-end uno-gap-3">
+          <span class="uno-font-mono uno-text-5xl uno-font-bold uno-leading-none uno-text-xp-text-primary">{memberOrganizations.length}</span>
+          <Text as="span" size="caption" class="uno-pb-1">member organizations in the shared data source</Text>
+        </div>
+        <div class="uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-pt-4">
+          <Text size="caption">Membership provides an organizational support path. Technical roles remain merit-based and are earned through contribution.</Text>
+        </div>
+      </Stack>
+    </Surface>
+  </Hero>
+
+  <LogoCloud
+    id="current-members"
+    eyebrow="Advisory Board members"
+    title="Current organizations supporting the project."
+    description="Each logo links to the member organization. All entries come from the same canonical source used by the homepage and membership page."
+    logos={memberLogos}
+  />
+
+  <FeatureGrid
+    id="what-support-enables"
+    eyebrow="What support enables"
+    title="Member support keeps shared responsibilities visible and funded."
+    description="The Advisory Board focuses on non-technical project needs that complement the work of maintainers, committers, contributors, and users."
+    surface="1"
+    columns="4"
+    features={supportAreas}
+  />
+
+  <Section id="governance-boundary">
+    <Container>
+      <Split align="center">
+        <Stack gap="5">
+          <Stack gap="3">
+            <Text size="eyebrow" tone="muted">Open governance</Text>
+            <Heading size="heading-xl">Member support and technical contribution are distinct.</Heading>
+            <Text>
+              The Advisory Board manages project funding, events, communications, and trademark responsibilities. Technical decisions remain with the project’s open source meritocracy, where responsibility is earned through public contribution and peer review.
+            </Text>
+          </Stack>
+          <Button href="/about/governance/" variant="text" class="uno-self-start">Read the governance model</Button>
+        </Stack>
+        <Callout
+          title="Membership supports the project; it does not buy code authority"
+          description="Organizations do not need to be members to contribute technically, and membership does not override maintainer review or project decision processes."
+          headingLevel="h3"
+        >
+          <span slot="icon" class="i-carbon-collaborate"></span>
+        </Callout>
+      </Split>
+    </Container>
+  </Section>
+
+  <CTA
+    id="final-cta"
+    eyebrow="Organizational participation"
+    title="Add your organization to the project’s support network."
+    description="Review what membership enables and continue to the Linux Foundation-managed enrollment process when your organization is ready."
+    actions={[
+      {label: 'Explore membership', href: '/about/become-a-member/'},
+      {label: 'Read project governance', href: '/about/governance/', variant: 'secondary'},
+    ]}
+  />
+</BaseLayout>
