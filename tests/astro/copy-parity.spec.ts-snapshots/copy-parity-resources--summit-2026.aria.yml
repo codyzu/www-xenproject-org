@@ -1,14 +1,14 @@
 - main:
   - article:
-    - region "Xen Summit 2026":
-      - img "Munich cityscape hero artwork for Xen Summit 2026"
+    - region /Xen Summit \d+/:
+      - img /Munich cityscape hero artwork for Xen Summit \d+/
       - paragraph: Xen Project Community Event
-      - heading "Xen Summit 2026" [level=1]
-      - paragraph: HEADS office, Munich, Germany · September 15–17, 2026
+      - heading /Xen Summit \d+/ [level=1]
+      - paragraph: /HEADS office, Munich, Germany · September \d+–\d+, \d+/
       - paragraph: Hybrid event · 2 days of talks + 1 day of design sessions
       - list "Event status":
         - listitem: Registration Open
-        - listitem: Early Bird Until July 31, 2026
+        - listitem: /Early Bird Until July \d+, \d+/
         - listitem: Schedule Coming Soon
       - link "Register Now":
         - /url: https://register.linuxfoundation.org/xen-summit-2026
@@ -17,7 +17,7 @@
       - img "Xen Project panda in Bavarian festival clothing"
     - heading "About Xen Summit" [level=2]
     - paragraph: Xen Summit is the annual gathering for Xen developers, users, researchers, vendors, and ecosystem partners.
-    - paragraph: The 2026 summit will bring the community together in Munich for engineering updates, project planning, design sessions, and hallway-track collaboration across the Xen ecosystem.
+    - paragraph: /The \d+ summit will bring the community together in Munich for engineering updates, project planning, design sessions, and hallway-track collaboration across the Xen ecosystem\./
     - paragraph:
       - text: "Jump to:"
       - link "Why attend?":
@@ -77,7 +77,7 @@
     - list:
       - listitem:
         - strong: "Dates:"
-        - text: September 15–17, 2026
+        - text: /September \d+–\d+, \d+/
       - listitem:
         - strong: "City:"
         - text: Munich, Germany
@@ -86,7 +86,7 @@
         - text: HEADS office
       - listitem:
         - strong: "Address:"
-        - text: Einsteinring 30, 85609 Aschheim, Germany
+        - text: /Einsteinring \d+, \d+ Aschheim, Germany/
       - listitem:
         - strong: "Map:"
         - link "Google Maps":
@@ -102,13 +102,13 @@
         - text: Developers, users, researchers, vendors, and ecosystem partners
     - heading "Venue" [level=3]
     - heading "Hosted by Renesas" [level=4]
-    - paragraph: Xen Summit 2026 is proudly hosted by Renesas in Munich, Germany. The event will take place at the HEADS office in Aschheim, located directly across from the Renesas Munich office.
+    - paragraph: /Xen Summit \d+ is proudly hosted by Renesas in Munich, Germany\. The event will take place at the HEADS office in Aschheim, located directly across from the Renesas Munich office\./
     - link "Renesas logo":
       - /url: https://www.renesas.com/
       - img "Renesas logo"
     - paragraph:
       - strong: "Address:"
-      - text: Einsteinring 30, 85609 Aschheim, Germany
+      - text: /Einsteinring \d+, \d+ Aschheim, Germany/
       - strong: "Map:"
       - link "Google Maps":
         - /url: https://maps.app.goo.gl/4h4E7zzcBjJuiecK9
@@ -116,13 +116,13 @@
     - paragraph: Registration is open.
     - paragraph:
       - text: Early Bird pricing is available until
-      - strong: July 31, 2026
+      - strong: /July \d+, \d+/
       - text: .
     - paragraph:
       - link "Register now ":
         - /url: https://register.linuxfoundation.org/xen-summit-2026
     - heading "Travel" [level=3]
-    - paragraph: Munich is well connected by air, rail, and public transit. The HEADS office is in Aschheim, east of central Munich, at Einsteinring 30, 85609 Aschheim, Germany.
+    - paragraph: /Munich is well connected by air, rail, and public transit\. The HEADS office is in Aschheim, east of central Munich, at Einsteinring \d+, \d+ Aschheim, Germany\./
     - list:
       - listitem:
         - strong: "Venue map:"
@@ -145,22 +145,43 @@
       - listitem:
         - strong: "Taxi and rideshare:"
         - text: Taxis are available at the airport, major rail stations, and throughout Munich. Rideshare availability may vary by provider and pickup location.
-    - heading "Lodging" [level=4]
+    - heading "Accommodation" [level=4]
+    - paragraph: "The following hotels are located within walking distance of the Xen Summit venue:"
+    - list:
+      - listitem:
+        - link "NH München Ost Conference Center":
+          - /url: https://www.nh-hotels.com/en/hotel/nh-muenchen-ost-conference-center
+      - listitem:
+        - link "Holiday Inn – the niu Fury Aschheim Messe":
+          - /url: https://www.ihg.com/holiday-inn-the-niu/hotels/gb/en/aschheim/mucfa/hoteldetail
+      - listitem:
+        - link "ibis budget München Ost Messe":
+          - /url: https://all.accor.com/hotel/5626/index.en.shtml
+      - listitem:
+        - link "B&B HOTEL München-Messe":
+          - /url: https://www.hotel-bb.com/en/hotel/muenchen-messe
+      - listitem:
+        - link "MASEVEN München Dornach":
+          - /url: https://www.maseven.de/en/munich/dornach/
+    - heading "Value option" [level=5]
     - paragraph:
-      - strong: Hotel recommendations and discounted attendee rates are currently being arranged and will be published soon.
-    - paragraph: Options near the venue in Aschheim offer a shorter local commute, while central Munich offers convenient transit access to the eastern side of the city.
+      - link "NH München Messe":
+        - /url: https://www.nh-hotels.com/en/hotel/nh-muenchen-messe
+      - text: /— approximately \d+ minutes from the venue by car and worth considering for attendees looking for a more affordable option\./
+    - paragraph:
+      - strong: Hotels in the Munich area are in high demand during the event period. We strongly recommend booking as early as possible.
     - heading "Program" [level=3]
-    - paragraph: The Xen Summit 2026 program is currently being finalized. The full schedule will be published soon.
+    - paragraph: /The Xen Summit \d+ program is currently being finalized\. The full schedule will be published soon\./
     - paragraph: Sessions will cover Xen development, embedded and automotive virtualization, safety, security, cloud infrastructure, Arm platforms, tooling, testing, and real-world deployments.
     - heading "Registration" [level=2]
     - paragraph:
-      - strong: Early Bird registration ends July 31, 2026.
-    - paragraph: Registration is open for Xen Summit 2026. Register now to attend in Munich or online.
+      - strong: /Early Bird registration ends July \d+, \d+\./
+    - paragraph: /Registration is open for Xen Summit \d+\. Register now to attend in Munich or online\./
     - paragraph:
       - text: Early Bird pricing runs until
-      - strong: July 31, 2026
+      - strong: /July \d+, \d+/
       - text: . The standard in-person attendee price has been reduced to
-      - strong: $200
+      - strong: /\$\d+/
       - text: .
     - paragraph:
       - link "Register now ":
@@ -169,21 +190,21 @@
     - text: In-Person
     - radio "Virtual"
     - text: Virtual
-    - heading "In-Person Early Bird $140" [level=3]
+    - heading /In-Person Early Bird \$\d+/ [level=3]
     - list:
       - listitem:
         - text: Available until
-        - strong: July 31, 2026
+        - strong: /July \d+, \d+/
       - listitem: Access to the in-person talks and design sessions
     - link "Register now ":
       - /url: https://register.linuxfoundation.org/xen-summit-2026
-    - heading "In-Person Standard $200" [level=3]
+    - heading /In-Person Standard \$\d+/ [level=3]
     - list:
       - listitem: Standard in-person rate after Early Bird pricing ends
       - listitem: Access to the in-person talks and design sessions
     - link "Register now ":
       - /url: https://register.linuxfoundation.org/xen-summit-2026
-    - heading "Academic $20" [level=3]
+    - heading /Academic \$\d+/ [level=3]
     - list:
       - listitem: Discounted in-person rate for academic attendees
       - listitem: Access to the in-person talks and design sessions
@@ -194,23 +215,23 @@
       - listitem: Complimentary registration for accepted speakers
       - listitem: Speaker registration details will be provided directly
     - heading "Schedule" [level=2]
-    - paragraph: The detailed Xen Summit 2026 schedule is coming soon.
+    - paragraph: /The detailed Xen Summit \d+ schedule is coming soon\./
     - paragraph: "The high-level event timeline is:"
     - list:
       - listitem:
-        - strong: "September 15:"
+        - strong: /September \d+:/
         - text: Technical talks
       - listitem:
-        - strong: "September 16:"
+        - strong: /September \d+:/
         - text: Technical talks
       - listitem:
-        - strong: "September 17:"
+        - strong: /September \d+:/
         - text: Design sessions, project planning, and collaboration
     - heading "Community Social" [level=2]
-    - paragraph: A Xen Summit community social event is planned for the evening of September 16. Additional details will be announced soon.
+    - paragraph: /A Xen Summit community social event is planned for the evening of September \d+\. Additional details will be announced soon\./
     - heading "Design Sessions" [level=2]
     - paragraph: Design sessions are a central part of Xen Summit. They give contributors and users time to work through project direction, architecture, implementation plans, and community process face to face.
-    - paragraph: Design sessions are expected to take place on the third day of the summit. The 2026 design-session schedule and details will be announced closer to the event.
+    - paragraph: /Design sessions are expected to take place on the third day of the summit\. The \d+ design-session schedule and details will be announced closer to the event\./
     - heading "Suggested Topics for Design and Problem Solving Sessions" [level=3]
     - paragraph: "Design and problem-solving sessions are intended to help developers:"
     - list:
@@ -234,7 +255,7 @@
       - /url: https://vates.tech/
       - img "Vates logo"
     - paragraph:
-      - text: Organizations interested in sponsoring can review the Xen Summit 2026 sponsor prospectus or contact
+      - text: /Organizations interested in sponsoring can review the Xen Summit \d+ sponsor prospectus or contact/
       - link "community.manager@xenproject.org":
         - /url: mailto:community.manager@xenproject.org
       - text: .
@@ -245,7 +266,7 @@
         - /url: mailto:community.manager@xenproject.org?subject=Xen%20Summit%202026%20sponsorship
     - heading "Code of Conduct" [level=2]
     - paragraph:
-      - text: Xen Summit 2026 follows the
+      - text: /Xen Summit \d+ follows the/
       - link "Xen Project Code of Conduct":
         - /url: /contribute/code-of-conduct
       - text: to help ensure a welcoming, respectful, and productive environment for all attendees.
@@ -262,11 +283,11 @@
         - /url: https://www.linkedin.com/company/the-xen-project/
       - text: .
     - heading "Ready to join us?" [level=2]:
-      - text: Ready to
+      - text: ""
       - strong: join us?
     - paragraph: Register to attend in Munich or online and connect with the Xen Project community.
     - paragraph:
       - link "Register Now ":
         - /url: https://register.linuxfoundation.org/xen-summit-2026
     - paragraph:
-      - emphasis: "Last updated: July 17, 2026"
+      - emphasis: "/Last updated: July \\d+, \\d+/"

@@ -11,7 +11,7 @@ keywords:
   - hypervisor technology
   - community event
 date: 2026-05-18T00:00:00+02:00
-lastmod: 2026-07-17T00:00:00+02:00
+lastmod: 2026-07-28T00:00:00+02:00
 eventDates: "September 15–17, 2026"
 eventEnd: 2026-09-17
 eventLocation: "HEADS office, Einsteinring 30, 85609 Aschheim, Germany"
@@ -165,13 +165,22 @@ Munich is well connected by air, rail, and public transit. The HEADS office is i
 - **Public transit:** Use [MVV Munich public transit](https://www.mvv-muenchen.de/en/) to plan S-Bahn, U-Bahn, tram, and bus connections toward Aschheim.
 - **Taxi and rideshare:** Taxis are available at the airport, major rail stations, and throughout Munich. Rideshare availability may vary by provider and pickup location.
 
-#### Lodging
+#### Accommodation
+
+The following hotels are located within walking distance of the Xen Summit venue:
+
+- [NH München Ost Conference Center](https://www.nh-hotels.com/en/hotel/nh-muenchen-ost-conference-center)
+- [Holiday Inn – the niu Fury Aschheim Messe](https://www.ihg.com/holiday-inn-the-niu/hotels/gb/en/aschheim/mucfa/hoteldetail)
+- [ibis budget München Ost Messe](https://all.accor.com/hotel/5626/index.en.shtml)
+- [B&B HOTEL München-Messe](https://www.hotel-bb.com/en/hotel/muenchen-messe)
+- [MASEVEN München Dornach](https://www.maseven.de/en/munich/dornach/)
 
 <div class="uno-rounded-lg uno-border uno-border-brand-fill/30 uno-bg-brand-fill/8 uno-p-5 uno-my-5 dark:uno-bg-brand-fill/15">
-  <p class="uno-m-0"><strong>Hotel recommendations and discounted attendee rates are currently being arranged and will be published soon.</strong></p>
+  <h5 class="uno-mt-0">Value option</h5>
+  <p class="uno-mb-0"><a href="https://www.nh-hotels.com/en/hotel/nh-muenchen-messe">NH München Messe</a> — approximately 10 minutes from the venue by car and worth considering for attendees looking for a more affordable option.</p>
 </div>
 
-Options near the venue in Aschheim offer a shorter local commute, while central Munich offers convenient transit access to the eastern side of the city.
+**Hotels in the Munich area are in high demand during the event period. We strongly recommend booking as early as possible.**
 {{</md>}}
 {{</div>}}
 
