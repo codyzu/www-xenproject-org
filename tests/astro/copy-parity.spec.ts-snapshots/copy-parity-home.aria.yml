@@ -128,6 +128,19 @@
     - paragraph: XCP-ng (Xen Cloud Platform – new generation) is a turnkey virtualization platform built on the Xen Project Hypervisor and using the Xen API (XAPI). It is typically managed with Xen Orchestra, an agentless, multi-cluster web interface that provides management, monitoring, and backup capabilities.
     - link "Explore XCP-ng":
       - /url: /projects/xcp-ng
+  - paragraph: New safety initiative
+  - heading "Open source safety engineering, built together." [level=2]
+  - paragraph: The Xen Project now includes the Xen Safety Committee and Premier Plus membership, creating a shared foundation for certification-oriented engineering, maintained safety artifacts, and long-term collaboration.
+  - link "Explore safety engineering":
+    - /url: /technology/safety
+  - link "Learn about Premier Plus":
+    - /url: /about/become-a-member
+  - heading "Safety Committee" [level=3]
+  - paragraph: Coordinates certification-oriented engineering work.
+  - heading "Shared artifacts" [level=3]
+  - paragraph: Maintains committee-managed safety artifacts.
+  - heading "Premier Plus participation" [level=3]
+  - paragraph: Gives member organizations a formal role in the work.
   - paragraph: Members
   - heading "Sustained by organizations with a stake in open virtualization." [level=2]
   - paragraph: Members help sustain shared project infrastructure, events, trademark stewardship, and ecosystem coordination.

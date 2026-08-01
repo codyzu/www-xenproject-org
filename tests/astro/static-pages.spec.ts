@@ -5,7 +5,7 @@ const routes = [
   [
     '/about/project-members/',
     'Project members',
-    'Current organizations supporting the project.',
+    'Current Xen Project members',
     'Organizations sustaining the Xen Project.',
   ],
   ['/about/security-policy/', 'Security policy', 'Scope of this process'],

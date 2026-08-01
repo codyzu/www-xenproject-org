@@ -243,6 +243,57 @@ sudo xl list`;
     features={projectFeatures}
   />
 
+  <Section id="safety-initiative">
+    <Container>
+      <Surface tone="2" border="strong" radius="lg" shadow="md" padding="lg">
+        <Split align="center" class="xp-home-safety-initiative">
+          <Stack gap="5">
+            <Stack gap="3">
+              <Text size="eyebrow" tone="accent-primary">New safety initiative</Text>
+              <Heading size="heading-xl">Open source safety engineering, built together.</Heading>
+              <Text>
+                The Xen Project now includes the Xen Safety Committee and Premier Plus membership, creating a shared foundation for certification-oriented engineering, maintained safety artifacts, and long-term collaboration.
+              </Text>
+            </Stack>
+            <Cluster>
+              <Button href="/technology/safety/">Explore safety engineering</Button>
+              <Button href="/about/become-a-member/" variant="secondary">Learn about Premier Plus</Button>
+            </Cluster>
+          </Stack>
+          <Stack gap="3" aria-label="Safety initiative participation model">
+            {[
+              {
+                icon: 'i-carbon-group',
+                title: 'Safety Committee',
+                description: 'Coordinates certification-oriented engineering work.',
+              },
+              {
+                icon: 'i-carbon-document-requirements',
+                title: 'Shared artifacts',
+                description: 'Maintains committee-managed safety artifacts.',
+              },
+              {
+                icon: 'i-carbon-enterprise',
+                title: 'Premier Plus participation',
+                description: 'Gives member organizations a formal role in the work.',
+              },
+            ].map(item => (
+              <Surface tone="3" border="muted" radius="md" shadow="sm" padding="md">
+                <div class="uno-grid uno-grid-cols-[auto_minmax(0,1fr)] uno-items-start uno-gap-3">
+                  <span class:list={[item.icon, 'uno-mt-1 uno-text-xl uno-text-xp-accent-primary']} aria-hidden="true"></span>
+                  <Stack gap="2">
+                    <Heading as="h3" size="card">{item.title}</Heading>
+                    <Text size="caption">{item.description}</Text>
+                  </Stack>
+                </div>
+              </Surface>
+            ))}
+          </Stack>
+        </Split>
+      </Surface>
+    </Container>
+  </Section>
+
   <LogoCloud
     id="members"
     eyebrow="Members"
@@ -307,6 +358,18 @@ sudo xl list`;
   @media (min-width: 48rem) and (max-width: 63.999rem) {
     :global(.xp-home-project-grid .uno-grid) {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  :global(.xp-home-safety-initiative > :first-child) {
+    max-width: var(--xp-container-content);
+  }
+
+  @media (min-width: 64rem) and (max-width: 79.999rem) {
+    :global(.xp-home #hero [data-hero-layout="media-dominant"]) {
+      grid-template-columns: minmax(25rem, 26.5rem) minmax(0, 1fr);
+      align-items: center;
+      gap: var(--xp-space-6);
     }
   }
 </style>

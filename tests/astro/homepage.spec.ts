@@ -82,6 +82,21 @@ test.describe('redesigned homepage', () => {
     await expect(debianGuide).toHaveAttribute('href', 'https://wiki.debian.org/Xen');
     await expect(debianGuide).toHaveClass(/xen-action-secondary/);
     await expect(main.getByRole('heading', {name: 'Explore the Xen project ecosystem.'})).toBeVisible();
+    const safetyInitiative = main.locator('#safety-initiative');
+    await expect(safetyInitiative.getByText('New safety initiative', {exact: true})).toBeVisible();
+    await expect(safetyInitiative.getByRole('heading', {name: 'Open source safety engineering, built together.'})).toBeVisible();
+    await expect(safetyInitiative.getByRole('link', {name: 'Explore safety engineering'})).toHaveAttribute(
+      'href',
+      '/technology/safety/',
+    );
+    await expect(safetyInitiative.getByRole('link', {name: 'Learn about Premier Plus'})).toHaveAttribute(
+      'href',
+      '/about/become-a-member/',
+    );
+    const launchSectionOrder = await main.locator('#evidence-in-use, #safety-initiative, #members').evaluateAll(
+      elements => elements.map(element => element.id),
+    );
+    expect(launchSectionOrder).toEqual(['evidence-in-use', 'safety-initiative', 'members']);
     await expect(main.getByRole('heading', {name: 'Sustained by organizations with a stake in open virtualization.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Technical work happens in the open.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: "Support Xen's future, or help build it."})).toBeVisible();
@@ -372,6 +387,24 @@ test.describe('redesigned homepage', () => {
     const animationName = await page.locator('.hero-layered-platform__stack').evaluate(element => getComputedStyle(element).animationName);
     expect(animationName).toBe('none');
     await expect(diagram.locator('[data-platform-layer] img')).toHaveCount(4);
+  });
+
+  test('keeps the homepage hero side by side on iPad landscape', async ({page}) => {
+    await page.setViewportSize({width: 1024, height: 768});
+    await prepareHomepage(page);
+
+    const heroLayout = page.locator('#hero [data-hero-layout="media-dominant"]');
+    const [columnCount, contentBox, mediaBox] = await Promise.all([
+      heroLayout.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length),
+      heroLayout.locator('[data-hero-content]').boundingBox(),
+      heroLayout.locator('[data-hero-media]').boundingBox(),
+    ]);
+
+    expect(columnCount).toBe(2);
+    expect(contentBox).not.toBeNull();
+    expect(mediaBox).not.toBeNull();
+    expect(contentBox!.x + contentBox!.width).toBeLessThanOrEqual(mediaBox!.x + 2);
+    expect(mediaBox!.x + mediaBox!.width).toBeLessThanOrEqual(1025);
   });
 
   test('keeps the layered platform artwork visible and label connectors registered', async ({page}) => {

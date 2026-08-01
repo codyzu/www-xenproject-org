@@ -7,7 +7,7 @@
           - /url: https://xenbits.xenproject.org/governance/core-governance.html
   - article:
     - heading "Governance" [level=1]
-    - text: Learn about the governance structure of the Xen Project, including its goals, principles, decision-making processes, and roles. Discover how the project ensures transparency, openness, and meritocracy in its operations.
+    - text: Learn how the Xen Project governs open technical decisions, project roles, the Advisory Board, and Safety Committee coordination.
     - heading "Goals" [level=2]
     - paragraph: "The goals of Xen Project Governance are to:"
     - list:
@@ -64,6 +64,15 @@
       - link "Xen Project Advisory Board":
         - /url: /about/become-a-member
       - text: consists of members who are committed to steering the project to advance its market and technical success, and who serve as positive ambassadors for the project. The Xen Project Advisory Board manages non-technical aspects of the Xen Project including funding for shared project infrastructure, marketing and events, and managing the Xen Project trademark. The Advisory Board leaves all technical decisions to the open source meritocracy.
+    - heading "Xen Safety Committee" [level=3]
+    - paragraph: The Xen Safety Committee is a formal project committee that coordinates certification-oriented processes and committee-managed safety artifacts. Premier Plus members appoint voting representatives, participate directly in committee work, and help set priorities and roadmap. Upstream technical decisions continue through Xen’s established open contribution, maintainer review, and project governance processes.
+    - paragraph:
+      - link "Explore safety engineering":
+        - /url: /technology/safety
+      - text: or
+      - link "explore Premier Plus membership":
+        - /url: /about/become-a-member
+      - text: .
     - heading "The Linux Foundation" [level=3]
     - paragraph:
       - text: The Xen Project is a
@@ -389,10 +398,10 @@
           - columnheader
           - columnheader
       - rowgroup:
-        - row /Leadership team members \d+ 9 8 7 6 5 4 3 2/:
+        - row "Leadership team members 10 9 8 7 6 5 4 3 2":
           - cell "Leadership team members":
             - strong: Leadership team members
-          - cell /\d+/
+          - cell "10"
           - cell "9"
           - cell "8"
           - cell "7"
@@ -428,10 +437,10 @@
           - columnheader
           - columnheader
       - rowgroup:
-        - row /Active Votes \(\+1 or -1\) \d+ 9 8 7 6 5 4 3 2/:
+        - row "Active Votes (+1 or -1) 10 9 8 7 6 5 4 3 2":
           - cell "Active Votes (+1 or -1)":
             - strong: Active Votes (+1 or -1)
-          - cell /\d+/
+          - cell "10"
           - cell "9"
           - cell "8"
           - cell "7"
@@ -552,16 +561,16 @@
           - cell "Creating, graduating, completing/archiving of sub-projects"
           - cell "Members of developer mailing lists of qualifying projects"
           - cell "Leadership teams of mature sub-projects, with the exception of the project which is being reviewed (e.g. for an archivation review, the leadership team of the project under review, cannot vote).":
-            - text: ""
+            - text: Leadership teams of
             - strong: mature
-            - text: ""
+            - text: sub-projects, with the exception of the project which is being reviewed (e.g. for an archivation review, the leadership team of the project under review, cannot vote).
         - row "Global Process Changes Members of developer mailing lists of qualifying projects Leadership teams of mature sub-projects, within the scope described above.":
           - cell "Global Process Changes"
           - cell "Members of developer mailing lists of qualifying projects"
           - cell "Leadership teams of mature sub-projects, within the scope described above.":
-            - text: ""
+            - text: Leadership teams of
             - strong: mature
-            - text: ""
+            - text: sub-projects, within the scope described above.
     - paragraph: The community manager first arranges a public review, followed by a timed private vote. Public review and voting should be open for a minimum of a week each. For voting a traceable poll mechanism (e.g. voting form that keeps auditable and tamper proof records) must be used.
     - paragraph:
       - text: Voting is conducted
@@ -590,7 +599,7 @@
     - list:
       - listitem: If none of the qualifying projects achieve a quorum, the change cannot hold. In that case, we consider that there is not enough momentum behind a change.
       - listitem: For each qualifying project with a quorum, the percentage of votes in favour and against is calculated (e.g. if 5 people voted in favour, 2 against and 1 abstains, the share is 5/7th and 2/7th respectively).
-      - listitem: /Votes in favour are averaged as percentages across all projects \(say we have per project figures of \d+%, \d+%, \d+% in favour, then the total vote in favour is \d+\.\d+%\)\./
+      - listitem: Votes in favour are averaged as percentages across all projects (say we have per project figures of 50%, 80%, 70% in favour, then the total vote in favour is 66.67%).
       - listitem: If the total vote achieves a 2/3rd majority in favour, the proposal passes. Otherwise it fails.
     - heading "Community Decisions with Funding and Legal Implications" [level=2]
     - paragraph:
@@ -749,7 +758,7 @@
     - heading "Change History" [level=2]
     - list:
       - listitem:
-        - strong: /v3\.0 December \d+:/
+        - strong: "v3.0 December 2016:"
         - text: Refactored document. Otherwise significant changes to decision making, in the following areas
         - list:
           - listitem: "Added Goal: Local Decision Making"
@@ -769,7 +778,7 @@
           - listitem: Modified all other sections which have dependencies on changes above
           - listitem: Added Per Sub-Project Governance Specialisation
       - listitem:
-        - strong: /v2\.1 May \d+:/
+        - strong: "v2.1 May 2016:"
         - text: Clarify Committer Elections as per this
         - link "discussion":
           - /url: https://lists.xenproject.org/archives/html/xen-devel/2016-05/msg00801.html
@@ -777,7 +786,7 @@
         - link "vote":
           - /url: https://lists.xenproject.org/archives/html/xen-devel/2016-05/msg01614.html
       - listitem:
-        - strong: /v2\.0 May \d+:/
+        - strong: "v2.0 May 2012:"
         - text: Changes to reflect transition from xen.org to xenproject.org
         - list:
           - listitem: Added definitions for Sub-projects and Teams, Xen Project Advisory Board and The Linux Foundation.
@@ -787,19 +796,19 @@
           - listitem: Rename xen.org to xenproject.org or Xen Project throughout the document (except in the history)
           - listitem: Refer to sub-projects and teams instead of projects where appropriate
       - listitem:
-        - strong: /1\.2 May \d+:/
+        - strong: "1.2 May 2012:"
         - text: Minor changes
         - list:
           - listitem: Fixed typo and ambiguity in the role of Project Lead.
           - listitem: Added section on Conflict Resolution.
       - listitem:
-        - strong: /v1\.1 Oct \d+:/
+        - strong: "v1.1 Oct 2011:"
         - text: Minor changes
         - list:
           - listitem: Clarified the roles of Committer and Maintainer.
-          - listitem: /Added Making Contributions which contains links to other documentation and highlights that Xen\.org required a DCO for contributions since \d+\./
+          - listitem: Added Making Contributions which contains links to other documentation and highlights that Xen.org required a DCO for contributions since 2005.
           - listitem:
-            - strong: /v1\.0 Jun \d+:/
+            - strong: "v1.0 Jun 2011:"
             - text: Initial document approved
     - heading "Code of Conduct" [level=2]
     - paragraph:

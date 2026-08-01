@@ -11,10 +11,10 @@
   - list:
     - listitem:
       - text: Members sustain shared project needs
-      - paragraph: Support funds infrastructure and operations.
+      - paragraph: Membership supports shared infrastructure and project operations.
     - listitem:
       - text: The Advisory Board coordinates stewardship
-      - paragraph: It manages non-technical project responsibilities.
+      - paragraph: It coordinates non-technical project stewardship.
     - listitem:
       - text: Maintainers govern technical decisions
       - paragraph: Responsibility is earned through open contribution.
@@ -49,12 +49,12 @@
     - heading "Membership does not purchase technical authority" [level=3]
   - paragraph: Membership options
   - heading "Find the appropriate organizational path." [level=2]
-  - paragraph: Review the available paths below. Current pricing and enrollment details are managed by the Linux Foundation.
+  - paragraph: Review the available membership paths below. Current pricing and enrollment details are managed by the Linux Foundation.
   - article:
     - paragraph: Premier Plus membership
     - heading "Support Xen’s safety-oriented work at the highest membership level." [level=3]
-    - paragraph: Premier Plus is designed for organizations building safety-critical and mixed-criticality systems. It includes direct participation in the Xen Safety Committee, voting representation on both the Advisory Board and the Safety Committee, access to committee-managed safety artifacts, and a voice in priorities and roadmap.
-    - paragraph: Members can use shared requirements, architecture material, tests, DFMEA work, tooling, and process documentation in their own assessment, certification, and audit activities, and may share them with qualified safety assessors.
+    - paragraph: Premier Plus is designed for organizations building safety-critical and mixed-criticality systems. It includes direct participation in the Xen Safety Committee, voting representation on both the Advisory Board and the Safety Committee, access to committee-managed safety artifacts, and a role in setting priorities and roadmap.
+    - paragraph: Members can use committee-managed safety artifacts in their own assessment, certification, and audit activities, and may disclose those artifacts to qualified safety assessors for those activities.
   - article:
     - heading "Premier Member" [level=3]
     - paragraph: Provides sustained support for Xen Project operations, shared infrastructure, events, communications, and community programs.
@@ -63,7 +63,7 @@
     - paragraph: Provides a voting representative on the Xen Project Advisory Board and participation in the project’s non-technical governance and stewardship.
   - article:
     - heading "Startup Member" [level=3]
-    - paragraph: /For organizations with fewer than \d+ employees, subject to approval under the current membership requirements\./
+    - paragraph: For organizations with fewer than 100 employees, subject to approval under the current membership requirements.
   - article:
     - heading "Associate Member" [level=3]
     - paragraph: For eligible, pre-approved Linux Foundation associate organizations, including qualifying government or academic institutions.
@@ -73,7 +73,7 @@
     - /url: /about/project-members
   - paragraph: Current members
   - heading "Supported across infrastructure, silicon, automotive, aerospace, and software." [level=2]
-  - paragraph: Organizations from across the virtualization ecosystem help sustain the Xen Project together.
+  - paragraph: Xen Project members provide stewardship, funding, and long-term support for the project.
   - link "Visit AMD":
     - /url: http://www.amd.com/
     - img "AMD"

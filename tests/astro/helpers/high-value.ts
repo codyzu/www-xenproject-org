@@ -143,9 +143,8 @@ export const highValuePages: HighValuePageContract[] = [
       {label: 'Become a member', href: '/about/become-a-member/'},
     ],
     finalActions: [
-      {label: 'Explore safety resources', href: '#resources'},
-      {label: 'Become a member', href: '/about/become-a-member/'},
-      {label: 'Start contributing', href: '/contribute/get-started/'},
+      {label: 'Explore Premier Plus membership', href: '/about/become-a-member/'},
+      {label: 'Review project governance', href: '/about/governance/'},
     ],
     diagrams: [
       {
@@ -316,6 +315,12 @@ const expectCardsInsideViewport = async (region: Locator, expectedCount: number,
 
 async function expectPageSpecificLayout(page: Page, contract: HighValuePageContract, profile: ViewportProfile, viewportWidth: number) {
   if (contract.name === 'homepage' && profile.name === 'mobile') {
+    const safetyInitiative = page.locator('#safety-initiative');
+    await safetyInitiative.scrollIntoViewIfNeeded();
+    await expectInsideViewport(safetyInitiative, viewportWidth);
+    await expect(safetyInitiative.getByRole('heading', {name: 'Open source safety engineering, built together.'})).toBeVisible();
+    await expect(safetyInitiative.locator('h3')).toHaveCount(3);
+
     const members = page.locator('#members');
     await members.scrollIntoViewIfNeeded();
     await expectInsideViewport(members, viewportWidth);
@@ -327,6 +332,11 @@ async function expectPageSpecificLayout(page: Page, contract: HighValuePageContr
   }
 
   if (contract.name === 'homepage' && profile.name === 'ipad-portrait') {
+    const safetyInitiative = page.locator('#safety-initiative .xp-home-safety-initiative');
+    await safetyInitiative.scrollIntoViewIfNeeded();
+    const safetyColumns = await safetyInitiative.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
+    expect(safetyColumns, 'The Safety Initiative should stack at tablet portrait width').toBe(1);
+
     const projectGrid = page.locator('#evidence-in-use article').first().locator('..');
     const projectColumnCount = await projectGrid.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
     expect(projectColumnCount, 'Project cards should use two readable columns at tablet width').toBe(2);
@@ -538,7 +548,7 @@ export async function assertHighValuePage(page: Page, contract: HighValuePageCon
   await expectInsideViewport(hero, viewportWidth);
   const contentBox = await expectInsideViewport(heroContent, viewportWidth);
   const mediaBox = await expectInsideViewport(heroMedia, viewportWidth);
-  const isStackedHero = profile.stackedHero || (contract.name === 'homepage' && profile.name === 'ipad-landscape');
+  const isStackedHero = profile.stackedHero;
   if (isStackedHero) {
     expect(mediaBox.y).toBeGreaterThanOrEqual(contentBox.y + contentBox.height - 2);
   } else {

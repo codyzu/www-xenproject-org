@@ -18,12 +18,9 @@ const screenshotRoutes = [
   '/technology/safety/',
   '/about/become-a-member/',
   '/about/project-members/',
-] as const satisfies readonly string[];
-const extendedScreenshotRoutes = [
-  '/internal/design-system/',
-  '/about/',
   '/about/governance/',
 ] as const satisfies readonly string[];
+const extendedScreenshotRoutes = ['/internal/design-system/', '/about/'] as const satisfies readonly string[];
 
 const profiles = [
   {

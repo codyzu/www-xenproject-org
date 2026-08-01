@@ -19,11 +19,13 @@ import {safetyCriticalPlatformLayersDiagram} from '../../data/safety-critical-pl
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'Safety-Critical Systems';
-const description = 'Open virtualization for safety-conscious systems that need inspectable boundaries, certification-oriented engineering practices, evidence, tooling, and long-term platform control.';
+const description = 'Open source safety engineering through the Xen Safety Committee for safety-critical and mixed-criticality systems, with certification-oriented processes, evidence, tooling, and long-term platform control.';
 const keywords = [
   'Xen Project',
   'safety-critical systems',
   'safety-conscious virtualization',
+  'Xen Safety Committee',
+  'Premier Plus',
   'certification-oriented engineering',
   'mixed-criticality systems',
   'Dom0less',
@@ -139,24 +141,24 @@ const safetyCapabilities = [
 
 const committeeWork = [
   {
+    icon: 'i-carbon-code-reference',
+    title: 'Auditable code-base processes',
+    description: 'Define safety-oriented processes that support an auditable code base as Xen evolves.',
+  },
+  {
     icon: 'i-carbon-document',
-    title: 'Documentation and evidence',
-    description: 'Coordinate documentation, assumptions, supporting artifacts, and evidence-oriented material that evaluators can review.',
+    title: 'Managed safety artifacts',
+    description: 'Create and maintain associated requirements, architecture material, tests, evidence, and process documentation.',
   },
   {
     icon: 'i-carbon-tools',
-    title: 'Tooling and analysis',
-    description: 'Support shared work around static analysis, tooling, testing practices, and code-quality improvement.',
+    title: 'Tooling and validation',
+    description: 'Coordinate static analysis, testing, coverage, fault injection, and other certification-oriented engineering inputs.',
   },
   {
-    icon: 'i-carbon-rule',
-    title: 'Engineering practices',
-    description: 'Develop safety-conscious practices that help contributors and member companies work toward certification-oriented goals.',
-  },
-  {
-    icon: 'i-carbon-group',
-    title: 'Participant collaboration',
-    description: 'Give member companies, contributors, and organizations building regulated systems a place to coordinate the safety work.',
+    icon: 'i-carbon-roadmap',
+    title: 'Sustained alignment',
+    description: 'Keep committee processes and artifacts aligned with Xen across long product and platform lifecycles.',
   },
 ];
 
@@ -448,14 +450,14 @@ const resources = [
           <Split align="start" class="xp-safety-committee-intro">
             <Stack gap="3">
               <Text size="eyebrow" tone="accent-primary">Project coordination</Text>
-              <Heading size="heading-xl">The Xen Safety Committee coordinates the safety work.</Heading>
+              <Heading size="heading-xl">The Xen Safety Committee coordinates certification-oriented work.</Heading>
             </Stack>
             <Stack gap="3">
               <Text>
-                The Xen Safety Committee gives member companies, contributors, and organizations building safety-conscious systems a place to coordinate certification-oriented engineering work inside the project.
+                The Xen Safety Committee is a formal project committee that defines processes for an auditable code base, creates and maintains associated safety artifacts, and coordinates certification-oriented engineering work.
               </Text>
               <Text>
-                Its work connects engineering practices, documentation, evidence, testing, static analysis, tooling, safety-oriented development process, and requirements that matter to regulated systems.
+                Xen source code, licensing, and established development flows remain open and unchanged. Upstream technical decisions continue through Xen's open contribution, review, and maintainer processes.
               </Text>
             </Stack>
           </Split>
@@ -474,13 +476,19 @@ const resources = [
           ))}
         </Grid>
         <Callout
-          title="Participation supports shared engineering work."
-          description="The Safety Committee does not turn Xen into a certified product or provide a complete certification kit. Certification still depends on the complete system, integration context, process, evidence, tooling, validation, and safety case."
+          title="Premier Plus connects organizations directly to the committee."
+          description="Premier Plus members appoint voting representatives to the Xen Project Advisory Board and the Safety Committee, participate directly in committee work, help set priorities and roadmap, and gain access to committee-managed safety artifacts. Members may disclose those artifacts to qualified safety assessors for their own assessment, certification, or audit activities."
           variant="accent"
           class="xp-safety-committee-callout"
-          action={{label: 'Become a member', href: '/about/become-a-member/', variant: 'text'}}
+          action={{label: 'Explore Premier Plus membership', href: '/about/become-a-member/', variant: 'text'}}
         >
           <span slot="icon" class="i-carbon-group"></span>
+        </Callout>
+        <Callout
+          title="Founding contributors supplied a substantive starting point."
+          description="AMD, EPAM, and Renesas contributed the initiative's initial body of safety-focused work, spanning MISRA-related engineering, software safety requirements, architecture specifications, DFMEA, QEMU-based fault injection and component testing, coverage, requirements-based tests, tooling, and process documentation."
+        >
+          <span slot="icon" class="i-carbon-collaborate"></span>
         </Callout>
       </Stack>
     </Container>
@@ -500,6 +508,9 @@ const resources = [
             </Text>
             <Text>
               BUGSENG supports the Xen Project's safety-oriented work by providing access to ECLAIR static analysis on reduced-price terms, helping the project advance MISRA C compliance efforts and ongoing code quality improvement.
+            </Text>
+            <Text>
+              The initiative complements Xen's role in Automotive Grade Linux, Linux and Zephyr platform composition, and ongoing MISRA C and ECLAIR work with BUGSENG. It is relevant to automotive, industrial, avionics, robotics, embedded, and other long-lived regulated systems.
             </Text>
           </Stack>
         </Split>
@@ -597,13 +608,12 @@ const resources = [
 
   <CTA
     id="final-cta"
-    eyebrow="Certification-oriented engineering"
-    title="Help advance open safety engineering for Xen."
-    description="Evaluate Xen through architecture, evidence, tooling, governance, and project participation, or support long-term safety-oriented work through membership."
+    eyebrow="Safety Committee participation"
+    title="Help set the priorities for Xen safety engineering."
+    description="Premier Plus gives organizations building safety-critical and mixed-criticality systems a direct role in the Xen Safety Committee and access to committee-managed safety artifacts."
     actions={[
-      {label: 'Explore safety resources', href: '#resources'},
-      {label: 'Become a member', href: '/about/become-a-member/', variant: 'secondary'},
-      {label: 'Start contributing', href: '/contribute/get-started/', variant: 'text'},
+      {label: 'Explore Premier Plus membership', href: '/about/become-a-member/'},
+      {label: 'Review project governance', href: '/about/governance/', variant: 'secondary'},
     ]}
     align="center"
   />

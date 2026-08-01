@@ -38,8 +38,9 @@ test.describe('membership launch pages', () => {
     await expect(featured).toContainText('direct participation in the Xen Safety Committee');
     await expect(featured).toContainText('voting representation on both the Advisory Board and the Safety Committee');
     await expect(featured).toContainText('access to committee-managed safety artifacts');
-    await expect(featured).toContainText('a voice in priorities and roadmap');
+    await expect(featured).toContainText('a role in setting priorities and roadmap');
     await expect(featured).toContainText('qualified safety assessors');
+    await expect(featured).toContainText('may disclose those artifacts');
     await expect(featured).not.toContainText('The Linux Foundation confirms current terms and eligibility through enrollment');
     await expect(featured).not.toContainText(/coming soon|subject to approval|details to be determined/i);
     await expect(membershipOptions).toContainText(
@@ -74,7 +75,7 @@ test.describe('membership launch pages', () => {
 
     await expect(page.locator('#member-trust img')).toHaveCount(10);
     await expect(page.locator('#member-trust')).toContainText(
-      'Organizations from across the virtualization ecosystem help sustain the Xen Project together.',
+      'Xen Project members provide stewardship, funding, and long-term support for the project.',
     );
     await expect(page.locator('#member-trust')).not.toContainText(/trust signal|canonical|shared data source/i);
     await expect(page.locator('#member-trust').getByRole('link', {name: 'View all Xen Project members'})).toHaveAttribute(
@@ -299,6 +300,7 @@ test.describe('membership launch pages', () => {
       "'/technology/safety/'",
       "'/about/become-a-member/'",
       "'/about/project-members/'",
+      "'/about/governance/'",
     ]) {
       expect(source).toContain(route);
     }
