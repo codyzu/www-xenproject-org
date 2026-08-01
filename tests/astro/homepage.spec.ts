@@ -85,6 +85,8 @@ test.describe('redesigned homepage', () => {
     const safetyInitiative = main.locator('#safety-initiative');
     await expect(safetyInitiative.getByText('New safety initiative', {exact: true})).toBeVisible();
     await expect(safetyInitiative.getByRole('heading', {name: 'Open source safety engineering, built together.'})).toBeVisible();
+    await expect(safetyInitiative).toContainText('substantial head start');
+    await expect(safetyInitiative).not.toContainText(/80\s*(?:percent|%)|mostly complete/i);
     await expect(safetyInitiative.getByRole('link', {name: 'Explore safety engineering'})).toHaveAttribute(
       'href',
       '/technology/safety/',

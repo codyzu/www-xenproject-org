@@ -41,6 +41,7 @@ test.describe('membership launch pages', () => {
     await expect(featured).toContainText('a role in setting priorities and roadmap');
     await expect(featured).toContainText('qualified safety assessors');
     await expect(featured).toContainText('may disclose those artifacts');
+    await expect(featured).not.toContainText(/80\s*(?:percent|%)|mostly complete|pre-certified|certification-ready/i);
     await expect(featured).not.toContainText('The Linux Foundation confirms current terms and eligibility through enrollment');
     await expect(featured).not.toContainText(/coming soon|subject to approval|details to be determined/i);
     await expect(membershipOptions).toContainText(
@@ -159,6 +160,7 @@ test.describe('membership launch pages', () => {
 
     const main = page.getByRole('main');
     await expect(main).not.toContainText(/shared data source|canonical source|database|dataset/i);
+    await expect(main).not.toContainText(/Premier Plus member|Premier Plus status/i);
 
     const currentMembers = page.locator('#current-members');
     await expect(currentMembers.getByRole('heading', {level: 2, name: 'Current Xen Project members'})).toBeVisible();

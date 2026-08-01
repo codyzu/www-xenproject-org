@@ -171,6 +171,10 @@ async function settlePage(page: Page): Promise<void> {
         transition-delay: 0s !important;
         transition-duration: 0s !important;
       }
+
+      astro-dev-toolbar {
+        display: none !important;
+      }
     `,
   });
 

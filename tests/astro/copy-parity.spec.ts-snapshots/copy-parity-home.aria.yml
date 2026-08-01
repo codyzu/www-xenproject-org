@@ -130,17 +130,17 @@
       - /url: /projects/xcp-ng
   - paragraph: New safety initiative
   - heading "Open source safety engineering, built together." [level=2]
-  - paragraph: The Xen Project now includes the Xen Safety Committee and Premier Plus membership, creating a shared foundation for certification-oriented engineering, maintained safety artifacts, and long-term collaboration.
+  - paragraph: The Xen Safety Committee gives Premier Plus members a maintained foundation of requirements, tests, tooling, evidence, and process documentation, giving their own certification-oriented programs a substantial head start.
   - link "Explore safety engineering":
     - /url: /technology/safety
   - link "Learn about Premier Plus":
     - /url: /about/become-a-member
   - heading "Safety Committee" [level=3]
-  - paragraph: Coordinates certification-oriented engineering work.
-  - heading "Shared artifacts" [level=3]
-  - paragraph: Maintains committee-managed safety artifacts.
+  - paragraph: Coordinate certification-oriented engineering.
+  - heading "Shared foundation" [level=3]
+  - paragraph: Build on maintained requirements, tests, tooling, evidence, and process documentation.
   - heading "Premier Plus participation" [level=3]
-  - paragraph: Gives member organizations a formal role in the work.
+  - paragraph: Help set priorities and give downstream safety programs a head start.
   - paragraph: Members
   - heading "Sustained by organizations with a stake in open virtualization." [level=2]
   - paragraph: Members help sustain shared project infrastructure, events, trademark stewardship, and ecosystem coordination.

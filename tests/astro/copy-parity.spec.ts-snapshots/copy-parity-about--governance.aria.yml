@@ -65,7 +65,7 @@
         - /url: /about/become-a-member
       - text: consists of members who are committed to steering the project to advance its market and technical success, and who serve as positive ambassadors for the project. The Xen Project Advisory Board manages non-technical aspects of the Xen Project including funding for shared project infrastructure, marketing and events, and managing the Xen Project trademark. The Advisory Board leaves all technical decisions to the open source meritocracy.
     - heading "Xen Safety Committee" [level=3]
-    - paragraph: The Xen Safety Committee is a formal project committee that coordinates certification-oriented processes and committee-managed safety artifacts. Premier Plus members appoint voting representatives, participate directly in committee work, and help set priorities and roadmap. Upstream technical decisions continue through Xen’s established open contribution, maintainer review, and project governance processes.
+    - paragraph: The Xen Safety Committee is a formal project committee that coordinates certification-oriented processes and committee-managed safety artifacts. Premier Plus members appoint voting representatives to both the Xen Project Advisory Board and the Safety Committee, participate directly in committee work, and help set priorities and roadmap. Upstream technical decisions continue through Xen’s established open contribution, maintainer review, and project governance processes. The committee does not replace maintainer review, and membership does not confer technical authority.
     - paragraph:
       - link "Explore safety engineering":
         - /url: /technology/safety
