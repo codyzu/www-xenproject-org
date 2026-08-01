@@ -106,7 +106,7 @@ const asideLinks = aside.flatMap(resource => resource.items.flatMap(item => (
           )
         }
 
-        <Surface as="article" tone="light-raised" border="light" radius="lg" shadow="md" padding="none" class="xp-longform-prose uno-min-w-0 uno-p-5 md:uno-p-8 lg:uno-p-10">
+        <Surface as="article" tone="2" border="muted" radius="lg" shadow="md" padding="none" class="xen-prose-dark uno-min-w-0 uno-max-w-none uno-p-5 md:uno-p-8 lg:uno-p-10">
           <slot />
         </Surface>
       </div>
@@ -115,158 +115,29 @@ const asideLinks = aside.flatMap(resource => resource.items.flatMap(item => (
 </BaseLayout>
 
 <script>
-  for (const table of document.querySelectorAll<HTMLTableElement>('.xp-longform-prose table')) {
+  for (const table of document.querySelectorAll<HTMLTableElement>('.xen-prose-dark table')) {
     table.tabIndex = 0;
   }
 </script>
 
 <style is:global>
-  .xp-longform-prose {
-    background: var(--xp-surface-light-raised);
-    color: var(--xp-text-on-light-muted);
-    color-scheme: light;
-    font-size: var(--xp-type-body);
-    line-height: 1.75;
-  }
-
-  .xp-longform-prose :where(h2, h3, h4, h5, h6) {
-    color: var(--xp-text-on-light);
-    scroll-margin-top: 6rem;
-  }
-
-  .xp-longform-prose h2 {
-    margin: 3.5rem 0 1.25rem;
-    padding-top: 2rem;
-    border-top: 1px solid rgb(17 24 39 / 0.12);
-    font-size: clamp(1.75rem, 4vw, 2.25rem);
-  }
-
-  .xp-longform-prose h2:first-child {
-    margin-top: 0;
-    padding-top: 0;
-    border-top: 0;
-  }
-
-  .xp-longform-prose h3 {
-    margin: 2.25rem 0 0.9rem;
-    font-size: clamp(1.3rem, 3vw, 1.5rem);
-  }
-
-  .xp-longform-prose h4 {
-    margin: 1.75rem 0 0.75rem;
-    font-size: 1.125rem;
-  }
-
-  .xp-longform-prose :where(p, ul, ol, table, pre, blockquote) {
-    margin: 0 0 1.25rem;
-  }
-
-  .xp-longform-prose :where(ul, ol) {
-    padding-left: 1.5rem;
-  }
-
-  .xp-longform-prose :where(ul, ol) :where(ul, ol) {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
-  }
-
-  .xp-longform-prose li + li {
-    margin-top: 0.35rem;
-  }
-
-  .xp-longform-prose strong {
-    color: var(--xp-text-on-light);
-  }
-
-  .xp-longform-prose a {
-    color: #365f18;
-    font-weight: 600;
-    text-decoration-thickness: 0.08em;
-    text-underline-offset: 0.18em;
-  }
-
-  .xp-longform-prose a:hover {
-    color: #284b10;
-  }
-
-  .xp-longform-prose table {
-    display: block;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: auto;
-    border-spacing: 0;
-    border-collapse: collapse;
-    font-size: 0.875rem;
+  .xen-prose-dark table {
     -webkit-overflow-scrolling: touch;
   }
 
-  .xp-longform-prose :where(th, td) {
-    min-width: 8rem;
-    padding: 0.75rem 0.9rem;
-    border: 1px solid rgb(17 24 39 / 0.14);
-    text-align: left;
-    vertical-align: top;
-  }
-
-  .xp-longform-prose th {
-    background: var(--xp-surface-2);
-    color: var(--xp-text-primary);
-  }
-
-  .xp-longform-prose th strong {
-    color: inherit;
-  }
-
-  .xp-longform-prose tbody tr:nth-child(even) {
-    background: rgb(81 96 112 / 0.06);
-  }
-
-  .xp-longform-prose :where(code, kbd) {
-    border-radius: var(--xp-radius-sm);
-    background: rgb(20 34 56 / 0.10);
-    color: var(--xp-text-on-light);
-    font-family: var(--xp-font-mono);
-    font-size: 0.9em;
-  }
-
-  .xp-longform-prose code {
-    padding: 0.12em 0.3em;
-  }
-
-  .xp-longform-prose pre {
-    max-width: 100%;
-    overflow-x: auto;
-    border-radius: var(--xp-radius-md);
-    background: var(--xp-surface-1);
-    color: var(--xp-text-secondary);
-    padding: 1rem;
-  }
-
-  .xp-longform-prose pre code {
-    padding: 0;
-    background: transparent;
-    color: inherit;
-  }
-
-  .xp-longform-prose blockquote {
-    margin-left: 0;
-    padding: 0.25rem 0 0.25rem 1rem;
-    border-left: 4px solid var(--xp-accent-primary-active);
-  }
-
-  .xp-longform-prose #safety-governance {
+  .xen-prose-dark #safety-governance {
     margin: 2rem 0;
     padding: 1.25rem;
     border: 1px solid rgb(111 168 50 / 0.45);
     border-radius: var(--xp-radius-md);
-    background: #f1f7e9;
+    background: color-mix(in srgb, var(--xp-surface-1) 82%, var(--xp-accent-primary));
   }
 
-  .xp-longform-prose #safety-governance h3 {
+  .xen-prose-dark #safety-governance h3 {
     margin-top: 0;
   }
 
-  .xp-longform-prose #safety-governance > :last-child {
+  .xen-prose-dark #safety-governance > :last-child {
     margin-bottom: 0;
   }
 

@@ -96,7 +96,9 @@ test.describe('Safety launch integration', () => {
     await expect(page.locator('body')).toHaveClass(/xp-longform-page/);
     await expect(page.locator('header nav[aria-label="Primary navigation"]')).toBeVisible();
     await expect(page.locator('footer nav[aria-label="Footer navigation"]')).toBeVisible();
-    await expect(page.locator('.xp-longform-prose')).toHaveCount(1);
+    const prose = page.locator('.xen-prose-dark');
+    await expect(prose).toHaveCount(1);
+    await expect(prose).toHaveCSS('max-width', 'none');
     await expect(page.locator('header .header-nav')).toHaveCount(0);
     const governanceContent = page.getByRole('main');
     await expect(governanceContent).toContainText('formal project committee');

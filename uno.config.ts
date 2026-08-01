@@ -1,5 +1,13 @@
 // Uno.config.js
-import {defineConfig, presetWind3, presetIcons, presetWebFonts, transformerVariantGroup, type Rule} from 'unocss';
+import {
+  defineConfig,
+  presetWind3,
+  presetIcons,
+  presetTypography,
+  presetWebFonts,
+  transformerVariantGroup,
+  type Rule,
+} from 'unocss';
 import {clsx} from 'clsx';
 
 export default defineConfig({
@@ -7,6 +15,36 @@ export default defineConfig({
     // Keep Wind 3 semantics for now. Migrated pages and React islands depend
     // on Tailwind 3-style UnoCSS behavior and the `uno-` prefix.
     presetWind3({prefix: 'uno-'}),
+    // Shared long-form defaults for MDX and other generated prose. The
+    // prefixed selector follows the repository's existing UnoCSS convention.
+    presetTypography({
+      selectorName: 'uno-prose',
+      cssExtend: {
+        h2: {
+          'border-top': '1px solid var(--xp-border-muted)',
+        },
+        'h2:first-child': {
+          'margin-top': '0',
+          'padding-top': '0',
+          'border-top': '0',
+        },
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        'a:hover': {
+          color: 'var(--xp-accent-primary-strong)',
+        },
+        ':not(pre) > code': {
+          padding: '.12em .3em',
+          'border-radius': 'var(--xp-radius-sm)',
+          background: 'var(--xp-surface-1)',
+        },
+        ':not(pre) > code::before,:not(pre) > code::after': {
+          content: '""',
+        },
+        th: {
+          background: 'var(--xp-surface-3)',
+        },
+      },
+    }),
     // Redesign font utilities. BaseLayout loads the Google Fonts stylesheet
     // for new pages; this preset maps `uno-font-sans` and `uno-font-mono`.
     presetWebFonts({
@@ -235,6 +273,25 @@ export default defineConfig({
     'xen-panel-elevated':
       'uno-rounded-xp-lg uno-border uno-border-xp-border-muted uno-bg-xp-surface-2 uno-p-6 uno-shadow-xp-md',
     'xen-card': 'uno-rounded-xp-md uno-border uno-border-xp-border-muted uno-bg-xp-surface-2 uno-p-5 uno-shadow-xp-sm',
+    'xen-prose-dark': clsx(
+      'uno-prose uno-text-base uno-leading-7 uno-[color-scheme:dark]',
+      'uno-[--un-prose-body:var(--xp-text-secondary)] uno-[--un-prose-headings:var(--xp-text-primary)]',
+      'uno-[--un-prose-links:var(--xp-accent-primary)] uno-[--un-prose-lists:var(--xp-text-muted)]',
+      'uno-[--un-prose-hr:var(--xp-border-strong)] uno-[--un-prose-captions:var(--xp-text-muted)]',
+      'uno-[--un-prose-code:var(--xp-text-primary)] uno-[--un-prose-borders:var(--xp-border-strong)]',
+      'uno-[--un-prose-bg-soft:rgb(5_8_14_/_0.28)]',
+      'uno-prose-headings:uno-text-xp-text-primary uno-prose-headings:uno-font-semibold',
+      'uno-prose-h2:uno-mt-14 uno-prose-h2:uno-mb-5 uno-prose-h2:uno-pt-8 uno-prose-h2:uno-text-[clamp(1.75rem,4vw,2.25rem)]',
+      'uno-prose-h3:uno-mt-9 uno-prose-h3:uno-mb-3.5 uno-prose-h3:uno-text-[clamp(1.3rem,3vw,1.5rem)]',
+      'uno-prose-h4:uno-mt-7 uno-prose-h4:uno-mb-3 uno-prose-h4:uno-text-lg',
+      'uno-prose-a:uno-font-semibold uno-prose-a:uno-text-xp-accent-primary uno-prose-a:uno-decoration-[0.08em] uno-prose-a:uno-underline-offset-[0.18em]',
+      'uno-prose-strong:uno-text-xp-text-primary',
+      'uno-prose-table:uno-w-full uno-prose-table:uno-max-w-full uno-prose-table:uno-text-sm',
+      'uno-prose-th:uno-min-w-32 uno-prose-th:uno-text-left uno-prose-th:uno-align-top',
+      'uno-prose-td:uno-min-w-32 uno-prose-td:uno-text-left uno-prose-td:uno-align-top',
+      'uno-prose-pre:uno-rounded-xp-md uno-prose-pre:uno-bg-xp-surface-1 uno-prose-pre:uno-text-xp-text-secondary',
+      'uno-prose-blockquote:uno-not-italic uno-prose-blockquote:uno-border-[var(--xp-accent-primary-active)]',
+    ),
     'xen-illustration-shell': 'uno-w-full uno-max-w-[34rem] uno-justify-self-center lg:uno-justify-self-stretch',
     'xen-illustration-layer':
       'uno-relative uno-rounded-xp-md uno-border uno-border-solid uno-bg-[rgb(20_34_56_/_0.86)] uno-p-3 uno-shadow-xp-sm uno-transition-[transform,box-shadow,border-color] uno-duration-[var(--xp-motion-base)] sm:uno-p-4',
