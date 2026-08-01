@@ -93,6 +93,11 @@ test.describe('Safety launch integration', () => {
 
     const heading = page.getByRole('heading', {level: 3, name: 'Xen Safety Committee'});
     await expect(heading).toBeVisible();
+    await expect(page.locator('body')).toHaveClass(/xp-longform-page/);
+    await expect(page.locator('header nav[aria-label="Primary navigation"]')).toBeVisible();
+    await expect(page.locator('footer nav[aria-label="Footer navigation"]')).toBeVisible();
+    await expect(page.locator('.xp-longform-prose')).toHaveCount(1);
+    await expect(page.locator('header .header-nav')).toHaveCount(0);
     const governanceContent = page.getByRole('main');
     await expect(governanceContent).toContainText('formal project committee');
     await expect(governanceContent).toContainText('appoint voting representatives to both the Xen Project Advisory Board and the Safety Committee');
@@ -106,7 +111,7 @@ test.describe('Safety launch integration', () => {
     );
     await expectNoHorizontalOverflow(page);
 
-    const accessibility = await new AxeBuilder({page}).include('#safety-governance').analyze();
+    const accessibility = await new AxeBuilder({page}).include('main').analyze();
     const seriousViolations = accessibility.violations.filter(
       violation => violation.impact === 'serious' || violation.impact === 'critical',
     );

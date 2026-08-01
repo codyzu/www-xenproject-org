@@ -1,13 +1,13 @@
 - main:
-  - complementary:
-    - heading "Resources" [level=3]
+  - heading "Governance" [level=1]
+  - paragraph: Learn how the Xen Project governs open technical decisions, project roles, the Advisory Board, and Safety Committee coordination.
+  - complementary "Resources":
+    - heading "Resources" [level=2]
     - list:
       - listitem:
-        - link "Governance ":
+        - link "Governance":
           - /url: https://xenbits.xenproject.org/governance/core-governance.html
   - article:
-    - heading "Governance" [level=1]
-    - text: Learn how the Xen Project governs open technical decisions, project roles, the Advisory Board, and Safety Committee coordination.
     - heading "Goals" [level=2]
     - paragraph: "The goals of Xen Project Governance are to:"
     - list:
