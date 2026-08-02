@@ -23,7 +23,7 @@ const visibleNavigationItems = navigationV2Sections.filter(shouldDisplayInFooter
 const linkRel = (link: NavigationV2Link) => link.target === '_blank' ? 'noopener noreferrer' : undefined;
 ---
 
-<footer class="uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-px-4 uno-py-12 md:uno-px-6">
+<footer data-pagefind-ignore class="uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-px-4 uno-py-12 md:uno-px-6">
   <Container size="wide">
     <Stack gap="6">
       <Grid columns="2" gap="6">

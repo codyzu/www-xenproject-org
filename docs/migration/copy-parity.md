@@ -19,7 +19,7 @@ npm run build
 npm run test:astro:copy-parity
 ```
 
-The focused command starts `serve dist` through the existing Playwright configuration and writes the standard Playwright report.
+The focused command starts Astro's preview server through the existing Playwright configuration and writes the standard Playwright report.
 
 ## Review and update the approved baseline
 

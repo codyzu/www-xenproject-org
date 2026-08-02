@@ -9,6 +9,7 @@ tests/astro-results
 /junit.xml
 screenshots/
 .copy-parity
+.cache/ghost-search/
 
 .DS_Store
 .env

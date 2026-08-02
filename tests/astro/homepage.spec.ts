@@ -191,6 +191,32 @@ test.describe('redesigned homepage', () => {
     await expect(developersPopover).not.toBeVisible();
   });
 
+  test('keeps compact iPad header actions on one line', async ({page}) => {
+    await page.setViewportSize({width: 1280, height: 900});
+    await prepareHomepage(page);
+
+    const header = page.getByRole('banner');
+    const searchTrigger = header.getByRole('button', {name: 'Search Xen Project'});
+    const membershipCta = header.getByRole('link', {name: 'Become a member'});
+
+    await expect(searchTrigger).toBeVisible();
+    await expect(searchTrigger.getByText('Search', {exact: true})).toBeHidden();
+    await expect(searchTrigger.locator('kbd')).toBeHidden();
+    await expect(membershipCta).toHaveCSS('white-space', 'nowrap');
+
+    const layout = await header.evaluate(element => {
+      const action = element.querySelector<HTMLElement>('.xp-header-membership-cta');
+      const row = element.querySelector<HTMLElement>('.xp-header-row');
+      return {
+        actionHeight: action?.getBoundingClientRect().height ?? 0,
+        rowHeight: row?.getBoundingClientRect().height ?? 0,
+        documentOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+      };
+    });
+    expect(layout.actionHeight).toBeLessThanOrEqual(layout.rowHeight);
+    expect(layout.documentOverflow).toBe(0);
+  });
+
   test('uses one complete desktop disclosure trigger for each label and chevron', async ({page}) => {
     await page.setViewportSize({width: 1280, height: 900});
     await prepareHomepage(page);

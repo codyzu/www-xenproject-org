@@ -1,7 +1,9 @@
 ---
 import Footer from '../components/legacy/Footer.astro';
 import Header from '../components/legacy/Header.astro';
+import SearchDialog from '../components/search/SearchDialog.astro';
 import {siteMetadata} from '../data/site';
+import {sectionForPath} from '../data/search';
 import 'uno.css';
 import '../styles/legacy.scss';
 import '../styles/expressive-code.css';
@@ -43,6 +45,8 @@ const pageTitle = currentPath === '/'
 const resolvedDescription = description || summary || siteMetadata.description;
 const resolvedCanonicalUrl = new URL(canonicalUrl || currentPath, siteUrl).toString();
 const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialImage, siteUrl).toString();
+const searchSection = sectionForPath(currentPath);
+const shouldIndex = !robots.toLowerCase().includes('noindex') && currentPath !== '/search/';
 ---
 
 <!doctype html>
@@ -75,10 +79,17 @@ const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialI
   </head>
   <body class:list={[bodyClass, flushMain && 'layout-main-flush', overlayHeader && 'layout-header-overlay']}>
     <Header currentPath={currentPath} />
-    <main class:list={['main', hasAside && 'has-aside']}>
+    <main
+      class:list={['main', hasAside && 'has-aside']}
+      data-pagefind-body={shouldIndex ? true : undefined}
+      data-pagefind-ignore={!shouldIndex ? true : undefined}
+      data-pagefind-meta={`section:${searchSection}`}
+      data-pagefind-filter={`section:${searchSection}`}
+    >
       <slot />
     </main>
     <Footer currentPath={currentPath} />
+    <SearchDialog />
     <script>
       import '../scripts/menu.js';
       import '../scripts/animate.js';

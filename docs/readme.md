@@ -8,6 +8,7 @@
 - [Images](images.md)
 - [Redesign foundation](redesign-foundation.md)
 - [Redesign strategy](redesign-strategy.md)
+- [Unified search](search.md)
 
 ## Migration Notes
 

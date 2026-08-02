@@ -2,6 +2,8 @@
 import {siteMetadata} from '../data/site';
 import SiteFooter from '../components/blocks/SiteFooter.astro';
 import SiteHeader from '../components/blocks/SiteHeader.astro';
+import SearchDialog from '../components/search/SearchDialog.astro';
+import {sectionForPath} from '../data/search';
 import 'uno.css';
 import '../styles/foundation/base.css';
 import '../styles/expressive-code.css';
@@ -39,6 +41,8 @@ const pageTitle = currentPath === '/'
 const resolvedDescription = description || summary || siteMetadata.description;
 const resolvedCanonicalUrl = new URL(canonicalUrl || currentPath, siteUrl).toString();
 const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialImage, siteUrl).toString();
+const searchSection = sectionForPath(currentPath);
+const shouldIndex = !robots.toLowerCase().includes('noindex') && currentPath !== '/search/';
 ---
 
 <!doctype html>
@@ -75,10 +79,17 @@ const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialI
     {publicShell ? (
       <>
         <SiteHeader currentPath={currentPath} />
-        <main id="main-content">
+        <main
+          id="main-content"
+          data-pagefind-body={shouldIndex ? true : undefined}
+          data-pagefind-ignore={!shouldIndex ? true : undefined}
+          data-pagefind-meta={`section:${searchSection}`}
+          data-pagefind-filter={`section:${searchSection}`}
+        >
           <slot />
         </main>
         <SiteFooter currentPath={currentPath} />
+        <SearchDialog />
       </>
     ) : (
       <slot />

@@ -8,7 +8,7 @@ generator, and `npm run build` writes the complete artifact to `dist/`.
 GitLab packages that output as `site.tar.gz` with a top-level `public/`
 directory for compatibility with the beta deployment hook and production
 downloader. The Playwright CI job maps that deployed directory back to `dist/`
-before starting `serve dist`.
+before starting Astro's preview server.
 
 The active source layout is:
 
@@ -47,7 +47,7 @@ npm run test:astro:links
 ```
 
 Use `npm run test:astro:smoke:public` for screenshot and navigation smoke
-testing against `dist/`. The Playwright config starts `serve dist`
+testing against `dist/`. The Playwright config starts Astro's preview server
 automatically on `http://127.0.0.1:4321`.
 
 ## Ghost Header/Footer Contract

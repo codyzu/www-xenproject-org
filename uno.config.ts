@@ -338,6 +338,8 @@ export default defineConfig({
       'xen-action uno-border uno-border-xp-border-strong uno-bg-xp-surface-2 uno-text-xp-text-primary hover:uno-bg-xp-surface-3',
     'xen-action-text':
       'xen-focus uno-inline-flex uno-min-h-11 uno-items-center uno-rounded-xp-md uno-px-2 uno-font-bold uno-leading-none uno-text-xp-text-primary uno-underline uno-decoration-xp-accent-primary uno-decoration-2 uno-underline-offset-6 uno-transition-colors hover:xen-action-text-hover hover:uno-text-xp-text-primary active:xen-action-text-active',
+    'xen-search-key':
+      'uno-rounded-[.25rem] uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-2 uno-px-[.38rem] uno-py-[.28rem] uno-font-mono uno-text-[.7rem] uno-font-semibold uno-leading-none uno-text-xp-text-secondary',
 
     // Homepage story compatibility shortcuts.
     'uno-orbit-0':

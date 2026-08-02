@@ -40,7 +40,8 @@ To serve a built artifact locally:
 
 1. `npm run build`
 2. `npm run serve`
-3. Open [http://localhost:3000](http://localhost:3000).
+3. Open [http://localhost:4321](http://localhost:4321), or use the network URL
+   printed by Astro from another device on the same network.
 
 ## Tests
 
@@ -60,7 +61,7 @@ For visual smoke testing, make sure nothing else is running on
 npm run test:astro:smoke:public
 ```
 
-Playwright starts `serve dist`, snapshots representative routes, verifies
+Playwright starts Astro's preview server, snapshots representative routes, verifies
 navigation behavior, exercises React islands, and checks redirect metadata.
 
 ### Review Screenshots

@@ -10,13 +10,14 @@ type Props = {
 const {currentPath} = Astro.props;
 ---
 
-<header class="header">
+<header class="header" data-pagefind-ignore>
   <div class="header-inner">
     <div class="header-logo">
       <a href="/">
         <img src="/img/logo-xen-reverse.svg" alt="Xen-Project" />
       </a>
     </div>
+    <button type="button" class="legacy-search-trigger" data-search-open aria-label="Search Xen Project"><i class="fas fa-magnifying-glass" aria-hidden="true"></i><span>Search</span></button>
     <button class="menu-toggle" title="Toggle menu"></button>
     <div class="header-content" data-menu-title="Menu">
       <nav class="header-nav">
@@ -28,3 +29,9 @@ const {currentPath} = Astro.props;
     </div>
   </div>
 </header>
+
+<style>
+  .legacy-search-trigger { display: inline-flex; align-items: center; gap: .45rem; min-height: 2.65rem; padding: .45rem .7rem; border: 1px solid rgb(255 255 255 / .22); border-radius: .35rem; background: rgb(0 0 0 / .12); color: white; font: 600 .8rem/1 sans-serif; cursor: pointer; }
+  .legacy-search-trigger:hover, .legacy-search-trigger:focus-visible { border-color: #85c241; outline: 2px solid #85c241; outline-offset: 2px; }
+  @media (max-width: 1023px) { .legacy-search-trigger { margin-left: auto; } .legacy-search-trigger span { display: none; } }
+</style>

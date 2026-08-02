@@ -1,0 +1,55 @@
+{
+  "posts": [
+    {
+      "id": "fixture-standard-001",
+      "slug": "community-release-notes",
+      "url": "https://xenproject.org/blog/community-release-notes/",
+      "title": "Community release notes",
+      "html": "<h2>What changed</h2><p>Maintainers reviewed the release process and welcomed new contributors.</p><script>window.secret = 'ignore me'</script><div class=\"newsletter-signup\">Subscribe to our newsletter</div>",
+      "excerpt": "A standard update from the Xen Project community.",
+      "custom_excerpt": null,
+      "feature_image": null,
+      "published_at": "2025-02-03T10:00:00.000Z",
+      "updated_at": "2025-02-04T10:00:00.000Z",
+      "visibility": "public",
+      "authors": [{ "name": "Alex Maintainer" }],
+      "tags": [{ "name": "Community" }],
+      "primary_author": { "name": "Alex Maintainer" },
+      "primary_tag": { "name": "Community" }
+    },
+    {
+      "id": "fixture-technical-002",
+      "slug": "pvh-live-migration-lab",
+      "url": "https://xenproject.org/blog/pvh-live-migration-lab/",
+      "title": "PVH live migration lab",
+      "html": "<h2>Migration path</h2><p>The dom0 toolstack coordinates XenStore state for a PVH guest during live migration.</p><ul><li>Prepare the source host</li><li>Transfer guest memory</li></ul><pre><code>xl migrate pvh-demo destination</code></pre><style>.hidden{display:none}</style>",
+      "excerpt": "",
+      "custom_excerpt": null,
+      "feature_image": null,
+      "published_at": "2025-03-10T09:30:00.000Z",
+      "updated_at": "2025-03-12T12:00:00.000Z",
+      "visibility": "public",
+      "authors": [{ "name": "Morgan Engineer" }],
+      "tags": [{ "name": "Hypervisor" }, { "name": "Migration" }],
+      "primary_author": { "name": "Morgan Engineer" },
+      "primary_tag": { "name": "Hypervisor" }
+    },
+    {
+      "id": "fixture-rich-003",
+      "slug": "open-virtualization-boundaries",
+      "url": "https://xenproject.org/blog/open-virtualization-boundaries/?preview=false",
+      "title": "Open virtualization boundaries",
+      "html": "<p>Clear ownership makes platform boundaries inspectable.</p><blockquote>Architecture is strongest when responsibilities stay visible.</blockquote><figure><p>A layered platform model.</p><figcaption>Platform layers</figcaption></figure><div class=\"social-share-buttons\">Share on every network</div><iframe src=\"https://example.invalid/embed\"></iframe>",
+      "excerpt": "Fallback excerpt that should lose to the custom excerpt.",
+      "custom_excerpt": "A closer look at ownership across layered open virtualization systems.",
+      "feature_image": "https://example.invalid/synthetic-image.png",
+      "published_at": "2025-04-15T14:45:00.000Z",
+      "updated_at": "2025-04-16T08:15:00.000Z",
+      "visibility": "public",
+      "authors": [{ "name": "Taylor Author" }, { "name": "Sam Reviewer" }],
+      "tags": [{ "name": "Architecture" }, { "name": "Xen" }, { "name": "Community" }],
+      "primary_author": { "name": "Taylor Author" },
+      "primary_tag": { "name": "Architecture" }
+    }
+  ]
+}

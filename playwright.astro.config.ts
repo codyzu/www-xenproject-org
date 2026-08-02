@@ -45,7 +45,7 @@ export default defineConfig({
   },
   ...(shouldStartServer && {
     webServer: {
-      command: shouldStartDevServer ? `npm run dev -- --port ${serverPort}` : `npm run serve -- -l ${serverPort}`,
+      command: shouldStartDevServer ? `npm run dev -- --port ${serverPort}` : `npm run serve -- --port ${serverPort}`,
       reuseExistingServer: false,
       timeout: 120_000,
       url: `http://127.0.0.1:${serverPort}`,
@@ -65,7 +65,7 @@ export default defineConfig({
     },
     {
       name: 'webkit-mobile',
-      testMatch: /high-value-webkit-mobile\.spec\.ts/,
+      testMatch: /(high-value-webkit-mobile|search)\.spec\.ts/,
       use: {
         ...devices['iPhone 13'],
         reducedMotion: 'reduce',

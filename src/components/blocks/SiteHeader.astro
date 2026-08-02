@@ -46,14 +46,14 @@ const groupIconByName: Record<string, string> = {
 const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-4';
 ---
 
-<header class="uno-sticky uno-top-0 uno-z-[var(--xp-z-header)] uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(5_8_14_/_0.88)] uno-backdrop-blur-md">
+<header data-pagefind-ignore class="uno-sticky uno-top-0 uno-z-[var(--xp-z-header)] uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(5_8_14_/_0.88)] uno-backdrop-blur-md">
   <Container size="wide" class="uno-px-4 md:uno-px-6">
-    <div class="uno-flex uno-min-h-18 uno-items-center uno-justify-between uno-gap-4">
+    <div class="xp-header-row uno-flex uno-min-h-18 uno-items-center uno-justify-between uno-gap-4">
       <a href="/" class="xen-focus uno-inline-flex uno-shrink-0 uno-rounded-xp-md" aria-label="Xen Project home">
         <img src="/img/logo-xen-reverse.svg" alt="Xen Project" width="174" height="48" class="uno-h-10 uno-w-auto" />
       </a>
 
-      <nav class="uno-hidden lg:uno-block" aria-label="Primary navigation">
+      <nav class="xp-primary-nav uno-hidden lg:uno-block" aria-label="Primary navigation">
         <ul class="uno-m-0 uno-flex uno-list-none uno-items-center uno-gap-1 uno-p-0">
           {visibleNavigationItems.map((item, index) => (
             <li class="xp-nav-item uno-relative" data-nav-item data-popover-id={popoverId(index)}>
@@ -128,13 +128,21 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
         </ul>
       </nav>
 
-      {primaryCta && (
-        <div class="uno-hidden uno-items-center uno-gap-3 lg:uno-flex">
-          <Button href={primaryCta.href} target={primaryCta.target} rel={linkRel(primaryCta)} variant="secondary" class="uno-min-w-0">{primaryCta.name}</Button>
-        </div>
-      )}
+      <div class="xp-header-actions uno-hidden uno-items-center uno-gap-3 lg:uno-flex">
+        <button type="button" data-search-open class="xp-search-trigger xen-focus" aria-label="Search Xen Project">
+          <span class="i-carbon-search" aria-hidden="true"></span>
+          <span>Search</span>
+          <kbd>⌘ K</kbd>
+        </button>
+        {primaryCta && (
+          <Button href={primaryCta.href} target={primaryCta.target} rel={linkRel(primaryCta)} variant="secondary" class="xp-header-membership-cta uno-min-w-0 uno-shrink-0 uno-whitespace-nowrap">{primaryCta.name}</Button>
+        )}
+      </div>
 
-      <div class="xp-mobile-nav lg:uno-hidden">
+      <div class="xp-mobile-nav uno-flex uno-items-center uno-gap-2 lg:uno-hidden">
+        <button type="button" data-search-open class="xp-search-trigger xp-search-trigger--mobile xen-focus" aria-label="Search Xen Project">
+          <span class="i-carbon-search" aria-hidden="true"></span>
+        </button>
         <button
           type="button"
           class="xen-action-secondary uno-min-w-0"
@@ -451,6 +459,40 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
 </script>
 
 <style>
+  .xp-search-trigger {
+    display: inline-flex;
+    flex-shrink: 0;
+    min-height: 2.75rem;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.65rem;
+    border: 1px solid var(--xp-border-muted);
+    border-radius: var(--xp-radius-md);
+    background: rgb(20 34 56 / 0.58);
+    color: var(--xp-text-secondary);
+    font: 600 0.8rem/1 var(--xp-font-sans);
+    white-space: nowrap;
+    cursor: pointer;
+    transition: border-color var(--xp-motion-fast), background-color var(--xp-motion-fast), color var(--xp-motion-fast);
+  }
+
+  .xp-search-trigger:hover { border-color: var(--xp-border-strong); background: var(--xp-surface-2); color: var(--xp-text-primary); }
+  .xp-search-trigger > span:first-child { width: 1rem; height: 1rem; }
+  .xp-search-trigger kbd { display: inline-flex; flex-shrink: 0; padding: 0.22rem 0.32rem; border: 1px solid var(--xp-border-muted); border-radius: 0.2rem; background: var(--xp-surface-1); color: var(--xp-text-muted); font: 600 0.65rem/1 var(--xp-font-mono); white-space: nowrap; }
+  .xp-search-trigger--mobile { width: 2.75rem; justify-content: center; padding: 0; }
+  .xp-header-actions { flex-shrink: 0; }
+  .xp-header-membership-cta { white-space: nowrap; }
+
+  @media (min-width: 64rem) and (max-width: 87.499rem) {
+    .xp-header-row { gap: 0.75rem; }
+    .xp-primary-nav > ul { gap: 0; }
+    .xp-nav-trigger { padding-inline: 0.5rem; }
+    .xp-header-actions { gap: 0.5rem; }
+    .xp-search-trigger:not(.xp-search-trigger--mobile) { width: 2.75rem; justify-content: center; padding: 0; }
+    .xp-search-trigger:not(.xp-search-trigger--mobile) > span:nth-child(2),
+    .xp-search-trigger:not(.xp-search-trigger--mobile) kbd { display: none; }
+  }
+
   .xp-nav-trigger {
     transition:
       background-color var(--xp-motion-fast) var(--xp-ease-standard),
@@ -517,7 +559,8 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
   @media (prefers-reduced-motion: reduce) {
     .xp-nav-trigger,
     .xp-nav-chevron,
-    .xp-nav-popover {
+    .xp-nav-popover,
+    .xp-search-trigger {
       transition: none;
     }
   }
