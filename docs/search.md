@@ -40,7 +40,8 @@ separate built-site server or displays its missing-index message.
 - `npm run build:search:fresh` refreshes Ghost and performs a complete production-like build.
 - `npm run search:fixture` prepares the committed synthetic records used by local search tests. It never contacts Ghost.
 - `npm run test:astro:search` replaces the existing artifact's search index with synthetic records and runs the focused
-  browser coverage. Run `npm run build` first when `dist/` is absent or its Astro output is stale.
+  browser coverage. Its fixture cache uses `.cache/ghost-search/test-posts.json`, so it does not replace a developer's
+  live local cache. Run `npm run build` first when `dist/` is absent or its Astro output is stale.
 
 If search reports that assets are missing, run `npm run build` and serve `dist/`, not the Astro development server. If
 Blog results are missing or stale, run `npm run search:refresh` and then `npm run search:index` (or a full build). A
@@ -63,8 +64,21 @@ The cache is intentionally not added to GitLab's cache configuration. `dist/page
 ## Index metadata and exclusions
 
 `BaseLayout.astro` and `LegacyLayout.astro` mark the meaningful `<main>` as the Pagefind body and provide a `section`
-filter and metadata value. `src/data/search.ts` classifies real route prefixes into Documentation, Releases, Security,
-Safety, Community, Events, Membership, and About. More specific prefixes come before broad prefixes.
+and `contentType` filter plus title, description, canonical, keyword, and conservative alias metadata.
+`src/data/search.ts` classifies real route prefixes into Documentation, Releases, Security, Safety, Community, Events,
+Membership, and About. More specific prefixes come before broad prefixes; downloads are Releases, OpenPGP keys are
+Security, and branding pages are About.
+
+Pagefind's default heading weights remain intact. Browser search configuration boosts exact title metadata most,
+followed by descriptions, authored keywords, aliases, and body content. The deliberately small alias set covers common
+Xen equivalents such as `dom0` / `control domain`, `XenStore` / `Xen Store`, `XSA` / `Xen Security Advisory`, `PVH`,
+`Dom0less`, `HVM`, `XAPI`, `VMI`, and live migration terminology. Add aliases only when both terms are genuinely
+interchangeable; Dom0less includes spelling variants and the descriptive query “without a control domain,” but not the
+broader static-partitioning concept.
+
+Every result is tagged as either `Website` or `Blog`. The unified relevance order remains the default, while the dialog
+uses distinct source labels, icons, accent rails, and generated Website/Blog filters. Canonical result paths are
+deduplicated before rendering, and Blog results continue to point directly to `/blog/.../`.
 
 Both shared headers and footers use `data-pagefind-ignore`; the mobile menu, global calls to action, search dialog, and
 other repeated furniture therefore do not enter the index. Layouts omit the Pagefind body and add an ignore marker for
@@ -73,5 +87,6 @@ content remain searchable without page-by-page edits.
 
 Ghost normalization, sanitization, cache validation, and pagination live in `scripts/search/ghost.ts`. Tests use
 `tests/fixtures/ghost-posts.json`, which is synthetic and contains no production copy or credentials. The sanitizer
-removes scripts, styles, signup/share/navigation/embed boilerplate while preserving article prose, headings, lists,
-blockquote text, and code.
+removes scripts, styles, signup/share/navigation/embed boilerplate, upgrade prompts, and trailing related, similar,
+recommended, or read-next sections while preserving article prose, headings, lists, blockquote text, and code. Run
+`npm run search:refresh` after sanitizer changes so an older normalized local cache is regenerated.

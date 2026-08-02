@@ -9,12 +9,14 @@ import {rm} from 'node:fs/promises';
 import {promisify} from 'node:util';
 import {
   cleanGhostHtml,
+  deduplicateGhostPosts,
   fetchAllGhostPosts,
   normalizeGhostPost,
   readGhostCache,
   writeGhostCacheAtomic,
 } from '../../scripts/search/ghost.ts';
 import {ghostPagefindRecord} from '../../scripts/search/index.ts';
+import {searchAliasesForText, sectionForPath} from '../../src/data/search.ts';
 
 const fixture = JSON.parse(
   await readFile(fileURLToPath(new URL('../fixtures/ghost-posts.json', import.meta.url)), 'utf8'),
@@ -33,9 +35,11 @@ test('normalizes metadata, fallbacks, URLs, and custom records', () => {
   assert.match(technical.excerpt, /dom0 toolstack/);
   assert.deepEqual(rich.authors, ['Taylor Author', 'Sam Reviewer']);
   assert.deepEqual(rich.tags, ['Architecture', 'Xen', 'Community']);
+  assert.deepEqual(technical.aliases, ['dom0', 'control domain', 'XenStore', 'Xen Store', 'PVH', 'paravirtualized hardware', 'live migration', 'VM migration']);
   const record = ghostPagefindRecord(rich);
   assert.equal(record.meta.ghostId, 'fixture-rich-003');
   assert.deepEqual(record.filters.section, ['Blog']);
+  assert.deepEqual(record.filters.contentType, ['Blog']);
   assert.equal(record.url, '/blog/open-virtualization-boundaries/');
 });
 
@@ -44,7 +48,37 @@ test('removes boilerplate while preserving technical content', () => {
   assert.match(cleaned, /XenStore/);
   assert.match(cleaned, /xl migrate/);
   assert.doesNotMatch(cleaned, /display:none|Repeated navigation/);
+  const rich = cleanGhostHtml((fixture.posts[2] as {html: string}).html);
+  assert.match(rich, /responsibilities stay visible/);
+  assert.doesNotMatch(rich, /Similar articles|recommendation must not enter|Become a member to keep reading/);
   assert.doesNotMatch(normalizeGhostPost(fixture.posts[0]).content, /secret|Subscribe/);
+});
+
+test('deduplicates Ghost identities and defines conservative aliases and route sections', () => {
+  const technical = normalizeGhostPost(fixture.posts[1]);
+  const newer = {...technical, updatedAt: '2025-03-13T12:00:00.000Z'};
+  assert.deepEqual(deduplicateGhostPosts([technical, newer]), [newer]);
+  assert.deepEqual(searchAliasesForText('How a Xen Security Advisory affects dom0'), [
+    'dom0',
+    'control domain',
+    'XSA',
+    'Xen Security Advisory',
+  ]);
+  assert.deepEqual(searchAliasesForText('Dom0less boot for embedded systems'), [
+    'Dom0less',
+    'dom0-less',
+    'without a control domain',
+  ]);
+  assert.deepEqual(searchAliasesForText('Boot Xen without a control domain'), [
+    'dom0',
+    'control domain',
+    'Dom0less',
+    'dom0-less',
+    'without a control domain',
+  ]);
+  assert.equal(sectionForPath('/resources/downloads/'), 'Releases');
+  assert.equal(sectionForPath('/projects/hypervisor/openpgp-keys/'), 'Security');
+  assert.equal(sectionForPath('/more/xen-branding/'), 'About');
 });
 
 test('fetches every Ghost API page without exposing the key', async () => {

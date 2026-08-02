@@ -39,7 +39,7 @@
       "slug": "open-virtualization-boundaries",
       "url": "https://xenproject.org/blog/open-virtualization-boundaries/?preview=false",
       "title": "Open virtualization boundaries",
-      "html": "<p>Clear ownership makes platform boundaries inspectable.</p><blockquote>Architecture is strongest when responsibilities stay visible.</blockquote><figure><p>A layered platform model.</p><figcaption>Platform layers</figcaption></figure><div class=\"social-share-buttons\">Share on every network</div><iframe src=\"https://example.invalid/embed\"></iframe>",
+      "html": "<p>Clear ownership makes platform boundaries inspectable.</p><blockquote>Architecture is strongest when responsibilities stay visible.</blockquote><figure><p>A layered platform model.</p><figcaption>Platform layers</figcaption></figure><div class=\"social-share-buttons\">Share on every network</div><div class=\"gh-post-upgrade-cta\">Become a member to keep reading</div><iframe src=\"https://example.invalid/embed\"></iframe><h3>Similar articles</h3><p>This recommendation must not enter the search index.</p>",
       "excerpt": "Fallback excerpt that should lose to the custom excerpt.",
       "custom_excerpt": "A closer look at ownership across layered open virtualization systems.",
       "feature_image": "https://example.invalid/synthetic-image.png",

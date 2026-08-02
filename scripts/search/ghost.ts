@@ -4,9 +4,12 @@ import process from 'node:process';
 import {fileURLToPath} from 'node:url';
 import {load} from 'cheerio';
 import {z} from 'zod';
+import {searchAliasesForText} from '../../src/data/search.ts';
 
 export const cacheVersion = 1;
-export const defaultCachePath = fileURLToPath(new URL('../../.cache/ghost-search/posts.json', import.meta.url));
+export const defaultCachePath = process.env.GHOST_SEARCH_CACHE_PATH
+  ? path.resolve(process.env.GHOST_SEARCH_CACHE_PATH)
+  : fileURLToPath(new URL('../../.cache/ghost-search/posts.json', import.meta.url));
 
 const namedEntitySchema = z.object({name: z.string().min(1)}).passthrough();
 /* eslint-disable @typescript-eslint/naming-convention -- Ghost Content API field names are fixed. */
@@ -42,6 +45,7 @@ export const normalizedGhostPostSchema = z.object({
   authors: z.array(z.string()),
   primaryTag: z.string().optional(),
   tags: z.array(z.string()),
+  aliases: z.array(z.string()).default([]),
   language: z.literal('en'),
 });
 
@@ -60,7 +64,27 @@ const removablePatterns = [
   /share[-_ ]?(buttons?|links?)/i,
   /kg-embed-card/i,
   /navigation/i,
+  /related[-_ ]?(articles?|posts?)/i,
+  /similar[-_ ]?articles?/i,
+  /recommended[-_ ]?(articles?|posts?|reading)/i,
+  /read[-_ ]?next/i,
+  /post[-_ ]?(footer|recommendations?)/i,
+  /gh-post-upgrade-cta/i,
+  /kg-signup-card/i,
 ];
+
+const trailingBoilerplatePattern =
+  /^(?:related posts?|similar articles?|recommended (?:articles?|posts?|reading)|you (?:may|might) also like|read next)\b\s*:?/i;
+
+function uniqueNames(values: string[]) {
+  const seen = new Set<string>();
+  return values.filter((value) => {
+    const normalized = value.trim().toLocaleLowerCase('en');
+    if (!normalized || seen.has(normalized)) return false;
+    seen.add(normalized);
+    return true;
+  });
+}
 
 export function cleanGhostHtml(html: string) {
   const $ = load(html);
@@ -68,6 +92,12 @@ export function cleanGhostHtml(html: string) {
   $('[class], [id]').each((_, element) => {
     const marker = `${$(element).attr('class') ?? ''} ${$(element).attr('id') ?? ''}`;
     if (removablePatterns.some((pattern) => pattern.test(marker))) $(element).remove();
+  });
+  $('h1, h2, h3, h4, h5, h6, p, aside, section').each((_, element) => {
+    const text = $(element).text().replaceAll(/\s+/g, ' ').trim();
+    if (!trailingBoilerplatePattern.test(text)) return;
+    $(element).nextAll().remove();
+    $(element).remove();
   });
   $('figcaption').each((_, element) => {
     const text = $(element).text().replaceAll(/\s+/g, ' ').trim();
@@ -95,6 +125,9 @@ export function normalizeGhostPost(input: unknown): NormalizedGhostPost {
   const excerpt = cleanGhostHtml(post.custom_excerpt ?? '') || fallbackExcerpt;
   const primaryAuthor = post.primary_author?.name ?? post.authors[0]?.name;
   const primaryTag = post.primary_tag?.name ?? post.tags[0]?.name;
+  const authors = uniqueNames(post.authors.map((author) => author.name));
+  const tags = uniqueNames(post.tags.map((tag) => tag.name));
+  const aliases = searchAliasesForText(`${post.title}\n${excerpt}\n${content}\n${tags.join(' ')}`);
   return normalizedGhostPostSchema.parse({
     id: post.id,
     slug: post.slug,
@@ -105,11 +138,30 @@ export function normalizeGhostPost(input: unknown): NormalizedGhostPost {
     publishedAt: post.published_at,
     updatedAt: post.updated_at,
     primaryAuthor,
-    authors: post.authors.map((author) => author.name),
+    authors,
     primaryTag,
-    tags: post.tags.map((tag) => tag.name),
+    tags,
+    aliases,
     language: 'en',
   });
+}
+
+export function deduplicateGhostPosts(posts: NormalizedGhostPost[]) {
+  const byIdentity = new Map<string, NormalizedGhostPost>();
+  for (const post of posts) {
+    const existing = byIdentity.get(post.id) ?? byIdentity.get(post.url);
+    if (!existing || Date.parse(post.updatedAt) > Date.parse(existing.updatedAt)) {
+      if (existing) {
+        byIdentity.delete(existing.id);
+        byIdentity.delete(existing.url);
+      }
+
+      byIdentity.set(post.id, post);
+      byIdentity.set(post.url, post);
+    }
+  }
+
+  return [...new Map([...byIdentity.values()].map((post) => [post.id, post])).values()];
 }
 
 type FetchLike = typeof fetch;
@@ -186,7 +238,7 @@ export async function fetchAllGhostPosts(options: {
     page += 1;
   } while (page <= pages);
 
-  return records;
+  return deduplicateGhostPosts(records);
 }
 
 export async function writeGhostCacheAtomic(posts: NormalizedGhostPost[], cachePath = defaultCachePath) {

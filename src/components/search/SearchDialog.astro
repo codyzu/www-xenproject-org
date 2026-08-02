@@ -40,6 +40,11 @@ import '../../styles/foundation/tokens.css';
     <p class="xp-search-status uno-m-0 uno-px-5 uno-pb-3 uno-pt-2 uno-font-sans uno-text-[.8rem] uno-font-normal uno-leading-[1.4] uno-text-xp-text-muted" data-search-status role="status" aria-live="polite">
       Enter at least two characters to search the Xen Project website and blog.
     </p>
+    <div class="xp-search-filters uno-mx-5 uno-mb-3 uno-hidden uno-items-center uno-gap-2" data-search-filters role="group" aria-label="Filter search results by source">
+      <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary" data-search-filter="All" aria-pressed="true">All</button>
+      <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary" data-search-filter="Website" aria-pressed="false"><span class="i-carbon-document uno-mr-1 uno-align-[-.12em]" aria-hidden="true"></span>Website</button>
+      <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary" data-search-filter="Blog" aria-pressed="false"><span class="i-carbon-notebook uno-mr-1 uno-align-[-.12em]" aria-hidden="true"></span>Blog</button>
+    </div>
     <ol id="xp-search-results" class="xp-search-results uno-m-0 uno-min-h-20 uno-list-none uno-overflow-y-auto uno-px-3 uno-pb-3" data-search-results role="listbox" aria-label="Search results"></ol>
 
     <footer class="xp-search-footer uno-hidden uno-gap-[1.1rem] uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-px-5 uno-pt-3 uno-font-sans uno-text-[.7rem] uno-font-medium uno-leading-[1.3] uno-text-xp-text-muted sm:uno-flex" aria-hidden="true">
@@ -57,20 +62,35 @@ import '../../styles/foundation/tokens.css';
     meta: Record<string, string>;
     score?: number;
   };
-  type PagefindResult = {score: number; data: () => Promise<PagefindResultData>};
-  type PagefindResponse = {results: PagefindResult[]};
-  type PagefindApi = {search: (query: string) => Promise<PagefindResponse>};
+  type PagefindResult = {id: string; score: number; data: () => Promise<PagefindResultData>};
+  type PagefindFilterCounts = Record<string, Record<string, number>>;
+  type PagefindResponse = {
+    results: PagefindResult[];
+    unfilteredResultCount?: number;
+    filters?: PagefindFilterCounts;
+    totalFilters?: PagefindFilterCounts;
+  };
+  type PagefindApi = {
+    init: () => Promise<void>;
+    options: (options: Record<string, unknown>) => Promise<void>;
+    filters: () => Promise<PagefindFilterCounts>;
+    search: (query: string, options?: {filters?: Record<string, string>}) => Promise<PagefindResponse>;
+  };
 
   const dialog = document.querySelector<HTMLDialogElement>('[data-search-dialog]');
   const input = dialog?.querySelector<HTMLInputElement>('[data-search-input]');
   const results = dialog?.querySelector<HTMLOListElement>('[data-search-results]');
   const status = dialog?.querySelector<HTMLElement>('[data-search-status]');
+  const filterBar = dialog?.querySelector<HTMLElement>('[data-search-filters]');
+  const filterButtons = [...(filterBar?.querySelectorAll<HTMLButtonElement>('[data-search-filter]') ?? [])];
   const triggers = [...document.querySelectorAll<HTMLButtonElement>('[data-search-open]')];
   let pagefind: PagefindApi | undefined;
+  let pagefindPromise: Promise<PagefindApi> | undefined;
   let opener: HTMLElement | undefined;
   let activeIndex = -1;
   let requestNumber = 0;
   let lockedScrollY = 0;
+  let selectedContentType = 'All';
 
   const isTypingTarget = (target: EventTarget | null) => {
     if (!(target instanceof HTMLElement)) return false;
@@ -94,17 +114,37 @@ import '../../styles/foundation/tokens.css';
     globalThis.scrollTo(0, lockedScrollY);
   };
 
-  const loadPagefind = async () => {
+  const loadSourceFilters = async (api: PagefindApi) => {
+    const availableFilters = await api.filters();
+    const sourceCounts = availableFilters.contentType ?? {};
+    const hasWebsite = (sourceCounts.Website ?? 0) > 0;
+    const hasBlog = (sourceCounts.Blog ?? 0) > 0;
+    filterBar?.classList.toggle('uno-flex', hasWebsite && hasBlog);
+    filterBar?.classList.toggle('uno-hidden', !(hasWebsite && hasBlog));
+  };
+
+  const loadPagefind = async (): Promise<PagefindApi> => {
     if (pagefind) return pagefind;
-    try {
+    if (pagefindPromise) return pagefindPromise;
+    pagefindPromise = (async () => {
       const pagefindPath = '/pagefind/pagefind.js';
       const module = await import(/* @vite-ignore */ pagefindPath) as PagefindApi;
+      await module.options({
+        excerptLength: 24,
+        ranking: {
+          metaWeights: {title: 8, description: 2, keywords: 1.5, aliases: 1.5, section: 0},
+        },
+      });
+      await module.init();
       pagefind = module;
-      return pagefind;
-    } catch {
+      void loadSourceFilters(module).catch(() => undefined);
+      return module;
+    })().catch((error: unknown) => {
+      pagefindPromise = undefined;
       setStatus('Search is unavailable because its local index could not be loaded. Try running npm run build.');
-      throw new Error('Pagefind assets are unavailable.');
-    }
+      throw error instanceof Error ? error : new Error('Pagefind assets are unavailable.');
+    });
+    return pagefindPromise;
   };
 
   const openSearch = (trigger?: HTMLElement) => {
@@ -148,15 +188,48 @@ import '../../styles/foundation/tokens.css';
 
   const escapeHtml = (value: string) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;');
 
+  const canonicalResultKey = (value: string) => {
+    const url = new URL(value, globalThis.location.origin);
+    url.search = '';
+    url.hash = '';
+    let pathname = url.pathname.replace(/\/index\.html$/, '/');
+    if (!pathname.endsWith('/') && !/\.[a-z0-9]+$/i.test(pathname)) pathname += '/';
+    return pathname;
+  };
+
+  const deduplicateResults = (items: PagefindResultData[]) => {
+    const seen = new Set<string>();
+    return items.filter((item) => {
+      const key = canonicalResultKey(item.meta.canonical || item.url);
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  };
+
+  const updateFilterButtons = () => {
+    for (const button of filterButtons) {
+      const active = button.dataset.searchFilter === selectedContentType;
+      button.setAttribute('aria-pressed', String(active));
+    }
+  };
+
   const renderResults = (items: PagefindResultData[]) => {
     if (!results) return;
     results.innerHTML = items.map((item, index) => {
+      const contentType = item.meta.contentType || (item.url.startsWith('/blog/') ? 'Blog' : 'Website');
       const section = item.meta.section || item.meta.contentType || 'Website';
       const date = formatDate(item.meta.published);
-      const excerpt = item.meta.excerpt ? escapeHtml(item.meta.excerpt) : item.excerpt;
+      const excerpt = item.excerpt || escapeHtml(item.meta.excerpt ?? '');
+      const sourceLabel = contentType === 'Blog' ? 'Xen Project Blog' : 'Xen Project website';
+      const sourceIcon = contentType === 'Blog' ? 'i-carbon-notebook' : 'i-carbon-document';
       return `<li id="xp-search-result-${index}" role="option" aria-selected="false">
-        <a href="${escapeHtml(item.url)}" data-search-result data-search-score="${item.score ?? 0}" class="xen-focus">
-          <span class="xp-search-result-meta"><span>${escapeHtml(section)}</span>${date ? `<time>${escapeHtml(date)}</time>` : ''}</span>
+        <a href="${escapeHtml(item.url)}" data-search-result data-search-source="${escapeHtml(contentType)}" data-search-score="${item.score ?? 0}" class="xen-focus">
+          <span class="xp-search-result-meta">
+            <span class="xp-search-result-source"><span class="${sourceIcon}" aria-hidden="true"></span>${escapeHtml(sourceLabel)}</span>
+            <span class="xp-search-result-section">${escapeHtml(section)}</span>
+            ${date ? `<time>${escapeHtml(date)}</time>` : ''}
+          </span>
           <strong>${escapeHtml(item.meta.title || item.url)}</strong>
           <span class="xp-search-excerpt">${excerpt}</span>
           <span class="xp-search-url">${escapeHtml(item.url)}</span>
@@ -177,15 +250,19 @@ import '../../styles/foundation/tokens.css';
     setStatus('Searching…');
     try {
       const api = await loadPagefind();
-      const response = await api.search(query);
+      const response = await api.search(query, selectedContentType === 'All'
+        ? undefined
+        : {filters: {contentType: selectedContentType}});
       if (thisRequest !== requestNumber) return;
-      const loaded = await Promise.all(response.results.slice(0, 12).map(async result => ({
+      const loaded = deduplicateResults(await Promise.all(response.results.slice(0, 24).map(async result => ({
         ...await result.data(),
         score: result.score,
-      })));
+      })))).slice(0, 12);
       if (thisRequest !== requestNumber) return;
       renderResults(loaded);
-      setStatus(loaded.length === 0 ? `No results found for “${query}”.` : `${response.results.length} result${response.results.length === 1 ? '' : 's'} found for “${query}”.`);
+      const resultCount = response.results.length;
+      const sourceSuffix = selectedContentType === 'All' ? '' : ` in ${selectedContentType}`;
+      setStatus(loaded.length === 0 ? `No results found for “${query}”${sourceSuffix}.` : `${resultCount} result${resultCount === 1 ? '' : 's'} found for “${query}”${sourceSuffix}.`);
     } catch {
       if (thisRequest === requestNumber) {
         if (results) results.innerHTML = '';
@@ -211,6 +288,14 @@ import '../../styles/foundation/tokens.css';
       results?.querySelectorAll<HTMLAnchorElement>('a[data-search-result]')[activeIndex]?.click();
     }
   });
+
+  for (const button of filterButtons) {
+    button.addEventListener('click', () => {
+      selectedContentType = button.dataset.searchFilter ?? 'All';
+      updateFilterButtons();
+      void performSearch();
+    });
+  }
 
   results?.addEventListener('pointermove', event => {
     const link = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[data-search-result]');
@@ -240,15 +325,25 @@ import '../../styles/foundation/tokens.css';
   .xp-search-dialog[open] { opacity: 1; transform: none; }
   @starting-style { .xp-search-dialog[open] { opacity: 0; transform: translateY(-0.5rem) scale(0.985); } }
   .xp-search-dialog::backdrop { background: rgb(1 4 9 / 0.72); backdrop-filter: blur(5px); opacity: 1; transition: opacity var(--xp-motion-base) var(--xp-ease-standard); }
-  .xp-search-shell { display: grid; grid-template-rows: auto auto auto minmax(0, 1fr) auto; max-height: min(48rem, calc(100dvh - 2rem)); }
+  .xp-search-shell { display: grid; grid-template-rows: auto auto auto auto minmax(0, 1fr) auto; max-height: min(48rem, calc(100dvh - 2rem)); }
   .xp-search-input-wrap { box-shadow: 0 0 0 0 transparent; transition: border-color var(--xp-motion-fast), box-shadow var(--xp-motion-fast); }
   .xp-search-input-wrap:focus-within { border-color: var(--xp-accent-primary); box-shadow: 0 0 0 3px var(--xp-accent-primary-soft); }
   .xp-search-input::placeholder { color: var(--xp-text-muted); }
+  .xp-search-filters button { transition: color var(--xp-motion-fast), border-color var(--xp-motion-fast), background-color var(--xp-motion-fast); }
+  .xp-search-filters button:hover { border-color: var(--xp-border-strong); color: var(--xp-text-primary); }
+  .xp-search-filters button[aria-pressed='true'] { border-color: var(--xp-accent-primary); background: var(--xp-accent-primary-soft); color: var(--xp-text-primary); }
   .xp-search-results li { margin: 0; padding: 0; }
-  .xp-search-results a { display: grid; gap: .35rem; padding: .85rem .75rem; border: 1px solid transparent; border-radius: var(--xp-radius-md); color: var(--xp-text-secondary); text-decoration: none; transition: background-color var(--xp-motion-fast), border-color var(--xp-motion-fast), transform var(--xp-motion-fast); }
+  .xp-search-results a { display: grid; gap: .35rem; padding: .85rem .75rem; border: 1px solid transparent; border-left-width: 3px; border-radius: var(--xp-radius-md); color: var(--xp-text-secondary); text-decoration: none; transition: background-color var(--xp-motion-fast), border-color var(--xp-motion-fast), transform var(--xp-motion-fast); }
+  .xp-search-results a[data-search-source='Website'] { border-left-color: var(--xp-accent-secondary); }
+  .xp-search-results a[data-search-source='Blog'] { border-left-color: var(--xp-accent-primary); }
   .xp-search-results a:hover, .xp-search-results a[data-active] { border-color: var(--xp-border-muted); background: var(--xp-surface-2); color: var(--xp-text-primary); transform: translateX(.2rem); }
+  .xp-search-results a[data-search-source='Website']:hover, .xp-search-results a[data-search-source='Website'][data-active] { border-left-color: var(--xp-accent-secondary); }
+  .xp-search-results a[data-search-source='Blog']:hover, .xp-search-results a[data-search-source='Blog'][data-active] { border-left-color: var(--xp-accent-primary); }
   .xp-search-results strong { color: var(--xp-text-primary); font: 700 1rem/1.3 var(--xp-font-sans); }
-  .xp-search-result-meta { display: flex; gap: .55rem; color: var(--xp-accent-primary); font: 600 .68rem/1.3 var(--xp-font-mono); letter-spacing: .06em; text-transform: uppercase; }
+  .xp-search-result-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .55rem; color: var(--xp-text-muted); font: 600 .68rem/1.3 var(--xp-font-mono); letter-spacing: .045em; text-transform: uppercase; }
+  .xp-search-result-source { display: inline-flex; align-items: center; gap: .3rem; color: var(--xp-text-primary); }
+  .xp-search-result-source > span { width: .85rem; height: .85rem; }
+  .xp-search-result-section { border: 1px solid var(--xp-border-muted); border-radius: 999px; padding: .12rem .42rem; }
   .xp-search-result-meta time { color: var(--xp-text-muted); }
   .xp-search-excerpt { display: -webkit-box; color: var(--xp-text-secondary); font: 400 .82rem/1.5 var(--xp-font-sans); -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .xp-search-excerpt mark { border-radius: .15rem; background: rgb(133 194 65 / .28); color: var(--xp-text-primary); padding: 0 .08em; }
@@ -260,10 +355,13 @@ import '../../styles/foundation/tokens.css';
     .xp-search-header { padding-inline: 1rem; }
     .xp-search-input-wrap { margin-inline: 1rem; }
     .xp-search-status { padding-inline: 1rem; }
+    .xp-search-filters { margin-inline: 1rem; overflow-x: auto; scrollbar-width: none; }
+    .xp-search-filters::-webkit-scrollbar { display: none; }
+    .xp-search-filters button { flex: 0 0 auto; }
     .xp-search-results { padding-inline: .5rem; padding-bottom: max(.75rem, env(safe-area-inset-bottom)); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .xp-search-dialog, .xp-search-dialog::backdrop, .xp-search-input-wrap, .xp-search-results a { transition: none; }
+    .xp-search-dialog, .xp-search-dialog::backdrop, .xp-search-input-wrap, .xp-search-filters button, .xp-search-results a { transition: none; }
     .xp-search-results a:hover, .xp-search-results a[data-active] { transform: none; }
   }
 </style>

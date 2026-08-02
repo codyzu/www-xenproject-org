@@ -26,6 +26,33 @@ test.describe('unified Pagefind search', () => {
     await expect(blogResult).toBeVisible();
     await expect(blogResult).toContainText('Blog');
     await expect(blogResult).toContainText('PVH live migration lab');
+    await expect(blogResult).toHaveAttribute('data-search-source', 'Blog');
+
+    await input.fill('control domain');
+    await expect(blogResult).toBeVisible();
+  });
+
+  test('clearly distinguishes and filters mixed Website and Blog results', async ({page}) => {
+    await page.getByRole('button', {name: 'Search Xen Project'}).click();
+    const dialog = page.getByRole('dialog', {name: 'Search the site'});
+    const input = dialog.getByRole('searchbox', {name: 'Search Xen Project'});
+    await input.fill('open virtualization');
+
+    const websiteResult = dialog.locator('a[data-search-source="Website"][href="/"]');
+    const blogResult = dialog.locator('a[data-search-source="Blog"][href="/blog/open-virtualization-boundaries/"]');
+    await expect(websiteResult).toBeVisible();
+    await expect(websiteResult).toContainText('Xen Project website');
+    await expect(blogResult).toBeVisible();
+    await expect(blogResult).toContainText('Xen Project Blog');
+
+    await dialog.getByRole('button', {name: 'Blog'}).click();
+    await expect(dialog.getByRole('button', {name: 'Blog'})).toHaveAttribute('aria-pressed', 'true');
+    await expect(blogResult).toBeVisible();
+    await expect(dialog.locator('a[data-search-source="Website"]')).toHaveCount(0);
+
+    await dialog.getByRole('button', {name: 'Website'}).click();
+    await expect(websiteResult).toBeVisible();
+    await expect(dialog.locator('a[data-search-source="Blog"]')).toHaveCount(0);
   });
 
   test('supports keyboard navigation, Enter, Escape, clicking, and focus restoration', async ({page}) => {

@@ -3,7 +3,7 @@ import {siteMetadata} from '../data/site';
 import SiteFooter from '../components/blocks/SiteFooter.astro';
 import SiteHeader from '../components/blocks/SiteHeader.astro';
 import SearchDialog from '../components/search/SearchDialog.astro';
-import {sectionForPath} from '../data/search';
+import {searchAliasesForText, sectionForPath} from '../data/search';
 import 'uno.css';
 import '../styles/foundation/base.css';
 import '../styles/expressive-code.css';
@@ -42,6 +42,7 @@ const resolvedDescription = description || summary || siteMetadata.description;
 const resolvedCanonicalUrl = new URL(canonicalUrl || currentPath, siteUrl).toString();
 const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialImage, siteUrl).toString();
 const searchSection = sectionForPath(currentPath);
+const searchAliases = searchAliasesForText(`${title}\n${resolvedDescription}\n${keywords.join(' ')}`);
 const shouldIndex = !robots.toLowerCase().includes('noindex') && currentPath !== '/search/';
 ---
 
@@ -61,8 +62,10 @@ const shouldIndex = !robots.toLowerCase().includes('noindex') && currentPath !==
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
     />
     <title>{pageTitle}</title>
-    <meta name="description" content={resolvedDescription} />
-    {keywords.length > 0 && <meta name="keywords" content={keywords.join(',  ')} />}
+    <meta name="description" content={resolvedDescription} data-pagefind-meta="description[content]" />
+    <meta content={title} data-pagefind-meta="title[content]" />
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(',  ')} data-pagefind-meta="keywords[content]" />}
+    {searchAliases.length > 0 && <meta content={searchAliases.join(', ')} data-pagefind-meta="aliases[content]" />}
     <meta property="og:type" content="website" />
     <meta property="og:url" content={resolvedCanonicalUrl} />
     <meta property="og:title" content={title} />
@@ -73,7 +76,7 @@ const shouldIndex = !robots.toLowerCase().includes('noindex') && currentPath !==
     <meta name="twitter:description" content={resolvedDescription} />
     <meta name="twitter:image" content={resolvedSocialImage} />
     <meta name="robots" content={robots} />
-    <link rel="canonical" href={resolvedCanonicalUrl} />
+    <link rel="canonical" href={resolvedCanonicalUrl} data-pagefind-meta="canonical[href]" />
   </head>
   <body class:list={['xp-site', bodyClass]}>
     {publicShell ? (
@@ -83,8 +86,10 @@ const shouldIndex = !robots.toLowerCase().includes('noindex') && currentPath !==
           id="main-content"
           data-pagefind-body={shouldIndex ? true : undefined}
           data-pagefind-ignore={!shouldIndex ? true : undefined}
-          data-pagefind-meta={`section:${searchSection}`}
-          data-pagefind-filter={`section:${searchSection}`}
+          data-search-section={searchSection}
+          data-search-content-type="Website"
+          data-pagefind-meta="section[data-search-section], contentType[data-search-content-type]"
+          data-pagefind-filter="section[data-search-section], contentType[data-search-content-type]"
         >
           <slot />
         </main>

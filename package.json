@@ -22,7 +22,7 @@
     "test:search": "node --test tests/search/*.test.ts",
     "test:astro:smoke": "playwright test --config playwright.astro.config.ts",
     "test:astro:smoke:public": "PLAYWRIGHT_START_SERVER=1 playwright test --config playwright.astro.config.ts",
-    "test:astro:search": "npm run search:fixture && npm run search:index && SEARCH_FIXTURE_TEST=1 PLAYWRIGHT_START_SERVER=1 playwright test tests/astro/search.spec.ts --config playwright.astro.config.ts",
+    "test:astro:search": "GHOST_SEARCH_CACHE_PATH=.cache/ghost-search/test-posts.json npm run search:fixture && GHOST_SEARCH_CACHE_PATH=.cache/ghost-search/test-posts.json npm run search:index && SEARCH_FIXTURE_TEST=1 PLAYWRIGHT_START_SERVER=1 playwright test tests/astro/search.spec.ts --config playwright.astro.config.ts --workers=1",
     "test:astro:high-value": "PLAYWRIGHT_START_SERVER=1 playwright test tests/astro/high-value-responsive.spec.ts tests/astro/high-value-navigation.spec.ts tests/astro/high-value-webkit-mobile.spec.ts --config playwright.astro.config.ts",
     "test:astro:staging": "PLAYWRIGHT_BASE_URL=https://beta.xenproject.org SITE_URL=https://beta.xenproject.org playwright test --config playwright.astro.config.ts",
     "test:astro:staging:homepage-guardrails": "PLAYWRIGHT_BASE_URL=https://beta.xenproject.org SITE_URL=https://beta.xenproject.org playwright test tests/astro/homepage-guardrails.spec.ts --config playwright.astro.config.ts",

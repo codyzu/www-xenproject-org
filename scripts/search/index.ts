@@ -16,10 +16,12 @@ export function ghostPagefindRecord(post: NormalizedGhostPost) {
       published: post.publishedAt,
       updated: post.updatedAt,
       ghostId: post.id,
+      canonical: post.url,
+      ...(post.aliases.length > 0 && {aliases: post.aliases.join(', ')}),
       ...(post.primaryAuthor && {author: post.primaryAuthor}),
       ...(post.primaryTag && {primaryTag: post.primaryTag}),
     },
-    filters: {section: ['Blog'], tags: post.tags, authors: post.authors},
+    filters: {contentType: ['Blog'], section: ['Blog'], tags: post.tags, authors: post.authors},
     sort: {published: post.publishedAt, updated: post.updatedAt},
   };
 }
