@@ -32,6 +32,21 @@ test.describe('unified Pagefind search', () => {
     await expect(blogResult).toBeVisible();
   });
 
+  test('uses roomier shortcut hints on desktop without enlarging tablet hints', async ({page}) => {
+    await page.setViewportSize({width: 1440, height: 1000});
+    const trigger = page.getByRole('button', {name: 'Search Xen Project'});
+    await expect(trigger.locator('kbd')).toHaveCSS('font-size', '12px');
+
+    await trigger.click();
+    const dialog = page.getByRole('dialog', {name: 'Search the site'});
+    await expect(dialog.locator('.xp-search-input-wrap kbd')).toHaveCSS('font-size', '12px');
+    await expect(dialog.locator('.xp-search-footer')).toHaveCSS('font-size', '12.8px');
+
+    await page.setViewportSize({width: 768, height: 1024});
+    await expect(dialog.locator('.xp-search-input-wrap kbd')).toHaveCSS('font-size', '11.2px');
+    await expect(dialog.locator('.xp-search-footer')).toHaveCSS('font-size', '11.2px');
+  });
+
   test('clearly distinguishes and filters mixed Website and Blog results', async ({page}) => {
     await page.getByRole('button', {name: 'Search Xen Project'}).click();
     const dialog = page.getByRole('dialog', {name: 'Search the site'});
