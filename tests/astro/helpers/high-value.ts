@@ -377,6 +377,27 @@ async function expectPageSpecificLayout(page: Page, contract: HighValuePageContr
     await expectCardsInsideViewport(page.locator('#safety-committee'), 4, viewportWidth);
   }
 
+  if (contract.name === 'safety') {
+    const founding = page.locator('#founding-contributors');
+    const foundingLogos = founding.locator('.xp-recognition-logo');
+    const tooling = page.locator('#evidence-tooling .xp-tooling-collaboration');
+    const toolingMarks = tooling.locator('.xp-tooling-logo__mark');
+    await expect(foundingLogos).toHaveCount(3);
+    await expect(toolingMarks).toHaveCount(2);
+    await expectInsideViewport(founding, viewportWidth);
+    await expectInsideViewport(tooling, viewportWidth);
+
+    const foundingColumns = await founding.locator('.xp-founding-logos').evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
+    const toolingColumns = await tooling.locator('.xp-tooling-logos').evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
+    const toolingMarkHeights = await toolingMarks.evaluateAll(marks => marks.map(mark => Math.round(mark.getBoundingClientRect().height)));
+    expect(foundingColumns).toBe(profile.name === 'mobile' ? 1 : 3);
+    expect(toolingColumns).toBe(profile.name === 'mobile' ? 1 : 2);
+    expect(new Set(toolingMarkHeights).size, 'BUGSENG and ECLAIR logo badges should have equal heights').toBe(1);
+
+    for (const mark of await foundingLogos.all()) await expectInsideViewport(mark, viewportWidth);
+    for (const mark of await toolingMarks.all()) await expectInsideViewport(mark, viewportWidth);
+  }
+
   if (contract.name === 'safety' && profile.name === 'ipad-landscape') {
     const workloadMix = page.locator('.xp-safety-workload-mix');
     const columnCount = await workloadMix.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);

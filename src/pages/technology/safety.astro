@@ -15,6 +15,7 @@ import Split from '../../components/primitives/Split.astro';
 import Stack from '../../components/primitives/Stack.astro';
 import Surface from '../../components/primitives/Surface.astro';
 import Text from '../../components/primitives/Text.astro';
+import {memberOrganizations} from '../../data/member-logos';
 import {safetyCriticalPlatformLayersDiagram} from '../../data/safety-critical-platform-layers';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
@@ -161,6 +162,30 @@ const committeeWork = [
     description: 'Keep committee processes and artifacts aligned with Xen across long product and platform lifecycles.',
   },
 ];
+
+const foundingContributorNames = ['AMD', 'EPAM', 'Renesas'] as const;
+const foundingContributors = foundingContributorNames.map((name) => {
+  const organization = memberOrganizations.find(member => member.name === name);
+  if (!organization) throw new Error(`Missing canonical organization data for ${name}`);
+  return organization;
+});
+
+const toolingCollaborators = [
+  {
+    name: 'BUGSENG',
+    role: 'Engineering collaborator',
+    logo: '/img/logos/bugseng-logo.svg',
+  },
+  {
+    name: 'ECLAIR',
+    role: 'Static-analysis platform',
+    logo: '/img/logos/eclair-logo.svg',
+  },
+];
+
+const logoBadgeClasses = 'uno-flex uno-min-w-0 uno-items-center uno-justify-center uno-rounded-xp-md uno-border uno-border-solid uno-border-[rgb(17_24_39_/_0.12)] uno-bg-[var(--xp-surface-light-raised)]';
+const foundingLogoClasses = `xp-recognition-logo xen-focus ${logoBadgeClasses} uno-px-[1.2rem] uno-py-[0.9rem] uno-transition-[border-color,transform] uno-duration-[var(--xp-motion-base)] uno-ease-[var(--xp-ease-standard)] hover:uno--translate-y-0.5 hover:uno-border-[rgb(133_194_65_/_0.42)]`;
+const toolingLogoBadgeClasses = `xp-tooling-logo__mark ${logoBadgeClasses} uno-h-18 uno-px-4 uno-py-[0.8rem]`;
 
 const evidenceTooling = [
   {
@@ -484,13 +509,32 @@ const resources = [
         >
           <span slot="icon" class="i-carbon-group"></span>
         </Callout>
-        <Callout
-          title="Founding contributors supplied a substantive starting point."
-          description="AMD, EPAM, and Renesas contributed the initiative's initial body of safety-focused work, spanning MISRA-related engineering, software safety requirements, architecture specifications, DFMEA, QEMU-based fault injection and component testing, coverage, requirements-based tests, tooling, and process documentation."
-        >
-          <span slot="icon" class="i-carbon-collaborate"></span>
-        </Callout>
       </Stack>
+    </Container>
+  </Section>
+
+  <Section id="founding-contributors" spacing="technical">
+    <Container>
+      <Surface tone="2" border="strong" radius="lg" shadow="md" padding="lg" class="xp-recognition-spotlight uno-overflow-hidden">
+        <Stack gap="6">
+          <Split align="start">
+            <Stack gap="3">
+              <Text size="eyebrow" tone="accent-primary">Founding Contributors</Text>
+              <Heading size="heading-xl">Built on years of safety-focused engineering.</Heading>
+            </Stack>
+            <Text>
+              AMD, EPAM, and Renesas contributed the initiative's initial body of safety-focused work across requirements, architecture, DFMEA, testing, tooling, coverage, and process documentation. This shared starting point gives the initiative momentum while leaving room for future contributors to extend the work.
+            </Text>
+          </Split>
+          <div class="xp-founding-logos uno-grid uno-grid-cols-1 uno-gap-[0.85rem] sm:uno-grid-cols-3" aria-label="Founding Contributors">
+            {foundingContributors.map(contributor => (
+              <a href={contributor.href} aria-label={`Visit ${contributor.name}`} class={foundingLogoClasses}>
+                <img src={contributor.logo} alt={contributor.name} class="uno-h-auto uno-w-auto uno-max-h-[2.6rem] uno-max-w-32 uno-object-contain sm:uno-max-w-36" />
+              </a>
+            ))}
+          </div>
+        </Stack>
+      </Surface>
     </Container>
   </Section>
 
@@ -507,13 +551,33 @@ const resources = [
               Committee coordination becomes useful when it produces engineering signals teams can inspect. Certification-oriented systems need practices and project artifacts that can be reviewed and connected to a product-specific safety case.
             </Text>
             <Text>
-              BUGSENG supports the Xen Project's safety-oriented work by providing access to ECLAIR static analysis on reduced-price terms, helping the project advance MISRA C compliance efforts and ongoing code quality improvement.
-            </Text>
-            <Text>
               The initiative complements Xen's role in Automotive Grade Linux, Linux and Zephyr platform composition, and ongoing MISRA C and ECLAIR work with BUGSENG. It is relevant to automotive, industrial, avionics, robotics, embedded, and other long-lived regulated systems.
             </Text>
           </Stack>
         </Split>
+        <Surface as="aside" tone="2" border="strong" radius="lg" shadow="sm" padding="md" class="xp-tooling-collaboration" aria-labelledby="tooling-collaboration-title">
+          <Split align="center" class="uno-gap-6 md:uno-gap-[4vw] lg:uno-gap-12">
+            <Stack gap="3">
+              <Text size="eyebrow" tone="accent-primary">Safety tooling collaboration</Text>
+              <div id="tooling-collaboration-title">
+                <Heading as="h3" size="heading-m">Static analysis support from BUGSENG and ECLAIR.</Heading>
+              </div>
+              <Text size="caption">
+                BUGSENG supports the Xen Project's MISRA C and code-quality efforts through access to the ECLAIR static-analysis platform and related engineering expertise. This collaboration helps the project identify, track, and improve code-quality issues as part of a broader certification-oriented engineering process.
+              </Text>
+            </Stack>
+            <div class="xp-tooling-logos uno-grid uno-w-full uno-grid-cols-1 uno-gap-3 sm:uno-max-w-[25rem] sm:uno-grid-cols-2" aria-label="Safety tooling collaborator and platform">
+              {toolingCollaborators.map(collaborator => (
+                <div class="xp-tooling-logo uno-grid uno-min-w-0 uno-gap-[0.55rem]">
+                  <div class={toolingLogoBadgeClasses}>
+                    <img src={collaborator.logo} alt={collaborator.name} class="uno-h-auto uno-w-auto uno-max-h-[2.35rem] uno-max-w-[8.5rem] uno-object-contain" />
+                  </div>
+                  <Text size="caption" tone="muted" class="uno-text-center">{collaborator.role}</Text>
+                </div>
+              ))}
+            </div>
+          </Split>
+        </Surface>
         <div class="xp-evidence-trail" aria-label="Evidence work flow">
           {evidenceTooling.map((item, index) => (
             <Surface tone="2" border="muted" radius="md" shadow="sm" padding="md" class="xp-evidence-step">

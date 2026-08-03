@@ -1,6 +1,7 @@
 import process from 'node:process';
 import AxeBuilder from '@axe-core/playwright';
 import {expect, type Page, test} from '@playwright/test';
+import {settlePage} from './helpers/high-value';
 
 const homepageDescription = 'The Xen Project develops an open source hypervisor for infrastructure, embedded, security-sensitive, and virtualization platforms that need clear separation and long-term control.';
 const safetyDescription = 'Explore how the Xen Safety Committee and Premier Plus membership support certification-oriented engineering with shared requirements, tests, tooling, evidence, and process documentation.';
@@ -53,8 +54,20 @@ test.describe('Safety launch integration', () => {
     await expect(committee).toContainText('appoint voting representatives to the Xen Project Advisory Board and the Safety Committee');
     await expect(committee).toContainText('help set priorities and roadmap');
     await expect(committee).toContainText('may disclose those artifacts to qualified safety assessors');
-    await expect(committee).toContainText('AMD, EPAM, and Renesas');
-    await expect(committee).toContainText('QEMU-based fault injection and component testing');
+
+    const founding = page.locator('#founding-contributors');
+    await expect(founding.getByText('Founding Contributors', {exact: true})).toBeVisible();
+    await expect(founding.getByRole('heading', {name: 'Built on years of safety-focused engineering.'})).toBeVisible();
+    await expect(founding).toContainText("AMD, EPAM, and Renesas contributed the initiative's initial body of safety-focused work");
+    await expect(founding.getByRole('link', {name: 'Visit AMD'})).toBeVisible();
+    await expect(founding.getByRole('link', {name: 'Visit EPAM'})).toBeVisible();
+    await expect(founding.getByRole('link', {name: 'Visit Renesas'})).toBeVisible();
+    await expect(founding.locator('img')).toHaveCount(3);
+
+    const narrativeOrder = await page.locator('#safety-committee, #founding-contributors, #evidence-tooling').evaluateAll(
+      elements => elements.map(element => element.id),
+    );
+    expect(narrativeOrder).toEqual(['safety-committee', 'founding-contributors', 'evidence-tooling']);
 
     const participation = page.locator('#participation');
     await expect(participation).toContainText('Rather than starting from zero');
@@ -69,11 +82,16 @@ test.describe('Safety launch integration', () => {
 
     const evidence = page.locator('#evidence-tooling');
     await expect(evidence).toContainText('BUGSENG');
-    await expect(evidence).toContainText('ECLAIR static analysis');
-    await expect(evidence).toContainText('MISRA C compliance efforts');
+    await expect(evidence).toContainText('ECLAIR static-analysis platform');
+    await expect(evidence).toContainText('MISRA C and code-quality efforts');
+    await expect(evidence.getByRole('heading', {name: 'Static analysis support from BUGSENG and ECLAIR.'})).toBeVisible();
+    await expect(evidence.getByText('Engineering collaborator', {exact: true})).toBeVisible();
+    await expect(evidence.getByText('Static-analysis platform', {exact: true})).toBeVisible();
+    await expect(evidence.locator('img[alt="BUGSENG"]')).toBeVisible();
+    await expect(evidence.locator('img[alt="ECLAIR"]')).toBeVisible();
     await expect(evidence).toContainText('Automotive Grade Linux');
     await expect(evidence).toContainText('Linux and Zephyr platform composition');
-    await expect(page.getByRole('main')).not.toContainText(/Xen is (?:fully )?MISRA compliant|ECLAIR certifies Xen|Xen is safety certified/i);
+    await expect(page.getByRole('main')).not.toContainText(/Xen is (?:fully )?MISRA compliant|ECLAIR certifies Xen|Xen is safety certified|ECLAIR (?:is an )?(?:organization|company)|BUGSENG sponsor/i);
     await expect(page.getByRole('main')).not.toContainText(/80\s*(?:percent|%)|mostly complete|pre-certified|certification-ready/i);
 
     const finalCta = page.locator('#final-cta');
@@ -86,6 +104,36 @@ test.describe('Safety launch integration', () => {
       '/about/governance/',
     );
     await expectNoHorizontalOverflow(page);
+  });
+
+  test('keeps recognition marks legible and captures their responsive treatments', async ({page}, testInfo) => {
+    test.setTimeout(60_000);
+    await page.addInitScript(() => localStorage.setItem('cookieConsent', 'false'));
+    testInfo.snapshotSuffix = process.platform === 'linux' ? '' : process.platform;
+
+    for (const capture of [
+      {hash: 'founding-contributors', name: 'founding-contributors-desktop.png', selector: '#founding-contributors', width: 1440, height: 1000},
+      {hash: 'founding-contributors', name: 'founding-contributors-ipad-portrait.png', selector: '#founding-contributors', width: 834, height: 1194},
+      {hash: 'evidence-tooling', name: 'safety-tooling-collaboration-desktop.png', selector: '.xp-tooling-collaboration', width: 1440, height: 1000},
+      {hash: 'evidence-tooling', name: 'safety-tooling-collaboration-mobile.png', selector: '.xp-tooling-collaboration', width: 390, height: 844},
+    ] as const) {
+      await page.setViewportSize({width: capture.width, height: capture.height});
+      await page.goto(`/technology/safety/#${capture.hash}`);
+      await page.addStyleTag({content: '*, *::before, *::after { animation: none !important; caret-color: transparent !important; transition: none !important; } astro-dev-toolbar { display: none !important; }'});
+      await page.getByRole('banner').evaluate(element => {
+        element.style.position = 'static';
+      });
+      const region = page.locator(capture.selector);
+      await region.scrollIntoViewIfNeeded();
+      await settlePage(page);
+      await region.locator('img').evaluateAll(async images => {
+        await Promise.all(images.map(image => image.decode()));
+        await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+      });
+      await expect(region).toBeVisible();
+      await expectNoHorizontalOverflow(page);
+      await expect(region).toHaveScreenshot(capture.name, {animations: 'disabled', caret: 'hide', maxDiffPixelRatio: 0.005});
+    }
   });
 
   test('integrates concise Safety Committee context into Governance', async ({page}) => {
