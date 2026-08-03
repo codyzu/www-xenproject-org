@@ -1,9 +1,11 @@
 import path from 'node:path';
 import process from 'node:process';
 import * as pagefind from 'pagefind';
+import {promotedTermsForUrl} from '../../src/data/search.ts';
 import {readGhostCache, type NormalizedGhostPost} from './ghost.ts';
 
 export function ghostPagefindRecord(post: NormalizedGhostPost) {
+  const aliases = [...new Set([...post.aliases, ...promotedTermsForUrl(post.url)])];
   return {
     url: post.url,
     content: post.content,
@@ -17,7 +19,7 @@ export function ghostPagefindRecord(post: NormalizedGhostPost) {
       updated: post.updatedAt,
       ghostId: post.id,
       canonical: post.url,
-      ...(post.aliases.length > 0 && {aliases: post.aliases.join(', ')}),
+      ...(aliases.length > 0 && {aliases: aliases.join(', ')}),
       ...(post.primaryAuthor && {author: post.primaryAuthor}),
       ...(post.primaryTag && {primaryTag: post.primaryTag}),
     },

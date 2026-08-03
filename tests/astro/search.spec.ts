@@ -55,6 +55,21 @@ test.describe('unified Pagefind search', () => {
     await expect(dialog.locator('a[data-search-source="Blog"]')).toHaveCount(0);
   });
 
+  test('prioritizes the current Matrix destination and migration post for chat', async ({page}) => {
+    await page.getByRole('button', {name: 'Search Xen Project'}).click();
+    const dialog = page.getByRole('dialog', {name: 'Search the site'});
+    await dialog.getByRole('searchbox', {name: 'Search Xen Project'}).fill('chat');
+
+    await expect(dialog.locator('a[data-search-result][href="/resources/matrix/"]')).toBeVisible();
+    await expect(dialog.locator('a[data-search-result][href="/blog/we-have-moved-to-matrix/"]')).toBeVisible();
+    const orderedHrefs = await dialog.locator('a[data-search-result]').evaluateAll((links) =>
+      links.map((link) => link.getAttribute('href')),
+    );
+    expect(orderedHrefs[0]).toBe('/resources/matrix/');
+    expect(orderedHrefs[1]).toBe('/blog/we-have-moved-to-matrix/');
+    expect(orderedHrefs.indexOf('/blog/xen-irc-channels-have-moved/')).toBeGreaterThan(1);
+  });
+
   test('supports keyboard navigation, Enter, Escape, clicking, and focus restoration', async ({page}) => {
     const trigger = page.getByRole('button', {name: 'Search Xen Project'});
     await trigger.click();
@@ -98,6 +113,39 @@ test.describe('unified Pagefind search', () => {
     expect(measurements.documentWidth).toBe(measurements.viewportWidth);
     expect(Math.abs((measurements.dialogHeight ?? 0) - measurements.viewportHeight)).toBeLessThan(1);
     expect(measurements.bodyLocked).toBe('true');
+  });
+
+  test('tracks the iOS visual viewport while the software keyboard is present', async ({page}) => {
+    await page.setViewportSize({width: 390, height: 844});
+    await page.addInitScript(() => {
+      const viewport = new EventTarget();
+      Object.defineProperties(viewport, {
+        height: {configurable: true, value: 430, writable: true},
+        offsetTop: {configurable: true, value: 84, writable: true},
+      });
+      Object.defineProperty(window, 'visualViewport', {configurable: true, value: viewport});
+    });
+    await page.reload();
+
+    await page.getByRole('button', {name: 'Search Xen Project'}).click();
+    const dialogElement = page.locator('[data-search-dialog]');
+    const dialog = page.getByRole('dialog', {name: 'Search the site'});
+    await expect(dialog).toHaveCSS('height', '430px');
+    await expect(dialog).toHaveCSS('top', '84px');
+
+    await page.evaluate(() => {
+      Object.defineProperties(window.visualViewport, {
+        height: {configurable: true, value: 360, writable: true},
+        offsetTop: {configurable: true, value: 118, writable: true},
+      });
+      window.visualViewport?.dispatchEvent(new Event('resize'));
+      window.visualViewport?.dispatchEvent(new Event('scroll'));
+    });
+    await expect(dialog).toHaveCSS('height', '360px');
+    await expect(dialog).toHaveCSS('top', '118px');
+
+    await dialog.getByRole('button', {name: 'Close search'}).click();
+    await expect(dialogElement).toHaveAttribute('style', '');
   });
 
   test('opens with Control+K outside form fields and shows a quiet no-results state', async ({page}) => {

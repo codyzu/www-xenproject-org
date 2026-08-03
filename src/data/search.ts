@@ -31,6 +31,13 @@ const aliasGroups = [
   ['live migration', 'VM migration'],
 ] as const;
 
+const promotedSearchResults = [
+  {
+    queries: ['chat'],
+    urls: ['/resources/matrix/', '/blog/we-have-moved-to-matrix/'],
+  },
+] as const;
+
 const escapePattern = (value: string) => value.replaceAll(/[.*+?^${}()|[\]\\]/g, String.raw`\$&`);
 
 export function searchAliasesForText(value: string) {
@@ -44,6 +51,22 @@ export function searchAliasesForText(value: string) {
   }
 
   return [...aliases.values()];
+}
+
+const normalizeQuery = (value: string) => value.trim().toLocaleLowerCase('en').replaceAll(/\s+/g, ' ');
+
+export function promotedUrlsForQuery(query: string) {
+  const normalizedQuery = normalizeQuery(query);
+  return (
+    promotedSearchResults.find(({queries}) => queries.some((value) => normalizeQuery(value) === normalizedQuery))
+      ?.urls ?? []
+  );
+}
+
+export function promotedTermsForUrl(url: string) {
+  return promotedSearchResults
+    .filter(({urls}) => (urls as readonly string[]).includes(url))
+    .flatMap(({queries}) => queries);
 }
 
 export function sectionForPath(pathname: string) {

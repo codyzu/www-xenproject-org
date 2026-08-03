@@ -80,6 +80,11 @@ Every result is tagged as either `Website` or `Blog`. The unified relevance orde
 uses distinct source labels, icons, accent rails, and generated Website/Blog filters. Canonical result paths are
 deduplicated before rendering, and Blog results continue to point directly to `/blog/.../`.
 
+Small, evidence-backed promoted-result rules live in `src/data/search.ts`. They are exact-query rules rather than a
+general synonym system: for example, `chat` promotes the current Matrix resource followed by the post explaining the
+move to Matrix. The matching records also receive narrow searchable metadata so Pagefind returns them before the dialog
+applies the stable promoted order. Keep this list short and cover additions with fixture-backed ordering tests.
+
 Both shared headers and footers use `data-pagefind-ignore`; the mobile menu, global calls to action, search dialog, and
 other repeated furniture therefore do not enter the index. Layouts omit the Pagefind body and add an ignore marker for
 `noindex` pages. Pagefind's standard document analysis supplies title and heading relevance, while descriptions and main

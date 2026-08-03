@@ -2,9 +2,9 @@
 import '../../styles/foundation/tokens.css';
 ---
 
-<dialog class="xp-search-dialog" data-search-dialog aria-labelledby="xp-search-title">
-  <div class="xp-search-shell">
-    <header class="xp-search-header uno-flex uno-items-center uno-justify-between uno-gap-4 uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-px-5 uno-py-[1.15rem]">
+<dialog class="xp-search-dialog uno-overflow-hidden uno-border uno-border-solid uno-border-[var(--xp-border-layered-popover)] uno-bg-[rgb(11_19_32_/_0.98)] uno-p-0 uno-text-xp-text-primary uno-shadow-xp-lg" data-search-dialog aria-labelledby="xp-search-title">
+  <div class="xp-search-shell uno-grid uno-grid-rows-[auto_auto_auto_auto_minmax(0,1fr)_auto]">
+    <header class="xp-search-header uno-flex uno-items-center uno-justify-between uno-gap-4 uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-px-4 uno-py-[1.15rem] sm:uno-px-5">
       <div class="uno-flex uno-items-center uno-gap-[.8rem]">
         <span class="i-carbon-search uno-h-5 uno-w-5 uno-text-xp-accent-primary" aria-hidden="true"></span>
         <div>
@@ -17,12 +17,12 @@ import '../../styles/foundation/tokens.css';
       </button>
     </header>
 
-    <div class="xp-search-input-wrap uno-mx-5 uno-mb-[.6rem] uno-mt-4 uno-grid uno-grid-cols-[auto_minmax(0,1fr)_auto] uno-items-center uno-gap-3 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-strong uno-bg-xp-surface-0 uno-px-[.9rem]">
+    <div class="xp-search-input-wrap uno-mx-4 uno-mb-[.6rem] uno-mt-4 uno-grid uno-grid-cols-[auto_minmax(0,1fr)_auto] uno-items-center uno-gap-3 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-strong uno-bg-xp-surface-0 uno-px-[.9rem] uno-shadow-[0_0_0_0_transparent] uno-transition-[border-color,box-shadow] uno-duration-[var(--xp-motion-fast)] focus-within:uno-border-xp-accent-primary focus-within:uno-shadow-[0_0_0_3px_var(--xp-accent-primary-soft)] sm:uno-mx-5">
       <span class="i-carbon-search uno-h-5 uno-w-5 uno-text-xp-text-muted" aria-hidden="true"></span>
       <!-- The important modifier beats `.xp-site :focus-visible`, leaving the rounded wrapper as the single focus ring. Remove it if the global selector's specificity is lowered. -->
       <input
         type="search"
-        class="xp-search-input uno-h-14 uno-min-w-0 uno-border-0 uno-bg-transparent uno-font-sans uno-text-base uno-font-medium uno-leading-[1.3] uno-text-xp-text-primary uno-outline-none!"
+        class="xp-search-input uno-h-14 uno-min-w-0 uno-border-0 uno-bg-transparent uno-font-sans uno-text-base uno-font-medium uno-leading-[1.3] uno-text-xp-text-primary uno-outline-none! placeholder:uno-text-xp-text-muted"
         data-search-input
         autofocus
         autocomplete="off"
@@ -37,15 +37,15 @@ import '../../styles/foundation/tokens.css';
       <kbd class="xen-search-key uno-hidden sm:uno-inline">Esc</kbd>
     </div>
 
-    <p class="xp-search-status uno-m-0 uno-px-5 uno-pb-3 uno-pt-2 uno-font-sans uno-text-[.8rem] uno-font-normal uno-leading-[1.4] uno-text-xp-text-muted" data-search-status role="status" aria-live="polite">
+    <p class="xp-search-status uno-m-0 uno-px-4 uno-pb-3 uno-pt-2 uno-font-sans uno-text-[.8rem] uno-font-normal uno-leading-[1.4] uno-text-xp-text-muted sm:uno-px-5" data-search-status role="status" aria-live="polite">
       Enter at least two characters to search the Xen Project website and blog.
     </p>
-    <div class="xp-search-filters uno-mx-5 uno-mb-3 uno-hidden uno-items-center uno-gap-2" data-search-filters role="group" aria-label="Filter search results by source">
-      <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary" data-search-filter="All" aria-pressed="true">All</button>
-      <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary" data-search-filter="Website" aria-pressed="false"><span class="i-carbon-document uno-mr-1 uno-align-[-.12em]" aria-hidden="true"></span>Website</button>
-      <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary" data-search-filter="Blog" aria-pressed="false"><span class="i-carbon-notebook uno-mr-1 uno-align-[-.12em]" aria-hidden="true"></span>Blog</button>
+    <div class="xp-search-filters uno-mx-4 uno-mb-3 uno-hidden uno-items-center uno-gap-2 uno-overflow-x-auto sm:uno-mx-5" data-search-filters role="group" aria-label="Filter search results by source">
+      <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary uno-transition-[color,border-color,background-color] uno-duration-[var(--xp-motion-fast)] hover:uno-border-xp-border-strong hover:uno-text-xp-text-primary" data-search-filter="All" aria-pressed="true">All</button>
+      <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary uno-transition-[color,border-color,background-color] uno-duration-[var(--xp-motion-fast)] hover:uno-border-xp-border-strong hover:uno-text-xp-text-primary" data-search-filter="Website" aria-pressed="false"><span class="i-carbon-document uno-mr-1 uno-align-[-.12em]" aria-hidden="true"></span>Website</button>
+      <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary uno-transition-[color,border-color,background-color] uno-duration-[var(--xp-motion-fast)] hover:uno-border-xp-border-strong hover:uno-text-xp-text-primary" data-search-filter="Blog" aria-pressed="false"><span class="i-carbon-notebook uno-mr-1 uno-align-[-.12em]" aria-hidden="true"></span>Blog</button>
     </div>
-    <ol id="xp-search-results" class="xp-search-results uno-m-0 uno-min-h-20 uno-list-none uno-overflow-y-auto uno-px-3 uno-pb-3" data-search-results role="listbox" aria-label="Search results"></ol>
+    <ol id="xp-search-results" class="xp-search-results uno-m-0 uno-min-h-0 uno-list-none uno-overflow-y-auto uno-overscroll-contain uno-px-2 uno-pb-3 sm:uno-min-h-20 sm:uno-px-3" data-search-results role="listbox" aria-label="Search results"></ol>
 
     <footer class="xp-search-footer uno-hidden uno-gap-[1.1rem] uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-px-5 uno-pt-3 uno-font-sans uno-text-[.7rem] uno-font-medium uno-leading-[1.3] uno-text-xp-text-muted sm:uno-flex" aria-hidden="true">
       <span class="uno-inline-flex uno-items-center uno-gap-[.3rem]"><kbd class="xen-search-key">↑</kbd><kbd class="xen-search-key">↓</kbd> Navigate</span>
@@ -56,6 +56,8 @@ import '../../styles/foundation/tokens.css';
 </dialog>
 
 <script>
+  import {promotedUrlsForQuery} from '../../data/search';
+
   type PagefindResultData = {
     url: string;
     excerpt: string;
@@ -91,6 +93,8 @@ import '../../styles/foundation/tokens.css';
   let requestNumber = 0;
   let lockedScrollY = 0;
   let selectedContentType = 'All';
+  const visualViewport = globalThis.visualViewport;
+  const mobileDialogQuery = globalThis.matchMedia('(max-width: 40rem)');
 
   const isTypingTarget = (target: EventTarget | null) => {
     if (!(target instanceof HTMLElement)) return false;
@@ -112,6 +116,20 @@ import '../../styles/foundation/tokens.css';
     delete document.body.dataset.searchScrollLock;
     document.body.style.top = '';
     globalThis.scrollTo(0, lockedScrollY);
+  };
+
+  const resetDialogViewport = () => {
+    dialog?.style.removeProperty('--xp-search-viewport-height');
+    dialog?.style.removeProperty('--xp-search-viewport-top');
+  };
+
+  const syncDialogViewport = () => {
+    if (!dialog?.open || !visualViewport || !mobileDialogQuery.matches) {
+      resetDialogViewport();
+      return;
+    }
+    dialog.style.setProperty('--xp-search-viewport-height', `${Math.round(visualViewport.height)}px`);
+    dialog.style.setProperty('--xp-search-viewport-top', `${Math.round(visualViewport.offsetTop)}px`);
   };
 
   const loadSourceFilters = async (api: PagefindApi) => {
@@ -152,8 +170,10 @@ import '../../styles/foundation/tokens.css';
     opener = trigger ?? document.activeElement as HTMLElement;
     dialog.showModal();
     lockScroll();
+    syncDialogViewport();
     input?.focus({preventScroll: true});
     globalThis.requestAnimationFrame(() => {
+      syncDialogViewport();
       if (document.activeElement !== input) input?.focus({preventScroll: true});
     });
     void loadPagefind().catch(() => undefined);
@@ -207,6 +227,21 @@ import '../../styles/foundation/tokens.css';
     });
   };
 
+  const applyPromotedOrder = (items: PagefindResultData[], query: string) => {
+    const priorities = new Map(
+      promotedUrlsForQuery(query).map((url, index) => [canonicalResultKey(url), index]),
+    );
+    if (priorities.size === 0) return items;
+    return items
+      .map((item, index) => ({
+        item,
+        index,
+        priority: priorities.get(canonicalResultKey(item.meta.canonical || item.url)) ?? Number.MAX_SAFE_INTEGER,
+      }))
+      .sort((left, right) => left.priority - right.priority || left.index - right.index)
+      .map(({item}) => item);
+  };
+
   const updateFilterButtons = () => {
     for (const button of filterButtons) {
       const active = button.dataset.searchFilter === selectedContentType;
@@ -223,16 +258,16 @@ import '../../styles/foundation/tokens.css';
       const excerpt = item.excerpt || escapeHtml(item.meta.excerpt ?? '');
       const sourceLabel = contentType === 'Blog' ? 'Xen Project Blog' : 'Xen Project website';
       const sourceIcon = contentType === 'Blog' ? 'i-carbon-notebook' : 'i-carbon-document';
-      return `<li id="xp-search-result-${index}" role="option" aria-selected="false">
-        <a href="${escapeHtml(item.url)}" data-search-result data-search-source="${escapeHtml(contentType)}" data-search-score="${item.score ?? 0}" class="xen-focus">
-          <span class="xp-search-result-meta">
-            <span class="xp-search-result-source"><span class="${sourceIcon}" aria-hidden="true"></span>${escapeHtml(sourceLabel)}</span>
-            <span class="xp-search-result-section">${escapeHtml(section)}</span>
-            ${date ? `<time>${escapeHtml(date)}</time>` : ''}
+      return `<li id="xp-search-result-${index}" class="uno-m-0 uno-p-0" role="option" aria-selected="false">
+        <a href="${escapeHtml(item.url)}" data-search-result data-search-source="${escapeHtml(contentType)}" data-search-score="${item.score ?? 0}" class="xen-focus xp-search-result-card uno-relative uno-grid uno-gap-[.38rem] uno-overflow-hidden uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(20_34_56_/_0.34)] uno-py-[.9rem] uno-pl-6 uno-pr-3 uno-text-xp-text-secondary uno-no-underline uno-shadow-[var(--xp-inner-highlight)] uno-transition-[background-color,border-color,transform,box-shadow] uno-duration-[var(--xp-motion-fast)]">
+          <span class="xp-search-result-meta uno-flex uno-flex-wrap uno-items-center uno-gap-x-[.55rem] uno-gap-y-[.4rem] uno-font-mono uno-text-[.68rem] uno-font-semibold uno-leading-[1.3] uno-tracking-[.045em] uno-text-xp-text-muted uno-uppercase">
+            <span class="xp-search-result-source uno-inline-flex uno-items-center uno-gap-[.3rem] uno-text-xp-text-primary"><span class="${sourceIcon} uno-h-[.85rem] uno-w-[.85rem]" aria-hidden="true"></span>${escapeHtml(sourceLabel)}</span>
+            <span class="xp-search-result-section uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-px-[.42rem] uno-py-[.12rem]">${escapeHtml(section)}</span>
+            ${date ? `<time class="uno-text-xp-text-muted">${escapeHtml(date)}</time>` : ''}
           </span>
-          <strong>${escapeHtml(item.meta.title || item.url)}</strong>
-          <span class="xp-search-excerpt">${excerpt}</span>
-          <span class="xp-search-url">${escapeHtml(item.url)}</span>
+          <strong class="uno-font-sans uno-text-base uno-font-bold uno-leading-[1.3] uno-text-xp-text-primary">${escapeHtml(item.meta.title || item.url)}</strong>
+          <span class="xp-search-excerpt uno-line-clamp-2 uno-overflow-hidden uno-font-sans uno-text-[.82rem] uno-font-normal uno-leading-[1.5] uno-text-xp-text-secondary">${excerpt}</span>
+          <span class="xp-search-url uno-overflow-hidden uno-text-ellipsis uno-whitespace-nowrap uno-font-mono uno-text-[.69rem] uno-font-medium uno-leading-[1.4] uno-text-xp-text-muted">${escapeHtml(item.url)}</span>
         </a>
       </li>`;
     }).join('');
@@ -254,10 +289,12 @@ import '../../styles/foundation/tokens.css';
         ? undefined
         : {filters: {contentType: selectedContentType}});
       if (thisRequest !== requestNumber) return;
-      const loaded = deduplicateResults(await Promise.all(response.results.slice(0, 24).map(async result => ({
+      const candidateLimit = promotedUrlsForQuery(query).length > 0 ? 48 : 24;
+      const candidates = deduplicateResults(await Promise.all(response.results.slice(0, candidateLimit).map(async result => ({
         ...await result.data(),
         score: result.score,
-      })))).slice(0, 12);
+      }))));
+      const loaded = applyPromotedOrder(candidates, query).slice(0, 12);
       if (thisRequest !== requestNumber) return;
       renderResults(loaded);
       const resultCount = response.results.length;
@@ -307,9 +344,13 @@ import '../../styles/foundation/tokens.css';
     if (event.target === dialog) closeSearch();
   });
   dialog?.addEventListener('close', () => {
+    resetDialogViewport();
     unlockScroll();
     opener?.focus({preventScroll: true});
   });
+  visualViewport?.addEventListener('resize', syncDialogViewport, {passive: true});
+  visualViewport?.addEventListener('scroll', syncDialogViewport, {passive: true});
+  mobileDialogQuery.addEventListener('change', syncDialogViewport);
   for (const trigger of triggers) trigger.addEventListener('click', () => openSearch(trigger));
   document.addEventListener('keydown', event => {
     if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k' && !isTypingTarget(event.target)) {
@@ -325,43 +366,28 @@ import '../../styles/foundation/tokens.css';
   .xp-search-dialog[open] { opacity: 1; transform: none; }
   @starting-style { .xp-search-dialog[open] { opacity: 0; transform: translateY(-0.5rem) scale(0.985); } }
   .xp-search-dialog::backdrop { background: rgb(1 4 9 / 0.72); backdrop-filter: blur(5px); opacity: 1; transition: opacity var(--xp-motion-base) var(--xp-ease-standard); }
-  .xp-search-shell { display: grid; grid-template-rows: auto auto auto auto minmax(0, 1fr) auto; max-height: min(48rem, calc(100dvh - 2rem)); }
-  .xp-search-input-wrap { box-shadow: 0 0 0 0 transparent; transition: border-color var(--xp-motion-fast), box-shadow var(--xp-motion-fast); }
-  .xp-search-input-wrap:focus-within { border-color: var(--xp-accent-primary); box-shadow: 0 0 0 3px var(--xp-accent-primary-soft); }
-  .xp-search-input::placeholder { color: var(--xp-text-muted); }
-  .xp-search-filters button { transition: color var(--xp-motion-fast), border-color var(--xp-motion-fast), background-color var(--xp-motion-fast); }
-  .xp-search-filters button:hover { border-color: var(--xp-border-strong); color: var(--xp-text-primary); }
+  .xp-search-shell { max-height: min(48rem, calc(100dvh - 2rem)); }
   .xp-search-filters button[aria-pressed='true'] { border-color: var(--xp-accent-primary); background: var(--xp-accent-primary-soft); color: var(--xp-text-primary); }
-  .xp-search-results li { margin: 0; padding: 0; }
-  .xp-search-results a { display: grid; gap: .35rem; padding: .85rem .75rem; border: 1px solid transparent; border-left-width: 3px; border-radius: var(--xp-radius-md); color: var(--xp-text-secondary); text-decoration: none; transition: background-color var(--xp-motion-fast), border-color var(--xp-motion-fast), transform var(--xp-motion-fast); }
-  .xp-search-results a[data-search-source='Website'] { border-left-color: var(--xp-accent-secondary); }
-  .xp-search-results a[data-search-source='Blog'] { border-left-color: var(--xp-accent-primary); }
-  .xp-search-results a:hover, .xp-search-results a[data-active] { border-color: var(--xp-border-muted); background: var(--xp-surface-2); color: var(--xp-text-primary); transform: translateX(.2rem); }
-  .xp-search-results a[data-search-source='Website']:hover, .xp-search-results a[data-search-source='Website'][data-active] { border-left-color: var(--xp-accent-secondary); }
-  .xp-search-results a[data-search-source='Blog']:hover, .xp-search-results a[data-search-source='Blog'][data-active] { border-left-color: var(--xp-accent-primary); }
-  .xp-search-results strong { color: var(--xp-text-primary); font: 700 1rem/1.3 var(--xp-font-sans); }
-  .xp-search-result-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .4rem .55rem; color: var(--xp-text-muted); font: 600 .68rem/1.3 var(--xp-font-mono); letter-spacing: .045em; text-transform: uppercase; }
-  .xp-search-result-source { display: inline-flex; align-items: center; gap: .3rem; color: var(--xp-text-primary); }
-  .xp-search-result-source > span { width: .85rem; height: .85rem; }
-  .xp-search-result-section { border: 1px solid var(--xp-border-muted); border-radius: 999px; padding: .12rem .42rem; }
-  .xp-search-result-meta time { color: var(--xp-text-muted); }
-  .xp-search-excerpt { display: -webkit-box; color: var(--xp-text-secondary); font: 400 .82rem/1.5 var(--xp-font-sans); -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .xp-search-result-card::before { content: ''; position: absolute; inset-block: .65rem; left: .55rem; width: 3px; border-radius: 999px; background: var(--xp-search-result-accent); box-shadow: 0 0 12px var(--xp-search-result-accent-soft); }
+  .xp-search-result-card[data-search-source='Website'] { --xp-search-result-accent: var(--xp-accent-secondary); --xp-search-result-accent-soft: var(--xp-accent-secondary-soft); }
+  .xp-search-result-card[data-search-source='Blog'] { --xp-search-result-accent: var(--xp-accent-primary); --xp-search-result-accent-soft: var(--xp-accent-primary-soft); }
+  .xp-search-result-card:hover, .xp-search-result-card[data-active] { border-color: var(--xp-border-strong); background: var(--xp-surface-2); color: var(--xp-text-primary); box-shadow: var(--xp-shadow-sm); transform: translateY(-1px); }
   .xp-search-excerpt mark { border-radius: .15rem; background: rgb(133 194 65 / .28); color: var(--xp-text-primary); padding: 0 .08em; }
-  .xp-search-url { color: var(--xp-text-muted); font: 500 .69rem/1.4 var(--xp-font-mono); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .xp-search-results { scrollbar-color: var(--xp-border-strong) transparent; scrollbar-width: thin; }
+  .xp-search-results::-webkit-scrollbar { width: .4rem; }
+  .xp-search-results::-webkit-scrollbar-track { background: transparent; }
+  .xp-search-results::-webkit-scrollbar-thumb { border-radius: 999px; background: var(--xp-border-strong); }
   .xp-search-footer { padding-bottom: max(.75rem, env(safe-area-inset-bottom)); }
   @media (max-width: 40rem) {
-    .xp-search-dialog { width: 100vw; max-width: none; height: 100dvh; max-height: 100dvh; margin: 0; border-width: 0; border-radius: 0; }
-    .xp-search-shell { max-height: 100dvh; height: 100%; padding-top: env(safe-area-inset-top); }
-    .xp-search-header { padding-inline: 1rem; }
-    .xp-search-input-wrap { margin-inline: 1rem; }
-    .xp-search-status { padding-inline: 1rem; }
-    .xp-search-filters { margin-inline: 1rem; overflow-x: auto; scrollbar-width: none; }
+    .xp-search-dialog { position: fixed; top: var(--xp-search-viewport-top, 0); right: 0; bottom: auto; left: 0; width: 100vw; max-width: none; height: var(--xp-search-viewport-height, 100dvh); max-height: var(--xp-search-viewport-height, 100dvh); margin: 0; border-width: 0; border-radius: 0; }
+    .xp-search-shell { max-height: 100%; height: 100%; padding-top: env(safe-area-inset-top); }
+    .xp-search-filters { scrollbar-width: none; }
     .xp-search-filters::-webkit-scrollbar { display: none; }
     .xp-search-filters button { flex: 0 0 auto; }
-    .xp-search-results { padding-inline: .5rem; padding-bottom: max(.75rem, env(safe-area-inset-bottom)); }
+    .xp-search-results { padding-bottom: max(.75rem, env(safe-area-inset-bottom)); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .xp-search-dialog, .xp-search-dialog::backdrop, .xp-search-input-wrap, .xp-search-filters button, .xp-search-results a { transition: none; }
-    .xp-search-results a:hover, .xp-search-results a[data-active] { transform: none; }
+    .xp-search-dialog, .xp-search-dialog::backdrop, .xp-search-input-wrap, .xp-search-filters button, .xp-search-result-card { transition: none; }
+    .xp-search-result-card:hover, .xp-search-result-card[data-active] { transform: none; }
   }
 </style>

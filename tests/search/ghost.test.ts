@@ -16,7 +16,12 @@ import {
   writeGhostCacheAtomic,
 } from '../../scripts/search/ghost.ts';
 import {ghostPagefindRecord} from '../../scripts/search/index.ts';
-import {searchAliasesForText, sectionForPath} from '../../src/data/search.ts';
+import {
+  promotedTermsForUrl,
+  promotedUrlsForQuery,
+  searchAliasesForText,
+  sectionForPath,
+} from '../../src/data/search.ts';
 
 const fixture = JSON.parse(
   await readFile(fileURLToPath(new URL('../fixtures/ghost-posts.json', import.meta.url)), 'utf8'),
@@ -81,6 +86,19 @@ test('deduplicates Ghost identities and defines conservative aliases and route s
   assert.equal(sectionForPath('/more/xen-branding/'), 'About');
 });
 
+test('defines narrow promoted results and indexing terms for the chat query', () => {
+  assert.deepEqual(promotedUrlsForQuery(' chat '), [
+    '/resources/matrix/',
+    '/blog/we-have-moved-to-matrix/',
+  ]);
+  assert.deepEqual(promotedUrlsForQuery('chat history'), []);
+  assert.deepEqual(promotedTermsForUrl('/blog/we-have-moved-to-matrix/'), ['chat']);
+  const matrixRecord = ghostPagefindRecord(normalizeGhostPost(fixture.posts[3]));
+  assert.match(matrixRecord.meta.aliases ?? '', /chat/);
+  const ircRecord = ghostPagefindRecord(normalizeGhostPost(fixture.posts[4]));
+  assert.doesNotMatch(ircRecord.meta.aliases ?? '', /chat/);
+});
+
 test('fetches every Ghost API page without exposing the key', async () => {
   const requestedPages: string[] = [];
   const progress: string[] = [];
@@ -128,7 +146,7 @@ test('handles missing and malformed cache, and replaces a cache atomically', asy
   const normalized = fixture.posts.map(normalizeGhostPost);
   await writeGhostCacheAtomic(normalized, cachePath);
   const cache = await readGhostCache(cachePath);
-  assert.equal(cache?.posts.length, 3);
+  assert.equal(cache?.posts.length, fixture.posts.length);
   assert.equal((await readFile(cachePath, 'utf8')).includes('fixture-secret'), false);
   assert.deepEqual(await readdir(directory), ['posts.json']);
 

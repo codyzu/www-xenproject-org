@@ -50,6 +50,40 @@
       "tags": [{ "name": "Architecture" }, { "name": "Xen" }, { "name": "Community" }],
       "primary_author": { "name": "Taylor Author" },
       "primary_tag": { "name": "Architecture" }
+    },
+    {
+      "id": "fixture-matrix-004",
+      "slug": "we-have-moved-to-matrix",
+      "url": "https://xenproject.org/blog/we-have-moved-to-matrix/",
+      "title": "Community conversations moved to Matrix",
+      "html": "<h2>A new home for community discussion</h2><p>The project moved its real-time conversations to Matrix so users and developers can exchange ideas in one current location.</p>",
+      "excerpt": "The Xen community has a current home for real-time conversations.",
+      "custom_excerpt": null,
+      "feature_image": null,
+      "published_at": "2023-09-05T04:48:28.000Z",
+      "updated_at": "2023-09-05T04:48:28.000Z",
+      "visibility": "public",
+      "authors": [{ "name": "Casey Community" }],
+      "tags": [{ "name": "Community" }, { "name": "Matrix" }],
+      "primary_author": { "name": "Casey Community" },
+      "primary_tag": { "name": "Community" }
+    },
+    {
+      "id": "fixture-irc-005",
+      "slug": "xen-irc-channels-have-moved",
+      "url": "https://xenproject.org/blog/xen-irc-channels-have-moved/",
+      "title": "Archived IRC channel update",
+      "html": "<p>This historical notice described an older IRC chat move. The IRC chat channel information is retained for archival context.</p>",
+      "excerpt": "An archived notice about older IRC chat channels.",
+      "custom_excerpt": null,
+      "feature_image": null,
+      "published_at": "2021-06-17T12:01:11.000Z",
+      "updated_at": "2021-06-17T12:01:11.000Z",
+      "visibility": "public",
+      "authors": [{ "name": "Jordan Archivist" }],
+      "tags": [{ "name": "Community" }, { "name": "IRC" }],
+      "primary_author": { "name": "Jordan Archivist" },
+      "primary_tag": { "name": "Community" }
     }
   ]
 }
