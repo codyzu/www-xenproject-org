@@ -1,167 +1,67 @@
 ---
-const ghostMode = import.meta.env.PUBLIC_GHOST_MODE;
-const ghostApiUrl = import.meta.env.PUBLIC_GHOST_API_URL;
-const ghostContentApiKey = import.meta.env.PUBLIC_GHOST_CONTENT_API_KEY;
+import {readGhostCache, type NormalizedGhostPost} from '../../../scripts/search/ghost.ts';
+import {compactGhostExcerpt, formatGhostPublicationDate} from '../../data/homepage-news';
 
-if (ghostMode !== 'mock' && ghostMode !== 'live') {
-  throw new Error('PUBLIC_GHOST_MODE must be either "mock" or "live".');
-}
-
-if (!ghostApiUrl || (ghostMode === 'live' && !URL.canParse(ghostApiUrl))) {
-  throw new Error('PUBLIC_GHOST_API_URL must be a valid URL in live mode.');
-}
-
-if (ghostMode === 'live' && new URL(ghostApiUrl).protocol !== 'https:') {
-  throw new Error('PUBLIC_GHOST_API_URL must use HTTPS in live mode.');
-}
-
-if (!ghostContentApiKey) {
-  throw new Error('PUBLIC_GHOST_CONTENT_API_KEY must not be empty.');
+let posts: NormalizedGhostPost[] = [];
+try {
+  const cache = await readGhostCache();
+  posts = [...(cache?.posts ?? [])]
+    .sort((left, right) => Date.parse(right.publishedAt) - Date.parse(left.publishedAt))
+    .slice(0, 10);
+  if (!cache) console.warn('Ghost cache is unavailable; omitting the legacy latest-news carousel.');
+} catch (error) {
+  console.warn(
+    `Unable to read cached Ghost posts; omitting the legacy latest-news carousel. ${error instanceof Error ? error.message : ''}`.trim(),
+  );
 }
 ---
 
-<div
-  class="latest-news"
-  data-latest-news
-  data-max-cards="10"
-  data-ghost-mode={ghostMode}
-  data-ghost-api-url={ghostApiUrl}
-  data-ghost-content-api-key={ghostContentApiKey}
-  aria-busy="true"
->
-  <div class="container">
-    <h2>Latest <strong>news</strong> <a href="/blog" class="title-external-link">Read all news <i class="fas fa-arrow-right"></i></a></h2>
-  </div>
-  <div class="carousel-container carousel-container-width" data-latest-news-carousel role="region" aria-label="Latest Xen Project news">
-    <div class="carousel-content">
-      <div class="carousel-content-inner"><div class="carousel latest-news_container" data-copy-parity-external="ghost"></div></div>
-      <div class="carousel-buttons">
-        <button class="carousel-button prev" type="button" aria-label="Previous news" disabled><i class="fas fa-arrow-left"></i></button>
-        <button class="carousel-button next" type="button" aria-label="Next news" disabled><i class="fas fa-arrow-right"></i></button>
+{posts.length > 0 && (
+  <div class="latest-news" data-latest-news data-max-cards="10">
+    <div class="container">
+      <h2>Latest <strong>news</strong> <a href="/blog" class="title-external-link">Read all news <i class="fas fa-arrow-right"></i></a></h2>
+    </div>
+    <div class="carousel-container carousel-container-width" data-latest-news-carousel role="region" aria-label="Latest Xen Project news">
+      <div class="carousel-content">
+        <div class="carousel-content-inner">
+          <div class="carousel latest-news_container" data-copy-parity-external="ghost" data-pagefind-ignore>
+            {posts.map(post => (
+              <article class="carousel-item card card--news">
+                <a class="card__link" href={post.url} aria-hidden="true" tabindex="-1"></a>
+                <h3 class="card__label">{post.title}</h3>
+                <div class="card__date">
+                  <time datetime={post.publishedAt}>{formatGhostPublicationDate(post.publishedAt)}</time>
+                </div>
+                {post.tags.length > 0 && (
+                  <div class="card__tags">
+                    {post.tags.map(tag => <span class="card__tag">{tag}</span>)}
+                  </div>
+                )}
+                <p class="card__content">{compactGhostExcerpt(post.excerpt, 240)}</p>
+                {post.authors.length > 0 && <div class="card__author">by {post.authors.join(', ')}</div>}
+                <div class="card__actions">
+                  <a class="join-button btn btn-tertiary" href={post.url} aria-label={`Read more about ${post.title}`}>
+                    Read more <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+        <div class="carousel-buttons">
+          <button class="carousel-button prev" type="button" aria-label="Previous news" disabled><i class="fas fa-arrow-left"></i></button>
+          <button class="carousel-button next" type="button" aria-label="Next news" disabled><i class="fas fa-arrow-right"></i></button>
+        </div>
       </div>
     </div>
   </div>
-  <p class="container" data-latest-news-error hidden>Latest news is temporarily unavailable.</p>
-</div>
+)}
 
 <script>
   import {initializeCarousel} from '../../scripts/carousel';
 
-  type GhostTag = {name: string; url: string};
-  type GhostAuthor = {name: string; url: string};
-  type GhostPost = {
-    title: string;
-    url: string;
-    published_at: string;
-    excerpt: string;
-    tags?: GhostTag[];
-    authors?: GhostAuthor[];
-  };
-
-  function appendLink(parent: HTMLElement, text: string, url: string) {
-    const link = document.createElement('a');
-    link.href = url;
-    link.textContent = text;
-    link.target = '_blank';
-    link.rel = 'noopener noreferrer';
-    parent.append(link);
+  for (const carousel of document.querySelectorAll<HTMLElement>('[data-latest-news-carousel]')) {
+    document.documentElement.classList.add('has-js');
+    initializeCarousel(carousel);
   }
-
-  function createNewsCard(post: GhostPost) {
-    const card = document.createElement('article');
-    card.className = 'carousel-item card card--news';
-
-    const overlayLink = document.createElement('a');
-    overlayLink.className = 'card__link';
-    overlayLink.href = post.url;
-    overlayLink.ariaHidden = 'true';
-    overlayLink.tabIndex = -1;
-    card.append(overlayLink);
-
-    const title = document.createElement('h3');
-    title.className = 'card__label';
-    title.textContent = post.title;
-    card.append(title);
-
-    const date = document.createElement('div');
-    date.className = 'card__date';
-    date.textContent = post.published_at.slice(0, 10);
-    card.append(date);
-
-    if (post.tags?.length) {
-      const tags = document.createElement('div');
-      tags.className = 'card__tags';
-      for (const tag of post.tags) {
-        const wrapper = document.createElement('span');
-        wrapper.className = 'card__tag';
-        appendLink(wrapper, tag.name, tag.url);
-        tags.append(wrapper);
-      }
-      card.append(tags);
-    }
-
-    const excerpt = document.createElement('p');
-    excerpt.className = 'card__content';
-    excerpt.textContent = post.excerpt;
-    card.append(excerpt);
-
-    if (post.authors?.length) {
-      const authors = document.createElement('div');
-      authors.className = 'card__author';
-      authors.append('by ');
-      post.authors.forEach((author, index) => {
-        if (index > 0) authors.append(', ');
-        appendLink(authors, author.name, author.url);
-      });
-      card.append(authors);
-    }
-
-    const actions = document.createElement('div');
-    actions.className = 'card__actions';
-    const readMore = document.createElement('a');
-    readMore.className = 'join-button btn btn-tertiary';
-    readMore.href = post.url;
-    readMore.ariaLabel = `Read more about ${post.title}`;
-    readMore.append('Read more ');
-    const icon = document.createElement('i');
-    icon.className = 'fas fa-arrow-up-right-from-square';
-    readMore.append(icon);
-    actions.append(readMore);
-    card.append(actions);
-
-    return card;
-  }
-
-  async function loadLatestNews(root: HTMLElement) {
-    const container = root.querySelector<HTMLElement>('.latest-news_container');
-    const carousel = root.querySelector<HTMLElement>('[data-latest-news-carousel]');
-    const error = root.querySelector<HTMLElement>('[data-latest-news-error]');
-    if (!container || !carousel || !error) return;
-
-    try {
-      const limit = Number(root.dataset.maxCards) || 10;
-      const apiUrl = new URL(root.dataset.ghostApiUrl ?? '', window.location.href);
-      apiUrl.searchParams.set('key', root.dataset.ghostContentApiKey ?? '');
-      apiUrl.searchParams.set('limit', String(limit));
-      apiUrl.searchParams.set('include', 'tags,authors');
-      const response = await fetch(apiUrl);
-      if (!response.ok) throw new Error(`Ghost API returned ${response.status}`);
-      const payload = await response.json() as {posts?: GhostPost[]};
-      const posts = payload.posts ?? [];
-      if (posts.length === 0) throw new Error('Ghost API returned no posts');
-
-      container.replaceChildren(...posts.map(createNewsCard));
-      document.documentElement.classList.add('has-js');
-      initializeCarousel(carousel);
-      root.dataset.latestNewsState = 'ready';
-    } catch (fetchError) {
-      console.error('Unable to load latest Xen Project news', fetchError);
-      error.hidden = false;
-      root.dataset.latestNewsState = 'error';
-    } finally {
-      root.ariaBusy = 'false';
-    }
-  }
-
-  for (const root of document.querySelectorAll<HTMLElement>('[data-latest-news]')) void loadLatestNews(root);
 </script>

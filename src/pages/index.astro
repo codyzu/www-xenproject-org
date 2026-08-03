@@ -1,4 +1,5 @@
 ---
+import {Picture} from 'astro:assets';
 import CTA from '../components/blocks/CTA.astro';
 import Callout from '../components/blocks/Callout.astro';
 import CommandExample from '../components/blocks/CommandExample.astro';
@@ -6,7 +7,9 @@ import FeatureGrid from '../components/blocks/FeatureGrid.astro';
 import Hero from '../components/blocks/Hero.astro';
 import LogoCloud from '../components/blocks/LogoCloud.astro';
 import Stats from '../components/blocks/Stats.astro';
+import Badge from '../components/primitives/Badge.astro';
 import Button from '../components/primitives/Button.astro';
+import Card from '../components/primitives/Card.astro';
 import Cluster from '../components/primitives/Cluster.astro';
 import Container from '../components/primitives/Container.astro';
 import Grid from '../components/primitives/Grid.astro';
@@ -17,6 +20,14 @@ import Stack from '../components/primitives/Stack.astro';
 import Surface from '../components/primitives/Surface.astro';
 import Text from '../components/primitives/Text.astro';
 import HeroLayeredPlatformArtwork from '../components/pages/home/HeroLayeredPlatformArtwork.astro';
+import pandaSrc from '../assets/illustrations/xen-panda-driving-forward.png';
+import {readGhostCache, type NormalizedGhostPost} from '../../scripts/search/ghost.ts';
+import {
+  compactGhostExcerpt,
+  formatGhostPublicationDate,
+  homepageNewsBadge,
+  selectHomepageNews,
+} from '../data/homepage-news';
 import {memberLogos} from '../data/member-logos';
 import {projects} from '../data/projects';
 import BaseLayout from '../layouts/BaseLayout.astro';
@@ -125,6 +136,17 @@ const tryXenWorkflow = `sudo apt install xen-system-amd64
 # Reboot into Xen and prepare /etc/xen/guest.cfg
 sudo xl create /etc/xen/guest.cfg
 sudo xl list`;
+
+let latestPosts: NormalizedGhostPost[] = [];
+try {
+  const ghostCache = await readGhostCache();
+  latestPosts = selectHomepageNews(ghostCache?.posts ?? []);
+  if (!ghostCache) console.warn('Ghost cache is unavailable; omitting the homepage latest-news section.');
+} catch (error) {
+  console.warn(
+    `Unable to read cached Ghost posts; omitting the homepage latest-news section. ${error instanceof Error ? error.message : ''}`.trim(),
+  );
+}
 ---
 
 <BaseLayout title={title} description={description} keywords={keywords} publicShell bodyClass="xp-home">
@@ -303,6 +325,78 @@ sudo xl list`;
     logos={memberLogos}
   />
 
+  {latestPosts.length > 0 && (
+    <Section id="latest">
+      <Container>
+        <div data-pagefind-ignore>
+          <Stack gap="6">
+            <div class="xp-home-latest-heading uno-grid uno-items-center uno-gap-5 md:uno-grid-cols-[minmax(0,1fr)_auto]">
+              <Stack gap="3" class="uno-max-w-xp-content">
+                <Text size="eyebrow" tone="accent-primary">Driving virtualization forward</Text>
+                <Heading size="heading-xl">Latest from the Xen Project</Heading>
+                <Text>Recent releases, initiatives, events, and technical work from across the project.</Text>
+              </Stack>
+              <Picture
+                class="xp-home-latest-panda uno-w-28 uno-justify-self-start md:uno-w-36 md:uno-justify-self-end lg:uno-w-44"
+                src={pandaSrc}
+                alt=""
+                widths={[208, 288, 352]}
+                sizes="(max-width: 767px) 104px, (max-width: 1023px) 144px, 176px"
+                formats={['avif', 'webp']}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+
+            <Grid columns="3" gap="4" class="xp-home-latest-grid">
+              {latestPosts.map((post) => {
+                const badge = homepageNewsBadge(post);
+                return (
+                  <Card class="xp-home-latest-card">
+                    <Stack gap="4" class="uno-h-full">
+                      <div class="uno-h-7" data-news-badge-lane>
+                        {badge && (
+                          <Badge variant="accent" class="uno-w-fit uno-gap-1.5 uno-bg-[rgb(133_194_65_/_0.07)]">
+                            <span class:list={[badge.icon, 'uno-text-sm']} aria-hidden="true"></span>
+                            {badge.label}
+                          </Badge>
+                        )}
+                      </div>
+                      <Stack gap="3" class="uno-flex-1">
+                        <Heading as="h3" size="card">
+                          <a class="xen-focus uno-rounded-sm uno-text-inherit uno-no-underline hover:uno-text-xp-accent-primary" href={post.url}>
+                            {post.title}
+                          </a>
+                        </Heading>
+                        {post.excerpt && <Text size="small" class="xp-home-latest-excerpt">{compactGhostExcerpt(post.excerpt)}</Text>}
+                      </Stack>
+                      <div class="uno-flex uno-flex-wrap uno-items-center uno-justify-between uno-gap-3 uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-pt-3">
+                        <time class="uno-text-[length:var(--xp-type-caption)] uno-text-xp-text-muted" datetime={post.publishedAt}>
+                          {formatGhostPublicationDate(post.publishedAt)}
+                        </time>
+                        <a class="xen-action-text xen-focus uno-inline-flex uno-items-center uno-gap-1 uno-rounded-sm" href={post.url} aria-label={`Read ${post.title}`}>
+                          Read article
+                          <span class="i-carbon-arrow-right" aria-hidden="true"></span>
+                        </a>
+                      </div>
+                    </Stack>
+                  </Card>
+                );
+              })}
+            </Grid>
+
+            <div>
+              <Button href="/blog/" variant="text">
+                View all news
+                <span class="i-carbon-arrow-right uno-ml-1" aria-hidden="true"></span>
+              </Button>
+            </div>
+          </Stack>
+        </div>
+      </Container>
+    </Section>
+  )}
+
   <Section id="community" surface="1">
     <Container>
       <Stack gap="6">
@@ -363,6 +457,42 @@ sudo xl list`;
 
   :global(.xp-home-safety-initiative > :first-child) {
     max-width: var(--xp-container-content);
+  }
+
+  .xp-home-latest-panda {
+    height: auto;
+  }
+
+  :global(.xp-home-latest-card) {
+    min-width: 0;
+  }
+
+  .xp-home-latest-excerpt {
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+  }
+
+  @media (min-width: 48rem) and (max-width: 63.999rem) {
+    :global(.xp-home-latest-grid) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 47.999rem) {
+    .xp-home-latest-heading {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .xp-home-latest-panda {
+      width: 6.5rem;
+      align-self: end;
+    }
+
+    .xp-home-latest-excerpt {
+      -webkit-line-clamp: 4;
+    }
   }
 
   @media (min-width: 64rem) and (max-width: 79.999rem) {

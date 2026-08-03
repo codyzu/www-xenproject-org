@@ -70,11 +70,9 @@ boundary.
 
 ## Deferred Follow-Ups
 
-- Replace the current Latest News client script with a declarative React island
-  while preserving the Ghost Content API contract, loading and failure states,
-  card metadata, keyboard-accessible carousel controls, and responsive layout.
-- Consolidate the project and news carousel behavior once the React island owns
-  Latest News.
+- Retire or redesign the remaining legacy About-page news carousel when that
+  route moves to the Astro-first design system. Its content transport now uses
+  the shared build-time Ghost cache and does not expose the Content API key.
 - Review the RSS feed scope in `src/pages/index.xml.ts`. It currently includes
   past events and research papers; decide whether other migrated content should
   be included as well.

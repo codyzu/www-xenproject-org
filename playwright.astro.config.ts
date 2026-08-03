@@ -65,7 +65,7 @@ export default defineConfig({
     },
     {
       name: 'webkit-mobile',
-      testMatch: /(high-value-webkit-mobile|search)\.spec\.ts/,
+      testMatch: /(high-value-webkit-mobile|homepage-latest|search)\.spec\.ts/,
       use: {
         ...devices['iPhone 13'],
         reducedMotion: 'reduce',

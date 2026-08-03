@@ -11,13 +11,19 @@ export const defaultCachePath = process.env.GHOST_SEARCH_CACHE_PATH
   ? path.resolve(process.env.GHOST_SEARCH_CACHE_PATH)
   : fileURLToPath(new URL('../../.cache/ghost-search/posts.json', import.meta.url));
 
-const namedEntitySchema = z.object({name: z.string().min(1)}).passthrough();
+const namedEntitySchema = z
+  .object({
+    name: z.string().min(1),
+    slug: z.string().min(1).optional(),
+  })
+  .passthrough();
 /* eslint-disable @typescript-eslint/naming-convention -- Ghost Content API field names are fixed. */
 export const ghostPostSchema = z.object({
   id: z.string().min(1),
   slug: z.string().min(1),
   url: z.string().url(),
   title: z.string().min(1),
+  featured: z.boolean().default(false),
   html: z.string().nullable().optional(),
   excerpt: z.string().nullable().optional(),
   custom_excerpt: z.string().nullable().optional(),
@@ -45,6 +51,8 @@ export const normalizedGhostPostSchema = z.object({
   authors: z.array(z.string()),
   primaryTag: z.string().optional(),
   tags: z.array(z.string()),
+  tagSlugs: z.array(z.string()).default([]),
+  featured: z.boolean().default(false),
   aliases: z.array(z.string()).default([]),
   language: z.literal('en'),
 });
@@ -127,6 +135,7 @@ export function normalizeGhostPost(input: unknown): NormalizedGhostPost {
   const primaryTag = post.primary_tag?.name ?? post.tags[0]?.name;
   const authors = uniqueNames(post.authors.map((author) => author.name));
   const tags = uniqueNames(post.tags.map((tag) => tag.name));
+  const tagSlugs = uniqueNames(post.tags.flatMap((tag) => (tag.slug ? [tag.slug] : [])));
   const aliases = searchAliasesForText(`${post.title}\n${excerpt}\n${content}\n${tags.join(' ')}`);
   return normalizedGhostPostSchema.parse({
     id: post.id,
@@ -141,6 +150,8 @@ export function normalizeGhostPost(input: unknown): NormalizedGhostPost {
     authors,
     primaryTag,
     tags,
+    tagSlugs,
+    featured: post.featured,
     aliases,
     language: 'en',
   });
@@ -192,7 +203,7 @@ export async function fetchAllGhostPosts(options: {
     endpoint.searchParams.set('filter', 'visibility:public');
     endpoint.searchParams.set(
       'fields',
-      'id,slug,url,title,html,excerpt,custom_excerpt,feature_image,published_at,updated_at,visibility',
+      'id,slug,url,title,featured,html,excerpt,custom_excerpt,feature_image,published_at,updated_at,visibility',
     );
 
     let response: Response;

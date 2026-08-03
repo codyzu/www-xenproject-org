@@ -95,11 +95,23 @@ test.describe('redesigned homepage', () => {
       'href',
       '/about/become-a-member/',
     );
-    const launchSectionOrder = await main.locator('#evidence-in-use, #safety-initiative, #members').evaluateAll(
+    const launchSectionOrder = await main.locator('#evidence-in-use, #safety-initiative, #members, #latest, #community, #next-step').evaluateAll(
       elements => elements.map(element => element.id),
     );
-    expect(launchSectionOrder).toEqual(['evidence-in-use', 'safety-initiative', 'members']);
+    expect(launchSectionOrder).toEqual(['evidence-in-use', 'safety-initiative', 'members', 'latest', 'community', 'next-step']);
     await expect(main.getByRole('heading', {name: 'Sustained by organizations with a stake in open virtualization.'})).toBeVisible();
+    const latest = main.locator('#latest');
+    await expect(latest.getByText('Driving virtualization forward', {exact: true})).toBeVisible();
+    await expect(latest.getByRole('heading', {name: 'Latest from the Xen Project'})).toBeVisible();
+    await expect(latest.locator('article')).toHaveCount(3);
+    await expect(latest.locator('time')).toHaveCount(3);
+    await expect(latest.getByRole('link', {name: 'View all news'})).toHaveAttribute('href', '/blog/');
+    await expect(latest.locator('img[alt=""]')).toHaveAttribute('src', /\/_astro\/xen-panda-driving-forward\./);
+    await expect(latest.locator('[data-latest-news-carousel], button')).toHaveCount(0);
+    await expect(latest.locator('[data-pagefind-ignore]')).toHaveCount(1);
+    for (const href of await latest.locator('article h3 a').evaluateAll(links => links.map(link => link.getAttribute('href')))) {
+      expect(href).toMatch(/^\/blog\/.+\/$/);
+    }
     await expect(main.getByRole('heading', {name: 'Technical work happens in the open.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: "Support Xen's future, or help build it."})).toBeVisible();
 
