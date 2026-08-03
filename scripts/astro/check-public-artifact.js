@@ -9,6 +9,7 @@ const standalone = process.argv.includes('--standalone');
 const artifactDirectory = path.resolve(outputArgument ?? 'dist');
 const publicSourceDirectory = path.resolve('public');
 const expectedSite = new URL(process.env.SITE_URL ?? 'https://beta.xenproject.org');
+const ghostContentRequired = process.env.GHOST_CONTENT_REQUIRED === '1';
 const internalHosts = new Set([expectedSite.host]);
 const delegatedInternalPaths = [
   // The project blog is deployed outside this static-site artifact.
@@ -317,6 +318,21 @@ for (const filePath of browserFiles) {
 
   if (source.includes('/ghost/api/content/posts/')) {
     addError(filePath, 'must not fetch Ghost posts in the browser');
+  }
+}
+
+if (ghostContentRequired) {
+  const homepagePath = path.join(artifactDirectory, 'index.html');
+  const aboutPath = path.join(artifactDirectory, 'about/index.html');
+  const homepage = fs.existsSync(homepagePath) ? load(fs.readFileSync(homepagePath, 'utf8')) : undefined;
+  const about = fs.existsSync(aboutPath) ? load(fs.readFileSync(aboutPath, 'utf8')) : undefined;
+
+  if (!homepage || homepage('#latest article').length === 0) {
+    errors.push('index.html: required cached Ghost latest-news content is missing');
+  }
+
+  if (!about || about('[data-latest-news] article').length === 0) {
+    errors.push('about/index.html: required cached Ghost latest-news content is missing');
   }
 }
 

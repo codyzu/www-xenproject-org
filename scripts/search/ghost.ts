@@ -1,15 +1,18 @@
 import {mkdir, readFile, rename, rm, writeFile} from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
-import {fileURLToPath} from 'node:url';
 import {load} from 'cheerio';
 import {z} from 'zod';
 import {searchAliasesForText} from '../../src/data/search.ts';
 
 export const cacheVersion = 1;
-export const defaultCachePath = process.env.GHOST_SEARCH_CACHE_PATH
-  ? path.resolve(process.env.GHOST_SEARCH_CACHE_PATH)
-  : fileURLToPath(new URL('../../.cache/ghost-search/posts.json', import.meta.url));
+export function resolveGhostCachePath(configuredPath = process.env.GHOST_SEARCH_CACHE_PATH, cwd = process.cwd()) {
+  // Resolve from the project working directory so this path stays stable when
+  // Astro bundles this module into its generated build entrypoints.
+  return path.resolve(cwd, configuredPath ?? '.cache/ghost-search/posts.json');
+}
+
+export const defaultCachePath = resolveGhostCachePath();
 
 const namedEntitySchema = z
   .object({

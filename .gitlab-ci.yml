@@ -46,6 +46,8 @@ test:
 # Artifact will be deployed to https://beta.xenproject.org/
 deploy:
   stage: build
+  variables:
+    GHOST_CONTENT_REQUIRED: "1"
   script:
     - node --version
     - npm ci --cache .npm --prefer-offline
@@ -131,6 +133,7 @@ publish:
   stage: publish
   variables:
     SITE_URL: https://xenproject.org
+    GHOST_CONTENT_REQUIRED: "1"
   script:
     - node --version
     - npm ci --cache .npm --prefer-offline

@@ -13,6 +13,7 @@ import {
   fetchAllGhostPosts,
   normalizeGhostPost,
   readGhostCache,
+  resolveGhostCachePath,
   writeGhostCacheAtomic,
 } from '../../scripts/search/ghost.ts';
 import {ensureGhostCache} from '../../scripts/search/ensure-cache.ts';
@@ -186,6 +187,18 @@ test('handles missing and malformed cache, and replaces a cache atomically', asy
   const validCache = await readFile(cachePath, 'utf8');
   await assert.rejects(writeGhostCacheAtomic([{invalid: true} as never], cachePath));
   assert.equal(await readFile(cachePath, 'utf8'), validCache);
+});
+
+test('resolves the default Ghost cache from the project working directory', () => {
+  const projectRoot = path.join(tmpdir(), 'xen-project-root');
+  assert.equal(
+    resolveGhostCachePath(undefined, projectRoot),
+    path.join(projectRoot, '.cache/ghost-search/posts.json'),
+  );
+  assert.equal(
+    resolveGhostCachePath('custom/posts.json', projectRoot),
+    path.join(projectRoot, 'custom/posts.json'),
+  );
 });
 
 test('seeds a missing development cache without replacing an existing cache', async () => {

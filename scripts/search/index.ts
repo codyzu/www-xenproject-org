@@ -44,6 +44,11 @@ async function main() {
     if (astro.errors.length > 0) throw new Error(`Pagefind failed to index Astro output: ${astro.errors.join('; ')}`);
     console.log(`Indexed ${astro.page_count} Astro pages.`);
     const cache = await readGhostCache();
+
+    if (process.env.GHOST_CONTENT_REQUIRED === '1' && (!cache || cache.posts.length === 0)) {
+      throw new Error('Ghost content is required for this build, but the normalized cache is empty or unavailable.');
+    }
+
     if (cache) {
       console.log(`Adding ${cache.posts.length} cached Ghost posts to Pagefind…`);
       let completedGhostPosts = 0;
