@@ -10,6 +10,7 @@
 
     const toggleMenu = () => {
       header.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', String(header.classList.contains('active')));
       applyHeaderEvents();
     };
 

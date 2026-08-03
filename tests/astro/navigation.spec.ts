@@ -73,7 +73,7 @@ test.describe('Astro spike navigation shell', () => {
   });
 
   test('exposes the desktop navigation contract', async ({page}) => {
-    await expect(page.locator('header')).toBeVisible();
+    await expect(page.getByRole('banner')).toBeVisible();
 
     for (const section of menuSections) {
       const item = topLevelMenuItem(page, section.name);
@@ -118,6 +118,37 @@ test.describe('Astro spike navigation shell', () => {
     await expect(childLink).not.toBeVisible();
   });
 
+  test('keeps the legacy mobile search and menu controls separated', async ({page}) => {
+    await page.setViewportSize({width: 390, height: 844});
+    await page.reload();
+
+    const header = page.locator('header.header');
+    const search = header.getByRole('button', {name: 'Search Xen Project'});
+    const menu = header.getByRole('button', {name: 'Toggle menu'});
+    await expect(search).toBeVisible();
+    await expect(menu).toBeVisible();
+    const controls = await header.evaluate((element) => {
+      const searchRect = element.querySelector('[data-search-open]')?.getBoundingClientRect();
+      const menuRect = element.querySelector('.menu-toggle')?.getBoundingClientRect();
+      if (!searchRect || !menuRect) return undefined;
+      return {
+        searchLeft: searchRect.left,
+        searchRight: searchRect.right,
+        menuLeft: menuRect.left,
+        menuRight: menuRect.right,
+      };
+    });
+    expect(controls).toBeDefined();
+    expect(controls?.menuRight).toBeLessThan(controls?.searchLeft ?? 0);
+
+    await menu.click();
+    await expect(menu).toHaveAttribute('aria-expanded', 'true');
+    await expect(search).toBeHidden();
+    await menu.click();
+    await expect(menu).toHaveAttribute('aria-expanded', 'false');
+    await expect(search).toBeVisible();
+  });
+
   test('opens the mobile menu and verifies first-level child links', async ({page}) => {
     await page.setViewportSize({width: 390, height: 900});
     await page.reload();
@@ -126,7 +157,7 @@ test.describe('Astro spike navigation shell', () => {
       await page.goto('/about/contact-us/');
       await page.setViewportSize({width: 390, height: 900});
 
-      const header = page.locator('header');
+      const header = page.locator('header.header');
       const item = topLevelMenuItem(page, section.name);
       const link = topLevelLink(item, section.name);
 
@@ -156,9 +187,9 @@ test.describe('Astro spike navigation shell', () => {
     test(`renders content route shell for ${route}`, async ({page}) => {
       await page.goto(route);
 
-      await expect(page.locator('header')).toBeVisible();
+      await expect(page.getByRole('banner')).toBeVisible();
       await expect(page.locator('main')).toBeVisible();
-      await expect(page.locator('footer')).toBeVisible();
+      await expect(page.getByRole('contentinfo')).toBeVisible();
       await expect(page.locator('main h1')).toBeVisible();
       await expect(page.getByRole('heading', {name: /404/i})).toHaveCount(0);
     });

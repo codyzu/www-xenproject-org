@@ -17,9 +17,17 @@ const {currentPath} = Astro.props;
         <img src="/img/logo-xen-reverse.svg" alt="Xen-Project" />
       </a>
     </div>
-    <button type="button" class="legacy-search-trigger" data-search-open aria-label="Search Xen Project"><i class="fas fa-magnifying-glass" aria-hidden="true"></i><span>Search</span></button>
-    <button class="menu-toggle" title="Toggle menu"></button>
-    <div class="header-content" data-menu-title="Menu">
+    <button
+      type="button"
+      class="legacy-search-trigger xen-focus uno-inline-flex uno-min-h-11 uno-min-w-11 uno-cursor-pointer uno-items-center uno-justify-center uno-gap-[.45rem] uno-rounded-[.35rem] uno-border uno-border-solid uno-border-[rgb(255_255_255_/_0.22)] uno-bg-[rgb(0_0_0_/_0.12)] uno-px-[.7rem] uno-py-[.45rem] uno-font-sans uno-text-[.8rem] uno-font-semibold uno-leading-none uno-text-white hover:uno-border-brand-fill focus-visible:uno-border-brand-fill max-lg:uno-absolute max-lg:uno-right-[10px] max-lg:uno-z-1 max-lg:uno-ml-0"
+      data-search-open
+      aria-label="Search Xen Project"
+    >
+      <i class="fas fa-magnifying-glass" aria-hidden="true"></i>
+      <span class="max-lg:uno-hidden">Search</span>
+    </button>
+    <button type="button" class="menu-toggle" title="Toggle menu" aria-label="Toggle menu" aria-expanded="false" aria-controls="legacy-site-menu"></button>
+    <div id="legacy-site-menu" class="header-content" data-menu-title="Menu">
       <nav class="header-nav">
         <ul class="menu">
           <Menu items={navigationItems} currentPath={currentPath} />
@@ -31,7 +39,7 @@ const {currentPath} = Astro.props;
 </header>
 
 <style>
-  .legacy-search-trigger { display: inline-flex; align-items: center; gap: .45rem; min-height: 2.65rem; padding: .45rem .7rem; border: 1px solid rgb(255 255 255 / .22); border-radius: .35rem; background: rgb(0 0 0 / .12); color: white; font: 600 .8rem/1 sans-serif; cursor: pointer; }
-  .legacy-search-trigger:hover, .legacy-search-trigger:focus-visible { border-color: #85c241; outline: 2px solid #85c241; outline-offset: 2px; }
-  @media (max-width: 1023px) { .legacy-search-trigger { margin-left: auto; } .legacy-search-trigger span { display: none; } }
+  @media (max-width: 1023px) {
+    .header.active .legacy-search-trigger { visibility: hidden; pointer-events: none; }
+  }
 </style>
