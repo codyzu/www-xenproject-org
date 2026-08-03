@@ -20,6 +20,7 @@ import {ghostPagefindRecord} from '../../scripts/search/index.ts';
 import {
   promotedTermsForUrl,
   promotedUrlsForQuery,
+  searchAliasesForPage,
   searchAliasesForText,
   sectionForPath,
 } from '../../src/data/search.ts';
@@ -98,6 +99,37 @@ test('defines narrow promoted results and indexing terms for the chat query', ()
   assert.match(matrixRecord.meta.aliases ?? '', /chat/);
   const ircRecord = ghostPagefindRecord(normalizeGhostPost(fixture.posts[4]));
   assert.doesNotMatch(ircRecord.meta.aliases ?? '', /chat/);
+});
+
+test('promotes downloads for exact download and release intent', () => {
+  for (const query of ['download', 'downloads', 'xen download', 'download xen', 'release', 'xen releases']) {
+    assert.deepEqual(promotedUrlsForQuery(query), ['/resources/downloads/']);
+  }
+  assert.deepEqual(promotedUrlsForQuery('download drivers'), []);
+  assert.deepEqual(promotedTermsForUrl('/resources/downloads/'), [
+    'download',
+    'downloads',
+    'xen download',
+    'xen downloads',
+    'download xen',
+    'release',
+    'releases',
+    'xen release',
+    'xen releases',
+  ]);
+  assert.deepEqual(searchAliasesForPage('/resources/downloads/', 'Downloads for dom0'), [
+    'dom0',
+    'control domain',
+    'download',
+    'downloads',
+    'xen download',
+    'xen downloads',
+    'download xen',
+    'release',
+    'releases',
+    'xen release',
+    'xen releases',
+  ]);
 });
 
 test('fetches every Ghost API page without exposing the key', async () => {

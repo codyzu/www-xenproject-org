@@ -70,6 +70,19 @@ test.describe('unified Pagefind search', () => {
     expect(orderedHrefs.indexOf('/blog/xen-irc-channels-have-moved/')).toBeGreaterThan(1);
   });
 
+  test('prioritizes downloads for download and release intent', async ({page}) => {
+    await page.getByRole('button', {name: 'Search Xen Project'}).click();
+    const dialog = page.getByRole('dialog', {name: 'Search the site'});
+    const input = dialog.getByRole('searchbox', {name: 'Search Xen Project'});
+
+    for (const query of ['download', 'xen downloads', 'release']) {
+      await input.fill(query);
+      const firstResult = dialog.locator('a[data-search-result]').first();
+      await expect(firstResult).toHaveAttribute('href', '/resources/downloads/');
+      await expect(firstResult).toContainText('Downloads');
+    }
+  });
+
   test('supports keyboard navigation, Enter, Escape, clicking, and focus restoration', async ({page}) => {
     const trigger = page.getByRole('button', {name: 'Search Xen Project'});
     await trigger.click();

@@ -33,6 +33,20 @@ const aliasGroups = [
 
 const promotedSearchResults = [
   {
+    queries: [
+      'download',
+      'downloads',
+      'xen download',
+      'xen downloads',
+      'download xen',
+      'release',
+      'releases',
+      'xen release',
+      'xen releases',
+    ],
+    urls: ['/resources/downloads/'],
+  },
+  {
     queries: ['chat'],
     urls: ['/resources/matrix/', '/blog/we-have-moved-to-matrix/'],
   },
@@ -67,6 +81,10 @@ export function promotedTermsForUrl(url: string) {
   return promotedSearchResults
     .filter(({urls}) => (urls as readonly string[]).includes(url))
     .flatMap(({queries}) => queries);
+}
+
+export function searchAliasesForPage(pathname: string, value: string) {
+  return [...new Set([...searchAliasesForText(value), ...promotedTermsForUrl(pathname)])];
 }
 
 export function sectionForPath(pathname: string) {

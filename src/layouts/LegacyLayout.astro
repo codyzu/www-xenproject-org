@@ -3,7 +3,7 @@ import Footer from '../components/legacy/Footer.astro';
 import Header from '../components/legacy/Header.astro';
 import SearchDialog from '../components/search/SearchDialog.astro';
 import {siteMetadata} from '../data/site';
-import {searchAliasesForText, sectionForPath} from '../data/search';
+import {searchAliasesForPage, sectionForPath} from '../data/search';
 import 'uno.css';
 import '../styles/legacy.scss';
 import '../styles/expressive-code.css';
@@ -46,7 +46,7 @@ const resolvedDescription = description || summary || siteMetadata.description;
 const resolvedCanonicalUrl = new URL(canonicalUrl || currentPath, siteUrl).toString();
 const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialImage, siteUrl).toString();
 const searchSection = sectionForPath(currentPath);
-const searchAliases = searchAliasesForText(`${title}\n${resolvedDescription}\n${keywords.join(' ')}`);
+const searchAliases = searchAliasesForPage(currentPath, `${title}\n${resolvedDescription}\n${keywords.join(' ')}`);
 const shouldIndex = !robots.toLowerCase().includes('noindex') && currentPath !== '/search/';
 ---
 
