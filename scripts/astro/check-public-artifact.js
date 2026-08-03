@@ -303,6 +303,22 @@ if (!fs.existsSync(path.join(artifactDirectory, '404.html'))) {
 }
 
 const htmlFiles = walk(artifactDirectory).filter(isHtmlFile);
+const browserFiles = walk(artifactDirectory).filter(filePath => /\.(?:html|js)$/.test(filePath));
+
+for (const filePath of browserFiles) {
+  const source = fs.readFileSync(filePath, 'utf8');
+  if (source.includes('PUBLIC_GHOST_CONTENT_API_KEY')) {
+    addError(filePath, 'must not contain the retired public Ghost Content API variable');
+  }
+
+  if (source.includes('data-ghost-content-api-key')) {
+    addError(filePath, 'must not render a Ghost Content API key into browser markup');
+  }
+
+  if (source.includes('/ghost/api/content/posts/')) {
+    addError(filePath, 'must not fetch Ghost posts in the browser');
+  }
+}
 
 assertLegacyUrlContract();
 

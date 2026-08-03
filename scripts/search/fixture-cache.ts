@@ -2,13 +2,13 @@ import {readFile} from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import {fileURLToPath} from 'node:url';
-import {normalizeGhostPost, writeGhostCacheAtomic} from './ghost.ts';
+import {defaultCachePath, normalizeGhostPost, writeGhostCacheAtomic} from './ghost.ts';
 
-export async function writeSyntheticFixtureCache() {
+export async function writeSyntheticFixtureCache(cachePath = defaultCachePath) {
   const fixturePath = fileURLToPath(new URL('../../tests/fixtures/ghost-posts.json', import.meta.url));
   const fixture = JSON.parse(await readFile(fixturePath, 'utf8')) as {posts: unknown[]};
   const posts = fixture.posts.map((post) => normalizeGhostPost(post));
-  await writeGhostCacheAtomic(posts);
+  await writeGhostCacheAtomic(posts, cachePath);
   return posts.length;
 }
 

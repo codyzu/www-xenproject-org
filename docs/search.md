@@ -26,12 +26,15 @@ be a **Ghost Content API key**. Never use an Admin API key: search only needs pu
 would grant unnecessary write and private-content access. Scripts deliberately omit request URLs and configuration
 values from errors so a key in the Content API query string cannot be logged.
 
-`.env.example` and `.env.production` contain placeholders only. Never commit a working key.
+`.env.example` contains placeholders only. Put working credentials in the
+ignored `.env.local` file or trusted CI variables, and never commit them.
 
 ## Local workflows
 
-`npm run dev` does not fetch Ghost or rebuild Pagefind. Search either uses the last static index available through a
-separate built-site server or displays its missing-index message.
+`npm run dev` does not fetch Ghost or rebuild Pagefind. It preserves an existing normalized Ghost cache and seeds the
+committed synthetic fixture only when that cache is missing, so recent-post sections remain useful without credentials.
+Search either uses the last static index available through a separate built-site server or displays its missing-index
+message.
 
 - `npm run build` builds Astro and Pagefind. It reads `.cache/ghost-search/posts.json` if present, never contacts Ghost,
   and completes with an Astro-only index plus clear warnings when the cache is absent. The homepage latest-news section
@@ -42,6 +45,8 @@ separate built-site server or displays its missing-index message.
 - `npm run search:index` rebuilds Pagefind against the existing `dist/` and the local cache.
 - `npm run build:search:fresh` refreshes Ghost and performs a complete production-like build.
 - `npm run search:fixture` prepares the committed synthetic records used by local search tests. It never contacts Ghost.
+- `npm run search:ensure` preserves an existing cache or prepares that fixture when the cache is missing. Both local
+  development commands run it automatically.
 - `npm run test:astro:search` replaces the existing artifact's search index with synthetic records and runs the focused
   browser coverage. Its fixture cache uses `.cache/ghost-search/test-posts.json`, so it does not replace a developer's
   live local cache. Run `npm run build` first when `dist/` is absent or its Astro output is stale.

@@ -76,25 +76,6 @@ const ghostHeaderFooterAssets = {
   },
 };
 
-const ghostMockApi = {
-  name: 'ghost-mock-api',
-  apply: 'serve',
-  configureServer(server) {
-    server.middlewares.use(async (request, response, next) => {
-      const requestUrl = new URL(request.url ?? '/', 'http://localhost');
-      if (requestUrl.pathname !== '/blog/ghost/api/content/posts/') {
-        next();
-        return;
-      }
-
-      const fixture = await readFile(new URL('data/ghost-posts.fixture.json', import.meta.url), 'utf8');
-      response.statusCode = 200;
-      response.setHeader('Content-Type', 'application/json; charset=utf-8');
-      response.end(fixture);
-    });
-  },
-};
-
 export default defineConfig({
   integrations: [
     astroExpressiveCode(),
@@ -106,6 +87,6 @@ export default defineConfig({
   ],
   site,
   vite: {
-    plugins: [unoCSS(), ghostMockApi],
+    plugins: [unoCSS()],
   },
 });

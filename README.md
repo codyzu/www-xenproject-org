@@ -88,22 +88,20 @@ other review conversations rather than for committed visual-test baselines.
 
 To validate a deployed beta artifact manually, run `npm run test:astro:staging`.
 For a faster homepage guardrail check, run
-`npm run test:astro:staging:homepage-guardrails`. Run
-`npm run test:astro:staging:ghost` for the focused, unmocked production Ghost
-integration check. These commands do not start a local server; deploy the commit
-under test first.
+`npm run test:astro:staging:homepage-guardrails`. The staging suite includes
+the cache-backed homepage news checks. These commands do not start a local
+server; deploy the commit under test first.
 
 ## Ghost Integration
 
-Ghost configuration is selected by the checked-in mode files. Development uses
-`.env.development` and the local mock endpoint. Production-mode builds use
-`.env.production` and the public production Ghost Content API. Ignored
-mode-local files such as `.env.development.local`, or shell environment
-variables, can override these values when live Ghost behavior is needed during
-local debugging.
-
-`npm run test:astro:dev:ghost` starts an isolated development server and
-verifies the checked-in mock configuration.
+Ghost content is fetched only by `npm run search:refresh`, using the server-side
+`GHOST_CONTENT_API_URL` and `GHOST_CONTENT_API_KEY` values. Astro builds read
+the resulting normalized cache for Pagefind and recent-post sections without a
+browser request or public API configuration. Use `npm run search:fixture` to
+prepare deterministic synthetic cache data when live credentials are not
+available. `npm run dev` preserves an existing refreshed cache and seeds this
+fixture only when the cache is missing. See [docs/search.md](./docs/search.md)
+for the complete local and CI workflow.
 
 ## CI Runtime
 

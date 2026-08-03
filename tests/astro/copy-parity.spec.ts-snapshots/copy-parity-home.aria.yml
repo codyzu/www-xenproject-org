@@ -174,6 +174,41 @@
   - link "Visit XenServer":
     - /url: https://www.xenserver.com/
     - img "XenServer"
+  - paragraph: Driving virtualization forward
+  - heading "Latest from the Xen Project" [level=2]
+  - paragraph: Recent releases, initiatives, events, and technical work from across the project.
+  - article:
+    - text: Community
+    - heading "Open virtualization boundaries" [level=3]:
+      - link "Open virtualization boundaries":
+        - /url: /blog/open-virtualization-boundaries
+    - paragraph: A closer look at ownership across layered open virtualization systems.
+    - time: April 15, 2025
+    - link "Read Open virtualization boundaries":
+      - /url: /blog/open-virtualization-boundaries
+      - text: Read article
+  - article:
+    - text: Release
+    - heading "Community release notes" [level=3]:
+      - link "Community release notes":
+        - /url: /blog/community-release-notes
+    - paragraph: A standard update from the Xen Project community.
+    - time: February 3, 2025
+    - link "Read Community release notes":
+      - /url: /blog/community-release-notes
+      - text: Read article
+  - article:
+    - text: Community
+    - heading "Community conversations moved to Matrix" [level=3]:
+      - link "Community conversations moved to Matrix":
+        - /url: /blog/we-have-moved-to-matrix
+    - paragraph: The Xen community has a current home for real-time conversations.
+    - time: September 5, 2023
+    - link "Read Community conversations moved to Matrix":
+      - /url: /blog/we-have-moved-to-matrix
+      - text: Read article
+  - link "View all news":
+    - /url: /blog
   - paragraph: Open governance and community
   - heading "Technical work happens in the open." [level=2]
   - paragraph: Xen contribution follows documented project processes. Engineers can find a practical starting point, and organizations can support the ecosystem through membership.

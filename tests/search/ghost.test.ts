@@ -15,6 +15,7 @@ import {
   readGhostCache,
   writeGhostCacheAtomic,
 } from '../../scripts/search/ghost.ts';
+import {ensureGhostCache} from '../../scripts/search/ensure-cache.ts';
 import {ghostPagefindRecord} from '../../scripts/search/index.ts';
 import {
   promotedTermsForUrl,
@@ -153,6 +154,20 @@ test('handles missing and malformed cache, and replaces a cache atomically', asy
   const validCache = await readFile(cachePath, 'utf8');
   await assert.rejects(writeGhostCacheAtomic([{invalid: true} as never], cachePath));
   assert.equal(await readFile(cachePath, 'utf8'), validCache);
+});
+
+test('seeds a missing development cache without replacing an existing cache', async () => {
+  const directory = await mkdtemp(path.join(tmpdir(), 'xen-search-dev-cache-'));
+  temporaryDirectories.push(directory);
+  const cachePath = path.join(directory, 'posts.json');
+
+  assert.deepEqual(await ensureGhostCache(cachePath), {source: 'fixture', count: fixture.posts.length});
+  assert.equal((await readGhostCache(cachePath))?.posts.length, fixture.posts.length);
+
+  const existingPost = normalizeGhostPost(fixture.posts[0]);
+  await writeGhostCacheAtomic([existingPost], cachePath);
+  assert.deepEqual(await ensureGhostCache(cachePath), {source: 'existing', count: 1});
+  assert.deepEqual((await readGhostCache(cachePath))?.posts, [existingPost]);
 });
 
 test('requires live Ghost credentials for an explicit refresh without leaking values', async () => {

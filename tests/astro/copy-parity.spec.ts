@@ -39,7 +39,6 @@ test.describe('approved copy baseline', {tag: '@copy-parity'}, () => {
 
   for (const route of contentRoutes) {
     test(`${route} retains its approved main content`, async ({page}, testInfo) => {
-      await page.route('**/ghost/api/content/posts/**', async request => request.abort());
       await page.goto(route, {waitUntil: 'domcontentloaded'});
 
       const main = page.getByRole('main');

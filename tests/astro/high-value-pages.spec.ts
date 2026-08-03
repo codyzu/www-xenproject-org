@@ -1,5 +1,4 @@
 import {expect, test} from '@playwright/test';
-import {mockGhostApi} from './fixtures/ghost-posts';
 
 const highValuePages = [
   {
@@ -91,7 +90,6 @@ const highValuePages = [
 test.describe('Astro spike high-value page guardrails', () => {
   for (const pageContract of highValuePages) {
     test(`renders ${pageContract.name}`, async ({page}) => {
-      await mockGhostApi(page);
       await page.goto(pageContract.path);
 
       const main = page.locator('main');

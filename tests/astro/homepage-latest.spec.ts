@@ -69,7 +69,9 @@ test.describe('homepage latest project momentum', () => {
 
     const latest = page.locator('[data-latest-news]');
     await expect(latest).toBeVisible();
-    await expect(latest.locator('article:not(.carousel-item--clone)')).toHaveCount(5);
+    const postCount = await latest.locator('article:not(.carousel-item--clone)').count();
+    expect(postCount).toBeGreaterThan(0);
+    expect(postCount).toBeLessThanOrEqual(10);
     await expect(latest).not.toHaveAttribute('data-ghost-content-api-key');
     await expect(latest).not.toHaveAttribute('data-ghost-api-url');
     expect(ghostRequests).toEqual([]);

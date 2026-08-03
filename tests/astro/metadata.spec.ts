@@ -1,5 +1,4 @@
 import {expect, test} from '@playwright/test';
-import {mockGhostApi} from './fixtures/ghost-posts';
 
 const siteDescription = 'The Xen Project develops an open source hypervisor for infrastructure, embedded, security-sensitive, and virtualization platforms that need clear separation and long-term control.';
 const siteUrl = new URL(process.env.SITE_URL ?? 'https://beta.xenproject.org');
@@ -7,8 +6,6 @@ const fallbackSocialImage = new URL('/img/logo-xen.svg', siteUrl).toString();
 const researchSummary = 'This foundational paper introduces Xen, detailing its architecture and performance benefits compared to other virtualization techniques.';
 
 test.describe('Astro metadata parity', () => {
-  test.beforeEach(async ({page}) => mockGhostApi(page));
-
   test('renders the homepage metadata contract', async ({page}) => {
     await page.goto('/');
 

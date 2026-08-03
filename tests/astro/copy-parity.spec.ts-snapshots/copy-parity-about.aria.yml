@@ -71,5 +71,4 @@
         - /url: /blog
     - region "Latest Xen Project news":
       - button "Previous news" [disabled]: 
-      - button "Next news" [disabled]: 
-    - paragraph: Latest news is temporarily unavailable.
+      - button "Next news": 

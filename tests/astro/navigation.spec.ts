@@ -1,6 +1,5 @@
 import {expect, type Locator, type Page, test} from '@playwright/test';
 import {contentRoutes} from '../../scripts/astro/content-routes.ts';
-import {mockGhostApi} from './fixtures/ghost-posts';
 
 const menuSections = [
   {
@@ -66,8 +65,6 @@ const topLevelLink = (item: Locator, name: string) =>
   item.locator('> a').filter({hasText: name});
 
 test.describe('Astro spike navigation shell', () => {
-  test.beforeEach(async ({page}) => mockGhostApi(page));
-
   test.beforeEach(async ({page}) => {
     await page.goto('/about/contact-us/');
   });
