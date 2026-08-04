@@ -68,10 +68,15 @@ test.describe('Phase 6 data-driven routes', () => {
     await page.goto('/resources/summit-2026/');
     await expect(page.getByRole('heading', {level: 1, name: 'Xen Summit 2026'})).toBeVisible();
     await expect(page.getByRole('link', {name: 'Register Now'}).first()).toHaveAttribute('href', 'https://register.linuxfoundation.org/xen-summit-2026');
+    await expect(page.getByRole('link', {name: 'View the Schedule'}).first()).toHaveAttribute('href', 'https://xensummit2026.sched.com/');
     await expect(page.getByRole('link', {name: 'Become a Sponsor'}).first()).toHaveAttribute('href', '/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf');
     await expect(page.getByText(/call for proposals|submit a proposal|submit a talk|july 7, 2026/i)).toHaveCount(0);
     await expect(page.locator('#registration-pricing .ticket-card')).toHaveCount(5);
-    await expect(page.locator('#registration-pricing .card__actions')).toHaveCount(4);
+    await expect(page.locator('#registration-pricing .card__actions')).toHaveCount(3);
+    const earlyBirdCard = page.locator('#registration-pricing .ticket-card').filter({has: page.getByRole('heading', {name: /In-Person Early Bird \$140 Closed/})});
+    await expect(earlyBirdCard).toHaveClass(/ticket-card--closed/);
+    await expect(earlyBirdCard.locator('s')).toHaveText('In-Person Early Bird $140');
+    await expect(earlyBirdCard.getByRole('link')).toHaveCount(0);
     const speakerCard = page.locator('#registration-pricing .ticket-card').filter({has: page.getByRole('heading', {name: 'Speaker Free'})});
     await expect(speakerCard.getByRole('link')).toHaveCount(0);
     const jumpLinks = page.getByText('Jump to:').getByRole('link');

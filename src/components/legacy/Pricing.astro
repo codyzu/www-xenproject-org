@@ -19,8 +19,10 @@ const suffix = id.replaceAll(/[^a-z0-9]+/gi, '-').toLowerCase();
       {(['inPerson', 'virtual'] as const).map((group) => (
         <div class:list={['ticket-group', `ticket-group-${group === 'inPerson' ? 'in-person' : 'virtual'}`]} data-ticket-group={group}>
           {ticketSet.tickets[group].map((ticket) => (
-            <div class="card ticket-card">
-              <h3 class="card__label">{ticket.title}</h3>
+            <div class:list={['card ticket-card', {'ticket-card--closed': !ticket.enabled}]}>
+              <h3 class="card__label">
+                {ticket.enabled ? ticket.title : <><s>{ticket.title}</s><span class="ticket-status">Closed</span></>}
+              </h3>
               <div class="card__content" set:html={marked.parse(ticket.description)} />
               {ticket.enabled && ticket.link && <div class="card__actions"><a href={ticket.link} class="join-button btn btn-tertiary">{ticket.linkText ?? 'Register'} <i class="fas fa-arrow-up-right-from-square"></i></a></div>}
             </div>
