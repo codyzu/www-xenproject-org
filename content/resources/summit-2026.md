@@ -11,7 +11,7 @@ keywords:
   - hypervisor technology
   - community event
 date: 2026-05-18T00:00:00+02:00
-lastmod: 2026-07-28T00:00:00+02:00
+lastmod: 2026-08-04T00:00:00+02:00
 eventDates: "September 15–17, 2026"
 eventEnd: 2026-09-17
 eventLocation: "HEADS office, Einsteinring 30, 85609 Aschheim, Germany"
@@ -30,7 +30,7 @@ aliases:
   title="Xen Summit 2026"
   locationDate="HEADS office, Munich, Germany · September 15–17, 2026"
   format="Hybrid event · 2 days of talks + 1 day of design sessions"
-  badges="Registration Open|Early Bird Until July 31, 2026|Schedule Coming Soon"
+  badges="Registration Open|Schedule Live|Early Bird Closed"
   backgroundSrc="/assets/summit-2026/hero.webp"
   backgroundMobileSrc="/assets/summit-2026/hero-mobile.webp"
   backgroundAlt="Munich cityscape hero artwork for Xen Summit 2026"
@@ -42,8 +42,8 @@ aliases:
   accentHeight="1170"
   primaryLabel="Register Now"
   primaryHref="https://register.linuxfoundation.org/xen-summit-2026"
-  secondaryLabel="Become a Sponsor"
-  secondaryHref="/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf"
+  secondaryLabel="View the Schedule"
+  secondaryHref="https://xensummit2026.sched.com/"
 >}}
 
 {{<section>}}
@@ -141,9 +141,7 @@ Xen Summit 2026 is proudly hosted by Renesas in Munich, Germany. The event will 
 {{<md class="content-markdown">}}
 ### Registration
 
-Registration is open.
-
-Early Bird pricing is available until **July 31, 2026**.
+Registration is open. Early Bird pricing has ended, and standard pricing is now in effect.
 
 <p class="uno-mt-6">
   <a href="https://register.linuxfoundation.org/xen-summit-2026">
@@ -188,7 +186,9 @@ The following hotels are located within walking distance of the Xen Summit venue
 {{<md class="content-markdown">}}
 ### Program
 
-The Xen Summit 2026 program is currently being finalized. The full schedule will be published soon.
+**The Xen Summit 2026 schedule is live.** Explore the talks, speakers, and session times, then build your personal agenda.
+
+[View the full schedule](https://xensummit2026.sched.com/)
 
 Sessions will cover Xen development, embedded and automotive virtualization, safety, security, cloud infrastructure, Arm platforms, tooling, testing, and real-world deployments.
 {{</md>}}
@@ -203,12 +203,12 @@ Sessions will cover Xen development, embedded and automotive virtualization, saf
 ## Registration
 
 <div class="uno-rounded-lg uno-border uno-border-brand-fill/30 uno-bg-brand-fill/8 uno-p-5 uno-mb-6 dark:uno-bg-brand-fill/15">
-  <p class="uno-m-0"><strong>Early Bird registration ends July 31, 2026.</strong></p>
+  <p class="uno-m-0"><strong>Early Bird pricing is closed.</strong> Standard registration is now available.</p>
 </div>
 
 Registration is open for Xen Summit 2026. Register now to attend in Munich or online.
 
-Early Bird pricing runs until **July 31, 2026**. The standard in-person attendee price has been reduced to **$200**.
+The standard in-person attendee price is **$200**.
 {{</md>}}
 
 <p class="uno-mt-6">
@@ -225,7 +225,9 @@ Early Bird pricing runs until **July 31, 2026**. The standard in-person attendee
 {{<md class="content-markdown">}}
 ## Schedule
 
-The detailed Xen Summit 2026 schedule is coming soon.
+**The schedule is live.** Browse sessions, meet the speakers, and plan your summit on Sched.
+
+[View the full schedule](https://xensummit2026.sched.com/)
 
 The high-level event timeline is:
 
@@ -313,7 +315,7 @@ Xen Summit 2026 follows the [Xen Project Code of Conduct](/contribute/code-of-co
 {{<section md="true">}}
 ## Stay Informed
 
-Follow Xen Project channels for schedule announcements, hotel information, social event details, and other Xen Summit updates. Join the community on [Matrix](/resources/matrix/), subscribe to the [mailing lists](/resources/mailing-lists/), or follow Xen Project on [LinkedIn](https://www.linkedin.com/company/the-xen-project/).
+Follow Xen Project channels for hotel information, social event details, and other Xen Summit updates. Join the community on [Matrix](/resources/matrix/), subscribe to the [mailing lists](/resources/mailing-lists/), or follow Xen Project on [LinkedIn](https://www.linkedin.com/company/the-xen-project/).
 {{</section>}}
 
 {{<section class="section-square-primary txt-c">}}

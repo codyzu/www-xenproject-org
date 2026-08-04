@@ -3,15 +3,16 @@ tickets:
     - title: "In-Person Early Bird $140"
       price: "$140"
       description: |
-        - Available until **July 31, 2026**
+        - Early Bird pricing closed on **July 31, 2026**
         - Access to the in-person talks and design sessions
+      enabled: false
       link: "https://register.linuxfoundation.org/xen-summit-2026"
       linkText: "Register now"
 
     - title: "In-Person Standard $200"
       price: "$200"
       description: |
-        - Standard in-person rate after Early Bird pricing ends
+        - Standard in-person registration is now available
         - Access to the in-person talks and design sessions
       link: "https://register.linuxfoundation.org/xen-summit-2026"
       linkText: "Register now"
