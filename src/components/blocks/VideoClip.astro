@@ -1,0 +1,187 @@
+---
+import Button from '../primitives/Button.astro';
+import Heading from '../primitives/Heading.astro';
+import Stack from '../primitives/Stack.astro';
+import Surface from '../primitives/Surface.astro';
+import Text from '../primitives/Text.astro';
+
+type VideoClipVariant = 'default' | 'featured' | 'compact';
+
+type Props = {
+  title: string;
+  summary?: string;
+  youtubeVideoId: string;
+  startSeconds?: number;
+  endSeconds?: number;
+  speaker?: string;
+  company?: string;
+  event?: string;
+  talkTitle?: string;
+  eyebrow?: string;
+  variant?: VideoClipVariant;
+};
+
+const {
+  title,
+  summary,
+  youtubeVideoId,
+  startSeconds = 0,
+  endSeconds,
+  speaker,
+  company,
+  event,
+  talkTitle,
+  eyebrow = 'Featured video',
+  variant = 'default',
+} = Astro.props as Props;
+
+const fullVideoUrl = `https://www.youtube.com/watch?v=${encodeURIComponent(youtubeVideoId)}`;
+const thumbnailUrl = `https://i.ytimg.com/vi/${encodeURIComponent(youtubeVideoId)}/hqdefault.jpg`;
+const clipDuration = endSeconds && endSeconds > startSeconds ? endSeconds - startSeconds : undefined;
+const formattedDuration = clipDuration
+  ? `${Math.floor(clipDuration / 60)}:${String(clipDuration % 60).padStart(2, '0')}`
+  : undefined;
+const attribution = [speaker, company].filter(Boolean).join(', ');
+const iframeTitle = talkTitle ? `${talkTitle} — video clip` : `${title} — video clip`;
+---
+
+<Surface
+  as="article"
+  tone="2"
+  border="strong"
+  radius="lg"
+  shadow={variant === 'featured' ? 'md' : 'sm'}
+  padding="none"
+  class="uno-overflow-hidden"
+  data-video-clip
+>
+  <div
+    class="uno-grid uno-min-w-0 uno-grid-cols-1 uno-items-center uno-gap-5 uno-p-[clamp(var(--xp-space-4),3vw,var(--xp-space-6))] xl:uno-grid-cols-[minmax(20rem,0.82fr)_minmax(32rem,1.18fr)] xl:uno-gap-6"
+    data-video-clip-layout
+  >
+    <div class="uno-min-w-0 uno-max-w-xp-content" data-video-clip-copy>
+      <Stack gap="5">
+        <Stack gap="3">
+          <Text size="eyebrow" tone="accent-primary">{eyebrow}</Text>
+          <Heading as="h2" size="heading-l">{title}</Heading>
+          {summary && <Text>{summary}</Text>}
+        </Stack>
+
+        {(attribution || event || talkTitle) && (
+          <Stack gap="1">
+            {attribution && <Text size="small" tone="primary" class="uno-font-semibold">{attribution}</Text>}
+            {event && <Text size="caption" tone="muted">{event}</Text>}
+            {talkTitle && <Text size="caption" tone="muted">{talkTitle}</Text>}
+          </Stack>
+        )}
+
+        <div>
+          <Button href={fullVideoUrl} variant="text" target="_blank" rel="noreferrer">
+            Watch the full talk
+            <span class="i-carbon-arrow-up-right uno-ml-1" aria-hidden="true"></span>
+          </Button>
+        </div>
+      </Stack>
+    </div>
+
+    <div
+      class="uno-group uno-relative uno-aspect-video uno-min-w-0 uno-overflow-hidden uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-0 uno-shadow-xp-sm"
+      data-video-clip-player
+      data-video-id={youtubeVideoId}
+      data-start={startSeconds}
+      data-end={endSeconds}
+      data-iframe-title={iframeTitle}
+    >
+      <img
+        class="uno-block uno-h-full uno-w-full uno-object-cover uno-opacity-82 uno-transition-[opacity,transform] uno-duration-[var(--xp-motion-slow)] uno-ease-[var(--xp-ease-standard)] group-hover:uno-scale-[1.01] group-hover:uno-opacity-94 motion-reduce:uno-transition-none motion-reduce:group-hover:uno-scale-100"
+        src={thumbnailUrl}
+        alt=""
+        width="1280"
+        height="720"
+        loading="lazy"
+        decoding="async"
+      />
+      <button
+        class="video-clip__play xen-focus uno-absolute uno-left-1/2 uno-top-1/2 uno-inline-flex uno-min-h-12 uno-cursor-pointer uno-items-center uno-gap-2 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-strong uno-bg-xp-accent-primary uno-px-4 uno-py-3 uno-font-sans uno-font-bold uno-text-xp-accent-primary-text uno-transition-[background-color,transform] uno-duration-[var(--xp-motion-base)] uno-ease-[var(--xp-ease-standard)] hover:uno-bg-xp-accent-primary-strong active:uno-bg-xp-accent-primary-active motion-reduce:uno-transition-none"
+        type="button"
+        aria-label={`Play ${formattedDuration ? `${formattedDuration} clip: ` : ''}${title}`}
+        data-video-clip-play
+      >
+        <span class="i-carbon-play-filled uno-text-xl" aria-hidden="true"></span>
+        <span>Play clip</span>
+      </button>
+      {formattedDuration && (
+        <span
+          class="uno-absolute uno-bottom-3 uno-right-3 uno-rounded-xp-sm uno-border uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(5_8_14_/_0.88)] uno-px-2 uno-py-1 uno-font-mono uno-text-[length:var(--xp-type-caption)] uno-text-xp-text-primary"
+          aria-label={`Clip duration ${formattedDuration}`}
+        >
+          {formattedDuration}
+        </span>
+      )}
+      <noscript>
+        <a
+          class="xen-focus uno-absolute uno-bottom-3 uno-left-3 uno-text-xp-text-primary"
+          href={`${fullVideoUrl}&t=${startSeconds}s`}
+        >
+          Watch this clip on YouTube
+        </a>
+      </noscript>
+    </div>
+  </div>
+</Surface>
+
+<script>
+  const initializeVideoClips = () => {
+    document.querySelectorAll<HTMLElement>('[data-video-clip-player]').forEach((player) => {
+      const playButton = player.querySelector<HTMLButtonElement>('[data-video-clip-play]');
+      if (!playButton || playButton.dataset.ready === 'true') return;
+      playButton.dataset.ready = 'true';
+
+      playButton.addEventListener('click', () => {
+        const videoId = player.dataset.videoId;
+        if (!videoId) return;
+
+        const parameters = new URLSearchParams({
+          start: player.dataset.start ?? '0',
+          autoplay: '1',
+          rel: '0',
+          playsinline: '1',
+        });
+        if (player.dataset.end) parameters.set('end', player.dataset.end);
+
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${parameters}`;
+        iframe.title = player.dataset.iframeTitle ?? 'YouTube video clip';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        iframe.allowFullscreen = true;
+        iframe.className = 'uno-h-full uno-w-full uno-border-0';
+        iframe.addEventListener('load', () => iframe.focus(), {once: true});
+        player.replaceChildren(iframe);
+      });
+    });
+  };
+
+  initializeVideoClips();
+  document.addEventListener('astro:page-load', initializeVideoClips);
+</script>
+
+<style>
+  .video-clip__play {
+    transform: translate(-50%, -50%);
+  }
+
+  .video-clip__play:hover {
+    transform: translate(-50%, calc(-50% - 2px));
+  }
+
+  .video-clip__play:active {
+    transform: translate(-50%, -50%);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .video-clip__play:hover {
+      transform: translate(-50%, -50%);
+    }
+  }
+</style>

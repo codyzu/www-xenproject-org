@@ -95,10 +95,10 @@ test.describe('redesigned homepage', () => {
       'href',
       '/about/become-a-member/',
     );
-    const launchSectionOrder = await main.locator('#evidence-in-use, #safety-initiative, #members, #latest, #community, #next-step').evaluateAll(
+    const launchSectionOrder = await main.locator('#evidence-in-use, #automotive-momentum, #safety-initiative, #members, #latest, #community, #next-step').evaluateAll(
       elements => elements.map(element => element.id),
     );
-    expect(launchSectionOrder).toEqual(['evidence-in-use', 'safety-initiative', 'members', 'latest', 'community', 'next-step']);
+    expect(launchSectionOrder).toEqual(['evidence-in-use', 'automotive-momentum', 'safety-initiative', 'members', 'latest', 'community', 'next-step']);
     await expect(main.getByRole('heading', {name: 'Sustained by organizations with a stake in open virtualization.'})).toBeVisible();
     const latest = main.locator('#latest');
     await expect(latest.getByText('Driving virtualization forward', {exact: true})).toBeVisible();

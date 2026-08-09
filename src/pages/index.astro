@@ -7,6 +7,7 @@ import FeatureGrid from '../components/blocks/FeatureGrid.astro';
 import Hero from '../components/blocks/Hero.astro';
 import LogoCloud from '../components/blocks/LogoCloud.astro';
 import Stats from '../components/blocks/Stats.astro';
+import VideoClip from '../components/blocks/VideoClip.astro';
 import Badge from '../components/primitives/Badge.astro';
 import Button from '../components/primitives/Button.astro';
 import Card from '../components/primitives/Card.astro';
@@ -264,6 +265,24 @@ try {
     columns="3"
     features={projectFeatures}
   />
+
+  <Section id="automotive-momentum" surface="1">
+    <Container>
+      <VideoClip
+        eyebrow="Xen in automotive"
+        title="A major year for Xen in automotive"
+        summary="At Xen Summit 2025, Stefano Stabellini highlighted a period of major automotive momentum for Xen, including new members, safety progress, and deeper collaboration with Automotive Grade Linux."
+        youtubeVideoId="J6q67jkG5DQ"
+        startSeconds={17}
+        endSeconds={74}
+        speaker="Stefano Stabellini"
+        company="AMD"
+        event="Xen Summit 2025"
+        talkTitle="Xen in Safety Systems: Hardware Domain and Control Domain separation"
+        variant="featured"
+      />
+    </Container>
+  </Section>
 
   <Section id="safety-initiative">
     <Container>
