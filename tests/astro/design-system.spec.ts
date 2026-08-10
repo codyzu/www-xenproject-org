@@ -21,6 +21,10 @@ test.describe('Internal design system', () => {
     await expect(main.getByRole('heading', {name: 'Pages should feel related, not templated.'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Solution-page arc'})).toBeVisible();
     await expect(main.getByRole('heading', {name: 'Prominent workflows, rendered as engineering content.'})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'A restrained accent for selected raised surfaces.'})).toBeVisible();
+    const gradientBorder = main.locator('[data-gradient-border]').first();
+    await expect(gradientBorder).toHaveCSS('height', '2px');
+    await expect(gradientBorder).toHaveCSS('position', 'absolute');
     const commandExample = main.locator('.command-example').filter({hasText: 'Build Xen and exercise the XTF runner'});
     await expect(commandExample).toHaveCount(1);
     await expect(commandExample).toHaveAttribute('data-command-example', 'featured');
@@ -34,6 +38,11 @@ test.describe('Internal design system', () => {
     const documentationExample = main.locator('.command-example').filter({hasText: 'Capture an XTF smoke-test log'});
     await expect(documentationExample).toHaveAttribute('data-command-example', 'documentation');
     await expect(documentationExample.locator('.expressive-code .title')).toHaveText('xtf-example.log');
+    const videoClip = main.locator('#block-video-clip [data-video-clip]');
+    await expect(main.getByRole('heading', {name: 'A focused excerpt before the full talk.'})).toBeVisible();
+    await expect(videoClip).toHaveCount(1);
+    await expect(videoClip.locator('[data-gradient-border]')).toHaveCount(1);
+    await expect(videoClip.locator('iframe')).toHaveCount(0);
     await expect(main.locator('#internal-layered-platform[data-illustration-scene="layered-platform"]')).toBeVisible();
     await expect(main.locator('#illustrations [data-illustration-overlay="glow"]')).toHaveAttribute('aria-hidden', 'true');
     await expect(main.locator('#internal-layered-platform [data-platform-layer="hypervisor"]')).toHaveAttribute('data-platform-layer-asset', 'image');

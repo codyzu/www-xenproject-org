@@ -1,5 +1,6 @@
 ---
 import {Code} from 'astro-expressive-code/components';
+import GradientBorder from '../primitives/GradientBorder.astro';
 import Heading from '../primitives/Heading.astro';
 import Text from '../primitives/Text.astro';
 
@@ -17,6 +18,7 @@ type Props = {
   highlightedLines?: Array<number | string>;
   variant?: Variant;
   showPrompts?: boolean;
+  showGradientBorder?: boolean;
   headingLevel?: HeadingLevel;
   class?: string;
 };
@@ -32,6 +34,7 @@ const {
   highlightedLines = [],
   variant = 'featured',
   showPrompts = variant === 'featured' && ['bash', 'sh', 'shell', 'zsh'].includes(language),
+  showGradientBorder = true,
   headingLevel = 'h3',
   class: className = '',
 } = Astro.props as Props;
@@ -49,6 +52,7 @@ const hasAction = Astro.slots.has('action');
   ]}
   data-command-example={variant}
 >
+  {showGradientBorder && <GradientBorder />}
   <div class="command-example__header">
     {eyebrow && <Text size="eyebrow" tone="accent-primary">{eyebrow}</Text>}
     <Heading as={headingLevel} size={isFeatured ? 'heading-l' : 'heading-m'}>{title}</Heading>
@@ -87,15 +91,6 @@ const hasAction = Astro.slots.has('action');
       linear-gradient(145deg, rgb(133 194 65 / 0.07), transparent 32rem),
       var(--xp-surface-1);
     box-shadow: var(--xp-shadow-lg);
-  }
-
-  .command-example::before {
-    position: absolute;
-    inset: 0 auto auto 0;
-    width: min(22rem, 62%);
-    height: 2px;
-    background: linear-gradient(90deg, var(--xp-accent-primary), var(--xp-accent-secondary), transparent);
-    content: "";
   }
 
   .command-example__header {

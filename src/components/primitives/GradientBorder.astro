@@ -1,0 +1,16 @@
+---
+type Props = {
+  class?: string;
+};
+
+const {class: className = ''} = Astro.props as Props;
+---
+
+<span
+  aria-hidden="true"
+  data-gradient-border
+  class:list={[
+    'uno-pointer-events-none uno-absolute uno-inset-x-0 uno-top-0 uno-h-0.5 uno-w-[min(22rem,62%)] uno-bg-[linear-gradient(90deg,var(--xp-accent-primary),var(--xp-accent-secondary),transparent)]',
+    className,
+  ]}
+></span>

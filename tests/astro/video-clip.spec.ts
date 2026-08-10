@@ -23,6 +23,8 @@ test.describe("homepage video clip", () => {
       "href",
       "https://www.youtube.com/watch?v=J6q67jkG5DQ",
     );
+    await expect(section.locator("[data-gradient-border]")).toHaveCount(1);
+    await expect(page.locator("#try-xen [data-gradient-border]")).toHaveCount(0);
   });
 
   test("loads the privacy-enhanced bounded embed only after keyboard activation", async ({ page }) => {

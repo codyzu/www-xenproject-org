@@ -8,6 +8,7 @@ import Card from '../../components/primitives/Card.astro';
 import Cluster from '../../components/primitives/Cluster.astro';
 import Container from '../../components/primitives/Container.astro';
 import Grid from '../../components/primitives/Grid.astro';
+import GradientBorder from '../../components/primitives/GradientBorder.astro';
 import Heading from '../../components/primitives/Heading.astro';
 import Section from '../../components/primitives/Section.astro';
 import Split from '../../components/primitives/Split.astro';
@@ -486,8 +487,9 @@ const resources = [
         radius="lg"
         shadow="sm"
         padding="lg"
-        class="xp-agl-spotlight"
+        class="xp-agl-spotlight uno-relative uno-overflow-hidden"
       >
+        <GradientBorder />
         <div class="xp-agl-spotlight__layout">
           <Stack gap="3" class="uno-min-w-0">
             <div class="uno-flex uno-items-center uno-gap-2">

@@ -11,6 +11,7 @@ import FeatureGrid from '../../components/blocks/FeatureGrid.astro';
 import Hero from '../../components/blocks/Hero.astro';
 import LogoCloud from '../../components/blocks/LogoCloud.astro';
 import Stats from '../../components/blocks/Stats.astro';
+import VideoClip from '../../components/blocks/VideoClip.astro';
 import PlatformLayersDiagram from '../../components/diagrams/PlatformLayersDiagram.astro';
 import LayeredPlatform from '../../components/illustrations/scenes/LayeredPlatform.astro';
 import Badge from '../../components/primitives/Badge.astro';
@@ -20,6 +21,7 @@ import Cluster from '../../components/primitives/Cluster.astro';
 import Container from '../../components/primitives/Container.astro';
 import Divider from '../../components/primitives/Divider.astro';
 import Grid from '../../components/primitives/Grid.astro';
+import GradientBorder from '../../components/primitives/GradientBorder.astro';
 import Heading from '../../components/primitives/Heading.astro';
 import Section from '../../components/primitives/Section.astro';
 import Split from '../../components/primitives/Split.astro';
@@ -776,6 +778,16 @@ export LOGFILE="$PWD/xtf-example.log"
               ))}
             </Grid>
           </Split>
+          <Surface tone="2" border="strong" padding="lg" radius="lg" shadow="sm" class="uno-relative uno-overflow-hidden">
+            <GradientBorder />
+            <Stack gap="3" class="uno-max-w-xp-content">
+              <Text size="mono-small" tone="accent-primary" class="uno-font-semibold">GradientBorder</Text>
+              <Heading as="h3" size="heading-m">A restrained accent for selected raised surfaces.</Heading>
+              <Text size="caption">
+                Place the primitive inside a positioned, overflow-hidden container. Use it occasionally to identify a featured technical example, spotlight, or media block—not as the default border for every card.
+              </Text>
+            </Stack>
+          </Surface>
         </Stack>
       </Container>
     </Section>
@@ -1189,6 +1201,33 @@ export LOGFILE="$PWD/xtf-example.log"
               headingLevel="h3"
             />
           </div>
+        </Stack>
+      </Container>
+    </Section>
+
+    <Section id="block-video-clip" surface="1">
+      <Container>
+        <Stack gap="6">
+          <Stack gap="3" class="uno-max-w-xp-content">
+            <Text size="eyebrow" tone="muted">VideoClip block</Text>
+            <Heading size="heading-xl">A focused excerpt before the full talk.</Heading>
+            <Text>
+              VideoClip presents an editorially selected segment with speaker and event context. It loads the privacy-enhanced YouTube player only after the visitor chooses to play it.
+            </Text>
+          </Stack>
+          <VideoClip
+            eyebrow="Xen in automotive"
+            title="A major year for Xen in automotive"
+            summary="A short Xen Summit excerpt showing how a focused clip can introduce a technical topic without embedding the full player on page load."
+            youtubeVideoId="J6q67jkG5DQ"
+            startSeconds={17}
+            endSeconds={74}
+            speaker="Stefano Stabellini"
+            company="AMD"
+            event="Xen Summit 2025"
+            talkTitle="Xen in Safety Systems: Hardware Domain and Control Domain separation"
+            variant="featured"
+          />
         </Stack>
       </Container>
     </Section>
