@@ -106,6 +106,62 @@ test.describe('Safety launch integration', () => {
     await expectNoHorizontalOverflow(page);
   });
 
+  test('places the certification explanation between committee context and implementation detail', async ({page}) => {
+    await page.goto('/technology/safety/');
+
+    const section = page.locator('#why-certification-matters');
+    await expect(section.getByText('Why safety certification matters', {exact: true})).toBeVisible();
+    await expect(section.getByRole('heading', {
+      level: 2,
+      name: 'For critical systems, certification is a requirement.',
+    })).toBeVisible();
+    await expect(section).toContainText('certification is often a prerequisite for adoption');
+    await expect(section.getByText('Ayan Kumar Halder, AMD', {exact: true})).toBeVisible();
+    await expect(section.getByText('Xen Summit 2025', {exact: true})).toBeVisible();
+    await expect(section.getByText('Xen Functional Safety Certification (an update)', {exact: true})).toBeVisible();
+    await expect(section.locator('iframe')).toHaveCount(0);
+    await expect(section.getByRole('button', {
+      name: 'Play 0:53 clip: For critical systems, certification is a requirement.',
+    })).toBeVisible();
+    await expect(section.getByRole('link', {name: 'Watch the full talk'})).toHaveAttribute(
+      'href',
+      'https://www.youtube.com/watch?v=dkTOcDkHlqU',
+    );
+
+    const order = await page.locator('#safety-committee, #why-certification-matters, #founding-contributors, #evidence-tooling').evaluateAll(
+      elements => elements.map(element => element.id),
+    );
+    expect(order).toEqual([
+      'safety-committee',
+      'why-certification-matters',
+      'founding-contributors',
+      'evidence-tooling',
+    ]);
+  });
+
+  test('loads the bounded safety clip after keyboard activation', async ({page}) => {
+    await page.goto('/technology/safety/');
+
+    const section = page.locator('#why-certification-matters');
+    const playButton = section.getByRole('button', {
+      name: 'Play 0:53 clip: For critical systems, certification is a requirement.',
+    });
+    await playButton.focus();
+    await page.keyboard.press('Enter');
+
+    const iframe = section.locator('iframe');
+    await expect(iframe).toHaveCount(1);
+    await expect(iframe).toHaveAttribute('src', /youtube-nocookie\.com\/embed\/dkTOcDkHlqU/);
+    await expect(iframe).toHaveAttribute('src', /start=106/);
+    await expect(iframe).toHaveAttribute('src', /end=159/);
+    await expect(iframe).toHaveAttribute('src', /autoplay=1/);
+    await expect(iframe).toHaveAttribute(
+      'title',
+      'Xen Functional Safety Certification (an update) — video clip',
+    );
+    await expectNoHorizontalOverflow(page);
+  });
+
   test('keeps recognition marks legible and captures their responsive treatments', async ({page}, testInfo) => {
     test.setTimeout(60_000);
     await page.addInitScript(() => localStorage.setItem('cookieConsent', 'false'));

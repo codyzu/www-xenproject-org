@@ -3,6 +3,7 @@ import CTA from '../../components/blocks/CTA.astro';
 import Callout from '../../components/blocks/Callout.astro';
 import FeatureGrid from '../../components/blocks/FeatureGrid.astro';
 import Hero from '../../components/blocks/Hero.astro';
+import VideoClip from '../../components/blocks/VideoClip.astro';
 import PlatformLayersDiagram from '../../components/diagrams/PlatformLayersDiagram.astro';
 import Button from '../../components/primitives/Button.astro';
 import Card from '../../components/primitives/Card.astro';
@@ -510,6 +511,23 @@ const resources = [
           <span slot="icon" class="i-carbon-group"></span>
         </Callout>
       </Stack>
+    </Container>
+  </Section>
+
+  <Section id="why-certification-matters" spacing="technical">
+    <Container>
+      <VideoClip
+        eyebrow="Why safety certification matters"
+        title="For critical systems, certification is a requirement."
+        summary="In automotive, industrial, avionics, and other safety-critical systems, certification is often a prerequisite for adoption. At Xen Summit 2025, Ayan Kumar Halder of AMD explained why this work matters for Xen and the systems built on it."
+        youtubeVideoId="dkTOcDkHlqU"
+        startSeconds={106}
+        endSeconds={159}
+        speaker="Ayan Kumar Halder"
+        company="AMD"
+        event="Xen Summit 2025"
+        talkTitle="Xen Functional Safety Certification (an update)"
+      />
     </Container>
   </Section>
 
