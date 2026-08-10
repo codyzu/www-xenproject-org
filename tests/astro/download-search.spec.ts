@@ -39,7 +39,7 @@ test.describe('download search states', () => {
     await expect(results.getByRole('heading', {name: 'Xen', exact: true})).toBeVisible();
     const resultIconGap = await resultLink.evaluate(link => {
       const label = link.querySelector('span')?.getBoundingClientRect();
-      const icon = link.querySelector('i')?.getBoundingClientRect();
+      const icon = link.querySelector('[aria-hidden="true"]')?.getBoundingClientRect();
       return label && icon ? icon.left - label.right : 0;
     });
     expect(resultIconGap).toBeGreaterThan(0);
@@ -52,16 +52,21 @@ test.describe('download search states', () => {
     expect(requests).toBe(1);
   });
 
-  test('keeps visible spacing between download labels and arrows', async ({page}) => {
+  test('renders the curated XCP-ng artifact set and respects reduced motion', async ({page}) => {
+    await page.emulateMedia({reducedMotion: 'reduce'});
     await page.goto('/resources/downloads/');
 
-    const iconGaps = await page.locator('.vertical-lists .list-column--sublists a').evaluateAll(links => links.map(link => {
-      const label = link.querySelector('span')?.getBoundingClientRect();
-      const icon = link.querySelector('i')?.getBoundingClientRect();
-      return label && icon ? icon.left - label.right : 0;
-    }));
-    expect(iconGaps.length).toBeGreaterThan(0);
-    expect(iconGaps.every(gap => gap > 0)).toBe(true);
+    const xen = page.locator('[data-download-group="xen"]');
+    const xcpng = page.locator('[data-download-group="xcpng"]');
+    await expect(xen.getByText('Source', {exact: true})).toHaveClass(/uno-text-xp-accent-primary/);
+    await expect(xcpng.getByText('Installer', {exact: true})).toHaveClass(/uno-text-xp-text-muted/);
+    await expect(xcpng.getByRole('link', {name: /Standard installer ISO/})).toHaveAttribute('href', /xcp-ng-8\.3\.0-20250606\.2\.iso\?https=1$/);
+    await expect(xcpng.getByRole('link', {name: /Network installer ISO/})).toHaveAttribute('href', /netinstall\.iso\?https=1$/);
+    await expect(xcpng.getByRole('link', {name: /SHA256 checksums/})).toHaveAttribute('href', /SHA256SUMS\?https=1$/);
+    await expect(xcpng.getByRole('link', {name: /Checksum signature/})).toHaveAttribute('href', /SHA256SUMS\.asc\?https=1$/);
+    await expect(page.locator('[data-download-group="windowspvdrivers"]')).toHaveCount(0);
+    await expect(page.getByText('Windows PV Drivers')).toHaveCount(0);
+    expect(await page.locator('.release-console').evaluate(element => getComputedStyle(element, '::after').animationName)).toBe('none');
   });
 
   test('reports loading and a distinct HTTP failure', async ({page}) => {

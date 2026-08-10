@@ -7,9 +7,9 @@ test.describe('Astro spike code of conduct page', () => {
     await expect(page).toHaveTitle(/Xen Project Code of Conduct/i);
     await expect(page.getByRole('heading', {level: 1, name: /Xen Project Code of Conduct/i})).toBeVisible();
     await expect(page.getByRole('heading', {level: 2, name: /Our Pledge/i})).toBeVisible();
-    await expect(page.locator('header')).toBeVisible();
+    await expect(page.getByRole('banner')).toBeVisible();
     await expect(page.locator('main')).toBeVisible();
-    await expect(page.locator('footer')).toBeVisible();
+    await expect(page.getByRole('contentinfo')).toBeVisible();
 
     await page.evaluate(async () => document.fonts.ready);
 

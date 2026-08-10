@@ -1,24 +1,58 @@
 ---
-import DownloadLists from '../../components/legacy/DownloadLists.astro';
-import DownloadSearch from '../../components/legacy/DownloadSearch.astro';
-import Section from '../../components/legacy/Section.astro';
+import Hero from '../../components/blocks/Hero.astro';
+import DownloadArchiveSearch from '../../components/pages/downloads/DownloadArchiveSearch.astro';
+import DownloadReleaseCard from '../../components/pages/downloads/DownloadReleaseCard.astro';
+import ReleaseConsoleVisual from '../../components/pages/downloads/ReleaseConsoleVisual.astro';
+import Container from '../../components/primitives/Container.astro';
+import Grid from '../../components/primitives/Grid.astro';
+import Heading from '../../components/primitives/Heading.astro';
+import Section from '../../components/primitives/Section.astro';
+import Stack from '../../components/primitives/Stack.astro';
+import Text from '../../components/primitives/Text.astro';
 import {latestDownloads} from '../../data/downloads';
-import LegacyLayout from '../../layouts/LegacyLayout.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'Downloads';
-const description = 'Find all the relevant resources to download on this page.';
+const description = 'Choose current Xen ecosystem releases, installer media, source archives, and verification artifacts from one inspectable release console.';
 const keywords = ['Xen Project', 'downloads', 'virtualization software', 'installation files', 'software packages', 'hypervisor tools', 'open-source resources'];
 ---
 
-<LegacyLayout title={title} description={description} keywords={keywords}>
-  <article class="article page-single">
-    <div class="container page-top"><h1>{title}</h1><div class="description">{description}</div></div>
-    <div class="single-content">
-      <Section>
-        <DownloadSearch />
-        <div class="mg-t-xl"><DownloadLists groups={latestDownloads} /></div>
-      </Section>
-    </div>
-  </article>
-</LegacyLayout>
+<BaseLayout title={title} description={description} keywords={keywords} publicShell>
+  <Hero
+    eyebrow="Release console"
+    title={title}
+    statement="Choose the right layer. Get the current artifact."
+    description="Download the Xen hypervisor source, deploy a complete XCP-ng platform, or build focused Mirage OS unikernels. Each channel stays distinct, current, and inspectable."
+    layout="media-dominant"
+  >
+    <Fragment slot="media"><ReleaseConsoleVisual groups={latestDownloads} /></Fragment>
+  </Hero>
 
+  <Section id="current-releases" surface="0">
+    <Container>
+      <Stack gap="7">
+        <Stack gap="4" class="uno-max-w-xp-content">
+          <Text size="eyebrow" tone="accent-primary">Current channels</Text>
+          <Heading as="h2" size="heading-xl">Start from the release that matches your system</Heading>
+          <Text size="lead">The hypervisor, platform, and library OS solve different problems. Their release artifacts are presented independently so ownership stays clear.</Text>
+        </Stack>
+        <Grid columns="3" gap="5" class="uno-items-stretch">
+          {latestDownloads.map((group) => <DownloadReleaseCard group={group} />)}
+        </Grid>
+      </Stack>
+    </Container>
+  </Section>
+
+  <Section id="release-archive" surface="1">
+    <Container>
+      <Stack gap="6">
+        <Stack gap="4" class="uno-max-w-xp-content">
+          <Text size="eyebrow" tone="accent-primary">Release archive</Text>
+          <Heading as="h2" size="heading-xl">Find an earlier version</Heading>
+          <Text size="lead">Search the complete checked-in release history by project and version. Current release cards above remain available even if the upstream archive is temporarily unavailable.</Text>
+        </Stack>
+        <DownloadArchiveSearch />
+      </Stack>
+    </Container>
+  </Section>
+</BaseLayout>

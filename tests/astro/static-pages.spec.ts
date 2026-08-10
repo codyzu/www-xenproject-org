@@ -33,8 +33,8 @@ test.describe('Phase 5 static routes', () => {
       await expect(page).toHaveTitle(new RegExp(title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i'));
       await expect(page.getByRole('heading', {level: 1, name: customH1 ?? title})).toBeVisible();
       await expect(page.getByRole('heading', {name: heading, exact: false}).first()).toBeVisible();
-      await expect(page.locator('header')).toBeVisible();
-      await expect(page.locator('footer')).toBeVisible();
+      await expect(page.getByRole('banner')).toBeVisible();
+      await expect(page.getByRole('contentinfo')).toBeVisible();
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', new RegExp(`${path.replaceAll('/', '\\/')}$`));
     });
   }

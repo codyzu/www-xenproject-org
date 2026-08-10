@@ -19,9 +19,6 @@ menus:
 aside:
   - type: resource
     items:
-      - name: Download
-        link: /resources/downloads
-        icon: fas fa-arrow-right
       - name: Documentation
         link: https://wiki.xenproject.org/wiki/Category:Windows_PV_Drivers
 wrapContent: false
@@ -32,6 +29,10 @@ import FeatureList from '../../components/legacy/FeatureList.astro';
 import Grid from '../../components/legacy/Grid.astro';
 import Column from '../../components/legacy/Column.astro';
 
+<Section class="section-square-primary content-markdown">
+  <h2>Maintenance status</h2>
+  <p>These Windows PV Drivers have not been refreshed in a long time. Refer to the <a href="https://xenbits.xen.org/gitweb/?a=project_list;pf=pvdrivers/win"><strong>Windows PV repositories on Xenbits</strong> <i class="fas fa-arrow-up-right-from-square"></i></a> for the available source repositories and current project state.</p>
+</Section>
 
 
 <Section>
@@ -60,9 +61,6 @@ The Windows PV Drivers team at the Xen Project is maintaining and developing the
   <Column>
     The team plans to perform regular builds of the drivers and aims to test them using the Microsoft HCK. The team further plans to provide logo-signed builds of the drivers in future commercial Xen offerings. The team may also provide logo-signed drivers via Microsoft’s Windows Update mechanism, making them widely available to anyone running Windows under Xen (not just XenServer) without the need to build the drivers themselves.
 
-    <p class="mg-t-md">
-      <a href="/projects/windows-pv-drivers" class="btn btn-primary">Download development builds <i class="fas fa-arrow-up-right-from-square"></i></a>
-    </p>
   </Column>
 
 <Column>

@@ -8,9 +8,9 @@ test.describe('Astro spike Matrix page', () => {
     await expect(page.getByRole('heading', {level: 1, name: /Matrix/i})).toBeVisible();
     await expect(page.getByRole('heading', {level: 2, name: /Xen Project Matrix/i})).toBeVisible();
     await expect(page.getByRole('link', {name: /Join/i}).first()).toBeVisible();
-    await expect(page.locator('header')).toBeVisible();
+    await expect(page.getByRole('banner')).toBeVisible();
     await expect(page.locator('main')).toBeVisible();
-    await expect(page.locator('footer')).toBeVisible();
+    await expect(page.getByRole('contentinfo')).toBeVisible();
 
     await page.evaluate(async () => document.fonts.ready);
 

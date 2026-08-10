@@ -3,13 +3,14 @@ import { fetchText } from "./fetch.js";
 import * as cheerio from "cheerio";
 
 class XenProvider extends Provider {
-  constructor() {
+  constructor({ fetchPage = fetchText } = {}) {
     super("Xen", "xen", "https://downloads.xenproject.org/release/xen/");
     this.versionPattern = /^\d+\.\d+\.\d+(-rc\d+)?(-\d+)?$/;
+    this.fetchPage = fetchPage;
   }
 
   async getVersions() {
-    const data = await fetchText(this.baseURL);
+    const data = await this.fetchPage(this.baseURL);
     const $ = cheerio.load(data);
 
     return $("a")
@@ -24,7 +25,7 @@ class XenProvider extends Provider {
   async getFilesAndFolders(version) {
     const url = `${this.baseURL}${version}`;
     console.log("Xen : retrieve files and folders for version", version);
-    const data = await fetchText(url);
+    const data = await this.fetchPage(url);
     const $ = cheerio.load(data);
 
     const items = [];

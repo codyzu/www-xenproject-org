@@ -7,9 +7,9 @@ test.describe('Astro spike contribution guidelines page', () => {
     await expect(page).toHaveTitle(/Contribution guidelines/i);
     await expect(page.getByRole('heading', {level: 1, name: /Contribution guidelines/i})).toBeVisible();
     await expect(page.getByRole('heading', {level: 3, name: /Introduction/i})).toBeVisible();
-    await expect(page.locator('header')).toBeVisible();
+    await expect(page.getByRole('banner')).toBeVisible();
     await expect(page.locator('main')).toBeVisible();
-    await expect(page.locator('footer')).toBeVisible();
+    await expect(page.getByRole('contentinfo')).toBeVisible();
 
     await page.evaluate(async () => document.fonts.ready);
 

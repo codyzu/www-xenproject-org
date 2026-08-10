@@ -9,9 +9,9 @@ test.describe('Astro spike Xen Project branding page', () => {
     await expect(page.getByRole('heading', {level: 2, name: /Download/i})).toBeVisible();
     await expect(page.getByRole('link', {name: /Download branding/i})).toBeVisible();
     await expect(page.getByRole('heading', {level: 2, name: /Usage/i})).toBeVisible();
-    await expect(page.locator('header')).toBeVisible();
+    await expect(page.getByRole('banner')).toBeVisible();
     await expect(page.locator('main')).toBeVisible();
-    await expect(page.locator('footer')).toBeVisible();
+    await expect(page.getByRole('contentinfo')).toBeVisible();
 
     await page.evaluate(async () => document.fonts.ready);
 

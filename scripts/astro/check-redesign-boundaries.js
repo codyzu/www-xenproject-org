@@ -113,6 +113,7 @@ for (const filePath of publicPageFiles) {
     'src/pages/technology/isolation-and-security.astro',
     'src/pages/technology/safety.astro',
     'src/pages/projects/embedded-and-automotive.astro',
+    'src/pages/resources/downloads.astro',
     'src/pages/resources/use-cases.astro',
   ].includes(file);
 

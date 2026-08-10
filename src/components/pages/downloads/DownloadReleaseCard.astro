@@ -1,0 +1,87 @@
+---
+import Badge from '../../primitives/Badge.astro';
+import Heading from '../../primitives/Heading.astro';
+import Stack from '../../primitives/Stack.astro';
+import Text from '../../primitives/Text.astro';
+import type {DownloadGroup} from '../../../data/downloads';
+
+type DownloadRelease = Extract<DownloadGroup['versions'][number], {link: string}>;
+type Props = {group: DownloadGroup};
+const {group} = Astro.props;
+
+const descriptions: Record<string, string> = {
+  xen: 'Hypervisor source releases for building, packaging, and platform integration.',
+  xcpng: 'A turnkey virtualization platform built on Xen and XAPI. Use the installer that matches your deployment path.',
+  mirageos: 'The framework and libraries for building unikernels as focused virtual machine images.',
+};
+const icons: Record<string, string> = {
+  xen: 'i-carbon-chip',
+  xcpng: 'i-carbon-bare-metal-server',
+  mirageos: 'i-carbon-cube',
+};
+
+const xcpVersion = group.key === 'xcpng'
+  ? group.versions.flatMap((version) => 'subversions' in version ? version.subversions : [version]).find((version): version is DownloadRelease => 'link' in version && Boolean(version.link))
+  : undefined;
+
+const artifactLabel = (name: string) => {
+  if (name === 'SHA256SUMS') return 'SHA256 checksums';
+  if (name === 'SHA256SUMS.asc') return 'Checksum signature';
+  if (name.includes('netinstall')) return 'Network installer ISO';
+  if (name.endsWith('.iso')) return 'Standard installer ISO';
+  return name;
+};
+---
+
+<article class="xen-panel-elevated uno-flex uno-min-w-0 uno-flex-col uno-gap-6 uno-p-5 sm:uno-p-6" data-download-group={group.key}>
+  <div class="uno-flex uno-items-start uno-justify-between uno-gap-4">
+    <div class="uno-flex uno-min-w-0 uno-items-center uno-gap-3">
+      <span class:list={[icons[group.key] ?? 'i-carbon-download', 'uno-h-7 uno-w-7 uno-shrink-0 uno-text-xp-accent-primary']} aria-hidden="true"></span>
+      <Heading as="h3" size="heading-m">{group.name}</Heading>
+    </div>
+    <Badge variant={group.key === 'xen' ? 'accent' : 'muted'}>{group.key === 'xcpng' ? 'Installer' : 'Source'}</Badge>
+  </div>
+
+  <Text>{descriptions[group.key] ?? 'Current project releases and artifacts.'}</Text>
+
+  {xcpVersion ? (
+    <Stack gap="3" class="uno-mt-auto">
+      <div class="uno-flex uno-items-center uno-justify-between uno-gap-3">
+        <Text size="eyebrow" tone="muted">Current LTS</Text>
+        <a href={xcpVersion.link} class="xen-focus uno-rounded-xp-sm uno-font-mono uno-text-sm uno-font-semibold uno-text-xp-accent-primary uno-underline uno-underline-offset-4">{`${group.name} ${xcpVersion.name}`}</a>
+      </div>
+      <ul class="uno-m-0 uno-flex uno-list-none uno-flex-col uno-gap-2 uno-p-0">
+        {xcpVersion.files.map((file) => (
+          <li>
+            <a href={file.url} class="xen-focus uno-group uno-flex uno-min-h-12 uno-items-center uno-justify-between uno-gap-3 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-px-3.5 uno-py-2.5 uno-font-semibold uno-text-xp-text-primary uno-no-underline uno-transition-colors hover:uno-border-[var(--xp-accent-primary)] hover:uno-bg-xp-surface-3">
+              <span class="uno-min-w-0">
+                <span class="uno-block">{artifactLabel(file.name)}</span>
+                <span class="uno-block uno-truncate uno-font-mono uno-text-xs uno-font-normal uno-text-xp-text-muted">{file.name}</span>
+              </span>
+              <span class="i-carbon-download uno-h-5 uno-w-5 uno-shrink-0 uno-text-xp-accent-primary" aria-hidden="true"></span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </Stack>
+  ) : (
+    <Stack gap="4" class="uno-mt-auto">
+      {group.versions.map((version) => (
+        <div class="uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-pt-4">
+          {'subversions' in version ? (
+            <>
+              <Text size="eyebrow" tone="muted">{`${group.name} ${version.name} Series`}</Text>
+              <ul class="uno-m-0 uno-mt-2 uno-flex uno-list-none uno-flex-wrap uno-gap-2 uno-p-0">
+                {version.subversions.map((release) => (
+                  <li><a href={release.link} class="xen-focus uno-inline-flex uno-min-h-10 uno-items-center uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-px-3 uno-font-mono uno-text-sm uno-font-semibold uno-text-xp-text-primary uno-no-underline hover:uno-border-[var(--xp-accent-primary)] hover:uno-bg-xp-surface-3">{release.name}</a></li>
+                ))}
+              </ul>
+            </>
+          ) : version.link ? (
+            <a href={version.link} class="xen-action-text">{`${group.name} ${version.name}`}</a>
+          ) : null}
+        </div>
+      ))}
+    </Stack>
+  )}
+</article>

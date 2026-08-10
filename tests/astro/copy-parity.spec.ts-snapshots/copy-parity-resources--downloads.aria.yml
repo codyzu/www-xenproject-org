@@ -1,93 +1,104 @@
 - main:
+  - paragraph: Release console
+  - heading "Downloads" [level=1]
+  - paragraph: Choose the right layer. Get the current artifact.
+  - paragraph: Download the Xen hypervisor source, deploy a complete XCP-ng platform, or build focused Mirage OS unikernels. Each channel stays distinct, current, and inspectable.
+  - text: release channels Checked in
+  - heading "Xen" [level=2]
+  - paragraph: Hypervisor source
+  - text: 4.21.1
+  - heading "XCP-ng" [level=2]
+  - paragraph: Turnkey platform
+  - text: "8.3"
+  - heading "Mirage OS" [level=2]
+  - paragraph: Library operating system
+  - text: 4.11.0
+  - paragraph: Current channels
+  - heading "Start from the release that matches your system" [level=2]
+  - paragraph: The hypervisor, platform, and library OS solve different problems. Their release artifacts are presented independently so ownership stays clear.
   - article:
-    - heading "Downloads" [level=1]
-    - text: Find all the relevant resources to download on this page.
+    - heading "Xen" [level=3]
+    - text: Source
+    - paragraph: Hypervisor source releases for building, packaging, and platform integration.
+    - paragraph: Xen 4.21 Series
+    - list:
+      - listitem:
+        - link "4.21.1":
+          - /url: https://downloads.xenproject.org/release/xen/4.21.1/
+      - listitem:
+        - link "4.21.0":
+          - /url: https://downloads.xenproject.org/release/xen/4.21.0/
+    - paragraph: Xen 4.20 Series
+    - list:
+      - listitem:
+        - link "4.20.3":
+          - /url: https://downloads.xenproject.org/release/xen/4.20.3/
+      - listitem:
+        - link "4.20.2":
+          - /url: https://downloads.xenproject.org/release/xen/4.20.2/
+      - listitem:
+        - link "4.20.1":
+          - /url: https://downloads.xenproject.org/release/xen/4.20.1/
+      - listitem:
+        - link "4.20.0":
+          - /url: https://downloads.xenproject.org/release/xen/4.20.0/
+  - article:
+    - heading "XCP-ng" [level=3]
+    - text: Installer
+    - paragraph: A turnkey virtualization platform built on Xen and XAPI. Use the installer that matches your deployment path.
+    - paragraph: Current LTS
+    - link "XCP-ng 8.3":
+      - /url: https://mirrors.xcp-ng.org/isos/8.3/?https=1
+    - list:
+      - listitem:
+        - link "Standard installer ISO xcp-ng-8.3.0-20250606.2.iso":
+          - /url: https://mirrors.xcp-ng.org/isos/8.3/xcp-ng-8.3.0-20250606.2.iso?https=1
+      - listitem:
+        - link "Network installer ISO xcp-ng-8.3.0-20250606-netinstall.iso":
+          - /url: https://mirrors.xcp-ng.org/isos/8.3/xcp-ng-8.3.0-20250606-netinstall.iso?https=1
+      - listitem:
+        - link "SHA256 checksums SHA256SUMS":
+          - /url: https://mirrors.xcp-ng.org/isos/8.3/SHA256SUMS?https=1
+      - listitem:
+        - link "Checksum signature SHA256SUMS.asc":
+          - /url: https://mirrors.xcp-ng.org/isos/8.3/SHA256SUMS.asc?https=1
+  - article:
+    - heading "Mirage OS" [level=3]
+    - text: Source
+    - paragraph: The framework and libraries for building unikernels as focused virtual machine images.
+    - paragraph: Mirage OS 4.11 Series
+    - list:
+      - listitem:
+        - link "4.11.0":
+          - /url: https://github.com/mirage/mirage/releases/tag/v4.11.0
+    - paragraph: Mirage OS 4.10 Series
+    - list:
+      - listitem:
+        - link "4.10.6":
+          - /url: https://github.com/mirage/mirage/releases/tag/v4.10.6
+      - listitem:
+        - link "4.10.5":
+          - /url: https://github.com/mirage/mirage/releases/tag/v4.10.5
+      - listitem:
+        - link "4.10.4":
+          - /url: https://github.com/mirage/mirage/releases/tag/v4.10.4
+      - listitem:
+        - link "4.10.3":
+          - /url: https://github.com/mirage/mirage/releases/tag/v4.10.3
+      - listitem:
+        - link "4.10.2":
+          - /url: https://github.com/mirage/mirage/releases/tag/v4.10.2
+      - listitem:
+        - link "4.10.1":
+          - /url: https://github.com/mirage/mirage/releases/tag/v4.10.1
+      - listitem:
+        - link "4.10.0":
+          - /url: https://github.com/mirage/mirage/releases/tag/v4.10.0
+  - paragraph: Release archive
+  - heading "Find an earlier version" [level=2]
+  - paragraph: Search the complete checked-in release history by project and version. Current release cards above remain available even if the upstream archive is temporarily unavailable.
+  - search:
+    - text: Search downloads
     - searchbox "Search downloads"
-    - button "Submit search": 
-    - heading "Xen" [level=2]
-    - list:
-      - listitem:
-        - text: Xen 4.21 Series
-        - list:
-          - listitem:
-            - link "Xen 4.21.1 ":
-              - /url: https://downloads.xenproject.org/release/xen/4.21.1/
-          - listitem:
-            - link "Xen 4.21.0 ":
-              - /url: https://downloads.xenproject.org/release/xen/4.21.0/
-      - listitem:
-        - text: Xen 4.20 Series
-        - list:
-          - listitem:
-            - link "Xen 4.20.3 ":
-              - /url: https://downloads.xenproject.org/release/xen/4.20.3/
-          - listitem:
-            - link "Xen 4.20.2 ":
-              - /url: https://downloads.xenproject.org/release/xen/4.20.2/
-          - listitem:
-            - link "Xen 4.20.1 ":
-              - /url: https://downloads.xenproject.org/release/xen/4.20.1/
-          - listitem:
-            - link "Xen 4.20.0 ":
-              - /url: https://downloads.xenproject.org/release/xen/4.20.0/
-    - heading "Windows PV Drivers" [level=2]
-    - list:
-      - listitem:
-        - text: Windows PV Drivers Download
-        - list:
-          - listitem:
-            - link "Windows PV Drivers xenbus.tar ":
-              - /url: https://xenbits.xenproject.org/pvdrivers/win/xenbus.tar
-          - listitem:
-            - link "Windows PV Drivers xencons.tar ":
-              - /url: https://xenbits.xenproject.org/pvdrivers/win/xencons.tar
-          - listitem:
-            - link "Windows PV Drivers xenhid.tar ":
-              - /url: https://xenbits.xenproject.org/pvdrivers/win/xenhid.tar
-          - listitem:
-            - link "Windows PV Drivers xeniface.tar ":
-              - /url: https://xenbits.xenproject.org/pvdrivers/win/xeniface.tar
-          - listitem:
-            - link "Windows PV Drivers xennet.tar ":
-              - /url: https://xenbits.xenproject.org/pvdrivers/win/xennet.tar
-          - listitem:
-            - link "Windows PV Drivers xenvbd.tar ":
-              - /url: https://xenbits.xenproject.org/pvdrivers/win/xenvbd.tar
-          - listitem:
-            - link "Windows PV Drivers xenvif.tar ":
-              - /url: https://xenbits.xenproject.org/pvdrivers/win/xenvif.tar
-          - listitem:
-            - link "Windows PV Drivers xenvkbd.tar ":
-              - /url: https://xenbits.xenproject.org/pvdrivers/win/xenvkbd.tar
-    - heading "Mirage OS" [level=2]
-    - list:
-      - listitem:
-        - text: Mirage OS 4.11 Series
-        - list:
-          - listitem:
-            - link "Mirage OS 4.11.0 ":
-              - /url: https://github.com/mirage/mirage/releases/tag/v4.11.0
-      - listitem:
-        - text: Mirage OS 4.10 Series
-        - list:
-          - listitem:
-            - link "Mirage OS 4.10.6 ":
-              - /url: https://github.com/mirage/mirage/releases/tag/v4.10.6
-          - listitem:
-            - link "Mirage OS 4.10.5 ":
-              - /url: https://github.com/mirage/mirage/releases/tag/v4.10.5
-          - listitem:
-            - link "Mirage OS 4.10.4 ":
-              - /url: https://github.com/mirage/mirage/releases/tag/v4.10.4
-          - listitem:
-            - link "Mirage OS 4.10.3 ":
-              - /url: https://github.com/mirage/mirage/releases/tag/v4.10.3
-          - listitem:
-            - link "Mirage OS 4.10.2 ":
-              - /url: https://github.com/mirage/mirage/releases/tag/v4.10.2
-          - listitem:
-            - link "Mirage OS 4.10.1 ":
-              - /url: https://github.com/mirage/mirage/releases/tag/v4.10.1
-          - listitem:
-            - link "Mirage OS 4.10.0 ":
-              - /url: https://github.com/mirage/mirage/releases/tag/v4.10.0
+    - text: 2+ characters
+    - button "Search"

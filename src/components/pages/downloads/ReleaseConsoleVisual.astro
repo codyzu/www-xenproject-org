@@ -1,0 +1,106 @@
+---
+import Badge from '../../primitives/Badge.astro';
+import Heading from '../../primitives/Heading.astro';
+import Text from '../../primitives/Text.astro';
+import type {DownloadGroup} from '../../../data/downloads';
+
+type Props = {groups: DownloadGroup[]};
+const {groups} = Astro.props;
+
+const releaseLabel = (group: DownloadGroup) => {
+  const version = group.versions[0];
+  if (!version) return 'Unavailable';
+  return 'subversions' in version ? version.subversions[0]?.name ?? version.name : version.name;
+};
+
+const channelMeta: Record<string, {icon: string; label: string}> = {
+  xen: {icon: 'i-carbon-chip', label: 'Hypervisor source'},
+  xcpng: {icon: 'i-carbon-bare-metal-server', label: 'Turnkey platform'},
+  mirageos: {icon: 'i-carbon-cube', label: 'Library operating system'},
+};
+---
+
+<div class="release-console xen-panel-elevated uno-relative uno-isolate uno-overflow-hidden uno-p-4 sm:uno-p-5" aria-label="Current release channels">
+  <div class="release-console__grid" aria-hidden="true"></div>
+  <div class="uno-relative uno-z-1 uno-flex uno-items-center uno-justify-between uno-gap-4 uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-pb-4">
+    <div class="uno-flex uno-min-w-0 uno-items-center uno-gap-3">
+      <span class="release-console__status uno-h-2.5 uno-w-2.5 uno-shrink-0 uno-rounded-full uno-bg-xp-accent-primary"></span>
+      <Text as="span" size="mono-small" tone="primary" class="uno-uppercase uno-tracking-[0.14em]">release channels</Text>
+    </div>
+    <Badge variant="accent">Checked in</Badge>
+  </div>
+
+  <div class="uno-relative uno-z-1 uno-flex uno-flex-col uno-gap-3 uno-pt-4">
+    {groups.map((group, index) => {
+      const meta = channelMeta[group.key] ?? {icon: 'i-carbon-download', label: 'Project release'};
+      return (
+        <div class:list={[
+          'release-console__channel uno-grid uno-min-w-0 uno-grid-cols-[auto_minmax(0,1fr)] uno-items-center uno-gap-x-3 uno-gap-y-1 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(20_34_56_/_0.84)] uno-p-3 sm:uno-grid-cols-[auto_minmax(0,1fr)_auto] sm:uno-p-4',
+          index === 0 && 'release-console__channel--primary',
+        ]}>
+          <span class:list={[meta.icon, 'uno-col-row-span-2 uno-h-6 uno-w-6 uno-text-xp-accent-primary']} aria-hidden="true"></span>
+          <div class="uno-min-w-0">
+            <Heading as="h2" size="card" class="uno-text-lg">{group.name}</Heading>
+            <Text size="caption" tone="muted">{meta.label}</Text>
+          </div>
+          <Text as="span" size="mono-small" tone="primary" class="uno-col-start-2 uno-row-start-2 uno-w-fit uno-rounded-full uno-bg-xp-surface-3 uno-px-2.5 uno-py-1 sm:uno-col-start-3 sm:uno-row-start-1 sm:uno-row-span-2">
+            {releaseLabel(group)}
+          </Text>
+        </div>
+      );
+    })}
+  </div>
+</div>
+
+<style>
+  .release-console::after {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(105deg, transparent 34%, rgb(133 194 65 / 0.07) 48%, transparent 62%);
+    content: '';
+    transform: translateX(-80%);
+    animation: console-scan 9s var(--xp-ease-standard) infinite;
+    pointer-events: none;
+  }
+
+  .release-console__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.025) 1px, transparent 1px);
+    background-size: 2rem 2rem;
+    mask-image: linear-gradient(to bottom, black, transparent 88%);
+    pointer-events: none;
+  }
+
+  .release-console__status {
+    box-shadow: 0 0 0.8rem rgb(133 194 65 / 0.62);
+    animation: console-pulse 3.4s ease-in-out infinite;
+  }
+
+  .release-console__channel {
+    box-shadow: 0 0.8rem 1.6rem rgb(0 0 0 / 0.16);
+  }
+
+  .release-console__channel--primary {
+    border-color: rgb(133 194 65 / 0.34);
+    background: linear-gradient(90deg, rgb(133 194 65 / 0.12), rgb(20 34 56 / 0.9) 46%);
+  }
+
+  @keyframes console-scan {
+    0%, 18% { transform: translateX(-80%); }
+    55%, 100% { transform: translateX(90%); }
+  }
+
+  @keyframes console-pulse {
+    0%, 100% { opacity: 0.62; }
+    50% { opacity: 1; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .release-console::after,
+    .release-console__status { animation: none; }
+  }
+</style>

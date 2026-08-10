@@ -12,7 +12,6 @@ const menuSections = [
       ['HVMI', '/projects/hvmi/'],
       ['Mirage OS', '/projects/mirage-os/'],
       ['Unikraft', '/projects/unikraft/'],
-      ['Windows PV Drivers', '/projects/windows-pv-drivers/'],
       ['XAPI', '/projects/xapi/'],
       ['XCP-ng', '/projects/xcp-ng/'],
     ],

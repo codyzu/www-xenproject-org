@@ -40,8 +40,6 @@
           href: /projects/embedded-and-automotive/
         - name: HVMI
           href: /projects/hvmi/
-        - name: Windows PV Drivers
-          href: /projects/windows-pv-drivers/
     - name: Specialized systems
       links:
         - name: MirageOS

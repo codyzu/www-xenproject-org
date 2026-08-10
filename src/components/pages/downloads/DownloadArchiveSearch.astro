@@ -1,0 +1,151 @@
+<div class="download-search xen-panel-elevated uno-p-4 sm:uno-p-6" data-download-search data-download-search-state="loading" aria-busy="true">
+  <form action="/search" method="get" class="uno-flex uno-flex-col uno-gap-3 sm:uno-flex-row" role="search">
+    <label class="uno-sr-only" for="download-search-input">Search downloads</label>
+    <div class="uno-relative uno-min-w-0 uno-flex-1">
+      <span class="i-carbon-search uno-pointer-events-none uno-absolute uno-left-4 uno-top-1/2 uno-h-5 uno-w-5 uno--translate-y-1/2 uno-text-xp-text-muted" aria-hidden="true"></span>
+      <input id="download-search-input" type="search" class="search-input xen-focus uno-min-h-13 uno-w-full uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-strong uno-bg-xp-surface-1 uno-px-12 uno-py-3 uno-font-sans uno-text-base uno-text-xp-text-primary uno-placeholder:text-xp-text-muted" name="q" placeholder="Search project and version, for example Xen 4.19" aria-label="Search downloads" autocomplete="off" />
+      <span class="uno-pointer-events-none uno-absolute uno-right-4 uno-top-1/2 uno-hidden uno--translate-y-1/2 uno-font-mono uno-text-xs uno-text-xp-text-muted md:uno-inline">2+ characters</span>
+    </div>
+    <button type="submit" class="xen-action-secondary uno-min-h-13 sm:uno-min-w-32">Search</button>
+  </form>
+  <div class="search-results uno-mt-5" aria-live="polite"></div>
+</div>
+
+<script>
+  type DownloadVersion = {name: string; link: string};
+  type DownloadGroup = {name: string; versions: DownloadVersion[]};
+  type SearchVersion = DownloadVersion & {groupName: string; searchTerms: string};
+
+  const isDownloadGroup = (value: unknown): value is DownloadGroup => {
+    if (typeof value !== 'object' || value === null) return false;
+    const group = value as Partial<DownloadGroup>;
+    return typeof group.name === 'string' && Array.isArray(group.versions) && group.versions.every(version => (
+      typeof version === 'object'
+      && version !== null
+      && typeof version.name === 'string'
+      && typeof version.link === 'string'
+    ));
+  };
+
+  const debounce = <Arguments extends unknown[]>(callback: (...arguments_: Arguments) => void, delay: number) => {
+    let timeout: ReturnType<typeof setTimeout>;
+    return (...arguments_: Arguments) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => callback(...arguments_), delay);
+    };
+  };
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-download-search]')) {
+    const form = root.querySelector<HTMLFormElement>('form');
+    const input = root.querySelector<HTMLInputElement>('.search-input');
+    const output = root.querySelector<HTMLElement>('.search-results');
+    let downloads: SearchVersion[] | undefined;
+    let loadError: Error | undefined;
+
+    const message = (text: string, role?: string) => {
+      if (!output) return;
+      output.replaceChildren();
+      const element = document.createElement('p');
+      element.className = 'uno-m-0 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-p-4 uno-text-xp-text-secondary';
+      if (role) element.setAttribute('role', role);
+      element.textContent = text;
+      output.append(element);
+    };
+
+    const renderFailure = () => {
+      message('Downloads are temporarily unavailable.', 'alert');
+      root.dataset.downloadSearchState = 'error';
+    };
+
+    const load = async () => {
+      if (downloads) return downloads;
+      const response = await fetch('/data/downloads.json');
+      if (!response.ok) throw new Error(`Unable to load downloads: ${response.status}`);
+      const payload = await response.json() as unknown;
+      if (!Array.isArray(payload) || !payload.every(isDownloadGroup)) throw new TypeError('Downloads response is invalid');
+      downloads = payload.flatMap((group) => group.versions.map((version) => ({
+        ...version,
+        groupName: group.name,
+        searchTerms: `${group.name} ${version.name}`.toLowerCase(),
+      })));
+      loadError = undefined;
+      root.dataset.downloadSearchState = 'ready';
+      return downloads;
+    };
+
+    const render = (groups: DownloadGroup[]) => {
+      if (!output) return;
+      output.replaceChildren();
+      if (groups.length === 0) {
+        message('No downloads found.');
+        return;
+      }
+
+      const grid = document.createElement('div');
+      grid.className = 'uno-grid uno-grid-cols-1 uno-gap-4 md:uno-grid-cols-2 lg:uno-grid-cols-3';
+      for (const group of groups) {
+        const section = document.createElement('section');
+        section.className = 'uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-p-4';
+        const heading = document.createElement('h3');
+        heading.className = 'uno-m-0 uno-text-xl uno-font-bold uno-text-xp-text-primary';
+        heading.textContent = group.name;
+        const list = document.createElement('ul');
+        list.className = 'uno-m-0 uno-mt-3 uno-flex uno-list-none uno-flex-col uno-gap-2 uno-p-0';
+        for (const version of group.versions) {
+          const item = document.createElement('li');
+          const link = document.createElement('a');
+          link.href = version.link;
+          link.className = 'xen-focus uno-flex uno-min-h-11 uno-items-center uno-justify-between uno-gap-3 uno-rounded-xp-md uno-px-3 uno-font-mono uno-text-sm uno-font-semibold uno-text-xp-text-primary uno-no-underline hover:uno-bg-xp-surface-3';
+          const label = document.createElement('span');
+          label.textContent = version.name === 'default' ? 'Download' : `${group.name} ${version.name}`;
+          const icon = document.createElement('span');
+          icon.className = 'i-carbon-arrow-up-right uno-h-4 uno-w-4 uno-shrink-0 uno-text-xp-accent-primary';
+          icon.setAttribute('aria-hidden', 'true');
+          link.append(label, icon);
+          item.append(link);
+          list.append(item);
+        }
+        section.append(heading, list);
+        grid.append(section);
+      }
+      output.append(grid);
+    };
+
+    const search = debounce(async () => {
+      if (!input || !output) return;
+      const value = input.value.trim().toLowerCase();
+      if (value.length < 2) {
+        output.replaceChildren();
+        return;
+      }
+
+      try {
+        if (loadError) return renderFailure();
+        const terms = value.split(/\s+/).filter(Boolean);
+        const matches = (await load()).filter((version) => terms.every((term) => version.searchTerms.includes(term)));
+        const grouped = new Map<string, SearchVersion[]>();
+        for (const version of matches) grouped.set(version.groupName, [...(grouped.get(version.groupName) ?? []), version]);
+        render([...grouped].map(([name, versions]) => ({name, versions})));
+      } catch (error) {
+        console.error(error);
+        loadError = error as Error;
+        renderFailure();
+      }
+    }, 300);
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      void search();
+    });
+    input?.addEventListener('input', search);
+    void load()
+      .catch((error: Error) => {
+        console.error(error);
+        loadError = error;
+        renderFailure();
+      })
+      .finally(() => {
+        root.ariaBusy = 'false';
+      });
+  }
+</script>

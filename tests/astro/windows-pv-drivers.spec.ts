@@ -1,19 +1,15 @@
 import {expect, test} from '@playwright/test';
 
 test.describe('Windows PV Drivers page', () => {
-  test('keeps each download action in one button', async ({page}) => {
+  test('keeps the route searchable while directing readers to the repository listing', async ({page}) => {
     await page.route('https://www.youtube.com/**', (route) => route.abort());
     await page.goto('/projects/windows-pv-drivers/');
 
-    const downloads = page.getByRole('heading', {level: 2, name: 'Downloads'}).locator('..');
-    const developmentBuilds = downloads.getByRole('link', {name: /^Download development builds/});
-    const installationWiki = downloads.getByRole('link', {name: /^Read installation driver wiki/});
-
-    await expect(developmentBuilds).toHaveCount(1);
-    await expect(installationWiki).toHaveCount(1);
-    await expect(developmentBuilds.locator('i')).toHaveCount(1);
-    await expect(installationWiki.locator('i')).toHaveCount(1);
-    await expect(downloads.locator('.btn p')).toHaveCount(0);
-    await expect(downloads).toHaveScreenshot('windows-pv-drivers-downloads.png');
+    const status = page.getByRole('heading', {level: 2, name: 'Maintenance status'}).locator('..');
+    await expect(status).toContainText('have not been refreshed in a long time');
+    await expect(status.getByRole('link', {name: /Windows PV repositories on Xenbits/})).toHaveAttribute('href', 'https://xenbits.xen.org/gitweb/?a=project_list;pf=pvdrivers/win');
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute('content', 'index, follow');
+    await expect(page.getByRole('link', {name: /^Download development builds/})).toHaveCount(0);
+    await expect(status).toHaveScreenshot('windows-pv-drivers-status.png');
   });
 });

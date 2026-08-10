@@ -37,7 +37,7 @@ test.describe('Phase 6 data-driven routes', () => {
     await page.setViewportSize({width: 390, height: 844});
     await page.goto('/resources/downloads/');
 
-    const groupHeadings = page.locator('.vertical-lists > .list-column > h2');
+    const groupHeadings = page.locator('[data-download-group] h3');
     await expect(groupHeadings).toHaveCount(latestDownloads.length);
     const headingPositions = await groupHeadings.evaluateAll(headings => headings.map(heading => heading.getBoundingClientRect().top));
     expect(headingPositions).toEqual([...headingPositions].sort((a, b) => a - b));

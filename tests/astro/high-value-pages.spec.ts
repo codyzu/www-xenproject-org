@@ -96,9 +96,9 @@ test.describe('Astro spike high-value page guardrails', () => {
 
       await expect(page).toHaveTitle(pageContract.title);
       await expect(main.getByRole('heading', {name: pageContract.heading})).toBeVisible();
-      await expect(page.locator('header')).toBeVisible();
+      await expect(page.getByRole('banner')).toBeVisible();
       await expect(main).toBeVisible();
-      await expect(page.locator('footer')).toBeVisible();
+      await expect(page.getByRole('contentinfo')).toBeVisible();
       await expect(page.getByRole('heading', {name: /404/i})).toHaveCount(0);
 
       if (pageContract.screenshot) {
