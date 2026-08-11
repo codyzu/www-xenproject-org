@@ -128,6 +128,17 @@
     - paragraph: XCP-ng (Xen Cloud Platform – new generation) is a turnkey virtualization platform built on the Xen Project Hypervisor and using the Xen API (XAPI). It is typically managed with Xen Orchestra, an agentless, multi-cluster web interface that provides management, monitoring, and backup capabilities.
     - link "Explore XCP-ng":
       - /url: /projects/xcp-ng
+  - article:
+    - paragraph: Xen in automotive
+    - heading "A major year for Xen in automotive" [level=2]
+    - paragraph: At Xen Summit 2025, Stefano Stabellini highlighted a period of major automotive momentum for Xen, including new members, safety progress, and deeper collaboration with Automotive Grade Linux.
+    - paragraph: Stefano Stabellini, AMD
+    - paragraph: Xen Summit 2025
+    - paragraph: "Xen in Safety Systems: Hardware Domain and Control Domain separation"
+    - link "Watch the full talk":
+      - /url: https://www.youtube.com/watch?v=J6q67jkG5DQ
+    - 'button "Play 0:57 clip: A major year for Xen in automotive"': Play clip
+    - text: 0:57
   - paragraph: New safety initiative
   - heading "Open source safety engineering, built together." [level=2]
   - paragraph: The Xen Safety Committee gives Premier Plus members a maintained foundation of requirements, tests, tooling, evidence, and process documentation, giving their own certification-oriented programs a substantial head start.

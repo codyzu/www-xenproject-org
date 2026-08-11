@@ -191,7 +191,8 @@ test.describe('redesigned homepage', () => {
     await page.mouse.move(20, 500);
     await expect(technologyPopover).not.toBeVisible();
 
-    await page.getByRole('button', {name: 'Developers', exact: true}).click();
+    const developersTrigger = primaryNav.getByRole('button', {name: 'Developers', exact: true});
+    await developersTrigger.evaluate(trigger => trigger.click());
     const developersPopover = page.locator('#xp-nav-popover-2');
     await expect(developersPopover).toBeVisible();
     const documentationLink = developersPopover.getByRole('link', {name: 'Documentation'});

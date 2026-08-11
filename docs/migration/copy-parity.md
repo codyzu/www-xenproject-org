@@ -8,25 +8,23 @@ The audit complements screenshot tests: screenshots protect layout, while ARIA s
 - the independently tested, client-mounted cookie-consent banner is hidden from the membership-page snapshot;
 - absolute internal links are converted to route-relative destinations so host configuration does not cause noise.
 
-Ghost posts are external website content and are excluded. Checked-in download and research data are deterministic and included. Runtime CI results are excluded, but their authored surrounding copy is included.
+Ghost posts are external website content, so browser regression builds use the committed synthetic Ghost fixture instead of a developer's live cache. Checked-in download and research data are deterministic and included. Runtime CI results are excluded, but their authored surrounding copy is included.
 
 ## Run the audit
 
-Build Astro, then run the focused Playwright suite:
+Run the focused Playwright suite:
 
 ```sh
-npm run build
 npm run test:astro:copy-parity
 ```
 
-The focused command starts Astro's preview server through the existing Playwright configuration and writes the standard Playwright report.
+The focused command builds Astro against `.cache/ghost-search/test-posts.json`, starts the preview server through the existing Playwright configuration, and writes the standard Playwright report. The isolated fixture cache keeps the snapshot deterministic without replacing a developer's live Ghost cache.
 
 ## Review and update the approved baseline
 
 Snapshot updates are explicit and must never be part of CI:
 
 ```sh
-npm run build
 npm run test:astro:copy-parity:update
 git diff -- tests/astro/copy-parity.spec.ts-snapshots
 ```

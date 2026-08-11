@@ -61,8 +61,9 @@ For visual smoke testing, make sure nothing else is running on
 npm run test:astro:smoke:public
 ```
 
-Playwright starts Astro's preview server, snapshots representative routes, verifies
-navigation behavior, exercises React islands, and checks redirect metadata.
+The command first rebuilds `dist/` with the isolated, committed Ghost fixture.
+Playwright then starts Astro's preview server, snapshots representative routes,
+verifies navigation behavior, exercises React islands, and checks redirect metadata.
 
 ### Review Screenshots
 

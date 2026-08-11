@@ -47,8 +47,9 @@ npm run test:astro:links
 ```
 
 Use `npm run test:astro:smoke:public` for screenshot and navigation smoke
-testing against `dist/`. The Playwright config starts Astro's preview server
-automatically on `http://127.0.0.1:4321`.
+testing. The command rebuilds `dist/` with the isolated Ghost fixture before
+the Playwright config starts Astro's preview server automatically on
+`http://127.0.0.1:4321`.
 
 ## Ghost Header/Footer Contract
 

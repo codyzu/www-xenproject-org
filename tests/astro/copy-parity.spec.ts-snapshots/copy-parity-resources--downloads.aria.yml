@@ -6,13 +6,13 @@
   - text: release channels Checked in
   - heading "Xen" [level=2]
   - paragraph: Hypervisor source
-  - text: 4.21.1
+  - text: 4.22.0
   - heading "XCP-ng" [level=2]
   - paragraph: Turnkey platform
   - text: "8.3"
   - heading "Mirage OS" [level=2]
   - paragraph: Library operating system
-  - text: 4.11.0
+  - text: 4.11.2
   - paragraph: Current channels
   - heading "Start from the release that matches your system" [level=2]
   - paragraph: The hypervisor, platform, and library OS solve different problems. Their release artifacts are presented independently so ownership stays clear.
@@ -20,28 +20,22 @@
     - heading "Xen" [level=3]
     - text: Source
     - paragraph: Hypervisor source releases for building, packaging, and platform integration.
+    - paragraph: Xen 4.22 Series
+    - list:
+      - listitem:
+        - link "4.22.0":
+          - /url: https://downloads.xenproject.org/release/xen/4.22.0/
     - paragraph: Xen 4.21 Series
     - list:
+      - listitem:
+        - link "4.21.2":
+          - /url: https://downloads.xenproject.org/release/xen/4.21.2/
       - listitem:
         - link "4.21.1":
           - /url: https://downloads.xenproject.org/release/xen/4.21.1/
       - listitem:
         - link "4.21.0":
           - /url: https://downloads.xenproject.org/release/xen/4.21.0/
-    - paragraph: Xen 4.20 Series
-    - list:
-      - listitem:
-        - link "4.20.3":
-          - /url: https://downloads.xenproject.org/release/xen/4.20.3/
-      - listitem:
-        - link "4.20.2":
-          - /url: https://downloads.xenproject.org/release/xen/4.20.2/
-      - listitem:
-        - link "4.20.1":
-          - /url: https://downloads.xenproject.org/release/xen/4.20.1/
-      - listitem:
-        - link "4.20.0":
-          - /url: https://downloads.xenproject.org/release/xen/4.20.0/
   - article:
     - heading "XCP-ng" [level=3]
     - text: Installer
@@ -68,6 +62,12 @@
     - paragraph: The framework and libraries for building unikernels as focused virtual machine images.
     - paragraph: Mirage OS 4.11 Series
     - list:
+      - listitem:
+        - link "4.11.2":
+          - /url: https://github.com/mirage/mirage/releases/tag/v4.11.2
+      - listitem:
+        - link "4.11.1":
+          - /url: https://github.com/mirage/mirage/releases/tag/v4.11.1
       - listitem:
         - link "4.11.0":
           - /url: https://github.com/mirage/mirage/releases/tag/v4.11.0

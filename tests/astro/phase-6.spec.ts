@@ -25,7 +25,7 @@ test.describe('Phase 6 data-driven routes', () => {
     await page.waitForTimeout(350);
     await expect(results).toBeEmpty();
     await search.fill(`xen ${searchableXenRelease.name}`);
-    await expect(results.getByText(`Xen ${searchableXenRelease.name}`)).toBeVisible();
+    await expect(results.getByRole('link', {name: `Xen ${searchableXenRelease.name}`, exact: true})).toBeVisible();
     await search.fill('not-a-real-release');
     await expect(results.getByText('No downloads found.')).toBeVisible();
     await search.fill('');
