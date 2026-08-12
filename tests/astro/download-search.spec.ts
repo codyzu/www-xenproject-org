@@ -65,7 +65,7 @@ test.describe('download search states', () => {
     await expect(xcpng.getByRole('link', {name: /SHA256 checksums/})).toHaveAttribute('href', /SHA256SUMS\?https=1$/);
     await expect(xcpng.getByRole('link', {name: /Checksum signature/})).toHaveAttribute('href', /SHA256SUMS\.asc\?https=1$/);
     await expect(page.locator('[data-download-group="windowspvdrivers"]')).toHaveCount(0);
-    await expect(page.getByText('Windows PV Drivers')).toHaveCount(0);
+    await expect(page.locator('main').getByText('Windows PV Drivers')).toHaveCount(0);
     expect(await page.locator('.release-console').evaluate(element => getComputedStyle(element, '::after').animationName)).toBe('none');
   });
 

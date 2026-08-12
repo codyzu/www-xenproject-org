@@ -22,6 +22,10 @@
   description: Unikraft is an open-source project for building efficient, secure unikernels. It provides customizable libraries and tools to create lightweight, single-purpose operating systems.
   route: /projects/unikraft/
   order: 60
+- title: Windows PV Drivers
+  description: Windows PV Drivers enhance the performance and efficiency of Windows virtual machines. Access documentation and support for seamless integration.
+  route: /projects/windows-pv-drivers/
+  order: 70
 - title: XAPI
   description: The XAPI project is an enterprise-ready toolstack for use with the Xen Project hypervisor.
   route: /projects/xapi/
