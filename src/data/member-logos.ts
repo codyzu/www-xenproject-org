@@ -64,7 +64,7 @@ export const memberOrganizations: MemberOrganization[] = [
   },
   {
     name: 'Renesas',
-    logo: '/img/logos/renesas-logo-cropped.svg',
+    logo: '/img/logos/renesas-logo.svg',
     href: 'https://www.renesas.com/',
     membershipLevel: 'Advisory Board member',
     summary: 'Embedded and automotive semiconductors.',

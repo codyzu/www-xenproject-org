@@ -9,7 +9,7 @@ const logoUrls = [
   '/img/logos/ford-logo.svg',
   '/img/logos/honda-logo.svg',
   '/img/logos/logo-linux-foundation.svg',
-  '/img/logos/renesas-logo-cropped.svg',
+  '/img/logos/renesas-logo.svg',
   '/img/logos/vates-logo.svg',
   '/img/logos/xenserver-logo.svg',
 ];

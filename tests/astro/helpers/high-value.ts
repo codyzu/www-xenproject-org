@@ -207,7 +207,10 @@ export const monitorPageRuntime = (page: Page, baseUrl: string): RuntimeMonitor 
 
   page.on('console', message => {
     const text = message.text();
-    if (message.type() === 'error' || /(?:failed to hydrate|hydration (?:error|failed|mismatch))/i.test(text)) {
+    const isHydrationError = /(?:failed to hydrate|hydration (?:error|failed|mismatch))/i.test(text);
+    const sourceUrl = message.location().url;
+    const isSameOriginError = message.type() === 'error' && (!sourceUrl || isSameOrigin(sourceUrl, baseUrl));
+    if (isSameOriginError || isHydrationError) {
       errors.push(`console: ${text}`);
     }
   });

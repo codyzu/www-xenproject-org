@@ -1,4 +1,20 @@
 import {expect, test} from '@playwright/test';
+import type {Page} from '@playwright/test';
+
+const ensureSnapshotFonts = async (page: Page) => {
+  const fonts = ['400 16px Inter', '400 16px "JetBrains Mono"'];
+
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const loaded = await page.evaluate(async fontDescriptors => {
+      const fontFaces = await Promise.all(fontDescriptors.map(async descriptor => document.fonts.load(descriptor)));
+      return fontFaces.every(faces => faces.length > 0);
+    }, fonts);
+    if (loaded) return;
+    await page.reload({waitUntil: 'load'});
+  }
+
+  expect(false, 'Visual snapshots require Inter and JetBrains Mono to load').toBe(true);
+};
 
 const highValuePages = [
   {
@@ -102,10 +118,12 @@ test.describe('Astro spike high-value page guardrails', () => {
       await expect(page.getByRole('heading', {name: /404/i})).toHaveCount(0);
 
       if (pageContract.screenshot) {
+        if (pageContract.name === 'downloads') await ensureSnapshotFonts(page);
         await page.evaluate(async () => document.fonts.ready);
         await expect(page).toHaveScreenshot(pageContract.screenshot, {
           fullPage: true,
           maxDiffPixelRatio: 0.01,
+          timeout: 10_000,
         });
       }
     });
