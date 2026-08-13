@@ -30,6 +30,7 @@ test:
     - node --version
     - npm ci --cache .npm --prefer-offline
     - npm run lint
+    - npm run test:docs
     - npm run downloads
     - npm run build
     - node scripts/astro/check-public-artifact.js dist --standalone
@@ -52,6 +53,7 @@ deploy:
     - node --version
     - npm ci --cache .npm --prefer-offline
     - npm run lint
+    - npm run test:docs
     - npm run downloads
     - |
       if [ "$SEARCH_GHOST_SOURCE" = "fixture" ]; then
@@ -138,6 +140,7 @@ publish:
     - node --version
     - npm ci --cache .npm --prefer-offline
     - npm run lint
+    - npm run test:docs
     - npm run downloads
     - npm run search:refresh
     - npm run build

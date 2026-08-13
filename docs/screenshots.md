@@ -10,6 +10,7 @@
 - Safety-Critical Systems
 - Become a Member
 - Project Members
+- Governance
 
 The default run stores a settled `cookieConsent=false` value before navigation so the membership banner does not obscure ordinary design comparisons. It also requests reduced motion, waits for fonts and images, disables animation and transition timing, returns to the top of the page, and writes stable route-based filenames.
 
@@ -17,7 +18,7 @@ Output is grouped by timestamp and viewport under `screenshots/<timestamp>/`.
 
 ## Optional captures
 
-Capture the default set plus the internal design system, About, and Governance:
+Capture the default set plus the internal design system and About:
 
 ```sh
 npm run screenshots -- --extended

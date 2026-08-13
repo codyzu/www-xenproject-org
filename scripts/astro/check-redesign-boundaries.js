@@ -16,7 +16,7 @@ const requiredFiles = [
   'src/styles/foundation/tokens.css',
   'src/styles/foundation/base.css',
   'src/pages/internal/design-system.astro',
-  'docs/redesign-foundation.md',
+  'docs/design-system.md',
 ];
 
 const walk = (directory) => {

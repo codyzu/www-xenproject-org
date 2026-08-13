@@ -21,22 +21,19 @@ This repo uses Astro as its static-site generator.
 
 ## Relevant Docs
 
-- Read `docs/redesign-strategy.md` before redesign, homepage, component-system,
-  layout, or visual-direction work. It documents the long-term direction for
-  the Astro-era site and the intended legacy/new component boundary.
-- Read `docs/redesign-foundation.md` before creating new primitives, blocks, or
-  homepage UI. Prefer composing existing blocks before adding a block, and
-  prefer page-local composition before adding a primitive. New homepage work
-  should consume the design system rather than define it.
-- Read `docs/migration/astro.md` before changing build architecture, layouts,
+- Read `docs/design-system.md` before redesign, homepage, component-system,
+  layout, or visual-direction work. Prefer composing existing blocks before
+  adding one and prefer page-local composition before adding a primitive.
+- Read `docs/architecture.md` before changing build architecture, layouts,
   Astro routes, migrated components, redirects, Ghost header/footer output, or
   the public artifact contract.
+- Read `docs/adding-pages.md` before adding a route or changing shared
+  navigation. New-shell navigation lives in `data/navigation-v2.yaml`; legacy
+  and Ghost navigation lives in `data/navigation.yaml` during the migration.
 - Use `docs/downloads.md` when working on downloads data or download refresh
   scripts.
 - Use `docs/images.md` when selecting existing image assets.
-- Use `docs/small-components.md` when updating editor-facing component usage
-  guidance.
-- `docs/readme.md` is the top-level index for maintainer and migration docs.
+- `docs/README.md` is the top-level maintainer documentation index.
 
 ## Astro Page Choices
 
@@ -55,6 +52,7 @@ Before committing Astro work, run the relevant checks:
 npm run build
 npm run astro:check
 npm run lint
+npm run test:docs
 npm run test:astro:links
 ```
 

@@ -5,7 +5,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "doc": "node scripts/documentation/generate-thumbnails.js && node scripts/documentation/images.js",
+    "test:docs": "node scripts/documentation/check-links.js",
     "downloads": "node scripts/downloads/getLinks.js",
     "test:downloads": "node --test tests/downloads/*.test.js",
     "dev": "npm run research && npm run search:ensure && astro dev --host",
