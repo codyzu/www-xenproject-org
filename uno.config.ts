@@ -76,6 +76,11 @@ export default defineConfig({
     filesystem: ['./src/**/*.{astro,md,mdx,js,jsx,ts,tsx}'],
     pipeline: {
       include: [/\.(astro|js|jsx|ts|tsx|html|md|mdx)($|\?)/],
+      // Astro's compiled script modules contain large generated strings that
+      // make variant-group parsing extremely expensive. Their original source
+      // files are scanned above, so exclude the redundant generated modules.
+      // https://unocss.dev/guide/extracting#extracting-from-build-tools-pipeline
+      exclude: [/\?astro&type=script/],
     },
   },
   theme: {
