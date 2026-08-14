@@ -69,7 +69,10 @@ export function searchAliasesForText(value: string) {
   return [...aliases.values()];
 }
 
-const normalizeQuery = (value: string) => value.trim().toLocaleLowerCase('en').replaceAll(/\s+/g, ' ');
+export const normalizeSearchTitle = (value: string) =>
+  value.normalize('NFKC').trim().toLocaleLowerCase('en').replaceAll(/\s+/g, ' ');
+
+const normalizeQuery = normalizeSearchTitle;
 
 export function promotedUrlsForQuery(query: string) {
   const normalizedQuery = normalizeQuery(query);

@@ -25,6 +25,25 @@ const historicalReleasePosts: NormalizedGhostPost[] = Array.from({length: 72}, (
 
 export const searchRankingFixturePosts: NormalizedGhostPost[] = [
   {
+    id: 'ranking-xcp-ng-update',
+    slug: 'current-xcp-ng-update',
+    url: '/blog/current-xcp-ng-update/',
+    title: 'XCP-ng project update',
+    content:
+      'XCP-ng project update\nA current look at XCP-ng development, community participation, and platform improvements.',
+    excerpt: 'A current update from the XCP-ng project and its community.',
+    publishedAt: '2026-08-08T12:00:00.000Z',
+    updatedAt: '2026-08-08T12:00:00.000Z',
+    primaryAuthor: 'Fixture Project Author',
+    authors: ['Fixture Project Author'],
+    primaryTag: 'XCP-ng',
+    tags: ['XCP-ng', 'Projects'],
+    tagSlugs: ['xcp-ng', 'projects'],
+    featured: false,
+    aliases: [],
+    language: 'en',
+  },
+  {
     id: 'ranking-current-release',
     slug: 'current-xen-release',
     url: '/blog/current-xen-release/',

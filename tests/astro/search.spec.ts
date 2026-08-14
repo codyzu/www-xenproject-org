@@ -109,6 +109,17 @@ test.describe('unified Pagefind search', () => {
     expect(incidentalIndex === -1 || incidentalIndex > currentReleaseIndex).toBe(true);
   });
 
+  test('prioritizes an exact Website title without suppressing Blog matches', async ({page}) => {
+    await page.getByRole('button', {name: 'Search Xen Project'}).click();
+    const dialog = page.getByRole('dialog', {name: 'Search the site'});
+    await dialog.getByRole('searchbox', {name: 'Search Xen Project'}).fill('xcp-ng');
+
+    const results = dialog.locator('a[data-search-result]');
+    await expect(results.first()).toHaveAttribute('href', '/projects/xcp-ng/');
+    await expect(results.first()).toHaveAttribute('data-search-source', 'Website');
+    await expect(dialog.locator('a[href="/blog/current-xcp-ng-update/"]')).toBeVisible();
+  });
+
   test('offers strict newest ordering for Blog results', async ({page}) => {
     await page.getByRole('button', {name: 'Search Xen Project'}).click();
     const dialog = page.getByRole('dialog', {name: 'Search the site'});

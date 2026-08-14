@@ -61,7 +61,7 @@ import '../../styles/foundation/tokens.css';
 </dialog>
 
 <script>
-  import {promotedIntentForQuery, promotedUrlsForQuery} from '../../data/search';
+  import {normalizeSearchTitle, promotedIntentForQuery, promotedUrlsForQuery} from '../../data/search';
   import {fuseSearchRanks} from '../../data/search-ranking';
 
   type PagefindResultData = {
@@ -315,12 +315,15 @@ import '../../styles/foundation/tokens.css';
       };
       const strictNewest = selectedContentType === 'Blog' && selectedBlogSort === 'newest';
       const promotedIntent = strictNewest ? undefined : promotedIntentForQuery(query);
-      const [response, newestResponse, promotedResponse] = await Promise.all([
+      const [response, newestResponse, promotedResponse, exactTitleResponse] = await Promise.all([
         api.search(query, strictNewest ? newestOptions : {filters: sourceFilters}),
         strictNewest || selectedContentType === 'Website' ? undefined : api.search(query, newestOptions),
         promotedIntent
           ? api.search(query, {filters: {...sourceFilters, promotedIntent}})
           : undefined,
+        strictNewest || selectedContentType === 'Blog'
+          ? undefined
+          : api.search(query, {filters: {...sourceFilters, contentType: 'Website', exactTitle: normalizeSearchTitle(query)}}),
       ]);
       if (thisRequest !== requestNumber) return;
       const rankedResults = newestResponse
@@ -330,11 +333,15 @@ import '../../styles/foundation/tokens.css';
         ...await result.data(),
         score: result.score,
       })));
-      const [promoted, candidates] = await Promise.all([
+      const [promoted, exactTitleMatches, candidates] = await Promise.all([
         loadResults(promotedResponse?.results.slice(0, 8) ?? []),
+        loadResults(exactTitleResponse?.results.slice(0, 8) ?? []),
         loadResults(rankedResults.slice(0, 24)),
       ]);
-      const loaded = applyPromotedOrder(deduplicateResults([...promoted, ...candidates]), query).slice(0, 12);
+      const loaded = applyPromotedOrder(
+        deduplicateResults([...exactTitleMatches, ...promoted, ...candidates]),
+        query,
+      ).slice(0, 12);
       if (thisRequest !== requestNumber) return;
       renderResults(loaded);
       const resultCount = response.results.length;

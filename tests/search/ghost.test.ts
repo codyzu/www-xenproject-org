@@ -23,6 +23,7 @@ import {
   promotedIntentForQuery,
   promotedIntentsForUrl,
   promotedUrlsForQuery,
+  normalizeSearchTitle,
   searchAliasesForPage,
   searchAliasesForText,
   sectionForPath,
@@ -90,6 +91,8 @@ test('deduplicates Ghost identities and defines conservative aliases and route s
   assert.equal(sectionForPath('/resources/downloads/'), 'Releases');
   assert.equal(sectionForPath('/projects/hypervisor/openpgp-keys/'), 'Security');
   assert.equal(sectionForPath('/more/xen-branding/'), 'About');
+  assert.equal(normalizeSearchTitle('  XCP-ng  '), 'xcp-ng');
+  assert.equal(normalizeSearchTitle('Xen\u00a0Project'), 'xen project');
 });
 
 test('defines narrow promoted results and indexing terms for the chat query', () => {

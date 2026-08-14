@@ -14,7 +14,7 @@ const defaultOptions = {
   eligibilityLimit: 200,
   minimumRelativeScore: 0.1,
   rankConstant: 60,
-  freshnessWeight: 2,
+  freshnessWeight: 4,
 } as const;
 
 /**
@@ -31,12 +31,12 @@ export function fuseSearchRanks<Result extends SearchRankResult>(
   const highestScore = relevanceResults[0]?.score ?? 0;
   const newestRanks = new Map(newestBlogResults.map(({id}, index) => [id, index + 1]));
 
-  return relevanceResults
+  const rankedBlogResults = relevanceResults
     .map((result, index) => {
       const relevanceRank = index + 1;
       const newestRank = newestRanks.get(result.id);
+      if (newestRank === undefined) return undefined;
       const receivesFreshnessBoost =
-        newestRank !== undefined &&
         relevanceRank <= settings.eligibilityLimit &&
         (highestScore <= 0 || result.score >= highestScore * settings.minimumRelativeScore);
       const fusedScore =
@@ -45,6 +45,10 @@ export function fuseSearchRanks<Result extends SearchRankResult>(
 
       return {result, relevanceRank, fusedScore};
     })
+    .filter((entry): entry is NonNullable<typeof entry> => entry !== undefined)
     .sort((left, right) => right.fusedScore - left.fusedScore || left.relevanceRank - right.relevanceRank)
     .map(({result}) => result);
+
+  let nextBlogResult = 0;
+  return relevanceResults.map((result) => (newestRanks.has(result.id) ? rankedBlogResults[nextBlogResult++] : result));
 }
