@@ -11,11 +11,13 @@ now the regression baseline; Git history retains the migration audit.
 ## Run the suite
 
 ```sh
-npm run test:astro:copy-parity
+npm run build:test
+npm run test:e2e:copy
 ```
 
-The command builds with an isolated synthetic Ghost cache and starts the Astro
-preview server. External result containers, the independently tested cookie
+`build:test` creates one artifact with isolated download and Ghost fixtures.
+The focused copy command reuses that artifact and starts the Astro preview
+server. External result containers, the independently tested cookie
 banner, and host-only differences in absolute internal links are normalized or
 excluded. Build-time download and research collection output remains part of
 the baseline.
@@ -23,7 +25,7 @@ the baseline.
 ## Approve an intentional content change
 
 ```sh
-npm run test:astro:copy-parity:update -- --grep '/about/'
+npm run test:e2e:copy:update -- --grep '/about/'
 git diff -- tests/astro/copy-parity.spec.ts-snapshots
 ```
 

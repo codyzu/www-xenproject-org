@@ -28,7 +28,7 @@ Write the page in Markdown. Use [descriptive link text](/technology/).
 ```
 
 The relative layout path depends on the page depth. Copy it from a nearby MDX
-page and verify the result with `npm run astro:check`. `title` is required;
+page and verify the result with `npm run typecheck`. `title` is required;
 `description`, `keywords`, `canonicalUrl`, `socialImage`, `image`, `aside`, and
 `hidePageHeader` are supported when the page needs them. Do not add old Hugo
 fields such as `date`, `draft`, or `menus`: Astro file routing and shared YAML
@@ -131,15 +131,13 @@ component-owned artwork from `src/assets/` so Astro can process it. See
 ## Verify the page
 
 ```sh
-npm run test:docs
+npm run check
 npm run build
-npm run astro:check
-npm run lint
-npm run test:astro:links
+npm run check:dist
 ```
 
 For a redesigned or interaction-heavy page, also run
-`npm run test:astro:smoke:public` and capture it with
+`npm run test:e2e` and capture it with
 `npm run screenshots -- /your/route/`.
 
 Before review, confirm that the page has one visible `h1`, useful title and

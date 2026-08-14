@@ -5,6 +5,7 @@ const serverPort = process.env.PLAYWRIGHT_PORT ?? '4321';
 const baseUrl = process.env.PLAYWRIGHT_BASE_URL ?? `http://127.0.0.1:${serverPort}`;
 const shouldStartServer = process.env.PLAYWRIGHT_START_SERVER === '1';
 const shouldStartDevServer = process.env.PLAYWRIGHT_DEV_SERVER === '1';
+const shouldSkipSearch = process.env.PLAYWRIGHT_SKIP_SEARCH === '1';
 
 export default defineConfig({
   testDir: './tests/astro',
@@ -45,7 +46,7 @@ export default defineConfig({
   },
   ...(shouldStartServer && {
     webServer: {
-      command: shouldStartDevServer ? `npm run dev -- --port ${serverPort}` : `npm run serve -- --port ${serverPort}`,
+      command: shouldStartDevServer ? `npm run dev -- --port ${serverPort}` : `npm run preview -- --port ${serverPort}`,
       reuseExistingServer: false,
       timeout: 120_000,
       url: `http://127.0.0.1:${serverPort}`,
@@ -54,7 +55,9 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium-desktop',
-      testIgnore: /high-value-webkit-mobile\.spec\.ts/,
+      testIgnore: shouldSkipSearch
+        ? [/high-value-webkit-mobile\.spec\.ts/, /[\\/]search\.spec\.ts$/]
+        : /high-value-webkit-mobile\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         viewport: {
@@ -66,6 +69,7 @@ export default defineConfig({
     {
       name: 'webkit-mobile',
       testMatch: /(high-value-webkit-mobile|homepage-latest|search)\.spec\.ts/,
+      ...(shouldSkipSearch && {testIgnore: /[\\/]search\.spec\.ts$/}),
       use: {
         ...devices['iPhone 13'],
         reducedMotion: 'reduce',

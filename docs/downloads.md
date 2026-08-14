@@ -26,7 +26,7 @@ DOWNLOADS_SOURCE=fixture npm run build
 ```
 
 Only `fixture` and `live` are accepted values. Do not set `fixture` in a
-deployment job. `npm run build:test:astro` selects it automatically.
+deployment job. `npm run build:test` selects it automatically.
 
 Provider discovery lives in `scripts/downloads/`; collection loading and
 strict failure behavior live in `src/loaders/downloads.js`. Add or change a

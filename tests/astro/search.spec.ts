@@ -1,7 +1,7 @@
 import {expect, test} from '@playwright/test';
 
 test.describe('unified Pagefind search', () => {
-  test.skip(process.env.SEARCH_FIXTURE_TEST !== '1', 'Run with npm run test:astro:search');
+  test.skip(process.env.SEARCH_FIXTURE_TEST !== '1', 'Run with npm run test:e2e or npm run test:e2e:search');
 
   test.beforeEach(async ({page}) => {
     await page.route('**/blog/**', async route => route.fulfill({

@@ -18,14 +18,14 @@ should use an origin other than `https://beta.xenproject.org`.
 ## Before opening a merge request
 
 ```sh
-npm run test:docs
+npm run check
 npm run build
-npm run astro:check
-npm run lint
-npm run test:astro:links
+npm run check:dist
 ```
 
-Use `npm run test:astro:smoke:public` for the full browser smoke suite.
+Use `npm run test:e2e` for the self-contained browser suite. It creates one
+deterministic test artifact, validates it, and runs all Playwright tests.
+Focused `test:e2e:*` commands reuse the existing `dist/` artifact.
 
 ## Contributing
 

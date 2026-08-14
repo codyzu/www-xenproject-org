@@ -49,26 +49,25 @@ This repo uses Astro as its static-site generator.
 Before committing Astro work, run the relevant checks:
 
 ```sh
+npm run check
 npm run build
-npm run astro:check
-npm run lint
-npm run test:docs
-npm run test:astro:links
+npm run check:dist
 ```
 
 For visual smoke testing:
 
 ```sh
-npm run build
-npm run test:astro:smoke:public
+npm run test:e2e
 ```
 
-`test:astro:smoke:public` starts `serve dist` through Playwright's `webServer`
+`test:e2e` builds a deterministic fixture artifact once, validates it, and
+runs the full browser suite. Focused `test:e2e:*` commands reuse an existing
+`dist/` artifact. Playwright starts `astro preview` through its `webServer`
 configuration on `http://127.0.0.1:4321`. Stop any other local server on that
-port before running the public smoke test.
+port before running browser tests.
 
 Known acceptable noise:
 
 - `npm run build` may print Sass deprecation warnings from the existing
   styles.
-- `npm run lint` may print the existing TODO / unused eslint-disable warnings.
+- `npm run check` may print the existing TODO / unused eslint-disable warnings.

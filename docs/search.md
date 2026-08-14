@@ -43,13 +43,12 @@ message.
   normalized local cache. Exported shell or CI values take precedence over the file. Both Ghost variables are required;
   a failed refresh leaves the previous cache intact.
 - `npm run search:index` rebuilds Pagefind against the existing `dist/` and the local cache.
-- `npm run build:search:fresh` refreshes Ghost and performs a complete production-like build.
 - `npm run search:fixture` prepares the committed synthetic records used by local search tests. It never contacts Ghost.
-- `npm run search:ensure` preserves an existing cache or prepares that fixture when the cache is missing. Both local
-  development commands run it automatically.
-- `npm run test:astro:search` replaces the existing artifact's search index with synthetic records and runs the focused
+- `npm run search:ensure` preserves an existing cache or prepares that fixture when the cache is missing. The local
+  development command runs it automatically.
+- `npm run test:e2e:search` replaces the existing artifact's search index with synthetic records and runs the focused
   browser coverage. Its fixture cache uses `.cache/ghost-search/test-posts.json`, so it does not replace a developer's
-  live local cache. Run `npm run build` first when `dist/` is absent or its Astro output is stale.
+  live local cache. Run `npm run build:test` first for deterministic local coverage when `dist/` is absent or stale.
 
 If search reports that assets are missing, run `npm run build` and serve `dist/`, not the Astro development server. If
 Blog results are missing or stale, run `npm run search:refresh` and then `npm run search:index` (or a full build). A

@@ -12,6 +12,8 @@ Start with the guide that matches the work you are doing.
 
 - [Site architecture](architecture.md): build output, layouts, legacy boundaries,
   routing, deployment, and the Ghost shell.
+- [npm scripts](scripts.md): primary workflows, run-only checks, and focused
+  browser commands.
 - [Design system](design-system.md): current components, tokens, page composition,
   writing, responsive behavior, and navigation interaction.
 - [Illustration system](illustration-system.md): reusable scene architecture and

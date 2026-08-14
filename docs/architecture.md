@@ -70,8 +70,9 @@ public pages can move together.
 
 ## Verification
 
-Run the checks documented in the root README. `npm run test:astro:standalone`
-performs a fresh build and additionally enforces routes, RSS,
-`headerfooter.html`, redirects, assets, canonical URLs, and the 404 contract.
-Use `npm run test:astro:smoke:public` for the browser suite against the complete
-artifact.
+Run the checks documented in the root README. `npm run check:artifact` validates
+the existing `dist/` and enforces routes, RSS, `headerfooter.html`, redirects,
+assets, canonical URLs, and the 404 contract. `npm run check:boundaries` checks
+source-level design-system isolation; `npm run check:dist` runs both without
+rebuilding. Use `npm run test:e2e` to build and test one deterministic browser
+artifact end to end.
