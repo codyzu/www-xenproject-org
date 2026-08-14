@@ -20,12 +20,12 @@ const channelMeta: Record<string, {icon: string; label: string}> = {
 };
 ---
 
-<div class="release-console xen-panel-elevated uno-relative uno-isolate uno-overflow-hidden uno-p-4 sm:uno-p-5" aria-label="Current release channels">
+<div class="release-console xen-panel-elevated uno-relative uno-isolate uno-overflow-hidden uno-p-4 sm:uno-p-5" aria-label="Choose a release channel">
   <div class="release-console__grid" aria-hidden="true"></div>
   <div class="uno-relative uno-z-1 uno-flex uno-items-center uno-justify-between uno-gap-4 uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-pb-4">
     <div class="uno-flex uno-min-w-0 uno-items-center uno-gap-3">
       <span class="release-console__status uno-h-2.5 uno-w-2.5 uno-shrink-0 uno-rounded-full uno-bg-xp-accent-primary"></span>
-      <Text as="span" size="mono-small" tone="primary" class="uno-uppercase uno-tracking-[0.14em]">release channels</Text>
+      <Text as="span" size="mono-small" tone="primary" class="uno-uppercase uno-tracking-[0.14em]">choose a release channel</Text>
     </div>
     <Badge variant="accent">Build verified</Badge>
   </div>
@@ -34,8 +34,8 @@ const channelMeta: Record<string, {icon: string; label: string}> = {
     {groups.map((group, index) => {
       const meta = channelMeta[group.key] ?? {icon: 'i-carbon-download', label: 'Project release'};
       return (
-        <div class:list={[
-          'release-console__channel uno-grid uno-min-w-0 uno-grid-cols-[auto_minmax(0,1fr)] uno-items-center uno-gap-x-3 uno-gap-y-1 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(20_34_56_/_0.84)] uno-p-3 sm:uno-grid-cols-[auto_minmax(0,1fr)_auto] sm:uno-p-4',
+        <a href={`#${group.key}-releases`} class:list={[
+          'release-console__channel xen-focus uno-group uno-grid uno-min-h-18 uno-min-w-0 uno-grid-cols-[auto_minmax(0,1fr)] uno-items-center uno-gap-x-3 uno-gap-y-2 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-[rgb(20_34_56_/_0.84)] uno-p-3 uno-text-xp-text-primary uno-no-underline uno-transition-[border-color,background-color,transform] hover:uno-border-[var(--xp-accent-primary)] hover:uno-bg-xp-surface-3 sm:uno-grid-cols-[auto_minmax(0,1fr)_auto] sm:uno-p-4',
           index === 0 && 'release-console__channel--primary',
         ]}>
           <span class:list={[meta.icon, 'uno-col-row-span-2 uno-h-6 uno-w-6 uno-text-xp-accent-primary']} aria-hidden="true"></span>
@@ -43,10 +43,16 @@ const channelMeta: Record<string, {icon: string; label: string}> = {
             <Heading as="h2" size="card" class="uno-text-lg">{group.name}</Heading>
             <Text size="caption" tone="muted">{meta.label}</Text>
           </div>
-          <Text as="span" size="mono-small" tone="primary" class="uno-col-start-2 uno-row-start-2 uno-w-fit uno-rounded-full uno-bg-xp-surface-3 uno-px-2.5 uno-py-1 sm:uno-col-start-3 sm:uno-row-start-1 sm:uno-row-span-2">
-            {releaseLabel(group)}
-          </Text>
-        </div>
+          <span class="uno-col-start-2 uno-row-start-2 uno-flex uno-min-w-0 uno-flex-wrap uno-items-center uno-gap-x-3 uno-gap-y-2 sm:uno-col-start-3 sm:uno-row-start-1 sm:uno-row-span-2 sm:uno-justify-end">
+            <Text as="span" size="mono-small" tone="primary" class="uno-w-fit uno-rounded-full uno-bg-xp-surface-3 uno-px-2.5 uno-py-1">
+              {releaseLabel(group)}
+            </Text>
+            <span class="uno-inline-flex uno-items-center uno-gap-1.5 uno-text-xs uno-font-semibold uno-text-xp-text-secondary group-hover:uno-text-xp-accent-primary">
+              View release
+              <span class="i-carbon-arrow-down uno-h-4 uno-w-4" aria-hidden="true"></span>
+            </span>
+          </span>
+        </a>
       );
     })}
   </div>

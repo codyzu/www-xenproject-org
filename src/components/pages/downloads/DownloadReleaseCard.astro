@@ -33,7 +33,12 @@ const artifactLabel = (name: string) => {
 };
 ---
 
-<article class="xen-panel-elevated uno-flex uno-min-w-0 uno-flex-col uno-gap-6 uno-p-5 sm:uno-p-6" data-download-group={group.key}>
+<article
+  id={`${group.key}-releases`}
+  class="download-release-card xen-panel-elevated uno-flex uno-min-w-0 uno-scroll-mt-28 uno-flex-col uno-gap-6 uno-p-5 sm:uno-p-6"
+  data-download-group={group.key}
+  tabindex="-1"
+>
   <div class="uno-flex uno-items-start uno-justify-between uno-gap-4">
     <div class="uno-flex uno-min-w-0 uno-items-center uno-gap-3">
       <span class:list={[icons[group.key] ?? 'i-carbon-download', 'uno-h-7 uno-w-7 uno-shrink-0 uno-text-xp-accent-primary']} aria-hidden="true"></span>
@@ -85,3 +90,30 @@ const artifactLabel = (name: string) => {
     </Stack>
   )}
 </article>
+
+<style>
+  .download-release-card:target {
+    animation: release-card-target 1.4s var(--xp-ease-standard);
+  }
+
+  @keyframes release-card-target {
+    0%, 32% {
+      border-color: var(--xp-accent-primary);
+      box-shadow:
+        0 0 0 0.18rem rgb(133 194 65 / 0.28),
+        0 1.4rem 3rem rgb(0 0 0 / 0.28);
+      background-color: var(--xp-surface-3);
+    }
+    100% {
+      border-color: var(--xp-border-muted);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .download-release-card:target {
+      animation: none;
+      border-color: var(--xp-accent-primary);
+      box-shadow: 0 0 0 0.18rem rgb(133 194 65 / 0.28);
+    }
+  }
+</style>
