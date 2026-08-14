@@ -3,7 +3,7 @@ import Footer from '../components/legacy/Footer.astro';
 import Header from '../components/legacy/Header.astro';
 import SearchDialog from '../components/search/SearchDialog.astro';
 import {siteMetadata} from '../data/site';
-import {searchAliasesForPage, sectionForPath} from '../data/search';
+import {promotedIntentsForUrl, searchAliasesForPage, sectionForPath} from '../data/search';
 import 'uno.css';
 import '../styles/legacy.scss';
 import '../styles/expressive-code.css';
@@ -47,6 +47,10 @@ const resolvedCanonicalUrl = new URL(canonicalUrl || currentPath, siteUrl).toStr
 const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialImage, siteUrl).toString();
 const searchSection = sectionForPath(currentPath);
 const searchAliases = searchAliasesForPage(currentPath, `${title}\n${resolvedDescription}\n${keywords.join(' ')}`);
+const promotedIntents = promotedIntentsForUrl(currentPath);
+const searchFilterSpec = promotedIntents.length > 0
+  ? 'section[data-search-section], contentType[data-search-content-type], promotedIntent[data-search-promoted-intent]'
+  : 'section[data-search-section], contentType[data-search-content-type]';
 const shouldIndex = !robots.toLowerCase().includes('noindex') && currentPath !== '/search/';
 ---
 
@@ -88,8 +92,9 @@ const shouldIndex = !robots.toLowerCase().includes('noindex') && currentPath !==
       data-pagefind-ignore={!shouldIndex ? true : undefined}
       data-search-section={searchSection}
       data-search-content-type="Website"
+      data-search-promoted-intent={promotedIntents.join(',') || undefined}
       data-pagefind-meta="section[data-search-section], contentType[data-search-content-type]"
-      data-pagefind-filter="section[data-search-section], contentType[data-search-content-type]"
+      data-pagefind-filter={searchFilterSpec}
     >
       <slot />
     </main>

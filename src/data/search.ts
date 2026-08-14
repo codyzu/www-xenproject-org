@@ -33,6 +33,7 @@ const aliasGroups = [
 
 const promotedSearchResults = [
   {
+    intent: 'downloads',
     queries: [
       'download',
       'downloads',
@@ -47,6 +48,7 @@ const promotedSearchResults = [
     urls: ['/resources/downloads/'],
   },
   {
+    intent: 'chat',
     queries: ['chat'],
     urls: ['/resources/matrix/', '/blog/we-have-moved-to-matrix/'],
   },
@@ -75,6 +77,16 @@ export function promotedUrlsForQuery(query: string) {
     promotedSearchResults.find(({queries}) => queries.some((value) => normalizeQuery(value) === normalizedQuery))
       ?.urls ?? []
   );
+}
+
+export function promotedIntentForQuery(query: string) {
+  const normalizedQuery = normalizeQuery(query);
+  return promotedSearchResults.find(({queries}) => queries.some((value) => normalizeQuery(value) === normalizedQuery))
+    ?.intent;
+}
+
+export function promotedIntentsForUrl(url: string) {
+  return promotedSearchResults.filter(({urls}) => (urls as readonly string[]).includes(url)).map(({intent}) => intent);
 }
 
 export function promotedTermsForUrl(url: string) {

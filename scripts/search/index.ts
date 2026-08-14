@@ -1,11 +1,12 @@
 import path from 'node:path';
 import process from 'node:process';
 import * as pagefind from 'pagefind';
-import {promotedTermsForUrl} from '../../src/data/search.ts';
+import {promotedIntentsForUrl, promotedTermsForUrl} from '../../src/data/search.ts';
 import {readGhostCache, type NormalizedGhostPost} from './ghost.ts';
 
 export function ghostPagefindRecord(post: NormalizedGhostPost) {
   const aliases = [...new Set([...post.aliases, ...promotedTermsForUrl(post.url)])];
+  const promotedIntents = promotedIntentsForUrl(post.url);
   return {
     url: post.url,
     content: post.content,
@@ -13,6 +14,7 @@ export function ghostPagefindRecord(post: NormalizedGhostPost) {
     meta: {
       title: post.title,
       excerpt: post.excerpt,
+      tags: post.tags.join(', '),
       section: 'Blog',
       contentType: 'Blog',
       published: post.publishedAt,
@@ -23,7 +25,13 @@ export function ghostPagefindRecord(post: NormalizedGhostPost) {
       ...(post.primaryAuthor && {author: post.primaryAuthor}),
       ...(post.primaryTag && {primaryTag: post.primaryTag}),
     },
-    filters: {contentType: ['Blog'], section: ['Blog'], tags: post.tags, authors: post.authors},
+    filters: {
+      contentType: ['Blog'],
+      section: ['Blog'],
+      tags: post.tags,
+      authors: post.authors,
+      ...(promotedIntents.length > 0 && {promotedIntent: promotedIntents}),
+    },
     sort: {published: post.publishedAt, updated: post.updatedAt},
   };
 }
@@ -38,6 +46,7 @@ async function main() {
   });
   if (!index || creationErrors.length > 0)
     throw new Error(`Pagefind could not create an index: ${creationErrors.join('; ')}`);
+  let indexedGhostPostCount = 0;
   try {
     console.log('Indexing generated Astro pages from dist/…');
     const astro = await index.addDirectory({path: path.resolve('dist'), glob: '**/*.html'});
@@ -50,14 +59,22 @@ async function main() {
     }
 
     if (cache) {
-      console.log(`Adding ${cache.posts.length} cached Ghost posts to Pagefind…`);
+      let rankingFixturePosts: NormalizedGhostPost[] = [];
+      if (process.env.SEARCH_RANKING_FIXTURE === '1') {
+        const rankingFixture = await import('./ranking-fixture.ts');
+        rankingFixturePosts = rankingFixture.searchRankingFixturePosts;
+      }
+
+      const posts = [...cache.posts, ...rankingFixturePosts];
+      indexedGhostPostCount = posts.length;
+      console.log(`Adding ${posts.length} cached Ghost posts to Pagefind…`);
       let completedGhostPosts = 0;
       const results = await Promise.all(
-        cache.posts.map(async (post) => {
+        posts.map(async (post) => {
           const result = await index.addCustomRecord(ghostPagefindRecord(post));
           completedGhostPosts += 1;
-          if (completedGhostPosts % 100 === 0 || completedGhostPosts === cache.posts.length)
-            console.log(`Indexed ${completedGhostPosts}/${cache.posts.length} Ghost posts.`);
+          if (completedGhostPosts % 100 === 0 || completedGhostPosts === posts.length)
+            console.log(`Indexed ${completedGhostPosts}/${posts.length} Ghost posts.`);
           return {post, result};
         }),
       );
@@ -75,9 +92,7 @@ async function main() {
     const written = await index.writeFiles({outputPath});
     if (written.errors.length > 0)
       throw new Error(`Pagefind failed to write search assets: ${written.errors.join('; ')}`);
-    console.log(
-      `Wrote unified search index: ${astro.page_count} Astro pages, ${cache?.posts.length ?? 0} Ghost posts.`,
-    );
+    console.log(`Wrote unified search index: ${astro.page_count} Astro pages, ${indexedGhostPostCount} Ghost posts.`);
   } finally {
     await index.deleteIndex();
     await pagefind.close();

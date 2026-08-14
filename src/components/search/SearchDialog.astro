@@ -3,7 +3,7 @@ import '../../styles/foundation/tokens.css';
 ---
 
 <dialog class="xp-search-dialog uno-overflow-hidden uno-border uno-border-solid uno-border-[var(--xp-border-layered-popover)] uno-bg-[rgb(11_19_32_/_0.98)] uno-p-0 uno-text-xp-text-primary uno-shadow-xp-lg" data-search-dialog aria-labelledby="xp-search-title">
-  <div class="xp-search-shell uno-grid uno-grid-rows-[auto_auto_auto_auto_minmax(0,1fr)_auto]">
+  <div class="xp-search-shell uno-grid uno-grid-rows-[auto_auto_auto_auto_auto_minmax(0,1fr)_auto]">
     <header class="xp-search-header uno-flex uno-items-center uno-justify-between uno-gap-4 uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-px-4 uno-py-[1.15rem] sm:uno-px-5">
       <div class="uno-flex uno-items-center uno-gap-[.8rem]">
         <span class="i-carbon-search uno-h-5 uno-w-5 uno-text-xp-accent-primary" aria-hidden="true"></span>
@@ -45,6 +45,11 @@ import '../../styles/foundation/tokens.css';
       <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary uno-transition-[color,border-color,background-color] uno-duration-[var(--xp-motion-fast)] hover:uno-border-xp-border-strong hover:uno-text-xp-text-primary" data-search-filter="Website" aria-pressed="false"><span class="i-carbon-document uno-mr-1 uno-align-[-.12em]" aria-hidden="true"></span>Website</button>
       <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary uno-transition-[color,border-color,background-color] uno-duration-[var(--xp-motion-fast)] hover:uno-border-xp-border-strong hover:uno-text-xp-text-primary" data-search-filter="Blog" aria-pressed="false"><span class="i-carbon-notebook uno-mr-1 uno-align-[-.12em]" aria-hidden="true"></span>Blog</button>
     </div>
+    <div class="xp-search-sort uno-mx-4 uno-mb-3 uno-hidden uno-items-center uno-gap-2 sm:uno-mx-5" data-search-sort role="group" aria-label="Order blog search results">
+      <span class="uno-font-sans uno-text-xs uno-font-medium uno-text-xp-text-muted">Sort by</span>
+      <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary uno-transition-[color,border-color,background-color] uno-duration-[var(--xp-motion-fast)] hover:uno-border-xp-border-strong hover:uno-text-xp-text-primary" data-search-sort-option="best" aria-pressed="true">Best match</button>
+      <button type="button" class="xen-focus uno-cursor-pointer uno-rounded-full uno-border uno-border-solid uno-border-xp-border-muted uno-bg-transparent uno-px-3 uno-py-1.5 uno-font-sans uno-text-xs uno-font-semibold uno-text-xp-text-secondary uno-transition-[color,border-color,background-color] uno-duration-[var(--xp-motion-fast)] hover:uno-border-xp-border-strong hover:uno-text-xp-text-primary" data-search-sort-option="newest" aria-pressed="false">Newest</button>
+    </div>
     <ol id="xp-search-results" class="xp-search-results uno-m-0 uno-min-h-0 uno-list-none uno-overflow-y-auto uno-overscroll-contain uno-px-2 uno-pb-3 sm:uno-min-h-20 sm:uno-px-3" data-search-results role="listbox" aria-label="Search results"></ol>
 
     <footer class="xp-search-footer uno-hidden uno-gap-[1.1rem] uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-px-5 uno-pt-3 uno-font-sans uno-text-[.7rem] uno-font-medium uno-leading-[1.3] uno-text-xp-text-muted sm:uno-flex lg:uno-gap-5 lg:uno-text-[.8rem]" aria-hidden="true">
@@ -56,7 +61,8 @@ import '../../styles/foundation/tokens.css';
 </dialog>
 
 <script>
-  import {promotedUrlsForQuery} from '../../data/search';
+  import {promotedIntentForQuery, promotedUrlsForQuery} from '../../data/search';
+  import {fuseSearchRanks} from '../../data/search-ranking';
 
   type PagefindResultData = {
     url: string;
@@ -76,7 +82,10 @@ import '../../styles/foundation/tokens.css';
     init: () => Promise<void>;
     options: (options: Record<string, unknown>) => Promise<void>;
     filters: () => Promise<PagefindFilterCounts>;
-    search: (query: string, options?: {filters?: Record<string, string>}) => Promise<PagefindResponse>;
+    search: (query: string, options?: {
+      filters?: Record<string, string>;
+      sort?: Record<string, 'asc' | 'desc'>;
+    }) => Promise<PagefindResponse>;
   };
 
   const dialog = document.querySelector<HTMLDialogElement>('[data-search-dialog]');
@@ -85,6 +94,8 @@ import '../../styles/foundation/tokens.css';
   const status = dialog?.querySelector<HTMLElement>('[data-search-status]');
   const filterBar = dialog?.querySelector<HTMLElement>('[data-search-filters]');
   const filterButtons = [...(filterBar?.querySelectorAll<HTMLButtonElement>('[data-search-filter]') ?? [])];
+  const sortBar = dialog?.querySelector<HTMLElement>('[data-search-sort]');
+  const sortButtons = [...(sortBar?.querySelectorAll<HTMLButtonElement>('[data-search-sort-option]') ?? [])];
   const triggers = [...document.querySelectorAll<HTMLButtonElement>('[data-search-open]')];
   let pagefind: PagefindApi | undefined;
   let pagefindPromise: Promise<PagefindApi> | undefined;
@@ -93,6 +104,7 @@ import '../../styles/foundation/tokens.css';
   let requestNumber = 0;
   let lockedScrollY = 0;
   let selectedContentType = 'All';
+  let selectedBlogSort = 'best';
   const visualViewport = globalThis.visualViewport;
   const mobileDialogQuery = globalThis.matchMedia('(max-width: 40rem)');
 
@@ -150,7 +162,7 @@ import '../../styles/foundation/tokens.css';
       await module.options({
         excerptLength: 24,
         ranking: {
-          metaWeights: {title: 8, description: 2, keywords: 1.5, aliases: 1.5, section: 0},
+          metaWeights: {title: 8, description: 2, excerpt: 2, tags: 2.5, keywords: 1.5, aliases: 1.5, section: 0},
         },
       });
       await module.init();
@@ -247,6 +259,15 @@ import '../../styles/foundation/tokens.css';
       const active = button.dataset.searchFilter === selectedContentType;
       button.setAttribute('aria-pressed', String(active));
     }
+    const showBlogSort = selectedContentType === 'Blog';
+    sortBar?.classList.toggle('uno-flex', showBlogSort);
+    sortBar?.classList.toggle('uno-hidden', !showBlogSort);
+  };
+
+  const updateSortButtons = () => {
+    for (const button of sortButtons) {
+      button.setAttribute('aria-pressed', String(button.dataset.searchSortOption === selectedBlogSort));
+    }
   };
 
   const renderResults = (items: PagefindResultData[]) => {
@@ -285,16 +306,35 @@ import '../../styles/foundation/tokens.css';
     setStatus('Searching…');
     try {
       const api = await loadPagefind();
-      const response = await api.search(query, selectedContentType === 'All'
-        ? undefined
-        : {filters: {contentType: selectedContentType}});
+      const sourceFilters: Record<string, string> = selectedContentType === 'All'
+        ? {}
+        : {contentType: selectedContentType};
+      const newestOptions = {
+        filters: {contentType: 'Blog'},
+        sort: {published: 'desc' as const},
+      };
+      const strictNewest = selectedContentType === 'Blog' && selectedBlogSort === 'newest';
+      const promotedIntent = strictNewest ? undefined : promotedIntentForQuery(query);
+      const [response, newestResponse, promotedResponse] = await Promise.all([
+        api.search(query, strictNewest ? newestOptions : {filters: sourceFilters}),
+        strictNewest || selectedContentType === 'Website' ? undefined : api.search(query, newestOptions),
+        promotedIntent
+          ? api.search(query, {filters: {...sourceFilters, promotedIntent}})
+          : undefined,
+      ]);
       if (thisRequest !== requestNumber) return;
-      const candidateLimit = promotedUrlsForQuery(query).length > 0 ? 48 : 24;
-      const candidates = deduplicateResults(await Promise.all(response.results.slice(0, candidateLimit).map(async result => ({
+      const rankedResults = newestResponse
+        ? fuseSearchRanks(response.results, newestResponse.results)
+        : response.results;
+      const loadResults = (items: PagefindResult[]) => Promise.all(items.map(async result => ({
         ...await result.data(),
         score: result.score,
-      }))));
-      const loaded = applyPromotedOrder(candidates, query).slice(0, 12);
+      })));
+      const [promoted, candidates] = await Promise.all([
+        loadResults(promotedResponse?.results.slice(0, 8) ?? []),
+        loadResults(rankedResults.slice(0, 24)),
+      ]);
+      const loaded = applyPromotedOrder(deduplicateResults([...promoted, ...candidates]), query).slice(0, 12);
       if (thisRequest !== requestNumber) return;
       renderResults(loaded);
       const resultCount = response.results.length;
@@ -333,6 +373,13 @@ import '../../styles/foundation/tokens.css';
       void performSearch();
     });
   }
+  for (const button of sortButtons) {
+    button.addEventListener('click', () => {
+      selectedBlogSort = button.dataset.searchSortOption ?? 'best';
+      updateSortButtons();
+      void performSearch();
+    });
+  }
 
   results?.addEventListener('pointermove', event => {
     const link = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[data-search-result]');
@@ -367,7 +414,7 @@ import '../../styles/foundation/tokens.css';
   @starting-style { .xp-search-dialog[open] { opacity: 0; transform: translateY(-0.5rem) scale(0.985); } }
   .xp-search-dialog::backdrop { background: rgb(1 4 9 / 0.72); backdrop-filter: blur(5px); opacity: 1; transition: opacity var(--xp-motion-base) var(--xp-ease-standard); }
   .xp-search-shell { max-height: min(48rem, calc(100dvh - 2rem)); }
-  .xp-search-filters button[aria-pressed='true'] { border-color: var(--xp-accent-primary); background: var(--xp-accent-primary-soft); color: var(--xp-text-primary); }
+  .xp-search-filters button[aria-pressed='true'], .xp-search-sort button[aria-pressed='true'] { border-color: var(--xp-accent-primary); background: var(--xp-accent-primary-soft); color: var(--xp-text-primary); }
   .xp-search-result-card::before { content: ''; position: absolute; inset-block: .65rem; left: .55rem; width: 3px; border-radius: 999px; background: var(--xp-search-result-accent); box-shadow: 0 0 12px var(--xp-search-result-accent-soft); }
   .xp-search-result-card[data-search-source='Website'] { --xp-search-result-accent: var(--xp-accent-secondary); --xp-search-result-accent-soft: var(--xp-accent-secondary-soft); }
   .xp-search-result-card[data-search-source='Blog'] { --xp-search-result-accent: var(--xp-accent-primary); --xp-search-result-accent-soft: var(--xp-accent-primary-soft); }
@@ -381,13 +428,13 @@ import '../../styles/foundation/tokens.css';
   @media (max-width: 40rem) {
     .xp-search-dialog { position: fixed; top: var(--xp-search-viewport-top, 0); right: 0; bottom: auto; left: 0; width: 100vw; max-width: none; height: var(--xp-search-viewport-height, 100dvh); max-height: var(--xp-search-viewport-height, 100dvh); margin: 0; border-width: 0; border-radius: 0; }
     .xp-search-shell { max-height: 100%; height: 100%; padding-top: env(safe-area-inset-top); }
-    .xp-search-filters { scrollbar-width: none; }
-    .xp-search-filters::-webkit-scrollbar { display: none; }
-    .xp-search-filters button { flex: 0 0 auto; }
+    .xp-search-filters, .xp-search-sort { scrollbar-width: none; }
+    .xp-search-filters::-webkit-scrollbar, .xp-search-sort::-webkit-scrollbar { display: none; }
+    .xp-search-filters button, .xp-search-sort button { flex: 0 0 auto; }
     .xp-search-results { padding-bottom: max(.75rem, env(safe-area-inset-bottom)); }
   }
   @media (prefers-reduced-motion: reduce) {
-    .xp-search-dialog, .xp-search-dialog::backdrop, .xp-search-input-wrap, .xp-search-filters button, .xp-search-result-card { transition: none; }
+    .xp-search-dialog, .xp-search-dialog::backdrop, .xp-search-input-wrap, .xp-search-filters button, .xp-search-sort button, .xp-search-result-card { transition: none; }
     .xp-search-result-card:hover, .xp-search-result-card[data-active] { transform: none; }
   }
 </style>
