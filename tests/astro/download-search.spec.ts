@@ -15,6 +15,26 @@ const downloadGroups = [
 ];
 
 test.describe('download search states', () => {
+  test('uses release channels as keyboard-accessible links to the detailed cards', async ({page}) => {
+    await page.goto('/resources/downloads/');
+
+    const console = page.getByLabel('Choose a release channel');
+    const xcpngChannel = console.getByRole('link', {name: /XCP-ng.*View release/});
+    await xcpngChannel.focus();
+    await expect(xcpngChannel).toBeFocused();
+    await page.keyboard.press('Enter');
+
+    await expect(page).toHaveURL(/#xcpng-releases$/);
+    const xcpngCard = page.locator('#xcpng-releases');
+    await expect(xcpngCard).toBeFocused();
+    await expect(xcpngCard).toHaveCSS('animation-name', 'release-card-target');
+    await expect(xcpngCard).toBeInViewport();
+
+    await console.getByRole('link', {name: /Xen.*View release/}).click();
+    await expect(page).toHaveURL(/#xen-releases$/);
+    await expect(page.locator('#xen-releases')).toBeFocused();
+  });
+
   test('loads once and performs grouped, case-insensitive multi-term search', async ({page}) => {
     let requests = 0;
     await page.route('**/data/downloads.json', async route => {
@@ -67,6 +87,8 @@ test.describe('download search states', () => {
     await expect(page.locator('[data-download-group="windowspvdrivers"]')).toHaveCount(0);
     await expect(page.locator('main').getByText('Windows PV Drivers')).toHaveCount(0);
     expect(await page.locator('.release-console').evaluate(element => getComputedStyle(element, '::after').animationName)).toBe('none');
+    await page.getByLabel('Choose a release channel').getByRole('link', {name: /Mirage OS.*View release/}).click();
+    await expect(page.locator('#mirageos-releases')).toHaveCSS('animation-name', 'none');
   });
 
   test('reports loading and a distinct HTTP failure', async ({page}) => {

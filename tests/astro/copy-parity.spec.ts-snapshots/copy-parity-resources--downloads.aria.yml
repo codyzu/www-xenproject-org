@@ -3,16 +3,22 @@
   - heading "Downloads" [level=1]
   - paragraph: Choose the right layer. Get the current artifact.
   - paragraph: Download the Xen hypervisor source, deploy a complete XCP-ng platform, or build focused Mirage OS unikernels. Each channel stays distinct, current, and inspectable.
-  - text: release channels Build verified
-  - heading "Xen" [level=2]
-  - paragraph: Hypervisor source
-  - text: 4.21.1
-  - heading "XCP-ng" [level=2]
-  - paragraph: Turnkey platform
-  - text: "8.3"
-  - heading "Mirage OS" [level=2]
-  - paragraph: Library operating system
-  - text: 4.11.2
+  - text: choose a release channel Build verified
+  - link "Xen Hypervisor source 4.21.1 View release":
+    - /url: /#xen-releases
+    - heading "Xen" [level=2]
+    - paragraph: Hypervisor source
+    - text: 4.21.1 View release
+  - link "XCP-ng Turnkey platform 8.3 View release":
+    - /url: /#xcpng-releases
+    - heading "XCP-ng" [level=2]
+    - paragraph: Turnkey platform
+    - text: 8.3 View release
+  - link "Mirage OS Library operating system 4.11.2 View release":
+    - /url: /#mirageos-releases
+    - heading "Mirage OS" [level=2]
+    - paragraph: Library operating system
+    - text: 4.11.2 View release
   - paragraph: Current channels
   - heading "Start from the release that matches your system" [level=2]
   - paragraph: The hypervisor, platform, and library OS solve different problems. Their release artifacts are presented independently so ownership stays clear.
