@@ -1,16 +1,16 @@
 /* eslint-disable @typescript-eslint/naming-convention, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call */
 import rss from '@astrojs/rss';
 import {getCollection} from 'astro:content';
-import researchPapers from '../../data/research.json';
 
 export async function GET(context: {site?: URL}) {
   const events = await getCollection('pastEvents');
+  const researchPapers = await getCollection('research');
   const items = [
     ...researchPapers.map((paper) => ({
-      title: paper.title,
-      description: paper.abstract ?? `Academic research published in ${paper.year}.`,
+      title: paper.data.title,
+      description: paper.data.abstract ?? `Academic research published in ${paper.data.year}.`,
       link: `/research/${paper.id}/`,
-      pubDate: new Date(`${paper.year}-01-01T00:00:00Z`),
+      pubDate: new Date(`${paper.data.year}-01-01T00:00:00Z`),
     })),
     ...events.map((event) => ({
       title: event.data.title,

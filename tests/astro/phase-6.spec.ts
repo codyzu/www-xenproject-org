@@ -1,31 +1,28 @@
 import process from 'node:process';
 import {expect, test} from '@playwright/test';
-import {allDownloads, latestDownloads} from '../../src/data/downloads';
 
 const siteUrl = process.env.SITE_URL ?? 'https://beta.xenproject.org';
-const latestXenGroup = latestDownloads.find(group => group.key === 'xen');
-const allXenGroup = allDownloads.find(group => group.key === 'xen');
-const latestXenSeries = latestXenGroup?.versions[0];
-const searchableXenRelease = allXenGroup?.versions.findLast(version => !version.name.includes('-rc'));
-
-if (!latestXenSeries || !searchableXenRelease) {
-  throw new Error('Expected Xen download data to include a latest series and stable release');
-}
 
 test.describe('Phase 6 data-driven routes', () => {
   test('renders latest downloads and searches the full archive', async ({page}) => {
     await page.goto('/resources/downloads/');
+    const downloads = (await page.evaluate(async () =>
+      fetch('/data/downloads.json').then(async (response) => response.json()),
+    )) as Array<{key: string; name: string; versions: Array<{name: string}>}>;
+    const searchableXenRelease = downloads
+      .find((group) => group.key === 'xen')
+      ?.versions.find((version) => !version.name.includes('-rc'));
+    expect(searchableXenRelease).toBeDefined();
     await expect(page.getByRole('heading', {level: 1, name: 'Downloads'})).toBeVisible();
     await expect(page.getByRole('heading', {name: 'Xen'}).first()).toBeVisible();
-    await expect(page.getByText(`Xen ${latestXenSeries.name} Series`)).toBeVisible();
 
     const search = page.getByRole('searchbox', {name: 'Search downloads'});
     const results = page.locator('.search-results');
     await search.fill('4');
     await page.waitForTimeout(350);
     await expect(results).toBeEmpty();
-    await search.fill(`xen ${searchableXenRelease.name}`);
-    await expect(results.getByRole('link', {name: `Xen ${searchableXenRelease.name}`, exact: true})).toBeVisible();
+    await search.fill(`xen ${searchableXenRelease!.name}`);
+    await expect(results.getByRole('link', {name: `Xen ${searchableXenRelease!.name}`, exact: true})).toBeVisible();
     await search.fill('not-a-real-release');
     await expect(results.getByText('No downloads found.')).toBeVisible();
     await search.fill('');
@@ -36,13 +33,20 @@ test.describe('Phase 6 data-driven routes', () => {
   test('keeps download groups readable without mobile overflow', async ({page}) => {
     await page.setViewportSize({width: 390, height: 844});
     await page.goto('/resources/downloads/');
+    const groupCount = await page.evaluate(
+      async () => ((await fetch('/data/downloads.json').then(async (response) => response.json())) as unknown[]).length,
+    );
 
     const groupHeadings = page.locator('[data-download-group] h3');
-    await expect(groupHeadings).toHaveCount(latestDownloads.length);
-    const headingPositions = await groupHeadings.evaluateAll(headings => headings.map(heading => heading.getBoundingClientRect().top));
+    await expect(groupHeadings).toHaveCount(groupCount);
+    const headingPositions = await groupHeadings.evaluateAll((headings) =>
+      headings.map((heading) => heading.getBoundingClientRect().top),
+    );
     expect(headingPositions).toEqual([...headingPositions].sort((a, b) => a - b));
 
-    const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+    const hasHorizontalOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    );
     expect(hasHorizontalOverflow).toBe(false);
   });
 
@@ -60,24 +64,43 @@ test.describe('Phase 6 data-driven routes', () => {
     await page.goto('/resources/past-events/xen-summit-2025/');
     await expect(page).toHaveTitle(/Xen Summit 2025/);
     await expect(page.getByRole('heading', {name: /Thank You for Joining/})).toBeVisible();
-    await expect(page.getByRole('link', {name: /Sched agenda/})).toHaveAttribute('href', 'https://xensummit2025.sched.com/');
-    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/resources\/past-events\/xen-summit-2025\/$/);
+    await expect(page.getByRole('link', {name: /Sched agenda/})).toHaveAttribute(
+      'href',
+      'https://xensummit2025.sched.com/',
+    );
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+      'href',
+      /\/resources\/past-events\/xen-summit-2025\/$/,
+    );
   });
 
   test('renders event hero and live ticket pricing', async ({page}) => {
     await page.goto('/resources/summit-2026/');
     await expect(page.getByRole('heading', {level: 1, name: 'Xen Summit 2026'})).toBeVisible();
-    await expect(page.getByRole('link', {name: 'Register Now'}).first()).toHaveAttribute('href', 'https://register.linuxfoundation.org/xen-summit-2026');
-    await expect(page.getByRole('link', {name: 'View the Schedule'}).first()).toHaveAttribute('href', 'https://xensummit2026.sched.com/');
-    await expect(page.getByRole('link', {name: 'Become a Sponsor'}).first()).toHaveAttribute('href', '/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf');
+    await expect(page.getByRole('link', {name: 'Register Now'}).first()).toHaveAttribute(
+      'href',
+      'https://register.linuxfoundation.org/xen-summit-2026',
+    );
+    await expect(page.getByRole('link', {name: 'View the Schedule'}).first()).toHaveAttribute(
+      'href',
+      'https://xensummit2026.sched.com/',
+    );
+    await expect(page.getByRole('link', {name: 'Become a Sponsor'}).first()).toHaveAttribute(
+      'href',
+      '/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf',
+    );
     await expect(page.getByText(/call for proposals|submit a proposal|submit a talk|july 7, 2026/i)).toHaveCount(0);
     await expect(page.locator('#registration-pricing .ticket-card')).toHaveCount(5);
     await expect(page.locator('#registration-pricing .card__actions')).toHaveCount(3);
-    const earlyBirdCard = page.locator('#registration-pricing .ticket-card').filter({has: page.getByRole('heading', {name: /In-Person Early Bird \$140 Closed/})});
+    const earlyBirdCard = page
+      .locator('#registration-pricing .ticket-card')
+      .filter({has: page.getByRole('heading', {name: /In-Person Early Bird \$140 Closed/})});
     await expect(earlyBirdCard).toHaveClass(/ticket-card--closed/);
     await expect(earlyBirdCard.locator('s')).toHaveText('In-Person Early Bird $140');
     await expect(earlyBirdCard.getByRole('link')).toHaveCount(0);
-    const speakerCard = page.locator('#registration-pricing .ticket-card').filter({has: page.getByRole('heading', {name: 'Speaker Free'})});
+    const speakerCard = page
+      .locator('#registration-pricing .ticket-card')
+      .filter({has: page.getByRole('heading', {name: 'Speaker Free'})});
     await expect(speakerCard.getByRole('link')).toHaveCount(0);
     const jumpLinks = page.getByText('Jump to:').getByRole('link');
     for (const jumpLink of await jumpLinks.all()) {
@@ -86,20 +109,25 @@ test.describe('Phase 6 data-driven routes', () => {
       await expect(page.locator(target!)).toHaveCount(1);
     }
     const inPersonGroup = page.locator('.ticket-group-in-person');
-    const columnCount = async () => inPersonGroup.evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
+    const columnCount = async () =>
+      inPersonGroup.evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
     expect(await columnCount()).toBe(4);
     await page.setViewportSize({width: 900, height: 900});
     expect(await columnCount()).toBe(2);
     await page.setViewportSize({width: 390, height: 844});
     expect(await columnCount()).toBe(1);
-    const hasHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+    const hasHorizontalOverflow = await page.evaluate(
+      () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
+    );
     expect(hasHorizontalOverflow).toBe(false);
     await page.locator('label[for^="virtual-"]').click();
     await expect(page.locator('.ticket-group-virtual')).toBeVisible();
     for (const sponsorName of ['Renesas', 'XenServer', 'Vates']) {
       const sponsorLogo = page.getByRole('img', {name: `${sponsorName} logo`}).last();
       await expect(sponsorLogo).toBeVisible();
-      expect(await sponsorLogo.evaluate((image) => ({width: image.clientWidth, height: image.clientHeight}))).toEqual(expect.objectContaining({width: expect.any(Number), height: expect.any(Number)}));
+      expect(await sponsorLogo.evaluate((image) => ({width: image.clientWidth, height: image.clientHeight}))).toEqual(
+        expect.objectContaining({width: expect.any(Number), height: expect.any(Number)}),
+      );
       expect(await sponsorLogo.evaluate((image) => image.clientWidth > 0 && image.clientHeight > 0)).toBe(true);
     }
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${siteUrl}/resources/summit-2026/`);

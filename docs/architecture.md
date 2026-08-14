@@ -39,14 +39,17 @@ changing the boundary.
 
 ## Build and deployment
 
-The build refreshes research data, renders Astro, and creates the Pagefind
-index. GitLab packages `dist/` as a `site.tar.gz` archive with a top-level
+Astro content loaders parse the checked-in research BibTeX files and fetch
+download releases from their upstream providers. A provider or validation
+failure fails the build; there is no stale production fallback. Astro renders
+the site and `/data/downloads.json`, then the build creates the Pagefind index.
+GitLab packages `dist/` as a `site.tar.gz` archive with a top-level
 `public/` directory for the beta and production deployment consumers. The
 browser test job extracts that same artifact and previews it locally.
 
 Beta builds use the beta origin. The default-branch `publish` job rebuilds with
-the production origin so absolute metadata and feeds are correct. CI refreshes
-download data and uses live Ghost search content when protected credentials are
+the production origin so absolute metadata and feeds are correct. CI uses live
+download data and live Ghost search content when protected credentials are
 available; fork merge requests use the synthetic Ghost fixture.
 
 ## Ghost header and footer

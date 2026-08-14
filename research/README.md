@@ -1,8 +1,8 @@
 # Add a research paper
 
-Research entries are one-file BibTeX records under this directory. The build
-parses them into `data/research.json`, lists them at `/research/`, and creates a
-page at `/research/<citation-key>/`.
+Research entries are one-file BibTeX records under this directory. An Astro
+content loader parses and validates them during the build, lists them at
+`/research/`, and creates a page at `/research/<citation-key>/`.
 
 ## Add an entry
 
@@ -32,10 +32,9 @@ accessible paper or publisher page when one is available.
 ## Verify
 
 ```sh
-npm run research
 npm run build
 ```
 
-Review the generated `data/research.json` diff. Parsing fails for invalid
-BibTeX, multiple records in one file, missing required fields, or an invalid
-optional URL.
+There is no generated data file to review or commit. Parsing fails for invalid
+BibTeX, multiple records in one file, duplicate citation keys, missing required
+fields, or an invalid optional URL.

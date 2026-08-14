@@ -4,6 +4,7 @@ class Provider {
     this.name = name;
     this.key = key;
     this.baseURL = baseURL;
+    this.includeFiles = false;
   }
 
   async getVersions() {

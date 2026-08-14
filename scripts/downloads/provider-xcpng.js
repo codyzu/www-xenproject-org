@@ -57,7 +57,7 @@ class XcpNgProvider extends Provider {
     super("XCP-ng", "xcpng", SOURCE_BASE_URL);
     this.fetchPage = fetchPage;
     this.directoryCache = new Map();
-    this.refreshExistingVersions = true;
+    this.includeFiles = true;
   }
 
   async getDirectory(version) {

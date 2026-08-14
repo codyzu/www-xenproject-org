@@ -1,4 +1,5 @@
 ---
+import {getCollection} from 'astro:content';
 import Hero from '../../components/blocks/Hero.astro';
 import DownloadArchiveSearch from '../../components/pages/downloads/DownloadArchiveSearch.astro';
 import DownloadReleaseCard from '../../components/pages/downloads/DownloadReleaseCard.astro';
@@ -9,12 +10,14 @@ import Heading from '../../components/primitives/Heading.astro';
 import Section from '../../components/primitives/Section.astro';
 import Stack from '../../components/primitives/Stack.astro';
 import Text from '../../components/primitives/Text.astro';
-import {latestDownloads} from '../../data/downloads';
+import {latestDownloadsFor, sortDownloadGroups, type DownloadGroup} from '../../data/downloads';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const title = 'Downloads';
 const description = 'Choose current Xen ecosystem releases, installer media, source archives, and verification artifacts from one inspectable release console.';
 const keywords = ['Xen Project', 'downloads', 'virtualization software', 'installation files', 'software packages', 'hypervisor tools', 'open-source resources'];
+const allDownloads = sortDownloadGroups((await getCollection('downloads')).map(entry => entry.data as DownloadGroup));
+const latestDownloads = latestDownloadsFor(allDownloads);
 ---
 
 <BaseLayout title={title} description={description} keywords={keywords} publicShell>
@@ -49,7 +52,7 @@ const keywords = ['Xen Project', 'downloads', 'virtualization software', 'instal
         <Stack gap="4" class="uno-max-w-xp-content">
           <Text size="eyebrow" tone="accent-primary">Release archive</Text>
           <Heading as="h2" size="heading-xl">Find an earlier version</Heading>
-          <Text size="lead">Search the complete checked-in release history by project and version. Current release cards above remain available even if the upstream archive is temporarily unavailable.</Text>
+          <Text size="lead">Search the complete release history captured from upstream sources when this site was built.</Text>
         </Stack>
         <DownloadArchiveSearch />
       </Stack>

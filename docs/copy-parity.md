@@ -17,7 +17,8 @@ npm run test:astro:copy-parity
 The command builds with an isolated synthetic Ghost cache and starts the Astro
 preview server. External result containers, the independently tested cookie
 banner, and host-only differences in absolute internal links are normalized or
-excluded. Checked-in download and research data remain part of the baseline.
+excluded. Build-time download and research collection output remains part of
+the baseline.
 
 ## Approve an intentional content change
 

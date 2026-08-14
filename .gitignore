@@ -17,9 +17,4 @@ screenshots/
 .env.*.local
 thumbs.db
 
-# Research papers generated files
-content/research/*.md
-!content/research/_index.md
-data/research.json
-
 _untracked

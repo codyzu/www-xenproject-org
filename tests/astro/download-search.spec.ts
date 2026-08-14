@@ -60,7 +60,7 @@ test.describe('download search states', () => {
     const xcpng = page.locator('[data-download-group="xcpng"]');
     await expect(xen.getByText('Source', {exact: true})).toHaveClass(/uno-text-xp-accent-primary/);
     await expect(xcpng.getByText('Installer', {exact: true})).toHaveClass(/uno-text-xp-text-muted/);
-    await expect(xcpng.getByRole('link', {name: /Standard installer ISO/})).toHaveAttribute('href', /xcp-ng-8\.3\.0-20250606\.2\.iso\?https=1$/);
+    await expect(xcpng.getByRole('link', {name: /Standard installer ISO/})).toHaveAttribute('href', /xcp-ng-8\.3\.0-\d{8}(?:\.\d+)?\.iso\?https=1$/);
     await expect(xcpng.getByRole('link', {name: /Network installer ISO/})).toHaveAttribute('href', /netinstall\.iso\?https=1$/);
     await expect(xcpng.getByRole('link', {name: /SHA256 checksums/})).toHaveAttribute('href', /SHA256SUMS\?https=1$/);
     await expect(xcpng.getByRole('link', {name: /Checksum signature/})).toHaveAttribute('href', /SHA256SUMS\.asc\?https=1$/);

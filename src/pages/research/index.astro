@@ -1,5 +1,5 @@
 ---
-import researchPapers from '../../../data/research.json';
+import {getCollection} from 'astro:content';
 import ExternalLinkButton from '../../components/legacy/ExternalLinkButton.astro';
 import Section from '../../components/legacy/Section.astro';
 import LegacyLayout from '../../layouts/LegacyLayout.astro';
@@ -7,7 +7,9 @@ import LegacyLayout from '../../layouts/LegacyLayout.astro';
 const title = 'Academic Research';
 const description = 'Explore academic research papers related to the Xen Project';
 const keywords = ['Xen Project research', 'academic papers', 'Xen hypervisor studies', 'virtualization research', 'Xen security research', 'cloud computing studies', 'Xen performance analysis'];
-const papers = researchPapers.toSorted((a, b) => Number(b.year) - Number(a.year) || a.title.localeCompare(b.title));
+const papers = (await getCollection('research'))
+  .map(entry => ({id: entry.id, ...entry.data}))
+  .toSorted((a, b) => Number(b.year) - Number(a.year) || a.title.localeCompare(b.title));
 ---
 
 <LegacyLayout title={title} description={description} keywords={keywords}>
@@ -41,7 +43,7 @@ const papers = researchPapers.toSorted((a, b) => Number(b.year) - Number(a.year)
                     <strong>Tags:</strong>{paper.tags.map((tag) => <span class="uno-p-2 uno-rounded-lg uno-bg-brand">{tag}</span>)}
                   </div>
                   <div><strong>Authors:</strong> {paper.authors.toSorted().join(' and ')}</div>
-                  <ExternalLinkButton href={paper.url}>Read the Full Paper</ExternalLinkButton>
+                  {paper.url && <ExternalLinkButton href={paper.url}>Read the Full Paper</ExternalLinkButton>}
                 </td>
               </tr>
             ))}

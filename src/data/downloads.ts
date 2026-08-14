@@ -1,54 +1,11 @@
-import {readFileSync} from 'node:fs';
-import path from 'node:path';
-import {z} from 'zod';
-
-const absoluteUrl = z.string().refine((value) => {
-  try {
-    const {protocol} = new URL(value);
-    return protocol === 'http:' || protocol === 'https:';
-  } catch {
-    return false;
-  }
-}, 'must be an absolute HTTP(S) URL');
-
-const downloadFileSchema = z.object({
-  name: z.string().min(1),
-  url: absoluteUrl,
-});
-
-const downloadReleaseSchema = z.object({
-  name: z.string().min(1),
-  link: absoluteUrl,
-  files: z.array(downloadFileSchema),
-});
-
-const downloadVersionSchema = z.union([
-  downloadReleaseSchema,
-  z.object({
-    link: z.literal(''),
-    name: z.literal('default'),
-    files: z.array(downloadFileSchema),
-  }),
-  z.object({
-    name: z.string().min(1),
-    subversions: z.array(downloadReleaseSchema).min(1),
-  }),
-]);
-
-const downloadGroupSchema = z.object({
-  name: z.string().min(1),
-  key: z.string().min(1),
-  versions: z.array(downloadVersionSchema),
-});
-
-const downloadsSchema = z.array(downloadGroupSchema);
-
-export type DownloadGroup = z.infer<typeof downloadGroupSchema>;
-type DownloadRelease = z.infer<typeof downloadReleaseSchema>;
-
-const allDownloadsJson = JSON.parse(readFileSync(path.resolve('assets/data/downloads.json'), 'utf8')) as unknown;
-
-export const allDownloads = downloadsSchema.parse(allDownloadsJson);
+export type DownloadFile = {name: string; url: string};
+export type DownloadRelease = {name: string; link: string; files: DownloadFile[]};
+export type DownloadSeries = {name: string; subversions: DownloadRelease[]};
+export type DownloadGroup = {
+  name: string;
+  key: string;
+  versions: Array<DownloadRelease | DownloadSeries>;
+};
 
 const isDownloadRelease = (version: DownloadGroup['versions'][number]): version is DownloadRelease =>
   'link' in version && version.link !== '';
@@ -57,18 +14,14 @@ const compareVersionsDescending = (a: string, b: string) =>
   b.localeCompare(a, undefined, {numeric: true, sensitivity: 'base'});
 
 const latestVersionsForGroup = (group: DownloadGroup): DownloadGroup['versions'] => {
-  const defaultVersion = group.versions.find((version) => version.name === 'default');
-
-  if (defaultVersion) {
-    return [defaultVersion];
-  }
-
   const versionGroups = new Map<string, DownloadRelease[]>();
 
   for (const version of group.versions) {
     if (!isDownloadRelease(version) || version.name.includes('beta') || version.name.includes('rc')) {
       continue;
     }
+
+    if (group.key === 'xcpng') return [version];
 
     const [major, minor] = version.name.split('.');
     const groupName = `${major}.${minor}`;
@@ -84,9 +37,12 @@ const latestVersionsForGroup = (group: DownloadGroup): DownloadGroup['versions']
     }));
 };
 
-export const latestDownloads = downloadsSchema.parse(
-  allDownloads.map((group) => ({
-    ...group,
-    versions: latestVersionsForGroup(group),
-  })),
-);
+const groupOrder = new Map(['xen', 'xcpng', 'mirageos'].map((key, index) => [key, index]));
+
+export const sortDownloadGroups = (groups: DownloadGroup[]) =>
+  groups.toSorted(
+    (a, b) => (groupOrder.get(a.key) ?? Number.MAX_SAFE_INTEGER) - (groupOrder.get(b.key) ?? Number.MAX_SAFE_INTEGER),
+  );
+
+export const latestDownloadsFor = (allDownloads: DownloadGroup[]) =>
+  allDownloads.map((group) => ({...group, versions: latestVersionsForGroup(group)}));
