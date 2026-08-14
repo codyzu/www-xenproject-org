@@ -96,6 +96,46 @@ test.describe('unified Pagefind search', () => {
       await expect(firstResult).toHaveAttribute('href', '/resources/downloads/');
       await expect(firstResult).toContainText('Downloads');
     }
+
+    await input.fill('release');
+    await expect(dialog.locator('a[href="/blog/current-xen-release/"]')).toBeVisible();
+    const orderedHrefs = await dialog.locator('a[data-search-result]').evaluateAll((links) =>
+      links.map((link) => link.getAttribute('href')),
+    );
+    const currentReleaseIndex = orderedHrefs.indexOf('/blog/current-xen-release/');
+    const incidentalIndex = orderedHrefs.indexOf('/blog/current-community-roundup/');
+    expect(currentReleaseIndex).toBeGreaterThan(0);
+    expect(currentReleaseIndex).toBeLessThan(4);
+    expect(incidentalIndex === -1 || incidentalIndex > currentReleaseIndex).toBe(true);
+  });
+
+  test('offers strict newest ordering for Blog results', async ({page}) => {
+    await page.getByRole('button', {name: 'Search Xen Project'}).click();
+    const dialog = page.getByRole('dialog', {name: 'Search the site'});
+    const input = dialog.getByRole('searchbox', {name: 'Search Xen Project'});
+    await input.fill('release');
+    await dialog.getByRole('button', {name: 'Blog'}).click();
+
+    const sortGroup = dialog.getByRole('group', {name: 'Order blog search results'});
+    await expect(sortGroup).toBeVisible();
+    await expect(sortGroup.getByRole('button', {name: 'Best match'})).toHaveAttribute('aria-pressed', 'true');
+    await sortGroup.getByRole('button', {name: 'Newest'}).click();
+    await expect(sortGroup.getByRole('button', {name: 'Newest'})).toHaveAttribute('aria-pressed', 'true');
+    await expect(dialog.locator('a[data-search-result]').first()).toHaveAttribute(
+      'href',
+      '/blog/current-community-roundup/',
+    );
+
+    const orderedHrefs = await dialog.locator('a[data-search-result]').evaluateAll((links) =>
+      links.map((link) => link.getAttribute('href')),
+    );
+    expect(orderedHrefs.slice(0, 2)).toEqual([
+      '/blog/current-community-roundup/',
+      '/blog/current-xen-release/',
+    ]);
+
+    await dialog.getByRole('button', {name: 'Website'}).click();
+    await expect(sortGroup).toBeHidden();
   });
 
   test('supports keyboard navigation, Enter, Escape, clicking, and focus restoration', async ({page}) => {

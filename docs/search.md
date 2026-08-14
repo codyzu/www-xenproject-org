@@ -84,15 +84,28 @@ Xen equivalents such as `dom0` / `control domain`, `XenStore` / `Xen Store`, `XS
 interchangeable; Dom0less includes spelling variants and the descriptive query “without a control domain,” but not the
 broader static-partitioning concept.
 
-Every result is tagged as either `Website` or `Blog`. The unified relevance order remains the default, while the dialog
-uses distinct source labels, icons, accent rails, and generated Website/Blog filters. Canonical result paths are
-deduplicated before rendering, and Blog results continue to point directly to `/blog/.../`.
+Every result is tagged as either `Website` or `Blog`. The dialog uses distinct source labels, icons, accent rails, and
+generated Website/Blog filters. Canonical result paths are deduplicated before rendering, and Blog results continue to
+point directly to `/blog/.../`. Ghost tags are indexed both as filters and searchable metadata; title matches remain the
+strongest authored signal, followed by tags, excerpts, descriptions, keywords, and conservative aliases.
+
+The default `All` and Blog `Best match` views blend Pagefind's relevance rank with its precomputed newest-first Blog
+rank. The blend uses reciprocal-rank fusion and only boosts posts within a bounded relevance window and score threshold,
+so a recent incidental mention cannot displace credible matches. Website results retain Pagefind relevance. The Blog
+filter also exposes a `Newest` option that uses Pagefind's native `published: desc` sort without fusion. The pure ranking
+policy lives in `src/data/search-ranking.ts`; tune it against representative queries and its deterministic unit tests,
+not a single production query.
 
 Small, evidence-backed promoted-result rules live in `src/data/search.ts`. They are exact-query rules rather than a
 general synonym system: for example, `chat` promotes the current Matrix resource followed by the post explaining the
-move to Matrix, while download- and release-intent queries promote the downloads page. The matching records also receive
-narrow searchable metadata so Pagefind returns them before the dialog applies the stable promoted order. Keep this list
-short and cover additions with fixture-backed ordering tests.
+move to Matrix, while download- and release-intent queries promote the downloads page. Matching records receive both
+narrow searchable metadata and an indexed `promotedIntent` filter. The dialog performs a small filtered Pagefind lookup,
+so promotion does not depend on a URL appearing inside an arbitrary relevance candidate window. Keep this list short and
+cover additions with fixture-backed ordering tests.
+
+`SEARCH_RANKING_FIXTURE=1` adds a deterministic, index-only adversarial corpus for focused search tests. It includes more
+than 48 old exact-title release posts, a recent credible release post, and a newer incidental mention. These records never
+enter the shared Ghost cache or homepage data, and production builds do not include them.
 
 Both shared headers and footers use `data-pagefind-ignore`; the mobile menu, global calls to action, search dialog, and
 other repeated furniture therefore do not enter the index. Layouts omit the Pagefind body and add an ignore marker for

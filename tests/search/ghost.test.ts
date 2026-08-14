@@ -20,6 +20,8 @@ import {ensureGhostCache} from '../../scripts/search/ensure-cache.ts';
 import {ghostPagefindRecord} from '../../scripts/search/index.ts';
 import {
   promotedTermsForUrl,
+  promotedIntentForQuery,
+  promotedIntentsForUrl,
   promotedUrlsForQuery,
   searchAliasesForPage,
   searchAliasesForText,
@@ -46,6 +48,7 @@ test('normalizes metadata, fallbacks, URLs, and custom records', () => {
   assert.deepEqual(technical.aliases, ['dom0', 'control domain', 'XenStore', 'Xen Store', 'PVH', 'paravirtualized hardware', 'live migration', 'VM migration']);
   const record = ghostPagefindRecord(rich);
   assert.equal(record.meta.ghostId, 'fixture-rich-003');
+  assert.equal(record.meta.tags, 'Architecture, Xen, Community');
   assert.deepEqual(record.filters.section, ['Blog']);
   assert.deepEqual(record.filters.contentType, ['Blog']);
   assert.equal(record.url, '/blog/open-virtualization-boundaries/');
@@ -96,8 +99,11 @@ test('defines narrow promoted results and indexing terms for the chat query', ()
   ]);
   assert.deepEqual(promotedUrlsForQuery('chat history'), []);
   assert.deepEqual(promotedTermsForUrl('/blog/we-have-moved-to-matrix/'), ['chat']);
+  assert.equal(promotedIntentForQuery(' chat '), 'chat');
+  assert.deepEqual(promotedIntentsForUrl('/blog/we-have-moved-to-matrix/'), ['chat']);
   const matrixRecord = ghostPagefindRecord(normalizeGhostPost(fixture.posts[3]));
   assert.match(matrixRecord.meta.aliases ?? '', /chat/);
+  assert.deepEqual(matrixRecord.filters.promotedIntent, ['chat']);
   const ircRecord = ghostPagefindRecord(normalizeGhostPost(fixture.posts[4]));
   assert.doesNotMatch(ircRecord.meta.aliases ?? '', /chat/);
 });
@@ -107,6 +113,9 @@ test('promotes downloads for exact download and release intent', () => {
     assert.deepEqual(promotedUrlsForQuery(query), ['/resources/downloads/']);
   }
   assert.deepEqual(promotedUrlsForQuery('download drivers'), []);
+  assert.equal(promotedIntentForQuery('release'), 'downloads');
+  assert.equal(promotedIntentForQuery('download drivers'), undefined);
+  assert.deepEqual(promotedIntentsForUrl('/resources/downloads/'), ['downloads']);
   assert.deepEqual(promotedTermsForUrl('/resources/downloads/'), [
     'download',
     'downloads',
