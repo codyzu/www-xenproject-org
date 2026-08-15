@@ -20,7 +20,10 @@ stages:
   - publish
 
 variables:
-  SITE_URL: https://beta.xenproject.org
+  # Build one production-origin artifact for beta validation and production.
+  # Keeping the origin stable means the archive promoted after Playwright is
+  # byte-for-byte the archive that was tested.
+  SITE_URL: https://xenproject.org
   # Shallow clones are sufficient for the Astro build and validation jobs.
   GIT_DEPTH: 1
 
@@ -42,7 +45,8 @@ test:
       paths:
         - .npm/
 
-# Artifact will be deployed to https://beta.xenproject.org/
+# Build the production artifact once. It is deployed to beta for validation,
+# exercised by Playwright, and promoted unchanged to production.
 deploy:
   stage: build
   variables:
@@ -64,6 +68,7 @@ deploy:
     - mkdir .deployment-artifact
     - mv dist .deployment-artifact/public
     - tar caf site.tar.gz -C .deployment-artifact public
+    - sha256sum site.tar.gz
   artifacts:
     when: always
     expire_in: 14 days
@@ -124,33 +129,21 @@ playwright:high-value:
       paths:
         - .npm/
 
-# The production host downloads this artifact after a merge to the default
-# branch. Build it with the production origin so canonical, social, redirect,
-# and RSS URLs point to https://xenproject.org/.
+# The production host downloads the artifact exposed by this job after a merge
+# to the default branch. Re-publish the archive built above without modifying
+# it so production receives the exact bytes exercised by Playwright.
 publish:
   stage: publish
-  variables:
-    SITE_URL: https://xenproject.org
-    GHOST_CONTENT_REQUIRED: "1"
+  needs:
+    - job: deploy
+      artifacts: true
+    - job: playwright:high-value
+      artifacts: false
   script:
-    - node --version
-    - npm ci --cache .npm --prefer-offline
-    - npm run search:refresh
-    - npm run build
-    - npm run check:dist
-    # Preserve the public/ archive root expected by the production downloader.
-    - mkdir .deployment-artifact
-    - mv dist .deployment-artifact/public
-    - tar caf site.tar.gz -C .deployment-artifact public
+    - test -f site.tar.gz
+    - sha256sum site.tar.gz
   artifacts:
     paths:
       - site.tar.gz
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-  cache:
-    - key: npm-cache-$CI_COMMIT_REF_SLUG
-      fallback_keys:
-        - npm-cache-$CI_DEFAULT_BRANCH
-        - npm-cache-default
-      paths:
-        - .npm/

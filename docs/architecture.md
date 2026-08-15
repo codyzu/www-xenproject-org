@@ -18,8 +18,9 @@ URL-stable source assets copied into that artifact.
 - `scripts/astro/check-public-artifact.js`: the built-site contract.
 
 Set `SITE_URL` to control canonical, redirect, social, sitemap, and RSS origins.
-It defaults to `https://beta.xenproject.org`; production builds use
-`https://xenproject.org`.
+It defaults to `https://beta.xenproject.org` for local builds. CI builds the
+deployable artifact with `https://xenproject.org` so beta and production use
+the production origin for absolute metadata and feeds.
 
 ## Page systems during migration
 
@@ -43,14 +44,15 @@ Astro content loaders parse the checked-in research BibTeX files and fetch
 download releases from their upstream providers. A provider or validation
 failure fails the build; there is no stale production fallback. Astro renders
 the site and `/data/downloads.json`, then the build creates the Pagefind index.
-GitLab packages `dist/` as a `site.tar.gz` archive with a top-level
-`public/` directory for the beta and production deployment consumers. The
-browser test job extracts that same artifact and previews it locally.
-
-Beta builds use the beta origin. The default-branch `publish` job rebuilds with
-the production origin so absolute metadata and feeds are correct. CI uses live
-download data and live Ghost search content when protected credentials are
-available; fork merge requests use the synthetic Ghost fixture.
+GitLab packages `dist/` once as a `site.tar.gz` archive with a top-level
+`public/` directory. The beta deployment consumer uses that archive, the
+browser test job extracts and previews it locally, and the default-branch
+`publish` job promotes the unchanged archive to the production deployment
+consumer. This keeps production byte-for-byte identical to the artifact tested
+by Playwright. Both hosts therefore expose production-origin canonical,
+redirect, social, sitemap, and RSS URLs. CI uses live download data and live
+Ghost search content when protected credentials are available; fork merge
+requests use the synthetic Ghost fixture.
 
 ## Ghost header and footer
 
