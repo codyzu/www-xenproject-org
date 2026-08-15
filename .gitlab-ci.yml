@@ -134,6 +134,12 @@ playwright:high-value:
 # it so production receives the exact bytes exercised by Playwright.
 publish:
   stage: publish
+  # This job only verifies and re-exposes an upstream artifact. BusyBox
+  # provides the required shell and sha256sum without pulling the Node image,
+  # and no repository checkout is needed.
+  image: busybox:1.38.0-musl
+  variables:
+    GIT_STRATEGY: none
   needs:
     - job: deploy
       artifacts: true
