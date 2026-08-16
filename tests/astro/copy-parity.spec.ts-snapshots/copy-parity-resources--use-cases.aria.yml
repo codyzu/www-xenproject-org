@@ -63,6 +63,17 @@
   - article:
     - heading "Inspectable architecture" [level=3]
     - paragraph: Source, governance, development process, and project infrastructure are public evaluation inputs.
+  - article:
+    - paragraph: Xen in the datacenter
+    - heading "Infrastructure demand is feeding upstream Xen." [level=2]
+    - paragraph: At Xen Summit 2025, Olivier Lambert of Vates explained how shifts in the virtualization market are driving new adoption of Xen-based infrastructure and creating more resources for upstream Xen development.
+    - paragraph: Olivier Lambert, Vates
+    - paragraph: Xen Summit 2025
+    - paragraph: "Xen & XCP-ng in the Datacenter: State of the Union"
+    - link "Watch the full talk":
+      - /url: https://www.youtube.com/watch?v=1K8fs6nq78Q
+    - 'button "Play 1:04 clip: Infrastructure demand is feeding upstream Xen."': Play clip
+    - text: 1:04
   - paragraph: Technical capabilities
   - heading "Capabilities for owning the platform boundary" [level=2]
   - paragraph: Evaluate Xen and surrounding tooling for hardware ownership, guest lifecycle, and operational control.

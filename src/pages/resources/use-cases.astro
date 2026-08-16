@@ -4,6 +4,7 @@ import Callout from '../../components/blocks/Callout.astro';
 import FeatureGrid from '../../components/blocks/FeatureGrid.astro';
 import Hero from '../../components/blocks/Hero.astro';
 import PlatformLayersDiagram from '../../components/diagrams/PlatformLayersDiagram.astro';
+import VideoClip from '../../components/blocks/VideoClip.astro';
 import Button from '../../components/primitives/Button.astro';
 import Card from '../../components/primitives/Card.astro';
 import Cluster from '../../components/primitives/Cluster.astro';
@@ -389,6 +390,24 @@ const resources = [
           ))}
         </Grid>
       </Stack>
+    </Container>
+  </Section>
+
+  <Section id="datacenter-momentum" spacing="technical">
+    <Container>
+      <VideoClip
+        eyebrow="Xen in the datacenter"
+        title="Infrastructure demand is feeding upstream Xen."
+        summary="At Xen Summit 2025, Olivier Lambert of Vates explained how shifts in the virtualization market are driving new adoption of Xen-based infrastructure and creating more resources for upstream Xen development."
+        youtubeVideoId="1K8fs6nq78Q"
+        startSeconds={866}
+        endSeconds={930}
+        speaker="Olivier Lambert"
+        company="Vates"
+        event="Xen Summit 2025"
+        talkTitle="Xen & XCP-ng in the Datacenter: State of the Union"
+        variant="featured"
+      />
     </Container>
   </Section>
 
