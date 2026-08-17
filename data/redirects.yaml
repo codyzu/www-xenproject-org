@@ -25,3 +25,7 @@
 - source: /spring26/
   target: https://docs.google.com/document/d/1ddsfCTaDHvBOCtFLMTgoGEzaQSdJdogfIGooHWFnLJQ/edit?usp=sharing
   type: redirect
+
+- source: /summit26/
+  target: https://docs.google.com/document/d/1nXM_cmXrEIS13bd5oEcJHBzM3Qym1PdaLTRjAB93INs/edit?usp=sharing
+  type: redirect

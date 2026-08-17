@@ -14,6 +14,7 @@ const expectedAstroOwnedRedirects = [
   ['/resources/xen-summit-2025/', internalTarget('/resources/past-events/xen-summit-2025/')],
   ['/resources/xen-summit-2026/', internalTarget('/resources/summit-2026/')],
   ['/spring26/', 'https://docs.google.com/document/d/1ddsfCTaDHvBOCtFLMTgoGEzaQSdJdogfIGooHWFnLJQ/edit?usp=sharing'],
+  ['/summit26/', 'https://docs.google.com/document/d/1nXM_cmXrEIS13bd5oEcJHBzM3Qym1PdaLTRjAB93INs/edit?usp=sharing'],
   ['/projects/', internalTarget('/projects/all-projects')],
 ] as const;
 
