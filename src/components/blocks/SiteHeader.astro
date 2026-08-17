@@ -70,62 +70,66 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
                 <span>{item.name}</span>
                 <span class="i-carbon-chevron-down xp-nav-chevron uno-h-4 uno-w-4" aria-hidden="true"></span>
               </button>
-              {hasPopover(item) && (
-                <div id={popoverId(index)} popover="manual" data-nav-popover class="xp-nav-popover xen-layered-popover uno-m-0 uno-w-[min(64rem,calc(100vw-2rem))] uno-p-0 uno-text-xp-text-primary">
-                  <div class="uno-grid uno-gap-6 uno-p-6 lg:uno-grid-cols-[minmax(14rem,0.8fr)_minmax(0,2fr)]">
-                    <div class="xen-popover-intro">
-                      <a
-                        href={item.href}
-                        target={item.target}
-                        rel={linkRel(item)}
-                        class="xen-popover-title"
-                        aria-current={isActiveLink(item) ? 'page' : undefined}
-                      >
-                        {item.name} overview
-                      </a>
-                      {item.description && (
-                        <p class="xen-popover-description">{item.description}</p>
-                      )}
-                      {typeof item.cta === 'object' && (
-                        <div class="xen-popover-cta">
-                          <Button href={item.cta.href} target={item.cta.target} rel={linkRel(item.cta)} class="xen-popover-cta-button">{item.cta.name}</Button>
-                        </div>
-                      )}
-                    </div>
-                    <div class="uno-grid uno-gap-5 md:uno-grid-cols-2 xl:uno-grid-cols-3">
-                      {item.groups?.map(group => (
-                        <section class="uno-min-w-0" aria-labelledby={`${popoverId(index)}-${group.name.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-')}`}>
-                          <h2 id={`${popoverId(index)}-${group.name.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-')}`} class="xen-popover-heading">
-                            <span class:list={[groupIcon(group.name), 'xen-popover-heading-icon']} aria-hidden="true"></span>
-                            <span>{group.name}</span>
-                          </h2>
-                          <ul class="uno-m-0 uno-list-none uno-p-0">
-                            {group.links.filter(shouldDisplayInHeader).map(link => (
-                              <li>
-                                <a
-                                  href={link.href}
-                                  target={link.target}
-                                  rel={linkRel(link)}
-                                  class:list={[
-                                    'xen-popover-link',
-                                    isActiveLink(link) && 'uno-bg-xp-surface-2 uno-text-xp-text-primary',
-                                  ]}
-                                  aria-current={isActiveLink(link) ? 'page' : undefined}
-                                >
-                                  {link.name}
-                                </a>
-                              </li>
-                            ))}
-                          </ul>
-                        </section>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              )}
             </li>
           ))}
         </ul>
+        <div popover="manual" data-nav-popover class="xp-nav-popover xen-layered-popover uno-m-0 uno-w-[min(64rem,calc(100vw-2rem))] uno-p-0 uno-text-xp-text-primary">
+          {visibleNavigationItems.map((item, index) => (
+            hasPopover(item) && (
+              <div id={popoverId(index)} data-nav-panel hidden>
+                <div class="uno-grid uno-gap-6 uno-p-6 lg:uno-grid-cols-[minmax(14rem,0.8fr)_minmax(0,2fr)]">
+                  <div class="xen-popover-intro">
+                    <a
+                      href={item.href}
+                      target={item.target}
+                      rel={linkRel(item)}
+                      class="xen-popover-title"
+                      aria-current={isActiveLink(item) ? 'page' : undefined}
+                    >
+                      {item.name} overview
+                    </a>
+                    {item.description && (
+                      <p class="xen-popover-description">{item.description}</p>
+                    )}
+                    {typeof item.cta === 'object' && (
+                      <div class="xen-popover-cta">
+                        <Button href={item.cta.href} target={item.cta.target} rel={linkRel(item.cta)} class="xen-popover-cta-button">{item.cta.name}</Button>
+                      </div>
+                    )}
+                  </div>
+                  <div class="uno-grid uno-gap-5 md:uno-grid-cols-2 xl:uno-grid-cols-3">
+                    {item.groups?.map(group => (
+                      <section class="uno-min-w-0" aria-labelledby={`${popoverId(index)}-${group.name.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-')}`}>
+                        <h2 id={`${popoverId(index)}-${group.name.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-')}`} class="xen-popover-heading">
+                          <span class:list={[groupIcon(group.name), 'xen-popover-heading-icon']} aria-hidden="true"></span>
+                          <span>{group.name}</span>
+                        </h2>
+                        <ul class="uno-m-0 uno-list-none uno-p-0">
+                          {group.links.filter(shouldDisplayInHeader).map(link => (
+                            <li>
+                              <a
+                                href={link.href}
+                                target={link.target}
+                                rel={linkRel(link)}
+                                class:list={[
+                                  'xen-popover-link',
+                                  isActiveLink(link) && 'uno-bg-xp-surface-2 uno-text-xp-text-primary',
+                                ]}
+                                aria-current={isActiveLink(link) ? 'page' : undefined}
+                              >
+                                {link.name}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </section>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )
+          ))}
+        </div>
       </nav>
 
       <div class="xp-header-actions uno-hidden uno-items-center uno-gap-3 lg:uno-flex">
@@ -245,10 +249,13 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
   const hoverQuery = globalThis.matchMedia?.('(hover: hover) and (pointer: fine)');
   const closeDelay = 150;
   const navItems = [...document.querySelectorAll<HTMLElement>('[data-nav-item]')];
+  const navPopover = document.querySelector<HTMLElement>('[data-nav-popover]');
+  const reduceMotionQuery = globalThis.matchMedia?.('(prefers-reduced-motion: reduce)');
   const mobileNavPanel = document.getElementById('xp-mobile-nav-panel');
   const mobileNavToggle = document.querySelector<HTMLElement>('[data-mobile-nav-toggle]');
   const returnFocusTargets = new WeakMap<HTMLElement, HTMLElement>();
   let activeItem: HTMLElement | undefined;
+  let activeNavTransition: ViewTransition | undefined;
   let lockedScrollY = 0;
   let isPageScrollLocked = false;
 
@@ -257,12 +264,12 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
     const popover = popoverId ? document.getElementById(popoverId) : null;
 
     return {
-      popover,
+      panel: popover,
       trigger: item.querySelector<HTMLButtonElement>('[data-nav-trigger]'),
     };
   };
 
-  const isOpen = (popover: HTMLElement | null) => popover?.matches(':popover-open') ?? false;
+  const isOpen = () => navPopover?.matches(':popover-open') ?? false;
 
   const setExpanded = (item: HTMLElement, expanded: boolean) => {
     const {trigger} = getParts(item);
@@ -270,18 +277,54 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
     item.toggleAttribute('data-nav-open', expanded);
   };
 
-  const firstPopoverTarget = (popover: HTMLElement | null) =>
-    popover?.querySelector<HTMLElement>('a[href], button:not([disabled])');
+  const firstPopoverTarget = (panel: HTMLElement | null) =>
+    panel?.querySelector<HTMLElement>('a[href], button:not([disabled])');
+
+  const showPanel = (item: HTMLElement) => {
+    const {panel} = getParts(item);
+    if (!panel || !navPopover) return;
+
+    for (const candidate of navPopover.querySelectorAll<HTMLElement>('[data-nav-panel]')) {
+      candidate.hidden = candidate !== panel;
+    }
+  };
+
+  const clearNavTransition = (transition?: ViewTransition) => {
+    if (transition && activeNavTransition !== transition) return;
+    activeNavTransition = undefined;
+    document.documentElement.removeAttribute('data-nav-transition');
+  };
+
+  const switchPanel = (item: HTMLElement, shouldAnimate: boolean) => {
+    const updatePanel = () => {
+      if (activeItem === item) showPanel(item);
+    };
+
+    if (!shouldAnimate || reduceMotionQuery?.matches || !document.startViewTransition) {
+      updatePanel();
+      return;
+    }
+
+    document.documentElement.setAttribute('data-nav-transition', '');
+    const transition = document.startViewTransition(updatePanel);
+    activeNavTransition = transition;
+    void transition.finished.then(
+      () => clearNavTransition(transition),
+      () => clearNavTransition(transition),
+    );
+  };
 
   const closeItem = (item: HTMLElement, options: {returnFocus?: boolean} = {}) => {
-    const {popover, trigger} = getParts(item);
+    const {trigger} = getParts(item);
 
-    if (!popover || !isOpen(popover)) {
+    if (activeItem !== item || !isOpen()) {
       setExpanded(item, false);
       return;
     }
 
-    popover.hidePopover();
+    activeNavTransition?.skipTransition();
+    clearNavTransition();
+    navPopover?.hidePopover();
     setExpanded(item, false);
 
     if (options.returnFocus) {
@@ -293,25 +336,23 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
     }
   };
 
-  const closeOtherItems = (item: HTMLElement) => {
-    for (const otherItem of navItems) {
-      if (otherItem !== item) {
-        closeItem(otherItem);
-      }
-    }
-  };
-
   const openItem = (item: HTMLElement, options: {focusFirst?: boolean; trigger?: HTMLElement} = {}) => {
-    const {popover} = getParts(item);
-    if (!popover) return;
+    const {panel} = getParts(item);
+    if (!panel || !navPopover) return;
 
-    closeOtherItems(item);
-
-    if (!isOpen(popover)) {
-      popover.showPopover();
+    const previousItem = activeItem;
+    if (previousItem && previousItem !== item) {
+      cancelClose(previousItem);
+      setExpanded(previousItem, false);
     }
 
     activeItem = item;
+    switchPanel(item, Boolean(previousItem && isOpen()));
+
+    if (!isOpen()) {
+      navPopover.showPopover();
+    }
+
     setExpanded(item, true);
 
     if (options.trigger) {
@@ -319,7 +360,7 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
     }
 
     if (options.focusFirst) {
-      firstPopoverTarget(popover)?.focus();
+      firstPopoverTarget(panel)?.focus();
     }
   };
 
@@ -334,8 +375,8 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
   };
 
   for (const item of navItems) {
-    const {popover, trigger} = getParts(item);
-    if (!popover || !trigger) continue;
+    const {panel, trigger} = getParts(item);
+    if (!panel || !trigger) continue;
 
     const openForHover = () => {
       if (!hoverQuery?.matches) return;
@@ -352,11 +393,9 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
 
     item.addEventListener('pointerenter', openForHover);
     item.addEventListener('pointerleave', closeForHover);
-    popover.addEventListener('pointerenter', () => cancelClose(item));
-    popover.addEventListener('pointerleave', closeForHover);
 
     trigger.addEventListener('click', () => {
-      if (isOpen(popover)) {
+      if (activeItem === item && isOpen()) {
         item.dataset.navHoverSuppressed = 'true';
         closeItem(item, {returnFocus: true});
       } else {
@@ -369,15 +408,26 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
       if (event.key === 'ArrowDown') {
         event.preventDefault();
         openItem(item, {focusFirst: true, trigger});
+      } else if (event.key === 'Tab' && !event.shiftKey && activeItem === item && isOpen()) {
+        event.preventDefault();
+        firstPopoverTarget(panel)?.focus();
       }
     });
-
-    popover.addEventListener('toggle', () => {
-      const expanded = isOpen(popover);
-      setExpanded(item, expanded);
-      activeItem = expanded ? item : activeItem === item ? undefined : activeItem;
-    });
   }
+
+  navPopover?.addEventListener('pointerenter', () => {
+    if (activeItem) cancelClose(activeItem);
+  });
+  navPopover?.addEventListener('pointerleave', () => {
+    if (activeItem && hoverQuery?.matches) scheduleClose(activeItem);
+  });
+  navPopover?.addEventListener('toggle', () => {
+    if (isOpen() || activeNavTransition) return;
+    if (activeItem) setExpanded(activeItem, false);
+    activeItem = undefined;
+    activeNavTransition?.skipTransition();
+    clearNavTransition();
+  });
 
   const mobileSections = [...document.querySelectorAll<HTMLDetailsElement>('[data-mobile-nav-section]')];
 
@@ -448,11 +498,10 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
 
     if (!activeItem) return;
 
-    const {popover} = getParts(activeItem);
     const target = event.target;
     if (!(target instanceof Node)) return;
 
-    if (!activeItem.contains(target) && !popover?.contains(target)) {
+    if (!activeItem.contains(target) && !navPopover?.contains(target)) {
       closeItem(activeItem);
     }
   }, {capture: true});
@@ -544,6 +593,28 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
 
   .xp-nav-popover::backdrop {
     background: transparent;
+  }
+
+  :global(html[data-nav-transition]) {
+    view-transition-name: none;
+  }
+
+  :global(html[data-nav-transition]) .xp-nav-popover {
+    view-transition-name: xp-nav-popover;
+  }
+
+  :global(::view-transition-group(xp-nav-popover)) {
+    animation-duration: var(--xp-motion-base);
+    animation-timing-function: var(--xp-ease-standard);
+  }
+
+  :global(html[data-nav-transition]::view-transition) {
+    pointer-events: none;
+  }
+
+  :global(::view-transition-old(xp-nav-popover)),
+  :global(::view-transition-new(xp-nav-popover)) {
+    mix-blend-mode: normal;
   }
 
   .xp-mobile-nav summary::-webkit-details-marker,

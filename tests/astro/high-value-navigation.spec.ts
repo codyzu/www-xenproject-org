@@ -20,6 +20,7 @@ test.describe('@high-value primary navigation', () => {
     const developers = navigation.getByRole('button', { name: 'Developers', exact: true });
     const technologyPopover = page.locator('#xp-nav-popover-0');
     const projectsPopover = page.locator('#xp-nav-popover-1');
+    const sharedPopover = page.locator('[data-nav-popover]');
 
     await technology.hover();
     await expect(technology).toHaveAttribute('aria-expanded', 'true');
@@ -29,11 +30,23 @@ test.describe('@high-value primary navigation', () => {
     await page.waitForTimeout(200);
     await expect(technologyPopover).toBeVisible();
 
+    await sharedPopover.evaluate(element => {
+      const root = document.documentElement;
+      const observer = new MutationObserver(() => {
+        if (root.hasAttribute('data-nav-transition')) {
+          root.setAttribute('data-test-nav-transition-seen', 'true');
+          observer.disconnect();
+        }
+      });
+      observer.observe(root, {attributes: true, attributeFilter: ['data-nav-transition']});
+    });
+
     await projects.hover();
     await expect(projects).toHaveAttribute('aria-expanded', 'true');
     await expect(projectsPopover).toBeVisible();
     await expect(technology).toHaveAttribute('aria-expanded', 'false');
     await expect(page.locator('[data-nav-popover]:popover-open')).toHaveCount(1);
+    await expect(page.locator('html')).toHaveAttribute('data-test-nav-transition-seen', 'true');
 
     const projectLink = projectsPopover.getByRole('link', { name: 'Hypervisor', exact: true });
     const projectHeading = projectsPopover.getByRole('heading', { name: 'Core', exact: true });
