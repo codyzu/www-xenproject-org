@@ -425,7 +425,6 @@ const groupIcon = (name: string) => groupIconByName[name] ?? 'i-carbon-data-vis-
     if (isOpen() || activeNavTransition) return;
     if (activeItem) setExpanded(activeItem, false);
     activeItem = undefined;
-    activeNavTransition?.skipTransition();
     clearNavTransition();
   });
 
