@@ -318,11 +318,11 @@ const expectCardsInsideViewport = async (region: Locator, expectedCount: number,
 
 async function expectPageSpecificLayout(page: Page, contract: HighValuePageContract, profile: ViewportProfile, viewportWidth: number) {
   if (contract.name === 'homepage' && profile.name === 'mobile') {
-    const safetyInitiative = page.locator('#safety-initiative');
-    await safetyInitiative.scrollIntoViewIfNeeded();
-    await expectInsideViewport(safetyInitiative, viewportWidth);
-    await expect(safetyInitiative.getByRole('heading', {name: 'Open source safety engineering, built together.'})).toBeVisible();
-    await expect(safetyInitiative.locator('h3')).toHaveCount(3);
+    const safetyCollaboration = page.locator('#safety-collaboration');
+    await safetyCollaboration.scrollIntoViewIfNeeded();
+    await expectInsideViewport(safetyCollaboration, viewportWidth);
+    await expect(safetyCollaboration.getByRole('heading', {name: 'Open source safety engineering, built together.'})).toBeVisible();
+    await expect(safetyCollaboration.locator('h3')).toHaveCount(3);
 
     const members = page.locator('#members');
     await members.scrollIntoViewIfNeeded();
@@ -335,10 +335,10 @@ async function expectPageSpecificLayout(page: Page, contract: HighValuePageContr
   }
 
   if (contract.name === 'homepage' && profile.name === 'ipad-portrait') {
-    const safetyInitiative = page.locator('#safety-initiative .xp-home-safety-initiative');
-    await safetyInitiative.scrollIntoViewIfNeeded();
-    const safetyColumns = await safetyInitiative.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
-    expect(safetyColumns, 'The Safety Initiative should stack at tablet portrait width').toBe(1);
+    const safetyCollaboration = page.locator('#safety-collaboration .xp-home-safety-collaboration');
+    await safetyCollaboration.scrollIntoViewIfNeeded();
+    const safetyColumns = await safetyCollaboration.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);
+    expect(safetyColumns, 'The safety collaboration chapter should stack at tablet portrait width').toBe(1);
 
     const projectGrid = page.locator('#evidence-in-use article').first().locator('..');
     const projectColumnCount = await projectGrid.evaluate(element => getComputedStyle(element).gridTemplateColumns.split(' ').length);

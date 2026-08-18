@@ -18,27 +18,44 @@ const expectNoHorizontalOverflow = async (page: Page) => {
 };
 
 test.describe('Safety launch integration', () => {
-  test('presents the homepage launch section in the intended narrative position', async ({page}) => {
+  test('presents the homepage announcement in the intended narrative position', async ({page}) => {
     await page.goto('/');
 
-    const section = page.locator('#safety-initiative');
-    await expect(section.getByText('New safety initiative', {exact: true})).toBeVisible();
-    await expect(section.getByRole('heading', {level: 2, name: 'Open source safety engineering, built together.'})).toBeVisible();
-    await expect(section).toContainText('Premier Plus members a maintained foundation');
-    await expect(section).toContainText('substantial head start');
-    await expect(section).not.toContainText(/80\s*(?:percent|%)|mostly complete/i);
-    await expect(section.getByRole('link', {name: 'Explore safety engineering'})).toHaveAttribute('href', '/technology/safety/');
-    await expect(section.getByRole('link', {name: 'Learn about Premier Plus'})).toHaveAttribute('href', '/about/become-a-member/');
-    await expect(section.getByRole('heading', {level: 3})).toHaveText([
+    const announcement = page.locator('#safety-announcement');
+    await expect(announcement).toHaveAttribute('aria-label', 'Xen safety initiative announcement');
+    await expect(announcement).toContainText('New · August 17, 2026');
+    await expect(announcement).toContainText('Xen launches a shared functional safety initiative for safety-critical systems.');
+    const pressRelease = announcement.getByRole('link', {name: 'Read the LF announcement'});
+    await expect(pressRelease).toHaveAttribute('href', 'https://www.linuxfoundation.org/press/xen-project-launches-shared-functional-initiative-for-safety-critical-systems');
+    await expect(pressRelease).toHaveAttribute('target', '_blank');
+    await expect(pressRelease).toHaveAttribute('rel', 'noopener noreferrer external');
+    await expect(announcement.getByRole('link', {name: 'Explore safety engineering'})).toHaveAttribute('href', '/technology/safety/');
+    await expect(announcement.getByRole('link', {name: 'Become a member'})).toHaveAttribute('href', '/about/become-a-member/');
+    await expect(page.locator('[data-safety-campaign]')).toHaveCount(1);
+    await expect(page.locator('#safety-initiative')).toHaveCount(0);
+
+    const order = await page.locator('#safety-announcement, #hero, #proof').evaluateAll(
+      elements => elements.map(element => element.id),
+    );
+    expect(order).toEqual(['safety-announcement', 'hero', 'proof']);
+
+    const collaboration = page.locator('#safety-collaboration');
+    await expect(collaboration.getByText('Safety collaboration', {exact: true})).toBeVisible();
+    await expect(collaboration.getByRole('heading', {level: 2, name: 'Open source safety engineering, built together.'})).toBeVisible();
+    await expect(collaboration).toContainText('Premier Plus members a maintained foundation');
+    await expect(collaboration).toContainText('substantial head start');
+    await expect(collaboration).not.toContainText(/new safety initiative|80\s*(?:percent|%)|mostly complete/i);
+    await expect(collaboration.getByRole('link', {name: 'Explore safety engineering'})).toHaveAttribute('href', '/technology/safety/');
+    await expect(collaboration.getByRole('link', {name: 'Learn about Premier Plus'})).toHaveAttribute('href', '/about/become-a-member/');
+    await expect(collaboration.getByRole('heading', {level: 3})).toHaveText([
       'Safety Committee',
       'Shared foundation',
       'Premier Plus participation',
     ]);
-
-    const order = await page.locator('#evidence-in-use, #safety-initiative, #members').evaluateAll(
+    const collaborationOrder = await page.locator('#evidence-in-use, #automotive-momentum, #safety-collaboration, #members').evaluateAll(
       elements => elements.map(element => element.id),
     );
-    expect(order).toEqual(['evidence-in-use', 'safety-initiative', 'members']);
+    expect(collaborationOrder).toEqual(['evidence-in-use', 'automotive-momentum', 'safety-collaboration', 'members']);
     await expectNoHorizontalOverflow(page);
   });
 

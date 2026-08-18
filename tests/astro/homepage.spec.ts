@@ -82,23 +82,49 @@ test.describe('redesigned homepage', () => {
     await expect(debianGuide).toHaveAttribute('href', 'https://wiki.debian.org/Xen');
     await expect(debianGuide).toHaveClass(/xen-action-secondary/);
     await expect(main.getByRole('heading', {name: 'Explore the Xen project ecosystem.'})).toBeVisible();
-    const safetyInitiative = main.locator('#safety-initiative');
-    await expect(safetyInitiative.getByText('New safety initiative', {exact: true})).toBeVisible();
-    await expect(safetyInitiative.getByRole('heading', {name: 'Open source safety engineering, built together.'})).toBeVisible();
-    await expect(safetyInitiative).toContainText('substantial head start');
-    await expect(safetyInitiative).not.toContainText(/80\s*(?:percent|%)|mostly complete/i);
-    await expect(safetyInitiative.getByRole('link', {name: 'Explore safety engineering'})).toHaveAttribute(
+    const safetyAnnouncement = main.locator('#safety-announcement');
+    await expect(safetyAnnouncement).toHaveAttribute('aria-label', 'Xen safety initiative announcement');
+    await expect(safetyAnnouncement.getByText('New', {exact: true})).toBeVisible();
+    await expect(safetyAnnouncement.getByText('August 17, 2026', {exact: true})).toBeVisible();
+    await expect(safetyAnnouncement).toContainText('Xen launches a shared functional safety initiative for safety-critical systems.');
+    const pressRelease = safetyAnnouncement.getByRole('link', {name: 'Read the LF announcement'});
+    await expect(pressRelease).toHaveAttribute(
+      'href',
+      'https://www.linuxfoundation.org/press/xen-project-launches-shared-functional-initiative-for-safety-critical-systems',
+    );
+    await expect(pressRelease).toHaveAttribute('target', '_blank');
+    await expect(pressRelease).toHaveAttribute('rel', 'noopener noreferrer external');
+    await expect(safetyAnnouncement.getByRole('link', {name: 'Explore safety engineering'})).toHaveAttribute(
       'href',
       '/technology/safety/',
     );
-    await expect(safetyInitiative.getByRole('link', {name: 'Learn about Premier Plus'})).toHaveAttribute(
+    await expect(safetyAnnouncement.getByRole('link', {name: 'Become a member'})).toHaveAttribute(
       'href',
       '/about/become-a-member/',
     );
-    const launchSectionOrder = await main.locator('#evidence-in-use, #automotive-momentum, #safety-initiative, #members, #latest, #community, #next-step').evaluateAll(
+    await expect(main.locator('[data-safety-campaign]')).toHaveCount(1);
+    await expect(main.locator('#safety-initiative')).toHaveCount(0);
+    const topSectionOrder = await main.locator('#safety-announcement, #hero, #proof').evaluateAll(
       elements => elements.map(element => element.id),
     );
-    expect(launchSectionOrder).toEqual(['evidence-in-use', 'automotive-momentum', 'safety-initiative', 'members', 'latest', 'community', 'next-step']);
+    expect(topSectionOrder).toEqual(['safety-announcement', 'hero', 'proof']);
+    const safetyCollaboration = main.locator('#safety-collaboration');
+    await expect(safetyCollaboration.getByText('Safety collaboration', {exact: true})).toBeVisible();
+    await expect(safetyCollaboration.getByRole('heading', {name: 'Open source safety engineering, built together.'})).toBeVisible();
+    await expect(safetyCollaboration).toContainText('substantial head start');
+    await expect(safetyCollaboration).not.toContainText(/new safety initiative|80\s*(?:percent|%)|mostly complete/i);
+    await expect(safetyCollaboration.getByRole('link', {name: 'Explore safety engineering'})).toHaveAttribute(
+      'href',
+      '/technology/safety/',
+    );
+    await expect(safetyCollaboration.getByRole('link', {name: 'Learn about Premier Plus'})).toHaveAttribute(
+      'href',
+      '/about/become-a-member/',
+    );
+    const launchSectionOrder = await main.locator('#evidence-in-use, #automotive-momentum, #safety-collaboration, #members, #latest, #community, #next-step').evaluateAll(
+      elements => elements.map(element => element.id),
+    );
+    expect(launchSectionOrder).toEqual(['evidence-in-use', 'automotive-momentum', 'safety-collaboration', 'members', 'latest', 'community', 'next-step']);
     await expect(main.getByRole('heading', {name: 'Sustained by organizations with a stake in open virtualization.'})).toBeVisible();
     const latest = main.locator('#latest');
     await expect(latest.getByText('Driving virtualization forward', {exact: true})).toBeVisible();

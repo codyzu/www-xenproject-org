@@ -1,4 +1,14 @@
 - main:
+  - complementary "Xen safety initiative announcement":
+    - text: New
+    - time: August 17, 2026
+    - paragraph: Xen launches a shared functional safety initiative for safety-critical systems.
+    - link "Read the LF announcement":
+      - /url: https://www.linuxfoundation.org/press/xen-project-launches-shared-functional-initiative-for-safety-critical-systems
+    - link "Explore safety engineering":
+      - /url: /technology/safety
+    - link "Become a member":
+      - /url: /about/become-a-member
   - paragraph: A Linux Foundation Project
   - heading "Open source virtualization for systems that demand isolation and control." [level=1]
   - paragraph: Xen is an open source hypervisor for infrastructure, embedded, security-sensitive, and virtualization platforms that need clear separation and long-term control.
@@ -139,7 +149,7 @@
       - /url: https://www.youtube.com/watch?v=J6q67jkG5DQ
     - 'button "Play 0:57 clip: A major year for Xen in automotive"': Play clip
     - text: 0:57
-  - paragraph: New safety initiative
+  - paragraph: Safety collaboration
   - heading "Open source safety engineering, built together." [level=2]
   - paragraph: The Xen Safety Committee gives Premier Plus members a maintained foundation of requirements, tests, tooling, evidence, and process documentation, giving their own certification-oriented programs a substantial head start.
   - link "Explore safety engineering":

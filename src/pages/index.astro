@@ -21,6 +21,7 @@ import Stack from '../components/primitives/Stack.astro';
 import Surface from '../components/primitives/Surface.astro';
 import Text from '../components/primitives/Text.astro';
 import HeroLayeredPlatformArtwork from '../components/pages/home/HeroLayeredPlatformArtwork.astro';
+import SafetyAnnouncement from '../components/pages/home/SafetyAnnouncement.astro';
 import pandaSrc from '../assets/illustrations/xen-panda-driving-forward.png';
 import {readGhostCache, type NormalizedGhostPost} from '../../scripts/search/ghost.ts';
 import {
@@ -151,6 +152,8 @@ try {
 ---
 
 <BaseLayout title={title} description={description} keywords={keywords} publicShell bodyClass="xp-home">
+  <SafetyAnnouncement />
+
   <Hero
     id="hero"
     eyebrow="A Linux Foundation Project"
@@ -285,13 +288,13 @@ try {
     </Container>
   </Section>
 
-  <Section id="safety-initiative">
+  <Section id="safety-collaboration">
     <Container>
       <Surface tone="2" border="strong" radius="lg" shadow="md" padding="lg">
-        <Split align="center" class="xp-home-safety-initiative">
+        <Split align="center" class="xp-home-safety-collaboration">
           <Stack gap="5">
             <Stack gap="3">
-              <Text size="eyebrow" tone="accent-primary">New safety initiative</Text>
+              <Text size="eyebrow" tone="accent-primary">Safety collaboration</Text>
               <Heading size="heading-xl">Open source safety engineering, built together.</Heading>
               <Text>
                 The Xen Safety Committee gives Premier Plus members a maintained foundation of requirements, tests, tooling, evidence, and process documentation, giving their own certification-oriented programs a substantial head start.
@@ -475,7 +478,7 @@ try {
     }
   }
 
-  :global(.xp-home-safety-initiative > :first-child) {
+  :global(.xp-home-safety-collaboration > :first-child) {
     max-width: var(--xp-container-content);
   }
 

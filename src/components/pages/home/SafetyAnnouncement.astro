@@ -1,0 +1,56 @@
+---
+import Badge from '../../primitives/Badge.astro';
+import Button from '../../primitives/Button.astro';
+import Cluster from '../../primitives/Cluster.astro';
+import Container from '../../primitives/Container.astro';
+import Surface from '../../primitives/Surface.astro';
+import Text from '../../primitives/Text.astro';
+
+// Launch campaign: remove this component from the homepage after 2026-10-12.
+const pressReleaseUrl = 'https://www.linuxfoundation.org/press/xen-project-launches-shared-functional-initiative-for-safety-critical-systems';
+---
+
+<aside
+  id="safety-announcement"
+  aria-label="Xen safety initiative announcement"
+  data-safety-campaign
+  class="uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-px-4 uno-py-4 md:uno-px-6"
+>
+  <Container>
+    <Surface
+      tone="2"
+      border="muted"
+      padding="sm"
+      radius="md"
+      shadow="sm"
+      class="uno-relative uno-overflow-hidden"
+    >
+      <span class="uno-absolute uno-inset-y-0 uno-left-0 uno-w-1 uno-bg-xp-accent-primary" aria-hidden="true"></span>
+      <div class="uno-grid uno-min-w-0 uno-gap-4 xl:uno-grid-cols-[minmax(0,1fr)_auto] xl:uno-items-center xl:uno-gap-6">
+        <div class="uno-flex uno-min-w-0 uno-flex-col uno-items-start uno-gap-3 md:uno-flex-row md:uno-items-center">
+          <Badge variant="accent" class="uno-shrink-0 uno-gap-1.5">
+            <span>New</span>
+            <span aria-hidden="true">·</span>
+            <time datetime="2026-08-17">August 17, 2026</time>
+          </Badge>
+          <Text size="small" tone="primary" class="uno-font-semibold">
+            Xen launches a shared functional safety initiative for safety-critical systems.
+          </Text>
+        </div>
+        <Cluster gap="2" class="uno-w-full xl:uno-w-auto xl:uno-flex-nowrap xl:uno-justify-end">
+          <Button
+            href={pressReleaseUrl}
+            target="_blank"
+            rel="noopener noreferrer external"
+            class="uno-w-full sm:uno-w-auto"
+          >
+            Read the LF announcement
+            <span class="i-carbon-launch uno-ml-1" aria-hidden="true"></span>
+          </Button>
+          <Button href="/technology/safety/" variant="text">Explore safety engineering</Button>
+          <Button href="/about/become-a-member/" variant="text">Become a member</Button>
+        </Cluster>
+      </div>
+    </Surface>
+  </Container>
+</aside>
