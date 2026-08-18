@@ -1,0 +1,56 @@
+---
+import Container from '../primitives/Container.astro';
+
+type Props = {
+  pageUrl: string;
+};
+
+const {pageUrl} = Astro.props as Props;
+const formUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSe-iZArE5eDXG0rbFRAbMhh_p3vTDL37y5Y9Tw30aFdOzMBKA/viewform';
+const pageUrlField = 'entry.1495144884';
+const helpfulnessField = 'entry.323267374';
+
+const buildFeedbackUrl = (helpfulness?: 'Yes' | 'No') => {
+  const url = new URL(formUrl);
+  url.searchParams.set('usp', 'pp_url');
+  url.searchParams.set(pageUrlField, pageUrl);
+  if (helpfulness) url.searchParams.set(helpfulnessField, helpfulness);
+  return url.toString();
+};
+
+const yesUrl = buildFeedbackUrl('Yes');
+const noUrl = buildFeedbackUrl('No');
+const suggestionUrl = buildFeedbackUrl();
+const responseClass = 'xen-focus uno-inline-flex uno-min-h-11 uno-items-center uno-gap-2 uno-rounded-xp-md uno-border uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-2 uno-px-3 uno-py-2 uno-text-sm uno-font-semibold uno-leading-none uno-text-xp-text-primary uno-no-underline uno-transition-colors uno-duration-[var(--xp-motion-fast)] hover:uno-border-[var(--xp-accent-primary)] hover:uno-bg-xp-surface-3 hover:uno-text-xp-text-primary active:uno-bg-[var(--xp-accent-primary-soft)]';
+---
+
+<section
+  data-page-feedback
+  data-pagefind-ignore
+  aria-labelledby="page-feedback-title"
+  class="uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted uno-bg-xp-surface-1 uno-px-4 uno-py-6 md:uno-px-6"
+>
+  <Container size="page">
+    <div class="uno-flex uno-flex-col uno-gap-3 sm:uno-flex-row sm:uno-items-center sm:uno-justify-between sm:uno-gap-5">
+      <p id="page-feedback-title" class="uno-m-0 uno-text-sm uno-font-semibold uno-text-xp-text-secondary">
+        Was this page helpful?
+      </p>
+      <div role="group" aria-labelledby="page-feedback-title" class="uno-flex uno-flex-wrap uno-items-center uno-gap-2">
+        <a href={yesUrl} class={responseClass} aria-label="Yes, this page was helpful">
+          <span class="i-carbon-thumbs-up uno-h-4 uno-w-4 uno-shrink-0 uno-text-xp-accent-primary" aria-hidden="true"></span>
+          <span>Yes</span>
+        </a>
+        <a href={noUrl} class={responseClass} aria-label="No, this page was not helpful">
+          <span class="i-carbon-thumbs-down uno-h-4 uno-w-4 uno-shrink-0 uno-text-xp-accent-primary" aria-hidden="true"></span>
+          <span>No</span>
+        </a>
+        <a
+          href={suggestionUrl}
+          class="xen-focus uno-inline-flex uno-min-h-11 uno-items-center uno-rounded-xp-md uno-px-3 uno-py-2 uno-text-sm uno-font-semibold uno-leading-none uno-text-xp-text-primary uno-underline uno-decoration-xp-accent-primary uno-decoration-2 uno-underline-offset-4 uno-transition-colors uno-duration-[var(--xp-motion-fast)] hover:uno-bg-xp-surface-2 hover:uno-text-xp-text-primary active:uno-bg-xp-surface-3"
+        >
+          Have a suggestion?
+        </a>
+      </div>
+    </div>
+  </Container>
+</section>

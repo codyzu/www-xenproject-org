@@ -29,8 +29,10 @@ Write the page in Markdown. Use [descriptive link text](/technology/).
 
 The relative layout path depends on the page depth. Copy it from a nearby MDX
 page and verify the result with `npm run typecheck`. `title` is required;
-`description`, `keywords`, `canonicalUrl`, `socialImage`, `image`, `aside`, and
-`hidePageHeader` are supported when the page needs them. Do not add old Hugo
+`description`, `keywords`, `canonicalUrl`, `socialImage`, `image`, `aside`,
+`hidePageHeader`, and `showFeedback` are supported when the page needs them.
+Page feedback is enabled by default for public Astro-first content; set
+`showFeedback: false` when the question is not appropriate. Do not add old Hugo
 fields such as `date`, `draft`, or `menus`: Astro file routing and shared YAML
 navigation replace them.
 

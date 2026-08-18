@@ -1,5 +1,6 @@
 ---
 import {siteMetadata} from '../data/site';
+import PageFeedback from '../components/blocks/PageFeedback.astro';
 import SiteFooter from '../components/blocks/SiteFooter.astro';
 import SiteHeader from '../components/blocks/SiteHeader.astro';
 import SearchDialog from '../components/search/SearchDialog.astro';
@@ -19,6 +20,7 @@ type Props = {
   robots?: string;
   bodyClass?: string;
   publicShell?: boolean;
+  showFeedback?: boolean;
 };
 
 const {
@@ -32,6 +34,7 @@ const {
   robots = 'index, follow',
   bodyClass = '',
   publicShell = false,
+  showFeedback,
 } = Astro.props;
 const currentPath = Astro.url.pathname;
 const siteUrl = Astro.site ?? new URL('https://beta.xenproject.org');
@@ -40,6 +43,8 @@ const pageTitle = currentPath === '/'
   : `${title} | ${siteMetadata.title}`;
 const resolvedDescription = description || summary || siteMetadata.description;
 const resolvedCanonicalUrl = new URL(canonicalUrl || currentPath, siteUrl).toString();
+const resolvedCanonicalPath = new URL(resolvedCanonicalUrl).pathname;
+const feedbackPageUrl = new URL(resolvedCanonicalPath, 'https://xenproject.org').toString();
 const resolvedSocialImage = new URL(socialImage || image || siteMetadata.socialImage, siteUrl).toString();
 const searchSection = sectionForPath(currentPath);
 const searchAliases = searchAliasesForPage(currentPath, `${title}\n${resolvedDescription}\n${keywords.join(' ')}`);
@@ -51,6 +56,7 @@ const searchFilterSpec = [
   ...(promotedIntents.length > 0 ? ['promotedIntent[data-search-promoted-intent]'] : []),
 ].join(', ');
 const shouldIndex = !robots.toLowerCase().includes('noindex') && currentPath !== '/search/';
+const shouldShowFeedback = publicShell && showFeedback !== false;
 ---
 
 <!doctype html>
@@ -101,6 +107,7 @@ const shouldIndex = !robots.toLowerCase().includes('noindex') && currentPath !==
           data-pagefind-filter={searchFilterSpec}
         >
           <slot />
+          {shouldShowFeedback && <PageFeedback pageUrl={feedbackPageUrl} />}
         </main>
         <SiteFooter currentPath={currentPath} />
         <SearchDialog />
