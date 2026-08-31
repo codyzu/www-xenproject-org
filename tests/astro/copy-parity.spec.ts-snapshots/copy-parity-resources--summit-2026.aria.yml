@@ -251,14 +251,24 @@
     - link "Renesas logo":
       - /url: https://www.renesas.com/
       - img "Renesas logo"
+    - link "Honda logo":
+      - /url: https://www.honda.com/
+      - img "Honda logo"
     - heading "Gold Sponsors" [level=2]
     - link "XenServer logo":
       - /url: https://www.xenserver.com/
       - img "XenServer logo"
+    - link "Arm logo":
+      - /url: https://www.arm.com/
+      - img "Arm logo"
     - heading "Silver Sponsors" [level=2]
     - link "Vates logo":
       - /url: https://vates.tech/
       - img "Vates logo"
+    - heading "Bronze Sponsors" [level=2]
+    - link "Edera logo":
+      - /url: https://edera.dev/
+      - img "Edera logo"
     - paragraph:
       - text: Organizations interested in sponsoring can review the Xen Summit 2026 sponsor prospectus or contact
       - link "community.manager@xenproject.org":
@@ -295,4 +305,4 @@
       - link "Register Now ":
         - /url: https://register.linuxfoundation.org/xen-summit-2026
     - paragraph:
-      - emphasis: "Last updated: August 4, 2026"
+      - emphasis: "Last updated: August 31, 2026"

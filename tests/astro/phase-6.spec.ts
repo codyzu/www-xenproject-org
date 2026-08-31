@@ -122,14 +122,24 @@ test.describe('Phase 6 data-driven routes', () => {
     expect(hasHorizontalOverflow).toBe(false);
     await page.locator('label[for^="virtual-"]').click();
     await expect(page.locator('.ticket-group-virtual')).toBeVisible();
-    for (const sponsorName of ['Renesas', 'XenServer', 'Vates']) {
+    await page.setViewportSize({width: 1440, height: 1200});
+    const sponsorWidths = new Map<string, number>();
+    for (const sponsorName of ['Renesas', 'Honda', 'XenServer', 'Arm', 'Vates', 'Edera']) {
       const sponsorLogo = page.getByRole('img', {name: `${sponsorName} logo`}).last();
       await expect(sponsorLogo).toBeVisible();
       expect(await sponsorLogo.evaluate((image) => ({width: image.clientWidth, height: image.clientHeight}))).toEqual(
         expect.objectContaining({width: expect.any(Number), height: expect.any(Number)}),
       );
       expect(await sponsorLogo.evaluate((image) => image.clientWidth > 0 && image.clientHeight > 0)).toBe(true);
+      sponsorWidths.set(sponsorName, await sponsorLogo.evaluate((image) => image.clientWidth));
     }
+    expect(Math.min(sponsorWidths.get('Renesas')!, sponsorWidths.get('Honda')!)).toBeGreaterThan(
+      Math.max(sponsorWidths.get('XenServer')!, sponsorWidths.get('Arm')!),
+    );
+    expect(Math.min(sponsorWidths.get('XenServer')!, sponsorWidths.get('Arm')!)).toBeGreaterThan(
+      sponsorWidths.get('Vates')!,
+    );
+    expect(sponsorWidths.get('Vates')!).toBeGreaterThan(sponsorWidths.get('Edera')!);
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', `${siteUrl}/resources/summit-2026/`);
   });
 });
