@@ -143,7 +143,7 @@
       - listitem:
         - strong: "Taxi and rideshare:"
         - text: Taxis are available at the airport, major rail stations, and throughout Munich. Rideshare availability may vary by provider and pickup location.
-    - heading "Accommodation" [level=4]
+    - heading "Accommodation" [level=3]
     - paragraph: "The following hotels are located within walking distance of the Xen Summit venue:"
     - list:
       - listitem:
