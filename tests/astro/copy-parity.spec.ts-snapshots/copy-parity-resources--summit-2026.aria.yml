@@ -265,6 +265,9 @@
     - link "Vates logo":
       - /url: https://vates.tech/
       - img "Vates logo"
+    - link "BUGSENG logo":
+      - /url: https://www.bugseng.com/
+      - img "BUGSENG logo"
     - heading "Bronze Sponsors" [level=2]
     - link "Edera logo":
       - /url: https://edera.dev/
@@ -305,4 +308,4 @@
       - link "Register Now ":
         - /url: https://register.linuxfoundation.org/xen-summit-2026
     - paragraph:
-      - emphasis: "Last updated: August 31, 2026"
+      - emphasis: "Last updated: September 7, 2026"
