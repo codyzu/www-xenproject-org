@@ -53,11 +53,13 @@ test.describe('Phase 6 data-driven routes', () => {
   test('sorts the past-event archive by event end date', async ({page}) => {
     await page.goto('/resources/past-events/');
     const cards = page.locator('[data-event-id]');
-    await expect(cards).toHaveCount(2);
-    await expect(cards.nth(0)).toHaveAttribute('data-event-id', 'spring-meetup-2026');
-    await expect(cards.nth(1)).toHaveAttribute('data-event-id', 'xen-summit-2025');
-    await expect(cards.nth(0)).not.toContainText('April 2–3, 2026');
-    await expect(cards.nth(1)).toContainText('San Jose, California, USA');
+    await expect(cards).toHaveCount(3);
+    await expect(cards.nth(0)).toHaveAttribute('data-event-id', 'xen-summit-2026');
+    await expect(cards.nth(0).getByRole('link', {name: 'View recap'})).toHaveAttribute('href', '/resources/summit-2026/');
+    await expect(cards.nth(1)).toHaveAttribute('data-event-id', 'spring-meetup-2026');
+    await expect(cards.nth(2)).toHaveAttribute('data-event-id', 'xen-summit-2025');
+    await expect(cards.nth(1)).not.toContainText('April 2–3, 2026');
+    await expect(cards.nth(2)).toContainText('San Jose, California, USA');
   });
 
   test('renders the archived Summit detail route', async ({page}) => {
@@ -74,54 +76,39 @@ test.describe('Phase 6 data-driven routes', () => {
     );
   });
 
-  test('renders event hero and live ticket pricing', async ({page}) => {
+  test('renders the permanent Summit recap with the highlight film', async ({page}) => {
+    await page.route('https://www.youtube.com/embed/**', (route) => route.fulfill({status: 200, body: '<html><body>Video player</body></html>', contentType: 'text/html'}));
     await page.goto('/resources/summit-2026/');
     await expect(page.getByRole('heading', {level: 1, name: 'Xen Summit 2026'})).toBeVisible();
-    await expect(page.getByRole('link', {name: 'Register Now'}).first()).toHaveAttribute(
-      'href',
-      'https://register.linuxfoundation.org/xen-summit-2026',
+    await expect(page.getByRole('link', {name: 'Watch all talks', exact: true}).first()).toHaveAttribute(
+      'href', 'https://www.youtube.com/playlist?list=PLGe6RWOETgTQ',
     );
-    await expect(page.getByRole('link', {name: 'View the Schedule'}).first()).toHaveAttribute(
-      'href',
-      'https://xensummit2026.sched.com/',
+    await expect(page.getByRole('link', {name: 'View the program and speakers'})).toHaveAttribute(
+      'href', 'https://xensummit2026.sched.com/',
     );
-    await expect(page.getByRole('link', {name: 'Become a Sponsor'}).first()).toHaveAttribute(
-      'href',
-      '/assets/summit-2026/xen-summit-2026-sponsor-prospectus.pdf',
-    );
-    await expect(page.getByText(/call for proposals|submit a proposal|submit a talk|july 7, 2026/i)).toHaveCount(0);
-    await expect(page.locator('#registration-pricing .ticket-card')).toHaveCount(5);
-    await expect(page.locator('#registration-pricing .card__actions')).toHaveCount(3);
-    const earlyBirdCard = page
-      .locator('#registration-pricing .ticket-card')
-      .filter({has: page.getByRole('heading', {name: /In-Person Early Bird \$140 Closed/})});
-    await expect(earlyBirdCard).toHaveClass(/ticket-card--closed/);
-    await expect(earlyBirdCard.locator('s')).toHaveText('In-Person Early Bird $140');
-    await expect(earlyBirdCard.getByRole('link')).toHaveCount(0);
-    const speakerCard = page
-      .locator('#registration-pricing .ticket-card')
-      .filter({has: page.getByRole('heading', {name: 'Speaker Free'})});
-    await expect(speakerCard.getByRole('link')).toHaveCount(0);
-    const jumpLinks = page.getByText('Jump to:').getByRole('link');
+    const main = page.getByRole('main');
+    await expect(main).not.toContainText(/registration open|register now|early bird|booking|details.*soon|become a sponsor/i);
+    await expect(main.locator('a[href*="register.linuxfoundation.org"]')).toHaveCount(0);
+    const highlight = page.locator('#highlights iframe');
+    await expect(highlight).toHaveAttribute('src', 'https://www.youtube.com/embed/KO1fWJyXCc0?rel=0');
+    await expect(highlight).toHaveAttribute('title', 'Xen Summit 2026 highlight film');
+    await expect(highlight).toHaveAttribute('allowfullscreen', '');
+    await expect(page.getByRole('link', {name: 'Watch the highlight film on YouTube'})).toHaveAttribute('href', 'https://www.youtube.com/watch?v=KO1fWJyXCc0');
+    await expect(main).not.toContainText('will be embedded');
+    await expect(page.locator('#highlights').getByRole('link', {name: 'Watch all talks'})).toBeVisible();
+    const jumpLinks = page.getByText('Explore the recap:').getByRole('link');
     for (const jumpLink of await jumpLinks.all()) {
       const target = await jumpLink.getAttribute('href');
-      expect(target).toMatch(/^#[a-z-]+$/);
       await expect(page.locator(target!)).toHaveCount(1);
     }
-    const inPersonGroup = page.locator('.ticket-group-in-person');
-    const columnCount = async () =>
-      inPersonGroup.evaluate((element) => getComputedStyle(element).gridTemplateColumns.split(' ').length);
-    expect(await columnCount()).toBe(4);
-    await page.setViewportSize({width: 900, height: 900});
-    expect(await columnCount()).toBe(2);
-    await page.setViewportSize({width: 390, height: 844});
-    expect(await columnCount()).toBe(1);
-    const hasHorizontalOverflow = await page.evaluate(
-      () => document.documentElement.scrollWidth > document.documentElement.clientWidth,
-    );
-    expect(hasHorizontalOverflow).toBe(false);
-    await page.locator('label[for^="virtual-"]').click();
-    await expect(page.locator('.ticket-group-virtual')).toBeVisible();
+    for (const width of [390, 834, 1440]) {
+      await page.setViewportSize({width, height: 900});
+      expect(await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth)).toBe(false);
+      await expect(page.locator('#highlights').getByRole('link', {name: 'Watch all talks'})).toBeVisible();
+      const bounds = await highlight.boundingBox();
+      expect(bounds).not.toBeNull();
+      expect(bounds!.width / bounds!.height).toBeCloseTo(16 / 9, 1);
+    }
     await page.setViewportSize({width: 1440, height: 1200});
     const sponsorWidths = new Map<string, number>();
     for (const sponsorName of ['Renesas', 'Honda', 'XenServer', 'Arm', 'Vates', 'Edera']) {

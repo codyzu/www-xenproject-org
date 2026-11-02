@@ -34,6 +34,11 @@ const pastEvents = defineCollection({
     eventEnd: z.coerce.date(),
     eventLocation: z.string(),
     lastUpdated: z.string(),
+    // Structured recaps can retain an existing public route.
+    recapUrl: z
+      .string()
+      .regex(/^\/[a-z\d/-]+\/$/)
+      .optional(),
     showEventDetails: z.boolean().default(true),
   }),
 });

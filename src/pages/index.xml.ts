@@ -15,7 +15,7 @@ export async function GET(context: {site?: URL}) {
     ...events.map((event) => ({
       title: event.data.title,
       description: event.data.description,
-      link: `/resources/past-events/${event.id}/`,
+      link: event.data.recapUrl ?? `/resources/past-events/${event.id}/`,
       pubDate: event.data.eventEnd,
     })),
   ].toSorted((a, b) => b.pubDate.getTime() - a.pubDate.getTime());

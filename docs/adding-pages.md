@@ -145,3 +145,12 @@ For a redesigned or interaction-heavy page, also run
 Before review, confirm that the page has one visible `h1`, useful title and
 description metadata, descriptive links and image alternatives, keyboard-safe
 interactions, responsive layouts, and no unintended public URL changes.
+
+## Past event recaps
+
+Past Events and the RSS feed use the `pastEvents` content collection, sorted by
+`eventEnd`. Normally, an entry renders at `/resources/past-events/<id>/`.
+For a structured recap that already has a stable Astro route, set `recapUrl`
+in the entry frontmatter to that internal URL. The index and RSS link there,
+and the collection route skips that entry to avoid a duplicate recap page.
+Xen Summit 2026 uses this pattern at `/resources/summit-2026/`.

@@ -3,7 +3,7 @@ import {getCollection, render, type CollectionEntry} from 'astro:content';
 import LegacyLayout from '../../../layouts/LegacyLayout.astro';
 
 export async function getStaticPaths() {
-  const events = await getCollection('pastEvents');
+  const events = await getCollection('pastEvents', ({data}) => !data.recapUrl);
   return events.map((event) => ({params: {id: event.id}, props: {event}}));
 }
 

@@ -77,7 +77,7 @@ const highValuePages = [
     name: 'summit 2026',
     path: '/resources/summit-2026/',
     title: /Xen Summit 2026/i,
-    heading: /Xen Summit 2026/i,
+    heading: /^Xen Summit 2026$/i,
     screenshot: 'summit-2026-page.png',
   },
   {
@@ -106,6 +106,9 @@ const highValuePages = [
 test.describe('Astro spike high-value page guardrails', () => {
   for (const pageContract of highValuePages) {
     test(`renders ${pageContract.name}`, async ({page}) => {
+      if (pageContract.name === 'summit 2026') {
+        await page.route('https://www.youtube.com/embed/**', (route) => route.abort());
+      }
       await page.goto(pageContract.path);
 
       const main = page.locator('main');
@@ -122,6 +125,9 @@ test.describe('Astro spike high-value page guardrails', () => {
         await page.evaluate(async () => document.fonts.ready);
         await expect(page).toHaveScreenshot(pageContract.screenshot, {
           fullPage: true,
+          // Third-party player content varies; protect the recap layout independently.
+          mask: pageContract.name === 'summit 2026' ? [page.locator('#highlights iframe')] : [],
+          maskColor: '#101828',
           maxDiffPixelRatio: 0.01,
           timeout: 10_000,
         });

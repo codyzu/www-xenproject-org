@@ -100,8 +100,8 @@ exceptions:
     kind: event-update
     scope: venue, recordings, sponsors, and event-status sections
     reason: The Astro event page intentionally reflects post-event information and maintained links added after migration.
-  - id: summit-2026-current-event-info
+  - id: summit-2026-permanent-recap
     route: /resources/summit-2026/
     kind: event-update
-    scope: program, registration, sponsorship, travel, and current status sections
-    reason: The Astro page contains current event information intentionally updated after the previous migration baseline.
+    scope: recap hero, highlight film, recordings, program, venue, design day, and sponsor acknowledgments
+    reason: Xen Summit 2026 is now a permanent past-event recap; expired registration and travel calls to action have been removed.
