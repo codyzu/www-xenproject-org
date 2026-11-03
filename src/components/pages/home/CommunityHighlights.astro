@@ -1,0 +1,100 @@
+---
+import {Picture} from 'astro:assets';
+import communityPhoto from '../../../assets/xen-summit-2026-community.webp';
+import {summit2026Highlights} from '../../../data/summit-2026';
+import Button from '../../primitives/Button.astro';
+import Stack from '../../primitives/Stack.astro';
+import Surface from '../../primitives/Surface.astro';
+import Text from '../../primitives/Text.astro';
+---
+
+<Stack gap="4">
+  <Surface tone="0" border="strong" radius="lg" padding="none" class="uno-overflow-hidden">
+    <div
+      class="community-highlights__player uno-relative"
+      data-video-clip-player
+      data-video-id={summit2026Highlights.videoId}
+      data-iframe-title="Xen Summit 2026 highlights"
+    >
+      <Picture
+        src={communityPhoto}
+        alt="Four Xen Summit attendees smiling and talking together between sessions."
+        widths={[480, 800, 1200, 1600, 2000]}
+        sizes="(max-width: 767px) 100vw, (max-width: 1279px) 90vw, 1200px"
+        formats={['avif', 'webp']}
+        loading="lazy"
+        decoding="async"
+        class="community-highlights__photo"
+      />
+      <a
+        href={summit2026Highlights.videoHref}
+        class="community-highlights__play xen-focus"
+        aria-label={`Watch Xen Summit 2026 highlights (${summit2026Highlights.duration})`}
+        data-video-clip-play
+      >
+        <span class="community-highlights__play-icon">
+          <span class="i-carbon-play-filled uno-text-3xl" aria-hidden="true"></span>
+        </span>
+        <span class="community-highlights__label">Watch highlights · {summit2026Highlights.duration}</span>
+      </a>
+    </div>
+  </Surface>
+  <div class="uno-flex uno-flex-wrap uno-items-center uno-justify-between uno-gap-3">
+    <Text size="small" tone="muted">Talks, design sessions, and conversations from the community’s gathering near Munich.</Text>
+    <Button href={summit2026Highlights.recapHref} variant="text">
+      Explore the Summit recap
+      <span class="i-carbon-arrow-right uno-ml-1" aria-hidden="true"></span>
+    </Button>
+  </div>
+</Stack>
+
+<script>
+  import '../../../scripts/video-clips';
+</script>
+
+<style>
+  .community-highlights__player { aspect-ratio: 16 / 9; }
+  .community-highlights__photo {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+  }
+  .community-highlights__play {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    color: var(--xp-text-primary);
+  }
+  .community-highlights__play:focus-visible { outline-offset: -5px; }
+  .community-highlights__play-icon {
+    display: grid;
+    place-items: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background: var(--xp-accent-primary);
+    color: var(--xp-accent-primary-text);
+    box-shadow: var(--xp-shadow-md);
+  }
+  .community-highlights__play:hover .community-highlights__play-icon {
+    background: var(--xp-accent-primary-strong);
+  }
+  .community-highlights__label {
+    position: absolute;
+    bottom: var(--xp-space-4);
+    left: var(--xp-space-4);
+    padding: var(--xp-space-2) var(--xp-space-3);
+    border-radius: var(--xp-radius-md);
+    background: var(--xp-surface-0);
+    font-size: var(--xp-type-caption);
+    font-weight: 600;
+  }
+  @media (max-width: 47.999rem) {
+    .community-highlights__player { aspect-ratio: 3 / 2; }
+    .community-highlights__play-icon { width: 3rem; height: 3rem; }
+    .community-highlights__label { bottom: var(--xp-space-2); left: var(--xp-space-2); }
+  }
+</style>

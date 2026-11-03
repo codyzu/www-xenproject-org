@@ -138,14 +138,47 @@ test.describe('redesigned homepage', () => {
     for (const href of await latest.locator('article h3 a').evaluateAll(links => links.map(link => link.getAttribute('href')))) {
       expect(href).toMatch(/^\/blog\/.+\/$/);
     }
-    await expect(main.getByRole('heading', {name: 'Technical work happens in the open.'})).toBeVisible();
-    await expect(main.getByRole('heading', {name: "Support Xen's future, or help build it."})).toBeVisible();
+    await expect(main.getByRole('heading', {name: 'Built by a global community.'})).toBeVisible();
 
     await expect(page.locator('#xen-story')).toHaveCount(0);
     await expect(page.locator('[data-project-carousel]')).toHaveCount(0);
     await expect(page.locator('#logo-wheel')).toHaveCount(0);
     await expect(page.locator('[data-latest-news]')).toHaveCount(0);
     await expect(page.getByRole('heading', {name: /404/i})).toHaveCount(0);
+  });
+
+  test('plays community highlights on keyboard activation without loading YouTube beforehand', async ({page}) => {
+    await page.route('https://www.youtube-nocookie.com/**', route => route.fulfill({body: '<html><body>Highlights player</body></html>', contentType: 'text/html'}));
+    await prepareHomepage(page);
+    const community = page.locator('#community');
+    await expect(community.locator('iframe')).toHaveCount(0);
+    await expect(community.getByRole('img')).toBeVisible();
+    await expect(community.getByRole('link', {name: 'Explore the Summit recap'})).toHaveAttribute('href', '/resources/summit-2026/');
+    const play = community.getByRole('link', {name: 'Watch Xen Summit 2026 highlights (2:26)'});
+    await play.focus();
+    await page.keyboard.press('Enter');
+    const iframe = community.locator('iframe');
+    await expect(iframe).toHaveAttribute('src', 'https://www.youtube-nocookie.com/embed/KO1fWJyXCc0?start=0&autoplay=1&rel=0&playsinline=1');
+    await expect(iframe).toHaveAttribute('title', 'Xen Summit 2026 highlights');
+    await expect(iframe).toBeFocused();
+    await expect(page.locator('#automotive-momentum iframe')).toHaveCount(0);
+  });
+
+  test('keeps the community film and participation paths usable without JavaScript', async ({browser}) => {
+    const context = await browser.newContext({javaScriptEnabled: false, viewport: {width: 390, height: 844}});
+    try {
+      const page = await context.newPage();
+      await page.goto('/');
+      const community = page.locator('#community');
+      await expect(community.getByRole('link', {name: 'Watch Xen Summit 2026 highlights (2:26)'})).toHaveAttribute('href', 'https://www.youtube.com/watch?v=KO1fWJyXCc0');
+      await expect(community.getByRole('link', {name: 'Start contributing'})).toHaveAttribute('href', '/contribute/get-started/');
+      await expect(community.getByRole('link', {name: 'Explore membership'})).toHaveAttribute('href', '/about/become-a-member/');
+      const poster = await community.getByRole('img').boundingBox();
+      expect(poster!.width / poster!.height).toBeCloseTo(1.5, 1);
+      expect(poster!.x + poster!.width).toBeLessThanOrEqual(390);
+    } finally {
+      await context.close();
+    }
   });
 
   test('renders member logos from shared data and static project links from project data', async ({page}) => {

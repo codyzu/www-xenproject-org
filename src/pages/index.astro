@@ -1,6 +1,5 @@
 ---
 import {Picture} from 'astro:assets';
-import CTA from '../components/blocks/CTA.astro';
 import Callout from '../components/blocks/Callout.astro';
 import CommandExample from '../components/blocks/CommandExample.astro';
 import FeatureGrid from '../components/blocks/FeatureGrid.astro';
@@ -22,6 +21,7 @@ import Surface from '../components/primitives/Surface.astro';
 import Text from '../components/primitives/Text.astro';
 import HeroLayeredPlatformArtwork from '../components/pages/home/HeroLayeredPlatformArtwork.astro';
 import SafetyAnnouncement from '../components/pages/home/SafetyAnnouncement.astro';
+import CommunityHighlights from '../components/pages/home/CommunityHighlights.astro';
 import pandaSrc from '../assets/illustrations/xen-panda-driving-forward.png';
 import {readGhostCache, type NormalizedGhostPost} from '../../scripts/search/ghost.ts';
 import {
@@ -424,43 +424,34 @@ try {
     <Container>
       <Stack gap="6">
         <Stack gap="3" class="uno-max-w-xp-content">
-          <Text size="eyebrow" tone="muted">Open governance and community</Text>
-          <Heading size="heading-xl">Technical work happens in the open.</Heading>
+          <Text size="eyebrow" tone="muted">People behind the project</Text>
+          <Heading size="heading-xl">Built by a global community.</Heading>
           <Text>
-            Xen contribution follows documented project processes. Engineers can find a practical starting point, and organizations can support the ecosystem through membership.
+            Maintainers, contributors, users, and researchers work together to build Xen and put it to work across cloud, embedded, automotive, and security-sensitive systems.
           </Text>
         </Stack>
-        <Grid columns="2" gap="5">
-          <Callout
-            title="For engineers"
-            description="Start with contribution guidance, development resources, and project-specific entry points."
-            action={{label: 'Start contributing', href: '/contribute/get-started/'}}
-          >
-            <span slot="icon" class="i-carbon-code"></span>
-          </Callout>
-          <Callout
-            title="For organizations"
-            description="Membership is a way to support the project infrastructure and coordination that keep Xen healthy."
-            action={{label: 'Explore membership', href: '/about/become-a-member/'}}
-          >
-            <span slot="icon" class="i-carbon-enterprise"></span>
-          </Callout>
-        </Grid>
+        <CommunityHighlights />
+        <div id="next-step">
+          <Grid columns="2" gap="5">
+            <Callout
+              title="For engineers"
+              description="Start with contribution guidance, development resources, and project-specific entry points."
+              action={{label: 'Start contributing', href: '/contribute/get-started/'}}
+            >
+              <span slot="icon" class="i-carbon-code"></span>
+            </Callout>
+            <Callout
+              title="For organizations"
+              description="Membership is a way to support the project infrastructure and coordination that keep Xen healthy."
+              action={{label: 'Explore membership', href: '/about/become-a-member/'}}
+            >
+              <span slot="icon" class="i-carbon-enterprise"></span>
+            </Callout>
+          </Grid>
+        </div>
       </Stack>
     </Container>
   </Section>
-
-  <CTA
-    id="next-step"
-    eyebrow="Next step"
-    title="Support Xen's future, or help build it."
-    description="Organizations can support the project through membership. Engineers can start with the contributor resources."
-    actions={[
-      {label: 'Explore membership', href: '/about/become-a-member/'},
-      {label: 'Start contributing', href: '/contribute/get-started/', variant: 'secondary'},
-    ]}
-    align="center"
-  />
 </BaseLayout>
 
 <style>

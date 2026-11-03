@@ -230,9 +230,16 @@
       - text: Read article
   - link "View all news":
     - /url: /blog
-  - paragraph: Open governance and community
-  - heading "Technical work happens in the open." [level=2]
-  - paragraph: Xen contribution follows documented project processes. Engineers can find a practical starting point, and organizations can support the ecosystem through membership.
+  - paragraph: People behind the project
+  - heading "Built by a global community." [level=2]
+  - paragraph: Maintainers, contributors, users, and researchers work together to build Xen and put it to work across cloud, embedded, automotive, and security-sensitive systems.
+  - img "Four Xen Summit attendees smiling and talking together between sessions."
+  - link "Watch Xen Summit 2026 highlights (2:26)":
+    - /url: https://www.youtube.com/watch?v=KO1fWJyXCc0
+    - text: Watch highlights · 2:26
+  - paragraph: Talks, design sessions, and conversations from the community’s gathering near Munich.
+  - link "Explore the Summit recap":
+    - /url: /resources/summit-2026
   - complementary:
     - heading "For engineers" [level=2]
     - paragraph: Start with contribution guidance, development resources, and project-specific entry points.
@@ -243,10 +250,14 @@
     - paragraph: Membership is a way to support the project infrastructure and coordination that keep Xen healthy.
     - link "Explore membership":
       - /url: /about/become-a-member
-  - paragraph: Next step
-  - heading "Support Xen's future, or help build it." [level=2]
-  - paragraph: Organizations can support the project through membership. Engineers can start with the contributor resources.
-  - link "Explore membership":
-    - /url: /about/become-a-member
-  - link "Start contributing":
-    - /url: /contribute/get-started
+  - region "Was this page helpful?":
+    - paragraph: Was this page helpful?
+    - group "Was this page helpful?":
+      - link "Yes, this page was helpful":
+        - /url: https://docs.google.com/forms/d/e/1FAIpQLSe-iZArE5eDXG0rbFRAbMhh_p3vTDL37y5Y9Tw30aFdOzMBKA/viewform?usp=pp_url&entry.1495144884=https%3A%2F%2Fxenproject.org%2F&entry.323267374=Yes
+        - text: "Yes"
+      - link "No, this page was not helpful":
+        - /url: https://docs.google.com/forms/d/e/1FAIpQLSe-iZArE5eDXG0rbFRAbMhh_p3vTDL37y5Y9Tw30aFdOzMBKA/viewform?usp=pp_url&entry.1495144884=https%3A%2F%2Fxenproject.org%2F&entry.323267374=No
+        - text: "No"
+      - link "Have a suggestion?":
+        - /url: https://docs.google.com/forms/d/e/1FAIpQLSe-iZArE5eDXG0rbFRAbMhh_p3vTDL37y5Y9Tw30aFdOzMBKA/viewform?usp=pp_url&entry.1495144884=https%3A%2F%2Fxenproject.org%2F

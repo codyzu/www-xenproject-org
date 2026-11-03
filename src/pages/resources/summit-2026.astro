@@ -1,5 +1,6 @@
 ---
 import {getEntry} from 'astro:content';
+import {summit2026Highlights} from '../../data/summit-2026';
 import EventHero from '../../components/legacy/EventHero.astro';
 import MediaBlock from '../../components/legacy/MediaBlock.astro';
 import Section from '../../components/legacy/Section.astro';
@@ -10,7 +11,7 @@ if (!event) throw new Error('Missing Xen Summit 2026 archive entry');
 const {title, description, keywords, eventDates, eventLocation} = event.data;
 const talksUrl = 'https://www.youtube.com/playlist?list=PLGe6RWOETgTQ';
 const scheduleUrl = 'https://xensummit2026.sched.com/';
-const highlightVideoId = 'KO1fWJyXCc0';
+const highlightVideoId = summit2026Highlights.videoId;
 const highlightEmbedUrl = `https://www.youtube.com/embed/${highlightVideoId}?rel=0`;
 ---
 
@@ -41,7 +42,7 @@ const highlightEmbedUrl = `https://www.youtube.com/embed/${highlightVideoId}?rel
         <div id="highlights" class="summit-highlights-panel">
           <MediaBlock
             title="Xen Summit 2026 highlights"
-            label="The Summit in 2:26"
+            label={`The Summit in ${summit2026Highlights.duration}`}
             media={highlightEmbedUrl}
             alt="Xen Summit 2026 highlight film"
             mediaPosition="right"

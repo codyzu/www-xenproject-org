@@ -133,39 +133,7 @@ const iframeTitle = talkTitle ? `${talkTitle} — video clip` : `${title} — vi
 </Surface>
 
 <script>
-  const initializeVideoClips = () => {
-    document.querySelectorAll<HTMLElement>('[data-video-clip-player]').forEach((player) => {
-      const playButton = player.querySelector<HTMLButtonElement>('[data-video-clip-play]');
-      if (!playButton || playButton.dataset.ready === 'true') return;
-      playButton.dataset.ready = 'true';
-
-      playButton.addEventListener('click', () => {
-        const videoId = player.dataset.videoId;
-        if (!videoId) return;
-
-        const parameters = new URLSearchParams({
-          start: player.dataset.start ?? '0',
-          autoplay: '1',
-          rel: '0',
-          playsinline: '1',
-        });
-        if (player.dataset.end) parameters.set('end', player.dataset.end);
-
-        const iframe = document.createElement('iframe');
-        iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${parameters}`;
-        iframe.title = player.dataset.iframeTitle ?? 'YouTube video clip';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-        iframe.allowFullscreen = true;
-        iframe.className = 'uno-h-full uno-w-full uno-border-0';
-        iframe.addEventListener('load', () => iframe.focus(), {once: true});
-        player.replaceChildren(iframe);
-      });
-    });
-  };
-
-  initializeVideoClips();
-  document.addEventListener('astro:page-load', initializeVideoClips);
+  import '../../scripts/video-clips';
 </script>
 
 <style>
