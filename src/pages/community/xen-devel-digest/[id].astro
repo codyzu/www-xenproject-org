@@ -1,10 +1,10 @@
 ---
 import {render, type CollectionEntry} from 'astro:content';
 import LongformLayout from '../../../layouts/LongformLayout.astro';
-import {digestArchiveUrl, digestFeedUrl, digestUrl, formatDigestDate, getPublishedDigests} from '../../../data/xen-devel-digests';
+import {digestArchiveUrl, digestFeedUrl, digestUrl, formatDigestDate, getDigests} from '../../../data/xen-devel-digests';
 
 export async function getStaticPaths() {
-  const issues = await getPublishedDigests();
+  const issues = await getDigests();
   return issues.map((issue, index) => ({
     params: {id: issue.id},
     props: {issue, newer: issues[index - 1], older: issues[index + 1]},
@@ -23,7 +23,7 @@ const {Content} = await render(issue);
 <LongformLayout frontmatter={{rssFeed: digestFeedUrl, title: issue.data.title, description: issue.data.description}}>
   <div data-pagefind-ignore>
     <p><a href={digestArchiveUrl}>All xen-devel digests</a> · <a href={digestFeedUrl}>Subscribe via RSS</a></p>
-    <p>Compiled by {issue.data.author} · Reviewed by {issue.data.reviewedBy}</p>
+    <p>Compiled by {issue.data.author}{issue.data.reviewedBy && <> · Reviewed by {issue.data.reviewedBy}</>}</p>
     <p>Coverage: {formatDigestDate(issue.data.coverageStart)}–{formatDigestDate(issue.data.coverageEnd)}.
       {issue.data.publishedAt && <> Published <time datetime={issue.data.publishedAt.toISOString()}>{formatDigestDate(issue.data.publishedAt)}</time>.</>}
     </p>

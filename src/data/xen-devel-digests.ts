@@ -8,12 +8,8 @@ export function digestUrl(issue: Pick<CollectionEntry<'xenDevelDigests'>, 'id'>)
   return `${digestArchiveUrl}${issue.id}/`;
 }
 
-export async function getPublishedDigests() {
-  const now = new Date();
-  const issues = await getCollection(
-    'xenDevelDigests',
-    ({data}) => !data.draft && Boolean(data.reviewedBy) && Boolean(data.publishedAt && data.publishedAt <= now),
-  );
+export async function getDigests() {
+  const issues = await getCollection('xenDevelDigests');
   return issues.toSorted((a, b) => b.data.coverageEnd.getTime() - a.data.coverageEnd.getTime());
 }
 

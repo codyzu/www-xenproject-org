@@ -120,3 +120,8 @@ exceptions:
     kind: accessible-rendering
     scope: digest archive card derived from the shared Resources navigation
     reason: The legacy Resources index mirrors shared navigation and now includes the weekly digest.
+  - id: homepage-digest-discovery
+    route: /
+    kind: accessible-rendering
+    scope: latest xen-devel digest block before the community section
+    reason: All collection issues now render on their branch so staging review before merge is the publication boundary.

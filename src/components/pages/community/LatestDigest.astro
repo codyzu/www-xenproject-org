@@ -1,9 +1,9 @@
 ---
 import CTA from '../../blocks/CTA.astro';
-import {digestArchiveUrl, digestUrl, getPublishedDigests} from '../../../data/xen-devel-digests';
+import {digestArchiveUrl, digestUrl, getDigests} from '../../../data/xen-devel-digests';
 
 const {showEmpty = false} = Astro.props as {showEmpty?: boolean};
-const [latest] = await getPublishedDigests();
+const [latest] = await getDigests();
 ---
 
 {(latest || showEmpty) && (

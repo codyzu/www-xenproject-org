@@ -12,45 +12,44 @@ description: 'A short summary of the week’s development topics.'
 coverageStart: '2026-11-06'
 coverageEnd: '2026-11-12'
 author: Bruno
-draft: true
 ---
 ```
 
 ## Review and publish
 
-Automation should generate Markdown with `draft: true` and open a review PR.
+Automation should generate Markdown on a branch and open a review PR.
+Every issue in the collection renders locally and in staging, including in the
+archive, RSS, search, and latest-issue placements. There is no draft state,
+reviewer gate, or date-based scheduling. Review and merge are the publication
+boundary: merge only content ready for production, since the staging artifact
+can be promoted unchanged to production.
+
 Check summaries against the linked public threads, including attribution,
 technical claims, and whether changes are proposed, reviewed, or merged.
-Remove the source’s “Draft, not yet checked” notice only after review.
-Then set `draft: false`, add `reviewedBy` with the reviewer’s name, and set
-`publishedAt` to the actual publication date (ISO 8601, UTC).
-A non-draft issue without both fields fails schema validation.
-
-Drafts have no generated route, sitemap entry, RSS item, search record, or
-latest-issue placement, even in development. Future-dated publications are
-also excluded until a build on or after `publishedAt`. Publication needs a
-rebuild; there is no runtime scheduler. Review drafts in Markdown or a PR.
-To evaluate the published design locally, use a temporary synthetic issue
-with a past publication date and reviewer, then remove it before committing.
+The imported issues retain their original unchecked-content notices; remove
+those notices only after review and before merging. `reviewedBy` and
+`publishedAt` are optional descriptive metadata, not visibility controls.
+If `publishedAt` is omitted, RSS uses the coverage end date. A future value
+also does not hide the issue or schedule publication.
 
 ## Site integration
 
 The archive is `/community/xen-devel-digest/`, with a dedicated feed at
-`/community/xen-devel-digest/rss.xml`. Published issues are sorted by coverage
-end date and rendered with `LongformLayout`; previous/next links only include
-published issues. `src/data/xen-devel-digests.ts` supplies the shared selection
+`/community/xen-devel-digest/rss.xml`. Issues are sorted by coverage
+end date and rendered with `LongformLayout`; previous/next links connect
+adjacent issues. `src/data/xen-devel-digests.ts` supplies the shared collection
 used by routes, RSS, and latest-issue placements. `SITE_URL` supplies canonical
 and feed origins through Astro’s configured site.
 
 Community always links to the archive. The homepage shows a separate development
-update only when an issue is published; Ghost news selection stays independent.
+update when the collection contains an issue; Ghost news selection stays independent.
 Both navigation systems, contributor guidance, and mailing-list resources link
 to the archive. Pagefind indexes generated issue HTML through the normal build,
-so draft bodies never enter the public index. New issues need no manual route
-inventory entry; register only the archive in `redesignRoutes`.
+so every issue is searchable after building. The artifact route inventory
+derives issue URLs from the collection filenames; new issues need no manual
+route inventory entry.
 
-Run `npm run check`, `npm run build`, `npm run check:dist`, and
-`npm run test:e2e` before review. Run `npm run test:digests` for the isolated
-publication build test (synthetic reviewed, draft, and future-dated issues).
-It cleans up its temporary entries and output; run it separately from other
-Astro builds because content syncing uses a shared local cache.
+Run `npm run check`, `npm run test:digests`, and `npm run check:dist` before
+review. `test:digests` builds the deterministic fixture artifact and verifies
+issue routes, order, metadata, navigation, RSS, sitemap, and latest placements.
+Use `npm run test:e2e` for the full browser suite.

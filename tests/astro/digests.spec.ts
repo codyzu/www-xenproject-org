@@ -1,25 +1,24 @@
-import {readFileSync} from 'node:fs';
 import {expect, test} from '@playwright/test';
 
 const archive = '/community/xen-devel-digest/';
-const draftUrl = `${archive}2026-11-12/`;
 
-test('keeps the unreviewed first digest out of the public artifact', async ({page, request}) => {
-  test.skip(!/^draft: true$/m.test(readFileSync('src/content/xen-devel-digests/2026-11-12.md', 'utf8')), 'The first issue has been reviewed and published.');
-  expect((await request.get(draftUrl)).status()).toBe(404);
-  const feed = await request.get(`${archive}rss.xml`);
-  expect(feed.ok()).toBe(true);
-  expect(await feed.text()).not.toContain('2026-11-12');
-  const sitemap = await request.get('/sitemap-0.xml');
-  expect(await sitemap.text()).not.toContain(draftUrl);
+test('shows both imported issues with adjacent navigation and feed entries', async ({page, request}) => {
   await page.goto(archive);
   await expect(page.getByRole('heading', {level: 1})).toHaveText('This week on xen-devel');
-  await expect(page.locator(`a[href="${draftUrl}"]`)).toHaveCount(0);
-  if (await page.locator('article h3 a').count() === 0) {
-    await expect(page.getByText('The first issue is being prepared. Reviewed issues will appear here when published.')).toBeVisible();
-    await page.goto('/');
-    await expect(page.locator('#development-updates')).toHaveCount(0);
+  for (const id of ['2026-11-12', '2026-11-08']) {
+    await expect(page.locator(`article h3 a[href="${archive}${id}/"]`)).toBeVisible();
+    expect((await request.get(`${archive}${id}/`)).ok()).toBe(true);
   }
+  const feed = await request.get(`${archive}rss.xml`);
+  expect(feed.ok()).toBe(true);
+  const xml = await feed.text();
+  expect(xml).toContain(`${archive}2026-11-12/`);
+  expect(xml).toContain(`${archive}2026-11-08/`);
+  await page.goto(`${archive}2026-11-12/`);
+  await expect(page.getByRole('navigation', {name: 'Weekly issues'}).getByRole('link')).toHaveAttribute('href', `${archive}2026-11-08/`);
+  await expect(page.locator('article')).not.toContainText('Reviewed by');
+  await page.goto('/');
+  await expect(page.locator('#development-updates')).toBeVisible();
 });
 
 test('connects community and developer resources to the digest archive', async ({page}) => {
@@ -32,8 +31,10 @@ test('connects community and developer resources to the digest archive', async (
 test('keeps the archive readable at mobile and desktop widths', async ({page}) => {
   for (const width of [390, 834, 1440]) {
     await page.setViewportSize({width, height: 1000});
-    await page.goto(archive);
-    await expect(page.getByRole('link', {name: 'Subscribe via RSS', exact: true})).toBeVisible();
-    expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBe(0);
+    for (const url of [archive, `${archive}2026-11-12/`, `${archive}2026-11-08/`]) {
+      await page.goto(url);
+      await expect(page.getByRole('link', {name: 'Subscribe via RSS', exact: true})).toBeVisible();
+      expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBe(0);
+    }
   }
 });

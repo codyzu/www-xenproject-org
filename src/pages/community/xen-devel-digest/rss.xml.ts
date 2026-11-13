@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention, @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-argument */
 import rss from '@astrojs/rss';
-import {digestUrl, getPublishedDigests} from '../../../data/xen-devel-digests.ts';
+import {digestUrl, getDigests} from '../../../data/xen-devel-digests.ts';
 
 export async function GET(context: {site?: URL}) {
-  const issues = await getPublishedDigests();
+  const issues = await getDigests();
   return rss({
     title: 'This week on xen-devel',
     description: 'Weekly summaries of Xen development discussions.',
@@ -12,7 +12,7 @@ export async function GET(context: {site?: URL}) {
       title: issue.data.title,
       description: issue.data.description,
       link: digestUrl(issue),
-      pubDate: issue.data.publishedAt!,
+      pubDate: issue.data.publishedAt ?? issue.data.coverageEnd,
     })),
     customData: '<language>en-gb</language>',
   });

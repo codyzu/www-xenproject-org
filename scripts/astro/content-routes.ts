@@ -1,3 +1,4 @@
+import {readdirSync} from 'node:fs';
 import {getOwnedRedirects} from '../../src/data/redirects.ts';
 
 // Astro-owned content routes included in the standalone static artifact.
@@ -43,9 +44,14 @@ export const contentRoutes = [
   '/resources/use-cases/',
 ] as const satisfies readonly string[];
 
+const digestRoutes = readdirSync(new URL('../../src/content/xen-devel-digests/', import.meta.url))
+  .filter((file) => file.endsWith('.md'))
+  .map((file) => `/community/xen-devel-digest/${file.slice(0, -3)}/`);
+
 export const redesignRoutes = [
   '/community/',
   '/community/xen-devel-digest/',
+  ...digestRoutes,
   '/technology/',
   '/technology/architecture/',
   '/technology/isolation-and-security/',

@@ -1,8 +1,8 @@
 ---
 import LongformLayout from '../../../layouts/LongformLayout.astro';
-import {digestFeedUrl, digestUrl, formatDigestDate, getPublishedDigests} from '../../../data/xen-devel-digests';
+import {digestFeedUrl, digestUrl, formatDigestDate, getDigests} from '../../../data/xen-devel-digests';
 
-const issues = await getPublishedDigests();
+const issues = await getDigests();
 ---
 
 <LongformLayout frontmatter={{
@@ -23,5 +23,5 @@ const issues = await getPublishedDigests();
         </li>
       ))}
     </ul>
-  ) : <p>The first issue is being prepared. Reviewed issues will appear here when published.</p>}
+  ) : <p>No issues yet. Check back for the first weekly digest.</p>}
 </LongformLayout>

@@ -230,6 +230,13 @@
       - text: Read article
   - link "View all news":
     - /url: /blog
+  - paragraph: Development updates
+  - 'heading "This week on xen-devel: 6 to 12 November 2026" [level=2]'
+  - paragraph: A weekly roundup of Xen development discussions, including x86 instruction sets, virtual interrupt controllers, Arm CPU hotplug, and migration fixes.
+  - link "Read the latest digest":
+    - /url: /community/xen-devel-digest/2026-11-12
+  - link "Browse xen-devel digests":
+    - /url: /community/xen-devel-digest
   - paragraph: People behind the project
   - heading "Built by a global community." [level=2]
   - paragraph: Maintainers, contributors, users, and researchers work together to build Xen and put it to work across cloud, embedded, automotive, and security-sensitive systems.
