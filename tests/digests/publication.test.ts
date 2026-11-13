@@ -18,7 +18,7 @@ test('renders every collection issue without requiring publication or reviewer m
   issues.sort((a, b) => new Date(b.data.coverageEnd).getTime() - new Date(a.data.coverageEnd).getTime());
   const index = load(await read(archive));
   const origin = new URL(index('link[rel="canonical"]').attr('href')!).origin;
-  assert.deepEqual(index('article h3 a').toArray().map(node => index(node).attr('href')), issues.map(issue => `${archive}${issue.id}/`));
+  assert.deepEqual(index('.xp-digest-list a').toArray().map(node => index(node).attr('href')), issues.map(issue => `${archive}${issue.id}/`));
   const sitemap = await readFile('dist/sitemap-0.xml', 'utf8');
   for (const [i, issue] of issues.entries()) {
     const url = `${archive}${issue.id}/`;

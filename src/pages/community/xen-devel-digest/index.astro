@@ -1,27 +1,111 @@
 ---
-import LongformLayout from '../../../layouts/LongformLayout.astro';
-import {digestFeedUrl, digestUrl, formatDigestDate, getDigests} from '../../../data/xen-devel-digests';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Button from '../../../components/primitives/Button.astro';
+import Container from '../../../components/primitives/Container.astro';
+import Heading from '../../../components/primitives/Heading.astro';
+import Text from '../../../components/primitives/Text.astro';
+import {digestFeedUrl, digestUrl, getDigests} from '../../../data/xen-devel-digests';
 
 const issues = await getDigests();
+const title = 'This week on xen-devel';
+const description = 'Follow Xen development, one week at a time.';
+const coverageDates = new Intl.DateTimeFormat('en-GB', {day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC'});
 ---
 
-<LongformLayout frontmatter={{
-  rssFeed: digestFeedUrl,
-  title: 'This week on xen-devel',
-  description: 'Weekly summaries of Xen development: patch series, technical discussions, reviews, and work across the ecosystem.',
-}}>
-  <p>Follow Xen development without reading every mailing-list thread. Each issue links to the original discussions so you can explore the details and join the conversation. Proposals and patches under review may change before they are merged.</p>
-  <p><a href={digestFeedUrl}>Subscribe via RSS</a> · <a href="https://lore.kernel.org/xen-devel/">Read the xen-devel archives</a></p>
-  <h2>Weekly issues</h2>
-  {issues.length > 0 ? (
-    <ul class="uno-list-none uno-p-0">
-      {issues.map(issue => (
-        <li class="uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-py-5">
-          <h3><a href={digestUrl(issue)}>{issue.data.title}</a></h3>
-          <p>Coverage: <time datetime={issue.data.coverageStart.toISOString()}>{formatDigestDate(issue.data.coverageStart)}</time>–<time datetime={issue.data.coverageEnd.toISOString()}>{formatDigestDate(issue.data.coverageEnd)}</time></p>
-          <p>{issue.data.description}</p>
-        </li>
-      ))}
-    </ul>
-  ) : <p>No issues yet. Check back for the first weekly digest.</p>}
-</LongformLayout>
+<BaseLayout {title} {description} rssFeed={digestFeedUrl} publicShell>
+  <section class="xp-digest-intro uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-px-4 md:uno-px-6">
+    <Container size="page" class="uno-max-w-[64rem]">
+      <div class="uno-flex uno-flex-col uno-items-start uno-gap-6 md:uno-flex-row md:uno-items-end md:uno-justify-between">
+        <div class="uno-grid uno-gap-4">
+          <Text size="eyebrow" tone="accent-primary">Development journal</Text>
+          <Heading as="h1" size="heading-xl">{title}</Heading>
+          <Text size="lead">{description}</Text>
+        </div>
+        <div class="uno-flex uno-shrink-0 uno-flex-col uno-items-start uno-gap-3 md:uno-items-end">
+          <Button href={digestFeedUrl} variant="secondary">
+            <span class="i-carbon-rss uno-mr-2" aria-hidden="true"></span>Subscribe via RSS
+          </Button>
+          <a class="xen-action-text xen-focus uno-rounded-sm uno-text-sm uno-inline-flex uno-items-center uno-gap-1" href="https://lore.kernel.org/xen-devel/">Read the mailing-list archive <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <section class="xp-digest-archive uno-px-4 md:uno-px-6" aria-labelledby="weekly-issues">
+    <Container size="page" class="uno-max-w-[64rem]">
+      <div class="uno-mb-5 uno-flex uno-flex-wrap uno-items-baseline uno-justify-between uno-gap-3">
+        <div id="weekly-issues"><Heading as="h2" size="card" tone="muted" class="xp-digest-label">Weekly issues</Heading></div>
+        <Text size="caption" tone="muted">Newest first · Dated by coverage end</Text>
+      </div>
+      {issues.length > 0 ? (
+        <ol class="xp-digest-list uno-m-0 uno-list-none uno-p-0">
+          {issues.map((issue, index) => {
+            const isoDate = issue.data.coverageEnd.toISOString().slice(0, 10);
+            return (
+              <li class="uno-border-0 uno-border-t uno-border-solid uno-border-xp-border-muted">
+                <a href={digestUrl(issue)} class="xp-digest-link xen-focus uno-grid uno-gap-3 uno-rounded-xp-md uno-text-inherit uno-no-underline md:uno-grid-cols-[9rem_minmax(0,1fr)_1.5rem] md:uno-gap-6">
+                  <time class="xp-digest-date uno-font-mono uno-text-sm uno-font-semibold uno-text-xp-text-muted" datetime={isoDate}>{isoDate}</time>
+                  <div class="uno-grid uno-min-w-0 uno-gap-2">
+                    <div class="uno-flex uno-flex-wrap uno-items-center uno-gap-3">
+                      <Heading as="h3" size="card">Weekly digest<span class="uno-sr-only"> — {isoDate}</span></Heading>
+                      {index === 0 && <span class="uno-rounded-full uno-border uno-border-solid uno-border-xp-border-strong uno-px-2 uno-py-0.5 uno-text-xs uno-font-semibold uno-text-xp-accent-primary">Latest</span>}
+                    </div>
+                    <Text tone="primary">{issue.data.description}</Text>
+                    <Text size="small" tone="muted">Coverage: {coverageDates.formatRange(issue.data.coverageStart, issue.data.coverageEnd)}</Text>
+                  </div>
+                  <span class="xp-digest-arrow i-carbon-arrow-right uno-hidden uno-text-xp-text-muted md:uno-block" aria-hidden="true"></span>
+                </a>
+              </li>
+            );
+          })}
+        </ol>
+      ) : <Text>No issues yet. Check back for the first weekly digest.</Text>}
+    </Container>
+  </section>
+</BaseLayout>
+
+<style>
+  .xp-digest-archive :global(.xp-digest-label) {
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .xp-digest-intro {
+    padding-top: clamp(2.5rem, 5vw, 4rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+    background: linear-gradient(180deg, rgb(133 194 65 / 0.07), transparent);
+  }
+
+  .xp-digest-archive {
+    padding-top: 2rem;
+    padding-bottom: clamp(3rem, 6vw, 5rem);
+  }
+
+  .xp-digest-list > :last-child {
+    border-bottom: 1px solid var(--xp-border-muted);
+  }
+
+  .xp-digest-link {
+    padding: 1.5rem 0.75rem;
+    margin-inline: -0.75rem;
+  }
+
+  .xp-digest-date,
+  .xp-digest-arrow {
+    margin-top: 0.3rem;
+  }
+
+  .xp-digest-link:hover,
+  .xp-digest-link:focus-visible {
+    background: var(--xp-surface-1);
+  }
+
+  .xp-digest-link:hover .xp-digest-date,
+  .xp-digest-link:focus-visible .xp-digest-date,
+  .xp-digest-link:hover .xp-digest-arrow,
+  .xp-digest-link:focus-visible .xp-digest-arrow {
+    color: var(--xp-accent-primary);
+  }
+</style>

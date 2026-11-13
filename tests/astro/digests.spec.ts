@@ -5,8 +5,14 @@ const archive = '/community/xen-devel-digest/';
 test('shows both imported issues with adjacent navigation and feed entries', async ({page, request}) => {
   await page.goto(archive);
   await expect(page.getByRole('heading', {level: 1})).toHaveText('This week on xen-devel');
+  const rows = page.locator('.xp-digest-list > li');
+  const dates = await rows.locator('time').allTextContents();
+  expect(dates).toEqual([...dates].sort().reverse());
+  expect(dates).toEqual(expect.arrayContaining(['2026-11-12', '2026-11-08']));
+  await expect(rows.getByText('Latest', {exact: true})).toHaveCount(1);
+  await expect(rows.first().getByText('Latest', {exact: true})).toBeVisible();
   for (const id of ['2026-11-12', '2026-11-08']) {
-    await expect(page.locator(`article h3 a[href="${archive}${id}/"]`)).toBeVisible();
+    await expect(page.locator(`.xp-digest-list a[href="${archive}${id}/"]`)).toBeVisible();
     expect((await request.get(`${archive}${id}/`)).ok()).toBe(true);
   }
   const feed = await request.get(`${archive}rss.xml`);
@@ -14,8 +20,12 @@ test('shows both imported issues with adjacent navigation and feed entries', asy
   const xml = await feed.text();
   expect(xml).toContain(`${archive}2026-11-12/`);
   expect(xml).toContain(`${archive}2026-11-08/`);
-  await page.goto(`${archive}2026-11-12/`);
-  await expect(page.getByRole('navigation', {name: 'Weekly issues'}).getByRole('link')).toHaveAttribute('href', `${archive}2026-11-08/`);
+  const issueLink = rows.locator(`a[href="${archive}2026-11-12/"]`);
+  await issueLink.focus();
+  await expect(issueLink).toBeFocused();
+  await page.keyboard.press('Enter');
+  await expect(page).toHaveURL(`${archive}2026-11-12/`);
+  await expect(page.getByRole('navigation', {name: 'Weekly issues'}).locator(`a[href="${archive}2026-11-08/"]`)).toHaveAttribute('href', `${archive}2026-11-08/`);
   await expect(page.locator('article')).not.toContainText('Reviewed by');
   await page.goto('/');
   await expect(page.locator('#development-updates')).toBeVisible();

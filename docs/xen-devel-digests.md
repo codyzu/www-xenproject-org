@@ -4,11 +4,13 @@ The `xenDevelDigests` collection owns “This week on xen-devel”. Issues live 
 `src/content/xen-devel-digests/` as Markdown. Use the coverage end date as the
 filename, for example `2026-11-12.md`, and retain it after publication so URLs
 stay stable. Do not include a level-one heading in the body; the layout owns it.
+Use a concise, topic-led `description`: it appears in archive rows, latest-issue
+placements, RSS, and page metadata. Avoid repeating the series name or dates.
 
 ```yaml
 ---
 title: 'This week on xen-devel: 6 to 12 November 2026'
-description: 'A short summary of the week’s development topics.'
+description: 'APX, RISC-V interrupts, Arm CPU hotplug, and migration fixes.'
 coverageStart: '2026-11-06'
 coverageEnd: '2026-11-12'
 author: Bruno
@@ -47,7 +49,9 @@ Both navigation systems, contributor guidance, and mailing-list resources link
 to the archive. Pagefind indexes generated issue HTML through the normal build,
 so every issue is searchable after building. The artifact route inventory
 derives issue URLs from the collection filenames; new issues need no manual
-route inventory entry.
+route inventory entry. The archive uses the coverage end date as its ISO date
+label, with the full coverage range below the topic summary. It is a single
+chronological list, with only the newest issue marked “Latest”.
 
 Run `npm run check`, `npm run test:digests`, and `npm run check:dist` before
 review. `test:digests` builds the deterministic fixture artifact and verifies

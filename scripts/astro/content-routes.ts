@@ -44,7 +44,7 @@ export const contentRoutes = [
   '/resources/use-cases/',
 ] as const satisfies readonly string[];
 
-const digestRoutes = readdirSync(new URL('../../src/content/xen-devel-digests/', import.meta.url))
+const digestRoutes = readdirSync('src/content/xen-devel-digests')
   .filter((file) => file.endsWith('.md'))
   .map((file) => `/community/xen-devel-digest/${file.slice(0, -3)}/`);
 

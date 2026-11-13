@@ -232,7 +232,7 @@
     - /url: /blog
   - paragraph: Development updates
   - 'heading "This week on xen-devel: 6 to 12 November 2026" [level=2]'
-  - paragraph: A weekly roundup of Xen development discussions, including x86 instruction sets, virtual interrupt controllers, Arm CPU hotplug, and migration fixes.
+  - paragraph: APX, RISC-V interrupts, Arm CPU hotplug, and migration fixes.
   - link "Read the latest digest":
     - /url: /community/xen-devel-digest/2026-11-12
   - link "Browse xen-devel digests":
