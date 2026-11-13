@@ -118,7 +118,7 @@ exceptions:
   - id: resources-digest-discovery
     route: /resources/
     kind: accessible-rendering
-    scope: digest archive card derived from the shared Resources navigation
+    scope: Developer digest archive card derived from the shared Resources navigation
     reason: The legacy Resources index mirrors shared navigation and now includes the weekly digest.
   - id: homepage-digest-discovery
     route: /

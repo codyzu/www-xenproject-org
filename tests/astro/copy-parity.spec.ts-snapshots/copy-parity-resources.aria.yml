@@ -30,8 +30,8 @@
     - text: Explore Past Events.
     - link "Explore ":
       - /url: /resources/past-events
-    - heading "This week on xen-devel" [level=2]
-    - text: Explore This week on xen-devel.
+    - heading "Developer digest" [level=2]
+    - text: Explore Developer digest.
     - link "Explore ":
       - /url: /community/xen-devel-digest
     - heading "Join mailing lists" [level=2]
