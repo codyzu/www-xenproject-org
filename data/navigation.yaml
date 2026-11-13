@@ -57,6 +57,8 @@
       href: /resources/matrix/
     - name: Past Events
       href: /resources/past-events/
+    - name: This week on xen-devel
+      href: /community/xen-devel-digest/
     - name: Join mailing lists
       href: /resources/mailing-lists/
 

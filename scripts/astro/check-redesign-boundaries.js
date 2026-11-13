@@ -108,6 +108,8 @@ for (const filePath of publicPageFiles) {
     'src/pages/about/become-a-member.astro',
     'src/pages/about/project-members.astro',
     'src/pages/community/index.astro',
+    'src/pages/community/xen-devel-digest/index.astro',
+    'src/pages/community/xen-devel-digest/[id].astro',
     'src/pages/technology/architecture.astro',
     'src/pages/technology/index.astro',
     'src/pages/technology/isolation-and-security.astro',

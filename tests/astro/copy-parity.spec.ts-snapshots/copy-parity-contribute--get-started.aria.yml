@@ -24,6 +24,9 @@
       - link "Matrix ":
         - /url: /resources/matrix
     - paragraph:
+      - link "Follow weekly development digests ":
+        - /url: /community/xen-devel-digest
+    - paragraph:
       - link "Mailing Lists ":
         - /url: /resources/mailing-lists
     - heading "Access more resources" [level=2]

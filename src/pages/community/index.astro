@@ -1,4 +1,5 @@
 ---
+import LatestDigest from '../../components/pages/community/LatestDigest.astro';
 import CTA from '../../components/blocks/CTA.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
@@ -8,6 +9,7 @@ const description = 'Join the people, events, and conversations around the Xen P
 
 <BaseLayout title={title} description={description} publicShell>
   <CTA
+    headingLevel="h1"
     eyebrow="Community"
     title="Join the Xen Project community."
     description="This section will bring together events, discussion channels, and contributor pathways. Start with Matrix, mailing lists, and contribution resources."
@@ -16,4 +18,5 @@ const description = 'Join the people, events, and conversations around the Xen P
       {label: 'Join Matrix', href: '/resources/matrix/', variant: 'secondary'},
     ]}
   />
+  <LatestDigest showEmpty />
 </BaseLayout>

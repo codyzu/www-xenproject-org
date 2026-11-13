@@ -34,6 +34,7 @@ type Frontmatter = {
   aside?: AsideResource[];
   hidePageHeader?: boolean;
   showFeedback?: boolean;
+  rssFeed?: string;
 };
 
 const {
@@ -47,6 +48,7 @@ const {
   aside = [],
   hidePageHeader = false,
   showFeedback,
+  rssFeed,
 } = Astro.props.frontmatter as Frontmatter;
 
 const asideLinks = aside.flatMap(resource => resource.items.flatMap(item => (
@@ -65,6 +67,7 @@ const asideLinks = aside.flatMap(resource => resource.items.flatMap(item => (
   bodyClass="xp-longform-page"
   publicShell
   showFeedback={showFeedback}
+  rssFeed={rssFeed}
 >
   {
     !hidePageHeader && (

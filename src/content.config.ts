@@ -57,4 +57,25 @@ const research = defineCollection({
   }),
 });
 
-export const collections = {downloads, pastEvents, research};
+const xenDevelDigests = defineCollection({
+  loader: glob({pattern: '**/*.md', base: './src/content/xen-devel-digests'}),
+  schema: z
+    .object({
+      title: z.string().min(1),
+      description: z.string().min(1),
+      coverageStart: z.coerce.date(),
+      coverageEnd: z.coerce.date(),
+      publishedAt: z.coerce.date().optional(),
+      author: z.string().min(1),
+      reviewedBy: z.string().min(1).optional(),
+      draft: z.boolean().default(true),
+    })
+    .refine((entry) => entry.coverageEnd >= entry.coverageStart, {
+      message: 'Coverage end must be on or after coverage start',
+    })
+    .refine((entry) => entry.draft || Boolean(entry.publishedAt && entry.reviewedBy), {
+      message: 'Published digests require publishedAt and reviewedBy',
+    }),
+});
+
+export const collections = {downloads, pastEvents, research, xenDevelDigests};

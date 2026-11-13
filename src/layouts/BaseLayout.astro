@@ -18,6 +18,7 @@ type Props = {
   socialImage?: string;
   image?: string;
   robots?: string;
+  rssFeed?: string;
   bodyClass?: string;
   publicShell?: boolean;
   showFeedback?: boolean;
@@ -32,6 +33,7 @@ const {
   socialImage,
   image,
   robots = 'index, follow',
+  rssFeed,
   bodyClass = '',
   publicShell = false,
   showFeedback,
@@ -89,6 +91,7 @@ const shouldShowFeedback = publicShell && showFeedback !== false;
     <meta name="twitter:description" content={resolvedDescription} />
     <meta name="twitter:image" content={resolvedSocialImage} />
     <meta name="robots" content={robots} />
+    {rssFeed && <link rel="alternate" type="application/rss+xml" title="RSS feed" href={new URL(rssFeed, siteUrl).toString()} />}
     <link rel="canonical" href={resolvedCanonicalUrl} data-pagefind-meta="canonical[href]" />
   </head>
   <body class:list={['xp-site', bodyClass]}>

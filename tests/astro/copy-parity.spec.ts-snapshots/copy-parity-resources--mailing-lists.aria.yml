@@ -88,6 +88,11 @@
       - text: Archives 
     - heading "Developers" [level=2]
     - heading "Xen Project Hypervisor" [level=3]
+    - paragraph:
+      - text: Follow development at a glance with
+      - link "This week on xen-devel":
+        - /url: /community/xen-devel-digest
+      - text: ", a weekly digest linking to the original discussions."
     - heading "XEN-DEVEL@" [level=2]
     - text: Mailing list A discussion list for the Xen Project Hypervisor developer community. Please do not use this list for technical support queries.
     - link "Info ":

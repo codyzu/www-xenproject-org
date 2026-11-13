@@ -45,6 +45,7 @@ export const contentRoutes = [
 
 export const redesignRoutes = [
   '/community/',
+  '/community/xen-devel-digest/',
   '/technology/',
   '/technology/architecture/',
   '/technology/isolation-and-security/',

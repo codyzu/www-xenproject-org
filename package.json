@@ -17,6 +17,7 @@
     "lint": "xo",
     "typecheck": "DOWNLOADS_SOURCE=fixture astro check --tsconfig tsconfig.astro.json",
     "test:unit": "npm run test:downloads && npm run test:search",
+    "test:digests": "node --test tests/digests/*.test.ts",
     "test:docs": "node scripts/documentation/check-links.js",
     "test:downloads": "node --test tests/downloads/*.test.js",
     "test:search": "node --test tests/search/*.test.ts",

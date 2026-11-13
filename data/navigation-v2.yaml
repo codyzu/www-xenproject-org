@@ -97,6 +97,8 @@
           href: /resources/past-events/
     - name: Connect
       links:
+        - name: This week on xen-devel
+          href: /community/xen-devel-digest/
         - name: Matrix
           href: /resources/matrix/
         - name: Mailing lists

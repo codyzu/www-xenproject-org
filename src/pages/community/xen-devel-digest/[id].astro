@@ -1,0 +1,37 @@
+---
+import {render, type CollectionEntry} from 'astro:content';
+import LongformLayout from '../../../layouts/LongformLayout.astro';
+import {digestArchiveUrl, digestFeedUrl, digestUrl, formatDigestDate, getPublishedDigests} from '../../../data/xen-devel-digests';
+
+export async function getStaticPaths() {
+  const issues = await getPublishedDigests();
+  return issues.map((issue, index) => ({
+    params: {id: issue.id},
+    props: {issue, newer: issues[index - 1], older: issues[index + 1]},
+  }));
+}
+
+type Props = {
+  issue: CollectionEntry<'xenDevelDigests'>;
+  newer?: CollectionEntry<'xenDevelDigests'>;
+  older?: CollectionEntry<'xenDevelDigests'>;
+};
+const {issue, newer, older} = Astro.props;
+const {Content} = await render(issue);
+---
+
+<LongformLayout frontmatter={{rssFeed: digestFeedUrl, title: issue.data.title, description: issue.data.description}}>
+  <div data-pagefind-ignore>
+    <p><a href={digestArchiveUrl}>All xen-devel digests</a> · <a href={digestFeedUrl}>Subscribe via RSS</a></p>
+    <p>Compiled by {issue.data.author} · Reviewed by {issue.data.reviewedBy}</p>
+    <p>Coverage: {formatDigestDate(issue.data.coverageStart)}–{formatDigestDate(issue.data.coverageEnd)}.
+      {issue.data.publishedAt && <> Published <time datetime={issue.data.publishedAt.toISOString()}>{formatDigestDate(issue.data.publishedAt)}</time>.</>}
+    </p>
+    <p>This digest summarizes development discussions. Proposed changes may still be under review; follow the linked threads for their current status.</p>
+  </div>
+  <Content />
+  <nav aria-label="Weekly issues" data-pagefind-ignore>
+    {older && <p>Previous issue: <a href={digestUrl(older)}>{older.data.title}</a></p>}
+    {newer && <p>Next issue: <a href={digestUrl(newer)}>{newer.data.title}</a></p>}
+  </nav>
+</LongformLayout>

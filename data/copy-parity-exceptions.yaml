@@ -105,3 +105,18 @@ exceptions:
     kind: event-update
     scope: recap hero, highlight film, recordings, program, venue, design day, and sponsor acknowledgments
     reason: Xen Summit 2026 is now a permanent past-event recap; expired registration and travel calls to action have been removed.
+  - id: contributor-digest-discovery
+    route: /contribute/get-started/
+    kind: accessible-rendering
+    scope: one development-digest link beside Matrix and mailing lists
+    reason: Make the weekly xen-devel archive discoverable to new contributors.
+  - id: mailing-list-digest-discovery
+    route: /resources/mailing-lists/
+    kind: accessible-rendering
+    scope: one paragraph linking the Hypervisor developer list to the weekly digest
+    reason: Offer a reviewed weekly summary alongside the full xen-devel archives.
+  - id: resources-digest-discovery
+    route: /resources/
+    kind: accessible-rendering
+    scope: digest archive card derived from the shared Resources navigation
+    reason: The legacy Resources index mirrors shared navigation and now includes the weekly digest.

@@ -5,6 +5,7 @@ Start with the guide that matches the work you are doing.
 ## Contribute content
 
 - [Add a page](adding-pages.md): MDX, Astro, routes, redirects, and navigation.
+- [Publish a xen-devel digest](xen-devel-digests.md): metadata, review, and publication.
 - [Use images](images.md): asset locations, formats, and accessibility.
 - [Add a research paper](../research/README.md): BibTeX requirements.
 

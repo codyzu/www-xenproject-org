@@ -1,0 +1,27 @@
+---
+import LongformLayout from '../../../layouts/LongformLayout.astro';
+import {digestFeedUrl, digestUrl, formatDigestDate, getPublishedDigests} from '../../../data/xen-devel-digests';
+
+const issues = await getPublishedDigests();
+---
+
+<LongformLayout frontmatter={{
+  rssFeed: digestFeedUrl,
+  title: 'This week on xen-devel',
+  description: 'Weekly summaries of Xen development: patch series, technical discussions, reviews, and work across the ecosystem.',
+}}>
+  <p>Follow Xen development without reading every mailing-list thread. Each issue links to the original discussions so you can explore the details and join the conversation. Proposals and patches under review may change before they are merged.</p>
+  <p><a href={digestFeedUrl}>Subscribe via RSS</a> · <a href="https://lore.kernel.org/xen-devel/">Read the xen-devel archives</a></p>
+  <h2>Weekly issues</h2>
+  {issues.length > 0 ? (
+    <ul class="uno-list-none uno-p-0">
+      {issues.map(issue => (
+        <li class="uno-border-0 uno-border-b uno-border-solid uno-border-xp-border-muted uno-py-5">
+          <h3><a href={digestUrl(issue)}>{issue.data.title}</a></h3>
+          <p>Coverage: <time datetime={issue.data.coverageStart.toISOString()}>{formatDigestDate(issue.data.coverageStart)}</time>–<time datetime={issue.data.coverageEnd.toISOString()}>{formatDigestDate(issue.data.coverageEnd)}</time></p>
+          <p>{issue.data.description}</p>
+        </li>
+      ))}
+    </ul>
+  ) : <p>The first issue is being prepared. Reviewed issues will appear here when published.</p>}
+</LongformLayout>

@@ -1,0 +1,22 @@
+---
+import CTA from '../../blocks/CTA.astro';
+import {digestArchiveUrl, digestUrl, getPublishedDigests} from '../../../data/xen-devel-digests';
+
+const {showEmpty = false} = Astro.props as {showEmpty?: boolean};
+const [latest] = await getPublishedDigests();
+---
+
+{(latest || showEmpty) && (
+  <div data-pagefind-ignore>
+    <CTA
+      id="development-updates"
+      eyebrow="Development updates"
+      title={latest?.data.title ?? 'This week on xen-devel'}
+      description={latest?.data.description ?? 'Follow patch series, technical discussions, and reviews through weekly summaries of the xen-devel mailing list. The first issue is being prepared.'}
+      actions={[
+        ...(latest ? [{label: 'Read the latest digest', href: digestUrl(latest)}] : []),
+        {label: 'Browse xen-devel digests', href: digestArchiveUrl, variant: 'text'},
+      ]}
+    />
+  </div>
+)}
